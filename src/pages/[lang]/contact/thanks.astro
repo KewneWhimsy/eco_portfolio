@@ -1,0 +1,101 @@
+---
+// src/pages/[lang]/contact/thanks.astro
+import Layout from '../../../layouts/layout.astro';
+
+// Récupérer le paramètre de langue depuis l'URL
+export function getStaticPaths() {
+  return [
+    { params: { lang: 'fr' } },
+    { params: { lang: 'en' } },
+    { params: { lang: 'de' } }
+  ];
+}
+
+const lang = Astro.params.lang as 'fr' | 'en' | 'de';
+
+// Contenu traduit pour chaque langue
+const content = {
+  fr: {
+    title: 'Merci pour votre message',
+    description: 'Merci de nous avoir contacté, nous reviendrons vers vous rapidement.',
+    thankYouTitle: 'Message envoyé avec succès !',
+    thankYouMessage: 'Merci de m\'avoir contacté. Je vous répondrai dans les plus brefs délais.',
+    backButton: 'Retour à l\'accueil',
+    ecoModeTitle: 'Mode Éco activé',
+    ecoModeText: 'Vous consultez actuellement la version ultra-légère de mon portfolio.',
+    contactAgainText: 'Si vous avez d\'autres questions ou besoins, n\'hésitez pas à me contacter à nouveau.',
+    emailText: 'Vous pouvez également me joindre directement par email à:',
+    emailAddress: 'contact@josselinhanel.com'
+  },
+  en: {
+    title: 'Thank you for your message',
+    description: 'Thank you for contacting us, we will get back to you shortly.',
+    thankYouTitle: 'Message sent successfully!',
+    thankYouMessage: 'Thank you for contacting me. I will get back to you as soon as possible.',
+    backButton: 'Back to home',
+    ecoModeTitle: 'Eco Mode activated',
+    ecoModeText: 'You are currently viewing the ultra-lightweight version of my portfolio.',
+    contactAgainText: 'If you have any other questions or needs, don\'t hesitate to contact me again.',
+    emailText: 'You can also reach me directly by email at:',
+    emailAddress: 'contact@josselinhanel.com'
+  },
+  de: {
+    title: 'Vielen Dank für Ihre Nachricht',
+    description: 'Vielen Dank für Ihre Kontaktaufnahme, wir werden uns in Kürze bei Ihnen melden.',
+    thankYouTitle: 'Nachricht erfolgreich gesendet!',
+    thankYouMessage: 'Vielen Dank für Ihre Kontaktaufnahme. Ich werde mich so schnell wie möglich bei Ihnen melden.',
+    backButton: 'Zurück zur Startseite',
+    ecoModeTitle: 'Öko-Modus aktiviert',
+    ecoModeText: 'Sie sehen gerade die ultraleichte Version meines Portfolios.',
+    contactAgainText: 'Wenn Sie weitere Fragen oder Wünsche haben, zögern Sie nicht, mich erneut zu kontaktieren.',
+    emailText: 'Sie können mich auch direkt per E-Mail erreichen unter:',
+    emailAddress: 'contact@josselinhanel.com'
+  }
+};
+
+// Utiliser la langue demandée ou français par défaut
+const t = content[lang] || content.fr;
+
+// Déterminer si on est en mode éco
+const isEcoMode = true;
+---
+
+<Layout title={t.title} description={t.description} lang={lang} isEcoMode={isEcoMode}>
+  <div class="container mx-auto px-4 py-6">
+    <!-- Section d'introduction du mode éco -->
+    <section class="py-4 border-b border-secondary mb-6">
+      <h2 class="text-xl font-bold mb-2">{t.ecoModeTitle}</h2>
+      <p class="mb-3">
+        {t.ecoModeText}
+      </p>
+    </section>
+    
+    <div class="max-w-md mx-auto text-center bg-secondary bg-opacity-30 rounded-lg p-8">
+      <h1 class="text-2xl font-bold mb-4 text-accent">
+        {t.thankYouTitle}
+      </h1>
+      
+      <p class="mb-6">
+        {t.thankYouMessage}
+      </p>
+      
+      <p class="mb-6">
+        {t.contactAgainText}
+      </p>
+      
+      <div class="mb-6 text-left">
+        <p class="mb-2">{t.emailText}</p>
+        <a href={`mailto:${t.emailAddress}`} class="text-accent hover:underline">
+          {t.emailAddress}
+        </a>
+      </div>
+      
+      <a 
+        href={`/${lang}/eco`} 
+        class="inline-block bg-accent text-primary px-4 py-2 rounded-md hover:bg-opacity-90 transition-opacity"
+      >
+        {t.backButton}
+      </a>
+    </div>
+  </div>
+</Layout>

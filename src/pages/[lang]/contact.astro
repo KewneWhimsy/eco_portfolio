@@ -169,17 +169,45 @@ const socialLinks = [
               this.success = false;
               this.error = false;
               
-              // Simulation d'envoi d'email (à remplacer par votre système réel)
-              setTimeout(() => {
+              // Préparation des données pour Web3Forms
+              const formData = new FormData();
+              formData.append('name', this.name);
+              formData.append('email', this.email);
+              formData.append('subject', this.subject);
+              formData.append('message', this.message);
+              formData.append('phone', this.phone);
+              formData.append('preferredContact', this.preferredContact);
+              
+              // Remplacez par votre clé d'API Web3Forms
+              formData.append('access_key', '2dcc3f1b-036f-48a7-987a-cdada0d05ae5');
+              
+              // Envoyer à Web3Forms
+              fetch('https://api.web3forms.com/submit', {
+                method: 'POST',
+                body: formData
+              })
+              .then(res => res.json())
+              .then(data => {
+                if (data.success) {
+                  this.success = true;
+                  // Réinitialiser le formulaire
+                  this.name = '';
+                  this.email = '';
+                  this.subject = '';
+                  this.message = '';
+                  this.phone = '';
+                } else {
+                  this.error = true;
+                  console.error('Erreur:', data);
+                }
+              })
+              .catch(err => {
+                this.error = true;
+                console.error('Erreur:', err);
+              })
+              .finally(() => {
                 this.submitting = false;
-                this.success = true;
-                // Réinitialiser le formulaire
-                this.name = '';
-                this.email = '';
-                this.subject = '';
-                this.message = '';
-                this.phone = '';
-              }, 1500);
+              });
             }
           }"
           @submit.prevent="submitForm()"
@@ -272,6 +300,11 @@ const socialLinks = [
               required
             ></textarea>
             <p x-show="!validation.message && message !== ''" class="text-red-500 text-sm mt-1">{t.requiredField}</p>
+          </div>
+          
+          <!-- Champ honeypot pour éviter le spam -->
+          <div class="hidden">
+            <input type="text" name="botcheck" />
           </div>
           
           <!-- Bouton d'envoi -->

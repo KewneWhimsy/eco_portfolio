@@ -22,6 +22,7 @@ const content = {
     contactIntro: "Vous avez un projet en tête ou une question ? Contactez-moi par email ou via ce formulaire simplifié.",
     nameLabel: 'Votre nom',
     emailLabel: 'Votre email',
+    subjectLabel: 'Sujet',
     messageLabel: 'Message',
     submitButton: 'Envoyer',
     availabilityTitle: 'Disponibilité',
@@ -38,6 +39,7 @@ const content = {
     contactIntro: "Do you have a project in mind or a question? Contact me by email or through this simplified form.",
     nameLabel: 'Your name',
     emailLabel: 'Your email',
+    subjectLabel: 'Subject',
     messageLabel: 'Message',
     submitButton: 'Send',
     availabilityTitle: 'Availability',
@@ -54,6 +56,7 @@ const content = {
     contactIntro: "Haben Sie ein Projekt im Sinn oder eine Frage? Kontaktieren Sie mich per E-Mail oder über dieses vereinfachte Formular.",
     nameLabel: 'Ihr Name',
     emailLabel: 'Ihre E-Mail',
+    subjectLabel: 'Betreff',
     messageLabel: 'Nachricht',
     submitButton: 'Senden',
     availabilityTitle: 'Verfügbarkeit',
@@ -68,8 +71,18 @@ const content = {
 // Utiliser la langue demandée ou français par défaut
 const t = content[lang] || content.fr;
 
+// Liens de réseaux sociaux simplifiés
+const socialLinks = [
+  { name: 'GitHub', url: 'https://github.com/votre-username' },
+  { name: 'LinkedIn', url: 'https://linkedin.com/in/votre-profil' },
+  { name: 'Twitter', url: 'https://twitter.com/votre-compte' }
+];
+
 // Mode éco activé
 const isEcoMode = true;
+
+// L'URL complète vers la page de remerciement (incluant le domaine)
+const redirectUrl = `${Astro.url.origin}/${lang}/contact/thanks`;
 ---
 
 <Layout title={t.title} description={t.description} lang={lang} isEcoMode={isEcoMode}>
@@ -104,15 +117,39 @@ const isEcoMode = true;
           <h3 class="font-medium mb-2">{t.availabilityTitle}</h3>
           <p>{t.availabilityText}</p>
         </div>
+        
+        <!-- Réseaux sociaux simplifiés -->
+        <div class="mb-6">
+          <ul class="space-y-1">
+            {socialLinks.map(link => (
+              <li>
+                <a 
+                  href={link.url} 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  class="text-accent hover:underline"
+                >
+                  {link.name}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
       </section>
       
       <!-- Formulaire de contact simplifié -->
       <section>
         <form 
-          action="https://formspree.io/f/xoqgeqpz" 
           method="POST"
+          action="https://api.web3forms.com/submit"
           class="space-y-4"
         >
+          <!-- Clé API Web3Forms -->
+          <input type="hidden" name="access_key" value="2dcc3f1b-036f-48a7-987a-cdada0d05ae5">
+          
+          <!-- URL de redirection après soumission - URL absolue requise -->
+          <input type="hidden" name="redirect" value={redirectUrl}>
+          
           <!-- Champ nom -->
           <div>
             <label for="name" class="block mb-1 font-medium">{t.nameLabel}</label>
@@ -137,6 +174,18 @@ const isEcoMode = true;
             />
           </div>
           
+          <!-- Champ sujet -->
+          <div>
+            <label for="subject" class="block mb-1 font-medium">{t.subjectLabel}</label>
+            <input 
+              type="text" 
+              id="subject" 
+              name="subject" 
+              class="w-full p-2 border border-secondary bg-primary rounded-md"
+              required
+            />
+          </div>
+          
           <!-- Champ message -->
           <div>
             <label for="message" class="block mb-1 font-medium">{t.messageLabel}</label>
@@ -146,6 +195,11 @@ const isEcoMode = true;
               class="w-full p-2 border border-secondary bg-primary rounded-md h-24"
               required
             ></textarea>
+          </div>
+          
+          <!-- Champ honeypot pour éviter le spam -->
+          <div class="hidden">
+            <input type="text" name="botcheck" />
           </div>
           
           <!-- Bouton d'envoi -->
