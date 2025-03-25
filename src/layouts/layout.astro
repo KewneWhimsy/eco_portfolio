@@ -59,12 +59,12 @@ const { htmlLang, ogLocale } = langAttributes[lang as keyof typeof langAttribute
 	<!-- Chargement conditionnel d'Alpine.js -->
     <AlpineLoader isEcoMode={isEcoMode} />
   </head>
-  <body>
+  <body class="min-h-screen flex flex-col">
     <header>
       <Header />
     </header>
 
-    <main>
+    <main class="flex-1">
       <!-- Le contenu principal sera inséré ici -->
       <slot />
     </main>

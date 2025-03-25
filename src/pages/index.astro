@@ -3,32 +3,34 @@
 ---
 
 <script>
-    // Vérifier si la langue est déjà dans localStorage
-    const storedLang = localStorage.getItem('preferredLanguage');
-    // Obtenir la langue du navigateur
-    const browserLang = navigator.language.split('-')[0];
-    // Langues supportées
-    const supportedLangs = ['fr', 'en', 'de'];
-    
-    // Déterminer la langue à utiliser (priorité : stockée > navigateur > français)
-    let targetLang = 'fr';
-    
-    if (storedLang && supportedLangs.includes(storedLang)) {
-      targetLang = storedLang;
-    } else if (supportedLangs.includes(browserLang)) {
-      targetLang = browserLang;
-      // Stocker la préférence
-      localStorage.setItem('preferredLanguage', targetLang);
-    }
-    
-    // Rediriger vers la langue cible
-    window.location.href = `/${targetLang}`;
-  </script>
-  
-  <!-- Fallback pour les navigateurs sans JavaScript -->
-  <meta http-equiv="refresh" content="0;url=/fr" />
-  
-  <body>
-    <p>Redirection vers le portfolio...</p>
-    <p><a href="/fr">Cliquez ici si vous n'êtes pas redirigé automatiquement</a></p>
-  </body>
+  // Vérifier si la langue est déjà dans localStorage
+  const storedLang = localStorage.getItem("preferredLanguage");
+  // Obtenir la langue du navigateur
+  const browserLang = navigator.language.split("-")[0];
+  // Langues supportées
+  const supportedLangs = ["fr", "en", "de"];
+
+  // Déterminer la langue à utiliser (priorité : stockée > navigateur > français)
+  let targetLang = "fr";
+
+  if (storedLang && supportedLangs.includes(storedLang)) {
+    targetLang = storedLang;
+  } else if (supportedLangs.includes(browserLang)) {
+    targetLang = browserLang;
+    // Stocker la préférence
+    localStorage.setItem("preferredLanguage", targetLang);
+  }
+
+  // Rediriger vers la langue cible
+  window.location.href = `/${targetLang}`;
+</script>
+
+<!-- Fallback pour les navigateurs sans JavaScript -->
+<meta http-equiv="refresh" content="0;url=/fr" />
+
+<body>
+  <p>Redirection vers le portfolio...</p>
+  <p>
+    <a href="/fr">Cliquez ici si vous n'êtes pas redirigé automatiquement</a>
+  </p>
+</body>
