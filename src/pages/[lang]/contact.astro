@@ -1,0 +1,333 @@
+---
+// Import du layout standard
+import Layout from '../../layouts/layout.astro';
+import AlpineLoader from '../../components/alpine_loader.astro';
+
+// Récupérer le paramètre de langue depuis l'URL
+export function getStaticPaths() {
+  return [
+    { params: { lang: 'fr' } },
+    { params: { lang: 'en' } },
+    { params: { lang: 'de' } }
+  ];
+}
+
+const lang = Astro.params.lang as 'fr' | 'en' | 'de';
+
+// Contenu traduit pour chaque langue
+const content = {
+  fr: {
+    title: 'Josselin HANEL - Contact',
+    description: 'Contactez-moi pour discuter de vos projets web éco-responsables ou pour toute question.',
+    contactTitle: 'Me contacter',
+    contactIntro: "Vous avez un projet en tête ? Vous souhaitez en savoir plus sur l'éco-conception web ? N'hésitez pas à me contacter via le formulaire ci-dessous ou directement par email.",
+    nameLabel: 'Votre nom',
+    emailLabel: 'Votre email',
+    subjectLabel: 'Sujet',
+    messageLabel: 'Message',
+    submitButton: 'Envoyer',
+    namePlaceholder: 'Entrez votre nom complet',
+    emailPlaceholder: 'votre.email@exemple.com',
+    subjectPlaceholder: 'Objet de votre message',
+    messagePlaceholder: 'Écrivez votre message ici...',
+    preferredContactLabel: 'Méthode de contact préférée',
+    emailOption: 'Email',
+    phoneOption: 'Téléphone',
+    phoneLabel: 'Votre numéro de téléphone (optionnel)',
+    phonePlaceholder: '+33 6 12 34 56 78',
+    availabilityTitle: 'Disponibilité',
+    availabilityText: 'Je suis actuellement disponible pour des missions freelance à Rennes, Nantes, Berlin ou en télétravail.',
+    emailMe: 'M\'envoyer un email',
+    followMe: 'Me suivre',
+    submitting: 'Envoi en cours...',
+    successMessage: 'Merci ! Votre message a été envoyé avec succès.',
+    errorMessage: 'Une erreur est survenue. Veuillez réessayer ou me contacter directement par email.',
+    requiredField: 'Ce champ est requis'
+  },
+  en: {
+    title: 'Josselin HANEL - Contact',
+    description: 'Contact me to discuss your eco-friendly web projects or for any questions.',
+    contactTitle: 'Contact me',
+    contactIntro: "Do you have a project in mind? Would you like to know more about eco-friendly web design? Feel free to contact me via the form below or directly by email.",
+    nameLabel: 'Your name',
+    emailLabel: 'Your email',
+    subjectLabel: 'Subject',
+    messageLabel: 'Message',
+    submitButton: 'Send',
+    namePlaceholder: 'Enter your full name',
+    emailPlaceholder: 'your.email@example.com',
+    subjectPlaceholder: 'Subject of your message',
+    messagePlaceholder: 'Write your message here...',
+    preferredContactLabel: 'Preferred contact method',
+    emailOption: 'Email',
+    phoneOption: 'Phone',
+    phoneLabel: 'Your phone number (optional)',
+    phonePlaceholder: '+33 6 12 34 56 78',
+    availabilityTitle: 'Availability',
+    availabilityText: 'I am currently available for freelance work in Rennes, Nantes, Berlin or remote work.',
+    emailMe: 'Email me',
+    followMe: 'Follow me',
+    submitting: 'Sending...',
+    successMessage: 'Thank you! Your message has been sent successfully.',
+    errorMessage: 'An error occurred. Please try again or contact me directly by email.',
+    requiredField: 'This field is required'
+  },
+  de: {
+    title: 'Josselin HANEL - Kontakt',
+    description: 'Kontaktieren Sie mich, um über Ihre umweltfreundlichen Webprojekte zu sprechen oder für Fragen.',
+    contactTitle: 'Kontaktieren Sie mich',
+    contactIntro: "Haben Sie ein Projekt im Sinn? Möchten Sie mehr über umweltfreundliches Webdesign erfahren? Kontaktieren Sie mich gerne über das Formular unten oder direkt per E-Mail.",
+    nameLabel: 'Ihr Name',
+    emailLabel: 'Ihre E-Mail',
+    subjectLabel: 'Betreff',
+    messageLabel: 'Nachricht',
+    submitButton: 'Senden',
+    namePlaceholder: 'Geben Sie Ihren vollständigen Namen ein',
+    emailPlaceholder: 'ihre.email@beispiel.com',
+    subjectPlaceholder: 'Betreff Ihrer Nachricht',
+    messagePlaceholder: 'Schreiben Sie Ihre Nachricht hier...',
+    preferredContactLabel: 'Bevorzugte Kontaktmethode',
+    emailOption: 'E-Mail',
+    phoneOption: 'Telefon',
+    phoneLabel: 'Ihre Telefonnummer (optional)',
+    phonePlaceholder: '+33 6 12 34 56 78',
+    availabilityTitle: 'Verfügbarkeit',
+    availabilityText: 'Ich bin derzeit verfügbar für Freiberufliche Arbeit in Rennes, Nantes, Berlin oder für Remote-Arbeit.',
+    emailMe: 'E-Mail senden',
+    followMe: 'Folgen Sie mir',
+    submitting: 'Senden...',
+    successMessage: 'Vielen Dank! Ihre Nachricht wurde erfolgreich gesendet.',
+    errorMessage: 'Ein Fehler ist aufgetreten. Bitte versuchen Sie es erneut oder kontaktieren Sie mich direkt per E-Mail.',
+    requiredField: 'Dieses Feld ist erforderlich'
+  }
+};
+
+// Utiliser la langue demandée ou français par défaut
+const t = content[lang] || content.fr;
+
+// Liens de réseaux sociaux
+const socialLinks = [
+  { name: 'GitHub', url: 'https://github.com/votre-username', icon: 'github' },
+  { name: 'LinkedIn', url: 'https://linkedin.com/in/votre-profil', icon: 'linkedin' },
+  { name: 'Twitter', url: 'https://twitter.com/votre-compte', icon: 'twitter' }
+];
+---
+
+<Layout title={t.title} description={t.description} lang={lang}>
+  <div class="container mx-auto px-4 py-8">
+    <h1 class="text-3xl font-bold mb-6 border-b border-accent pb-2">
+      {t.contactTitle}
+    </h1>
+    
+    <div class="flex flex-col md:flex-row gap-8">
+      <!-- Formulaire de contact -->
+      <div class="md:w-2/3">
+        <p class="mb-6">
+          {t.contactIntro}
+        </p>
+        
+        <form 
+          id="contact-form" 
+          class="space-y-4"
+          x-data="{
+            name: '',
+            email: '',
+            subject: '',
+            message: '',
+            phone: '',
+            preferredContact: 'email',
+            submitting: false,
+            success: false,
+            error: false,
+            validation: {
+              name: true,
+              email: true,
+              subject: true,
+              message: true
+            },
+            validateField(field) {
+              if (field === 'email') {
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                this.validation[field] = this[field].trim() !== '' && emailRegex.test(this[field]);
+              } else {
+                this.validation[field] = this[field].trim() !== '';
+              }
+              return this.validation[field];
+            },
+            validateForm() {
+              this.validateField('name');
+              this.validateField('email');
+              this.validateField('subject');
+              this.validateField('message');
+              return this.validation.name && this.validation.email && 
+                    this.validation.subject && this.validation.message;
+            },
+            submitForm() {
+              if (!this.validateForm()) return;
+              
+              this.submitting = true;
+              this.success = false;
+              this.error = false;
+              
+              // Simulation d'envoi d'email (à remplacer par votre système réel)
+              setTimeout(() => {
+                this.submitting = false;
+                this.success = true;
+                // Réinitialiser le formulaire
+                this.name = '';
+                this.email = '';
+                this.subject = '';
+                this.message = '';
+                this.phone = '';
+              }, 1500);
+            }
+          }"
+          @submit.prevent="submitForm()"
+        >
+          <!-- Champ nom -->
+          <div>
+            <label for="name" class="block mb-1 font-medium">{t.nameLabel} *</label>
+            <input 
+              type="text" 
+              id="name" 
+              x-model="name"
+              @blur="validateField('name')"
+              :class="{'border-red-500': !validation.name && name !== ''}"
+              class="w-full p-2 border border-secondary bg-primary rounded-md"
+              placeholder={t.namePlaceholder}
+              required
+            />
+            <p x-show="!validation.name && name !== ''" class="text-red-500 text-sm mt-1">{t.requiredField}</p>
+          </div>
+          
+          <!-- Champ email -->
+          <div>
+            <label for="email" class="block mb-1 font-medium">{t.emailLabel} *</label>
+            <input 
+              type="email" 
+              id="email" 
+              x-model="email"
+              @blur="validateField('email')"
+              :class="{'border-red-500': !validation.email && email !== ''}"
+              class="w-full p-2 border border-secondary bg-primary rounded-md"
+              placeholder={t.emailPlaceholder}
+              required
+            />
+            <p x-show="!validation.email && email !== ''" class="text-red-500 text-sm mt-1">{t.requiredField}</p>
+          </div>
+          
+          <!-- Méthode de contact préférée -->
+          <div>
+            <label class="block mb-1 font-medium">{t.preferredContactLabel}</label>
+            <div class="flex gap-4">
+              <label class="flex items-center">
+                <input type="radio" name="contactMethod" value="email" x-model="preferredContact" checked>
+                <span class="ml-2">{t.emailOption}</span>
+              </label>
+              <label class="flex items-center">
+                <input type="radio" name="contactMethod" value="phone" x-model="preferredContact">
+                <span class="ml-2">{t.phoneOption}</span>
+              </label>
+            </div>
+          </div>
+          
+          <!-- Champ téléphone (conditionnel) -->
+          <div x-show="preferredContact === 'phone'" x-transition>
+            <label for="phone" class="block mb-1 font-medium">{t.phoneLabel}</label>
+            <input 
+              type="tel" 
+              id="phone" 
+              x-model="phone"
+              class="w-full p-2 border border-secondary bg-primary rounded-md"
+              placeholder={t.phonePlaceholder}
+            />
+          </div>
+          
+          <!-- Champ sujet -->
+          <div>
+            <label for="subject" class="block mb-1 font-medium">{t.subjectLabel} *</label>
+            <input 
+              type="text" 
+              id="subject" 
+              x-model="subject"
+              @blur="validateField('subject')"
+              :class="{'border-red-500': !validation.subject && subject !== ''}"
+              class="w-full p-2 border border-secondary bg-primary rounded-md"
+              placeholder={t.subjectPlaceholder}
+              required
+            />
+            <p x-show="!validation.subject && subject !== ''" class="text-red-500 text-sm mt-1">{t.requiredField}</p>
+          </div>
+          
+          <!-- Champ message -->
+          <div>
+            <label for="message" class="block mb-1 font-medium">{t.messageLabel} *</label>
+            <textarea 
+              id="message" 
+              x-model="message"
+              @blur="validateField('message')"
+              :class="{'border-red-500': !validation.message && message !== ''}"
+              class="w-full p-2 border border-secondary bg-primary rounded-md h-32"
+              placeholder={t.messagePlaceholder}
+              required
+            ></textarea>
+            <p x-show="!validation.message && message !== ''" class="text-red-500 text-sm mt-1">{t.requiredField}</p>
+          </div>
+          
+          <!-- Bouton d'envoi -->
+          <div>
+            <button 
+              type="submit"
+              :disabled="submitting"
+              class="bg-accent text-primary px-5 py-2 rounded-md hover:bg-opacity-90 transition-opacity flex items-center"
+            >
+              <span x-show="!submitting">{t.submitButton}</span>
+              <span x-show="submitting">{t.submitting}</span>
+            </button>
+          </div>
+          
+          <!-- Messages de statut -->
+          <div x-show="success" x-transition class="mt-4 p-3 bg-green-100 text-green-800 rounded-md">
+            {t.successMessage}
+          </div>
+          
+          <div x-show="error" x-transition class="mt-4 p-3 bg-red-100 text-red-800 rounded-md">
+            {t.errorMessage}
+          </div>
+        </form>
+      </div>
+      
+      <!-- Informations de contact -->
+      <div class="md:w-1/3 bg-secondary bg-opacity-30 p-6 rounded-lg">
+        <h2 class="text-xl font-semibold mb-4 text-accent">{t.availabilityTitle}</h2>
+        <p class="mb-6">
+          {t.availabilityText}
+        </p>
+        
+        <div class="mb-6">
+          <h3 class="font-medium mb-2">{t.emailMe}</h3>
+          <a href="mailto:contact@josselinhanel.com" class="text-accent hover:underline">
+            contact@josselinhanel.com
+          </a>
+        </div>
+        
+        <div>
+          <h3 class="font-medium mb-2">{t.followMe}</h3>
+          <div class="flex gap-4">
+            {socialLinks.map(link => (
+              <a 
+                href={link.url} 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                class="text-text-muted hover:text-accent transition-colors"
+                aria-label={link.name}
+              >
+                <span>{link.name}</span>
+              </a>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</Layout>

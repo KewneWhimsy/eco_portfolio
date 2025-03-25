@@ -1,0 +1,367 @@
+---
+// Import du layout standard
+import Layout from '../../layouts/layout.astro';
+
+// Récupérer le paramètre de langue depuis l'URL
+export function getStaticPaths() {
+  return [
+    { params: { lang: 'fr' } },
+    { params: { lang: 'en' } },
+    { params: { lang: 'de' } }
+  ];
+}
+
+const lang = Astro.params.lang as 'fr' | 'en' | 'de';
+
+// Contenu traduit pour chaque langue
+const content = {
+  fr: {
+    title: 'Josselin HANEL - Projets',
+    description: 'Découvrez mes projets de développement web éco-responsable et mes réalisations récentes.',
+    projectsTitle: 'Mes projets',
+    projectsIntro: "Voici une sélection de mes projets récents. Chaque réalisation est pensée avec une approche d'éco-conception et d'accessibilité.",
+    viewProject: 'Voir le projet',
+    visitSite: 'Visiter le site',
+    viewSourceCode: 'Voir le code source',
+    categories: {
+      all: 'Tous',
+      web: 'Sites Web',
+      app: 'Applications',
+      ecodesign: 'Éco-conception'
+    },
+    filterBy: 'Filtrer par catégorie:',
+    showcaseTitle: 'Focus sur l\'éco-conception',
+    showcaseText: "L'éco-conception web consiste à créer des sites et applications qui minimisent leur impact environnemental tout au long de leur cycle de vie. Voici quelques principes que j'applique dans mes projets.",
+    principles: [
+      {
+        title: 'Sobriété technique',
+        description: 'Chaque fonctionnalité est analysée en fonction de sa valeur ajoutée réelle pour éviter les fonctionnalités superflues consommatrices de ressources.'
+      },
+      {
+        title: 'Optimisation des ressources',
+        description: 'Minimisation des requêtes serveur, compression des contenus, utilisation rationnelle des scripts et optimisation des médias.'
+      },
+      {
+        title: 'Pérennité',
+        description: 'Choix de technologies durables et bien maintenues, code modulaire et évolutif, architecture adaptable aux besoins futurs.'
+      }
+    ],
+    contactCTA: 'Vous avez un projet en tête ?',
+    contactButton: 'Discutons-en'
+  },
+  en: {
+    title: 'Josselin HANEL - Projects',
+    description: 'Discover my eco-friendly web development projects and recent achievements.',
+    projectsTitle: 'My projects',
+    projectsIntro: "Here is a selection of my recent projects. Each creation is designed with an eco-design and accessibility approach.",
+    viewProject: 'View project',
+    visitSite: 'Visit site',
+    viewSourceCode: 'View source code',
+    categories: {
+      all: 'All',
+      web: 'Websites',
+      app: 'Applications',
+      ecodesign: 'Eco-design'
+    },
+    filterBy: 'Filter by category:',
+    showcaseTitle: 'Focus on eco-design',
+    showcaseText: "Web eco-design consists of creating websites and applications that minimize their environmental impact throughout their life cycle. Here are some principles I apply in my projects.",
+    principles: [
+      {
+        title: 'Technical sobriety',
+        description: 'Each feature is analyzed according to its real added value to avoid superfluous resource-consuming features.'
+      },
+      {
+        title: 'Resource optimization',
+        description: 'Minimization of server requests, content compression, rational use of scripts and media optimization.'
+      },
+      {
+        title: 'Sustainability',
+        description: 'Choice of durable and well-maintained technologies, modular and evolving code, architecture adaptable to future needs.'
+      }
+    ],
+    contactCTA: 'Do you have a project in mind?',
+    contactButton: 'Let\'s talk about it'
+  },
+  de: {
+    title: 'Josselin HANEL - Projekte',
+    description: 'Entdecken Sie meine umweltfreundlichen Webentwicklungsprojekte und neuesten Erfolge.',
+    projectsTitle: 'Meine Projekte',
+    projectsIntro: "Hier ist eine Auswahl meiner neuesten Projekte. Jede Kreation ist mit einem Öko-Design- und Zugänglichkeitsansatz konzipiert.",
+    viewProject: 'Projekt ansehen',
+    visitSite: 'Website besuchen',
+    viewSourceCode: 'Quellcode ansehen',
+    categories: {
+      all: 'Alle',
+      web: 'Websites',
+      app: 'Anwendungen',
+      ecodesign: 'Öko-Design'
+    },
+    filterBy: 'Nach Kategorie filtern:',
+    showcaseTitle: 'Fokus auf Öko-Design',
+    showcaseText: "Web-Öko-Design besteht darin, Websites und Anwendungen zu erstellen, die ihre Umweltauswirkungen während ihres gesamten Lebenszyklus minimieren. Hier sind einige Prinzipien, die ich in meinen Projekten anwende.",
+    principles: [
+      {
+        title: 'Technische Nüchternheit',
+        description: 'Jede Funktion wird nach ihrem tatsächlichen Mehrwert analysiert, um überflüssige ressourcenverbrauchende Funktionen zu vermeiden.'
+      },
+      {
+        title: 'Ressourcenoptimierung',
+        description: 'Minimierung von Serveranfragen, Inhaltskomprimierung, rationelle Nutzung von Skripten und Medienoptimierung.'
+      },
+      {
+        title: 'Nachhaltigkeit',
+        description: 'Auswahl langlebiger und gut gewarteter Technologien, modularer und sich entwickelnder Code, an zukünftige Bedürfnisse anpassbare Architektur.'
+      }
+    ],
+    contactCTA: 'Haben Sie ein Projekt im Sinn?',
+    contactButton: 'Lassen Sie uns darüber sprechen'
+  }
+};
+
+// Utiliser la langue demandée ou français par défaut
+const t = content[lang] || content.fr;
+
+// Projets à afficher
+const projects = [
+  {
+    id: 'library',
+    title: 'Bibliothèque d\'objets Quimper',
+    description: lang === 'fr' ? 
+      'Site de gestion pour une bibliothèque d\'objets permettant le prêt et la réservation d\'articles divers.' :
+      (lang === 'en' ? 
+        'Management website for an object library allowing the loan and reservation of various items.' : 
+        'Management-Website für eine Objektbibliothek, die das Ausleihen und Reservieren verschiedener Artikel ermöglicht.'),
+    image: '/images/biblio-projet.jpg',
+    categories: ['web', 'app'],
+    tech: ['HTML', 'CSS', 'JavaScript', 'Node.js', 'MySQL'],
+    url: 'https://example.com/library',
+    github: 'https://github.com/username/library-project',
+    isFeatured: true,
+    ecoFeatures: [
+      lang === 'fr' ? 'Images optimisées' : (lang === 'en' ? 'Optimized images' : 'Optimierte Bilder'),
+      lang === 'fr' ? 'Chargement paresseux' : (lang === 'en' ? 'Lazy loading' : 'Lazy Loading'),
+      lang === 'fr' ? 'Cache efficace' : (lang === 'en' ? 'Efficient caching' : 'Effizientes Caching')
+    ]
+  },
+  {
+    id: 'esport',
+    title: 'Application e-sport avec chat',
+    description: lang === 'fr' ? 
+      'Plateforme de gestion d\'événements e-sport intégrant un système de chat en temps réel via WebSocket et HTMX.' :
+      (lang === 'en' ? 
+        'E-sport event management platform with a real-time chat system via WebSocket and HTMX.' : 
+        'E-Sport-Eventmanagement-Plattform mit einem Echtzeit-Chat-System über WebSocket und HTMX.'),
+    image: '/images/esport-projet.jpg',
+    categories: ['app', 'ecodesign'],
+    tech: ['HTML', 'CSS', 'HTMX', 'WebSocket', 'Node.js', 'MongoDB'],
+    url: 'https://example.com/esport',
+    github: 'https://github.com/username/esport-project',
+    isFeatured: true,
+    ecoFeatures: [
+      lang === 'fr' ? 'Interface minimaliste' : (lang === 'en' ? 'Minimalist interface' : 'Minimalistische Schnittstelle'),
+      lang === 'fr' ? 'WebSockets optimisés' : (lang === 'en' ? 'Optimized WebSockets' : 'Optimierte WebSockets'),
+      lang === 'fr' ? 'HTMX pour limiter JavaScript' : (lang === 'en' ? 'HTMX to limit JavaScript' : 'HTMX zur Begrenzung von JavaScript')
+    ]
+  },
+  {
+    id: 'portfolio',
+    title: 'Portfolio personnel éco-responsable',
+    description: lang === 'fr' ? 
+      'Mon portfolio personnel avec mode éco, multilingue et conçu selon les principes de l\'éco-conception web.' :
+      (lang === 'en' ? 
+        'My personal portfolio with eco-mode, multilingual, and designed following web eco-design principles.' : 
+        'Mein persönliches Portfolio mit Öko-Modus, mehrsprachig und nach den Prinzipien des Web-Öko-Designs gestaltet.'),
+    image: '/images/portfolio-projet.jpg',
+    categories: ['web', 'ecodesign'],
+    tech: ['Astro', 'Alpine.js', 'TailwindCSS'],
+    url: '/',
+    github: 'https://github.com/username/eco-portfolio',
+    isFeatured: true,
+    ecoFeatures: [
+      lang === 'fr' ? 'Mode éco disponible' : (lang === 'en' ? 'Eco mode available' : 'Öko-Modus verfügbar'),
+      lang === 'fr' ? 'Zéro JavaScript optionnel' : (lang === 'en' ? 'Optional zero JavaScript' : 'Optionales Zero-JavaScript'),
+      lang === 'fr' ? 'Images à la demande' : (lang === 'en' ? 'On-demand images' : 'Bilder auf Anfrage')
+    ]
+  },
+  {
+    id: 'blog',
+    title: 'Blog sur l\'éco-conception',
+    description: lang === 'fr' ? 
+      'Blog dédié aux bonnes pratiques d\'éco-conception, avec système de gestion de contenu minimaliste.' :
+      (lang === 'en' ? 
+        'Blog dedicated to eco-design best practices, with minimalist content management system.' : 
+        'Blog zu Best Practices im Öko-Design mit minimalistischem Content-Management-System.'),
+    image: '/images/blog-projet.jpg',
+    categories: ['web', 'ecodesign'],
+    tech: ['Astro', 'Markdown', 'TailwindCSS'],
+    url: 'https://example.com/blog',
+    github: 'https://github.com/username/eco-blog',
+    isFeatured: false,
+    ecoFeatures: [
+      lang === 'fr' ? 'Génération statique' : (lang === 'en' ? 'Static generation' : 'Statische Generierung'),
+      lang === 'fr' ? 'Contenu en Markdown' : (lang === 'en' ? 'Markdown content' : 'Markdown-Inhalt'),
+      lang === 'fr' ? 'Optimisation des polices' : (lang === 'en' ? 'Font optimization' : 'Schriftoptimierung')
+    ]
+  }
+];
+
+// Générer l'URL du projet en fonction de la langue actuelle
+const getProjectUrl = (projectId: string) => `/${lang}/projects/${projectId}`;
+---
+
+<Layout title={t.title} description={t.description} lang={lang}>
+  <div class="container mx-auto px-4 py-8">
+    <h1 class="text-3xl font-bold mb-6 border-b border-accent pb-2">
+      {t.projectsTitle}
+    </h1>
+    
+    <p class="text-lg mb-8">
+      {t.projectsIntro}
+    </p>
+    
+    <!-- Filtres de catégories -->
+    <div class="mb-8" x-data="{ activeCategory: 'all' }">
+      <div class="mb-2">
+        <span class="font-medium">{t.filterBy}</span>
+      </div>
+      <div class="flex flex-wrap gap-2">
+        <button 
+          @click="activeCategory = 'all'" 
+          :class="activeCategory === 'all' ? 'bg-accent text-primary' : 'bg-secondary text-text'"
+          class="px-3 py-1 rounded-full text-sm transition-colors"
+        >
+          {t.categories.all}
+        </button>
+        
+        <button 
+          @click="activeCategory = 'web'" 
+          :class="activeCategory === 'web' ? 'bg-accent text-primary' : 'bg-secondary text-text'"
+          class="px-3 py-1 rounded-full text-sm transition-colors"
+        >
+          {t.categories.web}
+        </button>
+        
+        <button 
+          @click="activeCategory = 'app'" 
+          :class="activeCategory === 'app' ? 'bg-accent text-primary' : 'bg-secondary text-text'"
+          class="px-3 py-1 rounded-full text-sm transition-colors"
+        >
+          {t.categories.app}
+        </button>
+        
+        <button 
+          @click="activeCategory = 'ecodesign'" 
+          :class="activeCategory === 'ecodesign' ? 'bg-accent text-primary' : 'bg-secondary text-text'"
+          class="px-3 py-1 rounded-full text-sm transition-colors"
+        >
+          {t.categories.ecodesign}
+        </button>
+      </div>
+
+      <!-- Liste des projets filtrables -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
+        {projects.map(project => (
+          <div 
+            class="bg-secondary bg-opacity-30 rounded-lg overflow-hidden transition-opacity duration-300"
+            x-show="activeCategory === 'all' || [${project.categories.map(cat => `'${cat}'`).join(', ')}].includes(activeCategory)"
+            x-transition:enter="transition ease-out duration-300"
+            x-transition:enter-start="opacity-0 transform scale-95"
+            x-transition:enter-end="opacity-100 transform scale-100"
+          >
+            <!-- Couverture du projet -->
+            <div class="bg-primary bg-opacity-30 aspect-video flex items-center justify-center">
+              {project.image ? (
+                <img 
+                  src={project.image} 
+                  alt={project.title} 
+                  class="w-full h-full object-cover"
+                  loading="lazy"
+                />
+              ) : (
+                <span class="text-sm text-text-muted">Image du projet</span>
+              )}
+            </div>
+            
+            <!-- Informations du projet -->
+            <div class="p-4">
+              <h3 class="text-xl font-bold mb-2">{project.title}</h3>
+              
+              <!-- Catégories -->
+              <div class="flex flex-wrap gap-2 mb-3">
+                {project.categories.map(category => (
+                  <span class="px-2 py-0.5 bg-primary bg-opacity-30 rounded-full text-xs">
+                    {t.categories[category as keyof typeof t.categories]}
+                  </span>
+                ))}
+              </div>
+              
+              <p class="mb-4">{project.description}</p>
+              
+              <!-- Technologies -->
+              <div class="mb-4">
+                <div class="flex flex-wrap gap-1.5">
+                  {project.tech.map(tech => (
+                    <span class="px-2 py-0.5 border border-accent text-accent rounded-full text-xs">
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+              <!-- Boutons d'action -->
+              <div class="flex flex-wrap gap-2">
+                <a 
+                  href={getProjectUrl(project.id)} 
+                  class="flex-1 text-center bg-accent text-primary px-3 py-1 rounded hover:bg-opacity-90 transition-opacity text-sm"
+                >
+                  {t.viewProject}
+                </a>
+                
+                <a 
+                  href={project.url} 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  class="flex-1 text-center border border-accent text-accent px-3 py-1 rounded hover:bg-accent hover:bg-opacity-10 transition-colors text-sm"
+                >
+                  {t.visitSite}
+                </a>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+    
+    <!-- Section sur l'éco-conception -->
+    <section class="bg-secondary bg-opacity-30 p-6 rounded-lg mt-12">
+      <h2 class="text-2xl font-bold mb-4 text-accent">
+        {t.showcaseTitle}
+      </h2>
+      
+      <p class="mb-6">
+        {t.showcaseText}
+      </p>
+      
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {t.principles.map(principle => (
+          <div class="p-4 bg-primary bg-opacity-20 rounded-lg">
+            <h3 class="text-lg font-semibold mb-2 text-accent">{principle.title}</h3>
+            <p>{principle.description}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+    
+    <!-- CTA Contact -->
+    <section class="mt-12 py-8 text-center">
+      <h2 class="text-2xl font-bold mb-4">{t.contactCTA}</h2>
+      <a 
+        href={`/${lang}/contact`}
+        class="inline-block bg-accent text-primary px-5 py-2 rounded-md hover:bg-opacity-90 transition-opacity"
+      >
+        {t.contactButton}
+      </a>
+    </section>
+  </div>
+</Layout>

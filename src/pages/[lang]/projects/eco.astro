@@ -1,0 +1,168 @@
+---
+// Import du layout avec mode éco activé
+import Layout from '../../../layouts/layout.astro';
+
+// Récupérer le paramètre de langue depuis l'URL
+export function getStaticPaths() {
+  return [
+    { params: { lang: 'fr' } },
+    { params: { lang: 'en' } },
+    { params: { lang: 'de' } }
+  ];
+}
+
+const lang = Astro.params.lang as 'fr' | 'en' | 'de';
+
+// Contenu traduit pour chaque langue
+const content = {
+  fr: {
+    title: 'Josselin HANEL - Projets (Mode Éco)',
+    description: 'Version éco-responsable de ma page de projets, avec une empreinte carbone minimale.',
+    projectsTitle: 'Mes projets',
+    projectsIntro: "Voici une sélection de mes projets récents. Chaque réalisation est pensée avec une approche d'éco-conception.",
+    viewProject: 'Voir le projet',
+    visitSite: 'Visiter le site',
+    ecoDesignTitle: 'Éco-conception web',
+    ecoDesignText: "L'éco-conception web vise à réduire l'impact environnemental des sites et applications tout en préservant une expérience utilisateur de qualité.",
+    ecoModeTitle: 'Mode Éco activé',
+    ecoModeText: 'Vous consultez actuellement la version ultra-légère de mon portfolio.'
+  },
+  en: {
+    title: 'Josselin HANEL - Projects (Eco Mode)',
+    description: 'Eco-friendly version of my projects page, with minimal carbon footprint.',
+    projectsTitle: 'My projects',
+    projectsIntro: "Here is a selection of my recent projects. Each creation is designed with an eco-design approach.",
+    viewProject: 'View project',
+    visitSite: 'Visit site',
+    ecoDesignTitle: 'Web eco-design',
+    ecoDesignText: "Web eco-design aims to reduce the environmental impact of websites and applications while preserving a quality user experience.",
+    ecoModeTitle: 'Eco Mode activated',
+    ecoModeText: 'You are currently viewing the ultra-lightweight version of my portfolio.'
+  },
+  de: {
+    title: 'Josselin HANEL - Projekte (Öko-Modus)',
+    description: 'Umweltfreundliche Version meiner Projektseite mit minimalem CO2-Fußabdruck.',
+    projectsTitle: 'Meine Projekte',
+    projectsIntro: "Hier ist eine Auswahl meiner neuesten Projekte. Jede Kreation ist mit einem Öko-Design-Ansatz konzipiert.",
+    viewProject: 'Projekt ansehen',
+    visitSite: 'Website besuchen',
+    ecoDesignTitle: 'Web-Öko-Design',
+    ecoDesignText: "Web-Öko-Design zielt darauf ab, die Umweltauswirkungen von Websites und Anwendungen zu reduzieren und gleichzeitig ein qualitativ hochwertiges Benutzererlebnis zu bewahren.",
+    ecoModeTitle: 'Öko-Modus aktiviert',
+    ecoModeText: 'Sie sehen gerade die ultraleichte Version meines Portfolios.'
+  }
+};
+
+// Utiliser la langue demandée ou français par défaut
+const t = content[lang] || content.fr;
+
+// Projets à afficher (version simplifiée pour le mode éco)
+const projects = [
+  {
+    id: 'library',
+    title: 'Bibliothèque d\'objets Quimper',
+    description: lang === 'fr' ? 
+      'Site de gestion pour une bibliothèque d\'objets permettant le prêt et la réservation.' :
+      (lang === 'en' ? 
+        'Management website for an object library allowing loans and reservations.' : 
+        'Management-Website für eine Objektbibliothek für Ausleihe und Reservierung.'),
+    tech: ['HTML', 'CSS', 'JavaScript', 'Node.js', 'MySQL'],
+    url: `/${lang}/projects/library/eco`
+  },
+  {
+    id: 'esport',
+    title: 'Application e-sport avec chat',
+    description: lang === 'fr' ? 
+      'Plateforme de gestion d\'événements e-sport avec système de chat en temps réel.' :
+      (lang === 'en' ? 
+        'E-sport event management platform with real-time chat system.' : 
+        'E-Sport-Eventmanagement-Plattform mit Echtzeit-Chat-System.'),
+    tech: ['HTML', 'CSS', 'HTMX', 'WebSocket', 'Node.js', 'MongoDB'],
+    url: `/${lang}/projects/esport/eco`
+  },
+  {
+    id: 'portfolio',
+    title: 'Portfolio personnel éco-responsable',
+    description: lang === 'fr' ? 
+      'Mon portfolio personnel avec mode éco, multilingue et principes d\'éco-conception.' :
+      (lang === 'en' ? 
+        'My personal portfolio with eco-mode, multilingual, and eco-design principles.' : 
+        'Mein persönliches Portfolio mit Öko-Modus, mehrsprachig und Öko-Design-Prinzipien.'),
+    tech: ['Astro', 'Alpine.js', 'TailwindCSS'],
+    url: `/${lang}/eco`
+  },
+  {
+    id: 'blog',
+    title: 'Blog sur l\'éco-conception',
+    description: lang === 'fr' ? 
+      'Blog dédié aux bonnes pratiques d\'éco-conception web.' :
+      (lang === 'en' ? 
+        'Blog dedicated to web eco-design best practices.' : 
+        'Blog zu Best Practices im Web-Öko-Design.'),
+    tech: ['Astro', 'Markdown', 'TailwindCSS'],
+    url: `/${lang}/blog/eco`
+  }
+];
+
+// Mode éco activé
+const isEcoMode = true;
+---
+
+<Layout title={t.title} description={t.description} lang={lang} isEcoMode={isEcoMode}>
+  <div class="container mx-auto px-4 py-6">
+    <!-- Section d'introduction du mode éco -->
+    <section class="py-4 border-b border-secondary mb-6">
+      <h2 class="text-xl font-bold mb-2">{t.ecoModeTitle}</h2>
+      <p class="mb-3">
+        {t.ecoModeText}
+      </p>
+    </section>
+
+    <h1 class="text-2xl font-bold mb-4 border-b border-accent pb-2">
+      {t.projectsTitle}
+    </h1>
+    
+    <p class="mb-6">
+      {t.projectsIntro}
+    </p>
+    
+    <!-- Liste des projets simplifiée -->
+    <section class="mb-8">
+      <ul class="space-y-6">
+        {projects.map(project => (
+          <li class="border-b border-secondary pb-4">
+            <h3 class="text-xl font-semibold mb-2">{project.title}</h3>
+            <p class="mb-3">{project.description}</p>
+            
+            <!-- Technologies simplifiées -->
+            <div class="mb-3">
+              <p class="text-text-muted text-sm">
+                {project.tech.join(' • ')}
+              </p>
+            </div>
+            
+            <!-- Liens simplifiés -->
+            <div class="flex gap-4">
+              <a 
+                href={project.url} 
+                class="text-accent hover:underline"
+              >
+                {t.viewProject}
+              </a>
+            </div>
+          </li>
+        ))}
+      </ul>
+    </section>
+    
+    <!-- Section sur l'éco-conception -->
+    <section class="py-6 border-t border-secondary">
+      <h2 class="text-xl font-semibold mb-3">
+        {t.ecoDesignTitle}
+      </h2>
+      <p>
+        {t.ecoDesignText}
+      </p>
+    </section>
+  </div>
+</Layout>

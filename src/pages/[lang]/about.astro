@@ -1,0 +1,337 @@
+---
+// Import du layout standard
+import Layout from '../../layouts/layout.astro';
+
+// Récupérer le paramètre de langue depuis l'URL
+export function getStaticPaths() {
+  return [
+    { params: { lang: 'fr' } },
+    { params: { lang: 'en' } },
+    { params: { lang: 'de' } }
+  ];
+}
+
+const lang = Astro.params.lang as 'fr' | 'en' | 'de';
+
+// Contenu traduit pour chaque langue
+const content = {
+  fr: {
+    title: 'Josselin HANEL - À propos de moi',
+    description: 'Découvrez mon parcours, mes compétences et ma vision du développement web éco-responsable.',
+    aboutTitle: 'À propos de moi',
+    aboutText: "Je suis un développeur web passionné par la création d'expériences numériques performantes et respectueuses de l'environnement. Basé à Rennes, je suis disponible pour des projets à Nantes, Berlin ou en télétravail.",
+    visionTitle: 'Ma vision',
+    visionText: "Le numérique représente aujourd'hui une part croissante de notre empreinte carbone. En tant que développeur web, je m'engage à concevoir des sites et applications qui minimisent leur impact environnemental sans compromettre l'expérience utilisateur.",
+    approachTitle: 'Mon approche',
+    approach: [
+      {
+        title: 'Éco-conception',
+        description: 'Je privilégie des solutions légères qui consomment moins de ressources serveur et moins de bande passante.'
+      },
+      {
+        title: 'Performance',
+        description: "Un site rapide est plus agréable à utiliser et consomme moins d'énergie côté utilisateur."
+      },
+      {
+        title: 'Accessibilité',
+        description: "Je conçois des interfaces accessibles à tous, quel que soit le handicap ou l'appareil utilisé."
+      },
+      {
+        title: 'Durabilité',
+        description: 'Je construis des sites avec des technologies pérennes et maintenables sur le long terme.'
+      }
+    ],
+    expTitle: 'Expérience professionnelle',
+    experiences: [
+      {
+        period: '2020 - Aujourd\'hui',
+        position: 'Développeur web freelance',
+        company: 'Indépendant',
+        description: 'Conception et développement de sites web et applications pour des clients variés avec une attention particulière à l\'impact environnemental.'
+      },
+      {
+        period: '2018 - 2020',
+        position: 'Développeur front-end',
+        company: 'Agence Numérique Rennes',
+        description: 'Intégration et développement d\'interfaces utilisateur pour des projets web et mobiles.'
+      },
+      {
+        period: '2016 - 2018',
+        position: 'Stagiaire puis junior développeur',
+        company: 'StartupWeb',
+        description: 'Participation au développement d\'applications web et initiation aux bonnes pratiques de développement.'
+      }
+    ],
+    eduTitle: 'Formation',
+    education: [
+      {
+        year: '2018',
+        degree: 'Master en Développement Web',
+        school: 'Université de Rennes',
+        description: 'Spécialisation en technologies front-end et back-end, avec un focus sur les applications web performantes.'
+      },
+      {
+        year: '2016',
+        degree: 'Licence en Informatique',
+        school: 'Université de Nantes',
+        description: 'Formation généraliste en informatique incluant algorithmique, programmation et réseaux.'
+      }
+    ],
+    skillsTitle: 'Compétences techniques',
+    contactButton: 'Me contacter'
+  },
+  en: {
+    title: 'Josselin HANEL - About me',
+    description: 'Discover my background, skills and vision of eco-friendly web development.',
+    aboutTitle: 'About me',
+    aboutText: "I'm a web developer passionate about creating high-performance and environmentally-friendly digital experiences. Based in Rennes, I'm available for projects in Nantes, Berlin or remote work.",
+    visionTitle: 'My vision',
+    visionText: "Digital technology now represents a growing part of our carbon footprint. As a web developer, I'm committed to designing websites and applications that minimize their environmental impact without compromising user experience.",
+    approachTitle: 'My approach',
+    approach: [
+      {
+        title: 'Eco-design',
+        description: 'I favor lightweight solutions that consume fewer server resources and less bandwidth.'
+      },
+      {
+        title: 'Performance',
+        description: 'A fast website is more pleasant to use and consumes less energy on the user side.'
+      },
+      {
+        title: 'Accessibility',
+        description: 'I design interfaces accessible to everyone, regardless of disability or device used.'
+      },
+      {
+        title: 'Sustainability',
+        description: 'I build websites with lasting technologies that can be maintained over the long term.'
+      }
+    ],
+    expTitle: 'Professional experience',
+    experiences: [
+      {
+        period: '2020 - Present',
+        position: 'Freelance web developer',
+        company: 'Independent',
+        description: 'Design and development of websites and applications for various clients with special attention to environmental impact.'
+      },
+      {
+        period: '2018 - 2020',
+        position: 'Front-end developer',
+        company: 'Digital Agency Rennes',
+        description: 'Integration and development of user interfaces for web and mobile projects.'
+      },
+      {
+        period: '2016 - 2018',
+        position: 'Intern then junior developer',
+        company: 'StartupWeb',
+        description: 'Participation in web application development and introduction to development best practices.'
+      }
+    ],
+    eduTitle: 'Education',
+    education: [
+      {
+        year: '2018',
+        degree: 'Master in Web Development',
+        school: 'University of Rennes',
+        description: 'Specialization in front-end and back-end technologies, with a focus on high-performance web applications.'
+      },
+      {
+        year: '2016',
+        degree: 'Bachelor in Computer Science',
+        school: 'University of Nantes',
+        description: 'General training in computer science including algorithms, programming and networks.'
+      }
+    ],
+    skillsTitle: 'Technical skills',
+    contactButton: 'Contact me'
+  },
+  de: {
+    title: 'Josselin HANEL - Über mich',
+    description: 'Entdecken Sie meinen Werdegang, meine Fähigkeiten und meine Vision von umweltfreundlicher Webentwicklung.',
+    aboutTitle: 'Über mich',
+    aboutText: "Ich bin ein Webentwickler mit Leidenschaft für die Erstellung leistungsstarker und umweltfreundlicher digitaler Erlebnisse. Mit Sitz in Rennes bin ich für Projekte in Nantes, Berlin oder für Remote-Arbeit verfügbar.",
+    visionTitle: 'Meine Vision',
+    visionText: "Die digitale Technologie stellt heute einen wachsenden Teil unseres CO2-Fußabdrucks dar. Als Webentwickler setze ich mich dafür ein, Websites und Anwendungen zu entwickeln, die ihre Umweltauswirkungen minimieren, ohne die Benutzererfahrung zu beeinträchtigen.",
+    approachTitle: 'Mein Ansatz',
+    approach: [
+      {
+        title: 'Öko-Design',
+        description: 'Ich bevorzuge leichtgewichtige Lösungen, die weniger Serverressourcen und weniger Bandbreite verbrauchen.'
+      },
+      {
+        title: 'Leistung',
+        description: 'Eine schnelle Website ist angenehmer zu benutzen und verbraucht auf der Benutzerseite weniger Energie.'
+      },
+      {
+        title: 'Zugänglichkeit',
+        description: 'Ich entwerfe Schnittstellen, die für jeden zugänglich sind, unabhängig von Behinderung oder verwendetem Gerät.'
+      },
+      {
+        title: 'Nachhaltigkeit',
+        description: 'Ich baue Websites mit dauerhaften Technologien, die langfristig gewartet werden können.'
+      }
+    ],
+    expTitle: 'Berufserfahrung',
+    experiences: [
+      {
+        period: '2020 - Heute',
+        position: 'Freelance Webentwickler',
+        company: 'Unabhängig',
+        description: 'Design und Entwicklung von Websites und Anwendungen für verschiedene Kunden mit besonderem Augenmerk auf Umweltauswirkungen.'
+      },
+      {
+        period: '2018 - 2020',
+        position: 'Frontend-Entwickler',
+        company: 'Digitalagentur Rennes',
+        description: 'Integration und Entwicklung von Benutzeroberflächen für Web- und Mobile-Projekte.'
+      },
+      {
+        period: '2016 - 2018',
+        position: 'Praktikant und Junior-Entwickler',
+        company: 'StartupWeb',
+        description: 'Beteiligung an der Entwicklung von Webanwendungen und Einführung in die Best Practices der Entwicklung.'
+      }
+    ],
+    eduTitle: 'Ausbildung',
+    education: [
+      {
+        year: '2018',
+        degree: 'Master in Webentwicklung',
+        school: 'Universität Rennes',
+        description: 'Spezialisierung auf Frontend- und Backend-Technologien mit Fokus auf leistungsstarke Webanwendungen.'
+      },
+      {
+        year: '2016',
+        degree: 'Bachelor in Informatik',
+        school: 'Universität Nantes',
+        description: 'Allgemeine Ausbildung in Informatik einschließlich Algorithmen, Programmierung und Netzwerke.'
+      }
+    ],
+    skillsTitle: 'Technische Fähigkeiten',
+    contactButton: 'Kontaktieren Sie mich'
+  }
+};
+
+// Utiliser la langue demandée ou français par défaut
+const t = content[lang] || content.fr;
+
+// Compétences à afficher
+const skills = [
+  { category: 'Frontend', items: ['HTML5', 'CSS3', 'JavaScript', 'HTMX', 'Alpine.js', 'Astro'] },
+  { category: 'Backend', items: ['Node.js', 'Express', 'WebSocket'] },
+  { category: 'Bases de données', items: ['MySQL', 'MongoDB'] },
+  { category: 'Outils', items: ['Git', 'VS Code', 'Figma', 'Lighthouse'] },
+  { category: 'Méthodologies', items: ['Éco-conception', 'Permacomputing', 'Accessibilité', 'UX/UI'] }
+];
+---
+
+<Layout title={t.title} description={t.description} lang={lang}>
+  <div class="container mx-auto px-4 py-8">
+    <!-- Section d'introduction -->
+    <section class="mb-12">
+      <h1 class="text-3xl font-bold mb-4 border-b border-accent pb-2">
+        {t.aboutTitle}
+      </h1>
+      <div class="flex flex-col md:flex-row gap-8">
+        <div class="md:w-2/3">
+          <p class="text-lg mb-6">
+            {t.aboutText}
+          </p>
+          <h2 class="text-xl font-semibold mb-3 text-accent">
+            {t.visionTitle}
+          </h2>
+          <p class="mb-6">
+            {t.visionText}
+          </p>
+        </div>
+        <div class="md:w-1/3 bg-secondary rounded-lg p-4">
+          <!-- Placeholder pour photo ou illustration -->
+          <div class="aspect-square bg-primary bg-opacity-30 rounded flex items-center justify-center">
+            <span class="text-sm text-text-muted">Photo/Illustration</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section approche -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold mb-6 border-b border-accent pb-2">
+        {t.approachTitle}
+      </h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {t.approach.map(item => (
+          <div class="bg-secondary bg-opacity-30 p-5 rounded-lg">
+            <h3 class="text-xl font-semibold mb-2 text-accent">{item.title}</h3>
+            <p>{item.description}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Section compétences -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold mb-6 border-b border-accent pb-2">
+        {t.skillsTitle}
+      </h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {skills.map(skill => (
+          <div class="bg-secondary bg-opacity-30 p-5 rounded-lg">
+            <h3 class="text-lg font-semibold mb-3 text-accent">{skill.category}</h3>
+            <div class="flex flex-wrap gap-2">
+              {skill.items.map(item => (
+                <span class="px-3 py-1 bg-secondary rounded-full text-sm">{item}</span>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Section expérience -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold mb-6 border-b border-accent pb-2">
+        {t.expTitle}
+      </h2>
+      <div class="space-y-6">
+        {t.experiences.map(exp => (
+          <div class="border-l-2 border-accent pl-4 py-2">
+            <div class="flex flex-wrap justify-between mb-2">
+              <h3 class="text-xl font-semibold">{exp.position}</h3>
+              <span class="text-text-muted">{exp.period}</span>
+            </div>
+            <p class="text-accent mb-2">{exp.company}</p>
+            <p>{exp.description}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Section formation -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold mb-6 border-b border-accent pb-2">
+        {t.eduTitle}
+      </h2>
+      <div class="space-y-6">
+        {t.education.map(edu => (
+          <div class="border-l-2 border-accent pl-4 py-2">
+            <div class="flex flex-wrap justify-between mb-2">
+              <h3 class="text-xl font-semibold">{edu.degree}</h3>
+              <span class="text-text-muted">{edu.year}</span>
+            </div>
+            <p class="text-accent mb-2">{edu.school}</p>
+            <p>{edu.description}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Section CTA contact -->
+    <section class="py-12 text-center bg-secondary bg-opacity-30 rounded-lg">
+      <h2 class="text-2xl font-bold mb-4">Intéressé par une collaboration?</h2>
+      <p class="mb-6 max-w-xl mx-auto">Je suis disponible pour des missions freelance, des projets d'équipe ou des consultations en éco-conception web.</p>
+      <a href={`/${lang}/contact`} class="inline-block bg-accent text-primary px-6 py-3 rounded-md hover:bg-opacity-90 transition-opacity">
+        {t.contactButton}
+      </a>
+    </section>
+  </div>
+</Layout>

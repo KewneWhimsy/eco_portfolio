@@ -5,37 +5,89 @@ import LanguageSwitcher from '../components/language_switcher.astro';
 // Récupérer le chemin actuel pour gérer l'état actif des liens
 const { pathname } = Astro.url;
 
-// Navigation items
+// Détecter la langue actuelle depuis l'URL
+const langMatch = pathname.match(/^\/([a-z]{2})(\/|$)/);
+const currentLang = langMatch ? langMatch[1] : 'fr';
+
+// Détecter si on est en mode éco
+const isEcoMode = pathname.includes('/eco');
+
+// Navigation items avec langue dynamique
 const navItems = [
-  { title: 'Projets', url: '/projects' },
-  { title: 'À propos', url: '/about' },
-  { title: 'Contact', url: '/contact' }
+  { 
+    title: 'Projets', 
+    url: isEcoMode ? `/${currentLang}/projects/eco` : `/${currentLang}/projects`
+  },
+  { 
+    title: 'À propos', 
+    url: isEcoMode ? `/${currentLang}/about/eco` : `/${currentLang}/about`
+  },
+  { 
+    title: 'Contact', 
+    url: isEcoMode ? `/${currentLang}/contact/eco` : `/${currentLang}/contact`
+  }
 ];
+
+// Traduction des labels de navigation
+const navLabels = {
+  fr: {
+    projects: 'Projets',
+    about: 'À propos',
+    contact: 'Contact'
+  },
+  en: {
+    projects: 'Projects',
+    about: 'About',
+    contact: 'Contact'
+  },
+  de: {
+    projects: 'Projekte',
+    about: 'Über mich',
+    contact: 'Kontakt'
+  }
+};
+
+// Utiliser la langue courante ou le français par défaut
+const labels = navLabels[currentLang as keyof typeof navLabels] || navLabels.fr;
 ---
 
 <div class="py-6 mb-8">
   <div class="flex flex-col md:flex-row justify-between items-center">
     <!-- Logo / Nom -->
     <div class="mb-4 md:mb-0">
-      <a href="/" class="text-2xl font-bold no-underline hover:text-accent transition-colors">
+      <a href={isEcoMode ? `/${currentLang}/eco` : `/${currentLang}`} class="text-2xl font-bold no-underline hover:text-accent transition-colors">
         Josselin HANEL<span class="text-accent">.</span>
       </a>
     </div>
     
     <div class="flex items-center gap-6">
-      <!-- Navigation principale -->
+      <!-- Navigation principale avec URL localisées -->
       <nav>
         <ul class="flex items-center gap-6">
-          {navItems.map(item => (
-            <li>
-              <a 
-                href={item.url} 
-                class={`no-underline hover:text-accent transition-colors ${pathname === item.url ? 'text-accent font-medium' : 'text-text'}`}
-              >
-                {item.title}
-              </a>
-            </li>
-          ))}
+          <li>
+            <a 
+              href={isEcoMode ? `/${currentLang}/projects/eco` : `/${currentLang}/projects`} 
+              class={`no-underline hover:text-accent transition-colors ${pathname.includes('/projects') ? 'text-accent font-medium' : 'text-text'}`}
+            >
+              {labels.projects}
+            </a>
+          </li>
+          <li>
+            <a 
+              href={isEcoMode ? `/${currentLang}/about/eco` : `/${currentLang}/about`} 
+              class={`no-underline hover:text-accent transition-colors ${pathname.includes('/about') ? 'text-accent font-medium' : 'text-text'}`}
+            >
+              {labels.about}
+            </a>
+          </li>
+          <li>
+            <a 
+              href={isEcoMode ? `/${currentLang}/contact/eco` : `/${currentLang}/contact`} 
+              class={`no-underline hover:text-accent transition-colors ${pathname.includes('/contact') ? 'text-accent font-medium' : 'text-text'}`}
+            >
+              {labels.contact}
+            </a>
+          </li>
         </ul>
       </nav>
       
