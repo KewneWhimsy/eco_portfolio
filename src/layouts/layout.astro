@@ -1,0 +1,83 @@
+---
+// Imports
+import '../styles/global.css';
+import AlpineLoader from '../components/alpine_loader.astro';
+import Header from './header.astro';
+import Footer from './footer.astro';
+
+// Props du composant
+export interface Props {
+  title: string;
+  description: string;
+  lang: string;
+  isEcoMode?: boolean;
+}
+
+const { title, description, lang: requestedLang = 'fr', isEcoMode = false } = Astro.props;
+
+// Détection de la langue pour mettre les bonnes meta
+const langAttributes = {
+  fr: {
+    htmlLang: 'fr',
+    ogLocale: 'fr_FR',
+  },
+  en: {
+    htmlLang: 'en',
+    ogLocale: 'en_US',
+  },
+  de: {
+    htmlLang: 'de',
+    ogLocale: 'de_DE',
+  }
+};
+
+// Vérifier si la langue demandée est supportée, sinon utiliser le français
+const lang = (requestedLang in langAttributes) ? requestedLang : 'fr';
+const { htmlLang, ogLocale } = langAttributes[lang as keyof typeof langAttributes];
+---
+
+<!DOCTYPE html>
+<html lang={htmlLang} class={isEcoMode ? 'eco-mode' : ''}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <meta name="author" content="Josselin HANEL" />
+    
+    <!-- Métadonnées pour SEO -->
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content={ogLocale} />
+    
+    <!-- Préchargement/préconnexion pour performances -->
+    <link rel="preconnect" href="https://cloudflare.com" crossorigin />
+    
+    <!-- Pas de JavaScript pour la détection du mode éco, on utilise uniquement l'URL -->
+    
+    <title>{title}</title>
+	<!-- Chargement conditionnel d'Alpine.js -->
+    <AlpineLoader isEcoMode={isEcoMode} />
+  </head>
+  <body>
+    <header>
+      <Header />
+    </header>
+
+    <main>
+      <!-- Le contenu principal sera inséré ici -->
+      <slot />
+    </main>
+
+    <footer>
+      <Footer />
+    </footer>
+
+    <!-- Compteur d'économie de données en mode éco (version statique) -->
+    {isEcoMode && 
+      <div class="fixed bottom-4 right-4 bg-secondary p-2 rounded text-xs">
+        <p>~1 MB économisé en mode éco</p>
+      </div>
+    }
+  </body>
+</html>

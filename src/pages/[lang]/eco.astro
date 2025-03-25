@@ -1,0 +1,117 @@
+---
+// Import du layout avec mode éco activé
+import Layout from '../../layouts/layout.astro';
+
+// Récupérer le paramètre de langue depuis l'URL
+export function getStaticPaths() {
+  return [
+    { params: { lang: 'fr' } },
+    { params: { lang: 'en' } },
+    { params: { lang: 'de' } }
+  ];
+}
+
+const lang = Astro.params.lang as 'fr' | 'en' | 'de';
+
+// Contenu traduit pour chaque langue
+const content = {
+  fr: {
+    title: 'Josselin HANEL - Développeur Web Éco-responsable (Mode Éco)',
+    description: 'Version éco-responsable de mon portfolio de développeur web, avec une empreinte carbone minimale.',
+    heroTitle: 'Développeur Web Éco-responsable',
+    heroText: 'Je conçois des expériences web performantes et respectueuses de l\'environnement. Basé à Rennes, disponible pour des projets à Nantes, Berlin ou en télétravail.',
+    projectsButton: 'Projets',
+    contactButton: 'Contact',
+    ecoModeTitle: 'Mode Éco activé',
+    ecoModeText: 'Vous consultez actuellement la version ultra-légère de mon portfolio. Cette version:',
+    // Autres traductions...
+  },
+  en: {
+    title: 'Josselin HANEL - Eco-friendly Web Developer (Eco Mode)',
+    description: 'Eco-friendly version of my web developer portfolio, with minimal carbon footprint.',
+    heroTitle: 'Eco-friendly Web Developer',
+    heroText: 'I design high-performance web experiences with minimal environmental impact. Based in Rennes, available for projects in Nantes, Berlin or remote work.',
+    projectsButton: 'Projects',
+    contactButton: 'Contact',
+    ecoModeTitle: 'Eco Mode activated',
+    ecoModeText: 'You are currently viewing the ultra-lightweight version of my portfolio. This version:',
+    // Autres traductions...
+  },
+  de: {
+    title: 'Josselin HANEL - Umweltfreundlicher Webentwickler (Öko-Modus)',
+    description: 'Umweltfreundliche Version meines Webentwickler-Portfolios mit minimalem CO2-Fußabdruck.',
+    heroTitle: 'Umweltfreundlicher Webentwickler',
+    heroText: 'Ich entwerfe leistungsstarke Web-Erlebnisse mit minimaler Umweltbelastung. Mit Sitz in Rennes, verfügbar für Projekte in Nantes, Berlin oder für Remote-Arbeit.',
+    projectsButton: 'Projekte',
+    contactButton: 'Kontakt',
+    ecoModeTitle: 'Öko-Modus aktiviert',
+    ecoModeText: 'Sie sehen gerade die ultraleichte Version meines Portfolios. Diese Version:',
+    // Autres traductions...
+  }
+};
+
+// Utiliser la langue demandée ou français par défaut
+const t = content[lang] || content.fr;
+
+// Projets à mettre en avant (version simplifiée pour le mode éco)
+const featuredProjects = [
+  {
+    title: 'Bibliothèque d\'objets Quimper',
+    description: 'Site de gestion pour une bibliothèque d\'objets permettant le prêt et la réservation.',
+    url: `/${lang}/projects/library/eco`
+  },
+  {
+    title: 'Application e-sport avec chat',
+    description: 'Plateforme de gestion d\'événements e-sport avec chat en temps réel.',
+    url: `/${lang}/projects/esport/eco`
+  }
+];
+
+// Compétences simplifiées
+const skillCategories = [
+  'Frontend: HTML5, CSS3, JavaScript, HTMX, Alpine.js, Astro',
+  'Backend: Node.js, Express, WebSocket',
+  'Bases de données: MySQL, MongoDB',
+  'Méthodologies: Éco-conception, Permacomputing, Accessibilité'
+];
+
+// Mode éco activé
+const isEcoMode = true;
+---
+
+<Layout title={t.title} description={t.description} lang={lang} isEcoMode={isEcoMode}>
+  <!-- Section hero simplifiée -->
+  <section class="py-8 border-b border-secondary">
+    <h1 class="text-2xl font-bold mb-3">
+      {t.heroTitle}
+    </h1>
+    <p class="mb-4">
+      {t.heroText}
+    </p>
+    <div class="flex flex-wrap gap-3">
+      <a href={`/${lang}/projects/eco`} class="bg-accent text-primary px-4 py-1 rounded">
+        {t.projectsButton}
+      </a>
+      <a href={`/${lang}/contact/eco`} class="border border-accent text-accent px-4 py-1 rounded">
+        {t.contactButton}
+      </a>
+    </div>
+  </section>
+
+  <!-- Section d'intro sur l'éco-conception -->
+  <section class="py-6 border-b border-secondary">
+    <h2 class="text-xl font-bold mb-3">{t.ecoModeTitle}</h2>
+    <p class="mb-3">
+      {t.ecoModeText}
+    </p>
+    <ul class="list-disc pl-5 mb-3">
+      <li>Ne contient aucun JavaScript</li>
+      <li>Utilise des images uniquement sur demande</li>
+      <li>Limite les requêtes réseau au minimum</li>
+      <li>Réduit considérablement l'empreinte carbone</li>
+    </ul>
+  </section>
+
+  <!-- Sections simplifiées restantes -->
+  <!-- (Adaptez le reste du contenu de votre eco.astro original) -->
+</Layout>

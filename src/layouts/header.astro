@@ -1,0 +1,49 @@
+---
+import EcoModeToggle from '../components/eco_mode_toggle.astro';
+import LanguageSwitcher from '../components/language_switcher.astro';
+
+// Récupérer le chemin actuel pour gérer l'état actif des liens
+const { pathname } = Astro.url;
+
+// Navigation items
+const navItems = [
+  { title: 'Projets', url: '/projects' },
+  { title: 'À propos', url: '/about' },
+  { title: 'Contact', url: '/contact' }
+];
+---
+
+<div class="py-6 mb-8">
+  <div class="flex flex-col md:flex-row justify-between items-center">
+    <!-- Logo / Nom -->
+    <div class="mb-4 md:mb-0">
+      <a href="/" class="text-2xl font-bold no-underline hover:text-accent transition-colors">
+        Josselin HANEL<span class="text-accent">.</span>
+      </a>
+    </div>
+    
+    <div class="flex items-center gap-6">
+      <!-- Navigation principale -->
+      <nav>
+        <ul class="flex items-center gap-6">
+          {navItems.map(item => (
+            <li>
+              <a 
+                href={item.url} 
+                class={`no-underline hover:text-accent transition-colors ${pathname === item.url ? 'text-accent font-medium' : 'text-text'}`}
+              >
+                {item.title}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+      
+      <!-- Sélecteur de langue -->
+      <LanguageSwitcher />
+      
+      <!-- Toggle button eco-mode -->
+      <EcoModeToggle />
+    </div>
+  </div>
+</div>

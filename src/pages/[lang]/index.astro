@@ -1,0 +1,111 @@
+---
+// Imports
+import Layout from '../../layouts/layout.astro';
+
+// Récupérer le paramètre de langue depuis l'URL
+export function getStaticPaths() {
+  return [
+    { params: { lang: 'fr' } },
+    { params: { lang: 'en' } },
+    { params: { lang: 'de' } }
+  ];
+}
+
+const lang = Astro.params.lang as 'fr' | 'en' | 'de';
+
+
+
+// Titre et description de la page pour SEO (à traduire selon la langue)
+const content = {
+  fr: {
+    title: 'Josselin HANEL - Développeur Web Éco-responsable',
+    description: 'Portfolio de développeur web spécialisé en éco-conception, basé à Rennes et disponible à Nantes, Berlin et en télétravail.',
+    heroTitle: 'Développeur Web <span class="text-accent">Éco-responsable</span>',
+    heroText: 'Je conçois des expériences web performantes et respectueuses de l\'environnement. Basé à Rennes, je suis disponible pour des projets à Nantes, Berlin ou en télétravail.',
+    projectsButton: 'Voir mes projets',
+    contactButton: 'Me contacter',
+    // Autres traductions...
+  },
+  en: {
+    title: 'Josselin HANEL - Eco-friendly Web Developer',
+    description: 'Portfolio of a web developer specialized in eco-design, based in Rennes and available in Nantes, Berlin and remote work.',
+    heroTitle: 'Eco-friendly <span class="text-accent">Web Developer</span>',
+    heroText: 'I design high-performance web experiences with minimal environmental impact. Based in Rennes, I\'m available for projects in Nantes, Berlin or remote work.',
+    projectsButton: 'View my projects',
+    contactButton: 'Contact me',
+    // Autres traductions...
+  },
+  de: {
+    title: 'Josselin HANEL - Umweltfreundlicher Webentwickler',
+    description: 'Portfolio eines auf Öko-Design spezialisierten Webentwicklers, mit Sitz in Rennes und verfügbar in Nantes, Berlin und für Remote-Arbeit.',
+    heroTitle: 'Umweltfreundlicher <span class="text-accent">Webentwickler</span>',
+    heroText: 'Ich entwerfe leistungsstarke Web-Erlebnisse mit minimaler Umweltbelastung. Mit Sitz in Rennes bin ich für Projekte in Nantes, Berlin oder für Remote-Arbeit verfügbar.',
+    projectsButton: 'Meine Projekte',
+    contactButton: 'Kontakt',
+    // Autres traductions...
+  }
+};
+
+// Utiliser la langue demandée ou français par défaut
+const t = content[lang] || content.fr;
+
+// Compétences à afficher
+const skills = [
+  { category: 'Frontend', items: ['HTML5', 'CSS3', 'JavaScript', 'HTMX', 'Alpine.js', 'Astro'] },
+  { category: 'Backend', items: ['Node.js', 'Express', 'WebSocket'] },
+  { category: 'Bases de données', items: ['MySQL', 'MongoDB'] },
+  { category: 'Outils', items: ['Git', 'VS Code', 'Figma', 'Lighthouse'] },
+  { category: 'Méthodologies', items: ['Éco-conception', 'Permacomputing', 'Accessibilité', 'UX/UI'] }
+];
+
+// Projets à mettre en avant
+const featuredProjects = [
+  {
+    title: 'Bibliothèque d\'objets Quimper',
+    description: 'Site de gestion pour une bibliothèque d\'objets permettant le prêt et la réservation d\'articles divers.',
+    image: '/images/biblio-projet.jpg',
+    tech: ['HTML', 'CSS', 'JavaScript', 'Node.js', 'MySQL'],
+    url: `/${lang}/projects/library`,
+    ecoUrl: `/${lang}/projects/library/eco`
+  },
+  {
+    title: 'Application e-sport avec chat',
+    description: 'Plateforme de gestion d\'événements e-sport intégrant un système de chat en temps réel via WebSocket et HTMX.',
+    image: '/images/esport-projet.jpg',
+    tech: ['HTML', 'CSS', 'HTMX', 'WebSocket', 'Node.js', 'MongoDB'],
+    url: `/${lang}/projects/esport`,
+    ecoUrl: `/${lang}/projects/esport/eco`
+  }
+];
+---
+
+<Layout title={t.title} description={t.description} lang={lang}>
+  <!-- Section hero -->
+  <section class="py-12 md:py-20">
+    <div class="flex flex-col md:flex-row gap-8">
+      <div class="md:w-2/3">
+        <h1 class="text-3xl md:text-4xl font-bold mb-4" set:html={t.heroTitle} />
+        <p class="text-lg mb-6">
+          {t.heroText}
+        </p>
+        <div class="flex flex-wrap gap-4">
+          <a href={`/${lang}/projects`} class="bg-accent text-primary px-5 py-2 rounded-md hover:bg-opacity-90 transition-opacity">
+            {t.projectsButton}
+          </a>
+          <a href={`/${lang}/contact`} class="border border-accent text-accent px-5 py-2 rounded-md hover:bg-accent hover:bg-opacity-10 transition-opacity">
+            {t.contactButton}
+          </a>
+        </div>
+      </div>
+      <div class="md:w-1/3 bg-secondary rounded-lg p-4">
+        <!-- Placeholder pour photo ou illustration -->
+        <div class="aspect-square bg-primary bg-opacity-30 rounded flex items-center justify-center">
+          <span class="text-sm text-text-muted">Photo/Illustration</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Le reste des sections... -->
+  <!-- (Vous pouvez adapter le contenu de votre index.astro original en ajoutant les traductions nécessaires) -->
+</Layout>

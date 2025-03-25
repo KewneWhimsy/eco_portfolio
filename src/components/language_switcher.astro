@@ -1,0 +1,45 @@
+---
+// Langues disponibles
+const languages = [
+  { code: 'fr', label: 'FR' },
+  { code: 'en', label: 'EN' },
+  { code: 'de', label: 'DE' }
+];
+
+// Obtenir l'URL actuelle
+const { pathname } = Astro.url;
+
+// Détecter la langue actuelle et le mode éco
+const langMatch = pathname.match(/^\/([a-z]{2})(\/|$)/);
+const currentLang = langMatch ? langMatch[1] : 'fr';
+const isEcoMode = pathname.includes('/eco');
+
+// Fonction pour déterminer l'URL dans une autre langue
+const getLocalizedPath = (langCode: string): string => {
+  // Garder la structure du chemin mais changer la langue
+  const pathWithoutLang = pathname.replace(/^\/[a-z]{2}/, '');
+  return `/${langCode}${pathWithoutLang}`;
+};
+
+// Stocker la préférence de langue dans localStorage quand on clique
+---
+
+<div class="relative inline-block text-left">
+  <div class="flex items-center gap-2">
+    {languages.map((lang, index) => (
+      <>
+        <a 
+          href={getLocalizedPath(lang.code)} 
+          class={`text-sm ${lang.code === currentLang ? 'text-accent font-medium' : 'text-text-muted'}`}
+          onclick={`localStorage.setItem('preferredLanguage', '${lang.code}')`}
+        >
+          {lang.label}
+        </a>
+        
+        {index < languages.length - 1 && (
+          <span class="text-text-muted">|</span>
+        )}
+      </>
+    ))}
+  </div>
+</div>

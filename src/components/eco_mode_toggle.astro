@@ -1,0 +1,47 @@
+---
+// Récupérer l'URL actuelle
+const { pathname } = Astro.url;
+
+// Détecter la langue actuelle depuis l'URL
+const langMatch = pathname.match(/^\/([a-z]{2})(\/|$)/);
+const currentLang = langMatch ? langMatch[1] : 'fr';
+
+// Déterminer si on est déjà en mode éco
+const isEcoMode = pathname.includes('/eco');
+
+// Calculer l'URL pour basculer le mode
+let toggleUrl;
+
+if (isEcoMode) {
+  // Si on est sur la page éco principale
+  if (pathname === `/${currentLang}/eco`) {
+    toggleUrl = `/${currentLang}`;
+  } else {
+    // Sinon on enlève "/eco" de l'URL
+    toggleUrl = pathname.replace('/eco', '');
+  }
+} else {
+  // Si on est sur la page d'accueil de la langue
+  if (pathname === `/${currentLang}` || pathname === `/${currentLang}/`) {
+    toggleUrl = `/${currentLang}/eco`;
+  } else {
+    // Sinon on ajoute "/eco" à l'URL actuelle
+    toggleUrl = `${pathname}/eco`;
+  }
+}
+---
+
+<!-- Version CSS-only du toggle mode éco -->
+<div class="relative flex items-center">
+  <a href={toggleUrl} class="flex items-center gap-2 px-3 py-1 rounded-full border border-accent text-accent text-sm hover:bg-accent hover:bg-opacity-10 transition-colors">
+    <span>{isEcoMode ? 'Mode Standard' : 'Mode Éco'}</span>
+    
+    <!-- Icône de feuille simplifiée -->
+    <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3"></path>
+      <path d="M16 16a5 5 0 0 0-5-5"></path>
+      <line x1="12" y1="19" x2="12" y2="23"></line>
+      <line x1="8" y1="21" x2="16" y2="21"></line>
+    </svg>
+  </a>
+</div>
