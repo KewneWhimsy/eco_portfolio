@@ -54,7 +54,7 @@ const labels = navLabels[currentLang as keyof typeof navLabels] || navLabels.fr;
 <div class="py-6 mb-8">
   <div class="flex flex-col md:flex-row justify-between items-center">
     <!-- Logo / Nom -->
-    <div class="mb-4 md:mb-0">
+    <div class="mb-4 md:mb-0" data-astro-transition-persist="header-logo">
       <a href={isEcoMode ? `/${currentLang}/eco` : `/${currentLang}`} class="text-2xl font-bold no-underline hover:text-accent transition-colors">
         Josselin HANEL<span class="text-accent">.</span>
       </a>
@@ -92,10 +92,10 @@ const labels = navLabels[currentLang as keyof typeof navLabels] || navLabels.fr;
       </nav>
       
       <!-- Sélecteur de langue -->
-      <LanguageSwitcher />
+      <LanguageSwitcher transition-persist="language-switcher"/>
       
       <!-- Toggle button eco-mode -->
-      <EcoModeToggle />
+      <EcoModeToggle transition-persist="eco-mode-toggle"/>
     </div>
   </div>
 </div>
