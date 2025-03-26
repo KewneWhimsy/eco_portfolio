@@ -31,7 +31,24 @@ const content = {
       'Réduit considérablement l\'empreinte carbone'
     ],
     skillsTitle: 'Compétences',
-    projectsTitle: 'Projets récents'
+    projectsTitle: 'Projets récents',
+    viewProject: 'Voir le projet',
+    skillCategories: {
+      frontend: 'Frontend: HTML5, CSS3, JavaScript, HTMX, Alpine.js, Astro',
+      backend: 'Backend: Node.js, Express, WebSocket',
+      databases: 'Bases de données: MySQL, MongoDB',
+      methodologies: 'Méthodologies: Éco-conception, Permacomputing, Accessibilité'
+    },
+    projects: {
+      library: {
+        title: 'Bibliothèque d\'objets Quimper',
+        description: 'Site de gestion pour une bibliothèque d\'objets permettant le prêt et la réservation.'
+      },
+      esport: {
+        title: 'Application e-sport avec chat',
+        description: 'Plateforme de gestion d\'événements e-sport avec chat en temps réel.'
+      }
+    }
   },
   en: {
     title: 'Josselin HANEL - Full Stack Developer (Eco Mode)',
@@ -49,7 +66,24 @@ const content = {
       'Significantly reduces carbon footprint'
     ],
     skillsTitle: 'Skills',
-    projectsTitle: 'Recent projects'
+    projectsTitle: 'Recent projects',
+    viewProject: 'View project',
+    skillCategories: {
+      frontend: 'Frontend: HTML5, CSS3, JavaScript, HTMX, Alpine.js, Astro',
+      backend: 'Backend: Node.js, Express, WebSocket',
+      databases: 'Databases: MySQL, MongoDB',
+      methodologies: 'Methodologies: Eco-design, Permacomputing, Accessibility'
+    },
+    projects: {
+      library: {
+        title: 'Quimper Object Library',
+        description: 'Management website for an object library allowing loans and reservations.'
+      },
+      esport: {
+        title: 'E-sport Application with Chat',
+        description: 'E-sport event management platform with real-time chat system.'
+      }
+    }
   },
   de: {
     title: 'Josselin HANEL - Full-Stack-Entwickler (Öko-Modus)',
@@ -67,7 +101,24 @@ const content = {
       'Reduziert den CO2-Fußabdruck erheblich'
     ],
     skillsTitle: 'Fähigkeiten',
-    projectsTitle: 'Aktuelle Projekte'
+    projectsTitle: 'Aktuelle Projekte',
+    viewProject: 'Projekt ansehen',
+    skillCategories: {
+      frontend: 'Frontend: HTML5, CSS3, JavaScript, HTMX, Alpine.js, Astro',
+      backend: 'Backend: Node.js, Express, WebSocket',
+      databases: 'Datenbanken: MySQL, MongoDB',
+      methodologies: 'Methoden: Öko-Design, Permacomputing, Zugänglichkeit'
+    },
+    projects: {
+      library: {
+        title: 'Quimper Objektbibliothek',
+        description: 'Management-Website für eine Objektbibliothek für Ausleihe und Reservierung.'
+      },
+      esport: {
+        title: 'E-Sport-Anwendung mit Chat',
+        description: 'E-Sport-Eventmanagement-Plattform mit Echtzeit-Chat-System.'
+      }
+    }
   }
 };
 
@@ -77,24 +128,17 @@ const t = content[lang] || content.fr;
 // Projets à mettre en avant (version simplifiée pour le mode éco)
 const featuredProjects = [
   {
-    title: 'Bibliothèque d\'objets Quimper',
-    description: 'Site de gestion pour une bibliothèque d\'objets permettant le prêt et la réservation.',
+    id: 'library',
     url: `/${lang}/projects/library/eco`
   },
   {
-    title: 'Application e-sport avec chat',
-    description: 'Plateforme de gestion d\'événements e-sport avec chat en temps réel.',
+    id: 'esport',
     url: `/${lang}/projects/esport/eco`
   }
 ];
 
-// Compétences simplifiées
-const skillCategories = [
-  'Frontend: HTML5, CSS3, JavaScript, HTMX, Alpine.js, Astro',
-  'Backend: Node.js, Express, WebSocket',
-  'Bases de données: MySQL, MongoDB',
-  'Méthodologies: Éco-conception, Permacomputing, Accessibilité'
-];
+// Liste des catégories de compétences
+const skillCategoriesKeys = ['frontend', 'backend', 'databases', 'methodologies'];
 
 // Mode éco activé
 const isEcoMode = true;
@@ -137,8 +181,8 @@ const isEcoMode = true;
     <section class="py-6 border-b border-secondary mb-6">
       <h2 class="text-xl font-bold mb-3">{t.skillsTitle}</h2>
       <ul class="list-disc pl-5">
-        {skillCategories.map(skill => (
-          <li class="mb-2">{skill}</li>
+        {skillCategoriesKeys.map(key => (
+          <li class="mb-2">{t.skillCategories[key as keyof typeof t.skillCategories]}</li>
         ))}
       </ul>
     </section>
@@ -149,9 +193,13 @@ const isEcoMode = true;
       <div class="space-y-6">
         {featuredProjects.map(project => (
           <div class="border-b border-secondary pb-4 mb-4">
-            <h3 class="text-lg font-semibold mb-2">{project.title}</h3>
-            <p class="mb-3">{project.description}</p>
-            <a href={project.url} class="text-accent hover:underline">Voir le projet</a>
+            <h3 class="text-lg font-semibold mb-2">
+              {t.projects[project.id as keyof typeof t.projects].title}
+            </h3>
+            <p class="mb-3">
+              {t.projects[project.id as keyof typeof t.projects].description}
+            </p>
+            <a href={project.url} class="text-accent hover:underline">{t.viewProject}</a>
           </div>
         ))}
       </div>
