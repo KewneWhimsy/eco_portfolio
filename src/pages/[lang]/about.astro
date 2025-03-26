@@ -1,6 +1,8 @@
 ---
 // Import du layout standard
 import Layout from '../../layouts/layout.astro';
+import { Picture } from 'astro:assets';
+import monImage from '../../assets/j.jpg';
 
 // Récupérer le paramètre de langue depuis l'URL
 export function getStaticPaths() {
@@ -245,9 +247,18 @@ const skills = [
           </p>
         </div>
         <div class="md:w-1/3 bg-secondary rounded-lg p-4">
-          <!-- Placeholder pour photo ou illustration -->
-          <div class="aspect-square bg-primary bg-opacity-30 rounded flex items-center justify-center">
-            <span class="text-sm text-text-muted">Photo/Illustration</span>
+          <div class="aspect-square rounded overflow-hidden">
+            <Picture
+              transition:persist
+              src={monImage}
+              widths={[400, 800, 1200]}
+              sizes="(max-width: 767px) 100vw, (max-width: 1023px) 50vw, 33vw"
+              width={800}
+              height={800}
+              formats={['avif', 'webp', 'jpg']}
+              alt={`Josselin HANEL - ${lang === 'fr' ? 'Développeur Full Stack' : (lang === 'en' ? 'Full Stack Developer' : 'Full-Stack-Entwickler')}`}
+              style="width: 100%; height: 100%; object-fit: cover;"
+            />
           </div>
         </div>
       </div>
