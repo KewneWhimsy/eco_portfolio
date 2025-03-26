@@ -63,7 +63,7 @@ const labels = navLabels[currentLang as keyof typeof navLabels] || navLabels.fr;
     <div class="flex items-center gap-6">
       <!-- Navigation principale avec URL localisées -->
       <nav>
-        <ul class="flex items-center gap-6">
+        <ul class="flex items-center gap-4 md:gap-6">
           <li>
             <a 
               href={isEcoMode ? `/${currentLang}/projects/eco` : `/${currentLang}/projects`} 
@@ -75,7 +75,7 @@ const labels = navLabels[currentLang as keyof typeof navLabels] || navLabels.fr;
           <li>
             <a 
               href={isEcoMode ? `/${currentLang}/about/eco` : `/${currentLang}/about`} 
-              class={`no-underline hover:text-accent transition-colors ${pathname.includes('/about') ? 'text-accent font-medium' : 'text-text'}`}
+              class={`no-underline whitespace-nowrap hover:text-accent transition-colors ${pathname.includes('/about') ? 'text-accent font-medium' : 'text-text'}`}
             >
               {labels.about}
             </a>

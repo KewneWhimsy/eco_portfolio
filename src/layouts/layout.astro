@@ -60,7 +60,7 @@ const { htmlLang, ogLocale } = langAttributes[lang as keyof typeof langAttribute
     <AlpineLoader isEcoMode={isEcoMode} />
   </head>
   <body class="min-h-screen flex flex-col">
-    <header>
+    <header class="mx-2 md:mx-4">
       <Header />
     </header>
 
@@ -69,7 +69,7 @@ const { htmlLang, ogLocale } = langAttributes[lang as keyof typeof langAttribute
       <slot />
     </main>
 
-    <footer>
+    <footer class="mx-4">
       <Footer />
     </footer>
 
