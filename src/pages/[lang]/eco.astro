@@ -1,7 +1,10 @@
 ---
 // Import du layout avec mode éco activé
 import Layout from '../../layouts/layout.astro';
-
+import pixelImage from '../../assets/jpx2.png';
+import pixelImage3 from '../../assets/jpx.png';
+import Picture from 'astro/components/Picture.astro';
+import monImage from '../../assets/j.jpg'
 // Récupérer le paramètre de langue depuis l'URL
 export function getStaticPaths() {
   return [
@@ -48,7 +51,8 @@ const content = {
         title: 'Application e-sport avec chat',
         description: 'Plateforme de gestion d\'événements e-sport avec chat en temps réel.'
       }
-    }
+    },
+    imageAlt: 'Photo pixelisée de Josselin HANEL'
   },
   en: {
     title: 'Josselin HANEL - Full Stack Developer (Eco Mode)',
@@ -83,7 +87,8 @@ const content = {
         title: 'E-sport Application with Chat',
         description: 'E-sport event management platform with real-time chat system.'
       }
-    }
+    },
+    imageAlt: 'Pixelated photo of Josselin HANEL'
   },
   de: {
     title: 'Josselin HANEL - Full-Stack-Entwickler (Öko-Modus)',
@@ -118,7 +123,8 @@ const content = {
         title: 'E-Sport-Anwendung mit Chat',
         description: 'E-Sport-Eventmanagement-Plattform mit Echtzeit-Chat-System.'
       }
-    }
+    },
+    imageAlt: 'Pixeliertes Foto von Josselin HANEL'
   }
 };
 
@@ -146,21 +152,34 @@ const isEcoMode = true;
 
 <Layout title={t.title} description={t.description} lang={lang} isEcoMode={isEcoMode}>
   <div class="container mx-auto px-4 py-8">
-    <!-- Section hero simplifiée -->
+    <!-- Section hero simplifiée avec image pixelisée -->
     <section class="py-6 border-b border-secondary mb-6">
-      <h1 class="text-2xl font-bold mb-3">
-        {t.heroTitle}
-      </h1>
-      <p class="mb-4">
-        {t.heroText}
-      </p>
-      <div class="flex flex-wrap gap-3">
-        <a href={`/${lang}/projects/eco`} class="btn-primary">
-          {t.projectsButton}
-        </a>
-        <a href={`/${lang}/contact/eco`} class="btn-secondary">
-          {t.contactButton}
-        </a>
+      <div class="flex flex-wrap gap-6 items-center">
+        <div class="flex-1">
+          <h1 class="text-2xl font-bold mb-3">
+            {t.heroTitle}
+          </h1>
+          <p class="mb-4">
+            {t.heroText}
+          </p>
+          <div class="flex flex-wrap gap-3">
+            <a href={`/${lang}/projects/eco`} class="btn-primary">
+              {t.projectsButton}
+            </a>
+            <a href={`/${lang}/contact/eco`} class="btn-secondary">
+              {t.contactButton}
+            </a>
+          </div>
+        </div>
+        
+        <Picture
+              src={monImage}
+              width={128}
+              formats={["avif", "webp", "jpg"]}
+              alt={`Josselin HANEL - ${lang === "fr" ? "Développeur Full Stack" : lang === "en" ? "Full Stack Developer" : "Full-Stack-Entwickler"}`}
+              class="w-32 h-32 flex-shrink-0 border-2 border-accent rounded"
+              data-astro-transition-persist="profile-image"
+            />
       </div>
     </section>
 
