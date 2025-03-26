@@ -29,12 +29,22 @@ if (isEcoMode) {
     toggleUrl = `${pathname}/eco`;
   }
 }
+
+// Texte du bouton selon la langue
+const buttonText = {
+  fr: isEcoMode ? 'Mode Standard' : 'Mode Éco',
+  en: isEcoMode ? 'Standard Mode' : 'Eco Mode',
+  de: isEcoMode ? 'Standard-Modus' : 'Öko-Modus'
+};
+
+// Utiliser le texte correspondant à la langue actuelle
+const text = buttonText[currentLang as keyof typeof buttonText] || buttonText.fr;
 ---
 
 <!-- Version CSS-only du toggle mode éco -->
 <div class="relative flex items-center">
   <a href={toggleUrl} class="flex items-center gap-2 px-3 py-1 rounded-full border border-accent text-accent text-sm hover:bg-accent hover:bg-opacity-10 transition-colors">
-    <span>{isEcoMode ? 'Mode Standard' : 'Mode Éco'}</span>
+    <span>{text}</span>
     
     <!-- Icône de feuille simplifiée -->
     <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">

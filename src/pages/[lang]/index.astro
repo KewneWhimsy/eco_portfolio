@@ -71,7 +71,7 @@ const skills = [
   },
   { 
     category: lang === 'fr' ? 'Bases de données' : (lang === 'en' ? 'Databases' : 'Datenbanken'),
-    items: ['MySQL', 'MongoDB'] 
+    items: ['PostgreSQL', 'MongoDB'] 
   },
   { 
     category: lang === 'fr' ? 'Outils' : (lang === 'en' ? 'Tools' : 'Werkzeuge'),
@@ -79,7 +79,12 @@ const skills = [
   },
   { 
     category: lang === 'fr' ? 'Méthodologies' : (lang === 'en' ? 'Methodologies' : 'Methoden'),
-    items: ['Éco-conception', 'Permacomputing', 'Accessibilité', 'UX/UI'] 
+    items: [
+      lang === 'fr' ? 'Accessibilité' : (lang === 'en' ? 'Accessibility' : 'Barrierefreiheit'),
+      lang === 'fr' ? 'Performance' : (lang === 'en' ? 'Performance' : 'Performance'),
+      lang === 'fr' ? 'Éco-conception' : (lang === 'en' ? 'Eco-design' : 'Öko-Design'),
+      'UX/UI'
+    ] 
   }
 ];
 
@@ -92,7 +97,7 @@ const featuredProjects = [
                  (lang === 'en' ? 'Management website for an object library allowing the loan and reservation of various items.' : 
                   'Management-Website für eine Objektbibliothek für Ausleihe und Reservierung verschiedener Artikel.'),
     image: '/images/biblio-projet.jpg',
-    tech: ['HTML', 'CSS', 'JavaScript', 'Node.js', 'MySQL'],
+    tech: ['HTML', 'CSS', 'JavaScript', 'Node.js'],
     url: `/${lang}/projects/library`,
     ecoUrl: `/${lang}/projects/library/eco`
   },
