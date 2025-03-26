@@ -132,7 +132,7 @@ const projects = [
       (lang === 'en' ? 
         'Management website for an object library allowing the loan and reservation of various items.' : 
         'Management-Website für eine Objektbibliothek, die das Ausleihen und Reservieren verschiedener Artikel ermöglicht.'),
-    image: '/images/biblio-projet.jpg',
+    image: '../../src/assets/projects/objet01.png',
     categories: ['web', 'app'],
     tech: ['HTML', 'CSS', 'JavaScript', 'Node.js', 'MySQL'],
     url: 'https://example.com/library',
@@ -152,7 +152,7 @@ const projects = [
       (lang === 'en' ? 
         'E-sport event management platform with a real-time chat system via WebSocket and HTMX.' : 
         'E-Sport-Eventmanagement-Plattform mit einem Echtzeit-Chat-System über WebSocket und HTMX.'),
-    image: '/images/esport-projet.jpg',
+    image: '../../src/assets/projects/esport01.png',
     categories: ['app', 'ecodesign'],
     tech: ['HTML', 'CSS', 'HTMX', 'WebSocket', 'Node.js', 'MongoDB'],
     url: 'https://example.com/esport',
@@ -172,7 +172,7 @@ const projects = [
       (lang === 'en' ? 
         'My personal portfolio with eco-mode, multilingual, and designed following web eco-design principles.' : 
         'Mein persönliches Portfolio mit Öko-Modus, mehrsprachig und nach den Prinzipien des Web-Öko-Designs gestaltet.'),
-    image: '/images/portfolio-projet.jpg',
+    image: '../../src/assets/projects/portfolio01.png',
     categories: ['web', 'ecodesign'],
     tech: ['Astro', 'Alpine.js', 'TailwindCSS'],
     url: '/',
@@ -182,26 +182,6 @@ const projects = [
       lang === 'fr' ? 'Mode éco disponible' : (lang === 'en' ? 'Eco mode available' : 'Öko-Modus verfügbar'),
       lang === 'fr' ? 'Zéro JavaScript optionnel' : (lang === 'en' ? 'Optional zero JavaScript' : 'Optionales Zero-JavaScript'),
       lang === 'fr' ? 'Images à la demande' : (lang === 'en' ? 'On-demand images' : 'Bilder auf Anfrage')
-    ]
-  },
-  {
-    id: 'blog',
-    title: 'Blog sur l\'éco-conception',
-    description: lang === 'fr' ? 
-      'Blog dédié aux bonnes pratiques d\'éco-conception, avec système de gestion de contenu minimaliste.' :
-      (lang === 'en' ? 
-        'Blog dedicated to eco-design best practices, with minimalist content management system.' : 
-        'Blog zu Best Practices im Öko-Design mit minimalistischem Content-Management-System.'),
-    image: '/images/blog-projet.jpg',
-    categories: ['web', 'ecodesign'],
-    tech: ['Astro', 'Markdown', 'TailwindCSS'],
-    url: 'https://example.com/blog',
-    github: 'https://github.com/username/eco-blog',
-    isFeatured: false,
-    ecoFeatures: [
-      lang === 'fr' ? 'Génération statique' : (lang === 'en' ? 'Static generation' : 'Statische Generierung'),
-      lang === 'fr' ? 'Contenu en Markdown' : (lang === 'en' ? 'Markdown content' : 'Markdown-Inhalt'),
-      lang === 'fr' ? 'Optimisation des polices' : (lang === 'en' ? 'Font optimization' : 'Schriftoptimierung')
     ]
   }
 ];
