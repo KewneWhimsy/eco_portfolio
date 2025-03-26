@@ -118,3 +118,14 @@ footer a.text-text-muted:hover {
 .text-text-muted { color: var(--color-text-muted); }
 .border-accent { border-color: var(--color-accent); }
 .border-secondary { border-color: var(--color-secondary); }
+
+/* Styles spécifiques au mode éco */
+html.eco-mode a, 
+html.eco-mode button {
+  transform: none !important; /* Empêche tout transform, y compris sur l'axe y */
+  transition: background-color var(--transition-standard), color var(--transition-standard); /* Conserve les transitions de couleur */
+}
+
+html.eco-mode button {
+  transform: none !important; /* Empêche la translation sur hover également */
+}
