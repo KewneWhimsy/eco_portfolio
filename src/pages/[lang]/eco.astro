@@ -16,37 +16,58 @@ const lang = Astro.params.lang as 'fr' | 'en' | 'de';
 // Contenu traduit pour chaque langue
 const content = {
   fr: {
-    title: 'Josselin HANEL - Développeur Web Éco-responsable (Mode Éco)',
-    description: 'Version éco-responsable de mon portfolio de développeur web, avec une empreinte carbone minimale.',
-    heroTitle: 'Développeur Web Éco-responsable',
-    heroText: 'Je développe des sites web durables et performants avec une empreinte écologique minimale.',
+    title: 'Josselin HANEL - Développeur Full Stack (Mode Éco)',
+    description: 'Version éco-responsable de mon portfolio de développeur full stack, avec une empreinte carbone minimale.',
+    heroTitle: 'Développeur Full Stack',
+    heroText: 'Je conçois des sites web et applications complètes, durables et performantes.',
     projectsButton: 'Projets',
     contactButton: 'Contact',
     ecoModeTitle: 'Mode Éco activé',
     ecoModeText: 'Vous consultez actuellement la version ultra-légère de mon portfolio. Cette version:',
-    // Autres traductions...
+    ecoFeatures: [
+      'Ne contient aucun JavaScript',
+      'Utilise des images uniquement sur demande',
+      'Limite les requêtes réseau au minimum',
+      'Réduit considérablement l\'empreinte carbone'
+    ],
+    skillsTitle: 'Compétences',
+    projectsTitle: 'Projets récents'
   },
   en: {
-    title: 'Josselin HANEL - Eco-friendly Web Developer (Eco Mode)',
-    description: 'Eco-friendly version of my web developer portfolio, with minimal carbon footprint.',
-    heroTitle: 'Eco-friendly Web Developer',
-    heroText: 'I develop sustainable and high-performance websites with a minimal environmental footprint.',
+    title: 'Josselin HANEL - Full Stack Developer (Eco Mode)',
+    description: 'Eco-friendly version of my full stack developer portfolio, with minimal carbon footprint.',
+    heroTitle: 'Full Stack Developer',
+    heroText: 'I design complete, sustainable and high-performance websites and applications.',
     projectsButton: 'Projects',
     contactButton: 'Contact',
     ecoModeTitle: 'Eco Mode activated',
     ecoModeText: 'You are currently viewing the ultra-lightweight version of my portfolio. This version:',
-    // Autres traductions...
+    ecoFeatures: [
+      'Contains no JavaScript',
+      'Uses images only on demand',
+      'Limits network requests to a minimum',
+      'Significantly reduces carbon footprint'
+    ],
+    skillsTitle: 'Skills',
+    projectsTitle: 'Recent projects'
   },
   de: {
-    title: 'Josselin HANEL - Umweltfreundlicher Webentwickler (Öko-Modus)',
-    description: 'Umweltfreundliche Version meines Webentwickler-Portfolios mit minimalem CO2-Fußabdruck.',
-    heroTitle: 'Umweltfreundlicher Webentwickler',
-    heroText: 'Ich entwickle nachhaltige und performante Websites mit minimalem ökologischem Fußabdruck.',
+    title: 'Josselin HANEL - Full-Stack-Entwickler (Öko-Modus)',
+    description: 'Umweltfreundliche Version meines Full-Stack-Entwickler-Portfolios mit minimalem CO2-Fußabdruck.',
+    heroTitle: 'Full-Stack-Entwickler',
+    heroText: 'Ich entwickle vollständige, nachhaltige und leistungsstarke Websites und Anwendungen.',
     projectsButton: 'Projekte',
     contactButton: 'Kontakt',
     ecoModeTitle: 'Öko-Modus aktiviert',
     ecoModeText: 'Sie sehen gerade die ultraleichte Version meines Portfolios. Diese Version:',
-    // Autres traductions...
+    ecoFeatures: [
+      'Enthält kein JavaScript',
+      'Verwendet Bilder nur auf Anfrage',
+      'Begrenzt Netzwerkanfragen auf ein Minimum',
+      'Reduziert den CO2-Fußabdruck erheblich'
+    ],
+    skillsTitle: 'Fähigkeiten',
+    projectsTitle: 'Aktuelle Projekte'
   }
 };
 
@@ -80,38 +101,60 @@ const isEcoMode = true;
 ---
 
 <Layout title={t.title} description={t.description} lang={lang} isEcoMode={isEcoMode}>
-  <!-- Section hero simplifiée -->
-  <section class="py-8 border-b border-secondary">
-    <h1 class="text-2xl font-bold mb-3">
-      {t.heroTitle}
-    </h1>
-    <p class="mb-4">
-      {t.heroText}
-    </p>
-    <div class="flex flex-wrap gap-3">
-      <a href={`/${lang}/projects/eco`} class="bg-accent text-primary px-4 py-1 rounded">
-        {t.projectsButton}
-      </a>
-      <a href={`/${lang}/contact/eco`} class="border border-accent text-accent px-4 py-1 rounded">
-        {t.contactButton}
-      </a>
-    </div>
-  </section>
+  <div class="container mx-auto px-4 py-8">
+    <!-- Section hero simplifiée -->
+    <section class="py-6 border-b border-secondary mb-6">
+      <h1 class="text-2xl font-bold mb-3">
+        {t.heroTitle}
+      </h1>
+      <p class="mb-4">
+        {t.heroText}
+      </p>
+      <div class="flex flex-wrap gap-3">
+        <a href={`/${lang}/projects/eco`} class="bg-accent text-primary px-4 py-1 rounded">
+          {t.projectsButton}
+        </a>
+        <a href={`/${lang}/contact/eco`} class="border border-accent text-accent px-4 py-1 rounded">
+          {t.contactButton}
+        </a>
+      </div>
+    </section>
 
-  <!-- Section d'intro sur l'éco-conception -->
-  <section class="py-6 border-b border-secondary">
-    <h2 class="text-xl font-bold mb-3">{t.ecoModeTitle}</h2>
-    <p class="mb-3">
-      {t.ecoModeText}
-    </p>
-    <ul class="list-disc pl-5 mb-3">
-      <li>Ne contient aucun JavaScript</li>
-      <li>Utilise des images uniquement sur demande</li>
-      <li>Limite les requêtes réseau au minimum</li>
-      <li>Réduit considérablement l'empreinte carbone</li>
-    </ul>
-  </section>
+    <!-- Section d'intro sur l'éco-conception -->
+    <section class="py-6 border-b border-secondary mb-6">
+      <h2 class="text-xl font-bold mb-3">{t.ecoModeTitle}</h2>
+      <p class="mb-3">
+        {t.ecoModeText}
+      </p>
+      <ul class="list-disc pl-5 mb-3">
+        {t.ecoFeatures.map(feature => (
+          <li>{feature}</li>
+        ))}
+      </ul>
+    </section>
 
-  <!-- Sections simplifiées restantes -->
-  <!-- (Adaptez le reste du contenu de votre eco.astro original) -->
+    <!-- Section compétences simplifiée -->
+    <section class="py-6 border-b border-secondary mb-6">
+      <h2 class="text-xl font-bold mb-3">{t.skillsTitle}</h2>
+      <ul class="list-disc pl-5">
+        {skillCategories.map(skill => (
+          <li class="mb-2">{skill}</li>
+        ))}
+      </ul>
+    </section>
+
+    <!-- Section projets simplifiée -->
+    <section class="py-6">
+      <h2 class="text-xl font-bold mb-4">{t.projectsTitle}</h2>
+      <div class="space-y-6">
+        {featuredProjects.map(project => (
+          <div class="border-b border-secondary pb-4 mb-4">
+            <h3 class="text-lg font-semibold mb-2">{project.title}</h3>
+            <p class="mb-3">{project.description}</p>
+            <a href={project.url} class="text-accent hover:underline">Voir le projet</a>
+          </div>
+        ))}
+      </div>
+    </section>
+  </div>
 </Layout>
