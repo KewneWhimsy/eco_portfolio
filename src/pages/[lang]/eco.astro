@@ -1,10 +1,9 @@
 ---
 // Import du layout avec mode éco activé
 import Layout from '../../layouts/layout.astro';
-import pixelImage from '../../assets/jpx2.png';
-import pixelImage3 from '../../assets/jpx.png';
 import Picture from 'astro/components/Picture.astro';
-import monImage from '../../assets/j.jpg'
+import monImage from '../../assets/j.jpg';
+
 // Récupérer le paramètre de langue depuis l'URL
 export function getStaticPaths() {
   return [
@@ -15,6 +14,21 @@ export function getStaticPaths() {
 }
 
 const lang = Astro.params.lang as 'fr' | 'en' | 'de';
+
+// Contenus communs pour toutes les langues
+const commonSkills = {
+  frontend: 'Frontend: HTML5, CSS3, JavaScript, HTMX, Alpine.js, Astro',
+  backend: 'Backend: Express, WebSocket, Elixir, Phoenix',
+};
+
+// Projets à mettre en avant (version simplifiée pour le mode éco)
+const featuredProjects = [
+  { id: 'library', url: `/${lang}/projects/library/eco` },
+  { id: 'esport', url: `/${lang}/projects/esport/eco` }
+];
+
+// Liste des catégories de compétences
+const skillCategoriesKeys = ['frontend', 'backend', 'databases', 'methodologies'];
 
 // Contenu traduit pour chaque langue
 const content = {
@@ -37,9 +51,8 @@ const content = {
     projectsTitle: 'Projets récents',
     viewProject: 'Voir le projet',
     skillCategories: {
-      frontend: 'Frontend: HTML5, CSS3, JavaScript, HTMX, Alpine.js, Astro',
-      backend: 'Backend: Node.js, Express, WebSocket',
-      databases: 'Bases de données: PostgreSQL, MongoDB',
+      ...commonSkills,
+      databases: 'Bases de données: PostgreSQL, MongoDB, PostgREST, Ecto',
       methodologies: 'Méthodologies: Accessibilité, Performance, Éco-conception, UX/UI'
     },
     projects: {
@@ -52,7 +65,7 @@ const content = {
         description: 'Plateforme de gestion d\'événements e-sport avec chat en temps réel.'
       }
     },
-    imageAlt: 'Photo pixelisée de Josselin HANEL'
+    imageAlt: 'Photo de Josselin HANEL'
   },
   en: {
     title: 'Josselin HANEL - Full Stack Developer (Eco Mode)',
@@ -73,9 +86,8 @@ const content = {
     projectsTitle: 'Recent projects',
     viewProject: 'View project',
     skillCategories: {
-      frontend: 'Frontend: HTML5, CSS3, JavaScript, HTMX, Alpine.js, Astro',
-      backend: 'Backend: Node.js, Express, WebSocket',
-      databases: 'Databases: PostgreSQL, MongoDB',
+      ...commonSkills,
+      databases: 'Databases: PostgreSQL, MongoDB, PostgREST, Ecto',
       methodologies: 'Methodologies: Accessibility, Performance, Eco-design, UX/UI'
     },
     projects: {
@@ -88,7 +100,7 @@ const content = {
         description: 'E-sport event management platform with real-time chat system.'
       }
     },
-    imageAlt: 'Pixelated photo of Josselin HANEL'
+    imageAlt: 'Photo of Josselin HANEL'
   },
   de: {
     title: 'Josselin HANEL - Full-Stack-Entwickler (Öko-Modus)',
@@ -109,9 +121,8 @@ const content = {
     projectsTitle: 'Aktuelle Projekte',
     viewProject: 'Projekt ansehen',
     skillCategories: {
-      frontend: 'Frontend: HTML5, CSS3, JavaScript, HTMX, Alpine.js, Astro',
-      backend: 'Backend: Node.js, Express, WebSocket',
-      databases: 'Datenbanken: PostgreSQL, MongoDB',
+      ...commonSkills,
+      databases: 'Datenbanken: PostgreSQL, MongoDB, PostgREST, Ecto',
       methodologies: 'Methoden: Barrierefreiheit, Performance, Öko-Design, UX/UI'
     },
     projects: {
@@ -124,27 +135,12 @@ const content = {
         description: 'E-Sport-Eventmanagement-Plattform mit Echtzeit-Chat-System.'
       }
     },
-    imageAlt: 'Pixeliertes Foto von Josselin HANEL'
+    imageAlt: 'Foto von Josselin HANEL'
   }
 };
 
 // Utiliser la langue demandée ou français par défaut
 const t = content[lang] || content.fr;
-
-// Projets à mettre en avant (version simplifiée pour le mode éco)
-const featuredProjects = [
-  {
-    id: 'library',
-    url: `/${lang}/projects/library/eco`
-  },
-  {
-    id: 'esport',
-    url: `/${lang}/projects/esport/eco`
-  }
-];
-
-// Liste des catégories de compétences
-const skillCategoriesKeys = ['frontend', 'backend', 'databases', 'methodologies'];
 
 // Mode éco activé
 const isEcoMode = true;
@@ -152,7 +148,7 @@ const isEcoMode = true;
 
 <Layout title={t.title} description={t.description} lang={lang} isEcoMode={isEcoMode}>
   <div class="container mx-auto px-4 py-8">
-    <!-- Section hero simplifiée avec image pixelisée -->
+    <!-- Section hero simplifiée -->
     <section class="py-6 border-b border-secondary mb-6">
       <div class="flex flex-wrap gap-6 items-center">
         <div class="flex-1">
@@ -173,13 +169,13 @@ const isEcoMode = true;
         </div>
         
         <Picture
-              src={monImage}
-              width={128}
-              formats={["avif", "webp", "jpg"]}
-              alt={`Josselin HANEL - ${lang === "fr" ? "Développeur Full Stack" : lang === "en" ? "Full Stack Developer" : "Full-Stack-Entwickler"}`}
-              class="w-32 h-32 flex-shrink-0 border-2 border-accent rounded"
-              data-astro-transition-persist="profile-image"
-            />
+          src={monImage}
+          width={128}
+          formats={["avif", "webp", "jpg"]}
+          alt={t.imageAlt}
+          class="w-32 h-32 flex-shrink-0 border-2 border-accent rounded"
+          data-astro-transition-persist="profile-image"
+        />
       </div>
     </section>
 

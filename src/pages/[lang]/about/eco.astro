@@ -76,9 +76,22 @@ const approach = [
 // Compétences simplifiées
 const skills = [
   'Frontend: HTML5, CSS3, JavaScript, HTMX, Alpine.js, Astro',
-  'Backend: Node.js, Express, WebSocket',
-  'Bases de données: MySQL, MongoDB',
-  'Méthodologies: Éco-conception, Permacomputing, Accessibilité'
+  'Backend: Express, WebSocket, Elixir, Phoenix',
+  lang === 'fr'
+    ? 'Bases de données: PostgreSQL, MongoDB, PostgREST, Ecto'
+    : lang === 'en'
+      ? 'Databases: PostgreSQL, MongoDB, PostgREST, Ecto'
+      : 'Datenbanken: PostgreSQL, MongoDB, PostgREST, Ecto',
+  lang === 'fr'
+    ? 'Outils: Git, Docker, VS Code, Lighthouse'
+    : lang === 'en'
+      ? 'Tools: Git, Docker, VS Code, Lighthouse'
+      : 'Werkzeuge: Git, Docker, VS Code, Lighthouse',
+  lang === 'fr'
+    ? 'Méthodologies: Accessibilité, Performance, Éco-conception, UX/UI'
+    : lang === 'en'
+      ? 'Methodologies: Accessibility, Performance, Eco-design, UX/UI'
+      : 'Methoden: Barrierefreiheit, Performance, Öko-Design, UX/UI'
 ];
 
 // Expériences simplifiées
