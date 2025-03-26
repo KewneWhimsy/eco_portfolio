@@ -155,10 +155,10 @@ const isEcoMode = true;
         {t.heroText}
       </p>
       <div class="flex flex-wrap gap-3">
-        <a href={`/${lang}/projects/eco`} class="bg-accent text-primary px-4 py-1 rounded">
+        <a href={`/${lang}/projects/eco`} class="btn-primary">
           {t.projectsButton}
         </a>
-        <a href={`/${lang}/contact/eco`} class="border border-accent text-accent px-4 py-1 rounded">
+        <a href={`/${lang}/contact/eco`} class="btn-secondary">
           {t.contactButton}
         </a>
       </div>
@@ -199,7 +199,7 @@ const isEcoMode = true;
             <p class="mb-3">
               {t.projects[project.id as keyof typeof t.projects].description}
             </p>
-            <a href={project.url} class="text-accent hover:underline">{t.viewProject}</a>
+            <a href={project.url} class="text-link">{t.viewProject}</a>
           </div>
         ))}
       </div>

@@ -177,16 +177,10 @@ const featuredProjects = [
             {t.heroText}
           </p>
           <div class="flex flex-wrap gap-4">
-            <a
-              href={`/${lang}/projects`}
-              class="bg-accent text-primary px-5 py-2 rounded-md hover:bg-opacity-90 transition-opacity"
-            >
+            <a href={`/${lang}/projects`} class="btn-primary">
               {t.projectsButton}
             </a>
-            <a
-              href={`/${lang}/contact`}
-              class="border border-accent text-accent px-5 py-2 rounded-md hover:bg-accent hover:bg-opacity-10 transition-opacity"
-            >
+            <a href={`/${lang}/contact`} class="btn-secondary">
               {t.contactButton}
             </a>
           </div>
@@ -239,7 +233,7 @@ const featuredProjects = [
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
         {
           featuredProjects.map((project) => (
-            <div class="bg-secondary bg-opacity-30 rounded-lg overflow-hidden">
+            <div class="project-card">
               <div class="bg-primary bg-opacity-30 aspect-video flex items-center justify-center">
                 {project.image ? (
                   <img
@@ -265,10 +259,7 @@ const featuredProjects = [
                   </div>
                 </div>
                 <div class="flex gap-3">
-                  <a
-                    href={project.url}
-                    class="flex-1 text-center bg-accent text-primary px-3 py-1 rounded hover:bg-opacity-90 transition-opacity"
-                  >
+                  <a href={project.url} class="btn-primary flex-1 text-center">
                     {t.projectsButton}
                   </a>
                 </div>
@@ -278,25 +269,17 @@ const featuredProjects = [
         }
       </div>
       <div class="text-center mt-8">
-        <a
-          href={`/${lang}/projects`}
-          class="inline-block border border-accent text-accent px-5 py-2 rounded-md hover:bg-accent hover:bg-opacity-10 transition-opacity"
-        >
+        <a href={`/${lang}/projects`} class="btn-secondary">
           {t.viewAllProjectsButton}
         </a>
       </div>
     </section>
 
     <!-- Section appel à l'action -->
-    <section
-      class="py-8 bg-secondary bg-opacity-30 rounded-lg text-center mt-8"
-    >
+    <section class="py-8 bg-secondary bg-opacity-30 rounded-lg text-center mt-8">
       <h2 class="text-2xl font-bold mb-4">{t.ctaTitle}</h2>
       <p class="mb-6 max-w-lg mx-auto">{t.ctaText}</p>
-      <a
-        href={`/${lang}/contact`}
-        class="inline-block bg-accent text-primary px-6 py-3 rounded-md hover:bg-opacity-90 transition-opacity"
-      >
+      <a href={`/${lang}/contact`} class="btn-primary py-3">
         {t.contactButton}
       </a>
     </section>

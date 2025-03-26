@@ -1,18 +1,120 @@
 @import "tailwindcss";
 
-@layer base {
-    html {color: #e0e0e0; /* Couleur de texte par défaut */}
-    body {background-color: #1a1a1a; /* Couleur de fond par défaut */}
+/* Variables de couleurs */
+:root {
+  /* Couleurs principales */
+  --color-primary: #1a1a1a;
+  --color-secondary: #2a2a2a;
+  --color-accent: #4da34d;
+  --color-text: #e0e0e0;
+  --color-text-muted: #a0a0a0;
+  
+  /* Variations et états */
+  --color-accent-hover: #5ccc5c;
+  --color-accent-light: rgba(58, 119, 58, 0.2);
+  --color-accent-light-hover: rgba(58, 119, 58, 0.3);
+  
+  /* Transition standard */
+  --transition-standard: 250ms ease-in-out;
 }
 
-@layer components {
-  .bg-primary { background-color: #1a1a1a; }
-  .bg-secondary { background-color: #2a2a2a; }
-  .bg-accent { background-color: #3a773a; }
-  .text-primary { color: #1a1a1a; }
-  .text-accent { color: #3a773a; }
-  .text-text { color: #e0e0e0; }
-  .text-text-muted { color: #a0a0a0; }
-  .border-accent { border-color: #3a773a; }
-  .border-secondary { border-color: #2a2a2a; }
+/* Base styles */
+html {
+  color: var(--color-text);
 }
+
+body {
+  background-color: var(--color-primary);
+}
+
+/* Style global pour les transitions */
+a, button {
+  transition: all var(--transition-standard);
+}
+
+/* Classe pour les boutons primaires */
+.btn-primary {
+  background-color: var(--color-accent);
+  color: var(--color-primary);
+  padding: 0.5rem 1rem;
+  border-radius: 0.25rem;
+  transition: background-color var(--transition-standard), transform var(--transition-standard);
+}
+.btn-primary:hover {
+  background-color: var(--color-accent-hover);
+  transform: translateY(-1px);
+}
+
+/* Classe pour les boutons secondaires */
+.btn-secondary {
+  border: 1px solid var(--color-accent);
+  color: var(--color-accent);
+  padding: 0.5rem 1rem;
+  border-radius: 0.25rem;
+  transition: background-color var(--transition-standard), color var(--transition-standard), transform var(--transition-standard);
+}
+.btn-secondary:hover {
+  background-color: var(--color-accent-light);
+  color: var(--color-text);
+  transform: translateY(-1px);
+}
+
+/* Liens de navigation */
+.nav-link {
+  text-decoration: none;
+  transition: color var(--transition-standard);
+}
+.nav-link:hover {
+  color: var(--color-accent-hover);
+}
+.nav-link-active {
+  color: var(--color-accent);
+  font-weight: 500;
+}
+
+/* Classe pour les boutons secondaires */
+.btn-eco {
+  color: var(--color-accent);
+  transition: background-color var(--transition-standard), color var(--transition-standard);
+}
+.btn-eco:hover {
+  background-color: var(--color-accent-light);
+  color: var(--color-text);
+}
+
+/* Liens textuels */
+.text-link {
+  color: var(--color-accent);
+  transition: color var(--transition-standard);
+}
+.text-link:hover {
+  color: var(--color-accent-hover);
+}
+
+/* Cartes de projet */
+.project-card {
+  background-color: rgba(42, 42, 42, 0.3);
+  border-radius: 0.5rem;
+  overflow: hidden;
+  transition: transform var(--transition-standard), box-shadow var(--transition-standard);
+}
+.project-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Liens du footer */
+footer a.text-text-muted:hover {
+  color: var(--color-text);
+}
+
+/* Classes de compatibilité pour les classes Tailwind spécifiques */
+.bg-primary { background-color: var(--color-primary); }
+.bg-secondary { background-color: var(--color-secondary); }
+.bg-accent { background-color: var(--color-accent); }
+.text-primary { color: var(--color-primary); }
+.text-accent { color: var(--color-accent); }
+.text-text { color: var(--color-text); }
+.text-text-muted { color: var(--color-text-muted); }
+.border-accent { border-color: var(--color-accent); }
+.border-secondary { border-color: var(--color-secondary); }

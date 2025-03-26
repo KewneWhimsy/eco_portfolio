@@ -30,7 +30,7 @@ const getLocalizedPath = (langCode: string): string => {
       <>
         <a 
           href={getLocalizedPath(lang.code)} 
-          class={`text-sm ${lang.code === currentLang ? 'text-accent font-medium' : 'text-text-muted'}`}
+          class={`text-sm transition-colors nav-link ${lang.code === currentLang ? 'text-accent hover:text-accent-hover font-medium' : 'text-text-muted '}`}
           onclick={`localStorage.setItem('preferredLanguage', '${lang.code}')`}
         >
           {lang.label}
