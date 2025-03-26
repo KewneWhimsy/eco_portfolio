@@ -249,7 +249,6 @@ const skills = [
         <div class="md:w-1/3">
           <div class="bg-secondary rounded-lg p-4">
             <Picture
-              transition:persist
               src={monImage}
               widths={[400, 800]}
               sizes="(max-width: 767px) 100vw, 400px"
@@ -258,6 +257,7 @@ const skills = [
               formats={['avif', 'webp', 'jpg']}
               alt={`Josselin HANEL - ${lang === 'fr' ? 'Développeur Full Stack' : (lang === 'en' ? 'Full Stack Developer' : 'Full-Stack-Entwickler')}`}
               class="w-full rounded"
+              data-astro-transition-persist="profile-image"
             />
           </div>
         </div>
