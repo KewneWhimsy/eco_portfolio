@@ -269,17 +269,46 @@ const featuredProjects = [
         }
       </div>
       <div class="text-center mt-8">
-        <a href={`/${lang}/projects`} class="btn-secondary">
+        <!-- Bouton autonome complet avec changement de couleur de texte -->
+        <a
+          href={`/${lang}/projects`}
+          style="
+            display: inline-block;
+            padding: 8px 16px;
+            background-color: transparent;
+            border: 1px solid var(--color-accent);
+            color: var(--color-accent);
+            border-radius: 4px;
+            transition: transform 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+          "
+          onmouseover="this.style.transform='translateY(-1px)'; this.style.backgroundColor='rgba(77, 163, 77, 0.1)'; this.style.color='var(--color-text)';"
+          onmouseout="this.style.transform='translateY(0)'; this.style.backgroundColor='transparent'; this.style.color='var(--color-accent)';"
+        >
           {t.viewAllProjectsButton}
         </a>
       </div>
     </section>
 
     <!-- Section appel à l'action -->
-    <section class="py-8 bg-secondary bg-opacity-30 rounded-lg text-center mt-8">
+    <section
+      class="py-8 bg-secondary bg-opacity-30 rounded-lg text-center mt-8"
+    >
       <h2 class="text-2xl font-bold mb-4">{t.ctaTitle}</h2>
       <p class="mb-6 max-w-lg mx-auto">{t.ctaText}</p>
-      <a href={`/${lang}/contact`} class="btn-primary py-3">
+      <!-- Bouton autonome primaire -->
+      <a
+        href={`/${lang}/contact`}
+        style="
+          display: inline-block;
+          padding: 8px 16px;
+          background-color: var(--color-accent);
+          color: var(--color-primary);
+          border-radius: 4px;
+          transition: transform 0.3s ease, background-color 0.3s ease;
+        "
+        onmouseover="this.style.transform='translateY(-1px)'; this.style.backgroundColor='var(--color-accent-hover)';"
+        onmouseout="this.style.transform='translateY(0)'; this.style.backgroundColor='var(--color-accent)';"
+      >
         {t.contactButton}
       </a>
     </section>

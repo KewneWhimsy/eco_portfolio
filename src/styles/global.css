@@ -27,11 +27,6 @@ body {
   background-color: var(--color-primary);
 }
 
-/* Style global pour les transitions */
-a, button {
-  transition: all var(--transition-standard);
-}
-
 .titleName:hover {
   transition: color var(--transition-standard);
   color: var(--color-accent-hover);

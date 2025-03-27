@@ -308,16 +308,14 @@ const socialLinks = [
           </div>
           
           <!-- Bouton d'envoi -->
-          <div>
-            <button 
-              type="submit"
-              :disabled="submitting"
-              class="bg-accent text-primary px-5 py-2 rounded-md hover:bg-opacity-90 transition-opacity flex items-center"
-            >
-              <span x-show="!submitting">{t.submitButton}</span>
-              <span x-show="submitting">{t.submitting}</span>
-            </button>
-          </div>
+          <button 
+  type="submit"
+  :disabled="submitting"
+  class="btn-primary flex items-center"
+>
+  <span x-show="!submitting">{t.submitButton}</span>
+  <span x-show="submitting">{t.submitting}</span>
+</button>
           
           <!-- Messages de statut -->
           <div x-show="success" x-transition class="mt-4 p-3 bg-green-100 text-green-800 rounded-md">
