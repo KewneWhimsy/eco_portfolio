@@ -63,12 +63,38 @@ const { htmlLang, ogLocale } =
     <!-- Pas de JavaScript pour la détection du mode éco, on utilise uniquement l'URL -->
 
     <title>{title}</title>
-    
-    <!-- Ajouter Client Router uniquement si on n'est pas en mode éco -->
-    {!isEcoMode && <ClientRouter />}
 
     <!-- Chargement conditionnel d'Alpine.js -->
     <AlpineLoader isEcoMode={isEcoMode} />
+
+    <!-- Ajouter Client Router uniquement si on n'est pas en mode éco -->
+    {!isEcoMode && <ClientRouter />}
+
+    <!-- Script pour corriger la navigation avec ClientRouter -->
+    {!isEcoMode && (
+      <script>
+        // Fonction pour mettre à jour tous les liens de navigation avec la langue actuelle
+        function updateNavigationLinks() {
+          // Détecte la langue actuelle depuis l'URL
+          const path = window.location.pathname;
+          const langMatch = path.match(/^\/([a-z]{2})(\/|$)/);
+          const currentLang = langMatch ? langMatch[1] : 'fr';
+      
+          // Met à jour le lien du logo
+          const logoLink = document.querySelector('a.titleName');
+          if (logoLink) {
+            const homeUrl = `/${currentLang}`;
+            logoLink.setAttribute('href', homeUrl);
+          }
+        }   
+
+        // Exécute la mise à jour après chaque navigation
+        document.addEventListener('astro:page-load', updateNavigationLinks);
+    
+        // Exécute également au chargement initial
+        document.addEventListener('DOMContentLoaded', updateNavigationLinks);
+      </script>
+    )}
   </head>
   <body class="min-h-screen flex flex-col">
     <header class="mx-2 md:mx-4">
