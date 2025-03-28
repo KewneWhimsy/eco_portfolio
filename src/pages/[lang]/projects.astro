@@ -23,13 +23,6 @@ const content = {
     viewProject: 'Voir le projet',
     visitSite: 'Visiter le site',
     viewSourceCode: 'Voir le code source',
-    categories: {
-      all: 'Tous',
-      web: 'Sites Web',
-      app: 'Applications',
-      ecodesign: 'Éco-conception'
-    },
-    filterBy: 'Filtrer par catégorie:',
     showcaseTitle: 'Focus sur l\'éco-conception',
     showcaseText: "L'éco-conception web consiste à créer des sites et applications qui minimisent leur impact environnemental tout au long de leur cycle de vie. Voici quelques principes que j'applique dans mes projets.",
     principles: [
@@ -57,13 +50,6 @@ const content = {
     viewProject: 'View project',
     visitSite: 'Visit site',
     viewSourceCode: 'View source code',
-    categories: {
-      all: 'All',
-      web: 'Websites',
-      app: 'Applications',
-      ecodesign: 'Eco-design'
-    },
-    filterBy: 'Filter by category:',
     showcaseTitle: 'Focus on eco-design',
     showcaseText: "Web eco-design consists of creating websites and applications that minimize their environmental impact throughout their life cycle. Here are some principles I apply in my projects.",
     principles: [
@@ -91,13 +77,6 @@ const content = {
     viewProject: 'Projekt ansehen',
     visitSite: 'Website besuchen',
     viewSourceCode: 'Quellcode ansehen',
-    categories: {
-      all: 'Alle',
-      web: 'Websites',
-      app: 'Anwendungen',
-      ecodesign: 'Öko-Design'
-    },
-    filterBy: 'Nach Kategorie filtern:',
     showcaseTitle: 'Fokus auf Öko-Design',
     showcaseText: "Web-Öko-Design besteht darin, Websites und Anwendungen zu erstellen, die ihre Umweltauswirkungen während ihres gesamten Lebenszyklus minimieren. Hier sind einige Prinzipien, die ich in meinen Projekten anwende.",
     principles: [
@@ -133,16 +112,10 @@ const projects = [
         'Management website for an object library allowing the loan and reservation of various items.' : 
         'Management-Website für eine Objektbibliothek, die das Ausleihen und Reservieren verschiedener Artikel ermöglicht.'),
     image: '../../src/assets/projects/objet01.png',
-    categories: ['web', 'app'],
     tech: ['HTML', 'CSS', 'JavaScript', 'Node.js', 'MySQL'],
     url: 'https://example.com/library',
     github: 'https://github.com/username/library-project',
-    isFeatured: true,
-    ecoFeatures: [
-      lang === 'fr' ? 'Images optimisées' : (lang === 'en' ? 'Optimized images' : 'Optimierte Bilder'),
-      lang === 'fr' ? 'Chargement paresseux' : (lang === 'en' ? 'Lazy loading' : 'Lazy Loading'),
-      lang === 'fr' ? 'Cache efficace' : (lang === 'en' ? 'Efficient caching' : 'Effizientes Caching')
-    ]
+    isFeatured: true
   },
   {
     id: 'esport',
@@ -153,16 +126,10 @@ const projects = [
         'E-sport event management platform with a real-time chat system via WebSocket and HTMX.' : 
         'E-Sport-Eventmanagement-Plattform mit einem Echtzeit-Chat-System über WebSocket und HTMX.'),
     image: '../../src/assets/projects/esport01.png',
-    categories: ['app', 'ecodesign'],
     tech: ['HTML', 'CSS', 'HTMX', 'WebSocket', 'Node.js', 'MongoDB'],
     url: 'https://example.com/esport',
     github: 'https://github.com/username/esport-project',
-    isFeatured: true,
-    ecoFeatures: [
-      lang === 'fr' ? 'Interface minimaliste' : (lang === 'en' ? 'Minimalist interface' : 'Minimalistische Schnittstelle'),
-      lang === 'fr' ? 'WebSockets optimisés' : (lang === 'en' ? 'Optimized WebSockets' : 'Optimierte WebSockets'),
-      lang === 'fr' ? 'HTMX pour limiter JavaScript' : (lang === 'en' ? 'HTMX to limit JavaScript' : 'HTMX zur Begrenzung von JavaScript')
-    ]
+    isFeatured: true
   },
   {
     id: 'portfolio',
@@ -173,16 +140,10 @@ const projects = [
         'My personal portfolio with eco-mode, multilingual, and designed following web eco-design principles.' : 
         'Mein persönliches Portfolio mit Öko-Modus, mehrsprachig und nach den Prinzipien des Web-Öko-Designs gestaltet.'),
     image: '../../src/assets/projects/portfolio01.png',
-    categories: ['web', 'ecodesign'],
     tech: ['Astro', 'Alpine.js', 'TailwindCSS'],
     url: '/',
     github: 'https://github.com/username/eco-portfolio',
-    isFeatured: true,
-    ecoFeatures: [
-      lang === 'fr' ? 'Mode éco disponible' : (lang === 'en' ? 'Eco mode available' : 'Öko-Modus verfügbar'),
-      lang === 'fr' ? 'Zéro JavaScript optionnel' : (lang === 'en' ? 'Optional zero JavaScript' : 'Optionales Zero-JavaScript'),
-      lang === 'fr' ? 'Images à la demande' : (lang === 'en' ? 'On-demand images' : 'Bilder auf Anfrage')
-    ]
+    isFeatured: true
   }
 ];
 
@@ -199,35 +160,11 @@ const getProjectUrl = (projectId: string) => `/${lang}/projects/${projectId}`;
     <p class="text-lg mb-8">
       {t.projectsIntro}
     </p>
-    
-    <!-- Filtres de catégories (masqués pour l'instant) -->
-    <div class="mb-8 hidden">
-      <div class="mb-2">
-        <span class="font-medium">{t.filterBy}</span>
-      </div>
-      <div class="flex flex-wrap gap-2">
-        <button class="px-3 py-1 rounded-full text-sm transition-colors bg-accent text-primary">
-          {t.categories.all}
-        </button>
-        
-        <button class="px-3 py-1 rounded-full text-sm transition-colors bg-secondary text-text">
-          {t.categories.web}
-        </button>
-        
-        <button class="px-3 py-1 rounded-full text-sm transition-colors bg-secondary text-text">
-          {t.categories.app}
-        </button>
-        
-        <button class="px-3 py-1 rounded-full text-sm transition-colors bg-secondary text-text">
-          {t.categories.ecodesign}
-        </button>
-      </div>
-    </div>
 
     <!-- Liste des projets avec structure Grid -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
       {projects.map(project => (
-        <div class="bg-secondary bg-opacity-30 rounded-lg overflow-hidden transition-opacity duration-300 grid grid-rows-[auto_auto_1fr_auto] h-full">
+        <div class="project-card bg-secondary bg-opacity-30 rounded-lg overflow-hidden transition-opacity duration-300 grid grid-rows-[auto_auto_1fr_auto] h-full">
           <!-- Couverture du projet (rangée 1) -->
           <div class="bg-primary bg-opacity-30 aspect-video">
             {project.image ? (
@@ -249,22 +186,13 @@ const getProjectUrl = (projectId: string) => `/${lang}/projects/${projectId}`;
           
           <!-- Informations du projet (rangée 3) -->
           <div class="p-4 pt-0">
-            <!-- Catégories -->
-            <div class="flex flex-wrap gap-2 mb-3">
-              {project.categories.map(category => (
-                <span class="px-2 py-0.5 bg-primary bg-opacity-30 rounded-full text-xs">
-                  {t.categories[category as keyof typeof t.categories]}
-                </span>
-              ))}
-            </div>
-            
             <p class="mb-4">{project.description}</p>
             
             <!-- Technologies -->
             <div class="mb-4">
               <div class="flex flex-wrap gap-1.5">
                 {project.tech.map(tech => (
-                  <span class="px-2 py-0.5 border border-accent text-accent rounded-full text-xs">
+                  <span class="px-2 py-0.5 border border-accent text-light rounded-full text-xs">
                     {tech}
                   </span>
                 ))}

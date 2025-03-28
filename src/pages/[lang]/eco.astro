@@ -35,7 +35,7 @@ const content = {
   fr: {
     title: 'Josselin HANEL - Développeur Full Stack (Mode Éco)',
     description: 'Version éco-responsable de mon portfolio de développeur full stack, avec une empreinte carbone minimale.',
-    heroTitle: 'Développeur Web Full Stack',
+    heroTitle: 'Développeur Web <span class="text-light">Full Stack</span>',
     heroText: 'Je conçois des sites web et applications complètes, durables et performantes.',
     projectsButton: 'Projets',
     contactButton: 'Contact',
@@ -70,7 +70,7 @@ const content = {
   en: {
     title: 'Josselin HANEL - Full Stack Developer (Eco Mode)',
     description: 'Eco-friendly version of my full stack developer portfolio, with minimal carbon footprint.',
-    heroTitle: 'Full Stack Web Developer',
+    heroTitle: 'Full Stack <span class="text-light">Web Developer</span>',
     heroText: 'I design complete, sustainable and high-performance websites and applications.',
     projectsButton: 'Projects',
     contactButton: 'Contact',
@@ -105,7 +105,7 @@ const content = {
   de: {
     title: 'Josselin HANEL - Full-Stack-Entwickler (Öko-Modus)',
     description: 'Umweltfreundliche Version meines Full-Stack-Entwickler-Portfolios mit minimalem CO2-Fußabdruck.',
-    heroTitle: 'Full-Stack Webentwickler',
+    heroTitle: 'Full-Stack <span class="text-light">Webentwickler</span>',
     heroText: 'Ich entwickle vollständige, nachhaltige und leistungsstarke Websites und Anwendungen.',
     projectsButton: 'Projekte',
     contactButton: 'Kontakt',
@@ -152,8 +152,11 @@ const isEcoMode = true;
     <section class="py-6 border-b border-secondary mb-6">
       <div class="flex flex-wrap gap-6 items-center">
         <div class="flex-1">
-          <h1 class="text-2xl font-bold mb-3">
-            {t.heroTitle}
+          <h1 
+            class="text-2xl font-bold mb-3"
+            set:html={t.heroTitle}
+          >
+            
           </h1>
           <p class="mb-4">
             {t.heroText}
