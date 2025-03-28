@@ -251,41 +251,48 @@ const featuredProjects = [
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
         {
           featuredProjects.map((project) => (
-            <div class="project-card w-full"> <!-- Ajout de w-full -->
-              <div class="bg-primary bg-opacity-30 aspect-video w-full"> <!-- Ajout de w-full -->
-                {project.image ? (
-                  <Picture
-                    src={project.image}
-                    widths={[400, 740, 1080]}
-                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                    formats={["avif", "webp", "jpg"]}
-                    alt={project.title}
-                    class="w-full h-full object-cover"
-                    loading="lazy"
-                  />
-                ) : (
-                  <span class="text-sm text-text-muted">Image du projet</span>
-                )}
-              </div>
-              <div class="p-4">
-                <h3 class="text-xl font-bold mb-2">{project.title}</h3>
-                <p class="mb-4">{project.description}</p>
-                <div class="mb-4">
-                  <div class="flex flex-wrap gap-1.5">
-                    {project.tech.map((tech) => (
-                      <span class="px-2 py-0.5 border border-accent text-light rounded-full text-xs">
-                        {tech}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-                <div class="flex gap-3">
-                  <a href={project.url} class="btn-primary flex-1 text-center">
-                    {t.projectsButton}
-                  </a>
-                </div>
-              </div>
-            </div>
+          <div class="project-card w-full">
+  <!-- Image du projet -->
+  <div class="bg-primary bg-opacity-30 aspect-video w-full">
+    <Picture
+      src={project.image}
+      widths={[400, 740, 1080]}
+      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+      formats={["avif", "webp", "jpg"]}
+      alt={project.title}
+      class="w-full h-full object-cover"
+      loading="lazy"
+    />
+  </div>
+  
+  <!-- Contenu du projet (prendra l'espace variable) -->
+  <div class="p-4 flex flex-col h-full">
+    <div class="flex-1">
+      <h3 class="text-xl font-bold mb-2">{project.title}</h3>
+      <p class="mb-4">{project.description}</p>
+      
+      <!-- Technologies -->
+      <div class="mb-4">
+        <div class="flex flex-wrap gap-1.5">
+          {project.tech.map((tech) => (
+            <span class="px-2 py-0.5 border border-accent text-light rounded-full text-xs">
+              {tech}
+            </span>
+          ))}
+        </div>
+      </div>
+    </div>
+    
+    <!-- Boutons (toujours au bas de la carte) -->
+    <div class="mt-auto">
+      <div class="flex gap-3">
+        <a href={project.url} class="btn-primary flex-1 text-center">
+          {t.projectsButton}
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
           ))
         }
       </div>
