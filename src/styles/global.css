@@ -99,7 +99,8 @@ body {
 
 /* Cartes de projet */
 .project-card {
-  background-color: rgba(42, 42, 42, 0.3);
+  background-color: rgba(42, 42, 42, 0.4);
+  border: 1px solid rgba(80, 80, 80, 0.3);
   border-radius: 0.5rem;
   overflow: hidden;
   transition: transform var(--transition-standard), box-shadow var(--transition-standard);
@@ -120,9 +121,11 @@ footer a.text-text-muted:hover {
 .bg-accent { background-color: var(--color-accent); }
 .text-primary { color: var(--color-primary); }
 .text-accent { color: var(--color-accent); }
+.text-light { color: var(--color-accent-hover); }
 .text-text { color: var(--color-text); }
 .text-text-muted { color: var(--color-text-muted); }
 .border-accent { border-color: var(--color-accent); }
+.border-light { border-color: var(--color-accent-hover); }
 .border-secondary { border-color: var(--color-secondary); }
 
 /* Styles spécifiques au mode éco */

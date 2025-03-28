@@ -3,6 +3,8 @@
 import Layout from "../../layouts/layout.astro";
 import { Picture } from "astro:assets";
 import monImage from "../../assets/j.jpg";
+import objetImage from "../../assets/projects/objet01.png";
+import esportImage from "../../assets/projects/esport01.png";
 
 // Récupérer le paramètre de langue depuis l'URL
 export function getStaticPaths() {
@@ -21,7 +23,7 @@ const content = {
     title: "Josselin HANEL - Développeur Web Full Stack",
     description:
       "Portfolio de développeur web full stack avec une approche éco-responsable, basé à Rennes et disponible à Nantes, Berlin et en télétravail.",
-    heroTitle: 'Développeur Web <span class="text-accent">Full Stack</span>',
+    heroTitle: 'Développeur Web <span class="text-light">Full Stack</span>',
     heroText:
       "Je conçois des sites web et applications complètes, durables et performantes, en privilégiant des solutions économes en ressources.",
     projectsButton: "Voir mes projets",
@@ -37,7 +39,7 @@ const content = {
     title: "Josselin HANEL - Full Stack Web Developer",
     description:
       "Portfolio of a full stack web developer with an eco-friendly approach, based in Rennes and available in Nantes, Berlin and remote work.",
-    heroTitle: 'Full Stack <span class="text-accent">Web Developer</span>',
+    heroTitle: 'Full Stack <span class="text-light">Web Developer</span>',
     heroText:
       "I design complete, sustainable and high-performance websites and applications, prioritizing resource-efficient solutions.",
     projectsButton: "View my projects",
@@ -53,7 +55,7 @@ const content = {
     title: "Josselin HANEL - Full-Stack Webentwickler",
     description:
       "Portfolio eines Full-Stack-Webentwicklers mit umweltfreundlichem Ansatz, mit Sitz in Rennes und verfügbar in Nantes, Berlin und für Remote-Arbeit.",
-    heroTitle: 'Full-Stack <span class="text-accent">Webentwickler</span>',
+    heroTitle: 'Full-Stack <span class="text-light">Webentwickler</span>',
     heroText:
       "Ich entwickle vollständige, nachhaltige und leistungsstarke Websites und Anwendungen mit ressourcenschonenden Lösungen.",
     projectsButton: "Meine Projekte",
@@ -75,7 +77,7 @@ const skills = [
   {
     category:
       lang === "fr" ? "Frontend" : lang === "en" ? "Frontend" : "Frontend",
-    items: ["HTML5", "CSS3", "JavaScript", "HTMX", "Alpine.js", "Astro"],
+    items: ["Astro", "CSS Pro", "Tailwind", "TypeScript", "HTMX", "Alpine.js"],
   },
   {
     category: lang === "fr" ? "Backend" : lang === "en" ? "Backend" : "Backend",
@@ -137,8 +139,14 @@ const featuredProjects = [
         : lang === "en"
           ? "Management website for an object library allowing the loan and reservation of various items."
           : "Management-Website für eine Objektbibliothek für Ausleihe und Reservierung verschiedener Artikel.",
-    image: "../src/assets/projects/objet01.png",
-    tech: ["HTML", "CSS", "JavaScript", "Node.js"],
+    image: objetImage,
+    tech: [
+      "Astro",
+      "CSS Pro",
+      "TypeScript",
+      "Alpine.js",
+      "GitHub Actions",
+    ],
     url: `/${lang}/projects/library`,
     ecoUrl: `/${lang}/projects/library/eco`,
   },
@@ -155,8 +163,18 @@ const featuredProjects = [
         : lang === "en"
           ? "E-sport event management platform with a real-time chat system via WebSocket and HTMX. (fictional company)"
           : "E-Sport-Eventmanagement-Plattform mit einem Echtzeit-Chat-System über WebSocket und HTMX. (fiktives Unternehmen)",
-    image: "../src/assets/projects/esport01.png",
-    tech: ["HTML", "CSS", "HTMX", "WebSocket", "Node.js", "MongoDB"],
+    image: esportImage,
+    tech: [
+      "Astro",
+      "Tailwind",
+      "CSS Pro",
+      "Alpine.js",
+      "HTMX",
+      "WebSocket",
+      "Express",
+      "Postgresql",
+      "MongoDB",
+    ],
     url: `/${lang}/projects/esport`,
     ecoUrl: `/${lang}/projects/esport/eco`,
   },
@@ -209,7 +227,7 @@ const featuredProjects = [
         {
           skills.map((skill) => (
             <div class="bg-secondary bg-opacity-30 p-4 rounded-lg">
-              <h3 class="text-lg font-semibold mb-3 text-accent">
+              <h3 class="text-lg font-semibold mb-3 text-light">
                 {skill.category}
               </h3>
               <div class="flex flex-wrap gap-2">
@@ -233,11 +251,14 @@ const featuredProjects = [
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
         {
           featuredProjects.map((project) => (
-            <div class="project-card">
-              <div class="bg-primary bg-opacity-30 aspect-video flex items-center justify-center">
+            <div class="project-card w-full"> <!-- Ajout de w-full -->
+              <div class="bg-primary bg-opacity-30 aspect-video w-full"> <!-- Ajout de w-full -->
                 {project.image ? (
-                  <img
+                  <Picture
                     src={project.image}
+                    widths={[400, 740, 1080]}
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    formats={["avif", "webp", "jpg"]}
                     alt={project.title}
                     class="w-full h-full object-cover"
                     loading="lazy"
@@ -252,7 +273,7 @@ const featuredProjects = [
                 <div class="mb-4">
                   <div class="flex flex-wrap gap-1.5">
                     {project.tech.map((tech) => (
-                      <span class="px-2 py-0.5 border border-accent text-accent rounded-full text-xs">
+                      <span class="px-2 py-0.5 border border-accent text-light rounded-full text-xs">
                         {tech}
                       </span>
                     ))}
