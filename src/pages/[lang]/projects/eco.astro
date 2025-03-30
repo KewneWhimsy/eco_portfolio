@@ -66,7 +66,7 @@ const projects = [
       (lang === 'en' ? 
         'Management website for an object library allowing loans and reservations.' : 
         'Management-Website für eine Objektbibliothek für Ausleihe und Reservierung.'),
-    tech: ['HTML', 'CSS', 'JavaScript', 'Node.js', 'MySQL'],
+    tech: ['Astro', 'CSS pro', 'TypeScript', 'Alpine.js', 'GitHub', 'Web3Forms'],
     url: `/${lang}/projects/library/eco`
   },
   {
@@ -77,7 +77,7 @@ const projects = [
       (lang === 'en' ? 
         'E-sport event management platform with real-time chat system.' : 
         'E-Sport-Eventmanagement-Plattform mit Echtzeit-Chat-System.'),
-    tech: ['HTML', 'CSS', 'HTMX', 'WebSocket', 'Node.js', 'MongoDB'],
+    tech: ['Astro', 'Tailwind', 'Alpine.js', 'HTMX', 'WebSocket', 'Express', 'PostgreSQL', 'MongoDB'],
     url: `/${lang}/projects/esport/eco`
   },
   {
@@ -91,17 +91,6 @@ const projects = [
     tech: ['Astro', 'Alpine.js', 'TailwindCSS'],
     url: `/${lang}/eco`
   },
-  {
-    id: 'blog',
-    title: 'Blog sur l\'éco-conception',
-    description: lang === 'fr' ? 
-      'Blog dédié aux bonnes pratiques d\'éco-conception web.' :
-      (lang === 'en' ? 
-        'Blog dedicated to web eco-design best practices.' : 
-        'Blog zu Best Practices im Web-Öko-Design.'),
-    tech: ['Astro', 'Markdown', 'TailwindCSS'],
-    url: `/${lang}/blog/eco`
-  }
 ];
 
 // Mode éco activé
@@ -145,7 +134,7 @@ const isEcoMode = true;
             <div class="flex gap-4">
               <a 
                 href={project.url} 
-                class="text-accent hover:underline"
+                class="text-link"
               >
                 {t.viewProject}
               </a>
@@ -157,7 +146,7 @@ const isEcoMode = true;
     
     <!-- Section sur l'éco-conception -->
     <section class="py-6 border-t border-secondary">
-      <h2 class="text-xl font-semibold mb-3">
+      <h2 class="text-xl text-accent font-semibold mb-3">
         {t.ecoDesignTitle}
       </h2>
       <p>

@@ -108,7 +108,7 @@ const redirectUrl = `${Astro.url.origin}/${lang}/contact/thanks`;
         
         <div class="mb-4">
           <h3 class="font-medium mb-2">{t.emailMe}</h3>
-          <a href="mailto:contact@josselinhanel.com" class="text-accent hover:underline">
+          <a href="mailto:contact@josselinhanel.com" class="text-link">
             {t.directEmail}
           </a>
         </div>
@@ -127,7 +127,7 @@ const redirectUrl = `${Astro.url.origin}/${lang}/contact/thanks`;
                   href={link.url} 
                   target="_blank" 
                   rel="noopener noreferrer" 
-                  class="text-accent hover:underline"
+                  class="text-link"
                 >
                   {link.name}
                 </a>
@@ -206,7 +206,7 @@ const redirectUrl = `${Astro.url.origin}/${lang}/contact/thanks`;
           <div>
             <button 
               type="submit"
-              class="bg-accent text-primary px-4 py-1 rounded"
+              class="bg-accent btn-primary px-4 py-1 rounded"
             >
               {t.submitButton}
             </button>

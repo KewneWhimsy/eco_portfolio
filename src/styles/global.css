@@ -121,8 +121,9 @@ body {
 }
 
 /* Liens du footer */
-footer a.text-text-muted:hover {
+footer a.text-text-muted:hover, main a.text-text-muted:hover {
   color: var(--color-text);
+  transition: color var(--transition-standard);
 }
 
 /* Classes de compatibilité pour les classes Tailwind spécifiques */
