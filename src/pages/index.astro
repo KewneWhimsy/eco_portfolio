@@ -1,5 +1,6 @@
 ---
 // Redirect to default language (fr)
+import Layout from "../layouts/layout.astro"
 ---
 
 <script>
@@ -27,10 +28,11 @@
 
 <!-- Fallback pour les navigateurs sans JavaScript -->
 <meta http-equiv="refresh" content="0;url=/fr" />
-
+<Layout title="Josselin KW" description="" lang="">
 <body>
-  <p>Redirection vers le portfolio...</p>
-  <p>
+  <p class="ml-2">Redirection vers le portfolio...</p>
+  <p class="ml-2">
     <a href="/fr">Cliquez ici si vous n'êtes pas redirigé automatiquement</a>
   </p>
 </body>
+</Layout>

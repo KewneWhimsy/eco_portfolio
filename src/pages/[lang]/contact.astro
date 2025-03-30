@@ -1,7 +1,6 @@
 ---
 // Import du layout standard
 import Layout from '../../layouts/layout.astro';
-import AlpineLoader from '../../components/alpine_loader.astro';
 
 // Récupérer le paramètre de langue depuis l'URL
 export function getStaticPaths() {
@@ -126,106 +125,20 @@ const socialLinks = [
           {t.contactIntro}
         </p>
         
-        <form 
-          id="contact-form" 
-          class="space-y-4"
-          x-data="{
-            name: '',
-            email: '',
-            subject: '',
-            message: '',
-            phone: '',
-            preferredContact: 'email',
-            submitting: false,
-            success: false,
-            error: false,
-            validation: {
-              name: true,
-              email: true,
-              subject: true,
-              message: true
-            },
-            validateField(field) {
-              if (field === 'email') {
-                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-                this.validation[field] = this[field].trim() !== '' && emailRegex.test(this[field]);
-              } else {
-                this.validation[field] = this[field].trim() !== '';
-              }
-              return this.validation[field];
-            },
-            validateForm() {
-              this.validateField('name');
-              this.validateField('email');
-              this.validateField('subject');
-              this.validateField('message');
-              return this.validation.name && this.validation.email && 
-                    this.validation.subject && this.validation.message;
-            },
-            submitForm() {
-              if (!this.validateForm()) return;
-              
-              this.submitting = true;
-              this.success = false;
-              this.error = false;
-              
-              // Préparation des données pour Web3Forms
-              const formData = new FormData();
-              formData.append('name', this.name);
-              formData.append('email', this.email);
-              formData.append('subject', this.subject);
-              formData.append('message', this.message);
-              formData.append('phone', this.phone);
-              formData.append('preferredContact', this.preferredContact);
-              
-              // Remplacez par votre clé d'API Web3Forms
-              formData.append('access_key', '2dcc3f1b-036f-48a7-987a-cdada0d05ae5');
-              
-              // Envoyer à Web3Forms
-              fetch('https://api.web3forms.com/submit', {
-                method: 'POST',
-                body: formData
-              })
-              .then(res => res.json())
-              .then(data => {
-                if (data.success) {
-                  this.success = true;
-                  // Réinitialiser le formulaire
-                  this.name = '';
-                  this.email = '';
-                  this.subject = '';
-                  this.message = '';
-                  this.phone = '';
-                } else {
-                  this.error = true;
-                  console.error('Erreur:', data);
-                }
-              })
-              .catch(err => {
-                this.error = true;
-                console.error('Erreur:', err);
-              })
-              .finally(() => {
-                this.submitting = false;
-              });
-            }
-          }"
-          @submit.prevent="submitForm()"
-        >
+        <form id="contact-form" class="space-y-4">
+          <!-- Clé API Web3Forms (sera ajoutée en JS) -->
+          
           <!-- Champ nom -->
           <div>
             <label for="name" class="block mb-1 font-medium">{t.nameLabel} *</label>
             <input 
               type="text" 
               id="name" 
-              x-model="name"
-              @blur="validateField('name')"
-              :class="{'border-red-500': !validation.name && name !== ''}"
+              name="name"
               class="w-full p-2 border border-secondary bg-primary rounded-md"
               placeholder={t.namePlaceholder}
               required
             />
-            <p x-show="!validation.name && name !== ''" class="text-red-500 text-sm mt-1">{t.requiredField}</p>
           </div>
           
           <!-- Champ email -->
@@ -234,14 +147,11 @@ const socialLinks = [
             <input 
               type="email" 
               id="email" 
-              x-model="email"
-              @blur="validateField('email')"
-              :class="{'border-red-500': !validation.email && email !== ''}"
+              name="email"
               class="w-full p-2 border border-secondary bg-primary rounded-md"
               placeholder={t.emailPlaceholder}
               required
             />
-            <p x-show="!validation.email && email !== ''" class="text-red-500 text-sm mt-1">{t.requiredField}</p>
           </div>
           
           <!-- Méthode de contact préférée -->
@@ -249,23 +159,23 @@ const socialLinks = [
             <label class="block mb-1 font-medium">{t.preferredContactLabel}</label>
             <div class="flex gap-4">
               <label class="flex items-center">
-                <input type="radio" name="contactMethod" value="email" x-model="preferredContact" checked>
+                <input type="radio" name="contactMethod" value="email" checked>
                 <span class="ml-2">{t.emailOption}</span>
               </label>
               <label class="flex items-center">
-                <input type="radio" name="contactMethod" value="phone" x-model="preferredContact">
+                <input type="radio" name="contactMethod" value="phone">
                 <span class="ml-2">{t.phoneOption}</span>
               </label>
             </div>
           </div>
           
           <!-- Champ téléphone (conditionnel) -->
-          <div x-show="preferredContact === 'phone'" x-transition>
+          <div id="phone-field" class="phone-field">
             <label for="phone" class="block mb-1 font-medium">{t.phoneLabel}</label>
             <input 
               type="tel" 
               id="phone" 
-              x-model="phone"
+              name="phone"
               class="w-full p-2 border border-secondary bg-primary rounded-md"
               placeholder={t.phonePlaceholder}
             />
@@ -276,55 +186,45 @@ const socialLinks = [
             <label for="subject" class="block mb-1 font-medium">{t.subjectLabel} *</label>
             <input 
               type="text" 
-              id="subject" 
-              x-model="subject"
-              @blur="validateField('subject')"
-              :class="{'border-red-500': !validation.subject && subject !== ''}"
+              id="subject"
+              name="subject" 
               class="w-full p-2 border border-secondary bg-primary rounded-md"
               placeholder={t.subjectPlaceholder}
               required
             />
-            <p x-show="!validation.subject && subject !== ''" class="text-red-500 text-sm mt-1">{t.requiredField}</p>
           </div>
           
           <!-- Champ message -->
           <div>
             <label for="message" class="block mb-1 font-medium">{t.messageLabel} *</label>
             <textarea 
-              id="message" 
-              x-model="message"
-              @blur="validateField('message')"
-              :class="{'border-red-500': !validation.message && message !== ''}"
+              id="message"
+              name="message" 
               class="w-full p-2 border border-secondary bg-primary rounded-md h-32"
               placeholder={t.messagePlaceholder}
               required
             ></textarea>
-            <p x-show="!validation.message && message !== ''" class="text-red-500 text-sm mt-1">{t.requiredField}</p>
-          </div>
-          
-          <!-- Champ honeypot pour éviter le spam -->
-          <div class="hidden">
-            <input type="text" name="botcheck" />
           </div>
           
           <!-- Bouton d'envoi -->
-          <button 
-  type="submit"
-  :disabled="submitting"
-  class="btn-primary flex items-center"
->
-  <span x-show="!submitting">{t.submitButton}</span>
-  <span x-show="submitting">{t.submitting}</span>
-</button>
-          
-          <!-- Messages de statut -->
-          <div x-show="success" x-transition class="mt-4 p-3 bg-green-100 text-green-800 rounded-md">
-            {t.successMessage}
+          <div class="flex items-center gap-4">
+            <button 
+              type="submit"
+              class="btn-primary"
+              id="submit-button"
+            >
+              {t.submitButton}
+            </button>
+            <span id="form-spinner" style="display: none;" class="inline-flex items-center">
+              <svg class="animate-spin -ml-1 mr-2 h-4 w-4 text-accent" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+              </svg>
+            </span>
           </div>
           
-          <div x-show="error" x-transition class="mt-4 p-3 bg-red-100 text-red-800 rounded-md">
-            {t.errorMessage}
-          </div>
+          <!-- Conteneur pour les messages de feedback -->
+          <div id="form-messages" class="mt-4"></div>
         </form>
       </div>
       
@@ -362,3 +262,142 @@ const socialLinks = [
     </div>
   </div>
 </Layout>
+
+<style>
+  /* Animation pour le champ téléphone */
+  .phone-field {
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: max-height 0.3s ease-out, opacity 0.3s ease-out, margin 0.3s ease-out;
+    margin: 0;
+  }
+  
+  .phone-field.show {
+    max-height: 80px; /* Ajuster selon la hauteur réelle */
+    opacity: 1;
+    margin: 1rem 0;
+  }
+</style>
+
+<script define:vars={{ successMessage: t.successMessage, errorMessage: t.errorMessage, submittingMessage: t.submitting }}>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Animation du champ téléphone
+    const radioButtons = document.querySelectorAll('input[name="contactMethod"]');
+    const phoneField = document.getElementById('phone-field');
+    
+    if (phoneField) {
+      // Vérification initiale
+      const phoneRadio = document.querySelector('input[name="contactMethod"][value="phone"]');
+      if (phoneRadio && phoneRadio.checked) {
+        phoneField.classList.add('show');
+      }
+      
+      // Événement de changement
+      radioButtons.forEach(button => {
+        button.addEventListener('change', function() {
+          if (this.value === 'phone') {
+            phoneField.classList.add('show');
+          } else {
+            phoneField.classList.remove('show');
+          }
+        });
+      });
+    }
+    
+    // Gestion du formulaire de contact
+    const form = document.getElementById('contact-form');
+    const formMessages = document.getElementById('form-messages');
+    const submitButton = document.getElementById('submit-button');
+    const formSpinner = document.getElementById('form-spinner');
+    
+    if (form && formMessages && submitButton && formSpinner) {
+      form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        // Afficher l'indicateur de chargement
+        submitButton.disabled = true;
+        formSpinner.style.display = 'inline-block';
+        formMessages.innerHTML = '';
+        
+        // Obtenir les données du formulaire
+        const formData = new FormData(form);
+        
+        // Ajouter la clé API et autres champs nécessaires
+        formData.append('access_key', '2dcc3f1b-036f-48a7-987a-cdada0d05ae5');
+        formData.append('from_name', 'Portfolio Contact');
+        formData.append('botcheck', ''); // Honeypot pour le spam
+        
+        // Envoyer la requête
+        fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+          // Masquer l'indicateur de chargement
+          submitButton.disabled = false;
+          formSpinner.style.display = 'none';
+          
+          // Vider d'abord le conteneur pour éviter les animations multiples
+          formMessages.innerHTML = '';
+          
+          let messageText = data.success ? successMessage : errorMessage;
+          
+          // Créer l'élément de message
+          const messageElement = document.createElement('div');
+          messageElement.className = data.success ? 
+            'p-3 bg-green-100/20 text-green-500 border border-green-500/30 rounded-md mt-4' : 
+            'p-3 bg-red-100/20 text-red-500 border border-red-500/30 rounded-md mt-4';
+          messageElement.textContent = messageText;
+          messageElement.style.opacity = '0';
+          messageElement.style.transform = 'translateY(-10px)';
+          
+          // Ajouter l'élément au DOM
+          formMessages.appendChild(messageElement);
+          
+          // Animation manuelle avec JavaScript
+          setTimeout(() => {
+            messageElement.style.transition = 'opacity 0.4s ease-out, transform 0.4s ease-out';
+            messageElement.style.opacity = '1';
+            messageElement.style.transform = 'translateY(0)';
+          }, 10);
+          
+          if (data.success) {
+            // Réinitialiser le formulaire
+            form.reset();
+            // Réinitialiser le champ téléphone
+            phoneField.classList.remove('show');
+          }
+        })
+        .catch(error => {
+          // Masquer l'indicateur de chargement
+          submitButton.disabled = false;
+          formSpinner.style.display = 'none';
+          
+          // Vider d'abord le conteneur
+          formMessages.innerHTML = '';
+          
+          // Créer l'élément de message d'erreur
+          const messageElement = document.createElement('div');
+          messageElement.className = 'p-3 bg-red-100/20 text-red-500 border border-red-500/30 rounded-md mt-4';
+          messageElement.textContent = errorMessage;
+          messageElement.style.opacity = '0';
+          messageElement.style.transform = 'translateY(-10px)';
+          
+          // Ajouter le message au DOM
+          formMessages.appendChild(messageElement);
+          
+          // Animation manuelle avec JavaScript
+          setTimeout(() => {
+            messageElement.style.transition = 'opacity 0.4s ease-out, transform 0.4s ease-out';
+            messageElement.style.opacity = '1';
+            messageElement.style.transform = 'translateY(0)';
+          }, 10);
+          
+          console.error('Error:', error);
+        });
+      });
+    }
+  });
+</script>

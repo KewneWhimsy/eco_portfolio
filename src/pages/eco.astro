@@ -1,5 +1,6 @@
 ---
 // Redirect to default language (fr) in eco mode
+import Layout from "../layouts/layout.astro"
 ---
 
 <script>
@@ -28,7 +29,9 @@
 <!-- Fallback pour les navigateurs sans JavaScript -->
 <meta http-equiv="refresh" content="0;url=/fr/eco" />
 
+<Layout title="Josselin KW eco" description="" lang="">
 <body>
-  <p>Redirection vers la version éco du portfolio...</p>
-  <p><a href="/fr/eco">Cliquez ici si vous n'êtes pas redirigé automatiquement</a></p>
+  <p class="ml-2">Redirection vers la version éco du portfolio...</p>
+  <p class="ml-2"><a href="/fr/eco">Cliquez ici si vous n'êtes pas redirigé automatiquement</a></p>
 </body>
+</Layout>
