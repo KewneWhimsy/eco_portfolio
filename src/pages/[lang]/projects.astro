@@ -164,7 +164,7 @@ const getProjectUrl = (projectId: string) => `/${lang}/projects/${projectId}`;
     <!-- Liste des projets avec structure Grid -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
       {projects.map(project => (
-        <div class="project-card bg-secondary bg-opacity-30 rounded-lg overflow-hidden transition-opacity duration-300 grid grid-rows-[auto_auto_1fr_auto] h-full">
+        <div class="project-card project-card-animate bg-secondary bg-opacity-30 rounded-lg overflow-hidden transition-opacity duration-300 grid grid-rows-[auto_auto_1fr_auto] h-full">
           <!-- Couverture du projet (rangée 1) -->
           <div class="bg-primary bg-opacity-30 aspect-video">
             {project.image ? (

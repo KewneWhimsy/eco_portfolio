@@ -30,10 +30,11 @@ const content = {
     contactButton: "Me contacter",
     skillsTitle: "Compétences",
     projectsTitle: "Projets récents",
+    projectButton: "Découvrir le projet",
     viewAllProjectsButton: "Voir tous les projets",
     ctaTitle: "Intéressé par une collaboration?",
     ctaText:
-      "Je suis disponible pour des missions freelance, des projets d'équipe ou des consultations en éco-conception web.",
+      "Je suis disponible pour des missions ponctuelles ou longue durée, des projets d'équipe ou des consultations en éco-conception web.",
   },
   en: {
     title: "Josselin HANEL - Full Stack Web Developer",
@@ -46,10 +47,11 @@ const content = {
     contactButton: "Contact me",
     skillsTitle: "Skills",
     projectsTitle: "Recent projects",
+    projectButton: "Explore project",
     viewAllProjectsButton: "View all projects",
     ctaTitle: "Interested in working together?",
     ctaText:
-      "I am available for freelance work, team projects or web eco-design consultations.",
+      "I am available for short-term or long-term assignments, team projects or web eco-design consultations.",
   },
   de: {
     title: "Josselin HANEL - Full-Stack Webentwickler",
@@ -62,10 +64,11 @@ const content = {
     contactButton: "Kontakt",
     skillsTitle: "Fähigkeiten",
     projectsTitle: "Aktuelle Projekte",
+    projectButton: "Projekt entdecken",
     viewAllProjectsButton: "Alle Projekte ansehen",
     ctaTitle: "Interesse an einer Zusammenarbeit?",
     ctaText:
-      "Ich bin verfügbar für Freiberufliche Arbeit, Teamprojekte oder Beratungen zum Web-Öko-Design.",
+      "Ich bin verfügbar für kurz- oder langfristige Aufträge, Teamprojekte oder Beratungen zum Web-Öko-Design.",
   },
 };
 
@@ -129,20 +132,20 @@ const featuredProjects = [
   {
     title:
       lang === "fr"
-        ? "Bibliothèque d'objets Quimper"
+        ? "Bibliothèque d'objets - Quimper"
         : lang === "en"
-          ? "Quimper Object Library"
-          : "Quimper Objektbibliothek",
+          ? "Object Library - Quimper"
+          : "Objektbibliothek - Quimper",
     description:
       lang === "fr"
-        ? "Site de gestion pour une bibliothèque d'objets permettant le prêt et la réservation d'articles divers."
+        ? "Conçu en collaboration avec <a href='https://jadephom.myportfolio.com/' target='_blank' class='text-link'>Jade Ounaphom</a>, créatrice audiovisuelle, le site met en avant le fonctionnement de la bibliothèque d'objets et ses actualités."
         : lang === "en"
-          ? "Management website for an object library allowing the loan and reservation of various items."
-          : "Management-Website für eine Objektbibliothek für Ausleihe und Reservierung verschiedener Artikel.",
+          ? "Designed in collaboration with <a href='https://jadephom.myportfolio.com/' target='_blank' class='text-link'>Jade Ounaphom</a>, audiovisual creator, the website highlights how the object library works and its news."
+          : "In Zusammenarbeit mit <a href='https://jadephom.myportfolio.com/' target='_blank' class='text-link'>Jade Ounaphom</a>, audiovisuelle Gestalterin, präsentiert die Website die Funktionsweise der Objektbibliothek und ihre Neuigkeiten.",
     image: objetImage,
     tech: [
       "Astro",
-      "CSS Pro",
+      "CSS Pro", 
       "TypeScript",
       "Alpine.js",
       "GitHub Actions",
@@ -269,7 +272,7 @@ const featuredProjects = [
   <div class="p-4 flex flex-col h-full">
     <div class="flex-1">
       <h3 class="text-xl font-bold mb-2">{project.title}</h3>
-      <p class="mb-4">{project.description}</p>
+      <p class="mb-4" set:html={project.description}></p>
       
       <!-- Technologies -->
       <div class="mb-4">
@@ -287,7 +290,7 @@ const featuredProjects = [
     <div class="mt-auto">
       <div class="flex gap-3">
         <a href={project.url} class="btn-primary flex-1 text-center">
-          {t.projectsButton}
+          {t.projectButton}
         </a>
       </div>
     </div>
