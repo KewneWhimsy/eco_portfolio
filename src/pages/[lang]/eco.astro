@@ -184,7 +184,7 @@ const isEcoMode = true;
 
     <!-- Section d'intro sur l'éco-conception -->
     <section class="py-6 border-b border-secondary mb-6">
-      <h2 class="text-xl font-bold mb-3">{t.ecoModeTitle}</h2>
+      <h2 class="text-xl font-bold mb-3 text-accent">{t.ecoModeTitle}</h2>
       <p class="mb-3">
         {t.ecoModeText}
       </p>
@@ -197,7 +197,7 @@ const isEcoMode = true;
 
     <!-- Section compétences simplifiée -->
     <section class="py-6 border-b border-secondary mb-6">
-      <h2 class="text-xl font-bold mb-3">{t.skillsTitle}</h2>
+      <h2 class="text-xl font-bold mb-3 text-accent">{t.skillsTitle}</h2>
       <ul class="list-disc pl-5">
         {skillCategoriesKeys.map(key => (
           <li class="mb-2">{t.skillCategories[key as keyof typeof t.skillCategories]}</li>
@@ -207,7 +207,7 @@ const isEcoMode = true;
 
     <!-- Section projets simplifiée -->
     <section class="py-6">
-      <h2 class="text-xl font-bold mb-4">{t.projectsTitle}</h2>
+      <h2 class="text-xl font-bold mb-4 text-accent">{t.projectsTitle}</h2>
       <div class="space-y-6">
         {featuredProjects.map(project => (
           <div class="border-b border-secondary pb-4 mb-4">
