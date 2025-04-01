@@ -17,7 +17,7 @@ const lang = Astro.params.lang as 'fr' | 'en' | 'de';
 
 // Contenus communs pour toutes les langues
 const commonSkills = {
-  frontend: 'Frontend: HTML5, CSS3, JavaScript, HTMX, Alpine.js, Astro',
+  frontend: 'Frontend: Astro, CSS Pro, Tailwind, TypeScript, HTMX, Alpine.js',
   backend: 'Backend: Express, WebSocket, Elixir, Phoenix',
 };
 
@@ -33,12 +33,12 @@ const skillCategoriesKeys = ['frontend', 'backend', 'databases', 'methodologies'
 // Contenu traduit pour chaque langue
 const content = {
   fr: {
-    title: 'Josselin HANEL - Développeur Full Stack (Mode Éco)',
+    title: 'Josselin HANEL - Développeur Web Full Stack (Mode Éco)',
     description: 'Version éco-responsable de mon portfolio de développeur full stack, avec une empreinte carbone minimale.',
     heroTitle: 'Développeur Web <span class="text-light whitespace-nowrap">Full Stack</span>',
-    heroText: 'Je conçois des sites web et applications complètes, durables et performantes.',
-    projectsButton: 'Projets',
-    contactButton: 'Contact',
+    heroText: 'Je conçois des sites web et applications complètes, durables et performantes, en privilégiant des solutions économes en ressources.',
+    projectsButton: 'Voir mes projets',
+    contactButton: 'Me contacter',
     ecoModeTitle: 'Mode Éco activé',
     ecoModeText: 'Vous consultez actuellement la version ultra-légère de mon portfolio. Cette version:',
     ecoFeatures: [
@@ -57,23 +57,23 @@ const content = {
     },
     projects: {
       library: {
-        title: 'Bibliothèque d\'objets Quimper',
-        description: 'Site de gestion pour une bibliothèque d\'objets permettant le prêt et la réservation.'
+        title: 'Bibliothèque d\'objets - Quimper',
+        description: 'Conçu en collaboration avec Jade Ounaphom, créatrice audiovisuelle, le site met en avant le fonctionnement de la bibliothèque d\'objets et ses actualités.'
       },
       esport: {
         title: 'Application e-sport avec chat',
-        description: 'Plateforme de gestion d\'événements e-sport avec chat en temps réel.'
+        description: 'Plateforme de gestion d\'événements e-sport intégrant un système de chat en temps réel via WebSocket et HTMX. (entreprise fictive)'
       }
     },
     imageAlt: 'Photo de Josselin HANEL'
   },
   en: {
-    title: 'Josselin HANEL - Full Stack Developer (Eco Mode)',
+    title: 'Josselin HANEL - Full Stack Web Developer (Eco Mode)',
     description: 'Eco-friendly version of my full stack developer portfolio, with minimal carbon footprint.',
     heroTitle: 'Full Stack <span class="text-light whitespace-nowrap">Web Developer</span>',
-    heroText: 'I design complete, sustainable and high-performance websites and applications.',
-    projectsButton: 'Projects',
-    contactButton: 'Contact',
+    heroText: 'I design complete, sustainable and high-performance websites and applications, prioritizing resource-efficient solutions.',
+    projectsButton: 'View my projects',
+    contactButton: 'Contact me',
     ecoModeTitle: 'Eco Mode activated',
     ecoModeText: 'You are currently viewing the ultra-lightweight version of my portfolio. This version:',
     ecoFeatures: [
@@ -92,12 +92,12 @@ const content = {
     },
     projects: {
       library: {
-        title: 'Quimper Object Library',
-        description: 'Management website for an object library allowing loans and reservations.'
+        title: 'Object Library - Quimper',
+        description: 'Designed in collaboration with Jade Ounaphom, audiovisual creator, the website highlights how the object library works and its news.'
       },
       esport: {
         title: 'E-sport Application with Chat',
-        description: 'E-sport event management platform with real-time chat system.'
+        description: 'E-sport event management platform with a real-time chat system via WebSocket and HTMX. (fictional company)'
       }
     },
     imageAlt: 'Photo of Josselin HANEL'
@@ -106,7 +106,7 @@ const content = {
     title: 'Josselin HANEL - Full-Stack-Entwickler (Öko-Modus)',
     description: 'Umweltfreundliche Version meines Full-Stack-Entwickler-Portfolios mit minimalem CO2-Fußabdruck.',
     heroTitle: 'Full-Stack <span class="text-light">Webentwickler</span>',
-    heroText: 'Ich entwickle vollständige, nachhaltige und leistungsstarke Websites und Anwendungen.',
+    heroText: 'Ich entwickle vollständige, nachhaltige und leistungsstarke Websites und Anwendungen, mit dem Schwerpunkt auf ressourceneffiziente Lösungen.',
     projectsButton: 'Projekte',
     contactButton: 'Kontakt',
     ecoModeTitle: 'Öko-Modus aktiviert',
@@ -128,11 +128,11 @@ const content = {
     projects: {
       library: {
         title: 'Quimper Objektbibliothek',
-        description: 'Management-Website für eine Objektbibliothek für Ausleihe und Reservierung.'
+        description: 'In Zusammenarbeit mit Jade Ounaphom, audiovisuelle Gestalterin, präsentiert die Website die Funktionsweise der Objektbibliothek und ihre Neuigkeiten.'
       },
       esport: {
         title: 'E-Sport-Anwendung mit Chat',
-        description: 'E-Sport-Eventmanagement-Plattform mit Echtzeit-Chat-System.'
+        description: 'E-Sport-Eventmanagement-Plattform mit einem Echtzeit-Chat-System über WebSocket und HTMX. (fiktives Unternehmen)'
       }
     },
     imageAlt: 'Foto von Josselin HANEL'

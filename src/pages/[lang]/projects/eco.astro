@@ -60,37 +60,49 @@ const t = content[lang] || content.fr;
 const projects = [
   {
     id: 'library',
-    title: 'Bibliothèque d\'objets Quimper',
-    description: lang === 'fr' ? 
-      'Site de gestion pour une bibliothèque d\'objets permettant le prêt et la réservation.' :
+    title: lang === 'fr' ? 
+      'Bibliothèque d\'objets - Quimper' :
       (lang === 'en' ? 
-        'Management website for an object library allowing loans and reservations.' : 
-        'Management-Website für eine Objektbibliothek für Ausleihe und Reservierung.'),
-    tech: ['Astro', 'CSS pro', 'TypeScript', 'Alpine.js', 'GitHub', 'Web3Forms'],
+        'Object Library - Quimper' : 
+        'Quimper Objektbibliothek'),
+    description: lang === 'fr' ? 
+      'Conçu en collaboration avec Jade Ounaphom, créatrice audiovisuelle, le site met en avant le fonctionnement de la bibliothèque d\'objets et ses actualités.' :
+      (lang === 'en' ? 
+        'Designed in collaboration with Jade Ounaphom, audiovisual creator, the website highlights how the object library works and its news.' : 
+        'In Zusammenarbeit mit Jade Ounaphom, audiovisuelle Gestalterin, präsentiert die Website die Funktionsweise der Objektbibliothek und ihre Neuigkeiten.'),
+    tech: ['Astro', 'CSS Pro', 'TypeScript', 'Alpine.js', 'GitHub Actions'],
     url: `/${lang}/projects/library/eco`
   },
   {
     id: 'esport',
-    title: 'Application e-sport avec chat',
-    description: lang === 'fr' ? 
-      'Plateforme de gestion d\'événements e-sport avec système de chat en temps réel.' :
+    title: lang === 'fr' ? 
+      'Application e-sport avec chat' :
       (lang === 'en' ? 
-        'E-sport event management platform with real-time chat system.' : 
-        'E-Sport-Eventmanagement-Plattform mit Echtzeit-Chat-System.'),
+        'E-sport Application with Chat' : 
+        'E-Sport-Anwendung mit Chat'),
+    description: lang === 'fr' ? 
+      'Plateforme de gestion d\'événements e-sport intégrant un système de chat en temps réel via WebSocket et HTMX. (entreprise fictive)' :
+      (lang === 'en' ? 
+        'E-sport event management platform with a real-time chat system via WebSocket and HTMX. (fictional company)' : 
+        'E-Sport-Eventmanagement-Plattform mit einem Echtzeit-Chat-System über WebSocket und HTMX. (fiktives Unternehmen)'),
     tech: ['Astro', 'Tailwind', 'Alpine.js', 'HTMX', 'WebSocket', 'Express', 'PostgreSQL', 'MongoDB'],
     url: `/${lang}/projects/esport/eco`
   },
   {
     id: 'portfolio',
-    title: 'Portfolio personnel éco-responsable',
-    description: lang === 'fr' ? 
-      'Mon portfolio personnel avec mode éco, multilingue et principes d\'éco-conception.' :
+    title: lang === 'fr' ? 
+      'Portfolio personnel éco-responsable' :
       (lang === 'en' ? 
-        'My personal portfolio with eco-mode, multilingual, and eco-design principles.' : 
-        'Mein persönliches Portfolio mit Öko-Modus, mehrsprachig und Öko-Design-Prinzipien.'),
+        'Eco-friendly personal portfolio' : 
+        'Umweltfreundliches persönliches Portfolio'),
+    description: lang === 'fr' ? 
+      'Mon portfolio personnel avec mode éco, multilingue et conçu selon les principes de l\'éco-conception web.' :
+      (lang === 'en' ? 
+        'My personal portfolio with eco-mode, multilingual, and designed following web eco-design principles.' : 
+        'Mein persönliches Portfolio mit Öko-Modus, mehrsprachig und nach den Prinzipien des Web-Öko-Designs gestaltet.'),
     tech: ['Astro', 'Alpine.js', 'TailwindCSS'],
     url: `/${lang}/eco`
-  },
+  }
 ];
 
 // Mode éco activé

@@ -78,12 +78,11 @@ const t = content[lang] || content.fr;
 // Compétences à afficher avec traductions
 const skills = [
   {
-    category:
-      lang === "fr" ? "Frontend" : lang === "en" ? "Frontend" : "Frontend",
+    category: "Frontend",
     items: ["Astro", "CSS Pro", "Tailwind", "TypeScript", "HTMX", "Alpine.js"],
   },
   {
-    category: lang === "fr" ? "Backend" : lang === "en" ? "Backend" : "Backend",
+    category: "Backend",
     items: ["Express", "WebSocket", "Elixir", "Phoenix"],
   },
   {
@@ -97,7 +96,7 @@ const skills = [
   },
   {
     category: lang === "fr" ? "Outils" : lang === "en" ? "Tools" : "Werkzeuge",
-    items: ["Git", "Docker", "VS Code", "Lighthouse", "Claude"],
+    items: ["Git", "Docker", "VS Code", "Lighthouse"],
   },
   {
     category:
