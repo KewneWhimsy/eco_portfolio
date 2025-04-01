@@ -281,7 +281,7 @@ const socialLinks = [
 </style>
 
 <script define:vars={{ successMessage: t.successMessage, errorMessage: t.errorMessage, submittingMessage: t.submitting }}>
-  document.addEventListener('DOMContentLoaded', function() {
+  document.addEventListener('astro:page-load', function() {
     // Animation du champ téléphone
     const radioButtons = document.querySelectorAll('input[name="contactMethod"]');
     const phoneField = document.getElementById('phone-field');
