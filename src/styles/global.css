@@ -38,15 +38,18 @@ body {
 .titleName-active {
   color: var(--color-accent);
 }
-/* Classe pour les boutons primaires */
-.btn-primary {
+
+/* Style pour les boutons CTA */ 
+.cta-button {
   background-color: var(--color-accent);
   color: var(--color-primary);
   padding: 0.5rem 1rem;
   border-radius: 0.25rem;
+  display: inline-block;
   transition: background-color var(--transition-standard), transform var(--transition-standard);
 }
-.btn-primary:hover {
+
+.cta-button:hover {
   background-color: var(--color-accent-hover);
   transform: translateY(-1px);
 }
@@ -149,3 +152,4 @@ html.eco-mode button {
 html.eco-mode button {
   transform: none !important; /* Empêche la translation sur hover également */
 }
+

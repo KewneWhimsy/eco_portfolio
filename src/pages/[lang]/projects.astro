@@ -208,7 +208,7 @@ const getProjectUrl = (projectId: string) => `/${lang}/projects/${projectId}`;
             <div class="flex flex-wrap mt-auto gap-2">
               <a 
                 href={getProjectUrl(project.id)} 
-                class="flex-1 text-center btn-primary text-sm"
+                class="flex-1 text-center cta-button text-sm"
               >
                 {t.viewProject}
               </a>
@@ -252,7 +252,7 @@ const getProjectUrl = (projectId: string) => `/${lang}/projects/${projectId}`;
       <h2 class="text-2xl font-bold mb-4">{t.contactCTA}</h2>
       <a 
         href={`/${lang}/contact`}
-        class="btn-primary" 
+        class="cta-button" 
       >
         {t.contactButton}
       </a>
