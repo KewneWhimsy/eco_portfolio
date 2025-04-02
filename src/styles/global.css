@@ -85,7 +85,7 @@ body {
 }
 .btn-eco:hover {
   background-color: var(--color-accent-light);
-  color: var(--color-text);
+  color: var(--color-accent-hover);
 }
 
 /* Liens textuels */
