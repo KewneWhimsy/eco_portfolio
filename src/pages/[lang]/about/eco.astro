@@ -1,65 +1,76 @@
 ---
 // Import du layout avec mode éco activé
-import Layout from '../../../layouts/layout.astro';
+import Layout from "../../../layouts/layout.astro";
 
 // Récupérer le paramètre de langue depuis l'URL
 export function getStaticPaths() {
   return [
-    { params: { lang: 'fr' } },
-    { params: { lang: 'en' } },
-    { params: { lang: 'de' } }
+    { params: { lang: "fr" } },
+    { params: { lang: "en" } },
+    { params: { lang: "de" } },
   ];
 }
 
-const lang = Astro.params.lang as 'fr' | 'en' | 'de';
+const lang = Astro.params.lang as "fr" | "en" | "de";
 
 // Contenu traduit pour chaque langue
 const content = {
   fr: {
-    title: 'Josselin HANEL - À propos de moi (Mode Éco)',
-    description: 'Version éco-responsable de ma page à propos, découvrez mon parcours avec une empreinte carbone minimale.',
-    aboutTitle: 'À propos de moi',
-    aboutText: "Je suis un développeur web passionné par la création d'expériences numériques performantes et respectueuses de l'environnement. Basé à Rennes et disponible pour des projets à Nantes, Berlin ou en télétravail.",
-    visionTitle: 'Ma vision',
-    visionText: "Le numérique représente aujourd'hui une part croissante de notre empreinte carbone. En tant que développeur web, je m'engage à concevoir des sites et applications qui minimisent leur impact environnemental sans compromettre l'expérience utilisateur.",
-    approachTitle: 'Mon approche',
-    skillsTitle: 'Compétences techniques',
-    expTitle: 'Expérience professionnelle',
-    eduTitle: 'Formation',
-    contactButton: 'Me contacter',
-    ecoModeTitle: 'Mode Éco activé',
-    ecoModeText: 'Vous consultez actuellement la version ultra-légère de mon portfolio.'
+    title: "Josselin HANEL - À propos de moi (Mode Éco)",
+    description:
+      "Version éco-responsable de ma page à propos, découvrez mon parcours avec une empreinte carbone minimale.",
+    aboutTitle: "À propos de moi",
+    aboutText:
+      "Je suis un développeur web passionné par la création d'expériences numériques performantes et respectueuses de l'environnement. Basé à Rennes et disponible pour des projets à Nantes, Berlin ou en télétravail.",
+    visionTitle: "Ma vision",
+    visionText:
+      "Le numérique représente aujourd'hui une part croissante de notre empreinte carbone. En tant que développeur web, je m'engage à concevoir des sites et applications qui minimisent leur impact environnemental sans compromettre l'expérience utilisateur.",
+    approachTitle: "Mon approche",
+    skillsTitle: "Compétences techniques",
+    expTitle: "Expérience professionnelle",
+    eduTitle: "Formation",
+    contactButton: "Me contacter",
+    ecoModeTitle: "Mode Éco activé",
+    ecoModeText:
+      "Vous consultez actuellement la version ultra-légère de mon portfolio.",
   },
   en: {
-    title: 'Josselin HANEL - About me (Eco Mode)',
-    description: 'Eco-friendly version of my about page, discover my background with minimal carbon footprint.',
-    aboutTitle: 'About me',
-    aboutText: "I'm a web developer passionate about creating high-performance and environmentally-friendly digital experiences. Based in Rennes and available for projects in Nantes, Berlin or remote work.",
-    visionTitle: 'My vision',
-    visionText: "Digital technology now represents a growing part of our carbon footprint. As a web developer, I'm committed to designing websites and applications that minimize their environmental impact without compromising user experience.",
-    approachTitle: 'My approach',
-    skillsTitle: 'Technical skills',
-    expTitle: 'Professional experience',
-    eduTitle: 'Education',
-    contactButton: 'Contact me',
-    ecoModeTitle: 'Eco Mode activated',
-    ecoModeText: 'You are currently viewing the ultra-lightweight version of my portfolio.'
+    title: "Josselin HANEL - About me (Eco Mode)",
+    description:
+      "Eco-friendly version of my about page, discover my background with minimal carbon footprint.",
+    aboutTitle: "About me",
+    aboutText:
+      "I'm a web developer passionate about creating high-performance and environmentally-friendly digital experiences. Based in Rennes and available for projects in Nantes, Berlin or remote work.",
+    visionTitle: "My vision",
+    visionText:
+      "Digital technology now represents a growing part of our carbon footprint. As a web developer, I'm committed to designing websites and applications that minimize their environmental impact without compromising user experience.",
+    approachTitle: "My approach",
+    skillsTitle: "Technical skills",
+    expTitle: "Professional experience",
+    eduTitle: "Education",
+    contactButton: "Contact me",
+    ecoModeTitle: "Eco Mode activated",
+    ecoModeText:
+      "You are currently viewing the ultra-lightweight version of my portfolio.",
   },
   de: {
-    title: 'Josselin HANEL - Über mich (Öko-Modus)',
-    description: 'Umweltfreundliche Version meiner Über-mich-Seite, entdecken Sie meinen Hintergrund mit minimalem CO2-Fußabdruck.',
-    aboutTitle: 'Über mich',
-    aboutText: "Ich bin ein Webentwickler mit Leidenschaft für die Erstellung leistungsstarker und umweltfreundlicher digitaler Erlebnisse. Mit Sitz in Rennes bin ich für Projekte in Nantes, Berlin oder für Remote-Arbeit verfügbar.",
-    visionTitle: 'Meine Vision',
-    visionText: "Die digitale Technologie stellt heute einen wachsenden Teil unseres CO2-Fußabdrucks dar. Als Webentwickler setze ich mich dafür ein, Websites und Anwendungen zu entwickeln, die ihre Umweltauswirkungen minimieren, ohne die Benutzererfahrung zu beeinträchtigen.",
-    approachTitle: 'Mein Ansatz',
-    skillsTitle: 'Technische Fähigkeiten',
-    expTitle: 'Berufserfahrung',
-    eduTitle: 'Ausbildung',
-    contactButton: 'Kontaktieren Sie mich',
-    ecoModeTitle: 'Öko-Modus aktiviert',
-    ecoModeText: 'Sie sehen gerade die ultraleichte Version meines Portfolios.'
-  }
+    title: "Josselin HANEL - Über mich (Öko-Modus)",
+    description:
+      "Umweltfreundliche Version meiner Über-mich-Seite, entdecken Sie meinen Hintergrund mit minimalem CO2-Fußabdruck.",
+    aboutTitle: "Über mich",
+    aboutText:
+      "Ich bin ein Webentwickler mit Leidenschaft für die Erstellung leistungsstarker und umweltfreundlicher digitaler Erlebnisse. Mit Sitz in Rennes bin ich für Projekte in Nantes, Berlin oder für Remote-Arbeit verfügbar.",
+    visionTitle: "Meine Vision",
+    visionText:
+      "Die digitale Technologie stellt heute einen wachsenden Teil unseres CO2-Fußabdrucks dar. Als Webentwickler setze ich mich dafür ein, Websites und Anwendungen zu entwickeln, die ihre Umweltauswirkungen minimieren, ohne die Benutzererfahrung zu beeinträchtigen.",
+    approachTitle: "Mein Ansatz",
+    skillsTitle: "Technische Fähigkeiten",
+    expTitle: "Berufserfahrung",
+    eduTitle: "Ausbildung",
+    contactButton: "Kontaktieren Sie mich",
+    ecoModeTitle: "Öko-Modus aktiviert",
+    ecoModeText: "Sie sehen gerade die ultraleichte Version meines Portfolios.",
+  },
 };
 
 // Utiliser la langue demandée ou français par défaut
@@ -67,46 +78,59 @@ const t = content[lang] || content.fr;
 
 // Approche simplifiée
 const approach = [
-  'Éco-conception: Solutions légères qui consomment moins de ressources serveur et moins de bande passante',
-  'Performance: Un site rapide est plus agréable à utiliser et consomme moins d\'énergie côté utilisateur',
-  'Accessibilité: Interfaces accessibles à tous, quel que soit le handicap ou l\'appareil utilisé',
-  'Durabilité: Sites avec des technologies pérennes et maintenables sur le long terme'
+  "Éco-conception: Solutions légères qui consomment moins de ressources serveur et moins de bande passante",
+  "Performance: Un site rapide est plus agréable à utiliser et consomme moins d'énergie côté utilisateur",
+  "Accessibilité: Interfaces accessibles à tous, quel que soit le handicap ou l'appareil utilisé",
+  "Durabilité: Sites avec des technologies pérennes et maintenables sur le long terme",
 ];
 
 const skills = [
-  'Frontend: Astro, CSS Pro, TypeScript, HTMX, Alpine.js',
-  'Backend: Express, WebSocket, Elixir, Phoenix',
-  lang === 'fr'
-    ? 'Bases de données: PostgreSQL, MongoDB, PostgREST, Ecto'
-    : lang === 'en'
-      ? 'Databases: PostgreSQL, MongoDB, PostgREST, Ecto'
-      : 'Datenbanken: PostgreSQL, MongoDB, PostgREST, Ecto',
-  lang === 'fr'
-    ? 'Outils: Git, Docker, VS Code, Lighthouse'
-    : lang === 'en'
-      ? 'Tools: Git, Docker, VS Code, Lighthouse'
-      : 'Werkzeuge: Git, Docker, VS Code, Lighthouse',
-  lang === 'fr'
-    ? 'Méthodologies: Accessibilité, Performance, Éco-conception, UX/UI'
-    : lang === 'en'
-      ? 'Methodologies: Accessibility, Performance, Eco-design, UX/UI'
-      : 'Methoden: Barrierefreiheit, Performance, Öko-Design, UX/UI'
+  "Frontend: Astro, CSS Pro, TypeScript, HTMX, Alpine.js",
+  "Backend: Express, WebSocket, Elixir, Phoenix",
+  lang === "fr"
+    ? "Bases de données: PostgreSQL, MongoDB, PostgREST, Ecto"
+    : lang === "en"
+      ? "Databases: PostgreSQL, MongoDB, PostgREST, Ecto"
+      : "Datenbanken: PostgreSQL, MongoDB, PostgREST, Ecto",
+  lang === "fr"
+    ? "Outils: Git, Docker, VS Code, Lighthouse"
+    : lang === "en"
+      ? "Tools: Git, Docker, VS Code, Lighthouse"
+      : "Werkzeuge: Git, Docker, VS Code, Lighthouse",
+  lang === "fr"
+    ? "Méthodologies: Accessibilité, Performance, Éco-conception, UX/UI"
+    : lang === "en"
+      ? "Methodologies: Accessibility, Performance, Eco-design, UX/UI"
+      : "Methoden: Barrierefreiheit, Performance, Öko-Design, UX/UI",
 ];
 
 const experiences = [
-  '2024 - Aujourd\'hui: Développeur web freelance, Indépendant',
-  '2024 - 2025: Webmaster, Objethèque de Cornouaille',
+  lang === "fr"
+    ? "2024 - Aujourd'hui: Développeur web freelance, Indépendant"
+    : lang === "en"
+      ? "2024 - Present: Freelance web developer, Independent"
+      : "2024 - Heute: Freelance Webentwickler, Unabhängig",
+  "2024 - 2025: Webmaster, Objethèque de Cornouaille",
 ];
 
 const education = [
-  '2024: Titre RNCP de niveau 5, développeur web et web mobile, Studi',
+  lang === "fr"
+    ? "2024: Titre RNCP de niveau 5, développeur web et web mobile, Studi"
+    : lang === "en"
+      ? '2024: Professional Title in Web and Mobile Web Development, Studi'
+      : '2024: Beruflicher Titel für Web- und Mobile-Web-Entwicklung, Studi',
 ];
 
 // Mode éco activé
 const isEcoMode = true;
 ---
 
-<Layout title={t.title} description={t.description} lang={lang} isEcoMode={isEcoMode}>
+<Layout
+  title={t.title}
+  description={t.description}
+  lang={lang}
+  isEcoMode={isEcoMode}
+>
   <div class="container mx-auto px-4 py-6">
     <!-- Section d'introduction du mode éco -->
     <section class="py-4 border-b border-secondary mb-6">
@@ -138,9 +162,7 @@ const isEcoMode = true;
         {t.approachTitle}
       </h2>
       <ul class="list-disc pl-5 mb-3">
-        {approach.map(item => (
-          <li>{item}</li>
-        ))}
+        {approach.map((item) => <li>{item}</li>)}
       </ul>
     </section>
 
@@ -150,9 +172,7 @@ const isEcoMode = true;
         {t.skillsTitle}
       </h2>
       <ul class="list-disc pl-5 mb-3">
-        {skills.map(skill => (
-          <li>{skill}</li>
-        ))}
+        {skills.map((skill) => <li>{skill}</li>)}
       </ul>
     </section>
 
@@ -162,9 +182,7 @@ const isEcoMode = true;
         {t.expTitle}
       </h2>
       <ul class="list-disc pl-5 mb-3">
-        {experiences.map(exp => (
-          <li>{exp}</li>
-        ))}
+        {experiences.map((exp) => <li>{exp}</li>)}
       </ul>
     </section>
 
@@ -174,15 +192,16 @@ const isEcoMode = true;
         {t.eduTitle}
       </h2>
       <ul class="list-disc pl-5 mb-3">
-        {education.map(edu => (
-          <li>{edu}</li>
-        ))}
+        {education.map((edu) => <li>{edu}</li>)}
       </ul>
     </section>
 
     <!-- Section CTA contact -->
     <section class="py-6 text-center">
-      <a href={`/${lang}/contact/eco`} class="inline-block bg-accent cta-button text-primary px-4 py-2 rounded">
+      <a
+        href={`/${lang}/contact/eco`}
+        class="inline-block bg-accent cta-button text-primary px-4 py-2 rounded"
+      >
         {t.contactButton}
       </a>
     </section>
