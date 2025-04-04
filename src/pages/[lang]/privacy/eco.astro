@@ -1,0 +1,289 @@
+---
+// src/pages/[lang]/privacy.astro
+import Layout from "../../../layouts/layout.astro";
+
+// Récupérer le paramètre de langue depuis l'URL
+export function getStaticPaths() {
+  return [
+    { params: { lang: "fr" } },
+    { params: { lang: "en" } },
+    { params: { lang: "de" } },
+  ];
+}
+
+const lang = Astro.params.lang as "fr" | "en" | "de";
+
+// Contenu traduit pour chaque langue
+const content = {
+  fr: {
+    title: "Politique de Confidentialité - Josselin HANEL",
+    description: "Politique de confidentialité et de protection des données du site portfolio de Josselin HANEL.",
+    pageTitle: "Politique de Confidentialité",
+    lastUpdated: "Dernière mise à jour : Avril 2025",
+    
+    intro: "Je m'engage à respecter votre vie privée et à protéger vos données personnelles. Cette politique de confidentialité simplifiée explique comment j'utilise les informations collectées sur ce site.",
+    
+    dataCollection: {
+      title: "Collecte de données",
+      content: "Ce site recueille très peu de données:",
+      items: [
+        {
+          title: "Formulaire de contact",
+          description: "Lorsque vous utilisez le formulaire de contact, je collecte votre nom, email et le contenu de votre message uniquement pour vous répondre. Ces données sont conservées pendant 3 ans maximum."
+        },
+        {
+          title: "Préférences utilisateur",
+          description: "Un cookie local est utilisé pour mémoriser votre préférence concernant le mode éco. Aucune donnée n'est partagée avec des tiers."
+        },
+        {
+          title: "Logs du serveur",
+          description: "L'hébergeur collecte automatiquement certaines données techniques (adresse IP, navigateur) pour assurer la sécurité et le bon fonctionnement du site."
+        }
+      ]
+    },
+    
+    noTracking: {
+      title: "Absence de suivi",
+      content: "Ce site ne contient aucun outil de suivi analytique ou publicitaire. Je ne partage pas vos données avec des sociétés tierces à des fins marketing."
+    },
+    
+    processingData: {
+      title: "Traitement des données de contact",
+      content: "Le formulaire de contact utilise le service Web3Forms pour transmettre vos messages. Ce service est conforme au RGPD et vos données sont protégées."
+    },
+    
+    rights: {
+      title: "Vos droits",
+      content: "Conformément au RGPD, vous disposez d'un droit d'accès, de rectification et de suppression de vos données. Pour exercer ces droits, contactez-moi à josshanel@gmail.com."
+    },
+    
+    security: {
+      title: "Sécurité",
+      content: "J'applique des mesures de sécurité adaptées pour protéger vos données, notamment l'utilisation du protocole HTTPS pour toutes les communications avec ce site."
+    },
+    
+    contact: {
+      title: "Contact",
+      content: "Pour toute question concernant cette politique de confidentialité, vous pouvez me contacter à :",
+      email: "josshanel@gmail.com"
+    },
+    
+    backLink: "Retour à l'accueil"
+  },
+  
+  en: {
+    title: "Privacy Policy - Josselin HANEL",
+    description: "Privacy and personal data protection policy for Josselin HANEL's portfolio website.",
+    pageTitle: "Privacy Policy",
+    lastUpdated: "Last updated: April 2025",
+    
+    intro: "I am committed to respecting your privacy and protecting your personal data. This simplified privacy policy explains how I use the information collected on this site.",
+    
+    dataCollection: {
+      title: "Data collection",
+      content: "This site collects very little data:",
+      items: [
+        {
+          title: "Contact form",
+          description: "When you use the contact form, I collect your name, email and the content of your message only to respond to you. This data is kept for a maximum of 3 years."
+        },
+        {
+          title: "User preferences",
+          description: "A local cookie is used to remember your preference regarding eco mode. No data is shared with third parties."
+        },
+        {
+          title: "Server logs",
+          description: "The hosting provider automatically collects certain technical data (IP address, browser) to ensure the security and proper functioning of the site."
+        }
+      ]
+    },
+    
+    noTracking: {
+      title: "No tracking",
+      content: "This site does not contain any analytical or advertising tracking tools. I do not share your data with third-party companies for marketing purposes."
+    },
+    
+    processingData: {
+      title: "Processing of contact data",
+      content: "The contact form uses the Web3Forms service to transmit your messages. This service complies with GDPR and your data is protected."
+    },
+    
+    rights: {
+      title: "Your rights",
+      content: "In accordance with the GDPR, you have the right to access, rectify and delete your data. To exercise these rights, contact me at josshanel@gmail.com."
+    },
+    
+    security: {
+      title: "Security",
+      content: "I apply appropriate security measures to protect your data, including the use of HTTPS protocol for all communications with this site."
+    },
+    
+    contact: {
+      title: "Contact",
+      content: "For any questions regarding this privacy policy, you can contact me at:",
+      email: "josshanel@gmail.com"
+    },
+    
+    backLink: "Back to home"
+  },
+  
+  de: {
+    title: "Datenschutzerklärung - Josselin HANEL",
+    description: "Datenschutzrichtlinie für die Portfolio-Website von Josselin HANEL.",
+    pageTitle: "Datenschutzerklärung",
+    lastUpdated: "Letzte Aktualisierung: April 2025",
+    
+    intro: "Ich verpflichte mich, Ihre Privatsphäre zu respektieren und Ihre persönlichen Daten zu schützen. Diese vereinfachte Datenschutzerklärung erläutert, wie ich die auf dieser Website gesammelten Informationen verwende.",
+    
+    dataCollection: {
+      title: "Datenerhebung",
+      content: "Diese Website sammelt sehr wenige Daten:",
+      items: [
+        {
+          title: "Kontaktformular",
+          description: "Wenn Sie das Kontaktformular nutzen, erfasse ich Ihren Namen, Ihre E-Mail-Adresse und den Inhalt Ihrer Nachricht, um Ihnen zu antworten. Diese Daten werden maximal 3 Jahre aufbewahrt."
+        },
+        {
+          title: "Benutzereinstellungen",
+          description: "Ein lokales Cookie wird verwendet, um Ihre Präferenz bezüglich des Öko-Modus zu speichern. Es werden keine Daten an Dritte weitergegeben."
+        },
+        {
+          title: "Server-Logs",
+          description: "Der Hosting-Anbieter erfasst automatisch bestimmte technische Daten (IP-Adresse, Browser), um die Sicherheit und das ordnungsgemäße Funktionieren der Website zu gewährleisten."
+        }
+      ]
+    },
+    
+    noTracking: {
+      title: "Kein Tracking",
+      content: "Diese Website enthält keine Analyse- oder Werbe-Tracking-Tools. Ich gebe Ihre Daten nicht zu Marketingzwecken an Drittunternehmen weiter."
+    },
+    
+    processingData: {
+      title: "Verarbeitung von Kontaktdaten",
+      content: "Das Kontaktformular verwendet den Web3Forms-Dienst zur Übermittlung Ihrer Nachrichten. Dieser Dienst entspricht der DSGVO und Ihre Daten sind geschützt."
+    },
+    
+    rights: {
+      title: "Ihre Rechte",
+      content: "Gemäß der DSGVO haben Sie das Recht auf Zugang, Berichtigung und Löschung Ihrer Daten. Um diese Rechte auszuüben, kontaktieren Sie mich unter josshanel@gmail.com."
+    },
+    
+    security: {
+      title: "Sicherheit",
+      content: "Ich wende angemessene Sicherheitsmaßnahmen zum Schutz Ihrer Daten an, einschließlich der Verwendung des HTTPS-Protokolls für alle Kommunikationen mit dieser Website."
+    },
+    
+    contact: {
+      title: "Kontakt",
+      content: "Bei Fragen zu dieser Datenschutzerklärung können Sie mich kontaktieren unter:",
+      email: "josshanel@gmail.com"
+    },
+    
+    backLink: "Zurück zur Startseite"
+  }
+};
+
+// Utiliser la langue demandée ou français par défaut
+const t = content[lang] || content.fr;
+---
+
+<Layout title={t.title} description={t.description} lang={lang}>
+  <div transition:name="privacy" class="container mx-auto px-4 py-8 max-w-4xl">
+    <h1 class="text-3xl font-bold mb-4 border-b border-accent pb-2">
+      {t.pageTitle}
+    </h1>
+    
+    <p class="text-text-muted mb-6">
+      {t.lastUpdated}
+    </p>
+    
+    <div class="mb-8">
+      <p class="text-lg mb-6">
+        {t.intro}
+      </p>
+    </div>
+    
+    <!-- Section collecte de données -->
+    <section class="mb-8">
+      <h2 class="text-2xl font-semibold mb-4 text-accent">
+        {t.dataCollection.title}
+      </h2>
+      <p class="mb-4">
+        {t.dataCollection.content}
+      </p>
+      
+      <div class="space-y-4 pl-4">
+        {t.dataCollection.items.map((item) => (
+          <div>
+            <h3 class="font-medium text-accent">{item.title}</h3>
+            <p>{item.description}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+    
+    <!-- Section absence de tracking -->
+    <section class="mb-8 bg-secondary bg-opacity-30 p-4 rounded-lg">
+      <h2 class="text-xl font-semibold mb-2">
+        {t.noTracking.title}
+      </h2>
+      <p>
+        {t.noTracking.content}
+      </p>
+    </section>
+    
+    <!-- Section traitement des données de contact -->
+    <section class="mb-8">
+      <h2 class="text-xl font-semibold mb-2">
+        {t.processingData.title}
+      </h2>
+      <p>
+        {t.processingData.content}
+      </p>
+    </section>
+    
+    <!-- Section droits des utilisateurs -->
+    <section class="mb-8">
+      <h2 class="text-xl font-semibold mb-2">
+        {t.rights.title}
+      </h2>
+      <p>
+        {t.rights.content}
+      </p>
+    </section>
+    
+    <!-- Section sécurité -->
+    <section class="mb-8">
+      <h2 class="text-xl font-semibold mb-2">
+        {t.security.title}
+      </h2>
+      <p>
+        {t.security.content}
+      </p>
+    </section>
+    
+    <!-- Section contact -->
+    <section class="mb-8 border-t border-secondary pt-4">
+      <h2 class="text-xl font-semibold mb-2">
+        {t.contact.title}
+      </h2>
+      <p>
+        {t.contact.content}
+      </p>
+      <a href={`mailto:${t.contact.email}`} class="text-accent hover:underline">
+        {t.contact.email}
+      </a>
+    </section>
+    
+    <!-- Lien de retour -->
+    <div class="text-center mt-10">
+      <a 
+        href={`/${lang}`} 
+        class="btn-secondary inline-block"
+      >
+        {t.backLink}
+      </a>
+    </div>
+  </div>
+</Layout>

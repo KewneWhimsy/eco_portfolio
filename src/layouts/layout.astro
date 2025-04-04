@@ -4,6 +4,7 @@ import "../styles/global.css";
 import Header from "./header.astro";
 import Footer from "./footer.astro";
 import { ClientRouter } from "astro:transitions";
+import SimpleCookieConsent from "../components/simple_cookie_consent.astro";
 
 // Props du composant
 export interface Props {
@@ -106,6 +107,9 @@ const { htmlLang, ogLocale } =
     <footer class="mx-4">
       <Footer transition-persist="site-footer" />
     </footer>
+    
+    <!-- Bannière de consentement aux cookies -->
+    <SimpleCookieConsent />
 
     <!-- Compteur d'économie de données en mode éco (version statique) -->
     {

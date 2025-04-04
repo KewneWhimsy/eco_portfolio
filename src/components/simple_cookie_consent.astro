@@ -1,0 +1,125 @@
+---
+// src/components/simple_cookie_consent.astro
+// Récupérer la langue actuelle
+const { pathname } = Astro.url;
+const langMatch = pathname.match(/^\/([a-z]{2})(\/|$)/);
+const currentLang = langMatch ? langMatch[1] : "fr";
+
+// Traductions pour la bannière de cookies
+const cookieContent = {
+  fr: {
+    title: "Utilisation des cookies",
+    description:
+      "Ce site utilise un cookie fonctionnel pour mémoriser vos préférences concernant le mode éco. Aucun cookie de suivi ou analytique n'est utilisé.",
+    accept: "J'accepte",
+    moreInfo: "En savoir plus",
+  },
+  en: {
+    title: "Cookie usage",
+    description:
+      "This site uses a functional cookie to remember your eco mode preferences. No tracking or analytical cookies are used.",
+    accept: "I accept",
+    moreInfo: "Learn more",
+  },
+  de: {
+    title: "Cookie-Nutzung",
+    description:
+      "Diese Website verwendet ein funktionelles Cookie, um Ihre Öko-Modus-Einstellungen zu speichern. Es werden keine Tracking- oder Analyse-Cookies verwendet.",
+    accept: "Ich akzeptiere",
+    moreInfo: "Mehr erfahren",
+  },
+};
+
+// Utiliser la langue courante ou le français par défaut
+const t =
+  cookieContent[currentLang as keyof typeof cookieContent] || cookieContent.fr;
+---
+
+<div
+  id="cookie-consent-banner"
+  class="fixed bottom-0 left-0 w-full bg-primary border-t border-secondary p-4 z-50 shadow-lg transform translate-y-full transition-transform duration-300"
+>
+  <div
+    class="container mx-auto flex flex-col md:flex-row md:items-center justify-between gap-4"
+  >
+    <div class="flex-1">
+      <h3 class="font-bold text-accent">{t.title}</h3>
+      <p class="text-sm mt-1">{t.description}</p>
+    </div>
+    <div class="flex items-center gap-4">
+      <a
+        href={`/${currentLang}/privacy`}
+        class="text-text-muted hover:text-accent text-sm underline self-center"
+        >{t.moreInfo}</a
+      >
+      <button
+        id="btn-accept-cookies"
+        class="cta-button text-sm px-3 py-1 whitespace-nowrap"
+        >{t.accept}</button
+      >
+    </div>
+  </div>
+</div>
+
+<script>
+  // Fonction pour vérifier si l'utilisateur a déjà accepté
+  function getCookieConsent() {
+    return localStorage.getItem("cookie-consent");
+  }
+
+  // Fonction pour enregistrer le consentement
+  function setCookieConsent() {
+    localStorage.setItem("cookie-consent", "accepted");
+    const date = new Date();
+    date.setTime(date.getTime() + 6 * 30 * 24 * 60 * 60 * 1000); // 6 mois
+    localStorage.setItem("cookie-consent-date", date.toISOString());
+  }
+
+  // Fonction pour montrer ou cacher la bannière
+  function toggleBanner(show: boolean) {
+    const banner = document.getElementById("cookie-consent-banner");
+    if (banner) {
+      if (show) {
+        banner.classList.remove("translate-y-full");
+      } else {
+        banner.classList.add("translate-y-full");
+      }
+    }
+  }
+
+  // Initialisation au chargement de la page
+  document.addEventListener("DOMContentLoaded", () => {
+    // Vérifier le consentement existant
+    const consent = getCookieConsent();
+
+    if (!consent) {
+      // Montrer la bannière si aucun consentement n'existe
+      toggleBanner(true);
+    }
+
+    // Gestionnaire d'événement pour le bouton d'acceptation
+    document
+      .getElementById("btn-accept-cookies")
+      ?.addEventListener("click", () => {
+        setCookieConsent();
+        toggleBanner(false);
+      });
+  });
+
+  // S'assurer que la bannière est gérée même en navigation
+  document.addEventListener("astro:page-load", () => {
+    const consent = getCookieConsent();
+    if (!consent) {
+      toggleBanner(true);
+    }
+
+    // Réattacher l'événement au bouton car la navigation client peut recréer le DOM
+    const acceptButton = document.getElementById("btn-accept-cookies");
+    if (acceptButton) {
+      acceptButton.addEventListener("click", () => {
+        setCookieConsent();
+        toggleBanner(false);
+      });
+    }
+  });
+</script>
