@@ -63,7 +63,7 @@ const labels = navLabels[currentLang as keyof typeof navLabels] || navLabels.fr;
     <div class="flex flex-wrap justify-center items-center gap-6">
       <!-- Navigation principale avec URL localisées -->
       <nav>
-        <ul class="flex items-center gap-4 md:gap-6">
+        <ul class="flex items-center gap-4 md:gap-6 max-w-96">
           <li>
             <a 
               href={isEcoMode ? `/${currentLang}/projects/eco` : `/${currentLang}/projects`} 
