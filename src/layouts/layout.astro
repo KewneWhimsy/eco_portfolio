@@ -1,7 +1,6 @@
 ---
 // Imports
 import "../styles/global.css";
-import AlpineLoader from "../components/alpine_loader.astro";
 import Header from "./header.astro";
 import Footer from "./footer.astro";
 import { ClientRouter } from "astro:transitions";
@@ -64,9 +63,6 @@ const { htmlLang, ogLocale } =
     <!-- Pas de JavaScript pour la détection du mode éco, on utilise uniquement l'URL -->
 
     <title>{title}</title>
-
-    <!-- Chargement conditionnel d'Alpine.js -->
-    <AlpineLoader isEcoMode={isEcoMode} />
 
     <!-- Ajouter Client Router uniquement si on n'est pas en mode éco -->
     {!isEcoMode && <ClientRouter />}
