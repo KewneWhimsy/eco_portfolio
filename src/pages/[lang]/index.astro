@@ -23,7 +23,7 @@ const content = {
   fr: {
     title: "Josselin HANEL - Développeur Web Full Stack",
     description:
-      "Portfolio de développeur web full stack avec une approche éco-responsable, basé à Rennes et disponible à Nantes, Berlin et en télétravail.",
+      "Portfolio de développeur web full stack avec une approche éco-responsable, basé à Rennes, disponible à Berlin et en télétravail.",
     heroTitle: 'Développeur Web <span class="text-light whitespace-nowrap">Full Stack</span>',
     heroText:
       "Je conçois des sites web et applications complètes, durables et performantes, en privilégiant des solutions économes en ressources.",
@@ -37,7 +37,7 @@ const content = {
   en: {
     title: "Josselin HANEL - Full Stack Web Developer",
     description:
-      "Portfolio of a full stack web developer with an eco-friendly approach, based in Rennes and available in Nantes, Berlin and remote work.",
+      "Portfolio of a full stack web developer with an eco-friendly approach, based in Rennes(France), available in Berlin and remote work.",
     heroTitle: 'Full Stack <span class="text-light whitespace-nowrap">Web Developer</span>',
     heroText:
       "I design complete, sustainable and high-performance websites and applications, prioritizing resource-efficient solutions.",
@@ -51,7 +51,7 @@ const content = {
   de: {
     title: "Josselin HANEL - Full-Stack Webentwickler",
     description:
-      "Portfolio eines Full-Stack-Webentwicklers mit umweltfreundlichem Ansatz, mit Sitz in Rennes und verfügbar in Nantes, Berlin und für Remote-Arbeit.",
+      "Portfolio eines Full-Stack-Webentwicklers mit umweltfreundlichem Ansatz, mit Sitz in Rennes(Frankreich) und verfügbar Berlin und für Remote-Arbeit.",
     heroTitle: 'Full-Stack <span class="text-light">Webentwickler</span>',
     heroText:
       "Ich entwickle vollständige, nachhaltige und leistungsstarke Websites und Anwendungen mit ressourcenschonenden Lösungen.",
@@ -141,7 +141,7 @@ const featuredProjects = [
       "Alpine.js",
       "GitHub Actions",
     ],
-    url: `/${lang}/projects/library`,
+    url: `https://objethequecornouaille.fr/`,
     ecoUrl: `/${lang}/projects/library/eco`,
   },
   {
@@ -169,7 +169,7 @@ const featuredProjects = [
       "Postgresql",
       "MongoDB",
     ],
-    url: `/${lang}/projects/esport`,
+    url: `https://kewnewhimsy.github.io/esportify-f/`,
     ecoUrl: `/${lang}/projects/esport/eco`,
   },
 ];
@@ -280,7 +280,7 @@ const featuredProjects = [
     <!-- Boutons (toujours au bas de la carte) -->
     <div class="mt-auto">
       <div class="flex gap-3">
-        <a href={project.url} class="cta-button flex-1 text-center">
+        <a href={project.url} target="_blank" class="btn-secondary flex-1 text-center">
           {t.projectButton}
         </a>
       </div>

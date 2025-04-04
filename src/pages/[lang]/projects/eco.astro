@@ -71,7 +71,7 @@ const projects = [
         'Designed in collaboration with <a href="https://jadephom.myportfolio.com/" target="_blank" rel="noopener" class="text-link">Jade Ounaphom</a>, audiovisual creator, the website highlights how the object library works and its news.' : 
         'In Zusammenarbeit mit <a href="https://jadephom.myportfolio.com/" target="_blank" rel="noopener" class="text-link">Jade Ounaphom</a>, audiovisuelle Gestalterin, präsentiert die Website die Funktionsweise der Objektbibliothek und ihre Neuigkeiten.'),
     tech: ['Astro', 'CSS Pro', 'TypeScript', 'Alpine.js', 'GitHub Actions'],
-    url: `/${lang}/projects/library/eco`
+    url: `https://objethequecornouaille.fr/`
   },
   {
     id: 'esport',
@@ -86,7 +86,7 @@ const projects = [
         'E-sport event management platform with a real-time chat system via WebSocket and HTMX. (fictional company)' : 
         'E-Sport-Eventmanagement-Plattform mit einem Echtzeit-Chat-System über WebSocket und HTMX. (fiktives Unternehmen)'),
     tech: ['Astro', 'Tailwind', 'Alpine.js', 'HTMX', 'WebSocket', 'Express', 'PostgreSQL', 'MongoDB'],
-    url: `/${lang}/projects/esport/eco`
+    url: `https://kewnewhimsy.github.io/esportify-f/`
   },
   {
     id: 'portfolio',
@@ -101,7 +101,6 @@ const projects = [
         'My personal portfolio with eco-mode, multilingual, and designed following web eco-design principles.' : 
         'Mein persönliches Portfolio mit Öko-Modus, mehrsprachig und nach den Prinzipien des Web-Öko-Designs gestaltet.'),
     tech: ['Astro', 'Alpine.js', 'TailwindCSS'],
-    url: `/${lang}/eco`
   }
 ];
 
@@ -147,6 +146,7 @@ const isEcoMode = true;
               <a 
                 href={project.url} 
                 class="text-link"
+                target="_blank"
               >
                 {t.viewProject}
               </a>

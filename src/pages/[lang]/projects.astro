@@ -118,8 +118,7 @@ const projects = [
         'In Zusammenarbeit mit <a href="https://jadephom.myportfolio.com/" target="_blank" rel="noopener" class="text-link">Jade Ounaphom</a>, audiovisuelle Gestalterin, präsentiert die Website die Funktionsweise der Objektbibliothek und ihre Neuigkeiten.'),
     image: objetImage,
     tech: ['Astro', 'CSS Pro', 'TypeScript', 'Alpine.js', 'GitHub Actions'],
-    url: 'https://example.com/library',
-    github: 'https://github.com/username/library-project',
+    url: 'https://objethequecornouaille.fr/',
     isFeatured: true
   },
   {
@@ -132,8 +131,7 @@ const projects = [
         'E-Sport-Eventmanagement-Plattform mit einem Echtzeit-Chat-System über WebSocket und HTMX. (fiktives Unternehmen)'),
     image: esportImage,
     tech: ['Astro', 'Tailwind', 'Alpine.js', 'HTMX', 'WebSocket', 'Express', 'PostgreSQL', 'MongoDB'],
-    url: 'https://example.com/esport',
-    github: 'https://github.com/username/esport-project',
+    url: 'https://kewnewhimsy.github.io/esportify-f/',
     isFeatured: true
   },
   {
@@ -146,8 +144,6 @@ const projects = [
         'Mein persönliches Portfolio mit Öko-Modus, mehrsprachig und nach den Prinzipien des Web-Öko-Designs gestaltet.'),
     image: portfolioImage,
     tech: ['Astro', 'Alpine.js', 'TailwindCSS'],
-    url: '/',
-    github: 'https://github.com/username/eco-portfolio',
     isFeatured: true
   }
 ];
@@ -209,6 +205,7 @@ const getProjectUrl = (projectId: string) => `/${lang}/projects/${projectId}`;
               <a 
                 href={getProjectUrl(project.id)} 
                 class="flex-1 text-center cta-button text-sm"
+                style="display: none;"
               >
                 {t.viewProject}
               </a>

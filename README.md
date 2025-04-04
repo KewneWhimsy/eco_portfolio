@@ -79,7 +79,7 @@ This website is built with environmental sustainability in mind:
 1. Clone the repository
 
 ```bash
-git clone https://github.com/your-username/eco-portfolio.git
+git clone https://github.com/KewneWhimsy/eco-portfolio.git
 cd eco-portfolio
 ```
 
@@ -146,7 +146,7 @@ The eco mode works by having separate routes with `/eco` in the path. To modify 
 
 ## Contact
 
-Josselin HANEL - [contact@josselinhanel.com](mailto:contact@josselinhanel.com)
+Josselin HANEL - [contact@josselinkw.com](mailto:josshanel@gmail.com)
 
 ---
 
