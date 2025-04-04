@@ -26,9 +26,9 @@ const descriptions: DescriptionsByLang = {
     'Astro': 'Framework web agnostique générant principalement du HTML statique, offrant un excellent SEO naturel et des performances optimales sans imposer de choix technologiques.',
     'CSS Pro': 'Techniques CSS avancées pour un design responsive et des animations fluides, limitant le recours au JavaScript coûteux en ressources.',
     'TypeScript': 'Sur-ensemble typé de JavaScript pour un code plus robuste et maintenable, réduisant les erreurs et la dette technique.',
-    'HTMX': 'Bibliothèque permettant d\'utiliser des fonctionnalités AJAX directement dans le HTML, sans nécessiter de JavaScript complexe côté client.',
-    'Alpine.js': 'Micro-framework JavaScript (< 10kB) offrant des comportements réactifs sans surcharge inutile, idéal pour les projets optimisés.',
-    'Tailwind': 'Framework CSS utilitaire qui optimise la taille des feuilles de style en production, ne conservant que les classes réellement utilisées.',
+    'HTMX': 'Bibliothèque ultra-légère (~14kb) ajoutant des capacités AJAX et WebSocket directement au HTML. Un simple script suffit pour l\'intégrer à la volée quand le besoin s\'en fait sentir.',
+    'Alpine.js': 'Micro-framework JavaScript qui brille précisément là où le CSS moderne ne suffit plus. Parfait pour gérer les états sans recourir à un framework lourd, tout en gardant une empreinte minimale.',
+    'Tailwind': 'Framework CSS utilitaire qui facilite énormément le travail collaboratif et la gestion du responsive. Sa purge CSS en production garantit des feuilles de style ultra-optimisées.',
     
     // Backend
     'Express': 'Framework Node.js minimaliste, rapide à mettre en place et économe en ressources sous faible charge, idéal pour des APIs simples à moyennement complexes.',
@@ -39,20 +39,20 @@ const descriptions: DescriptionsByLang = {
     // Bases de données
     'PostgreSQL': 'SGBD relationnel open-source puissant avec un écosystème d\'extensions quasi infini, offrant flexibilité et performances pour tout type de projet.',
     'MongoDB': 'Base de données NoSQL orientée documents permettant une flexibilité des données et des schémas adaptés aux besoins réels.',
-    'PostgREST': 'Transforme automatiquement une base PostgreSQL en API RESTful, accélérant le développement et la maintenance backend.',
+    'PostgREST': 'Transforme une BDD Postgres en API REST instantanément. Idéal pour des CRUD simples et soulage le backend des tâches répétitives. Dans certains cas, permet même de se passer complètement de backend pour une communication front/BDD directe et sécurisée.',
     'Ecto': 'Bibliothèque Elixir pour l\'interaction avec les bases de données, optimisant les requêtes pour des performances maximales.',
     
     // Outils
-    'Git': 'Système de contrôle de version distribué permettant un développement collaboratif efficace et un suivi précis des modifications.',
-    'Docker': 'Plateforme de conteneurisation offrant un environnement de développement/production identique et optimisé en ressources.',
-    'VS Code': 'Éditeur de code léger et extensible, augmentant la productivité tout en restant performant sur tous types de machines.',
-    'Lighthouse': 'Outil d\'audit essentiel pour mesurer et améliorer la performance, l\'accessibilité et l\'efficacité énergétique des applications web.',
+    'Git': 'Essentiel pour tout développement collaboratif, permet de garder une trace claire des modifications et facilite les contributions simultanées sur un même projet.',
+    'Docker': 'Assure une reproductibilité parfaite des environnements de dev entre les membres d\'une équipe. Docker Compose simplifie l\'orchestration de services multiples, et Swarm permet un déploiement scalable en production.',
+    'VS Code': 'Éditeur de code moderne avec un bon équilibre entre légèreté et fonctionnalités. Son système d\'extensions permet de l\'adapter précisément à chaque projet.',
+    'Lighthouse': 'Outil d\'audit essentiel pour mesurer et améliorer objectivement les performances web et l\'impact environnemental.',
     
     // Méthodologies
-    'Accessibilité': 'Conception d\'interfaces utilisables par tous, y compris les personnes handicapées, pour un web inclusif et une audience plus large.',
-    'Performance': 'Optimisation systématique réduisant temps de chargement et utilisation des ressources, améliorant l\'expérience utilisateur et le référencement.',
+    'Accessibilité': 'Conception d\'interfaces compatibles avec tous les appareils, navigateurs et modes d\'utilisation. Élargit l\'audience potentielle et assure une expérience utilisateur inclusive.',
+    'Performance': 'Optimisation qui réduit les temps de chargement et l\'utilisation des ressources. Une meilleure UX se traduit directement par une réduction des coûts d\'infrastructure et une augmentation des conversions.',
     'Éco-conception': 'Approche de développement visant à optimiser chaque étape du cycle de vie des services numériques, conciliant performance et sobriété.',
-    'UX/UI': 'Conception d\'interfaces centrées sur l\'utilisateur, alliant esthétique et fonctionnalité pour créer des expériences intuitives et efficaces.'
+    'UX/UI': 'Interfaces intuitives qui répondent aux besoins réels des utilisateurs. Une bonne conception UX/UI réduit les frictions et améliore l\'engagement des utilisateurs.'
   },
   
   en: {
@@ -60,9 +60,9 @@ const descriptions: DescriptionsByLang = {
     'Astro': 'Modern, framework-agnostic web builder generating mostly static HTML, providing excellent natural SEO and optimal performance without imposing technology choices.',
     'CSS Pro': 'Advanced CSS techniques for responsive design and smooth animations, reducing reliance on resource-intensive JavaScript.',
     'TypeScript': 'Typed superset of JavaScript for more robust and maintainable code, reducing errors and technical debt.',
-    'HTMX': 'Library allowing AJAX functionality directly in HTML markup, eliminating the need for complex client-side JavaScript.',
-    'Alpine.js': 'Tiny JavaScript framework (< 10kB) offering reactive behaviors without unnecessary overhead, ideal for optimized projects.',
-    'Tailwind': 'Utility-first CSS framework that optimizes stylesheet size in production by keeping only the classes actually used.',
+    'HTMX': 'Ultra-lightweight library (~14kb) adding AJAX and WebSocket capabilities directly to HTML. A simple script is all it takes to integrate it on the fly when needed.',
+    'Alpine.js': 'Micro JavaScript framework that shines precisely where modern CSS falls short. Perfect for state management without resorting to a heavy framework, while maintaining a minimal footprint.',
+    'Tailwind': 'Utility CSS framework that greatly facilitates collaborative work and responsive design management. Its CSS purging in production guarantees ultra-optimized stylesheets.',
     
     // Backend
     'Express': 'Minimalist Node.js framework, quick to implement and resource-efficient under light loads, ideal for simple to moderately complex APIs.',
@@ -73,20 +73,20 @@ const descriptions: DescriptionsByLang = {
     // Databases
     'PostgreSQL': 'Powerful open-source relational DBMS with an almost infinite ecosystem of extensions, offering flexibility and performance for any project type.',
     'MongoDB': 'NoSQL document database enabling data flexibility and schemas adapted to actual needs.',
-    'PostgREST': 'Automatically transforms a PostgreSQL database into a RESTful API, accelerating backend development and maintenance.',
+    'PostgREST': 'Instantly transforms a Postgres DB into a REST API. Perfect for simple CRUD operations and relieves the backend of repetitive tasks. In some cases, even allows completely bypassing a backend for direct and secure front/DB communication.',
     'Ecto': 'Elixir library for database interaction, optimizing queries for maximum performance.',
     
     // Tools
-    'Git': 'Distributed version control system enabling efficient collaborative development and precise tracking of changes.',
-    'Docker': 'Containerization platform providing identical development/production environments optimized for resources.',
-    'VS Code': 'Lightweight and extensible code editor, enhancing productivity while remaining performant on all types of machines.',
-    'Lighthouse': 'Essential audit tool for measuring and improving performance, accessibility and energy efficiency of web applications.',
+    'Git': 'Essential for any collaborative development, maintains a clear record of changes and facilitates simultaneous contributions to the same project.',
+    'Docker': 'Ensures perfect reproducibility of dev environments across team members. Docker Compose simplifies orchestration of multiple services, and Swarm enables scalable production deployment.',
+    'VS Code': 'Modern code editor with a good balance between lightweight and features. Its extension system allows precise adaptation to each project.',
+    'Lighthouse': 'Essential audit tool for objectively measuring and improving web performance and environmental impact.',
     
     // Methodologies
-    'Accessibility': 'Designing interfaces usable by everyone, including people with disabilities, for an inclusive web and broader audience.',
-    'Performance': 'Systematic optimization reducing loading times and resource usage, improving user experience and SEO.',
+    'Accessibility': 'Designing interfaces compatible with all devices, browsers and usage modes. Expands potential audience and ensures an inclusive user experience.',
+    'Performance': 'Optimization that reduces loading times and resource usage. Better UX directly translates to reduced infrastructure costs and increased conversions.',
     'Eco-design': 'Development approach aimed at optimizing each step of the digital service lifecycle, balancing performance and efficiency.',
-    'UX/UI': 'User-centered interface design combining aesthetics and functionality to create intuitive and effective experiences.'
+    'UX/UI': 'Intuitive interfaces that meet the actual needs of users. Good UX/UI design reduces friction and improves user engagement.'
   },
   
   de: {
@@ -94,9 +94,9 @@ const descriptions: DescriptionsByLang = {
     'Astro': 'Modernes, framework-agnostisches Web-Tool, das überwiegend statisches HTML generiert und hervorragende natürliche SEO und optimale Leistung bietet, ohne Technologieentscheidungen zu erzwingen.',
     'CSS Pro': 'Fortgeschrittene CSS-Techniken für responsive Designs und flüssige Animationen, die den Einsatz ressourcenintensiver JavaScript-Lösungen reduzieren.',
     'TypeScript': 'Typisierte Erweiterung von JavaScript für robusteren und wartbaren Code, reduziert Fehler und technische Schulden.',
-    'HTMX': 'Bibliothek, die AJAX-Funktionalität direkt im HTML-Markup ermöglicht und den Bedarf an komplexem clientseitigen JavaScript eliminiert.',
-    'Alpine.js': 'Kompaktes JavaScript-Framework (< 10kB) für reaktives Verhalten ohne unnötigen Overhead, ideal für optimierte Projekte.',
-    'Tailwind': 'Utility-First CSS-Framework, das die Stylesheet-Größe in der Produktion optimiert, indem nur tatsächlich verwendete Klassen beibehalten werden.',
+    'HTMX': 'Ultraleichte Bibliothek (~14kb), die AJAX- und WebSocket-Funktionen direkt zum HTML hinzufügt. Ein einfaches Skript genügt, um es bei Bedarf im Flug zu integrieren.',
+    'Alpine.js': 'Micro-JavaScript-Framework, das genau dort glänzt, wo modernes CSS nicht mehr ausreicht. Perfekt für Zustandsverwaltung ohne Rückgriff auf ein schweres Framework, bei minimalem Footprint.',
+    'Tailwind': 'Utility-CSS-Framework, das die Zusammenarbeit und die Verwaltung von Responsive-Design erheblich erleichtert. Die CSS-Bereinigung in der Produktion garantiert ultraoptimierte Stylesheets.',
     
     // Backend
     'Express': 'Minimalistisches Node.js-Framework, schnell zu implementieren und ressourceneffizient bei geringer Last, ideal für einfache bis mittelschwere APIs.',
@@ -107,20 +107,20 @@ const descriptions: DescriptionsByLang = {
     // Datenbanken
     'PostgreSQL': 'Leistungsstarkes Open-Source-Datenbankmanagementsystem mit einem nahezu unendlichen Ökosystem von Erweiterungen, das Flexibilität und Leistung für jeden Projekttyp bietet.',
     'MongoDB': 'NoSQL-Dokumentendatenbank, die Datenflexibilität und an tatsächliche Bedürfnisse angepasste Schemas ermöglicht.',
-    'PostgREST': 'Verwandelt automatisch eine PostgreSQL-Datenbank in eine RESTful-API und beschleunigt Backend-Entwicklung und Wartung.',
+    'PostgREST': 'Verwandelt eine Postgres-DB sofort in eine REST-API. Perfekt für einfache CRUD-Operationen und entlastet das Backend von repetitiven Aufgaben. In manchen Fällen ermöglicht es sogar, ein Backend vollständig zu umgehen für direkte und sichere Front/DB-Kommunikation.',
     'Ecto': 'Elixir-Bibliothek für Datenbankinteraktion, die Abfragen für maximale Leistung optimiert.',
     
     // Werkzeuge
-    'Git': 'Verteiltes Versionskontrollsystem für effiziente kollaborative Entwicklung und präzise Änderungsverfolgung.',
-    'Docker': 'Containerisierungsplattform, die identische Entwicklungs-/Produktionsumgebungen mit optimierter Ressourcennutzung bietet.',
-    'VS Code': 'Leichtgewichtiger und erweiterbarer Code-Editor, der die Produktivität steigert und gleichzeitig auf allen Arten von Maschinen leistungsfähig bleibt.',
-    'Lighthouse': 'Wesentliches Audit-Tool zur Messung und Verbesserung von Leistung, Barrierefreiheit und Energieeffizienz von Webanwendungen.',
+    'Git': 'Unerlässlich für jede kollaborative Entwicklung, behält eine klare Aufzeichnung der Änderungen bei und erleichtert gleichzeitige Beiträge zum selben Projekt.',
+    'Docker': 'Gewährleistet perfekte Reproduzierbarkeit von Entwicklungsumgebungen im Team. Docker Compose vereinfacht die Orchestrierung mehrerer Dienste, und Swarm ermöglicht skalierbaren Produktionseinsatz.',
+    'VS Code': 'Moderner Code-Editor mit einer guten Balance zwischen Leichtgewicht und Funktionen. Sein Erweiterungssystem ermöglicht eine präzise Anpassung an jedes Projekt.',
+    'Lighthouse': 'Wesentliches Audit-Tool zur objektiven Messung und Verbesserung von Webleistung und Umweltauswirkungen.',
     
     // Methoden
-    'Barrierefreiheit': 'Gestaltung von Schnittstellen, die von allen genutzt werden können, auch von Menschen mit Behinderungen, für ein inklusives Web und ein breiteres Publikum.',
-    'Performance': 'Systematische Optimierung zur Reduzierung von Ladezeiten und Ressourcennutzung, verbessert Benutzererfahrung und SEO.',
+    'Barrierefreiheit': 'Gestaltung von Schnittstellen, die mit allen Geräten, Browsern und Nutzungsmodi kompatibel sind. Erweitert die potenzielle Zielgruppe und gewährleistet ein inklusives Benutzererlebnis.',
+    'Performance': 'Optimierung, die Ladezeiten und Ressourcennutzung reduziert. Bessere UX führt direkt zu reduzierten Infrastrukturkosten und erhöhten Conversions.',
     'Öko-Design': 'Entwicklungsansatz zur Optimierung jeder Phase des Lebenszyklus digitaler Dienste, der Leistung und Effizienz in Einklang bringt.',
-    'UX/UI': 'Benutzerzentriertes Schnittstellendesign, das Ästhetik und Funktionalität kombiniert, um intuitive und effektive Erlebnisse zu schaffen.'
+    'UX/UI': 'Intuitive Schnittstellen, die den tatsächlichen Bedürfnissen der Benutzer gerecht werden. Gutes UX/UI-Design reduziert Reibungspunkte und verbessert das Engagement der Benutzer.'
   }
 };
 
