@@ -5,6 +5,7 @@ import { Picture } from "astro:assets";
 import monImage from "../../assets/j.jpg";
 import objetImage from "../../assets/projects/objet01.png";
 import esportImage from "../../assets/projects/esport01.png";
+import CtaDispo from "../../components/cta_dispo.astro";
 
 // Récupérer le paramètre de langue depuis l'URL
 export function getStaticPaths() {
@@ -32,9 +33,6 @@ const content = {
     projectsTitle: "Projets récents",
     projectButton: "Découvrir le projet",
     viewAllProjectsButton: "Voir tous les projets",
-    ctaTitle: "Intéressé par une collaboration?",
-    ctaText:
-      "Je suis disponible pour des missions ponctuelles ou longue durée, des projets d'équipe ou des consultations en éco-conception web.",
   },
   en: {
     title: "Josselin HANEL - Full Stack Web Developer",
@@ -49,9 +47,6 @@ const content = {
     projectsTitle: "Recent projects",
     projectButton: "Explore project",
     viewAllProjectsButton: "View all projects",
-    ctaTitle: "Interested in working together?",
-    ctaText:
-      "I am available for short-term or long-term assignments, team projects or web eco-design consultations.",
   },
   de: {
     title: "Josselin HANEL - Full-Stack Webentwickler",
@@ -66,9 +61,6 @@ const content = {
     projectsTitle: "Aktuelle Projekte",
     projectButton: "Projekt entdecken",
     viewAllProjectsButton: "Alle Projekte ansehen",
-    ctaTitle: "Interesse an einer Zusammenarbeit?",
-    ctaText:
-      "Ich bin verfügbar für kurz- oder langfristige Aufträge, Teamprojekte oder Beratungen zum Web-Öko-Design.",
   },
 };
 
@@ -320,27 +312,6 @@ const featuredProjects = [
     </section>
 
     <!-- Section appel à l'action -->
-    <section
-      class="py-8 bg-secondary bg-opacity-30 rounded-lg text-center mt-8"
-    >
-      <h2 class="text-2xl font-bold mb-4 sm:px-1">{t.ctaTitle}</h2>
-      <p class="mb-6 max-w-lg mx-auto sm:px-1">{t.ctaText}</p>
-      <!-- Bouton autonome primaire -->
-      <a
-        href={`/${lang}/contact`}
-        style="
-          display: inline-block;
-          padding: 8px 16px;
-          background-color: var(--color-accent);
-          color: var(--color-primary);
-          border-radius: 4px;
-          transition: transform 0.3s ease, background-color 0.3s ease;
-        "
-        onmouseover="this.style.transform='translateY(-1px)'; this.style.backgroundColor='var(--color-accent-hover)';"
-        onmouseout="this.style.transform='translateY(0)'; this.style.backgroundColor='var(--color-accent)';"
-      >
-        {t.contactButton}
-      </a>
-    </section>
+    <CtaDispo transition-persist="cta-dispo"/>
   </div>
 </Layout>

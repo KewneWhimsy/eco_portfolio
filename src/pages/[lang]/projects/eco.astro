@@ -66,10 +66,10 @@ const projects = [
         'Object Library - Quimper' : 
         'Quimper Objektbibliothek'),
     description: lang === 'fr' ? 
-      'Conçu en collaboration avec Jade Ounaphom, créatrice audiovisuelle, le site met en avant le fonctionnement de la bibliothèque d\'objets et ses actualités.' :
+      'Conçu en collaboration avec <a href="https://jadephom.myportfolio.com/" target="_blank" rel="noopener" class="text-link">Jade Ounaphom</a>, créatrice audiovisuelle, le site met en avant le fonctionnement de la bibliothèque d\'objets et ses actualités.' :
       (lang === 'en' ? 
-        'Designed in collaboration with Jade Ounaphom, audiovisual creator, the website highlights how the object library works and its news.' : 
-        'In Zusammenarbeit mit Jade Ounaphom, audiovisuelle Gestalterin, präsentiert die Website die Funktionsweise der Objektbibliothek und ihre Neuigkeiten.'),
+        'Designed in collaboration with <a href="https://jadephom.myportfolio.com/" target="_blank" rel="noopener" class="text-link">Jade Ounaphom</a>, audiovisual creator, the website highlights how the object library works and its news.' : 
+        'In Zusammenarbeit mit <a href="https://jadephom.myportfolio.com/" target="_blank" rel="noopener" class="text-link">Jade Ounaphom</a>, audiovisuelle Gestalterin, präsentiert die Website die Funktionsweise der Objektbibliothek und ihre Neuigkeiten.'),
     tech: ['Astro', 'CSS Pro', 'TypeScript', 'Alpine.js', 'GitHub Actions'],
     url: `/${lang}/projects/library/eco`
   },
@@ -133,7 +133,7 @@ const isEcoMode = true;
         {projects.map(project => (
           <li class="border-b border-secondary pb-4">
             <h3 class="text-xl font-semibold mb-2">{project.title}</h3>
-            <p class="mb-3">{project.description}</p>
+            <p class="mb-4" set:html={project.description}></p>
             
             <!-- Technologies simplifiées -->
             <div class="mb-3">
