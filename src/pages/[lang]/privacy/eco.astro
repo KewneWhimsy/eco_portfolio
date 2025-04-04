@@ -271,7 +271,7 @@ const t = content[lang] || content.fr;
       <p>
         {t.contact.content}
       </p>
-      <a href={`mailto:${t.contact.email}`} class="text-accent hover:underline">
+      <a href={`mailto:${t.contact.email}`} class="text-link">
         {t.contact.email}
       </a>
     </section>
@@ -279,7 +279,7 @@ const t = content[lang] || content.fr;
     <!-- Lien de retour -->
     <div class="text-center mt-10">
       <a 
-        href={`/${lang}`} 
+        href={`/${lang}/eco`} 
         class="btn-secondary inline-block"
       >
         {t.backLink}
