@@ -1,48 +1,153 @@
-# Astro Starter Kit: Basics
+# Josselin HANEL - Eco-Friendly Portfolio
 
-```sh
-npm create astro@latest -- --template basics
+A multilingual, eco-friendly portfolio website built with Astro and Tailwind CSS, showcasing my work as a full-stack web developer with a focus on sustainable web development.
+
+![Portfolio Preview](screenshot.png)
+
+## Features
+
+- **Eco-Mode Toggle**: Switch between standard and eco-friendly versions of the site to reduce carbon footprint
+- **Multilingual Support**: Available in French, English, and German
+- **Responsive Design**: Fully responsive layout that works on all devices
+- **Performance Optimized**: Fast loading times and minimal resource usage
+- **Accessibility**: Designed with accessibility in mind
+
+## Tech Stack
+
+- [Astro](https://astro.build/) - The main framework for building the site
+- [Tailwind CSS](https://tailwindcss.com/) - For styling
+
+## Project Structure
+
 ```
-
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/basics)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/basics)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/basics/devcontainer.json)
-
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
-
-![just-the-basics](https://github.com/withastro/astro/assets/2244813/a0a5533c-a856-4198-8470-2d67b1d7c554)
-
-## 🚀 Project Structure
-
-Inside of your Astro project, you'll see the following folders and files:
-
-```text
-/
-├── public/
-│   └── favicon.svg
 ├── src/
-│   ├── layouts/
-│   │   └── Layout.astro
-│   └── pages/
-│       └── index.astro
-└── package.json
+│   ├── assets/           # Images and static files
+│   ├── components/       # Reusable UI components
+│   │   ├── eco_mode_toggle.astro
+│   │   ├── language_switcher.astro
+│   │   └── cta_dispo.astro
+│   ├── layouts/          # Layout components
+│   │   ├── layout.astro   # Main layout wrapper
+│   │   ├── header.astro
+│   │   └── footer.astro
+│   ├── pages/            # All routes and pages
+│   │   ├── index.astro           # Root redirect
+│   │   └── [lang]/              # Language-specific routes
+│   │       ├── index.astro       # Homepage
+│   │       ├── about.astro       # About page
+│   │       ├── contact.astro     # Contact page
+│   │       ├── projects.astro    # Projects page
+│   │       └── eco/              # Eco-friendly versions
+│   └── styles/           # Global styles
+│       └── global.css
+├── public/              # Public assets served at root
+├── astro.config.mjs     # Astro configuration
+├── tailwind.config.js   # Tailwind CSS configuration
+├── tsconfig.json        # TypeScript configuration
+└── package.json         # Dependencies and scripts
 ```
 
-To learn more about the folder structure of an Astro project, refer to [our guide on project structure](https://docs.astro.build/en/basics/project-structure/).
+## Eco-Friendly Features
 
-## 🧞 Commands
+This website is built with environmental sustainability in mind:
 
-All commands are run from the root of the project, from a terminal:
+1. **Eco Mode**: A dedicated eco-friendly version of the site with:
+   - Reduced JavaScript usage
+   - Simplified layouts
+   - Minimal network requests
+   - Optimized assets loading
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+2. **Performance Optimization**:
+   - Optimized image loading with responsive sizes
+   - Minimal dependencies
+   - Efficient CSS with Tailwind
 
-## 👀 Want to learn more?
+3. **Sustainable Coding Practices**:
+   - Server-side rendering where possible
+   - Efficient asset caching
+   - Minimal third-party scripts
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+## Getting Started
+
+### Prerequisites
+
+- Node.js (v18.17.1 or newer)
+- npm (v9.6.5 or newer) or pnpm (v7.1.0 or newer)
+
+### Installation
+
+1. Clone the repository
+
+```bash
+git clone https://github.com/your-username/eco-portfolio.git
+cd eco-portfolio
+```
+
+2. Install dependencies
+
+```bash
+npm install
+# or
+pnpm install
+```
+
+3. Start the development server
+
+```bash
+npm run dev
+# or
+pnpm dev
+```
+
+4. Open your browser and visit `http://localhost:4321`
+
+### Building for Production
+
+```bash
+npm run build
+# or
+pnpm build
+```
+
+### Preview Production Build
+
+```bash
+npm run preview
+# or
+pnpm preview
+```
+
+## Deployment
+
+This site is designed to be deployed on platforms like Netlify, Vercel, or Cloudflare Pages. The site includes redirects to handle language selection based on user preferences.
+
+### Environment Variables
+
+No specific environment variables are required for basic operation.
+
+## Customization
+
+### Adding a New Language
+
+1. Add the language code to the `getStaticPaths` function in each page file
+2. Add translations for the new language in the content objects
+3. Update the language switcher component to include the new language
+
+### Modifying the Eco Mode
+
+The eco mode works by having separate routes with `/eco` in the path. To modify or enhance the eco mode:
+
+1. Edit the eco-specific page versions in `src/pages/[lang]/*/eco.astro`
+2. Update the toggle behavior in `src/components/eco_mode_toggle.astro`
+
+## License
+
+[MIT License](LICENSE)
+
+## Contact
+
+Josselin HANEL - [contact@josselinhanel.com](mailto:contact@josselinhanel.com)
+
+---
+
+This project is committed to sustainable web development practices and aims to demonstrate how we can create beautiful, functional websites while minimizing environmental impact.
