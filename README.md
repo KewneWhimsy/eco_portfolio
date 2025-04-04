@@ -146,7 +146,7 @@ The eco mode works by having separate routes with `/eco` in the path. To modify 
 
 ## Contact
 
-Josselin HANEL - [contact@josselinkw.com](mailto:josshanel@gmail.com)
+Josselin HANEL - [josshanel@gmail.com](mailto:josshanel@gmail.com)
 
 ---
 
