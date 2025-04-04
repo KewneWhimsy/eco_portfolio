@@ -23,21 +23,21 @@ type DescriptionsByLang = {
 const descriptions: DescriptionsByLang = {
   fr: {
     // Frontend
-    'Astro': 'Framework web moderne qui génère principalement du HTML statique, offrant d\'excellentes performances et une expérience développeur optimale.',
+    'Astro': 'Framework web agnostique générant principalement du HTML statique, offrant un excellent SEO naturel et des performances optimales sans imposer de choix technologiques.',
     'CSS Pro': 'Techniques CSS avancées pour un design responsive et des animations fluides, limitant le recours au JavaScript coûteux en ressources.',
     'TypeScript': 'Sur-ensemble typé de JavaScript pour un code plus robuste et maintenable, réduisant les erreurs et la dette technique.',
-    'HTMX': 'Solution légère permettant d\'ajouter des fonctionnalités dynamiques directement dans le HTML, sans surcharge de frameworks JavaScript complexes.',
+    'HTMX': 'Bibliothèque permettant d\'utiliser des fonctionnalités AJAX directement dans le HTML, sans nécessiter de JavaScript complexe côté client.',
     'Alpine.js': 'Micro-framework JavaScript (< 10kB) offrant des comportements réactifs sans surcharge inutile, idéal pour les projets optimisés.',
     'Tailwind': 'Framework CSS utilitaire qui optimise la taille des feuilles de style en production, ne conservant que les classes réellement utilisées.',
     
     // Backend
-    'Express': 'Framework Node.js minimaliste et flexible offrant d\'excellentes performances même sous charge importante.',
-    'WebSocket': 'Protocole de communication bidirectionnelle permettant des échanges plus efficaces qu\'avec les requêtes HTTP classiques.',
-    'Elixir': 'Langage fonctionnel conçu pour la concurrence, idéal pour les applications haute performance avec une utilisation optimale des ressources.',
-    'Phoenix': 'Framework Elixir performant capable de gérer des milliers de connexions simultanées avec une empreinte serveur réduite.',
+    'Express': 'Framework Node.js minimaliste, rapide à mettre en place et économe en ressources sous faible charge, idéal pour des APIs simples à moyennement complexes.',
+    'WebSocket': 'Protocole de communication bidirectionnelle idéal pour les applications interactives, bien plus économe en ressources que les requêtes HTTP répétées.',
+    'Elixir': 'Langage fonctionnel conçu pour la concurrence, offrant une meilleure scalabilité et performance que Node.js pour des charges importantes.',
+    'Phoenix': 'Framework Elixir haute performance incluant LiveView, permettant de créer des interfaces temps réel sans JavaScript côté client.',
     
     // Bases de données
-    'PostgreSQL': 'SGBD relationnel open-source offrant un excellent rapport fonctionnalités/performance, avec des optimisations avancées.',
+    'PostgreSQL': 'SGBD relationnel open-source puissant avec un écosystème d\'extensions quasi infini, offrant flexibilité et performances pour tout type de projet.',
     'MongoDB': 'Base de données NoSQL orientée documents permettant une flexibilité des données et des schémas adaptés aux besoins réels.',
     'PostgREST': 'Transforme automatiquement une base PostgreSQL en API RESTful, accélérant le développement et la maintenance backend.',
     'Ecto': 'Bibliothèque Elixir pour l\'interaction avec les bases de données, optimisant les requêtes pour des performances maximales.',
@@ -52,26 +52,26 @@ const descriptions: DescriptionsByLang = {
     'Accessibilité': 'Conception d\'interfaces utilisables par tous, y compris les personnes handicapées, pour un web inclusif et une audience plus large.',
     'Performance': 'Optimisation systématique réduisant temps de chargement et utilisation des ressources, améliorant l\'expérience utilisateur et le référencement.',
     'Éco-conception': 'Approche de développement visant à optimiser chaque étape du cycle de vie des services numériques, conciliant performance et sobriété.',
-    'UX/UI': 'Design d\'interfaces intuitives qui améliorent l\'efficacité des utilisateurs et réduisent les frictions dans les parcours utilisateurs.'
+    'UX/UI': 'Conception d\'interfaces centrées sur l\'utilisateur, alliant esthétique et fonctionnalité pour créer des expériences intuitives et efficaces.'
   },
   
   en: {
     // Frontend
-    'Astro': 'Modern web framework generating primarily static HTML, offering excellent performance and an optimized developer experience.',
+    'Astro': 'Modern, framework-agnostic web builder generating mostly static HTML, providing excellent natural SEO and optimal performance without imposing technology choices.',
     'CSS Pro': 'Advanced CSS techniques for responsive design and smooth animations, reducing reliance on resource-intensive JavaScript.',
     'TypeScript': 'Typed superset of JavaScript for more robust and maintainable code, reducing errors and technical debt.',
-    'HTMX': 'Lightweight solution adding dynamic functionality directly in HTML, without the overhead of complex JavaScript frameworks.',
+    'HTMX': 'Library allowing AJAX functionality directly in HTML markup, eliminating the need for complex client-side JavaScript.',
     'Alpine.js': 'Tiny JavaScript framework (< 10kB) offering reactive behaviors without unnecessary overhead, ideal for optimized projects.',
     'Tailwind': 'Utility-first CSS framework that optimizes stylesheet size in production by keeping only the classes actually used.',
     
     // Backend
-    'Express': 'Minimalist Node.js framework offering excellent performance even under heavy load.',
-    'WebSocket': 'Bidirectional communication protocol enabling more efficient exchanges than traditional HTTP requests.',
-    'Elixir': 'Functional language designed for concurrency, ideal for high-performance applications with optimal resource utilization.',
-    'Phoenix': 'High-performance Elixir framework capable of handling thousands of simultaneous connections with a reduced server footprint.',
+    'Express': 'Minimalist Node.js framework, quick to implement and resource-efficient under light loads, ideal for simple to moderately complex APIs.',
+    'WebSocket': 'Bidirectional communication protocol ideal for interactive applications, much more resource-efficient than repeated HTTP requests.',
+    'Elixir': 'Functional language designed for concurrency, offering better scalability and performance than Node.js for heavy workloads.',
+    'Phoenix': 'High-performance Elixir framework featuring LiveView, enabling real-time interfaces without client-side JavaScript.',
     
     // Databases
-    'PostgreSQL': 'Open-source relational DBMS offering an excellent features-to-performance ratio with advanced optimizations.',
+    'PostgreSQL': 'Powerful open-source relational DBMS with an almost infinite ecosystem of extensions, offering flexibility and performance for any project type.',
     'MongoDB': 'NoSQL document database enabling data flexibility and schemas adapted to actual needs.',
     'PostgREST': 'Automatically transforms a PostgreSQL database into a RESTful API, accelerating backend development and maintenance.',
     'Ecto': 'Elixir library for database interaction, optimizing queries for maximum performance.',
@@ -86,26 +86,26 @@ const descriptions: DescriptionsByLang = {
     'Accessibility': 'Designing interfaces usable by everyone, including people with disabilities, for an inclusive web and broader audience.',
     'Performance': 'Systematic optimization reducing loading times and resource usage, improving user experience and SEO.',
     'Eco-design': 'Development approach aimed at optimizing each step of the digital service lifecycle, balancing performance and efficiency.',
-    'UX/UI': 'Designing intuitive interfaces that improve user efficiency and reduce friction in user journeys.'
+    'UX/UI': 'User-centered interface design combining aesthetics and functionality to create intuitive and effective experiences.'
   },
   
   de: {
     // Frontend
-    'Astro': 'Modernes Web-Framework, das hauptsächlich statisches HTML generiert und hervorragende Leistung bei optimaler Entwicklererfahrung bietet.',
+    'Astro': 'Modernes, framework-agnostisches Web-Tool, das überwiegend statisches HTML generiert und hervorragende natürliche SEO und optimale Leistung bietet, ohne Technologieentscheidungen zu erzwingen.',
     'CSS Pro': 'Fortgeschrittene CSS-Techniken für responsive Designs und flüssige Animationen, die den Einsatz ressourcenintensiver JavaScript-Lösungen reduzieren.',
     'TypeScript': 'Typisierte Erweiterung von JavaScript für robusteren und wartbaren Code, reduziert Fehler und technische Schulden.',
-    'HTMX': 'Leichtgewichtige Lösung, die dynamische Funktionalität direkt im HTML ermöglicht, ohne den Overhead komplexer JavaScript-Frameworks.',
+    'HTMX': 'Bibliothek, die AJAX-Funktionalität direkt im HTML-Markup ermöglicht und den Bedarf an komplexem clientseitigen JavaScript eliminiert.',
     'Alpine.js': 'Kompaktes JavaScript-Framework (< 10kB) für reaktives Verhalten ohne unnötigen Overhead, ideal für optimierte Projekte.',
     'Tailwind': 'Utility-First CSS-Framework, das die Stylesheet-Größe in der Produktion optimiert, indem nur tatsächlich verwendete Klassen beibehalten werden.',
     
     // Backend
-    'Express': 'Minimalistisches Node.js-Framework, das auch unter hoher Last hervorragende Leistung bietet.',
-    'WebSocket': 'Bidirektionales Kommunikationsprotokoll, das effizientere Datenübertragungen als herkömmliche HTTP-Anfragen ermöglicht.',
-    'Elixir': 'Funktionale Sprache für Nebenläufigkeit, ideal für Hochleistungsanwendungen mit optimaler Ressourcennutzung.',
-    'Phoenix': 'Leistungsstarkes Elixir-Framework, das Tausende gleichzeitiger Verbindungen mit reduziertem Serververbrauch verarbeiten kann.',
+    'Express': 'Minimalistisches Node.js-Framework, schnell zu implementieren und ressourceneffizient bei geringer Last, ideal für einfache bis mittelschwere APIs.',
+    'WebSocket': 'Bidirektionales Kommunikationsprotokoll, ideal für interaktive Anwendungen, deutlich ressourceneffizienter als wiederholte HTTP-Anfragen.',
+    'Elixir': 'Funktionale Sprache für Nebenläufigkeit, die bei hoher Arbeitslast bessere Skalierbarkeit und Leistung als Node.js bietet.',
+    'Phoenix': 'Hochleistungs-Elixir-Framework mit LiveView, das Echtzeit-Schnittstellen ohne clientseitiges JavaScript ermöglicht.',
     
     // Datenbanken
-    'PostgreSQL': 'Open-Source-Relationales Datenbanksystem mit ausgezeichnetem Verhältnis zwischen Funktionen und Leistung und fortschrittlichen Optimierungen.',
+    'PostgreSQL': 'Leistungsstarkes Open-Source-Datenbankmanagementsystem mit einem nahezu unendlichen Ökosystem von Erweiterungen, das Flexibilität und Leistung für jeden Projekttyp bietet.',
     'MongoDB': 'NoSQL-Dokumentendatenbank, die Datenflexibilität und an tatsächliche Bedürfnisse angepasste Schemas ermöglicht.',
     'PostgREST': 'Verwandelt automatisch eine PostgreSQL-Datenbank in eine RESTful-API und beschleunigt Backend-Entwicklung und Wartung.',
     'Ecto': 'Elixir-Bibliothek für Datenbankinteraktion, die Abfragen für maximale Leistung optimiert.',
@@ -120,7 +120,7 @@ const descriptions: DescriptionsByLang = {
     'Barrierefreiheit': 'Gestaltung von Schnittstellen, die von allen genutzt werden können, auch von Menschen mit Behinderungen, für ein inklusives Web und ein breiteres Publikum.',
     'Performance': 'Systematische Optimierung zur Reduzierung von Ladezeiten und Ressourcennutzung, verbessert Benutzererfahrung und SEO.',
     'Öko-Design': 'Entwicklungsansatz zur Optimierung jeder Phase des Lebenszyklus digitaler Dienste, der Leistung und Effizienz in Einklang bringt.',
-    'UX/UI': 'Design intuitiver Benutzeroberflächen, die die Benutzereffizienz verbessern und Reibungspunkte in Benutzerabläufen reduzieren.'
+    'UX/UI': 'Benutzerzentriertes Schnittstellendesign, das Ästhetik und Funktionalität kombiniert, um intuitive und effektive Erlebnisse zu schaffen.'
   }
 };
 
