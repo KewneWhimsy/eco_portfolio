@@ -1,0 +1,151 @@
+---
+// src/components/skills_with_descriptions.astro
+
+// Propriétés attendues
+export interface Props {
+  lang: 'fr' | 'en' | 'de';
+  skills: Array<{
+    category: string;
+    items: string[];
+  }>;
+}
+
+const { lang, skills } = Astro.props;
+
+// Définition du type pour les descriptions
+type DescriptionsByLang = {
+  [lang: string]: {
+    [skill: string]: string;
+  };
+};
+
+// Définition des descriptions pour chaque technologie selon la langue
+const descriptions: DescriptionsByLang = {
+  fr: {
+    // Frontend
+    'Astro': 'Framework web moderne qui génère principalement du HTML statique, offrant d\'excellentes performances et une expérience développeur optimale.',
+    'CSS Pro': 'Techniques CSS avancées pour un design responsive et des animations fluides, limitant le recours au JavaScript coûteux en ressources.',
+    'TypeScript': 'Sur-ensemble typé de JavaScript pour un code plus robuste et maintenable, réduisant les erreurs et la dette technique.',
+    'HTMX': 'Solution légère permettant d\'ajouter des fonctionnalités dynamiques directement dans le HTML, sans surcharge de frameworks JavaScript complexes.',
+    'Alpine.js': 'Micro-framework JavaScript (< 10kB) offrant des comportements réactifs sans surcharge inutile, idéal pour les projets optimisés.',
+    'Tailwind': 'Framework CSS utilitaire qui optimise la taille des feuilles de style en production, ne conservant que les classes réellement utilisées.',
+    
+    // Backend
+    'Express': 'Framework Node.js minimaliste et flexible offrant d\'excellentes performances même sous charge importante.',
+    'WebSocket': 'Protocole de communication bidirectionnelle permettant des échanges plus efficaces qu\'avec les requêtes HTTP classiques.',
+    'Elixir': 'Langage fonctionnel conçu pour la concurrence, idéal pour les applications haute performance avec une utilisation optimale des ressources.',
+    'Phoenix': 'Framework Elixir performant capable de gérer des milliers de connexions simultanées avec une empreinte serveur réduite.',
+    
+    // Bases de données
+    'PostgreSQL': 'SGBD relationnel open-source offrant un excellent rapport fonctionnalités/performance, avec des optimisations avancées.',
+    'MongoDB': 'Base de données NoSQL orientée documents permettant une flexibilité des données et des schémas adaptés aux besoins réels.',
+    'PostgREST': 'Transforme automatiquement une base PostgreSQL en API RESTful, accélérant le développement et la maintenance backend.',
+    'Ecto': 'Bibliothèque Elixir pour l\'interaction avec les bases de données, optimisant les requêtes pour des performances maximales.',
+    
+    // Outils
+    'Git': 'Système de contrôle de version distribué permettant un développement collaboratif efficace et un suivi précis des modifications.',
+    'Docker': 'Plateforme de conteneurisation offrant un environnement de développement/production identique et optimisé en ressources.',
+    'VS Code': 'Éditeur de code léger et extensible, augmentant la productivité tout en restant performant sur tous types de machines.',
+    'Lighthouse': 'Outil d\'audit essentiel pour mesurer et améliorer la performance, l\'accessibilité et l\'efficacité énergétique des applications web.',
+    
+    // Méthodologies
+    'Accessibilité': 'Conception d\'interfaces utilisables par tous, y compris les personnes handicapées, pour un web inclusif et une audience plus large.',
+    'Performance': 'Optimisation systématique réduisant temps de chargement et utilisation des ressources, améliorant l\'expérience utilisateur et le référencement.',
+    'Éco-conception': 'Approche de développement visant à optimiser chaque étape du cycle de vie des services numériques, conciliant performance et sobriété.',
+    'UX/UI': 'Design d\'interfaces intuitives qui améliorent l\'efficacité des utilisateurs et réduisent les frictions dans les parcours utilisateurs.'
+  },
+  
+  en: {
+    // Frontend
+    'Astro': 'Modern web framework generating primarily static HTML, offering excellent performance and an optimized developer experience.',
+    'CSS Pro': 'Advanced CSS techniques for responsive design and smooth animations, reducing reliance on resource-intensive JavaScript.',
+    'TypeScript': 'Typed superset of JavaScript for more robust and maintainable code, reducing errors and technical debt.',
+    'HTMX': 'Lightweight solution adding dynamic functionality directly in HTML, without the overhead of complex JavaScript frameworks.',
+    'Alpine.js': 'Tiny JavaScript framework (< 10kB) offering reactive behaviors without unnecessary overhead, ideal for optimized projects.',
+    'Tailwind': 'Utility-first CSS framework that optimizes stylesheet size in production by keeping only the classes actually used.',
+    
+    // Backend
+    'Express': 'Minimalist Node.js framework offering excellent performance even under heavy load.',
+    'WebSocket': 'Bidirectional communication protocol enabling more efficient exchanges than traditional HTTP requests.',
+    'Elixir': 'Functional language designed for concurrency, ideal for high-performance applications with optimal resource utilization.',
+    'Phoenix': 'High-performance Elixir framework capable of handling thousands of simultaneous connections with a reduced server footprint.',
+    
+    // Databases
+    'PostgreSQL': 'Open-source relational DBMS offering an excellent features-to-performance ratio with advanced optimizations.',
+    'MongoDB': 'NoSQL document database enabling data flexibility and schemas adapted to actual needs.',
+    'PostgREST': 'Automatically transforms a PostgreSQL database into a RESTful API, accelerating backend development and maintenance.',
+    'Ecto': 'Elixir library for database interaction, optimizing queries for maximum performance.',
+    
+    // Tools
+    'Git': 'Distributed version control system enabling efficient collaborative development and precise tracking of changes.',
+    'Docker': 'Containerization platform providing identical development/production environments optimized for resources.',
+    'VS Code': 'Lightweight and extensible code editor, enhancing productivity while remaining performant on all types of machines.',
+    'Lighthouse': 'Essential audit tool for measuring and improving performance, accessibility and energy efficiency of web applications.',
+    
+    // Methodologies
+    'Accessibility': 'Designing interfaces usable by everyone, including people with disabilities, for an inclusive web and broader audience.',
+    'Performance': 'Systematic optimization reducing loading times and resource usage, improving user experience and SEO.',
+    'Eco-design': 'Development approach aimed at optimizing each step of the digital service lifecycle, balancing performance and efficiency.',
+    'UX/UI': 'Designing intuitive interfaces that improve user efficiency and reduce friction in user journeys.'
+  },
+  
+  de: {
+    // Frontend
+    'Astro': 'Modernes Web-Framework, das hauptsächlich statisches HTML generiert und hervorragende Leistung bei optimaler Entwicklererfahrung bietet.',
+    'CSS Pro': 'Fortgeschrittene CSS-Techniken für responsive Designs und flüssige Animationen, die den Einsatz ressourcenintensiver JavaScript-Lösungen reduzieren.',
+    'TypeScript': 'Typisierte Erweiterung von JavaScript für robusteren und wartbaren Code, reduziert Fehler und technische Schulden.',
+    'HTMX': 'Leichtgewichtige Lösung, die dynamische Funktionalität direkt im HTML ermöglicht, ohne den Overhead komplexer JavaScript-Frameworks.',
+    'Alpine.js': 'Kompaktes JavaScript-Framework (< 10kB) für reaktives Verhalten ohne unnötigen Overhead, ideal für optimierte Projekte.',
+    'Tailwind': 'Utility-First CSS-Framework, das die Stylesheet-Größe in der Produktion optimiert, indem nur tatsächlich verwendete Klassen beibehalten werden.',
+    
+    // Backend
+    'Express': 'Minimalistisches Node.js-Framework, das auch unter hoher Last hervorragende Leistung bietet.',
+    'WebSocket': 'Bidirektionales Kommunikationsprotokoll, das effizientere Datenübertragungen als herkömmliche HTTP-Anfragen ermöglicht.',
+    'Elixir': 'Funktionale Sprache für Nebenläufigkeit, ideal für Hochleistungsanwendungen mit optimaler Ressourcennutzung.',
+    'Phoenix': 'Leistungsstarkes Elixir-Framework, das Tausende gleichzeitiger Verbindungen mit reduziertem Serververbrauch verarbeiten kann.',
+    
+    // Datenbanken
+    'PostgreSQL': 'Open-Source-Relationales Datenbanksystem mit ausgezeichnetem Verhältnis zwischen Funktionen und Leistung und fortschrittlichen Optimierungen.',
+    'MongoDB': 'NoSQL-Dokumentendatenbank, die Datenflexibilität und an tatsächliche Bedürfnisse angepasste Schemas ermöglicht.',
+    'PostgREST': 'Verwandelt automatisch eine PostgreSQL-Datenbank in eine RESTful-API und beschleunigt Backend-Entwicklung und Wartung.',
+    'Ecto': 'Elixir-Bibliothek für Datenbankinteraktion, die Abfragen für maximale Leistung optimiert.',
+    
+    // Werkzeuge
+    'Git': 'Verteiltes Versionskontrollsystem für effiziente kollaborative Entwicklung und präzise Änderungsverfolgung.',
+    'Docker': 'Containerisierungsplattform, die identische Entwicklungs-/Produktionsumgebungen mit optimierter Ressourcennutzung bietet.',
+    'VS Code': 'Leichtgewichtiger und erweiterbarer Code-Editor, der die Produktivität steigert und gleichzeitig auf allen Arten von Maschinen leistungsfähig bleibt.',
+    'Lighthouse': 'Wesentliches Audit-Tool zur Messung und Verbesserung von Leistung, Barrierefreiheit und Energieeffizienz von Webanwendungen.',
+    
+    // Methoden
+    'Barrierefreiheit': 'Gestaltung von Schnittstellen, die von allen genutzt werden können, auch von Menschen mit Behinderungen, für ein inklusives Web und ein breiteres Publikum.',
+    'Performance': 'Systematische Optimierung zur Reduzierung von Ladezeiten und Ressourcennutzung, verbessert Benutzererfahrung und SEO.',
+    'Öko-Design': 'Entwicklungsansatz zur Optimierung jeder Phase des Lebenszyklus digitaler Dienste, der Leistung und Effizienz in Einklang bringt.',
+    'UX/UI': 'Design intuitiver Benutzeroberflächen, die die Benutzereffizienz verbessern und Reibungspunkte in Benutzerabläufen reduzieren.'
+  }
+};
+
+// Fonction pour obtenir la description d'une compétence
+const getDescription = (skill: string): string => {
+  // Vérifie si la compétence existe dans l'objet descriptions pour la langue actuelle
+  if (lang in descriptions && skill in descriptions[lang]) {
+    return descriptions[lang][skill];
+  }
+  return '';
+};
+---
+
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+  {skills.map(skill => (
+    <div class="bg-secondary bg-opacity-30 p-5 rounded-lg">
+      <h3 class="text-lg font-semibold mb-4 text-accent">{skill.category}</h3>
+      <div class="space-y-6">
+        {skill.items.map(item => (
+          <div class="mb-4">
+            <div class="font-medium mb-1">{item}</div>
+            <p class="text-text-muted text-sm">{getDescription(item)}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  ))}
+</div>

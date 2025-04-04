@@ -4,6 +4,8 @@ import Layout from '../../layouts/layout.astro';
 import { Picture } from 'astro:assets';
 import monImage from '../../assets/j.jpg';
 import CtaDispo from '../../components/cta_dispo.astro';
+// Import du nouveau composant de compétences
+import SkillsWithDescriptions from '../../components/skills_with_descriptions.astro';
 
 // Récupérer le paramètre de langue depuis l'URL
 export function getStaticPaths() {
@@ -251,23 +253,12 @@ const skills = [
       </div>
     </section>
 
-    <!-- Section compétences -->
+    <!-- Section compétences avec le nouveau composant -->
     <section class="mb-12">
       <h2 class="text-2xl font-bold mb-6 border-b border-accent pb-2">
         {t.skillsTitle}
       </h2>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        {skills.map(skill => (
-          <div class="bg-secondary bg-opacity-30 p-5 rounded-lg">
-            <h3 class="text-lg font-semibold mb-3 text-accent">{skill.category}</h3>
-            <div class="flex flex-wrap gap-2">
-              {skill.items.map(item => (
-                <span class="px-3 py-1 bg-secondary rounded-full text-sm">{item}</span>
-              ))}
-            </div>
-          </div>
-        ))}
-      </div>
+      <SkillsWithDescriptions lang={lang} skills={skills} />
     </section>
 
     <!-- Section expérience -->
