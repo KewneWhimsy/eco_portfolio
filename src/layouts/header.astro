@@ -33,16 +33,19 @@ const navLabels = {
   fr: {
     projects: 'Projets',
     about: 'À propos',
+    network: 'Réseau',
     contact: 'Contact'
   },
   en: {
     projects: 'Projects',
     about: 'About',
+    network: 'Network',
     contact: 'Contact'
   },
   de: {
     projects: 'Projekte',
     about: 'Über mich',
+    network: 'Netzwerk',
     contact: 'Kontakt'
   }
 };
@@ -78,6 +81,14 @@ const labels = navLabels[currentLang as keyof typeof navLabels] || navLabels.fr;
               class={`nav-link whitespace-nowrap ${pathname.includes('/about') ? 'nav-link-active' : ''}`}
             >
               {labels.about}
+            </a>
+          </li>
+          <li>
+            <a 
+              href={isEcoMode ? `/${currentLang}/network/eco` : `/${currentLang}/network`} 
+              class={`nav-link ${pathname.includes('/network') ? 'nav-link-active' : ''}`}
+            >
+              {labels.network}
             </a>
           </li>
           <li>

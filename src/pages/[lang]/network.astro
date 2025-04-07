@@ -1,0 +1,190 @@
+---
+import Layout from '../../layouts/layout.astro';
+import { Picture } from 'astro:assets';
+import jadeImage from '../../assets/network/jade.jpeg';
+import ninoImage from '../../assets/network/nino.jpg';
+import francoisImage from '../../assets/network/francois.jpg';
+import violetteImage from '../../assets/network/violette.jpeg';
+
+export function getStaticPaths() {
+  return [
+    { params: { lang: "fr" } },
+    { params: { lang: "en" } },
+    { params: { lang: "de" } },
+  ];
+}
+
+const lang = Astro.params.lang as "fr" | "en" | "de";
+
+const content = {
+  fr: {
+    title: 'Josselin HANEL - Mon réseau professionnel',
+    description: 'Découvrez mon réseau de collaborateurs professionnels et les talents avec qui je travaille régulièrement.',
+    networkTitle: 'Mon réseau professionnel',
+    networkIntro: "Voici les talentueux professionnels avec qui je collabore. Si vous recherchez une équipe complète pour votre projet, n'hésitez pas à me contacter pour établir des connections.",
+    viewWork: "Voir le travail",
+    contactCTA: "Vous êtes à la recherche d'une équipe complète pour votre projet ?",
+    contactButton: "Discutons-en"
+  },
+  en: {
+    title: 'Josselin HANEL - My professional network',
+    description: 'Discover my network of professional collaborators and talents I work with regularly.',
+    networkTitle: 'My professional network',
+    networkIntro: "Here are the talented professionals I collaborate with. If you're looking for a complete team for your project, feel free to contact me to establish connections.",
+    viewWork: "View work",
+    contactCTA: "Are you looking for a complete team for your project?",
+    contactButton: "Let's discuss"
+  },
+  de: {
+    title: 'Josselin HANEL - Mein berufliches Netzwerk',
+    description: 'Entdecken Sie mein Netzwerk von professionellen Mitarbeitern und Talenten, mit denen ich regelmäßig arbeite.',
+    networkTitle: 'Mein berufliches Netzwerk',
+    networkIntro: "Hier sind die talentierten Fachleute, mit denen ich zusammenarbeite. Wenn Sie nach einem kompletten Team für Ihr Projekt suchen, können Sie mich gerne kontaktieren, um Verbindungen herzustellen.",
+    viewWork: "Arbeit ansehen",
+    contactCTA: "Suchen Sie nach einem kompletten Team für Ihr Projekt?",
+    contactButton: "Lassen Sie uns darüber sprechen"
+  }
+};
+
+const t = content[lang] || content.fr;
+
+const collaborators = [
+  {
+    name: 'Jade Ounaphom',
+    image: jadeImage,
+    title: lang === 'fr' ? 'Designer UI/UX & Créatrice audiovisuelle' : 
+           lang === 'en' ? 'UI/UX Designer & Audiovisual Creator' : 
+           'UI/UX Designer & Audiovisuelle Gestalterin',
+    description: lang === 'fr' ? 
+      'Jade apporte une vision unique aux projets numériques grâce à sa double compétence en design et en création audiovisuelle.' : 
+      lang === 'en' ? 
+      'Jade brings a unique vision to digital projects thanks to her dual expertise in design and audiovisual creation.' : 
+      'Jade bringt mit ihrer Doppelkompetenz in Design und audiovisueller Gestaltung eine einzigartige Vision in digitale Projekte ein.',
+    skills: ['UI/UX Design', 'Figma', 'Adobe CC', 'Motion Design'],
+    portfolio: 'https://jadephom.myportfolio.com/'
+  },
+  {
+  name: 'Nino Leskargo',
+  image: ninoImage,
+  title: lang === 'fr' ? 'Tatoueur & Illustrateur' :
+         lang === 'en' ? 'Tattoo Artist & Illustrator' :
+         'Tätowierer & Illustrator',
+  description: lang === 'fr' ?
+    'Nino combine un style unique mêlant réalisme ultra-précis et esthétique graff/cartoon dans ses tatouages, avec un talent d’illustrateur 2D polyvalent.' :
+    lang === 'en' ?
+    'Nino blends precise realism with graffiti/cartoon aesthetics in his tattoos, showing versatile talent as a 2D illustrator.' :
+    'Nino kombiniert präzisen Realismus mit Graffiti- und Cartoon-Ästhetik in seinen Tattoos und zeigt sich als vielseitiger 2D-Illustrator.',
+  skills: ['Tattoo Art', '2D Illustration', 'Graffiti', 'Urban Art'],
+  portfolio: 'https://www.instagram.com/nino_leskargo'
+},
+  {
+    name: 'Violette Dubois',
+    image: violetteImage,
+    title: lang === 'fr' ? 'Cheffe de Projet Web & Automatisation No-Code' :
+           lang === 'en' ? 'Web Project Manager & No-Code Automation Expert' :
+           'Web-Projektleiterin & No-Code-Automatisierungsexpertin',
+    description: lang === 'fr' ?
+      'Violette a travaillé plusieurs années dans les castings TV avant de se tourner vers le web. Diplômée en com’, elle s’est initiée au code via la prépa 42 et gère des projets en s’appuyant sur des outils comme Zapier ou Notion.' :
+      lang === 'en' ?
+      'Violette worked for years in TV casting before moving into web projects. With a background in comms and a 42 prep in coding, she now drives projects using tools like Zapier and Notion.' :
+      'Violette war mehrere Jahre im TV-Casting tätig, bevor sie ins Web wechselte. Mit einem Abschluss in Kommunikation und Coding-Erfahrung von 42 steuert sie Projekte mit Tools wie Zapier und Notion.',
+    skills: ['Gestion de projet', 'No-code (Zapier, Notion)', 'Communication', 'Organisation', 'Initiation au code (42)'],
+    portfolio: 'https://www.linkedin.com/in/violette-dubois-02169b139'
+  },
+  {
+    name: 'François Bourdin',
+    image: francoisImage,
+    title: lang === 'fr' ? 'Character Designer & Concept Artist' : 
+           lang === 'en' ? 'Character Designer & Concept Artist' : 
+           'Character Designer & Concept Artist',
+    description: lang === 'fr' ? 
+      'François apporte une expertise artistique pointue dans le design de personnages et le design conceptuel, avec une efficacité et un style moderne reconnus dans l\'industrie de l\'animation.' : 
+      lang === 'en' ? 
+      'François brings sharp artistic expertise in character and concept design, with recognized efficiency and a modern style in the animation industry.' : 
+      'François bringt scharfe künstlerische Expertise im Character- und Concept Design mit anerkannter Effizienz und modernem Stil in der Animationsindustrie.',
+    skills: ['Character Design', 'Concept Art', 'Animation', 'Illustration'],
+    portfolio: 'https://www.artstation.com/franoisbourdin'
+  },
+  
+
+];
+---
+
+<Layout title={t.title} description={t.description} lang={lang}>
+  <div class="container mx-auto px-4 py-8">
+    <h1 class="text-3xl font-bold mb-6 border-b border-accent pb-2">
+      {t.networkTitle}
+    </h1>
+    
+    <p class="text-lg mb-10 max-w-4xl">
+      {t.networkIntro}
+    </p>
+
+    <!-- Grille de collaborateurs -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
+      {collaborators.map((person, index) => (
+        <div class="bg-secondary bg-opacity-30 rounded-lg overflow-hidden border border-secondary hover:border-accent transition-all duration-300 flex flex-col">
+          <div class="p-5 flex-1 flex flex-col">
+            <!-- En-tête de la carte avec photo -->
+            <div class="flex items-center gap-4 mb-4">
+                {person.image && (
+  <div class="w-16 h-16 rounded-full overflow-hidden">
+    <Picture
+      src={person.image}
+      width={80}
+      height={80}
+      alt={person.name}
+      class="w-full h-full object-cover"
+    />
+  </div>
+)}
+              <div>
+                <h3 class="text-lg font-bold">{person.name}</h3>
+                <p class="text-accent text-sm">{person.title}</p>
+              </div>
+            </div>
+            
+            <!-- Description -->
+            <p class="mb-4">{person.description}</p>
+            
+            <!-- Compétences -->
+            <div class="mb-4">
+              <div class="flex flex-wrap gap-1.5">
+                {person.skills.map(skill => (
+                  <span class="px-2 py-0.5 bg-secondary bg-opacity-50 rounded-full text-xs">
+                    {skill}
+                  </span>
+                ))}
+              </div>
+            </div>
+            
+            <!-- Boutons liens -->
+            <div class="flex flex-wrap gap-2 mt-auto">
+              {person.portfolio && (
+                <a 
+                  href={person.portfolio} 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  class="btn-secondary text-xs px-3 py-1"
+                >
+                  {t.viewWork}
+                </a>
+              )}
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+    
+    <!-- Section CTA -->
+    <section class="py-8 bg-secondary bg-opacity-30 rounded-lg text-center">
+      <h2 class="text-2xl font-bold mb-4 sm:px-1">{t.contactCTA}</h2>
+      <a 
+        href={`/${lang}/contact`}
+        class="cta-button" 
+      >
+        {t.contactButton}
+      </a>
+    </section>
+  </div>
+</Layout>
