@@ -1,4 +1,5 @@
 ---
+// Import du layout avec mode éco activé
 import Layout from '../../../layouts/layout.astro';
 import { Picture } from 'astro:assets';
 import jadeImage from '../../../assets/network/jade.jpeg';
@@ -18,36 +19,43 @@ const lang = Astro.params.lang as "fr" | "en" | "de";
 
 const content = {
   fr: {
-    title: 'Josselin HANEL - Mon réseau professionnel',
-    description: 'Découvrez mon réseau de collaborateurs professionnels et les talents avec qui je travaille régulièrement.',
+    title: 'Josselin HANEL - Mon réseau professionnel (Mode Éco)',
+    description: 'Version éco-responsable de ma page réseau, découvrez mes collaborateurs avec une empreinte carbone minimale.',
     networkTitle: 'Mon réseau professionnel',
-    networkIntro: "Voici les talentueux professionnels avec qui je collabore. Si vous recherchez une équipe complète pour votre projet, n'hésitez pas à me contacter pour établir des connections.",
+    networkIntro: "Voici les talentueux professionnels avec qui je collabore. Si vous recherchez une équipe complète pour votre projet, n'hésitez pas à me contacter.",
     viewWork: "Voir le travail",
     contactCTA: "Vous êtes à la recherche d'une équipe complète pour votre projet ?",
-    contactButton: "Discutons-en"
+    contactButton: "Discutons-en",
+    ecoModeTitle: "Mode Éco activé",
+    ecoModeText: "Vous consultez actuellement la version ultra-légère de mon portfolio."
   },
   en: {
-    title: 'Josselin HANEL - My professional network',
-    description: 'Discover my network of professional collaborators and talents I work with regularly.',
+    title: 'Josselin HANEL - My professional network (Eco Mode)',
+    description: 'Eco-friendly version of my network page, discover my collaborators with minimal carbon footprint.',
     networkTitle: 'My professional network',
-    networkIntro: "Here are the talented professionals I collaborate with. If you're looking for a complete team for your project, feel free to contact me to establish connections.",
+    networkIntro: "Here are the talented professionals I collaborate with. If you're looking for a complete team for your project, feel free to contact me.",
     viewWork: "View work",
     contactCTA: "Are you looking for a complete team for your project?",
-    contactButton: "Let's discuss"
+    contactButton: "Let's discuss",
+    ecoModeTitle: "Eco Mode activated",
+    ecoModeText: "You are currently viewing the ultra-lightweight version of my portfolio."
   },
   de: {
-    title: 'Josselin HANEL - Mein berufliches Netzwerk',
-    description: 'Entdecken Sie mein Netzwerk von professionellen Mitarbeitern und Talenten, mit denen ich regelmäßig arbeite.',
+    title: 'Josselin HANEL - Mein berufliches Netzwerk (Öko-Modus)',
+    description: 'Umweltfreundliche Version meiner Netzwerkseite, entdecken Sie meine Mitarbeiter mit minimalem CO2-Fußabdruck.',
     networkTitle: 'Mein berufliches Netzwerk',
-    networkIntro: "Hier sind die talentierten Fachleute, mit denen ich zusammenarbeite. Wenn Sie nach einem kompletten Team für Ihr Projekt suchen, können Sie mich gerne kontaktieren, um Verbindungen herzustellen.",
+    networkIntro: "Hier sind die talentierten Fachleute, mit denen ich zusammenarbeite. Wenn Sie nach einem kompletten Team für Ihr Projekt suchen, können Sie mich gerne kontaktieren.",
     viewWork: "Arbeit ansehen",
     contactCTA: "Suchen Sie nach einem kompletten Team für Ihr Projekt?",
-    contactButton: "Lassen Sie uns darüber sprechen"
+    contactButton: "Lassen Sie uns darüber sprechen",
+    ecoModeTitle: "Öko-Modus aktiviert",
+    ecoModeText: "Sie sehen gerade die ultraleichte Version meines Portfolios."
   }
 };
 
 const t = content[lang] || content.fr;
 
+// Collaborateurs avec images mais descriptions simplifiées
 const collaborators = [
   {
     name: 'Jade Ounaphom',
@@ -60,23 +68,23 @@ const collaborators = [
       lang === 'en' ? 
       'Jade brings a unique vision to digital projects thanks to her dual expertise in design and audiovisual creation.' : 
       'Jade bringt mit ihrer Doppelkompetenz in Design und audiovisueller Gestaltung eine einzigartige Vision in digitale Projekte ein.',
-    skills: ['UI/UX Design', 'Figma', 'Adobe CC', 'Motion Design'],
+    skills: 'UI/UX Design, Figma, Adobe CC, Motion Design',
     portfolio: 'https://jadephom.myportfolio.com/'
   },
   {
-  name: 'Nino Leskargo',
-  image: ninoImage,
-  title: lang === 'fr' ? 'Tatoueur & Illustrateur' :
-         lang === 'en' ? 'Tattoo Artist & Illustrator' :
-         'Tätowierer & Illustrator',
-  description: lang === 'fr' ?
-    'Nino combine un style unique mêlant réalisme ultra-précis et esthétique graff/cartoon dans ses tatouages, avec un talent d’illustrateur 2D polyvalent.' :
-    lang === 'en' ?
-    'Nino blends precise realism with graffiti/cartoon aesthetics in his tattoos, showing versatile talent as a 2D illustrator.' :
-    'Nino kombiniert präzisen Realismus mit Graffiti- und Cartoon-Ästhetik in seinen Tattoos und zeigt sich als vielseitiger 2D-Illustrator.',
-  skills: ['Tattoo Art', '2D Illustration', 'Graffiti', 'Urban Art'],
-  portfolio: 'https://www.instagram.com/nino_leskargo'
-},
+    name: 'Nino Leskargo',
+    image: ninoImage,
+    title: lang === 'fr' ? 'Tatoueur & Illustrateur' :
+           lang === 'en' ? 'Tattoo Artist & Illustrator' :
+           'Tätowierer & Illustrator',
+    description: lang === 'fr' ?
+      'Nino combine un style unique mêlant réalisme et esthétique graff/cartoon dans ses tatouages et illustrations.' :
+      lang === 'en' ?
+      'Nino blends precise realism with graffiti/cartoon aesthetics in his tattoos and illustrations.' :
+      'Nino kombiniert Realismus mit Graffiti- und Cartoon-Ästhetik in seinen Tattoos und Illustrationen.',
+    skills: 'Tattoo Art, 2D Illustration, Graffiti, Urban Art',
+    portfolio: 'https://www.instagram.com/nino_leskargo'
+  },
   {
     name: 'Violette Dubois',
     image: violetteImage,
@@ -84,11 +92,11 @@ const collaborators = [
            lang === 'en' ? 'Web Project Manager & No-Code Automation Expert' :
            'Web-Projektleiterin & No-Code-Automatisierungsexpertin',
     description: lang === 'fr' ?
-      'Violette a travaillé plusieurs années dans les castings TV avant de se tourner vers le web. Diplômée en com’, elle s’est initiée au code via la prépa 42 et gère des projets en s’appuyant sur des outils comme Zapier ou Notion.' :
+      'Violette a travaillé dans les castings TV avant de se tourner vers le web. Elle gère des projets en s\'appuyant sur des outils comme Zapier ou Notion.' :
       lang === 'en' ?
-      'Violette worked for years in TV casting before moving into web projects. With a background in comms and a 42 prep in coding, she now drives projects using tools like Zapier and Notion.' :
-      'Violette war mehrere Jahre im TV-Casting tätig, bevor sie ins Web wechselte. Mit einem Abschluss in Kommunikation und Coding-Erfahrung von 42 steuert sie Projekte mit Tools wie Zapier und Notion.',
-    skills: ['Gestion de projet', 'No-code (Zapier, Notion)', 'Communication', 'Organisation', 'Initiation au code (42)'],
+      'Violette worked in TV casting before moving into web projects. She drives projects using tools like Zapier and Notion.' :
+      'Violette war im TV-Casting tätig, bevor sie ins Web wechselte. Sie steuert Projekte mit Tools wie Zapier und Notion.',
+    skills: 'Gestion de projet, No-code (Zapier, Notion), Communication, Organisation',
     portfolio: 'https://www.linkedin.com/in/violette-dubois-02169b139'
   },
   {
@@ -98,89 +106,85 @@ const collaborators = [
            lang === 'en' ? 'Character Designer & Concept Artist' : 
            'Character Designer & Concept Artist',
     description: lang === 'fr' ? 
-      'François apporte une expertise artistique pointue dans le design de personnages et le design conceptuel, avec une efficacité et un style moderne reconnus dans l\'industrie de l\'animation.' : 
+      'François apporte une expertise artistique pointue dans le design de personnages et le design conceptuel pour l\'industrie de l\'animation.' : 
       lang === 'en' ? 
-      'François brings sharp artistic expertise in character and concept design, with recognized efficiency and a modern style in the animation industry.' : 
-      'François bringt scharfe künstlerische Expertise im Character- und Concept Design mit anerkannter Effizienz und modernem Stil in der Animationsindustrie.',
-    skills: ['Character Design', 'Concept Art', 'Animation', 'Illustration'],
+      'François brings artistic expertise in character and concept design for the animation industry.' : 
+      'François bringt künstlerische Expertise im Character- und Concept Design für die Animationsindustrie mit.',
+    skills: 'Character Design, Concept Art, Animation, Illustration',
     portfolio: 'https://www.artstation.com/franoisbourdin'
   },
-  
-
 ];
+
+// Mode éco activé
+const isEcoMode = true;
 ---
 
-<Layout title={t.title} description={t.description} lang={lang}>
-  <div class="container mx-auto px-4 py-8">
-    <h1 class="text-3xl font-bold mb-6 border-b border-accent pb-2">
+<Layout title={t.title} description={t.description} lang={lang} isEcoMode={isEcoMode}>
+  <div class="container mx-auto px-4 py-6">
+    <!-- Section d'introduction du mode éco -->
+    <section class="py-4 border-b border-secondary mb-6">
+      <h2 class="text-xl font-bold mb-2">{t.ecoModeTitle}</h2>
+      <p class="mb-3">
+        {t.ecoModeText}
+      </p>
+    </section>
+
+    <h1 class="text-2xl font-bold mb-4 border-b border-accent pb-2">
       {t.networkTitle}
     </h1>
     
-    <p class="text-lg mb-10 max-w-4xl">
+    <p class="mb-6">
       {t.networkIntro}
     </p>
 
-    <!-- Grille de collaborateurs -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
-      {collaborators.map((person, index) => (
-        <div class="bg-secondary bg-opacity-30 rounded-lg overflow-hidden border border-secondary hover:border-accent transition-all duration-300 flex flex-col">
-          <div class="p-5 flex-1 flex flex-col">
-            <!-- En-tête de la carte avec photo -->
-            <div class="flex items-center gap-4 mb-4">
-                {person.image && (
-  <div class="w-16 h-16 rounded-full overflow-hidden">
-    <Picture
-      src={person.image}
-      width={80}
-      height={80}
-      alt={person.name}
-      class="w-full h-full object-cover"
-    />
-  </div>
-)}
+    <!-- Grille de collaborateurs simplifiée -->
+    <section class="mb-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {collaborators.map(person => (
+          <div class="border border-secondary rounded-lg p-4">
+            <!-- En-tête avec photo plus petite -->
+            <div class="flex items-center gap-3 mb-3">
+              <Picture
+                src={person.image}
+                width={60}
+                height={60}
+                alt={person.name}
+                class="w-12 h-12 rounded-full object-cover"
+                loading="lazy"
+              />
               <div>
-                <h3 class="text-lg font-bold">{person.name}</h3>
+                <h3 class="font-bold">{person.name}</h3>
                 <p class="text-accent text-sm">{person.title}</p>
               </div>
             </div>
             
             <!-- Description -->
-            <p class="mb-4">{person.description}</p>
+            <p class="mb-3 text-sm">{person.description}</p>
             
-            <!-- Compétences -->
-            <div class="mb-4">
-              <div class="flex flex-wrap gap-1.5">
-                {person.skills.map(skill => (
-                  <span class="px-2 py-0.5 bg-secondary bg-opacity-50 rounded-full text-xs">
-                    {skill}
-                  </span>
-                ))}
-              </div>
-            </div>
+            <!-- Compétences en texte simple -->
+            <p class="text-text-muted text-xs mb-3">{person.skills}</p>
             
-            <!-- Boutons liens -->
-            <div class="flex flex-wrap gap-2 mt-auto">
-              {person.portfolio && (
-                <a 
-                  href={person.portfolio} 
-                  target="_blank" 
-                  rel="noopener noreferrer" 
-                  class="btn-secondary text-xs px-3 py-1"
-                >
-                  {t.viewWork}
-                </a>
-              )}
-            </div>
+            <!-- Lien du portfolio simplifié -->
+            {person.portfolio && (
+              <a 
+                href={person.portfolio} 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                class="text-link text-sm"
+              >
+                {t.viewWork}
+              </a>
+            )}
           </div>
-        </div>
-      ))}
-    </div>
+        ))}
+      </div>
+    </section>
     
-    <!-- Section CTA -->
-    <section class="py-8 bg-secondary bg-opacity-30 rounded-lg text-center">
-      <h2 class="text-2xl font-bold mb-4 sm:px-2">{t.contactCTA}</h2>
+    <!-- Section CTA simplifiée -->
+    <section class="py-6 border-t border-secondary text-center">
+      <h2 class="text-xl font-bold mb-4">{t.contactCTA}</h2>
       <a 
-        href={`/${lang}/contact`}
+        href={`/${lang}/contact/eco`}
         class="cta-button" 
       >
         {t.contactButton}
