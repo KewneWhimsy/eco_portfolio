@@ -25,7 +25,12 @@ const content = {
     ecoDesignTitle: 'Éco-conception web',
     ecoDesignText: "L'éco-conception web vise à réduire l'impact environnemental des sites et applications tout en préservant une expérience utilisateur de qualité.",
     ecoModeTitle: 'Mode Éco activé',
-    ecoModeText: 'Vous consultez actuellement la version ultra-légère de mon portfolio.'
+    ecoModeText: 'Vous consultez actuellement la version ultra-légère de mon portfolio.',
+    upcomingTitle: 'Projets à venir',
+    upcomingIntro: 'Voici un aperçu des projets sur lesquels je travaille actuellement :',
+    inDevelopment: 'En développement',
+    waitingForContent: 'En attente de contenu',
+    creatingDocumentation: 'Création du dossier de projet'
   },
   en: {
     title: 'Josselin HANEL - Projects (Eco Mode)',
@@ -37,7 +42,12 @@ const content = {
     ecoDesignTitle: 'Web eco-design',
     ecoDesignText: "Web eco-design aims to reduce the environmental impact of websites and applications while preserving a quality user experience.",
     ecoModeTitle: 'Eco Mode activated',
-    ecoModeText: 'You are currently viewing the ultra-lightweight version of my portfolio.'
+    ecoModeText: 'You are currently viewing the ultra-lightweight version of my portfolio.',
+    upcomingTitle: 'Upcoming Projects',
+    upcomingIntro: 'Here\'s a preview of projects I\'m currently working on:',
+    inDevelopment: 'In development',
+    waitingForContent: 'Waiting for content',
+    creatingDocumentation: 'Creating project documentation'
   },
   de: {
     title: 'Josselin HANEL - Projekte (Öko-Modus)',
@@ -49,7 +59,12 @@ const content = {
     ecoDesignTitle: 'Web-Öko-Design',
     ecoDesignText: "Web-Öko-Design zielt darauf ab, die Umweltauswirkungen von Websites und Anwendungen zu reduzieren und gleichzeitig ein qualitativ hochwertiges Benutzererlebnis zu bewahren.",
     ecoModeTitle: 'Öko-Modus aktiviert',
-    ecoModeText: 'Sie sehen gerade die ultraleichte Version meines Portfolios.'
+    ecoModeText: 'Sie sehen gerade die ultraleichte Version meines Portfolios.',
+    upcomingTitle: 'Kommende Projekte',
+    upcomingIntro: 'Hier ein Einblick in Projekte, an denen ich derzeit arbeite:',
+    inDevelopment: 'In Entwicklung',
+    waitingForContent: 'Warten auf Inhalt',
+    creatingDocumentation: 'Erstellung der Projektdokumentation'
   }
 };
 
@@ -64,7 +79,7 @@ const projects = [
       'Bibliothèque d\'objets - Quimper' :
       (lang === 'en' ? 
         'Object Library - Quimper' : 
-        'Quimper Objektbibliothek'),
+        'Objektbibliothek - Quimper'),
     description: lang === 'fr' ? 
       'Conçu en collaboration avec <a href="https://jadephom.myportfolio.com/" target="_blank" rel="noopener" class="text-link">Jade Ounaphom</a>, créatrice audiovisuelle, le site met en avant le fonctionnement de la bibliothèque d\'objets et ses actualités.' :
       (lang === 'en' ? 
@@ -100,7 +115,41 @@ const projects = [
       (lang === 'en' ? 
         'My personal portfolio with eco-mode, multilingual, and designed following web eco-design principles.' : 
         'Mein persönliches Portfolio mit Öko-Modus, mehrsprachig und nach den Prinzipien des Web-Öko-Designs gestaltet.'),
-    tech: ['Astro', 'TailwindCSS', 'TypeScript'],
+    tech: ['Astro', 'Alpine.js', 'TailwindCSS'],
+  }
+];
+
+// Projets à venir (version simplifiée pour le mode éco)
+const upcomingProjects = [
+  {
+    title: lang === 'fr' ? 
+      'Portfolio et boutique en ligne pour un artiste' :
+      (lang === 'en' ? 
+        'Portfolio + E-shop for an Artist Friend' : 
+        'Portfolio und Online-Shop für einen Künstlerfreund'),
+    description: lang === 'fr' ? 
+      'Je développe un portfolio minimaliste et une boutique en ligne pour un ami artiste qui crée de l\'art numérique et physique. La boutique est discrète — cachée des parties non commerciales du site.' :
+      (lang === 'en' ? 
+        'I\'m building a minimalist portfolio and online store for a friend who creates digital and physical art. The shop is discreet — hidden from the non-commercial parts of the site.' : 
+        'Ich entwickle ein minimalistisches Portfolio und einen Online-Shop für einen befreundeten Künstler, der digitale und physische Kunst schafft. Der Shop ist diskret – versteckt von den nicht-kommerziellen Teilen der Website.'),
+    tech: 'Astro, Tailwind, Stripe API, Alpine.js',
+    status1: t.inDevelopment,
+    status2: t.waitingForContent
+  },
+  {
+    title: lang === 'fr' ? 
+      'Jeu web asynchrone avec chat en temps réel' :
+      (lang === 'en' ? 
+        'Online Asynchronous Webgame with Real-time Chat' : 
+        'Asynchrones Online-Webspiel mit Echtzeit-Chat'),
+    description: lang === 'fr' ? 
+      'Sur la base de mon projet "Application e-sport avec chat", je travaille sur un jeu de stratégie sociale en ligne inspiré de "La Cosa Nostra", mais sans aléatoire — uniquement des prises de décision humaines, brutes et chaotiques.' :
+      (lang === 'en' ? 
+        'Based on my "E-sport Application with Chat" project, I\'m working on an online social strategy game inspired by "La Cosa Nostra", but with no randomness — only raw, chaotic, human decision-making.' : 
+        'Basierend auf meinem Projekt "E-Sport-Anwendung mit Chat" arbeite ich an einem Online-Strategiespiel inspiriert von "La Cosa Nostra", aber ohne Zufälligkeit – nur rohe, chaotische, menschliche Entscheidungsfindung.'),
+    tech: 'Astro, Tailwind, Alpine.js, HTMX, WebSocket, Express, MongoDB, anime.js',
+    status1: t.inDevelopment,
+    status2: t.creatingDocumentation
   }
 ];
 
@@ -128,7 +177,7 @@ const isEcoMode = true;
     
     <!-- Liste des projets simplifiée -->
     <section class="mb-8">
-      <ul class="space-y-6">
+      <ul class="space-y-6 max-w-5xl">
         {projects.map(project => (
           <li class="border-b border-secondary pb-4">
             <h3 class="text-xl font-semibold mb-2">{project.title}</h3>
@@ -142,14 +191,46 @@ const isEcoMode = true;
             </div>
             
             <!-- Liens simplifiés -->
-            <div class="flex gap-4">
-              <a 
-                href={project.url} 
-                class="text-link"
-                target="_blank"
-              >
-                {t.viewProject}
-              </a>
+            {project.url && (
+              <div class="flex gap-4">
+                <a 
+                  href={project.url} 
+                  class="text-link"
+                  target="_blank"
+                >
+                  {t.visitSite}
+                </a>
+              </div>
+            )}
+          </li>
+        ))}
+      </ul>
+    </section>
+    
+    <!-- Section Projets à venir (simplifiée pour mode éco) -->
+    <section class="mb-8 border-t border-secondary pt-6 max-w-5xl">
+      <h2 class="text-xl font-bold mb-4">
+        {t.upcomingTitle}
+      </h2>
+      
+      <p class="mb-4">
+        {t.upcomingIntro}
+      </p>
+      
+      <ul class="space-y-6">
+        {upcomingProjects.map(project => (
+          <li class="border-b border-secondary pb-4">
+            <h3 class="text-lg font-semibold mb-2">{project.title}</h3>
+            <p class="mb-3">{project.description}</p>
+            
+            <!-- Technologies simplifiées -->
+            <div class="mb-3">
+              <p class="text-text-muted text-sm">{project.tech}</p>
+            </div>
+            
+            <!-- Statuts simplifiés -->
+            <div class="text-xs text-text-muted">
+              {project.status1} • {project.status2}
             </div>
           </li>
         ))}
@@ -161,7 +242,7 @@ const isEcoMode = true;
       <h2 class="text-xl text-accent font-semibold mb-3">
         {t.ecoDesignTitle}
       </h2>
-      <p>
+      <p class="max-w-5xl">
         {t.ecoDesignText}
       </p>
     </section>

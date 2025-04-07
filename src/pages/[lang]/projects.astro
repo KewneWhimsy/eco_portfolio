@@ -44,6 +44,18 @@ const content = {
         description: 'Choix de technologies durables et bien maintenues, code modulaire et évolutif, architecture adaptable aux besoins futurs.'
       }
     ],
+    upcomingTitle: 'Projets à venir',
+    upcomingIntro: 'Voici un aperçu des projets sur lesquels je travaille actuellement :',
+    upcomingProjects: [
+      {
+        title: 'Portfolio et boutique en ligne pour un artiste',
+        description: 'Je développe un portfolio minimaliste et une boutique en ligne pour un ami artiste qui crée de l\'art numérique et physique. La boutique est discrète — cachée des parties non commerciales du site — et comprend un système de paiement Stripe simple pour les impressions, les packs d\'assets (pour Unreal Engine), les liens Buy Me a Coffee, et plus encore. L\'objectif est de garder l\'accent sur l\'art, sans le surcharger avec des éléments de e-commerce.'
+      },
+      {
+        title: 'Jeu web asynchrone avec chat en temps réel',
+        description: 'Sur la base de mon projet "Application e-sport avec chat", je travaille à le transformer en un jeu de stratégie sociale en ligne. Il est inspiré de "La Cosa Nostra", mais sans aléatoire — uniquement des prises de décision humaines, brutes et chaotiques. L\'ambiance est anarchique et rapide, et la direction visuelle est influencée par "Jet Set Radio Future" et le court métrage "Dead Leaves" — bruyant, punk et expressif.'
+      }
+    ],
     contactCTA: 'Vous avez un projet en tête ?',
     contactButton: 'Discutons-en'
   },
@@ -69,6 +81,18 @@ const content = {
       {
         title: 'Sustainability',
         description: 'Choice of durable and well-maintained technologies, modular and evolving code, architecture adaptable to future needs.'
+      }
+    ],
+    upcomingTitle: 'Upcoming Projects',
+    upcomingIntro: 'Here\'s a preview of projects I\'m currently working on:',
+    upcomingProjects: [
+      {
+        title: 'Portfolio + E-shop for an Artist Friend',
+        description: 'I\'m building a minimalist portfolio and online store for a friend who creates digital and physical art. The shop is discreet — hidden from the non-commercial parts of the site — and includes a simple Stripe checkout for prints, asset packs (for Unreal Engine), Buy Me a Coffee links, and more. The goal is to keep the focus on the art, not overwhelm it with e-commerce clutter.'
+      },
+      {
+        title: 'Online Asynchronous Webgame with Real-time Chat',
+        description: 'Based on my "E-sport Application with Chat" project, I\'m working on turning it into an online social strategy game. It\'s inspired by "La Cosa Nostra", but with no randomness — only raw, chaotic, human decision-making. The vibe is anarchic and fast-paced, and the visual direction is influenced by "Jet Set Radio Future" and the short film "Dead Leaves" — loud, punk, and expressive.'
       }
     ],
     contactCTA: 'Do you have a project in mind?',
@@ -98,6 +122,18 @@ const content = {
         description: 'Auswahl langlebiger und gut gewarteter Technologien, modularer und sich entwickelnder Code, an zukünftige Bedürfnisse anpassbare Architektur.'
       }
     ],
+    upcomingTitle: 'Kommende Projekte',
+    upcomingIntro: 'Hier ein Einblick in Projekte, an denen ich derzeit arbeite:',
+    upcomingProjects: [
+      {
+        title: 'Portfolio und Online-Shop für einen Künstlerfreund',
+        description: 'Ich entwickle ein minimalistisches Portfolio und einen Online-Shop für einen befreundeten Künstler, der digitale und physische Kunst schafft. Der Shop ist diskret – versteckt von den nicht-kommerziellen Teilen der Website – und umfasst ein einfaches Stripe-Checkout für Drucke, Asset-Pakete (für Unreal Engine), Buy Me a Coffee-Links und mehr. Das Ziel ist es, den Fokus auf die Kunst zu legen, ohne sie mit E-Commerce-Elementen zu überwältigen.'
+      },
+      {
+        title: 'Asynchrones Online-Webspiel mit Echtzeit-Chat',
+        description: 'Basierend auf meinem Projekt "E-Sport-Anwendung mit Chat", arbeite ich daran, es in ein Online-Strategiespiel zu verwandeln. Es ist inspiriert von "La Cosa Nostra", aber ohne Zufälligkeit – nur rohe, chaotische, menschliche Entscheidungsfindung. Die Stimmung ist anarchisch und schnelllebig, und die visuelle Richtung ist beeinflusst von "Jet Set Radio Future" und dem Kurzfilm "Dead Leaves" – laut, punk und ausdrucksstark.'
+      }
+    ],
     contactCTA: 'Haben Sie ein Projekt im Sinn?',
     contactButton: 'Lassen Sie uns darüber sprechen'
   }
@@ -110,7 +146,11 @@ const t = content[lang] || content.en;
 const projects = [
   {
     id: 'library',
-    title: 'Bibliothèque d\'objets - Quimper',
+    title: lang === 'fr' ? 
+      'Bibliothèque d\'objets - Quimper' :
+      (lang === 'en' ? 
+        'Object Library - Quimper' : 
+        'Objektbibliothek - Quimper'),
     description: lang === 'fr' ? 
       'Conçu en collaboration avec <a href="https://jadephom.myportfolio.com/" target="_blank" rel="noopener" class="text-link">Jade Ounaphom</a>, créatrice audiovisuelle, le site met en avant le fonctionnement de la bibliothèque d\'objets et ses actualités.' :
       (lang === 'en' ? 
@@ -123,7 +163,11 @@ const projects = [
   },
   {
     id: 'esport',
-    title: 'Application e-sport avec chat',
+    title: lang === 'fr' ? 
+      'Application e-sport avec chat' :
+      (lang === 'en' ? 
+        'E-sport Application with Chat' : 
+        'E-Sport-Anwendung mit Chat'),
     description: lang === 'fr' ? 
       'Plateforme de gestion d\'événements e-sport intégrant un système de chat en temps réel via WebSocket et HTMX. (entreprise fictive)' :
       (lang === 'en' ? 
@@ -136,14 +180,18 @@ const projects = [
   },
   {
     id: 'portfolio',
-    title: 'Portfolio personnel éco-responsable',
+    title: lang === 'fr' ? 
+      'Portfolio personnel éco-responsable' :
+      (lang === 'en' ? 
+        'Eco-friendly personal portfolio' : 
+        'Umweltfreundliches persönliches Portfolio'),
     description: lang === 'fr' ? 
       'Mon portfolio personnel avec mode éco, multilingue et conçu selon les principes de l\'éco-conception web.' :
       (lang === 'en' ? 
         'My personal portfolio with eco-mode, multilingual, and designed following web eco-design principles.' : 
         'Mein persönliches Portfolio mit Öko-Modus, mehrsprachig und nach den Prinzipien des Web-Öko-Designs gestaltet.'),
     image: portfolioImage,
-    tech: ['Astro', 'TailwindCSS', 'TypeScript'],
+    tech: ['Astro', 'Alpine.js', 'TailwindCSS'],
     isFeatured: true
   }
 ];
@@ -223,6 +271,68 @@ const getProjectUrl = (projectId: string) => `/${lang}/projects/${projectId}`;
         </div>
       ))}
     </div>
+    
+    <!-- Nouvelle section: Projets à venir -->
+    <section class="mt-16">
+      <h2 class="text-2xl font-bold mb-6 border-b border-accent pb-2">
+        {t.upcomingTitle}
+      </h2>
+      
+      <p class="mb-8 text-lg">
+        {t.upcomingIntro}
+      </p>
+      
+      <div class="space-y-10">
+        {t.upcomingProjects.map((project, index) => (
+          <div class="bg-secondary bg-opacity-20 p-6 rounded-lg border-l-4 border-accent">
+            <h3 class="text-xl font-bold mb-3 text-accent">
+              {project.title}
+            </h3>
+            <p class="text-text mb-2">
+              {project.description}
+            </p>
+            
+            <!-- Tech tags for upcoming projects based on the project index -->
+            <div class="flex flex-wrap gap-1.5 mt-4">
+              {index === 0 ? 
+                ['Astro', 'Tailwind', 'Stripe API', 'Alpine.js'].map(tech => (
+                  <span class="px-2 py-0.5 border border-accent text-light rounded-full text-xs">
+                    {tech}
+                  </span>
+                )) : 
+                ['Astro', 'Tailwind', 'Alpine.js', 'HTMX', 'WebSocket', 'Express', 'MongoDB', 'anime.js'].map(tech => (
+                  <span class="px-2 py-0.5 border border-accent text-light rounded-full text-xs">
+                    {tech}
+                  </span>
+                ))
+              }
+            </div>
+            
+            <!-- Status indicator -->
+            <div class="flex flex-wrap gap-2 mt-4">
+              <div class="inline-block bg-accent bg-opacity-30 px-3 py-1 rounded-full text-xs">
+                <span class="inline-block w-2 h-2 bg-accent rounded-full mr-1"></span>
+                {lang === 'fr' ? 'En développement' : 
+                 lang === 'en' ? 'In development' : 
+                 'In Entwicklung'}
+              </div>
+              
+              <!-- Additional status -->
+              <div class="inline-block bg-secondary bg-opacity-40 px-3 py-1 rounded-full text-xs">
+                {index === 0 ? 
+                  (lang === 'fr' ? 'En attente de contenu' : 
+                   lang === 'en' ? 'Waiting for content' : 
+                   'Warten auf Inhalt') : 
+                  (lang === 'fr' ? 'Création du dossier de projet' : 
+                   lang === 'en' ? 'Creating project documentation' : 
+                   'Erstellung der Projektdokumentation')
+                }
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
     
     <!-- Section sur l'éco-conception -->
     <section class="bg-secondary bg-opacity-30 p-6 rounded-lg mt-12">
