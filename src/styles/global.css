@@ -27,16 +27,20 @@ body {
   background-color: var(--color-primary);
 }
 
-.titleName:hover {
+.titleName {
   transition: color var(--transition-standard);
-  color: var(--color-accent-hover);
-  .titlePoint{
-    transition: color var(--transition-standard);
-    color: var(--color-text);
-  }
 }
-.titleName-active {
-  color: var(--color-accent);
+
+.titleName .titlePoint {
+  transition: color var(--transition-standard);
+}
+
+.titleName:hover {
+  color: var(--color-accent-hover);
+}
+
+.titleName:hover .titlePoint {
+  color: var(--color-text);
 }
 
 /* Style pour les boutons CTA */ 
