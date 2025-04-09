@@ -145,29 +145,28 @@ const t = content[lang] || content.en;
 // Projets à afficher
 const projects = [
   {
-    id: 'library',
+    id: 'portfolio',
     title: lang === 'fr' ? 
-      'Bibliothèque d\'objets - Quimper' :
+      'Portfolio personnel éco-responsable (2025)' :
       (lang === 'en' ? 
-        'Object Library - Quimper' : 
-        'Objektbibliothek - Quimper'),
+        'Eco-friendly personal portfolio (2025)' : 
+        'Umweltfreundliches persönliches Portfolio (2025)'),
     description: lang === 'fr' ? 
-      'Conçu en collaboration avec <a href="https://jadephom.myportfolio.com/" target="_blank" rel="noopener" class="text-link">Jade Ounaphom</a>, créatrice audiovisuelle, le site met en avant le fonctionnement de la bibliothèque d\'objets et ses actualités.' :
+      'Mon portfolio personnel avec mode éco, multilingue et conçu selon les principes de l\'éco-conception web.' :
       (lang === 'en' ? 
-        'Designed in collaboration with <a href="https://jadephom.myportfolio.com/" target="_blank" rel="noopener" class="text-link">Jade Ounaphom</a>, audiovisual creator, the website highlights how the object library works and its news.' : 
-        'In Zusammenarbeit mit <a href="https://jadephom.myportfolio.com/" target="_blank" rel="noopener" class="text-link">Jade Ounaphom</a>, audiovisuelle Gestalterin, präsentiert die Website die Funktionsweise der Objektbibliothek und ihre Neuigkeiten.'),
-    image: objetImage,
-    tech: ['Astro', 'CSS Pro', 'TypeScript', 'Alpine.js', 'GitHub Actions'],
-    url: 'https://objethequecornouaille.fr/',
+        'My personal portfolio with eco-mode, multilingual, and designed following web eco-design principles.' : 
+        'Mein persönliches Portfolio mit Öko-Modus, mehrsprachig und nach den Prinzipien des Web-Öko-Designs gestaltet.'),
+    image: portfolioImage,
+    tech: ['Astro', 'Alpine.js', 'TailwindCSS'],
     isFeatured: true
   },
   {
     id: 'esport',
     title: lang === 'fr' ? 
-      'Application e-sport avec chat' :
+      'Application e-sport avec chat (2025)' :
       (lang === 'en' ? 
-        'E-sport Application with Chat' : 
-        'E-Sport-Anwendung mit Chat'),
+        'E-sport Application with Chat (2025)' : 
+        'E-Sport-Anwendung mit Chat (2025)'),
     description: lang === 'fr' ? 
       'Plateforme de gestion d\'événements e-sport intégrant un système de chat en temps réel via WebSocket et HTMX. (entreprise fictive)' :
       (lang === 'en' ? 
@@ -179,21 +178,22 @@ const projects = [
     isFeatured: true
   },
   {
-    id: 'portfolio',
+    id: 'library',
     title: lang === 'fr' ? 
-      'Portfolio personnel éco-responsable' :
+      'Bibliothèque d\'objets - Quimper (2024)' :
       (lang === 'en' ? 
-        'Eco-friendly personal portfolio' : 
-        'Umweltfreundliches persönliches Portfolio'),
+        'Object Library - Quimper (2024)' : 
+        'Objektbibliothek - Quimper (2024)'),
     description: lang === 'fr' ? 
-      'Mon portfolio personnel avec mode éco, multilingue et conçu selon les principes de l\'éco-conception web.' :
+      'Conçu en collaboration avec <a href="https://jadephom.myportfolio.com/" target="_blank" rel="noopener" class="text-jade">Jade Ounaphom</a>, créatrice audiovisuelle, le site met en avant le fonctionnement de la bibliothèque d\'objets et ses actualités.' :
       (lang === 'en' ? 
-        'My personal portfolio with eco-mode, multilingual, and designed following web eco-design principles.' : 
-        'Mein persönliches Portfolio mit Öko-Modus, mehrsprachig und nach den Prinzipien des Web-Öko-Designs gestaltet.'),
-    image: portfolioImage,
-    tech: ['Astro', 'Alpine.js', 'TailwindCSS'],
+        'Designed in collaboration with <a href="https://jadephom.myportfolio.com/" target="_blank" rel="noopener" class="text-jade">Jade Ounaphom</a>, audiovisual creator, the website highlights how the object library works and its news.' : 
+        'In Zusammenarbeit mit <a href="https://jadephom.myportfolio.com/" target="_blank" rel="noopener" class="text-jade">Jade Ounaphom</a>, audiovisuelle Gestalterin, präsentiert die Website die Funktionsweise der Objektbibliothek und ihre Neuigkeiten.'),
+    image: objetImage,
+    tech: ['Astro', 'CSS Pro', 'TypeScript', 'Alpine.js', 'GitHub Actions'],
+    url: 'https://objethequecornouaille.fr/',
     isFeatured: true
-  }
+  },
 ];
 
 // Générer l'URL du projet en fonction de la langue actuelle

@@ -123,30 +123,6 @@ const featuredProjects = [
   {
     title:
       lang === "fr"
-        ? "Bibliothèque d'objets - Quimper"
-        : lang === "en"
-          ? "Object Library - Quimper"
-          : "Objektbibliothek - Quimper",
-    description:
-      lang === "fr"
-        ? "Conçu en collaboration avec <a href='https://jadephom.myportfolio.com/' target='_blank' class='text-link'>Jade Ounaphom</a>, créatrice audiovisuelle, le site met en avant le fonctionnement de la bibliothèque d'objets et ses actualités."
-        : lang === "en"
-          ? "Designed in collaboration with <a href='https://jadephom.myportfolio.com/' target='_blank' class='text-link'>Jade Ounaphom</a>, audiovisual creator, the website highlights how the object library works and its news."
-          : "In Zusammenarbeit mit <a href='https://jadephom.myportfolio.com/' target='_blank' class='text-link'>Jade Ounaphom</a>, audiovisuelle Gestalterin, präsentiert die Website die Funktionsweise der Objektbibliothek und ihre Neuigkeiten.",
-    image: objetImage,
-    tech: [
-      "Astro",
-      "CSS Pro", 
-      "TypeScript",
-      "Alpine.js",
-      "GitHub Actions",
-    ],
-    url: `https://objethequecornouaille.fr/`,
-    ecoUrl: `/${lang}/projects/library/eco`,
-  },
-  {
-    title:
-      lang === "fr"
         ? "Application e-sport avec chat"
         : lang === "en"
           ? "E-sport Application with Chat"
@@ -171,6 +147,30 @@ const featuredProjects = [
     ],
     url: `https://kewnewhimsy.github.io/esportify-f/`,
     ecoUrl: `/${lang}/projects/esport/eco`,
+  },
+  {
+    title:
+      lang === "fr"
+        ? "Bibliothèque d'objets - Quimper"
+        : lang === "en"
+          ? "Object Library - Quimper"
+          : "Objektbibliothek - Quimper",
+    description:
+      lang === "fr"
+        ? "Conçu en collaboration avec <a href='https://jadephom.myportfolio.com/' target='_blank' class='text-jade'>Jade Ounaphom</a>, créatrice audiovisuelle, le site met en avant le fonctionnement de la bibliothèque d'objets et ses actualités."
+        : lang === "en"
+          ? "Designed in collaboration with <a href='https://jadephom.myportfolio.com/' target='_blank' class='text-jade'>Jade Ounaphom</a>, audiovisual creator, the website highlights how the object library works and its news."
+          : "In Zusammenarbeit mit <a href='https://jadephom.myportfolio.com/' target='_blank' class='text-jade'>Jade Ounaphom</a>, audiovisuelle Gestalterin, präsentiert die Website die Funktionsweise der Objektbibliothek und ihre Neuigkeiten.",
+    image: objetImage,
+    tech: [
+      "Astro",
+      "CSS Pro", 
+      "TypeScript",
+      "Alpine.js",
+      "GitHub Actions",
+    ],
+    url: `https://objethequecornouaille.fr/`,
+    ecoUrl: `/${lang}/projects/library/eco`,
   },
 ];
 ---
@@ -312,6 +312,8 @@ const featuredProjects = [
     </section>
 
     <!-- Section appel à l'action -->
-    <CtaDispo transition-persist="cta-dispo"/>
+    <section>
+      <CtaDispo transition-persist="cta-dispo"/>
+    </section>
   </div>
 </Layout>

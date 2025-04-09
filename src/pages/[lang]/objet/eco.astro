@@ -1,0 +1,228 @@
+---
+// Import du layout avec mode éco activé
+import Layout from "../../../layouts/layout.astro";
+
+// Récupérer le paramètre de langue depuis l'URL
+export function getStaticPaths() {
+  return [
+    { params: { lang: "fr", project: "library" } },
+    { params: { lang: "en", project: "library" } },
+    { params: { lang: "de", project: "library" } },
+  ];
+}
+
+const lang = Astro.params.lang as "fr" | "en" | "de";
+
+// Contenu traduit pour chaque langue
+const content = {
+  fr: {
+    title: "Bibliothèque d'objets - Quimper | Josselin HANEL (Mode Éco)",
+    description: "Version éco-responsable de la page projet de l'Objethèque de Cornouaille - Un projet collaboratif pour promouvoir le partage d'objets.",
+    projectTitle: "Bibliothèque d'objets - Quimper",
+    projectIntro: "L'Objethèque de Cornouaille est une association basée à Quimper qui permet aux habitants d'emprunter des objets du quotidien plutôt que de les acheter, favorisant ainsi un mode de vie plus durable.",
+    
+    overviewTitle: "Aperçu du projet",
+    overviewText: "Conçu en collaboration avec <a href='https://jadephom.myportfolio.com/' target='_blank' class='text-jade'>Jade Ounaphom</a>, créatrice audiovisuelle, le site met en avant le fonctionnement de la bibliothèque d'objets, ses actualités et permet d'accéder au catalogue des objets disponibles.",
+
+    challengesTitle: "Défis et approche",
+    challenges: [
+      "Contraintes budgétaires strictes pour une association à but non lucratif",
+      "Nécessité d'intégrer un système de gestion de catalogue existant (MyTurn)",
+      "Besoin d'une visibilité sur les réseaux sociaux pour une petite structure locale",
+      "Interface simple et immédiatement compréhensible pour des utilisateurs de tous niveaux techniques"
+    ],
+    
+    solutionsTitle: "Solutions mises en œuvre",
+    solutionText: "Approche pragmatique et économique utilisant Astro tout en intégrant les outils existants (MyTurn). Structure simple centrée sur les besoins des utilisateurs. Intégration d'un flux Facebook pour afficher les actualités. Collaboration étroite avec une designeuse pour l'identité visuelle.",
+    
+    lessonsTitle: "Leçons apprises",
+    lessonsText: "Adaptation des solutions techniques aux ressources réelles d'une organisation. Intégration fonctionnelle de services tiers malgré les limitations techniques. Importance d'une approche pragmatique dans un contexte bénévole. Équilibre entre performance web idéale et contraintes pratiques.",
+    
+    techTitle: "Technologies utilisées",
+    techUsed: "Astro, CSS Pro, TypeScript, Alpine.js, Intégration MyTurn, Iframe Facebook",
+    
+    visitSite: "Visiter le site web",
+    allProjects: "Tous les projets",
+    
+    reflectionTitle: "Réflexion personnelle",
+    reflectionText: "Ce projet, bien qu'imparfait d'un point de vue technique, représente une étape importante dans mon parcours. Réalisé bénévolement, il répond à un besoin concret avec les moyens disponibles. Si je devais le refaire aujourd'hui, j'explorerais des alternatives aux iframes et je mettrais davantage l'accent sur les performances.",
+
+    ecoModeTitle: "Mode Éco activé",
+    ecoModeText: "Vous consultez actuellement la version ultra-légère de mon portfolio."
+  },
+  en: {
+    title: "Object Library - Quimper | Josselin HANEL (Eco Mode)",
+    description: "Eco-friendly version of the Cornouaille Object Library project page - A collaborative project to promote object sharing.",
+    projectTitle: "Object Library - Quimper",
+    projectIntro: "The Cornouaille Object Library is an association based in Quimper that allows residents to borrow everyday objects rather than buying them, thus promoting a more sustainable lifestyle.",
+    
+    overviewTitle: "Project overview",
+    overviewText: "Designed in collaboration with <a href='https://jadephom.myportfolio.com/' target='_blank' class='text-light'>Jade Ounaphom</a>, audiovisual creator, the website highlights how the object library works, its news and provides access to the catalog of available objects.",
+    
+    challengesTitle: "Challenges and approach",
+    challenges: [
+      "Strict budget constraints for a non-profit association",
+      "Need to integrate an existing catalog management system (MyTurn)",
+      "Need for social media visibility for a small local organization",
+      "Simple and immediately understandable interface for users of all technical levels"
+    ],
+    
+    solutionsTitle: "Implemented solutions",
+    solutionText: "Pragmatic approach using Astro while integrating existing tools (MyTurn). Simple structure focused on user needs. Integration of a Facebook feed to display news. Close collaboration with a designer for visual identity.",
+    
+    lessonsTitle: "Lessons learned",
+    lessonsText: "Adapting technical solutions to an organization's actual resources. Functional integration of third-party services despite technical limitations. Importance of a pragmatic approach in a volunteer context. Balance between ideal web performance and practical constraints.",
+    
+    techTitle: "Technologies used",
+    techUsed: "Astro, CSS Pro, TypeScript, Alpine.js, MyTurn Integration, Facebook Iframe",
+    
+    visitSite: "Visit the website",
+    allProjects: "All projects",
+    
+    reflectionTitle: "Personal reflection",
+    reflectionText: "This project, although technically imperfect, represents an important step in my journey. Created voluntarily, it addresses a concrete need with available resources. If I were to do it again today, I would explore alternatives to iframes and place more emphasis on performance.",
+
+    ecoModeTitle: "Eco Mode activated",
+    ecoModeText: "You are currently viewing the ultra-lightweight version of my portfolio."
+  },
+  de: {
+    title: "Objektbibliothek - Quimper | Josselin HANEL (Öko-Modus)",
+    description: "Umweltfreundliche Version der Cornouaille-Objektbibliothek-Projektseite - Ein Gemeinschaftsprojekt zur Förderung des Objektteilens.",
+    projectTitle: "Objektbibliothek - Quimper",
+    projectIntro: "Die Objektbibliothek Cornouaille ist ein Verein mit Sitz in Quimper, der es Einwohnern ermöglicht, Alltagsgegenstände auszuleihen, anstatt sie zu kaufen, und so einen nachhaltigeren Lebensstil fördert.",
+    
+    overviewTitle: "Projektübersicht",
+    overviewText: "In Zusammenarbeit mit <a href='https://jadephom.myportfolio.com/' target='_blank' class='text-light'>Jade Ounaphom</a>, audiovisuelle Gestalterin, präsentiert die Website die Funktionsweise der Objektbibliothek, ihre Neuigkeiten und bietet Zugang zum Katalog der verfügbaren Objekte.",
+    
+    challengesTitle: "Herausforderungen und Ansatz",
+    challenges: [
+      "Strenge Budgetbeschränkungen für einen gemeinnützigen Verein",
+      "Notwendigkeit, ein bestehendes Katalogverwaltungssystem (MyTurn) zu integrieren",
+      "Bedarf an Social-Media-Sichtbarkeit für eine kleine lokale Organisation",
+      "Einfache und sofort verständliche Benutzeroberfläche für Benutzer aller technischen Niveaus"
+    ],
+    
+    solutionsTitle: "Umgesetzte Lösungen",
+    solutionText: "Pragmatischer Ansatz mit Astro und Integration bestehender Tools (MyTurn). Einfache Struktur, die auf Benutzerbedürfnisse ausgerichtet ist. Integration eines Facebook-Feeds zur Anzeige von Neuigkeiten. Enge Zusammenarbeit mit einer Designerin für die visuelle Identität.",
+    
+    lessonsTitle: "Gelernte Lektionen",
+    lessonsText: "Anpassung technischer Lösungen an die tatsächlichen Ressourcen einer Organisation. Funktionale Integration von Drittanbieterdiensten trotz technischer Einschränkungen. Bedeutung eines pragmatischen Ansatzes im freiwilligen Kontext. Balance zwischen idealer Webleistung und praktischen Einschränkungen.",
+    
+    techTitle: "Verwendete Technologien",
+    techUsed: "Astro, CSS Pro, TypeScript, Alpine.js, MyTurn-Integration, Facebook-Iframe",
+    
+    visitSite: "Website besuchen",
+    allProjects: "Alle Projekte",
+    
+    reflectionTitle: "Persönliche Reflexion",
+    reflectionText: "Dieses Projekt, obwohl technisch nicht perfekt, stellt einen wichtigen Schritt in meiner Entwicklung dar. Es wurde freiwillig erstellt und adressiert mit den verfügbaren Ressourcen einen konkreten Bedarf. Wenn ich es heute noch einmal machen würde, würde ich Alternativen zu Iframes erkunden und mehr Wert auf Leistung legen.",
+
+    ecoModeTitle: "Öko-Modus aktiviert",
+    ecoModeText: "Sie sehen gerade die ultraleichte Version meines Portfolios."
+  }
+};
+
+// Utiliser la langue demandée ou français par défaut
+const t = content[lang] || content.fr;
+
+// Mode éco activé
+const isEcoMode = true;
+---
+
+<Layout title={t.title} description={t.description} lang={lang} isEcoMode={isEcoMode}>
+  <div class="container mx-auto px-4 py-6">
+    <!-- Section d'introduction du mode éco -->
+    <section class="py-4 border-b border-secondary mb-6">
+      <h2 class="text-xl font-bold mb-2">{t.ecoModeTitle}</h2>
+      <p class="mb-3 max-w-4xl">
+        {t.ecoModeText}
+      </p>
+    </section>
+
+    <div class="mb-4">
+      <a href={`/${lang}/projects/eco`} class="text-text-muted hover:text-accent transition-colors">
+        &larr; {t.allProjects}
+      </a>
+    </div>
+    
+    <!-- En-tête du projet -->
+    <header class="mb-8">
+      <h1 class="text-2xl font-bold mb-4 border-b border-accent pb-2">
+        {t.projectTitle} (2024)
+      </h1>
+      <p class="mb-4  max-w-4xl">
+        {t.projectIntro}
+      </p>
+    </header>
+    
+    <!-- Aperçu du projet -->
+    <section class="mb-8 border-b border-secondary pb-6">
+      <h2 class="text-xl font-semibold mb-3 text-accent">
+        {t.overviewTitle}
+      </h2>
+      <p class="mb-4  max-w-4xl" set:html={t.overviewText}></p>
+      
+      <!-- Actions principales -->
+      <a 
+        href="https://objethequecornouaille.fr/"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="cta-button inline-block mb-4"
+      >
+        {t.visitSite}
+      </a>
+    </section>
+    
+    <!-- Défis et approche -->
+    <section class="mb-8 border-b border-secondary pb-6">
+      <h2 class="text-xl font-semibold mb-3 text-accent">
+        {t.challengesTitle}
+      </h2>
+      <ul class="list-disc pl-5 mb-3">
+        {t.challenges.map(challenge => (
+          <li class="mb-2">{challenge}</li>
+        ))}
+      </ul>
+    </section>
+    
+    <!-- Solutions mises en œuvre -->
+    <section class="mb-8 border-b border-secondary pb-6">
+      <h2 class="text-xl font-semibold mb-3 text-accent">
+        {t.solutionsTitle}
+      </h2>
+      <p class="mb-3 max-w-4xl">
+        {t.solutionText}
+      </p>
+    </section>
+    
+    <!-- Leçons apprises -->
+    <section class="mb-8 border-b border-secondary pb-6">
+      <h2 class="text-xl font-semibold mb-3 text-accent">
+        {t.lessonsTitle}
+      </h2>
+      <p class="mb-3 max-w-4xl">
+        {t.lessonsText}
+      </p>
+    </section>
+    
+    <!-- Réflexion personnelle -->
+    <section class="mb-8 border-b border-secondary pb-6">
+      <h2 class="text-xl font-semibold mb-3 text-accent">
+        {t.reflectionTitle}
+      </h2>
+      <p class="italic mb-3 max-w-4xl">
+        {t.reflectionText}
+      </p>
+    </section>
+    
+    <!-- Technologies utilisées -->
+    <section class="mb-8">
+      <h2 class="text-xl font-semibold mb-3 text-accent">
+        {t.techTitle}
+      </h2>
+      <p class="mb-3 max-w-4xl">
+        {t.techUsed}
+      </p>
+    </section>
+  </div>
+</Layout>

@@ -1,0 +1,382 @@
+---
+// Import du layout standard
+import Layout from "../../layouts/layout.astro";
+import { Picture } from "astro:assets";
+import CtaDispo from "../../components/cta_dispo.astro";
+
+// Images du projet
+import objetImage from "../../assets/projects/objet00.png";
+import objetImage2 from "../../assets/projects/objet02.png";
+import objetImage3 from "../../assets/projects/objet03.png";
+import objetImage4 from "../../assets/projects/objet04.png";
+import objetImage5 from "../../assets/projects/objet05.png";
+
+
+// Récupérer le paramètre de langue depuis l'URL
+export function getStaticPaths() {
+  return [
+    { params: { lang: "fr", project: "library" } },
+    { params: { lang: "en", project: "library" } },
+    { params: { lang: "de", project: "library" } },
+  ];
+}
+
+const lang = Astro.params.lang as "fr" | "en" | "de";
+
+// Contenu traduit pour chaque langue
+const content = {
+  fr: {
+    title: "Bibliothèque d'objets - Quimper | Josselin HANEL",
+    description: "Projet de création du site web de l'Objethèque de Cornouaille - Un projet collaboratif et communautaire pour promouvoir le partage d'objets.",
+    projectTitle: "Bibliothèque d'objets - Quimper",
+    projectIntro: "L'Objethèque de Cornouaille est une association basée à Quimper qui permet aux habitants d'emprunter des objets du quotidien plutôt que de les acheter, favorisant ainsi un mode de vie plus durable.",
+    
+    overviewTitle: "Aperçu du projet",
+    overviewText: "Conçu en collaboration avec <a href='https://jadephom.myportfolio.com/' target='_blank' class='text-jade'>Jade Ounaphom</a>, créatrice audiovisuelle, le site met en avant le fonctionnement de la bibliothèque d'objets, ses actualités et permet d'accéder au catalogue des objets disponibles.",
+
+    challengesTitle: "Défis et approche",
+    challenges: [
+      "Contraintes budgétaires strictes pour une association à but non lucratif",
+      "Nécessité d'intégrer un système de gestion de catalogue existant (MyTurn)",
+      "Besoin d'une visibilité sur les réseaux sociaux pour une petite structure locale",
+      "Interface simple et immédiatement compréhensible pour des utilisateurs de tous niveaux techniques"
+    ],
+    
+    solutionsTitle: "Solutions mises en œuvre",
+    solutions: [
+      {
+        title: "Approche pragmatique et économique",
+        description: "Utilisation d'Astro pour créer rapidement un site léger et performant, tout en intégrant les outils déjà existants de l'association pour ne pas alourdir leur budget (solution MyTurn à 30€/an)."
+      },
+      {
+        title: "Focus sur l'essentiel",
+        description: "Structure simple et efficace centrée sur les besoins réels des utilisateurs : comprendre le principe de l'objethèque, voir les actualités et accéder au catalogue des objets."
+      },
+      {
+        title: "Intégration sociale",
+        description: "Utilisation d'un flux Facebook pour afficher les actualités, permettant à l'équipe bénévole de ne gérer qu'un seul canal de communication tout en alimentant le site web automatiquement."
+      },
+      {
+        title: "Collaboration créative",
+        description: "Travail en étroite collaboration avec une designeuse qui a créé l'identité visuelle et les éléments graphiques, apportant une dimension professionnelle au projet malgré les contraintes."
+      }
+    ],
+
+    lessonsTitle: "Leçons apprises",
+    lessons: [
+      "L'importance d'adapter les solutions techniques aux ressources et capacités réelles d'une organisation",
+      "Comment intégrer des services tiers de manière fonctionnelle même avec des limitations techniques",
+      "La valeur d'une approche pragmatique pour répondre aux besoins essentiels dans un contexte bénévole",
+      "La balance entre performance web idéale et contraintes pratiques d'un projet communautaire"
+    ],
+    
+    techTitle: "Technologies et outils utilisés",
+    visitSite: "Visiter le site web",
+    previousProject: "Projet précédent",
+    nextProject: "Projet suivant",
+    allProjects: "Tous les projets",
+    reflectionTitle: "Réflexion personnelle",
+    reflectionText: "Ce projet, bien qu'imparfait d'un point de vue technique, représente une étape importante dans mon parcours de développeur. Réalisé bénévolement pour une association locale, il répond à un besoin concret avec les moyens disponibles. Si je devais le refaire aujourd'hui, j'explorerais des alternatives aux iframes et je mettrais davantage l'accent sur les performances. Néanmoins, ce site remplit efficacement sa mission principale : aider une association éco-responsable à promouvoir le partage d'objets dans sa communauté."
+  },
+  en: {
+    title: "Object Library - Quimper | Josselin HANEL",
+    description: "Creation project for the Cornouaille Object Library website - A collaborative and community project to promote object sharing.",
+    projectTitle: "Object Library - Quimper",
+    projectIntro: "The Cornouaille Object Library is an association based in Quimper that allows residents to borrow everyday objects rather than buying them, thus promoting a more sustainable lifestyle.",
+    
+    overviewTitle: "Project overview",
+    overviewText: "Designed in collaboration with <a href='https://jadephom.myportfolio.com/' target='_blank' class='text-jade'>Jade Ounaphom</a>, audiovisual creator, the website highlights how the object library works, its news and provides access to the catalog of available objects.",
+    
+    challengesTitle: "Challenges and approach",
+    challenges: [
+      "Strict budget constraints for a non-profit association",
+      "Need to integrate an existing catalog management system (MyTurn)",
+      "Need for social media visibility for a small local organization",
+      "Simple and immediately understandable interface for users of all technical levels"
+    ],
+    
+    solutionsTitle: "Implemented solutions",
+    solutions: [
+      {
+        title: "Pragmatic and economical approach",
+        description: "Using Astro to quickly create a lightweight and efficient site, while integrating the association's existing tools to avoid increasing their budget (MyTurn solution at €30/year)."
+      },
+      {
+        title: "Focus on essentials",
+        description: "Simple and effective structure centered on users' real needs: understanding the principle of the object library, seeing the news, and accessing the object catalog."
+      },
+      {
+        title: "Social integration",
+        description: "Using a Facebook feed to display news, allowing the volunteer team to manage only one communication channel while automatically feeding the website."
+      },
+      {
+        title: "Creative collaboration",
+        description: "Working closely with a designer who created the visual identity and graphic elements, bringing a professional dimension to the project despite the constraints."
+      }
+    ],
+
+    lessonsTitle: "Lessons learned",
+    lessons: [
+      "The importance of adapting technical solutions to an organization's actual resources and capabilities",
+      "How to functionally integrate third-party services even with technical limitations",
+      "The value of a pragmatic approach to meet essential needs in a volunteer context",
+      "The balance between ideal web performance and practical constraints of a community project"
+    ],
+    
+    techTitle: "Technologies and tools used",
+    visitSite: "Visit the website",
+    previousProject: "Previous project",
+    nextProject: "Next project",
+    allProjects: "All projects",
+    reflectionTitle: "Personal reflection",
+    reflectionText: "This project, although technically imperfect, represents an important step in my journey as a developer. Created voluntarily for a local association, it addresses a concrete need with available resources. If I were to do it again today, I would explore alternatives to iframes and place more emphasis on performance. Nevertheless, this site effectively fulfills its main mission: helping an eco-friendly association promote object sharing in its community."
+  },
+  de: {
+    title: "Objektbibliothek - Quimper | Josselin HANEL",
+    description: "Projekt zur Erstellung der Website der Objektbibliothek Cornouaille - Ein kollaboratives Gemeinschaftsprojekt zur Förderung des Objektteilens.",
+    projectTitle: "Objektbibliothek - Quimper",
+    projectIntro: "Die Objektbibliothek Cornouaille ist ein Verein mit Sitz in Quimper, der es Einwohnern ermöglicht, Alltagsgegenstände auszuleihen, anstatt sie zu kaufen, und so einen nachhaltigeren Lebensstil fördert.",
+    
+    overviewTitle: "Projektübersicht",
+    overviewText: "In Zusammenarbeit mit <a href='https://jadephom.myportfolio.com/' target='_blank' class='text-jade'>Jade Ounaphom</a>, audiovisuelle Gestalterin, präsentiert die Website die Funktionsweise der Objektbibliothek, ihre Neuigkeiten und bietet Zugang zum Katalog der verfügbaren Objekte.",
+    
+    challengesTitle: "Herausforderungen und Ansatz",
+    challenges: [
+      "Strenge Budgetbeschränkungen für einen gemeinnützigen Verein",
+      "Notwendigkeit, ein bestehendes Katalogverwaltungssystem (MyTurn) zu integrieren",
+      "Bedarf an Social-Media-Sichtbarkeit für eine kleine lokale Organisation",
+      "Einfache und sofort verständliche Benutzeroberfläche für Benutzer aller technischen Niveaus"
+    ],
+    
+    solutionsTitle: "Umgesetzte Lösungen",
+    solutions: [
+      {
+        title: "Pragmatischer und wirtschaftlicher Ansatz",
+        description: "Verwendung von Astro zur schnellen Erstellung einer leichten und effizienten Website unter Integration der bestehenden Tools des Vereins, um deren Budget nicht zu erhöhen (MyTurn-Lösung für 30 €/Jahr)."
+      },
+      {
+        title: "Fokus auf das Wesentliche",
+        description: "Einfache und effektive Struktur, die auf die tatsächlichen Bedürfnisse der Benutzer ausgerichtet ist: Verständnis des Prinzips der Objektbibliothek, Einsehen der Neuigkeiten und Zugriff auf den Objektkatalog."
+      },
+      {
+        title: "Soziale Integration",
+        description: "Verwendung eines Facebook-Feeds zur Anzeige von Neuigkeiten, wodurch das Freiwilligenteam nur einen Kommunikationskanal verwalten muss, während die Website automatisch mit Inhalten versorgt wird."
+      },
+      {
+        title: "Kreative Zusammenarbeit",
+        description: "Enge Zusammenarbeit mit einer Designerin, die die visuelle Identität und grafischen Elemente erstellt hat und dem Projekt trotz der Einschränkungen eine professionelle Dimension verleiht."
+      }
+    ],
+
+    lessonsTitle: "Gelernte Lektionen",
+    lessons: [
+      "Die Bedeutung der Anpassung technischer Lösungen an die tatsächlichen Ressourcen und Fähigkeiten einer Organisation",
+      "Wie man Drittanbieterdienste auch mit technischen Einschränkungen funktional integriert",
+      "Der Wert eines pragmatischen Ansatzes zur Erfüllung wesentlicher Bedürfnisse in einem freiwilligen Kontext",
+      "Die Balance zwischen idealer Webleistung und praktischen Einschränkungen eines Gemeinschaftsprojekts"
+    ],
+    
+    techTitle: "Verwendete Technologien und Tools",
+    visitSite: "Website besuchen",
+    previousProject: "Vorheriges Projekt",
+    nextProject: "Nächstes Projekt",
+    allProjects: "Alle Projekte",
+    reflectionTitle: "Persönliche Reflexion",
+    reflectionText: "Dieses Projekt, obwohl technisch nicht perfekt, stellt einen wichtigen Schritt in meiner Entwicklung als Entwickler dar. Es wurde freiwillig für einen lokalen Verein erstellt und adressiert mit den verfügbaren Ressourcen einen konkreten Bedarf. Wenn ich es heute noch einmal machen würde, würde ich Alternativen zu Iframes erkunden und mehr Wert auf Leistung legen. Nichtsdestotrotz erfüllt diese Website ihre Hauptaufgabe effektiv: einer umweltfreundlichen Vereinigung zu helfen, das Teilen von Objekten in ihrer Gemeinschaft zu fördern."
+  }
+};
+
+// Utiliser la langue demandée ou français par défaut
+const t = content[lang] || content.fr;
+
+// Technologies utilisées
+const technologies = [
+  "Astro",
+  "CSS Pro",
+  "TypeScript", 
+  "Alpine.js",
+  "Integration MyTurn",
+  "Iframe Facebook"
+];
+
+// Obtenir les projets précédent et suivant selon la langue
+const getProjectUrl = (projectId: string) => `/${lang}/projects/${projectId}`;
+const prevProject = {
+  id: "portfolio",
+  title: lang === "fr" ? 
+    "Portfolio personnel éco-responsable" :
+    (lang === "en" ? 
+      "Eco-friendly personal portfolio" : 
+      "Umweltfreundliches persönliches Portfolio")
+};
+const nextProject = {
+  id: "esport",
+  title: lang === "fr" ? 
+    "Application e-sport avec chat" :
+    (lang === "en" ? 
+      "E-sport Application with Chat" : 
+      "E-Sport-Anwendung mit Chat")
+};
+---
+
+<Layout title={t.title} description={t.description} lang={lang}>
+  <div class="container mx-auto px-4 py-8">
+    <div class="mb-4">
+      <a href={`/${lang}/projects`} class="text-text-muted hover:text-accent transition-colors">
+        &larr; {t.allProjects}
+      </a>
+    </div>
+    
+    <!-- En-tête du projet -->
+    <header class="mb-10">
+      <h1 class="text-3xl font-bold mb-6 border-b border-accent pb-2">
+        {t.projectTitle} (2024)
+      </h1>
+      <p class="text-lg mb-6 max-w-3xl">
+        {t.projectIntro}
+      </p>
+    </header>
+    
+    <!-- Image principale du projet -->
+    <div class="mb-10 bg-secondary bg-opacity-30 p-4 rounded-lg">
+      <Picture
+        src={objetImage}
+        widths={[800, 1200, 1600]}
+        sizes="(max-width: 1200px) 100vw, 1200px"
+        formats={["avif", "webp", "jpg"]}
+        alt={t.projectTitle}
+        class="w-full rounded-lg"
+      />
+    </div>
+    
+    <!-- Aperçu du projet -->
+    <section class="mb-10">
+      <h2 class="text-2xl font-bold mb-4 text-accent">
+        {t.overviewTitle}
+      </h2>
+      <p class="mb-6" set:html={t.overviewText}></p>
+      
+      <!-- Actions principales -->
+      <div class="flex flex-wrap gap-4 mb-8">
+        <a 
+          href="https://objethequecornouaille.fr/"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="cta-button"
+        >
+          {t.visitSite}
+        </a>
+      </div>
+    </section>
+    
+    <!-- Défis et approche -->
+    <section class="mb-10">
+      <h2 class="text-2xl font-bold mb-4 text-accent">
+        {t.challengesTitle}
+      </h2>
+      <ul class="list-disc pl-6 space-y-2 mb-6">
+        {t.challenges.map(challenge => (
+          <li>{challenge}</li>
+        ))}
+      </ul>
+      
+      <!-- Images secondaires -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-8">
+        <Picture
+          src={objetImage2}
+          widths={[400, 600, 900]}
+          formats={["avif", "webp", "jpg"]}
+          alt="Interface de l'Objethèque"
+          class="w-full h-full object-cover rounded-lg"
+        />
+        <Picture
+          src={objetImage3}
+          widths={[400, 600, 900]}
+          formats={["avif", "webp", "jpg"]}
+          alt="Section catalogue de l'Objethèque"
+          class="w-full h-full object-cover rounded-lg"
+        />
+      </div>
+    </section>
+    
+    <!-- Solutions mises en œuvre -->
+    <section class="mb-10 bg-secondary bg-opacity-20 p-6 rounded-lg">
+      <h2 class="text-2xl font-bold mb-6 text-accent">
+        {t.solutionsTitle}
+      </h2>
+      
+      <div class="space-y-6">
+        {t.solutions.map(solution => (
+          <div>
+            <h3 class="text-xl font-semibold mb-2">{solution.title}</h3>
+            <p>{solution.description}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Images secondaires 2-->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 my-8">
+      <Picture
+        src={objetImage4}
+        widths={[400, 600, 900]}
+        formats={["avif", "webp", "jpg"]}
+        alt="Interface de l'Objethèque"
+        class="w-full h-full object-cover rounded-lg"
+      />
+      <Picture
+        src={objetImage5}
+        widths={[400, 600, 900]}
+        formats={["avif", "webp", "jpg"]}
+        alt="Section catalogue de l'Objethèque"
+        class="w-full h-full object-cover rounded-lg"
+      />
+    </div>
+    
+    <!-- Leçons apprises -->
+    <section class="mb-10">
+      <h2 class="text-2xl font-bold mb-4 text-accent">
+        {t.lessonsTitle}
+      </h2>
+      <ul class="list-disc pl-6 space-y-2">
+        {t.lessons.map(lesson => (
+          <li>{lesson}</li>
+        ))}
+      </ul>
+    </section>
+    
+    <!-- Réflexion personnelle -->
+    <section class="mb-10 bg-secondary bg-opacity-10 p-6 rounded-lg border-l-4 border-accent flex flex-wrap">
+      <h2 class="text-2xl font-bold mb-4 md:mr-20 text-accent">
+        {t.reflectionTitle}
+      </h2>
+      <p class="italic max-w-3xl">
+        {t.reflectionText}
+      </p>
+    </section>
+    
+    <!-- Technologies utilisées -->
+    <section class="mb-16">
+      <h2 class="text-2xl font-bold mb-4 text-accent">
+        {t.techTitle}
+      </h2>
+      <div class="flex flex-wrap gap-2 mb-6">
+        {technologies.map(tech => (
+          <span class="px-3 py-1 bg-accent bg-opacity-20 rounded-full">
+            {tech}
+          </span>
+        ))}
+      </div>
+    </section>
+    
+    <!-- Navigation entre projets -->
+    <div class="border-t border-secondary pt-8 mt-12 flex justify-end">
+      <a href={getProjectUrl(nextProject.id)} class="btn-secondary">
+        {t.nextProject}: {nextProject.title} &rarr;
+      </a>
+    </div>
+    
+    <!-- CTA de contact -->
+    <CtaDispo />
+  </div>
+</Layout>
