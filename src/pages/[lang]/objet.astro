@@ -84,7 +84,6 @@ const content = {
     techTitle: "Technologies et outils utilisés",
     
     visitSite: "Visiter le site web",
-    previousProject: "Projet précédent",
     nextProject: "Projet suivant",
     allProjects: "Tous les projets",
     reflectionTitle: "Réflexion personnelle",
@@ -150,7 +149,6 @@ const content = {
     techTitle: "Technologies and tools used",
     
     visitSite: "Visit the website",
-    previousProject: "Previous project",
     nextProject: "Next project",
     allProjects: "All projects",
     reflectionTitle: "Personal reflection",
@@ -216,7 +214,6 @@ const content = {
     techTitle: "Verwendete Technologien und Tools",
     
     visitSite: "Website besuchen",
-    previousProject: "Vorheriges Projekt",
     nextProject: "Nächstes Projekt",
     allProjects: "Alle Projekte",
     reflectionTitle: "Persönliche Reflexion",
@@ -239,14 +236,6 @@ const technologies = [
 
 // Obtenir les projets précédent et suivant selon la langue
 const getProjectUrl = (projectId: string) => `/${lang}/projects/${projectId}`;
-const prevProject = {
-  id: "portfolio",
-  title: lang === "fr" ? 
-    "Portfolio personnel éco-responsable" :
-    (lang === "en" ? 
-      "Eco-friendly personal portfolio" : 
-      "Umweltfreundliches persönliches Portfolio")
-};
 const nextProject = {
   id: "esport",
   title: lang === "fr" ? 
