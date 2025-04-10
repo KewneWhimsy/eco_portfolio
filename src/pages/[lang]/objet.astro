@@ -11,7 +11,6 @@ import objetImage3 from "../../assets/projects/objet03.png";
 import objetImage4 from "../../assets/projects/objet04.png";
 import objetImage5 from "../../assets/projects/objet05.png";
 
-
 // Récupérer le paramètre de langue depuis l'URL
 export function getStaticPaths() {
   return [
@@ -39,7 +38,8 @@ const content = {
       "Contraintes budgétaires strictes pour une association à but non lucratif",
       "Nécessité d'intégrer un système de gestion de catalogue existant (MyTurn)",
       "Besoin d'une visibilité sur les réseaux sociaux pour une petite structure locale",
-      "Interface simple et immédiatement compréhensible pour des utilisateurs de tous niveaux techniques"
+      "Interface simple et immédiatement compréhensible pour des utilisateurs de tous niveaux techniques",
+      "Besoin d'afficher et tenir à jour les événements de l'association sans intervention technique régulière"
     ],
     
     solutionsTitle: "Solutions mises en œuvre",
@@ -59,24 +59,36 @@ const content = {
       {
         title: "Collaboration créative",
         description: "Travail en étroite collaboration avec une designeuse qui a créé l'identité visuelle et les éléments graphiques, apportant une dimension professionnelle au projet malgré les contraintes."
+      },
+      {
+        title: "Mode sombre adaptatif",
+        description: "Implémentation d'un mode sombre qui s'adapte automatiquement aux préférences système de l'utilisateur, sans bouton de toggle pour préserver l'identité visuelle de l'association en mode clair par défaut, tout en améliorant le confort visuel et réduisant la consommation d'énergie sur les appareils à écran OLED/AMOLED."
+      },
+      {
+        title: "Calendrier interactif des événements",
+        description: "Développement d'un calendrier intuitif avec Alpine.js permettant aux visiteurs de visualiser rapidement les ateliers et événements à venir."
+      },
+      {
+        title: "Automatisation des mises à jour",
+        description: "Création d'un workflow GitHub Actions qui récupère quotidiennement les données d'événements depuis l'API HelloAsso et génère un fichier JSON statique, permettant aux bénévoles de mettre à jour les événements sans intervention technique."
       }
     ],
 
     lessonsTitle: "Leçons apprises",
     lessons: [
-      "L'importance d'adapter les solutions techniques aux ressources et capacités réelles d'une organisation",
-      "Comment intégrer des services tiers de manière fonctionnelle même avec des limitations techniques",
-      "La valeur d'une approche pragmatique pour répondre aux besoins essentiels dans un contexte bénévole",
-      "La balance entre performance web idéale et contraintes pratiques d'un projet communautaire"
+      "L'adaptation des solutions techniques aux contraintes réelles est plus importante que la perfection technique",
+      "L'intégration intelligente de services tiers peut compenser les limitations budgétaires",
+      "L'automatisation bien pensée est un investissement qui autonomise les équipes non-techniques sur le long terme",
     ],
     
     techTitle: "Technologies et outils utilisés",
+    
     visitSite: "Visiter le site web",
     previousProject: "Projet précédent",
     nextProject: "Projet suivant",
     allProjects: "Tous les projets",
     reflectionTitle: "Réflexion personnelle",
-    reflectionText: "Ce projet, bien qu'imparfait d'un point de vue technique, représente une étape importante dans mon parcours de développeur. Réalisé bénévolement pour une association locale, il répond à un besoin concret avec les moyens disponibles. Si je devais le refaire aujourd'hui, j'explorerais des alternatives aux iframes et je mettrais davantage l'accent sur les performances. Néanmoins, ce site remplit efficacement sa mission principale : aider une association éco-responsable à promouvoir le partage d'objets dans sa communauté."
+    reflectionText: "Ce projet, bien qu'imparfait d'un point de vue technique, représente une étape importante dans mon parcours de développeur. Réalisé bénévolement pour une association locale, il répond à un besoin concret avec les moyens disponibles. Si je devais le refaire aujourd'hui, j'explorerais des alternatives aux iframes et je mettrais davantage l'accent sur les performances. Néanmoins, ce site remplit efficacement sa mission principale : aider une association éco-responsable à promouvoir le partage d'objets dans sa communauté, tout en minimisant les besoins d'intervention technique grâce à l'automatisation."
   },
   en: {
     title: "Object Library - Quimper | Josselin HANEL",
@@ -92,7 +104,8 @@ const content = {
       "Strict budget constraints for a non-profit association",
       "Need to integrate an existing catalog management system (MyTurn)",
       "Need for social media visibility for a small local organization",
-      "Simple and immediately understandable interface for users of all technical levels"
+      "Simple and immediately understandable interface for users of all technical levels",
+      "Need to display and keep association events updated without regular technical intervention"
     ],
     
     solutionsTitle: "Implemented solutions",
@@ -112,24 +125,36 @@ const content = {
       {
         title: "Creative collaboration",
         description: "Working closely with a designer who created the visual identity and graphic elements, bringing a professional dimension to the project despite the constraints."
+      },
+      {
+        title: "Adaptive dark mode",
+        description: "Implementation of a dark mode that automatically adapts to the user's system preferences, without a toggle button to preserve the association's visual identity in light mode by default, while improving visual comfort and reducing energy consumption on devices with OLED/AMOLED screens."
+      },
+      {
+        title: "Interactive events calendar",
+        description: "Development of an intuitive calendar with Alpine.js allowing visitors to quickly visualize upcoming workshops and events."
+      },
+      {
+        title: "Update automation",
+        description: "Creation of a GitHub Actions workflow that daily retrieves event data from the HelloAsso API and generates a static JSON file, allowing volunteers to update events without technical intervention."
       }
     ],
 
     lessonsTitle: "Lessons learned",
     lessons: [
-      "The importance of adapting technical solutions to an organization's actual resources and capabilities",
-      "How to functionally integrate third-party services even with technical limitations",
-      "The value of a pragmatic approach to meet essential needs in a volunteer context",
-      "The balance between ideal web performance and practical constraints of a community project"
+      "Adapting technical solutions to real constraints is more important than technical perfection",
+      "Smart integration of third-party services can compensate for budget limitations",
+      "Well-designed automation is an investment that empowers non-technical teams in the long run",
     ],
     
     techTitle: "Technologies and tools used",
+    
     visitSite: "Visit the website",
     previousProject: "Previous project",
     nextProject: "Next project",
     allProjects: "All projects",
     reflectionTitle: "Personal reflection",
-    reflectionText: "This project, although technically imperfect, represents an important step in my journey as a developer. Created voluntarily for a local association, it addresses a concrete need with available resources. If I were to do it again today, I would explore alternatives to iframes and place more emphasis on performance. Nevertheless, this site effectively fulfills its main mission: helping an eco-friendly association promote object sharing in its community."
+    reflectionText: "This project, although technically imperfect, represents an important step in my journey as a developer. Created voluntarily for a local association, it addresses a concrete need with available resources. If I were to do it again today, I would explore alternatives to iframes and place more emphasis on performance. Nevertheless, this site effectively fulfills its main mission: helping an eco-friendly association promote object sharing in its community, while minimizing the need for technical intervention thanks to automation."
   },
   de: {
     title: "Objektbibliothek - Quimper | Josselin HANEL",
@@ -145,7 +170,8 @@ const content = {
       "Strenge Budgetbeschränkungen für einen gemeinnützigen Verein",
       "Notwendigkeit, ein bestehendes Katalogverwaltungssystem (MyTurn) zu integrieren",
       "Bedarf an Social-Media-Sichtbarkeit für eine kleine lokale Organisation",
-      "Einfache und sofort verständliche Benutzeroberfläche für Benutzer aller technischen Niveaus"
+      "Einfache und sofort verständliche Benutzeroberfläche für Benutzer aller technischen Niveaus",
+      "Bedarf an Anzeige und Aktualisierung von Vereinsveranstaltungen ohne regelmäßige technische Eingriffe"
     ],
     
     solutionsTitle: "Umgesetzte Lösungen",
@@ -165,24 +191,36 @@ const content = {
       {
         title: "Kreative Zusammenarbeit",
         description: "Enge Zusammenarbeit mit einer Designerin, die die visuelle Identität und grafischen Elemente erstellt hat und dem Projekt trotz der Einschränkungen eine professionelle Dimension verleiht."
+      },
+      {
+        title: "Adaptiver Dunkelmodus",
+        description: "Implementierung eines Dunkelmodus, der sich automatisch an die Systemeinstellungen des Benutzers anpasst, ohne Umschalttaste, um die visuelle Identität des Vereins im standardmäßigen Hellmodus zu bewahren, während der visuelle Komfort verbessert und der Energieverbrauch auf Geräten mit OLED/AMOLED-Bildschirmen reduziert wird."
+      },
+      {
+        title: "Interaktiver Veranstaltungskalender",
+        description: "Entwicklung eines intuitiven Kalenders mit Alpine.js, der Besuchern eine schnelle Visualisierung kommender Workshops und Veranstaltungen ermöglicht."
+      },
+      {
+        title: "Automatisierung der Aktualisierungen",
+        description: "Erstellung eines GitHub Actions-Workflows, der täglich Veranstaltungsdaten von der HelloAsso-API abruft und eine statische JSON-Datei generiert, wodurch Freiwillige Veranstaltungen ohne technische Eingriffe aktualisieren können."
       }
     ],
 
     lessonsTitle: "Gelernte Lektionen",
     lessons: [
-      "Die Bedeutung der Anpassung technischer Lösungen an die tatsächlichen Ressourcen und Fähigkeiten einer Organisation",
-      "Wie man Drittanbieterdienste auch mit technischen Einschränkungen funktional integriert",
-      "Der Wert eines pragmatischen Ansatzes zur Erfüllung wesentlicher Bedürfnisse in einem freiwilligen Kontext",
-      "Die Balance zwischen idealer Webleistung und praktischen Einschränkungen eines Gemeinschaftsprojekts"
+      "Die Anpassung technischer Lösungen an reale Einschränkungen ist wichtiger als technische Perfektion",
+      "Intelligente Integration von Drittanbieterdiensten kann Budgetbeschränkungen ausgleichen",
+      "Gut konzipierte Automatisierung ist eine Investition, die nicht-technische Teams langfristig stärkt",
     ],
     
     techTitle: "Verwendete Technologien und Tools",
+    
     visitSite: "Website besuchen",
     previousProject: "Vorheriges Projekt",
     nextProject: "Nächstes Projekt",
     allProjects: "Alle Projekte",
     reflectionTitle: "Persönliche Reflexion",
-    reflectionText: "Dieses Projekt, obwohl technisch nicht perfekt, stellt einen wichtigen Schritt in meiner Entwicklung als Entwickler dar. Es wurde freiwillig für einen lokalen Verein erstellt und adressiert mit den verfügbaren Ressourcen einen konkreten Bedarf. Wenn ich es heute noch einmal machen würde, würde ich Alternativen zu Iframes erkunden und mehr Wert auf Leistung legen. Nichtsdestotrotz erfüllt diese Website ihre Hauptaufgabe effektiv: einer umweltfreundlichen Vereinigung zu helfen, das Teilen von Objekten in ihrer Gemeinschaft zu fördern."
+    reflectionText: "Dieses Projekt, obwohl technisch nicht perfekt, stellt einen wichtigen Schritt in meiner Entwicklung als Entwickler dar. Es wurde freiwillig für einen lokalen Verein erstellt und adressiert mit den verfügbaren Ressourcen einen konkreten Bedarf. Wenn ich es heute noch einmal machen würde, würde ich Alternativen zu Iframes erkunden und mehr Wert auf Leistung legen. Nichtsdestotrotz erfüllt diese Website ihre Hauptaufgabe effektiv: einer umweltfreundlichen Vereinigung zu helfen, das Teilen von Objekten in ihrer Gemeinschaft zu fördern, während der Bedarf an technischen Eingriffen dank Automatisierung minimiert wird."
   }
 };
 
@@ -195,8 +233,8 @@ const technologies = [
   "CSS Pro",
   "TypeScript", 
   "Alpine.js",
-  "Integration MyTurn",
-  "Iframe Facebook"
+  "GitHub Actions",
+  "API HelloAsso",
 ];
 
 // Obtenir les projets précédent et suivant selon la langue
@@ -274,11 +312,18 @@ const nextProject = {
       <h2 class="text-2xl font-bold mb-4 text-accent">
         {t.challengesTitle}
       </h2>
-      <ul class="list-disc pl-6 space-y-2 mb-6">
-        {t.challenges.map(challenge => (
-          <li>{challenge}</li>
+      
+      <!-- Disposition en grille pour les défis -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+        {t.challenges.map((challenge, index) => (
+          <div class="bg-secondary bg-opacity-10 p-4 rounded-lg flex">
+            <div class="w-8 h-8 bg-accent text-primary rounded-full flex items-center justify-center mr-3 flex-shrink-0">
+              {index + 1}
+            </div>
+            <p>{challenge}</p>
+          </div>
         ))}
-      </ul>
+      </div>
       
       <!-- Images secondaires -->
       <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-8">
@@ -300,15 +345,26 @@ const nextProject = {
     </section>
     
     <!-- Solutions mises en œuvre -->
-    <section class="mb-10 bg-secondary bg-opacity-20 p-6 rounded-lg">
+    <section class="mb-10">
       <h2 class="text-2xl font-bold mb-6 text-accent">
         {t.solutionsTitle}
       </h2>
       
-      <div class="space-y-6">
-        {t.solutions.map(solution => (
-          <div>
-            <h3 class="text-xl font-semibold mb-2">{solution.title}</h3>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {t.solutions.map((solution, index) => (
+          <div class="bg-secondary bg-opacity-20 p-5 rounded-lg">
+            <h3 class="text-xl font-semibold mb-3 flex items-center">
+              {solution.title}
+              <span class="ml-2">
+                {index === 0 ? "💼" : 
+                 index === 1 ? "🎯" : 
+                 index === 2 ? "🔄" : 
+                 index === 3 ? "🎨" : 
+                 index === 4 ? "🌓" : 
+                 index === 5 ? "📅" : 
+                 "🤖"}
+              </span>
+            </h3>
             <p>{solution.description}</p>
           </div>
         ))}
@@ -346,13 +402,15 @@ const nextProject = {
     </section>
     
     <!-- Réflexion personnelle -->
-    <section class="mb-10 bg-secondary bg-opacity-10 p-6 rounded-lg border-l-4 border-accent flex flex-wrap">
-      <h2 class="text-2xl font-bold mb-4 md:mr-20 text-accent">
-        {t.reflectionTitle}
-      </h2>
-      <p class="italic max-w-3xl">
-        {t.reflectionText}
-      </p>
+    <section class="mb-10 bg-secondary bg-opacity-10 p-6 rounded-lg border-l-4 border-accent">
+      <div class="flex flex-col md:flex-row">
+        <h2 class="text-2xl font-bold mb-4 md:mr-20 text-accent flex items-center">
+          {t.reflectionTitle}
+        </h2>
+        <p class="italic max-w-3xl">
+          {t.reflectionText}
+        </p>
+      </div>
     </section>
     
     <!-- Technologies utilisées -->
@@ -362,7 +420,7 @@ const nextProject = {
       </h2>
       <div class="flex flex-wrap gap-2 mb-6">
         {technologies.map(tech => (
-          <span class="px-3 py-1 bg-accent bg-opacity-20 rounded-full">
+          <span class="px-3 py-1 bg-accent bg-opacity-20 rounded-full transition-all hover:bg-opacity-40">
             {tech}
           </span>
         ))}
