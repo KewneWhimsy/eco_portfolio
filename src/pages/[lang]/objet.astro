@@ -35,12 +35,27 @@ const content = {
 
     challengesTitle: "Défis et approche",
     challenges: [
-      "Contraintes budgétaires strictes pour une association à but non lucratif",
-      "Nécessité d'intégrer un système de gestion de catalogue existant (MyTurn)",
-      "Besoin d'une visibilité sur les réseaux sociaux pour une petite structure locale",
-      "Interface simple et immédiatement compréhensible pour des utilisateurs de tous niveaux techniques",
-      "Besoin d'afficher et tenir à jour les événements de l'association sans intervention technique régulière"
-    ],
+  {
+    title: "Contraintes budgétaires",
+    description: "Développer une solution professionnelle avec des ressources très limitées et sans possibilité d'investissement dans des services payants coûteux."
+  },
+  {
+    title: "Intégration système existant",
+    description: "Faire cohabiter harmonieusement le site avec MyTurn, un logiciel tiers déjà utilisé par l'association pour la gestion des prêts."
+  },
+  {
+    title: "Visibilité sociale",
+    description: "Créer une présence cohérente entre le site web et les réseaux sociaux, essentiels pour une petite structure qui doit se faire connaître localement."
+  },
+  {
+    title: "Interface accessible",
+    description: "Concevoir un parcours utilisateur intuitif pour un public très varié, incluant des personnes peu familières avec la technologie."
+  },
+  {
+    title: "Maintenance facilitée",
+    description: "Permettre aux bénévoles non-techniques de gérer le contenu du site sans formation spécifique ni intervention d'un développeur."
+  }
+],
     
     solutionsTitle: "Solutions mises en œuvre",
     solutions: [
@@ -100,12 +115,27 @@ const content = {
     
     challengesTitle: "Challenges and approach",
     challenges: [
-      "Strict budget constraints for a non-profit association",
-      "Need to integrate an existing catalog management system (MyTurn)",
-      "Need for social media visibility for a small local organization",
-      "Simple and immediately understandable interface for users of all technical levels",
-      "Need to display and keep association events updated without regular technical intervention"
-    ],
+  {
+    title: "Budget Constraints",
+    description: "Developing a professional solution with very limited resources and without the possibility of investing in expensive paid services."
+  },
+  {
+    title: "Existing System Integration",
+    description: "Creating a seamless coexistence between the website and MyTurn, a third-party software already used by the association for loan management."
+  },
+  {
+    title: "Social Visibility",
+    description: "Building a coherent presence between the website and social media, essential for a small organization that needs to gain local recognition."
+  },
+  {
+    title: "Accessible Interface",
+    description: "Designing an intuitive user journey for a highly diverse audience, including people who are not familiar with technology."
+  },
+  {
+    title: "Facilitated Maintenance",
+    description: "Enabling non-technical volunteers to manage website content without specific training or developer intervention."
+  }
+],
     
     solutionsTitle: "Implemented solutions",
     solutions: [
@@ -165,12 +195,27 @@ const content = {
     
     challengesTitle: "Herausforderungen und Ansatz",
     challenges: [
-      "Strenge Budgetbeschränkungen für einen gemeinnützigen Verein",
-      "Notwendigkeit, ein bestehendes Katalogverwaltungssystem (MyTurn) zu integrieren",
-      "Bedarf an Social-Media-Sichtbarkeit für eine kleine lokale Organisation",
-      "Einfache und sofort verständliche Benutzeroberfläche für Benutzer aller technischen Niveaus",
-      "Bedarf an Anzeige und Aktualisierung von Vereinsveranstaltungen ohne regelmäßige technische Eingriffe"
-    ],
+  {
+    title: "Budgetbeschränkungen",
+    description: "Entwicklung einer professionellen Lösung mit sehr begrenzten Ressourcen und ohne die Möglichkeit, in teure kostenpflichtige Dienste zu investieren."
+  },
+  {
+    title: "Integration bestehender Systeme",
+    description: "Schaffung einer nahtlosen Koexistenz zwischen der Website und MyTurn, einer bereits vom Verein für die Leihverwaltung genutzten Drittanbieter-Software."
+  },
+  {
+    title: "Soziale Sichtbarkeit",
+    description: "Aufbau einer kohärenten Präsenz zwischen Website und sozialen Medien, wesentlich für eine kleine Organisation, die lokale Anerkennung gewinnen muss."
+  },
+  {
+    title: "Zugängliche Benutzeroberfläche",
+    description: "Gestaltung einer intuitiven Benutzerreise für ein sehr vielfältiges Publikum, einschließlich Menschen, die mit Technologie nicht vertraut sind."
+  },
+  {
+    title: "Erleichterte Wartung",
+    description: "Befähigung nicht-technischer Freiwilliger zur Verwaltung von Website-Inhalten ohne spezifische Schulung oder Eingriff eines Entwicklers."
+  }
+],
     
     solutionsTitle: "Umgesetzte Lösungen",
     solutions: [
@@ -295,41 +340,42 @@ const nextProject = {
         </a>
       </div>
     </section>
+    <!-- Images secondaires -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 my-8">
+      <Picture
+        src={objetImage2}
+        widths={[400, 600, 900]}
+        formats={["avif", "webp", "jpg"]}
+        alt="Interface de l'Objethèque"
+        class="w-full h-full object-cover rounded-lg"
+      />
+      <Picture
+        src={objetImage3}
+        widths={[400, 600, 900]}
+        formats={["avif", "webp", "jpg"]}
+        alt="Section catalogue de l'Objethèque"
+        class="w-full h-full object-cover rounded-lg"
+      />
+    </div>
     
-    <!-- Défis et approche -->
+    <!-- Défis techniques -->
     <section class="mb-10">
-      <h2 class="text-2xl font-bold mb-4 text-accent">
+      <h2 class="text-2xl font-bold mb-6 text-accent">
         {t.challengesTitle}
       </h2>
-      
-      <!-- Disposition en grille pour les défis -->
+
       <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
         {t.challenges.map((challenge, index) => (
-          <div class="bg-secondary bg-opacity-10 p-4 rounded-lg flex">
-            <div class="w-8 h-8 bg-accent text-primary rounded-full flex items-center justify-center mr-3 flex-shrink-0">
-              {index + 1}
+          <div class="bg-secondary bg-opacity-10 p-4 rounded-lg">
+            <div class="flex items-center mb-2">
+              <div class="w-8 h-8 bg-accent text-primary rounded-full flex items-center justify-center mr-3 flex-shrink-0">
+                {index + 1}
+              </div>
+              <h4 class="font-medium">{challenge.title}</h4>
             </div>
-            <p>{challenge}</p>
+            <p class="ml-11">{challenge.description}</p>
           </div>
         ))}
-      </div>
-      
-      <!-- Images secondaires -->
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-8">
-        <Picture
-          src={objetImage2}
-          widths={[400, 600, 900]}
-          formats={["avif", "webp", "jpg"]}
-          alt="Interface de l'Objethèque"
-          class="w-full h-full object-cover rounded-lg"
-        />
-        <Picture
-          src={objetImage3}
-          widths={[400, 600, 900]}
-          formats={["avif", "webp", "jpg"]}
-          alt="Section catalogue de l'Objethèque"
-          class="w-full h-full object-cover rounded-lg"
-        />
       </div>
     </section>
     

@@ -9,6 +9,7 @@ import esportImage from "../../assets/projects/esport01.png";
 import esportImage2 from "../../assets/projects/esport01.png";
 import esportImage3 from "../../assets/projects/esport01.png";
 import esportImage4 from "../../assets/projects/esport01.png";
+import esportImage5 from "../../assets/projects/esport01.png";
 
 // Récupérer le paramètre de langue depuis l'URL
 export function getStaticPaths() {
@@ -677,20 +678,18 @@ const nextProject = {
         {t.challengesTitle}
       </h2>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-        {
-          t.challenges.map((challenge, index) => (
-            <div class="bg-secondary bg-opacity-10 p-4 rounded-lg flex">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+        {t.challenges.map((challenge, index) => (
+          <div class="bg-secondary bg-opacity-10 p-4 rounded-lg">
+            <div class="flex items-center mb-2">
               <div class="w-8 h-8 bg-accent text-primary rounded-full flex items-center justify-center mr-3 flex-shrink-0">
                 {index + 1}
               </div>
-              <div>
-              <h3 class="font-medium mb-2">{challenge.title}</h3>
-              <p class="text-sm">{challenge.description}</p>
+              <h4 class="font-medium">{challenge.title}</h4>
             </div>
-            </div>
-          ))
-        }
+            <p class="ml-11">{challenge.description}</p>
+          </div>
+        ))}
       </div>
     </section>
 
@@ -715,7 +714,7 @@ const nextProject = {
                       ? "🔔"
                       : index === 2
                         ? "⚡"
-                        : "📈"}
+                        : "💬"}
                 </span>
               </div>
               <p>{solution.description}</p>
@@ -723,31 +722,6 @@ const nextProject = {
           ))
         }
       </div>
-    </section>
-
-    <!-- Image supplémentaire du projet (à implémenter si disponible) -->
-    {
-      esportImage4 && (
-        <div class="mb-10">
-          <Picture
-            src={esportImage4}
-            widths={[800, 1200]}
-            formats={["avif", "webp", "jpg"]}
-            alt="Écran de chat en temps réel"
-            class="w-full rounded-lg"
-          />
-        </div>
-      )
-    }
-
-    <!-- Leçons apprises -->
-    <section class="mb-10">
-      <h2 class="text-2xl font-bold mb-4 text-accent">
-        {t.lessonsTitle}
-      </h2>
-      <ul class="list-disc pl-6 space-y-2">
-        {t.lessons.map((lesson) => <li>{lesson}</li>)}
-      </ul>
     </section>
 
     <!-- Performance et optimisations -->
@@ -771,8 +745,58 @@ const nextProject = {
       </div>
     </section>
 
-    <!-- Technologies utilisées -->
+    <!-- Images secondaires du projet (à implémenter si disponibles) -->
+    {
+      esportImage4 && esportImage5 && (
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 my-8">
+          <Picture
+            src={esportImage4}
+            widths={[400, 600, 900]}
+            formats={["avif", "webp", "jpg"]}
+            alt="Interface de chat de l'application e-sport"
+            class="w-full h-full object-cover rounded-lg"
+          />
+          <Picture
+            src={esportImage5}
+            widths={[400, 600, 900]}
+            formats={["avif", "webp", "jpg"]}
+            alt="Gestion des tournois"
+            class="w-full h-full object-cover rounded-lg"
+          />
+        </div>
+      )
+    }
+
+    <!-- Leçons apprises -->
     <section class="mb-10">
+      <h2 class="text-2xl font-bold mb-4 text-accent">
+        {t.lessonsTitle}
+      </h2>
+      <ul class="list-disc pl-6 space-y-2">
+        {t.lessons.map((lesson) => <li>{lesson}</li>)}
+      </ul>
+    </section>
+
+<!-- Réflexion personnelle -->
+<section
+class="mb-10 bg-secondary bg-opacity-10 p-6 rounded-lg border-l-4 border-accent"
+>
+<div class="flex flex-col md:flex-row">
+  <h2
+    class="text-2xl font-bold mb-4 md:mr-20 text-accent flex items-center"
+  >
+    {t.reflectionTitle}
+  </h2>
+  <p class="italic max-w-3xl">
+    {t.reflectionText}
+  </p>
+</div>
+</section>
+
+    
+
+    <!-- Technologies utilisées -->
+    <section class="mb-16">
       <h2 class="text-2xl font-bold mb-4 text-accent">
         {t.techTitle}
       </h2>
@@ -786,7 +810,7 @@ const nextProject = {
           technologies
             .slice(0, 4)
             .map((tech) => (
-              <span class="px-3 py-1 border border-accent rounded-full text-accent transition-all hover:bg-accent-light">
+              <span class="px-3 py-1 border border-accent rounded-full text-light">
                 {tech}
               </span>
             ))
@@ -798,27 +822,11 @@ const nextProject = {
           technologies
             .slice(4)
             .map((tech) => (
-              <span class="px-3 py-1 bg-accent bg-opacity-20 rounded-full transition-all hover:bg-opacity-40">
+              <span class="px-3 py-1 bg-accent rounded-full">
                 {tech}
               </span>
             ))
         }
-      </div>
-    </section>
-
-    <!-- Réflexion personnelle -->
-    <section
-      class="mb-10 bg-secondary bg-opacity-10 p-6 rounded-lg border-l-4 border-accent"
-    >
-      <div class="flex flex-col md:flex-row">
-        <h2
-          class="text-2xl font-bold mb-4 md:mr-20 text-accent flex items-center"
-        >
-          {t.reflectionTitle}
-        </h2>
-        <p class="italic max-w-3xl">
-          {t.reflectionText}
-        </p>
       </div>
     </section>
 
