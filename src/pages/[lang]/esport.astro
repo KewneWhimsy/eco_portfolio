@@ -25,12 +25,15 @@ const lang = Astro.params.lang as "fr" | "en" | "de";
 const content = {
   fr: {
     title: "Application e-sport avec chat | Josselin HANEL",
-    description: "Plateforme de gestion d'événements e-sport intégrant un système de chat en temps réel via WebSocket et HTMX.",
+    description:
+      "Plateforme de gestion d'événements e-sport intégrant un système de chat en temps réel via WebSocket et HTMX.",
     projectTitle: "Application e-sport avec chat",
-    projectIntro: "Cette plateforme permet aux organisateurs d'événements e-sport de créer et gérer des tournois, tout en offrant aux participants un moyen de communiquer en temps réel via un système de chat intégré.",
-    
+    projectIntro:
+      "Cette plateforme permet aux organisateurs d'événements e-sport de créer et gérer des tournois, tout en offrant aux participants un moyen de communiquer en temps réel via un système de chat intégré.",
+
     overviewTitle: "Aperçu du projet",
-    overviewText: "Ce projet démontre l'intégration d'un chat en temps réel dans une application web avec une architecture claire séparant les responsabilités. Le frontend utilise Astro pour le rendu statique avec des îlots interactifs via Alpine.js et HTMX, tandis que le backend est divisé en deux services : un serveur Express pour l'API REST et un serveur WebSocket dédié pour la communication en temps réel.",
+    overviewText:
+      "Ce projet démontre l'intégration d'un chat en temps réel dans une application web avec une architecture claire séparant les responsabilités. Le frontend utilise Astro pour le rendu statique avec des îlots interactifs via Alpine.js et HTMX, tandis que le backend utilise Express avec son module WebSocket pour gérer à la fois les requêtes API et la communication en temps réel.",
 
     architectureTitle: "Architecture du projet",
     frontendTitle: "Frontend",
@@ -38,38 +41,29 @@ const content = {
       "Astro pour le rendu statique avec hydratation partielle",
       "Alpine.js pour la gestion de l'état local et les interactions UI légères",
       "HTMX pour les requêtes AJAX et l'interaction avec le serveur sans JavaScript complexe",
-      "Tailwind CSS pour un styling efficace avec des classes utilitaires"
+      "Tailwind CSS pour un styling efficace avec des classes utilitaires",
     ],
     backendTitle: "Backend",
     backendDetails: [
-      "Architecture en services séparés pour une meilleure séparation des responsabilités",
-      "Service Express pour l'API REST (authentification, CRUD des événements et tournois)",
-      "Service WebSocket dédié pour la communication en temps réel du chat",
+      "Architecture monolithique intégrée pour simplicité et maintenance",
+      "Serveur Express gérant à la fois l'API REST et la communication WebSocket",
+      "Module WebSocket natif d'Express pour la communication en temps réel",
       "MongoDB pour le stockage des messages et des données utilisateurs",
-      "PostgreSQL pour les données structurées (événements, tournois, équipes)"
+      "PostgreSQL pour les données structurées (événements, tournois, équipes)",
     ],
-    
+
     componentInteractionTitle: "Interaction des composants",
     componentInteractions: [
       {
-        title: "Serveur Express (API REST)",
-        role: "Gère toutes les opérations CRUD classiques",
+        title: "Serveur Express + WebSocket",
+        role: "Serveur unique gérant l'ensemble de l'application backend",
         responsibilities: [
-          "Authentification et gestion des utilisateurs",
-          "Création et gestion des événements e-sport",
-          "Configuration des tournois et des équipes",
-          "Stockage des données persistantes dans PostgreSQL"
-        ]
-      },
-      {
-        title: "Serveur WebSocket",
-        role: "Gère exclusivement la communication en temps réel",
-        responsibilities: [
-          "Établissement et maintien des connexions WebSocket",
-          "Diffusion des messages dans les salons de discussion appropriés",
-          "Notification des événements en direct (début de match, résultats)",
-          "Stockage temporaire des messages dans MongoDB pour une récupération facile"
-        ]
+          "API REST pour l'authentification et les opérations CRUD",
+          "Gestion des événements e-sport et des tournois",
+          "Établissement et maintenance des connexions WebSocket pour le chat",
+          "Diffusion des messages dans les salons appropriés",
+          "Stockage persistant dans PostgreSQL et MongoDB",
+        ],
       },
       {
         title: "Frontend HTMX + Alpine.js",
@@ -78,103 +72,113 @@ const content = {
           "HTMX intercepte les formulaires et effectue des requêtes AJAX vers l'API Express",
           "HTMX se connecte au WebSocket pour les messages en temps réel",
           "Alpine.js gère l'état local et les interactions UI complexes",
-          "Astro optimise le chargement initial avec le rendu côté serveur"
-        ]
-      }
+          "Astro optimise le chargement initial avec le rendu côté serveur",
+        ],
+      },
     ],
-    
+
     challengesTitle: "Défis techniques",
     challenges: [
       {
-        title: "Séparation des services",
-        description: "Concevoir une architecture où Express et WebSocket fonctionnent comme des services indépendants tout en permettant une communication fluide entre eux."
+        title: "Intégration WebSocket",
+        description:
+          "Concevoir une architecture où Express gère de manière cohérente à la fois les requêtes HTTP traditionnelles et les connexions WebSocket persistantes.",
       },
       {
         title: "Gestion d'état distribuée",
-        description: "Maintenir la cohérence des données entre le frontend et les deux services backend (REST et WebSocket)."
+        description:
+          "Maintenir la cohérence des données entre le frontend et le backend (API REST et WebSocket).",
       },
       {
-        title: "Performance et mise à l'échelle",
-        description: "Optimiser le serveur WebSocket pour gérer des centaines de connexions simultanées sans dégradation des performances."
+        title: "Intégration ciblée des technologies",
+        description:
+          "Choisir les technologies appropriées pour chaque partie de l'application: HTMX standard pour les opérations CRUD et l'extension WebSocket de HTMX uniquement pour les fonctionnalités nécessitant une communication en temps réel.",
       },
       {
         title: "Sécurité inter-services",
-        description: "Mettre en place un système d'authentification cohérent entre l'API REST et le service WebSocket."
-      }
+        description:
+          "Mettre en place un système d'authentification cohérent pour l'API REST et les connections WebSocket.",
+      },
     ],
-    
+
     solutionsTitle: "Solutions mises en œuvre",
     solutions: [
       {
-        title: "Architecture en microservices légers",
-        description: "Les services Express et WebSocket sont développés comme des unités indépendantes avec des responsabilités clairement définies, mais partagent des utilitaires communs (authentification, configuration)."
+        title: "Serveur Express intégré",
+        description:
+          "Utilisation d'un serveur Express unique intégrant nativement WebSocket, simplifiant le déploiement et la maintenance tout en assurant une communication fluide entre les différentes parties de l'application.",
       },
       {
-        title: "Messaging Pattern",
-        description: "Utilisation d'un système de publication/abonnement pour permettre la communication entre les services Express et WebSocket lorsque nécessaire."
+        title: "Gestion des événements",
+        description:
+          "Système permettant aux utilisateurs de créer des événements, de s'y abonner, et aux modérateurs de les gérer via un dashboard dédié, assurant une expérience communautaire fluide.",
       },
       {
         title: "HTMX pour la simplicité",
-        description: "HTMX permet d'obtenir une expérience dynamique semblable à une SPA mais avec beaucoup moins de JavaScript côté client, rendant l'application plus légère et réactive."
+        description:
+          "HTMX permet d'obtenir une expérience dynamique semblable à une SPA mais avec beaucoup moins de JavaScript côté client, rendant l'application plus légère et réactive.",
       },
       {
-        title: "WebSocket optimisé",
-        description: "Le serveur WebSocket utilise une architecture événementielle non-bloquante et implémente des stratégies d'optimisation comme le batching des messages et la compression."
-      }
+        title: "WebSocket pour le chat en temps réel",
+        description:
+          "Utilisation ciblée de WebSocket via l'extension HTMX uniquement pour les fonctionnalités de chat, offrant une expérience en temps réel là où elle est vraiment nécessaire tout en gardant l'application légère.",
+      },
     ],
-    
+
     lessonsTitle: "Leçons apprises",
     lessons: [
-      "La séparation des responsabilités entre différents services backend améliore considérablement la maintenabilité et l'évolutivité de l'application",
+      "L'architecture monolithique avec Express peut offrir une excellente séparation des préoccupations en interne tout en simplifiant le déploiement et la maintenance",
       "HTMX et WebSocket forment une combinaison puissante pour créer des interfaces dynamiques avec peu de JavaScript",
       "L'utilisation de bases de données spécialisées pour différents types de données (PostgreSQL pour les données structurées, MongoDB pour les messages) permet d'optimiser les performances",
-      "Une bonne documentation des API et des interfaces entre services est essentielle dans une architecture distribuée"
+      "Une bonne documentation des API et des modules internes est essentielle même dans une architecture monolithique",
     ],
-    
-    performanceTitle: "Performance et optimisations",
+
+    performanceTitle: "Approche de performance",
     performance: [
       {
-        metric: "Temps de chargement initial",
-        value: "< 1.2s",
-        optimization: "Rendu côté serveur avec Astro, hydratation partielle uniquement des composants interactifs"
-      },
-      {
         metric: "Taille du bundle JS",
-        value: "92 KB (non minifié)",
-        optimization: "Utilisation minimale de JavaScript grâce à HTMX et Alpine.js"
+        value: "Minimale",
+        optimization:
+          "Utilisation stratégique de HTMX pour réduire la quantité de JavaScript côté client",
       },
       {
-        metric: "Latence des messages",
-        value: "< 100ms",
-        optimization: "Architecture WebSocket optimisée avec mise en cache"
+        metric: "Rechargement partiel",
+        value: "Efficace",
+        optimization:
+          "HTMX permet des mises à jour partielles de l'interface sans rechargement complet de la page",
       },
       {
-        metric: "Score Lighthouse Performance",
-        value: "94/100",
-        optimization: "Images optimisées, CSS minifié, chargement différé des ressources non critiques"
-      }
+        metric: "Communication en temps réel",
+        value: "Ciblée",
+        optimization:
+          "Extension WebSocket de HTMX utilisée uniquement pour les fonctionnalités de chat, où le temps réel est nécessaire",
+      },
     ],
-    
+
     techTitle: "Technologies utilisées",
     backendFrontendTitle: "Séparation Backend/Frontend",
-    
+
     visitSite: "Visiter le prototype",
     viewSourceCode: "Voir le code source",
     nextProject: "Projet suivant",
     prevProject: "Projet précédent",
     allProjects: "Tous les projets",
-    
+
     reflectionTitle: "Réflexion personnelle",
-    reflectionText: "Ce projet a été une excellente occasion d'explorer une architecture en services séparés avec des responsabilités distinctes. L'utilisation conjointe d'Express pour l'API REST et d'un serveur WebSocket dédié pour la communication en temps réel s'est avérée être une solution élégante et performante. J'ai particulièrement apprécié l'intégration de HTMX qui permet d'obtenir une expérience utilisateur dynamique avec un minimum de JavaScript, tout en conservant une architecture propre côté serveur. À l'avenir, j'aimerais approfondir les aspects de mise à l'échelle et explorer des solutions comme Redis pour la communication inter-services."
+    reflectionText:
+      "Ce projet a été une excellente occasion d'explorer une architecture monolithique bien structurée avec des responsabilités clairement définies. L'utilisation d'Express avec son module WebSocket natif pour gérer à la fois l'API REST et la communication en temps réel s'est avérée être une solution élégante et performante. J'ai particulièrement apprécié l'intégration de HTMX qui permet d'obtenir une expérience utilisateur dynamique avec un minimum de JavaScript, tout en conservant une architecture propre côté serveur. Ce projet a été développé avec Express pour sa simplicité d'implémentation et sa flexibilité. Pour le niveau de trafic actuel, cette architecture est parfaitement adaptée. Si l'application venait à gagner en popularité et nécessitait une meilleure gestion de la charge, j'envisagerais de migrer vers un backend Phoenix/Elixir, reconnu pour ses capacités de concurrence et de mise à l'échelle supérieures.",
   },
   en: {
     title: "E-sport Application with Chat | Josselin HANEL",
-    description: "E-sport event management platform with a real-time chat system via WebSocket and HTMX.",
+    description:
+      "E-sport event management platform with a real-time chat system via WebSocket and HTMX.",
     projectTitle: "E-sport Application with Chat",
-    projectIntro: "This platform allows e-sport event organizers to create and manage tournaments, while offering participants a way to communicate in real-time via an integrated chat system.",
-    
+    projectIntro:
+      "This platform allows e-sport event organizers to create and manage tournaments, while offering participants a way to communicate in real-time via an integrated chat system.",
+
     overviewTitle: "Project overview",
-    overviewText: "This project demonstrates the integration of real-time chat into a web application with a clear architecture separating responsibilities. The frontend uses Astro for static rendering with interactive islands via Alpine.js and HTMX, while the backend is divided into two services: an Express server for the REST API and a dedicated WebSocket server for real-time communication.",
+    overviewText:
+      "This project demonstrates the integration of real-time chat into a web application with a clear architecture separating responsibilities. The frontend uses Astro for static rendering with interactive islands via Alpine.js and HTMX, while the backend uses Express with its WebSocket module to handle both API requests and real-time communication.",
 
     architectureTitle: "Project architecture",
     frontendTitle: "Frontend",
@@ -182,38 +186,29 @@ const content = {
       "Astro for static rendering with partial hydration",
       "Alpine.js for local state management and lightweight UI interactions",
       "HTMX for AJAX requests and server interaction without complex JavaScript",
-      "Tailwind CSS for efficient styling with utility classes"
+      "Tailwind CSS for efficient styling with utility classes",
     ],
     backendTitle: "Backend",
     backendDetails: [
-      "Architecture in separate services for better separation of concerns",
-      "Express service for the REST API (authentication, CRUD for events and tournaments)",
-      "Dedicated WebSocket service for real-time chat communication",
+      "Integrated monolithic architecture for simplicity and maintenance",
+      "Express server handling both REST API and WebSocket communication",
+      "Native WebSocket module for Express for real-time communication",
       "MongoDB for storing messages and user data",
-      "PostgreSQL for structured data (events, tournaments, teams)"
+      "PostgreSQL for structured data (events, tournaments, teams)",
     ],
-    
+
     componentInteractionTitle: "Component interaction",
     componentInteractions: [
       {
-        title: "Express Server (REST API)",
-        role: "Handles all classic CRUD operations",
+        title: "Express + WebSocket Server",
+        role: "Single server managing the entire backend application",
         responsibilities: [
-          "Authentication and user management",
-          "Creation and management of e-sport events",
-          "Configuration of tournaments and teams",
-          "Persistent data storage in PostgreSQL"
-        ]
-      },
-      {
-        title: "WebSocket Server",
-        role: "Exclusively manages real-time communication",
-        responsibilities: [
-          "Establishment and maintenance of WebSocket connections",
+          "REST API for authentication and CRUD operations",
+          "Management of e-sport events and tournaments",
+          "Establishment and maintenance of WebSocket connections for chat",
           "Broadcasting messages in appropriate chat rooms",
-          "Notification of live events (match start, results)",
-          "Temporary storage of messages in MongoDB for easy retrieval"
-        ]
+          "Persistent storage in PostgreSQL and MongoDB",
+        ],
       },
       {
         title: "Frontend HTMX + Alpine.js",
@@ -222,103 +217,113 @@ const content = {
           "HTMX intercepts forms and makes AJAX requests to the Express API",
           "HTMX connects to WebSocket for real-time messages",
           "Alpine.js handles local state and complex UI interactions",
-          "Astro optimizes initial loading with server-side rendering"
-        ]
-      }
+          "Astro optimizes initial loading with server-side rendering",
+        ],
+      },
     ],
-    
+
     challengesTitle: "Technical challenges",
     challenges: [
       {
-        title: "Service separation",
-        description: "Designing an architecture where Express and WebSocket work as independent services while allowing smooth communication between them."
+        title: "WebSocket Integration",
+        description:
+          "Designing an architecture where Express consistently handles both traditional HTTP requests and persistent WebSocket connections.",
       },
       {
         title: "Distributed state management",
-        description: "Maintaining data consistency between the frontend and the two backend services (REST and WebSocket)."
+        description:
+          "Maintaining data consistency between the frontend and backend (REST API and WebSocket).",
       },
       {
-        title: "Performance and scaling",
-        description: "Optimizing the WebSocket server to handle hundreds of simultaneous connections without performance degradation."
+        title: "Targeted technology integration",
+        description:
+          "Selecting the appropriate technologies for each part of the application: standard HTMX for CRUD operations and HTMX WebSocket extension only for features requiring real-time communication.",
       },
       {
         title: "Inter-service security",
-        description: "Implementing a consistent authentication system between the REST API and the WebSocket service."
-      }
+        description:
+          "Implementing a consistent authentication system for the REST API and WebSocket connections.",
+      },
     ],
-    
+
     solutionsTitle: "Implemented solutions",
     solutions: [
       {
-        title: "Lightweight microservices architecture",
-        description: "Express and WebSocket services are developed as independent units with clearly defined responsibilities, but share common utilities (authentication, configuration)."
+        title: "Integrated Express Server",
+        description:
+          "Using a single Express server with native WebSocket integration, simplifying deployment and maintenance while ensuring smooth communication between different parts of the application.",
       },
       {
-        title: "Messaging Pattern",
-        description: "Use of a publish/subscribe system to enable communication between Express and WebSocket services when necessary."
+        title: "Event Management",
+        description:
+          "System allowing users to create events, subscribe to them, and moderators to manage them via a dedicated dashboard, ensuring a smooth community experience.",
       },
       {
         title: "HTMX for simplicity",
-        description: "HTMX provides a dynamic SPA-like experience but with much less client-side JavaScript, making the application lighter and more responsive."
+        description:
+          "HTMX provides a dynamic SPA-like experience but with much less client-side JavaScript, making the application lighter and more responsive.",
       },
       {
-        title: "Optimized WebSocket",
-        description: "The WebSocket server uses a non-blocking event-driven architecture and implements optimization strategies such as message batching and compression."
-      }
+        title: "WebSocket for real-time chat",
+        description:
+          "Targeted use of WebSocket through the HTMX extension only for chat features, providing a real-time experience where it's truly needed while keeping the application lightweight.",
+      },
     ],
-    
+
     lessonsTitle: "Lessons learned",
     lessons: [
-      "Separating responsibilities between different backend services greatly improves the maintainability and scalability of the application",
+      "Monolithic architecture with Express can offer excellent separation of concerns internally while simplifying deployment and maintenance",
       "HTMX and WebSocket form a powerful combination for creating dynamic interfaces with little JavaScript",
       "Using specialized databases for different types of data (PostgreSQL for structured data, MongoDB for messages) optimizes performance",
-      "Good documentation of APIs and interfaces between services is essential in a distributed architecture"
+      "Good documentation of APIs and internal modules is essential even in a monolithic architecture",
     ],
-    
-    performanceTitle: "Performance and optimizations",
+
+    performanceTitle: "Performance approach",
     performance: [
       {
-        metric: "Initial load time",
-        value: "< 1.2s",
-        optimization: "Server-side rendering with Astro, partial hydration only of interactive components"
-      },
-      {
         metric: "JS bundle size",
-        value: "92 KB (unminified)",
-        optimization: "Minimal JavaScript usage thanks to HTMX and Alpine.js"
+        value: "Minimal",
+        optimization:
+          "Strategic use of HTMX to reduce the amount of client-side JavaScript",
       },
       {
-        metric: "Message latency",
-        value: "< 100ms",
-        optimization: "Optimized WebSocket architecture with caching"
+        metric: "Partial page updates",
+        value: "Efficient",
+        optimization:
+          "HTMX enables partial UI updates without complete page reloads",
       },
       {
-        metric: "Lighthouse Performance Score",
-        value: "94/100",
-        optimization: "Optimized images, minified CSS, lazy loading of non-critical resources"
-      }
+        metric: "Real-time communication",
+        value: "Targeted",
+        optimization:
+          "HTMX WebSocket extension used only for chat features, where real-time is necessary",
+      },
     ],
-    
+
     techTitle: "Technologies used",
     backendFrontendTitle: "Backend/Frontend Separation",
-    
+
     visitSite: "Visit prototype",
     viewSourceCode: "View source code",
     nextProject: "Next project",
     prevProject: "Previous project",
     allProjects: "All projects",
-    
+
     reflectionTitle: "Personal reflection",
-    reflectionText: "This project was an excellent opportunity to explore a service-separated architecture with distinct responsibilities. The combined use of Express for the REST API and a dedicated WebSocket server for real-time communication proved to be an elegant and performant solution. I particularly appreciated the integration of HTMX, which provides a dynamic user experience with minimal JavaScript, while maintaining a clean server-side architecture. In the future, I would like to delve deeper into scaling aspects and explore solutions like Redis for inter-service communication."
+    reflectionText:
+      "This project was an excellent opportunity to explore a well-structured monolithic architecture with clearly defined responsibilities. Using Express with its native WebSocket module to handle both REST API and real-time communication proved to be an elegant and performant solution. I particularly appreciated the integration of HTMX, which provides a dynamic user experience with minimal JavaScript, while maintaining a clean server-side architecture. This project was developed with Express for its ease of implementation and flexibility. For the current traffic level, this architecture is perfectly suitable. If the application were to gain popularity and require better load management, I would consider migrating to a Phoenix/Elixir backend, known for its superior concurrency and scaling capabilities.",
   },
   de: {
     title: "E-Sport-Anwendung mit Chat | Josselin HANEL",
-    description: "E-Sport-Eventmanagement-Plattform mit einem Echtzeit-Chat-System über WebSocket und HTMX.",
+    description:
+      "E-Sport-Eventmanagement-Plattform mit einem Echtzeit-Chat-System über WebSocket und HTMX.",
     projectTitle: "E-Sport-Anwendung mit Chat",
-    projectIntro: "Diese Plattform ermöglicht es E-Sport-Veranstaltern, Turniere zu erstellen und zu verwalten, während sie den Teilnehmern eine Möglichkeit bietet, über ein integriertes Chat-System in Echtzeit zu kommunizieren.",
-    
+    projectIntro:
+      "Diese Plattform ermöglicht es E-Sport-Veranstaltern, Turniere zu erstellen und zu verwalten, während sie den Teilnehmern eine Möglichkeit bietet, über ein integriertes Chat-System in Echtzeit zu kommunizieren.",
+
     overviewTitle: "Projektübersicht",
-    overviewText: "Dieses Projekt demonstriert die Integration eines Echtzeit-Chats in eine Webanwendung mit einer klaren Architektur, die Verantwortlichkeiten trennt. Das Frontend verwendet Astro für statisches Rendering mit interaktiven Inseln über Alpine.js und HTMX, während das Backend in zwei Dienste unterteilt ist: einen Express-Server für die REST-API und einen dedizierten WebSocket-Server für die Echtzeit-Kommunikation.",
+    overviewText:
+      "Dieses Projekt demonstriert die Integration eines Echtzeit-Chats in eine Webanwendung mit einer klaren Architektur, die Verantwortlichkeiten trennt. Das Frontend verwendet Astro für statisches Rendering mit interaktiven Inseln über Alpine.js und HTMX, während das Backend Express mit seinem WebSocket-Modul verwendet, um sowohl API-Anfragen als auch Echtzeit-Kommunikation zu verarbeiten.",
 
     architectureTitle: "Projektarchitektur",
     frontendTitle: "Frontend",
@@ -326,38 +331,29 @@ const content = {
       "Astro für statisches Rendering mit partieller Hydratation",
       "Alpine.js für lokale Zustandsverwaltung und leichtgewichtige UI-Interaktionen",
       "HTMX für AJAX-Anfragen und Serverinteraktion ohne komplexes JavaScript",
-      "Tailwind CSS für effizientes Styling mit Utility-Klassen"
+      "Tailwind CSS für effizientes Styling mit Utility-Klassen",
     ],
     backendTitle: "Backend",
     backendDetails: [
-      "Architektur in separaten Diensten für bessere Trennung der Zuständigkeiten",
-      "Express-Dienst für die REST-API (Authentifizierung, CRUD für Veranstaltungen und Turniere)",
-      "Dedizierter WebSocket-Dienst für Echtzeit-Chat-Kommunikation",
+      "Integrierte monolithische Architektur für Einfachheit und Wartung",
+      "Express-Server, der sowohl REST-API als auch WebSocket-Kommunikation verarbeitet",
+      "Natives WebSocket-Modul für Express für Echtzeit-Kommunikation",
       "MongoDB für die Speicherung von Nachrichten und Benutzerdaten",
-      "PostgreSQL für strukturierte Daten (Veranstaltungen, Turniere, Teams)"
+      "PostgreSQL für strukturierte Daten (Veranstaltungen, Turniere, Teams)",
     ],
-    
+
     componentInteractionTitle: "Komponenteninteraktion",
     componentInteractions: [
       {
-        title: "Express-Server (REST-API)",
-        role: "Behandelt alle klassischen CRUD-Operationen",
+        title: "Express + WebSocket Server",
+        role: "Einzelserver, der die gesamte Backend-Anwendung verwaltet",
         responsibilities: [
-          "Authentifizierung und Benutzerverwaltung",
-          "Erstellung und Verwaltung von E-Sport-Veranstaltungen",
-          "Konfiguration von Turnieren und Teams",
-          "Persistente Datenspeicherung in PostgreSQL"
-        ]
-      },
-      {
-        title: "WebSocket-Server",
-        role: "Verwaltet ausschließlich die Echtzeit-Kommunikation",
-        responsibilities: [
-          "Einrichtung und Wartung von WebSocket-Verbindungen",
+          "REST-API für Authentifizierung und CRUD-Operationen",
+          "Verwaltung von E-Sport-Veranstaltungen und Turnieren",
+          "Einrichtung und Wartung von WebSocket-Verbindungen für den Chat",
           "Übertragung von Nachrichten in entsprechenden Chatrooms",
-          "Benachrichtigung über Live-Events (Spielbeginn, Ergebnisse)",
-          "Temporäre Speicherung von Nachrichten in MongoDB für einfachen Abruf"
-        ]
+          "Persistente Speicherung in PostgreSQL und MongoDB",
+        ],
       },
       {
         title: "Frontend HTMX + Alpine.js",
@@ -366,95 +362,102 @@ const content = {
           "HTMX fängt Formulare ab und stellt AJAX-Anfragen an die Express-API",
           "HTMX verbindet sich mit WebSocket für Echtzeit-Nachrichten",
           "Alpine.js verwaltet lokalen Zustand und komplexe UI-Interaktionen",
-          "Astro optimiert das initiale Laden mit serverseitigem Rendering"
-        ]
-      }
+          "Astro optimiert das initiale Laden mit serverseitigem Rendering",
+        ],
+      },
     ],
-    
+
     challengesTitle: "Technische Herausforderungen",
     challenges: [
       {
-        title: "Dienste-Trennung",
-        description: "Entwicklung einer Architektur, in der Express und WebSocket als unabhängige Dienste funktionieren und gleichzeitig eine reibungslose Kommunikation zwischen ihnen ermöglicht wird."
+        title: "WebSocket-Integration",
+        description:
+          "Entwicklung einer Architektur, in der Express sowohl traditionelle HTTP-Anfragen als auch persistente WebSocket-Verbindungen konsistent verarbeitet.",
       },
       {
         title: "Verteilte Zustandsverwaltung",
-        description: "Aufrechterhaltung der Datenkonsistenz zwischen dem Frontend und den beiden Backend-Diensten (REST und WebSocket)."
+        description:
+          "Aufrechterhaltung der Datenkonsistenz zwischen dem Frontend und Backend (REST-API und WebSocket).",
       },
       {
-        title: "Leistung und Skalierung",
-        description: "Optimierung des WebSocket-Servers zur Bewältigung von Hunderten gleichzeitiger Verbindungen ohne Leistungseinbußen."
+        title: "Gezielte Technologieintegration",
+        description:
+          "Auswahl der geeigneten Technologien für jeden Teil der Anwendung: Standard-HTMX für CRUD-Operationen und HTMX-WebSocket-Erweiterung nur für Funktionen, die Echtzeit-Kommunikation erfordern.",
       },
       {
         title: "Diensteübergreifende Sicherheit",
-        description: "Implementierung eines konsistenten Authentifizierungssystems zwischen der REST-API und dem WebSocket-Dienst."
-      }
+        description:
+          "Implementierung eines konsistenten Authentifizierungssystems für die REST-API und WebSocket-Verbindungen.",
+      },
     ],
-    
+
     solutionsTitle: "Umgesetzte Lösungen",
     solutions: [
       {
-        title: "Leichtgewichtige Microservices-Architektur",
-        description: "Express- und WebSocket-Dienste werden als unabhängige Einheiten mit klar definierten Verantwortlichkeiten entwickelt, teilen aber gemeinsame Dienstprogramme (Authentifizierung, Konfiguration)."
+        title: "Integrierter Express-Server",
+        description:
+          "Verwendung eines einzelnen Express-Servers mit nativer WebSocket-Integration, wodurch Bereitstellung und Wartung vereinfacht werden und gleichzeitig eine reibungslose Kommunikation zwischen verschiedenen Teilen der Anwendung gewährleistet wird.",
       },
       {
-        title: "Messaging-Pattern",
-        description: "Verwendung eines Publish/Subscribe-Systems zur Ermöglichung der Kommunikation zwischen Express- und WebSocket-Diensten bei Bedarf."
+        title: "Ereignisverwaltung",
+        description:
+          "System, das Benutzern ermöglicht, Ereignisse zu erstellen, sie zu abonnieren und Moderatoren, diese über ein dediziertes Dashboard zu verwalten, um ein reibungsloses Gemeinschaftserlebnis zu gewährleisten.",
       },
       {
         title: "HTMX für Einfachheit",
-        description: "HTMX bietet ein dynamisches SPA-ähnliches Erlebnis, aber mit viel weniger clientseitigem JavaScript, wodurch die Anwendung leichter und reaktionsschneller wird."
+        description:
+          "HTMX bietet ein dynamisches SPA-ähnliches Erlebnis, aber mit viel weniger clientseitigem JavaScript, wodurch die Anwendung leichter und reaktionsschneller wird.",
       },
       {
-        title: "Optimierter WebSocket",
-        description: "Der WebSocket-Server verwendet eine nicht-blockierende, ereignisgesteuerte Architektur und implementiert Optimierungsstrategien wie Message-Batching und Kompression."
-      }
+        title: "WebSocket für Echtzeit-Chat",
+        description:
+          "Gezielter Einsatz von WebSocket über die HTMX-Erweiterung nur für Chat-Funktionen, was eine Echtzeit-Erfahrung bietet, wo sie wirklich benötigt wird, und gleichzeitig die Anwendung leicht hält.",
+      },
     ],
-    
+
     lessonsTitle: "Gelernte Lektionen",
     lessons: [
-      "Die Trennung der Verantwortlichkeiten zwischen verschiedenen Backend-Diensten verbessert erheblich die Wartbarkeit und Skalierbarkeit der Anwendung",
+      "Monolithische Architektur mit Express kann intern eine hervorragende Trennung der Zuständigkeiten bieten und gleichzeitig Bereitstellung und Wartung vereinfachen",
       "HTMX und WebSocket bilden eine leistungsstarke Kombination zur Erstellung dynamischer Schnittstellen mit wenig JavaScript",
       "Die Verwendung spezialisierter Datenbanken für verschiedene Arten von Daten (PostgreSQL für strukturierte Daten, MongoDB für Nachrichten) optimiert die Leistung",
-      "Eine gute Dokumentation von APIs und Schnittstellen zwischen Diensten ist in einer verteilten Architektur unerlässlich"
+      "Eine gute Dokumentation von APIs und internen Modulen ist auch in einer monolithischen Architektur unerlässlich",
     ],
-    
-    performanceTitle: "Leistung und Optimierungen",
+
+    performanceTitle: "Leistungsansatz",
     performance: [
       {
-        metric: "Initiale Ladezeit",
-        value: "< 1,2s",
-        optimization: "Serverseitiges Rendering mit Astro, partielle Hydratation nur für interaktive Komponenten"
-      },
-      {
         metric: "JS-Bundle-Größe",
-        value: "92 KB (nicht minifiziert)",
-        optimization: "Minimale JavaScript-Nutzung dank HTMX und Alpine.js"
+        value: "Minimal",
+        optimization:
+          "Strategischer Einsatz von HTMX zur Reduzierung der Menge an clientseitigem JavaScript",
       },
       {
-        metric: "Nachrichtenlatenz",
-        value: "< 100ms",
-        optimization: "Optimierte WebSocket-Architektur mit Caching"
+        metric: "Teilseitenaktualisierungen",
+        value: "Effizient",
+        optimization:
+          "HTMX ermöglicht partielle UI-Aktualisierungen ohne vollständige Seitenneuladen",
       },
       {
-        metric: "Lighthouse Performance Score",
-        value: "94/100",
-        optimization: "Optimierte Bilder, minifiziertes CSS, Lazy Loading nicht-kritischer Ressourcen"
-      }
+        metric: "Echtzeit-Kommunikation",
+        value: "Gezielt",
+        optimization:
+          "HTMX WebSocket-Erweiterung nur für Chat-Funktionen verwendet, wo Echtzeit notwendig ist",
+      },
     ],
-    
+
     techTitle: "Verwendete Technologien",
     backendFrontendTitle: "Backend/Frontend-Trennung",
-    
+
     visitSite: "Prototyp besuchen",
     viewSourceCode: "Quellcode ansehen",
     nextProject: "Nächstes Projekt",
     prevProject: "Vorheriges Projekt",
     allProjects: "Alle Projekte",
-    
+
     reflectionTitle: "Persönliche Reflexion",
-    reflectionText: "Dieses Projekt war eine ausgezeichnete Gelegenheit, eine dienstgetrennte Architektur mit klar definierten Verantwortlichkeiten zu erkunden. Die kombinierte Nutzung von Express für die REST-API und einem dedizierten WebSocket-Server für die Echtzeit-Kommunikation erwies sich als elegante und leistungsstarke Lösung. Besonders geschätzt habe ich die Integration von HTMX, das ein dynamisches Benutzererlebnis mit minimalem JavaScript bietet und gleichzeitig eine saubere serverseitige Architektur beibehält. In Zukunft möchte ich tiefer in Skalierungsaspekte eintauchen und Lösungen wie Redis für die diensteübergreifende Kommunikation erforschen."
-  }
+    reflectionText:
+      "Dieses Projekt war eine ausgezeichnete Gelegenheit, eine gut strukturierte monolithische Architektur mit klar definierten Verantwortlichkeiten zu erkunden. Die Verwendung von Express mit seinem nativen WebSocket-Modul zur Verarbeitung sowohl der REST-API als auch der Echtzeit-Kommunikation erwies sich als elegante und leistungsstarke Lösung. Besonders geschätzt habe ich die Integration von HTMX, das ein dynamisches Benutzererlebnis mit minimalem JavaScript bietet und gleichzeitig eine saubere serverseitige Architektur beibehält. Dieses Projekt wurde mit Express für seine einfache Implementierung und Flexibilität entwickelt. Für das aktuelle Verkehrsaufkommen ist diese Architektur perfekt geeignet. Sollte die Anwendung an Popularität gewinnen und eine bessere Lastverteilung erfordern, würde ich eine Migration zu einem Phoenix/Elixir-Backend in Betracht ziehen, das für seine überlegenen Nebenläufigkeits- und Skalierungsfähigkeiten bekannt ist.",
+  },
 };
 
 // Utiliser la langue demandée ou français par défaut
@@ -469,37 +472,42 @@ const technologies = [
   "Express",
   "WebSocket",
   "PostgreSQL",
-  "MongoDB"
+  "MongoDB",
 ];
 
 // Obtenir les projets précédent et suivant selon la langue
 const getProjectUrl = (projectId: string) => `/${lang}/projects/${projectId}`;
 const prevProject = {
   id: "objet",
-  title: lang === "fr" ? 
-    "Bibliothèque d'objets - Quimper" :
-    (lang === "en" ? 
-      "Object Library - Quimper" : 
-      "Objektbibliothek - Quimper")
+  title:
+    lang === "fr"
+      ? "Bibliothèque d'objets - Quimper"
+      : lang === "en"
+        ? "Object Library - Quimper"
+        : "Objektbibliothek - Quimper",
 };
 const nextProject = {
   id: "portfolio",
-  title: lang === "fr" ? 
-    "Portfolio personnel éco-responsable" :
-    (lang === "en" ? 
-      "Eco-friendly personal portfolio" : 
-      "Umweltfreundliches persönliches Portfolio")
+  title:
+    lang === "fr"
+      ? "Portfolio personnel éco-responsable"
+      : lang === "en"
+        ? "Eco-friendly personal portfolio"
+        : "Umweltfreundliches persönliches Portfolio",
 };
 ---
 
 <Layout title={t.title} description={t.description} lang={lang}>
   <div class="container mx-auto px-4 py-8">
     <div class="mb-4">
-      <a href={`/${lang}/projects`} class="text-text-muted hover:text-accent transition-colors">
+      <a
+        href={`/${lang}/projects`}
+        class="text-text-muted hover:text-accent transition-colors"
+      >
         &larr; {t.allProjects}
       </a>
     </div>
-    
+
     <!-- En-tête du projet -->
     <header class="mb-10">
       <h1 class="text-3xl font-bold mb-6 border-b border-accent pb-2">
@@ -509,7 +517,7 @@ const nextProject = {
         {t.projectIntro}
       </p>
     </header>
-    
+
     <!-- Image principale du projet -->
     <div class="mb-10 bg-secondary bg-opacity-30 p-4 rounded-lg">
       <Picture
@@ -521,7 +529,7 @@ const nextProject = {
         class="w-full rounded-lg"
       />
     </div>
-    
+
     <!-- Aperçu du projet -->
     <section class="mb-10">
       <h2 class="text-2xl font-bold mb-4 text-accent">
@@ -530,10 +538,10 @@ const nextProject = {
       <p class="mb-6 max-w-3xl">
         {t.overviewText}
       </p>
-      
+
       <!-- Actions principales -->
       <div class="flex flex-wrap gap-4 mb-8">
-        <a 
+        <a
           href="https://kewnewhimsy.github.io/esportify-f/"
           target="_blank"
           rel="noopener noreferrer"
@@ -541,23 +549,43 @@ const nextProject = {
         >
           {t.visitSite}
         </a>
-        <a 
+        <a
           href="https://github.com/KewneWhimsy/esportify-f"
           target="_blank"
           rel="noopener noreferrer"
           class="btn-secondary"
         >
-          {t.viewSourceCode}
+          {
+            lang === "fr"
+              ? "Repo Frontend"
+              : lang === "en"
+                ? "Frontend Repo"
+                : "Frontend Repo"
+          }
+        </a>
+        <a
+          href="https://github.com/KewneWhimsy/esportify-b"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="btn-secondary"
+        >
+          {
+            lang === "fr"
+              ? "Repo Backend"
+              : lang === "en"
+                ? "Backend Repo"
+                : "Backend Repo"
+          }
         </a>
       </div>
     </section>
-    
+
     <!-- Architecture du projet -->
     <section class="mb-10">
       <h2 class="text-2xl font-bold mb-6 text-accent">
         {t.architectureTitle}
       </h2>
-      
+
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
         <!-- Frontend -->
         <div class="bg-secondary bg-opacity-20 p-6 rounded-lg">
@@ -566,15 +594,17 @@ const nextProject = {
             <span class="ml-2">🖥️</span>
           </h3>
           <ul class="space-y-2">
-            {t.frontendDetails.map(detail => (
-              <li class="flex items-start">
-                <span class="text-accent mr-2">•</span>
-                <span>{detail}</span>
-              </li>
-            ))}
+            {
+              t.frontendDetails.map((detail) => (
+                <li class="flex items-start">
+                  <span class="text-accent mr-2">•</span>
+                  <span>{detail}</span>
+                </li>
+              ))
+            }
           </ul>
         </div>
-        
+
         <!-- Backend -->
         <div class="bg-secondary bg-opacity-20 p-6 rounded-lg">
           <h3 class="text-xl font-semibold mb-4 flex items-center">
@@ -582,176 +612,216 @@ const nextProject = {
             <span class="ml-2">⚙️</span>
           </h3>
           <ul class="space-y-2">
-            {t.backendDetails.map(detail => (
-              <li class="flex items-start">
-                <span class="text-accent mr-2">•</span>
-                <span>{detail}</span>
-              </li>
-            ))}
+            {
+              t.backendDetails.map((detail) => (
+                <li class="flex items-start">
+                  <span class="text-accent mr-2">•</span>
+                  <span>{detail}</span>
+                </li>
+              ))
+            }
           </ul>
         </div>
       </div>
-      
-      
-      
+
       <!-- Interaction des composants -->
       <div class="mb-8">
         <h3 class="text-xl font-semibold mb-4">
           {t.componentInteractionTitle}
         </h3>
-        
-        {t.componentInteractions.map((component, index) => (
-          <div class="mb-6 border-l-4 border-accent pl-4 py-2">
-            <h4 class="text-lg font-medium mb-2">{component.title}</h4>
-            <p class="italic mb-2">{component.role}</p>
-            <ul class="space-y-1">
-              {component.responsibilities.map(resp => (
-                <li class="flex items-start text-sm">
-                  <span class="text-accent mr-2">→</span>
-                  <span>{resp}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-        ))}
+
+        {
+          t.componentInteractions.map((component, index) => (
+            <div class="mb-6 border-l-4 border-accent pl-4 py-2">
+              <h4 class="text-lg font-medium mb-2">{component.title}</h4>
+              <p class="italic mb-2">{component.role}</p>
+              <ul class="space-y-1">
+                {component.responsibilities.map((resp) => (
+                  <li class="flex items-start text-sm">
+                    <span class="text-accent mr-2">→</span>
+                    <span>{resp}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))
+        }
       </div>
     </section>
-    
+
     <!-- Images secondaires du projet (à implémenter si disponibles) -->
-    {esportImage2 && esportImage3 && (
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 my-8">
-        <Picture
-          src={esportImage2}
-          widths={[400, 600, 900]}
-          formats={["avif", "webp", "jpg"]}
-          alt="Interface de chat de l'application e-sport"
-          class="w-full h-full object-cover rounded-lg"
-        />
-        <Picture
-          src={esportImage3}
-          widths={[400, 600, 900]}
-          formats={["avif", "webp", "jpg"]}
-          alt="Gestion des tournois"
-          class="w-full h-full object-cover rounded-lg"
-        />
-      </div>
-    )}
-    
+    {
+      esportImage2 && esportImage3 && (
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 my-8">
+          <Picture
+            src={esportImage2}
+            widths={[400, 600, 900]}
+            formats={["avif", "webp", "jpg"]}
+            alt="Interface de chat de l'application e-sport"
+            class="w-full h-full object-cover rounded-lg"
+          />
+          <Picture
+            src={esportImage3}
+            widths={[400, 600, 900]}
+            formats={["avif", "webp", "jpg"]}
+            alt="Gestion des tournois"
+            class="w-full h-full object-cover rounded-lg"
+          />
+        </div>
+      )
+    }
+
     <!-- Défis techniques -->
     <section class="mb-10">
       <h2 class="text-2xl font-bold mb-6 text-accent">
         {t.challengesTitle}
       </h2>
-      
+
       <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-        {t.challenges.map((challenge, index) => (
-          <div class="bg-secondary bg-opacity-10 p-4 rounded-lg">
-            <h3 class="font-medium mb-2">{challenge.title}</h3>
-            <p class="text-sm">{challenge.description}</p>
-          </div>
-        ))}
+        {
+          t.challenges.map((challenge, index) => (
+            <div class="bg-secondary bg-opacity-10 p-4 rounded-lg flex">
+              <div class="w-8 h-8 bg-accent text-primary rounded-full flex items-center justify-center mr-3 flex-shrink-0">
+                {index + 1}
+              </div>
+              <div>
+              <h3 class="font-medium mb-2">{challenge.title}</h3>
+              <p class="text-sm">{challenge.description}</p>
+            </div>
+            </div>
+          ))
+        }
       </div>
     </section>
-    
+
     <!-- Solutions mises en œuvre -->
     <section class="mb-10">
       <h2 class="text-2xl font-bold mb-6 text-accent">
         {t.solutionsTitle}
       </h2>
-      
+
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {t.solutions.map((solution, index) => (
-          <div class="bg-secondary bg-opacity-20 p-5 rounded-lg">
-            <h3 class="text-lg font-semibold mb-3">
-              {solution.title}
-            </h3>
-            <p>{solution.description}</p>
-          </div>
-        ))}
+        {
+          t.solutions.map((solution, index) => (
+            <div class="bg-secondary bg-opacity-20 p-5 rounded-lg">
+              <div class="flex justify-between items-center mb-3">
+                <h3 class="text-xl font-semibold mb-3 flex items-center">
+                  {solution.title}
+                </h3>
+                <span class="text-xl">
+                  {index === 0
+                    ? "🔄"
+                    : index === 1
+                      ? "🔔"
+                      : index === 2
+                        ? "⚡"
+                        : "📈"}
+                </span>
+              </div>
+              <p>{solution.description}</p>
+            </div>
+          ))
+        }
       </div>
     </section>
-    
+
     <!-- Image supplémentaire du projet (à implémenter si disponible) -->
-    {esportImage4 && (
-      <div class="mb-10">
-        <Picture
-          src={esportImage4}
-          widths={[800, 1200]}
-          formats={["avif", "webp", "jpg"]}
-          alt="Écran de chat en temps réel"
-          class="w-full rounded-lg"
-        />
-      </div>
-    )}
-    
+    {
+      esportImage4 && (
+        <div class="mb-10">
+          <Picture
+            src={esportImage4}
+            widths={[800, 1200]}
+            formats={["avif", "webp", "jpg"]}
+            alt="Écran de chat en temps réel"
+            class="w-full rounded-lg"
+          />
+        </div>
+      )
+    }
+
     <!-- Leçons apprises -->
     <section class="mb-10">
       <h2 class="text-2xl font-bold mb-4 text-accent">
         {t.lessonsTitle}
       </h2>
       <ul class="list-disc pl-6 space-y-2">
-        {t.lessons.map(lesson => (
-          <li>{lesson}</li>
-        ))}
+        {t.lessons.map((lesson) => <li>{lesson}</li>)}
       </ul>
     </section>
-    
+
     <!-- Performance et optimisations -->
     <section class="mb-10">
       <h2 class="text-2xl font-bold mb-6 text-accent">
         {t.performanceTitle}
       </h2>
-      
+
       <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-        {t.performance.map(perf => (
-          <div class="bg-secondary bg-opacity-10 p-4 rounded-lg">
-            <div class="flex justify-between mb-2">
-              <h3 class="font-medium">{perf.metric}</h3>
-              <span class="text-accent font-mono">{perf.value}</span>
+        {
+          t.performance.map((perf) => (
+            <div class="bg-secondary bg-opacity-10 p-4 rounded-lg">
+              <div class="flex justify-between mb-2">
+                <h3 class="font-medium">{perf.metric}</h3>
+                <span class="text-accent font-mono">{perf.value}</span>
+              </div>
+              <p class="text-sm text-text-muted">{perf.optimization}</p>
             </div>
-            <p class="text-sm text-text-muted">{perf.optimization}</p>
-          </div>
-        ))}
+          ))
+        }
       </div>
     </section>
-    
+
     <!-- Technologies utilisées -->
     <section class="mb-10">
       <h2 class="text-2xl font-bold mb-4 text-accent">
         {t.techTitle}
       </h2>
-      
+
       <h3 class="text-lg font-semibold mb-3">
         {t.backendFrontendTitle}
       </h3>
-      
+
       <div class="flex flex-wrap gap-2 mb-6">
-        {technologies.slice(0, 4).map(tech => (
-          <span class="px-3 py-1 border border-accent rounded-full text-accent transition-all hover:bg-accent-light">
-            {tech}
-          </span>
-        ))}
+        {
+          technologies
+            .slice(0, 4)
+            .map((tech) => (
+              <span class="px-3 py-1 border border-accent rounded-full text-accent transition-all hover:bg-accent-light">
+                {tech}
+              </span>
+            ))
+        }
       </div>
-      
+
       <div class="flex flex-wrap gap-2 mb-6">
-        {technologies.slice(4).map(tech => (
-          <span class="px-3 py-1 bg-accent bg-opacity-20 rounded-full transition-all hover:bg-opacity-40">
-            {tech}
-          </span>
-        ))}
+        {
+          technologies
+            .slice(4)
+            .map((tech) => (
+              <span class="px-3 py-1 bg-accent bg-opacity-20 rounded-full transition-all hover:bg-opacity-40">
+                {tech}
+              </span>
+            ))
+        }
       </div>
     </section>
-    
+
     <!-- Réflexion personnelle -->
-    <section class="mb-10 bg-secondary bg-opacity-10 p-6 rounded-lg border-l-4 border-accent">
-      <h2 class="text-2xl font-bold mb-4 text-accent">
-        {t.reflectionTitle}
-      </h2>
-      <p class="italic">
-        {t.reflectionText}
-      </p>
+    <section
+      class="mb-10 bg-secondary bg-opacity-10 p-6 rounded-lg border-l-4 border-accent"
+    >
+      <div class="flex flex-col md:flex-row">
+        <h2
+          class="text-2xl font-bold mb-4 md:mr-20 text-accent flex items-center"
+        >
+          {t.reflectionTitle}
+        </h2>
+        <p class="italic max-w-3xl">
+          {t.reflectionText}
+        </p>
+      </div>
     </section>
-    
+
     <!-- Navigation entre projets -->
     <div class="border-t border-secondary pt-8 mt-12 flex justify-between">
       <a href={`/${lang}/objet`} class="btn-secondary">
@@ -761,7 +831,7 @@ const nextProject = {
         {t.nextProject}: {nextProject.title} &rarr;
       </a>
     </div>
-    
+
     <!-- CTA de contact -->
     <CtaDispo />
   </div>
