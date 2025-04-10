@@ -21,7 +21,6 @@ const content = {
     projectsTitle: 'Mes projets',
     projectsIntro: "Voici une sélection de mes projets récents. Chaque réalisation est pensée avec une approche d'éco-conception.",
     viewProject: 'Voir le projet',
-    visitSite: 'Visiter le site',
     ecoDesignTitle: 'Éco-conception web',
     ecoDesignText: "L'éco-conception web vise à réduire l'impact environnemental des sites et applications tout en préservant une expérience utilisateur de qualité.",
     ecoModeTitle: 'Mode Éco activé',
@@ -38,7 +37,6 @@ const content = {
     projectsTitle: 'My projects',
     projectsIntro: "Here is a selection of my recent projects. Each creation is designed with an eco-design approach.",
     viewProject: 'View project',
-    visitSite: 'Visit site',
     ecoDesignTitle: 'Web eco-design',
     ecoDesignText: "Web eco-design aims to reduce the environmental impact of websites and applications while preserving a quality user experience.",
     ecoModeTitle: 'Eco Mode activated',
@@ -55,7 +53,6 @@ const content = {
     projectsTitle: 'Meine Projekte',
     projectsIntro: "Hier ist eine Auswahl meiner neuesten Projekte. Jede Kreation ist mit einem Öko-Design-Ansatz konzipiert.",
     viewProject: 'Projekt ansehen',
-    visitSite: 'Website besuchen',
     ecoDesignTitle: 'Web-Öko-Design',
     ecoDesignText: "Web-Öko-Design zielt darauf ab, die Umweltauswirkungen von Websites und Anwendungen zu reduzieren und gleichzeitig ein qualitativ hochwertiges Benutzererlebnis zu bewahren.",
     ecoModeTitle: 'Öko-Modus aktiviert',
@@ -100,7 +97,7 @@ const projects = [
         'E-sport event management platform with a real-time chat system via WebSocket and HTMX. (fictional company)' : 
         'E-Sport-Eventmanagement-Plattform mit einem Echtzeit-Chat-System über WebSocket und HTMX. (fiktives Unternehmen)'),
     tech: ['Astro', 'Tailwind', 'Alpine.js', 'HTMX', 'WebSocket', 'Express', 'PostgreSQL', 'MongoDB'],
-    url: `https://kewnewhimsy.github.io/esportify-f/`
+    url: `/${lang}/esport/eco`
   },
   {
     id: 'library',
@@ -115,7 +112,7 @@ const projects = [
         'Designed in collaboration with <a href="https://jadephom.myportfolio.com/" target="_blank" rel="noopener" class="text-jade">Jade Ounaphom</a>, audiovisual creator, the website highlights how the object library works and its news.' : 
         'In Zusammenarbeit mit <a href="https://jadephom.myportfolio.com/" target="_blank" rel="noopener" class="text-jade">Jade Ounaphom</a>, audiovisuelle Gestalterin, präsentiert die Website die Funktionsweise der Objektbibliothek und ihre Neuigkeiten.'),
     tech: ['Astro', 'CSS Pro', 'TypeScript', 'Alpine.js', 'GitHub Actions'],
-    url: `https://objethequecornouaille.fr/`
+    url: `/${lang}/objet/eco`
   },
 ];
 
@@ -196,9 +193,8 @@ const isEcoMode = true;
                 <a 
                   href={project.url} 
                   class="text-link"
-                  target="_blank"
                 >
-                  {t.visitSite}
+                  {t.viewProject}
                 </a>
               </div>
             )}

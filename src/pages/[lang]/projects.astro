@@ -25,9 +25,7 @@ const content = {
     description: 'Découvrez mes projets de développement web éco-responsable et mes réalisations récentes.',
     projectsTitle: 'Mes projets',
     projectsIntro: "Voici une sélection de mes projets récents. Chaque réalisation est pensée avec une approche d'éco-conception et d'accessibilité.",
-    viewProject: 'Voir le projet',
-    visitSite: 'Visiter le site',
-    viewSourceCode: 'Voir le code source',
+    viewProject: 'Découvrir le projet',
     showcaseTitle: 'Focus sur l\'éco-conception',
     showcaseText: "L'éco-conception web consiste à créer des sites et applications qui minimisent leur impact environnemental tout au long de leur cycle de vie. Voici quelques principes que j'applique dans mes projets.",
     principles: [
@@ -64,9 +62,7 @@ const content = {
     description: 'Discover my eco-friendly web development projects and recent achievements.',
     projectsTitle: 'My projects',
     projectsIntro: "Here is a selection of my recent projects. Each creation is designed with an eco-design and accessibility approach.",
-    viewProject: 'View project',
-    visitSite: 'Visit site',
-    viewSourceCode: 'View source code',
+    viewProject: 'Explore project',
     showcaseTitle: 'Focus on eco-design',
     showcaseText: "Web eco-design consists of creating websites and applications that minimize their environmental impact throughout their life cycle. Here are some principles I apply in my projects.",
     principles: [
@@ -103,9 +99,7 @@ const content = {
     description: 'Entdecken Sie meine umweltfreundlichen Webentwicklungsprojekte und neuesten Erfolge.',
     projectsTitle: 'Meine Projekte',
     projectsIntro: "Hier ist eine Auswahl meiner neuesten Projekte. Jede Kreation ist mit einem Öko-Design- und Zugänglichkeitsansatz konzipiert.",
-    viewProject: 'Projekt ansehen',
-    visitSite: 'Website besuchen',
-    viewSourceCode: 'Quellcode ansehen',
+    viewProject: 'Projekt entdecken',
     showcaseTitle: 'Fokus auf Öko-Design',
     showcaseText: "Web-Öko-Design besteht darin, Websites und Anwendungen zu erstellen, die ihre Umweltauswirkungen während ihres gesamten Lebenszyklus minimieren. Hier sind einige Prinzipien, die ich in meinen Projekten anwende.",
     principles: [
@@ -174,7 +168,7 @@ const projects = [
         'E-Sport-Eventmanagement-Plattform mit einem Echtzeit-Chat-System über WebSocket und HTMX. (fiktives Unternehmen)'),
     image: esportImage,
     tech: ['Astro', 'Tailwind', 'Alpine.js', 'HTMX', 'WebSocket', 'Express', 'PostgreSQL', 'MongoDB'],
-    url: 'https://kewnewhimsy.github.io/esportify-f/',
+    url: `/${lang}/esport`,
     isFeatured: true
   },
   {
@@ -191,13 +185,10 @@ const projects = [
         'In Zusammenarbeit mit <a href="https://jadephom.myportfolio.com/" target="_blank" rel="noopener" class="text-jade">Jade Ounaphom</a>, audiovisuelle Gestalterin, präsentiert die Website die Funktionsweise der Objektbibliothek und ihre Neuigkeiten.'),
     image: objetImage,
     tech: ['Astro', 'CSS Pro', 'TypeScript', 'Alpine.js', 'GitHub Actions'],
-    url: 'https://objethequecornouaille.fr/',
+    url: `/${lang}/objet`,
     isFeatured: true
   },
 ];
-
-// Générer l'URL du projet en fonction de la langue actuelle
-const getProjectUrl = (projectId: string) => `/${lang}/projects/${projectId}`;
 ---
 
 <Layout title={t.title} description={t.description} lang={lang}>
@@ -249,22 +240,13 @@ const getProjectUrl = (projectId: string) => `/${lang}/projects/${projectId}`;
           </div>
           <!-- Boutons d'action (rangée 4) -->
           <div class="p-4 pt-0">
-            <div class="flex flex-wrap mt-auto gap-2">
-              <a 
-                href={getProjectUrl(project.id)} 
-                class="flex-1 text-center cta-button text-sm"
-                style="display: none;"
-              >
-                {t.viewProject}
-              </a>
-              
+            <div class="flex mt-auto">
               <a 
                 href={project.url} 
-                target="_blank" 
                 rel="noopener noreferrer" 
                 class="flex-1 text-center btn-secondary text-sm"
               >
-                {t.visitSite}
+                {t.viewProject}
               </a>
             </div>
           </div>

@@ -280,7 +280,7 @@ const technologies = [
 ];
 
 // Obtenir les projets précédent et suivant selon la langue
-const getProjectUrl = (projectId: string) => `https://kewnewhimsy.github.io/esportify-f/`;
+const getProjectUrl = (projectId: string) => `/${lang}/esport`;
 const nextProject = {
   id: "esport",
   title: lang === "fr" ? 
@@ -314,7 +314,6 @@ const nextProject = {
       <Picture
         src={objetImage}
         widths={[800, 1200, 1600]}
-        sizes="(max-width: 1200px) 100vw, 1200px"
         formats={["avif", "webp", "jpg"]}
         alt={t.projectTitle}
         class="w-full rounded-lg"
@@ -342,6 +341,7 @@ const nextProject = {
     </section>
     <!-- Images secondaires -->
     <div class="grid grid-cols-1 md:grid-cols-2 gap-4 my-8">
+      <div class="bg-secondary bg-opacity-30 p-2 rounded-lg">
       <Picture
         src={objetImage2}
         widths={[400, 600, 900]}
@@ -349,6 +349,8 @@ const nextProject = {
         alt="Interface de l'Objethèque"
         class="w-full h-full object-cover rounded-lg"
       />
+      </div>
+      <div class="bg-secondary bg-opacity-30 p-2 rounded-lg">
       <Picture
         src={objetImage3}
         widths={[400, 600, 900]}
@@ -356,6 +358,7 @@ const nextProject = {
         alt="Section catalogue de l'Objethèque"
         class="w-full h-full object-cover rounded-lg"
       />
+    </div>
     </div>
     
     <!-- Défis techniques -->
@@ -409,6 +412,7 @@ const nextProject = {
 
     <!-- Images secondaires 2-->
     <div class="grid grid-cols-1 md:grid-cols-2 gap-4 my-8">
+      <div class="bg-secondary bg-opacity-30 p-2 rounded-lg">
       <Picture
         src={objetImage4}
         widths={[400, 600, 900]}
@@ -416,6 +420,8 @@ const nextProject = {
         alt="Interface de l'Objethèque"
         class="w-full h-full object-cover rounded-lg"
       />
+    </div>
+    <div class="bg-secondary bg-opacity-30 p-2 rounded-lg">
       <Picture
         src={objetImage5}
         widths={[400, 600, 900]}
@@ -423,6 +429,7 @@ const nextProject = {
         alt="Section catalogue de l'Objethèque"
         class="w-full h-full object-cover rounded-lg"
       />
+    </div>
     </div>
     
     <!-- Leçons apprises -->

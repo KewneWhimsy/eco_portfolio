@@ -5,10 +5,10 @@ import { Picture } from "astro:assets";
 import CtaDispo from "../../components/cta_dispo.astro";
 
 // Images du projet (à adapter selon votre structure)
-import esportImage from "../../assets/projects/esport01.png";
-import esportImage2 from "../../assets/projects/esport01.png";
-import esportImage3 from "../../assets/projects/esport01.png";
-import esportImage4 from "../../assets/projects/esport01.png";
+import esportImage from "../../assets/projects/esport00.png";
+import esportImage2 from "../../assets/projects/esport02.png";
+import esportImage3 from "../../assets/projects/esport03.png";
+import esportImage4 from "../../assets/projects/esport04.png";
 import esportImage5 from "../../assets/projects/esport01.png";
 
 // Récupérer le paramètre de langue depuis l'URL
@@ -524,7 +524,6 @@ const nextProject = {
       <Picture
         src={esportImage}
         widths={[800, 1200, 1600]}
-        sizes="(max-width: 1200px) 100vw, 1200px"
         formats={["avif", "webp", "jpg"]}
         alt={t.projectTitle}
         class="w-full rounded-lg"
@@ -559,9 +558,7 @@ const nextProject = {
           {
             lang === "fr"
               ? "Repo Frontend"
-              : lang === "en"
-                ? "Frontend Repo"
-                : "Frontend Repo"
+              : "Frontend Repo"
           }
         </a>
         <a
@@ -573,9 +570,7 @@ const nextProject = {
           {
             lang === "fr"
               ? "Repo Backend"
-              : lang === "en"
-                ? "Backend Repo"
-                : "Backend Repo"
+              : "Backend Repo"
           }
         </a>
       </div>
@@ -654,6 +649,7 @@ const nextProject = {
     {
       esportImage2 && esportImage3 && (
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4 my-8">
+          <div class="bg-secondary bg-opacity-30 p-2 rounded-lg">
           <Picture
             src={esportImage2}
             widths={[400, 600, 900]}
@@ -661,6 +657,8 @@ const nextProject = {
             alt="Interface de chat de l'application e-sport"
             class="w-full h-full object-cover rounded-lg"
           />
+          </div>
+          <div class="bg-secondary bg-opacity-30 p-2 rounded-lg">
           <Picture
             src={esportImage3}
             widths={[400, 600, 900]}
@@ -668,6 +666,7 @@ const nextProject = {
             alt="Gestion des tournois"
             class="w-full h-full object-cover rounded-lg"
           />
+          </div>
         </div>
       )
     }
@@ -749,6 +748,7 @@ const nextProject = {
     {
       esportImage4 && esportImage5 && (
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4 my-8">
+          <div class="bg-secondary bg-opacity-30 p-2 rounded-lg">
           <Picture
             src={esportImage4}
             widths={[400, 600, 900]}
@@ -756,6 +756,8 @@ const nextProject = {
             alt="Interface de chat de l'application e-sport"
             class="w-full h-full object-cover rounded-lg"
           />
+          </div>
+          <div class="bg-secondary bg-opacity-30 p-2 rounded-lg">
           <Picture
             src={esportImage5}
             widths={[400, 600, 900]}
@@ -763,6 +765,7 @@ const nextProject = {
             alt="Gestion des tournois"
             class="w-full h-full object-cover rounded-lg"
           />
+          </div>
         </div>
       )
     }
@@ -835,7 +838,7 @@ class="mb-10 bg-secondary bg-opacity-10 p-6 rounded-lg border-l-4 border-accent"
       <a href={`/${lang}/objet`} class="btn-secondary">
         &larr; {t.prevProject}: {prevProject.title}
       </a>
-      <a href={getProjectUrl(nextProject.id)} class="btn-secondary">
+      <a href={getProjectUrl(nextProject.id)} class="btn-secondary hidden">
         {t.nextProject}: {nextProject.title} &rarr;
       </a>
     </div>
