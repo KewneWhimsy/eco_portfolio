@@ -4,13 +4,14 @@ import Layout from "../layouts/layout.astro";
 ---
 
 <Layout 
-  title="Josselin HANEL" 
+  title="Josselin HANEL - Redirection en cours..." 
   description="Redirection vers la version linguistique appropriée"
   lang="en"
 >
   <div class="flex flex-col items-center justify-center min-h-[70vh] text-center px-4">    
     <p class="mb-6 max-w-md mx-auto">
-      Veuillez sélectionner une langue ci-dessous.
+      Vous allez être redirigé automatiquement vers la page d'accueil.
+      <br>Si la redirection ne fonctionne pas, veuillez sélectionner une langue ci-dessous.
     </p>
     
     <div class="flex gap-4 flex-wrap justify-center">
@@ -26,3 +27,10 @@ import Layout from "../layouts/layout.astro";
     </div>
   </div>
 </Layout>
+
+<script>
+  // Redirection avec un délai minimal pour permettre l'affichage du message
+  // Ceci est un fallback au cas où la redirection côté serveur et le meta refresh échoueraient
+  window.location.href = '/fr';
+ 
+</script>
