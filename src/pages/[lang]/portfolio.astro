@@ -1,0 +1,712 @@
+---
+// Import du layout standard
+import Layout from "../../layouts/layout.astro";
+import { Picture } from "astro:assets";
+import CtaDispo from "../../components/cta_dispo.astro";
+
+// Récupérer le paramètre de langue depuis l'URL
+export function getStaticPaths() {
+  return [
+    { params: { lang: "fr" } },
+    { params: { lang: "en" } },
+    { params: { lang: "de" } },
+  ];
+}
+
+const lang = Astro.params.lang as "fr" | "en" | "de";
+
+// Contenu traduit pour chaque langue
+const content = {
+  fr: {
+    title: "Portfolio personnel éco-responsable | Josselin HANEL",
+    description: "Présentation de mon portfolio multilingue avec mode éco, conçu selon les principes de l'éco-conception web.",
+    projectTitle: "Portfolio personnel éco-responsable",
+    projectIntro: "Ce portfolio a été conçu selon les principes de l'éco-conception web, avec une attention particulière à la performance et à l'optimisation des ressources.",
+    
+    overviewTitle: "Aperçu du projet",
+    overviewText: "Ce portfolio démontre comment il est possible de créer un site web à la fois esthétique, fonctionnel et respectueux de l'environnement. Il propose une version standard et une version éco, permettant aux visiteurs de choisir leur expérience de navigation selon leurs préférences ou contraintes techniques.",
+
+    featuresTitle: "Caractéristiques principales",
+    features: [
+      {
+        title: "Mode éco innovant",
+        description: "Un mode alternatif qui réduit drastiquement la consommation de ressources tout en préservant l'accès à l'information."
+      },
+      {
+        title: "Support multilingue",
+        description: "Disponible en français, anglais et allemand avec un système de routage basé sur la langue pour une meilleure expérience utilisateur."
+      },
+      {
+        title: "Performance optimisée",
+        description: "Optimisation poussée des ressources pour un chargement rapide et une empreinte écologique minimale sur tous les types d'appareils."
+      },
+      {
+        title: "Design adaptatif",
+        description: "Interface responsive s'adaptant parfaitement à tous les formats d'écran pour une expérience utilisateur fluide."
+      }
+    ],
+
+    architectureTitle: "Architecture technique",
+    frontendTitle: "Frontend",
+    frontendDetails: [
+      "Astro pour le rendu statique avec hydratation partielle",
+      "Tailwind CSS pour des styles optimisés et une empreinte CSS minimale",
+      "Alpine.js pour les interactions légères côté client",
+      "Système de routage basé sur les paramètres de langue",
+      "Architecture permettant deux modes distincts (standard et éco)"
+    ],
+    implementationTitle: "Implémentation",
+    implementationDetails: [
+      "Utilisation d'Astro pour générer des pages HTML statiques avec un minimum de JavaScript",
+      "Optimisation des images avec formats modernes (WebP, AVIF) et chargement différé",
+      "Génération de CSS minimal grâce à Tailwind et son système de purge",
+      "Utilisation intelligente des transitions et animations uniquement en mode standard",
+      "Mode éco basé sur des routes alternatives avec contenu simplifié"
+    ],
+
+    challengesTitle: "Défis techniques",
+    challenges: [
+      {
+        title: "Équilibre expérience/performance",
+        description: "Trouver le juste équilibre entre une expérience utilisateur moderne et des performances optimales."
+      },
+      {
+        title: "Gestion multilingue",
+        description: "Implémenter un système flexible de changement de langue qui fonctionne harmonieusement avec le mode éco."
+      },
+      {
+        title: "Architecture bi-modale",
+        description: "Concevoir une architecture permettant deux modes distincts sans duplication excessive de code."
+      },
+      {
+        title: "Optimisation des ressources",
+        description: "Réduire au maximum la taille et le nombre de requêtes tout en maintenant une qualité visuelle satisfaisante."
+      }
+    ],
+    
+    designDecisionsTitle: "Décisions de conception",
+    designDecisions: [
+      {
+        title: "Architecture basée sur les composants",
+        description: "L'utilisation de composants Astro permet une excellente séparation des préoccupations et facilite la maintenance."
+      },
+      {
+        title: "Hydratation partielle",
+        description: "Seuls les composants nécessitant une interactivité sont hydratés avec du JavaScript, le reste restant HTML statique."
+      },
+      {
+        title: "Système de routage par langue",
+        description: "Le routage basé sur le paramètre de langue (/fr/, /en/, /de/) permet une navigation intuitive et des URL propres."
+      },
+      {
+        title: "Mode éco via URL",
+        description: "Le mode éco est accessible via un suffixe /eco dans l'URL, permettant un partage facile et une navigation directe."
+      }
+    ],
+    
+    ecoApproachTitle: "Approche éco-responsable",
+    ecoApproach: [
+      {
+        metric: "Réduction du JavaScript",
+        standard: "Utilisation minimale",
+        eco: "Presque aucun usage"
+      },
+      {
+        metric: "Optimisation des images",
+        standard: "Formats modernes, taille optimisée",
+        eco: "Images réduites ou supprimées"
+      },
+      {
+        metric: "CSS",
+        standard: "Bundle optimisé via Tailwind",
+        eco: "CSS essentiel uniquement"
+      },
+      {
+        metric: "Animations",
+        standard: "Animations légères et ciblées",
+        eco: "Aucune animation"
+      }
+    ],
+    
+    performanceTitle: "Mesures de performance",
+    performance: [
+      {
+        metric: "Taille de page (mode standard)",
+        value: "< 200 Ko"
+      },
+      {
+        metric: "Taille de page (mode éco)",
+        value: "< 70 Ko"
+      },
+      {
+        metric: "Temps de chargement",
+        value: "< 1 seconde (mode éco)"
+      },
+      {
+        metric: "Score Lighthouse (Performance)",
+        value: "98-100/100"
+      }
+    ],
+    
+    techTitle: "Technologies utilisées",
+    
+    visitSite: "Visiter le site",
+    viewSourceCode: "Voir le code source",
+    allProjects: "Tous les projets",
+    nextProject: "Projet suivant",
+    prevProject: "Projet précédent",
+
+    reflectionTitle: "Réflexion personnelle",
+    reflectionText: "Ce portfolio représente ma vision d'un web plus respectueux de l'environnement. J'ai souhaité démontrer qu'il est possible de créer une expérience utilisateur agréable tout en minimisant l'impact environnemental. Le mode éco n'est pas seulement une fonctionnalité, c'est une philosophie de conception qui devrait être plus largement adoptée. Ce projet m'a permis d'explorer les limites de l'optimisation web tout en maintenant une esthétique et une ergonomie adaptées aux standards actuels."
+  },
+  en: {
+    title: "Eco-friendly Personal Portfolio | Josselin HANEL",
+    description: "Presentation of my multilingual portfolio with eco mode, designed according to web eco-design principles.",
+    projectTitle: "Eco-friendly Personal Portfolio",
+    projectIntro: "This portfolio has been designed following web eco-design principles, with special attention to performance and resource optimization.",
+    
+    overviewTitle: "Project Overview",
+    overviewText: "This portfolio demonstrates how it's possible to create a website that is aesthetic, functional, and environmentally friendly. It offers both a standard version and an eco version, allowing visitors to choose their browsing experience according to their preferences or technical constraints.",
+
+    featuresTitle: "Key Features",
+    features: [
+      {
+        title: "Innovative Eco Mode",
+        description: "An alternative mode that drastically reduces resource consumption while preserving access to information."
+      },
+      {
+        title: "Multilingual Support",
+        description: "Available in French, English and German with a language-based routing system for a better user experience."
+      },
+      {
+        title: "Optimized Performance",
+        description: "Advanced resource optimization for fast loading and minimal ecological footprint on all device types."
+      },
+      {
+        title: "Adaptive Design",
+        description: "Responsive interface that adapts perfectly to all screen formats for a smooth user experience."
+      }
+    ],
+
+    architectureTitle: "Technical Architecture",
+    frontendTitle: "Frontend",
+    frontendDetails: [
+      "Astro for static rendering with partial hydration",
+      "Tailwind CSS for optimized styles and minimal CSS footprint",
+      "Alpine.js for lightweight client-side interactions",
+      "Language parameter-based routing system",
+      "Architecture allowing two distinct modes (standard and eco)"
+    ],
+    implementationTitle: "Implementation",
+    implementationDetails: [
+      "Using Astro to generate static HTML pages with minimal JavaScript",
+      "Image optimization with modern formats (WebP, AVIF) and lazy loading",
+      "Minimal CSS generation thanks to Tailwind and its purge system",
+      "Intelligent use of transitions and animations only in standard mode",
+      "Eco mode based on alternative routes with simplified content"
+    ],
+
+    challengesTitle: "Technical Challenges",
+    challenges: [
+      {
+        title: "Experience/Performance Balance",
+        description: "Finding the right balance between a modern user experience and optimal performance."
+      },
+      {
+        title: "Multilingual Management",
+        description: "Implementing a flexible language switching system that works harmoniously with eco mode."
+      },
+      {
+        title: "Bi-modal Architecture",
+        description: "Designing an architecture that allows two distinct modes without excessive code duplication."
+      },
+      {
+        title: "Resource Optimization",
+        description: "Reducing the size and number of requests as much as possible while maintaining satisfactory visual quality."
+      }
+    ],
+    
+    designDecisionsTitle: "Design Decisions",
+    designDecisions: [
+      {
+        title: "Component-Based Architecture",
+        description: "The use of Astro components allows for excellent separation of concerns and facilitates maintenance."
+      },
+      {
+        title: "Partial Hydration",
+        description: "Only components requiring interactivity are hydrated with JavaScript, the rest remaining static HTML."
+      },
+      {
+        title: "Language-Based Routing System",
+        description: "Routing based on language parameter (/fr/, /en/, /de/) allows for intuitive navigation and clean URLs."
+      },
+      {
+        title: "Eco Mode via URL",
+        description: "Eco mode is accessible via an /eco suffix in the URL, allowing for easy sharing and direct navigation."
+      }
+    ],
+    
+    ecoApproachTitle: "Eco-Friendly Approach",
+    ecoApproach: [
+      {
+        metric: "JavaScript Reduction",
+        standard: "Minimal usage",
+        eco: "Almost no usage"
+      },
+      {
+        metric: "Image Optimization",
+        standard: "Modern formats, optimized size",
+        eco: "Reduced or removed images"
+      },
+      {
+        metric: "CSS",
+        standard: "Optimized bundle via Tailwind",
+        eco: "Essential CSS only"
+      },
+      {
+        metric: "Animations",
+        standard: "Lightweight and targeted animations",
+        eco: "No animations"
+      }
+    ],
+    
+    performanceTitle: "Performance Metrics",
+    performance: [
+      {
+        metric: "Page Size (Standard Mode)",
+        value: "< 200 Kb"
+      },
+      {
+        metric: "Page Size (Eco Mode)",
+        value: "< 70 Kb"
+      },
+      {
+        metric: "Loading Time",
+        value: "< 1 second (Eco Mode)"
+      },
+      {
+        metric: "Lighthouse Score (Performance)",
+        value: "98-100/100"
+      }
+    ],
+    
+    techTitle: "Technologies Used",
+    
+    visitSite: "Visit Site",
+    viewSourceCode: "View Source Code",
+    allProjects: "All Projects",
+    nextProject: "Next Project",
+    prevProject: "Previous Project",
+
+    reflectionTitle: "Personal Reflection",
+    reflectionText: "This portfolio represents my vision of a more environmentally friendly web. I wanted to demonstrate that it is possible to create a pleasant user experience while minimizing environmental impact. The eco mode is not just a feature, it's a design philosophy that should be more widely adopted. This project allowed me to explore the limits of web optimization while maintaining aesthetics and ergonomics adapted to current standards."
+  },
+  de: {
+    title: "Umweltfreundliches persönliches Portfolio | Josselin HANEL",
+    description: "Präsentation meines mehrsprachigen Portfolios mit Öko-Modus, entwickelt nach den Prinzipien des Web-Öko-Designs.",
+    projectTitle: "Umweltfreundliches persönliches Portfolio",
+    projectIntro: "Dieses Portfolio wurde nach den Prinzipien des Web-Öko-Designs entwickelt, mit besonderem Augenmerk auf Leistung und Ressourcenoptimierung.",
+    
+    overviewTitle: "Projektübersicht",
+    overviewText: "Dieses Portfolio zeigt, wie es möglich ist, eine Website zu erstellen, die ästhetisch, funktional und umweltfreundlich ist. Es bietet sowohl eine Standardversion als auch eine Öko-Version, sodass Besucher ihre Surferfahrung entsprechend ihren Präferenzen oder technischen Einschränkungen wählen können.",
+
+    featuresTitle: "Hauptmerkmale",
+    features: [
+      {
+        title: "Innovativer Öko-Modus",
+        description: "Ein alternativer Modus, der den Ressourcenverbrauch drastisch reduziert und gleichzeitig den Zugang zu Informationen gewährleistet."
+      },
+      {
+        title: "Mehrsprachige Unterstützung",
+        description: "Verfügbar in Französisch, Englisch und Deutsch mit einem sprachbasierten Routing-System für eine bessere Benutzererfahrung."
+      },
+      {
+        title: "Optimierte Leistung",
+        description: "Fortschrittliche Ressourcenoptimierung für schnelles Laden und minimalen ökologischen Fußabdruck auf allen Gerätetypen."
+      },
+      {
+        title: "Adaptives Design",
+        description: "Responsive Benutzeroberfläche, die sich perfekt an alle Bildschirmformate anpasst, für ein reibungsloses Benutzererlebnis."
+      }
+    ],
+
+    architectureTitle: "Technische Architektur",
+    frontendTitle: "Frontend",
+    frontendDetails: [
+      "Astro für statisches Rendering mit partieller Hydratation",
+      "Tailwind CSS für optimierte Stile und minimalen CSS-Fußabdruck",
+      "Alpine.js für leichtgewichtige clientseitige Interaktionen",
+      "Sprachparameter-basiertes Routing-System",
+      "Architektur, die zwei unterschiedliche Modi ermöglicht (Standard und Öko)"
+    ],
+    implementationTitle: "Umsetzung",
+    implementationDetails: [
+      "Verwendung von Astro zur Generierung statischer HTML-Seiten mit minimalem JavaScript",
+      "Bildoptimierung mit modernen Formaten (WebP, AVIF) und Lazy Loading",
+      "Minimale CSS-Generierung dank Tailwind und seinem Purge-System",
+      "Intelligente Nutzung von Übergängen und Animationen nur im Standardmodus",
+      "Öko-Modus basierend auf alternativen Routen mit vereinfachtem Inhalt"
+    ],
+
+    challengesTitle: "Technische Herausforderungen",
+    challenges: [
+      {
+        title: "Balance zwischen Erfahrung und Leistung",
+        description: "Die richtige Balance zwischen einer modernen Benutzererfahrung und optimaler Leistung finden."
+      },
+      {
+        title: "Mehrsprachige Verwaltung",
+        description: "Implementierung eines flexiblen Sprachumschaltsystems, das harmonisch mit dem Öko-Modus zusammenarbeitet."
+      },
+      {
+        title: "Bimodale Architektur",
+        description: "Entwicklung einer Architektur, die zwei unterschiedliche Modi ohne übermäßige Codeduplizierung ermöglicht."
+      },
+      {
+        title: "Ressourcenoptimierung",
+        description: "Größe und Anzahl der Anfragen so weit wie möglich reduzieren, während eine zufriedenstellende visuelle Qualität erhalten bleibt."
+      }
+    ],
+    
+    designDecisionsTitle: "Design-Entscheidungen",
+    designDecisions: [
+      {
+        title: "Komponentenbasierte Architektur",
+        description: "Die Verwendung von Astro-Komponenten ermöglicht eine hervorragende Trennung der Belange und erleichtert die Wartung."
+      },
+      {
+        title: "Partielle Hydratation",
+        description: "Nur Komponenten, die Interaktivität erfordern, werden mit JavaScript hydratisiert, der Rest bleibt statisches HTML."
+      },
+      {
+        title: "Sprachbasiertes Routing-System",
+        description: "Routing basierend auf Sprachparametern (/fr/, /en/, /de/) ermöglicht intuitive Navigation und saubere URLs."
+      },
+      {
+        title: "Öko-Modus über URL",
+        description: "Der Öko-Modus ist über ein /eco-Suffix in der URL zugänglich, was einfaches Teilen und direkte Navigation ermöglicht."
+      }
+    ],
+    
+    ecoApproachTitle: "Umweltfreundlicher Ansatz",
+    ecoApproach: [
+      {
+        metric: "JavaScript-Reduzierung",
+        standard: "Minimale Nutzung",
+        eco: "Fast keine Nutzung"
+      },
+      {
+        metric: "Bildoptimierung",
+        standard: "Moderne Formate, optimierte Größe",
+        eco: "Reduzierte oder entfernte Bilder"
+      },
+      {
+        metric: "CSS",
+        standard: "Optimiertes Bundle via Tailwind",
+        eco: "Nur essentielles CSS"
+      },
+      {
+        metric: "Animationen",
+        standard: "Leichtgewichtige und gezielte Animationen",
+        eco: "Keine Animationen"
+      }
+    ],
+    
+    performanceTitle: "Leistungskennzahlen",
+    performance: [
+      {
+        metric: "Seitengröße (Standardmodus)",
+        value: "< 200 KB"
+      },
+      {
+        metric: "Seitengröße (Öko-Modus)",
+        value: "< 70 KB"
+      },
+      {
+        metric: "Ladezeit",
+        value: "< 1 Sekunde (Öko-Modus)"
+      },
+      {
+        metric: "Lighthouse-Punktzahl (Leistung)",
+        value: "98-100/100"
+      }
+    ],
+    
+    techTitle: "Verwendete Technologien",
+    
+    visitSite: "Seite besuchen",
+    viewSourceCode: "Quellcode ansehen",
+    allProjects: "Alle Projekte",
+    nextProject: "Nächstes Projekt",
+    prevProject: "Vorheriges Projekt",
+
+    reflectionTitle: "Persönliche Reflexion",
+    reflectionText: "Dieses Portfolio repräsentiert meine Vision eines umweltfreundlicheren Webs. Ich wollte zeigen, dass es möglich ist, ein angenehmes Benutzererlebnis zu schaffen und gleichzeitig die Umweltauswirkungen zu minimieren. Der Öko-Modus ist nicht nur ein Feature, sondern eine Design-Philosophie, die breiter angenommen werden sollte. Dieses Projekt ermöglichte es mir, die Grenzen der Weboptimierung zu erkunden und gleichzeitig Ästhetik und Ergonomie beizubehalten, die an aktuelle Standards angepasst sind."
+  }
+};
+
+// Obtenir les projets précédent et suivant selon la langue
+const getProjectUrl = (projectId: string) => `/${lang}/${projectId}`;
+const prevProject = {
+  id: "esport",
+  title: lang === "fr" ? 
+    "Application e-sport avec chat" :
+    (lang === "en" ? 
+      "E-sport Application with Chat" : 
+      "E-Sport-Anwendung mit Chat")
+};
+
+// Technologies utilisées
+const technologies = [
+  "Astro",
+  "TailwindCSS",
+  "Alpine.js",
+  "JavaScript",
+  "CSS"
+];
+
+// Utiliser la langue demandée ou français par défaut
+const t = content[lang] || content.fr;
+---
+
+<Layout title={t.title} description={t.description} lang={lang}>
+  <div class="container mx-auto px-4 py-8">
+    <div class="mb-4">
+      <a href={`/${lang}/projects`} class="text-text-muted hover:text-accent transition-colors">
+        &larr; {t.allProjects}
+      </a>
+    </div>
+
+    <!-- En-tête du projet -->
+    <header class="mb-10">
+      <h1 class="text-3xl font-bold mb-6 border-b border-accent pb-2">
+        {t.projectTitle} (2025)
+      </h1>
+      <p class="text-lg mb-6 max-w-3xl">
+        {t.projectIntro}
+      </p>
+    </header>
+
+    <!-- Aperçu du projet -->
+    <section class="mb-10">
+      <h2 class="text-2xl font-bold mb-4 text-accent">
+        {t.overviewTitle}
+      </h2>
+      <p class="mb-6 max-w-3xl">
+        {t.overviewText}
+      </p>
+
+      <!-- Actions principales -->
+      <div class="flex flex-wrap gap-4 mb-8">
+        <a
+          href="https://github.com/KewneWhimsy/eco_portfolio"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="btn-secondary"
+        >
+          {t.viewSourceCode}
+        </a>
+      </div>
+    </section>
+
+    <!-- Fonctionnalités principales -->
+    <section class="mb-10">
+      <h2 class="text-2xl font-bold mb-6 text-accent">
+        {t.featuresTitle}
+      </h2>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {
+          t.features.map((feature) => (
+            <div class="bg-secondary bg-opacity-20 p-6 rounded-lg">
+              <h3 class="text-xl font-semibold mb-3">{feature.title}</h3>
+              <p>{feature.description}</p>
+            </div>
+          ))
+        }
+      </div>
+    </section>
+
+    <!-- Architecture du projet -->
+    <section class="mb-10">
+      <h2 class="text-2xl font-bold mb-6 text-accent">
+        {t.architectureTitle}
+      </h2>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+        <!-- Frontend -->
+        <div class="bg-secondary bg-opacity-20 p-6 rounded-lg">
+          <h3 class="text-xl font-semibold mb-4 flex items-center">
+            <span>{t.frontendTitle}</span>
+            <span class="ml-2">🖥️</span>
+          </h3>
+          <ul class="space-y-2">
+            {
+              t.frontendDetails.map((detail) => (
+                <li class="flex items-start">
+                  <span class="text-accent mr-2">•</span>
+                  <span>{detail}</span>
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+
+        <!-- Implémentation -->
+        <div class="bg-secondary bg-opacity-20 p-6 rounded-lg">
+          <h3 class="text-xl font-semibold mb-4 flex items-center">
+            <span>{t.implementationTitle}</span>
+            <span class="ml-2">⚙️</span>
+          </h3>
+          <ul class="space-y-2">
+            {
+              t.implementationDetails.map((detail) => (
+                <li class="flex items-start">
+                  <span class="text-accent mr-2">•</span>
+                  <span>{detail}</span>
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Défis techniques -->
+    <section class="mb-10">
+      <h2 class="text-2xl font-bold mb-6 text-accent">
+        {t.challengesTitle}
+      </h2>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+        {t.challenges.map((challenge, index) => (
+          <div class="bg-secondary bg-opacity-10 p-4 rounded-lg">
+            <div class="flex items-center mb-2">
+              <div class="w-8 h-8 bg-accent text-primary rounded-full flex items-center justify-center mr-3 flex-shrink-0">
+                {index + 1}
+              </div>
+              <h4 class="font-medium">{challenge.title}</h4>
+            </div>
+            <p class="ml-11">{challenge.description}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Décisions de conception -->
+    <section class="mb-10">
+      <h2 class="text-2xl font-bold mb-6 text-accent">
+        {t.designDecisionsTitle}
+      </h2>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {
+          t.designDecisions.map((decision, index) => (
+            <div class="bg-secondary bg-opacity-20 p-5 rounded-lg">
+              <div class="flex justify-between items-center mb-3">
+                <h3 class="text-xl font-semibold mb-3 flex items-center">
+                  {decision.title}
+                </h3>
+                <span class="text-xl">
+                  {index === 0
+                    ? "🧩"
+                    : index === 1
+                      ? "💧"
+                      : index === 2
+                        ? "🗺️"
+                        : "🔄"}
+                </span>
+              </div>
+              <p>{decision.description}</p>
+            </div>
+          ))
+        }
+      </div>
+    </section>
+
+    <!-- Approche éco-responsable -->
+    <section class="mb-10 bg-secondary bg-opacity-10 p-6 rounded-lg">
+      <h2 class="text-2xl font-bold mb-4 text-accent">
+        {t.ecoApproachTitle}
+      </h2>
+
+      <table class="w-full mt-4">
+        <thead>
+          <tr class="border-b border-secondary">
+            <th class="text-left py-2 px-4">{lang === "fr" ? "Métrique" : lang === "en" ? "Metric" : "Metrik"}</th>
+            <th class="text-left py-2 px-4">{lang === "fr" ? "Mode standard" : lang === "en" ? "Standard Mode" : "Standardmodus"}</th>
+            <th class="text-left py-2 px-4">{lang === "fr" ? "Mode éco" : lang === "en" ? "Eco Mode" : "Öko-Modus"}</th>
+          </tr>
+        </thead>
+        <tbody>
+          {t.ecoApproach.map((approach, index) => (
+            <tr class={index % 2 === 0 ? "bg-secondary bg-opacity-5" : ""}>
+              <td class="py-3 px-4 font-medium">{approach.metric}</td>
+              <td class="py-3 px-4">{approach.standard}</td>
+              <td class="py-3 px-4 text-accent">{approach.eco}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </section>
+
+    <!-- Performance et optimisations -->
+    <section class="mb-10">
+      <h2 class="text-2xl font-bold mb-6 text-accent">
+        {t.performanceTitle}
+      </h2>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        {
+          t.performance.map((perf) => (
+            <div class="bg-secondary bg-opacity-10 p-4 rounded-lg">
+              <div class="flex justify-between mb-2">
+                <h3 class="font-medium">{perf.metric}</h3>
+                <span class="text-accent font-mono">{perf.value}</span>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </section>
+
+    <!-- Réflexion personnelle -->
+    <section class="mb-10 bg-secondary bg-opacity-10 p-6 rounded-lg border-l-4 border-accent">
+      <div class="flex flex-col md:flex-row">
+        <h2 class="text-2xl font-bold mb-4 md:mr-20 text-accent flex items-center">
+          {t.reflectionTitle}
+        </h2>
+        <p class="italic max-w-3xl">
+          {t.reflectionText}
+        </p>
+      </div>
+    </section>
+
+    <!-- Technologies utilisées -->
+    <section class="mb-16">
+      <h2 class="text-2xl font-bold mb-4 text-accent">
+        {t.techTitle}
+      </h2>
+
+      <div class="flex flex-wrap gap-2 mb-6">
+        {
+          technologies.map((tech) => (
+            <span class="px-3 py-1 border border-accent rounded-full text-light">
+              {tech}
+            </span>
+          ))
+        }
+      </div>
+    </section>
+
+    <!-- Navigation entre projets -->
+    <div class="border-t border-secondary pt-8 mt-12 flex justify-between">
+      <a href={`/${lang}/esport`} class="btn-secondary">
+        &larr; {t.prevProject}: {prevProject.title}
+      </a>
+    </div>
+
+    <!-- CTA de contact -->
+    <CtaDispo />
+  </div>
+</Layout>
