@@ -477,7 +477,7 @@ const technologies = [
 ];
 
 // Obtenir les projets précédent et suivant selon la langue
-const getProjectUrl = (projectId: string) => `/${lang}/projects/${projectId}`;
+const getProjectUrl = (projectId: string) => `/${lang}/${projectId}`;
 const prevProject = {
   id: "objet",
   title:
@@ -838,7 +838,7 @@ class="mb-10 bg-secondary bg-opacity-10 p-6 rounded-lg border-l-4 border-accent"
       <a href={`/${lang}/objet`} class="btn-secondary">
         &larr; {t.prevProject}: {prevProject.title}
       </a>
-      <a href={getProjectUrl(nextProject.id)} class="btn-secondary hidden">
+      <a href={getProjectUrl(nextProject.id)} class="btn-secondary">
         {t.nextProject}: {nextProject.title} &rarr;
       </a>
     </div>

@@ -243,7 +243,7 @@ const content = {
 };
 
 // Obtenir les projets précédent et suivant selon la langue
-const getProjectUrl = (projectId: string) => `/${lang}/projects/${projectId}/eco`;
+const getProjectUrl = (projectId: string) => `/${lang}/${projectId}/eco`;
 const prevProject = {
   id: "objet",
   title: lang === "fr" ? 
@@ -432,7 +432,7 @@ const isEcoMode = true;
       <a href={`/${lang}/objet/eco`} class="text-link">
         &larr; {t.prevProject}: {prevProject.title}
       </a>
-      <a href={getProjectUrl(nextProject.id)} class="text-link hidden">
+      <a href={getProjectUrl(nextProject.id)} class="text-link">
         {t.nextProject}: {nextProject.title} &rarr;
       </a>
     </div>
