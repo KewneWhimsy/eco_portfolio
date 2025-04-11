@@ -1,153 +1,122 @@
-# Josselin HANEL - Eco-Friendly Portfolio
+# Josselin HANEL - Portfolio Éco-Responsable
 
-A multilingual, eco-friendly portfolio website built with Astro and Tailwind CSS, showcasing my work as a full-stack web developer with a focus on sustainable web development.
+Un portfolio multilingue et éco-responsable construit avec Astro et Tailwind CSS, présentant mon travail en tant que développeur web full stack avec une attention particulière portée au développement web durable.
 
-![Portfolio Preview](screenshot.png)
+## Fonctionnalités
 
-## Features
+- **Mode Éco intégré**: Basculez entre les versions standard et éco-responsable du site pour réduire l'empreinte carbone
+- **Support multilingue**: Disponible en français, anglais et allemand
+- **Design responsive**: Mise en page entièrement adaptable qui fonctionne sur tous les appareils
+- **Optimisé pour la performance**: Temps de chargement rapides et utilisation minimale des ressources
+- **Accessibilité**: Conçu en tenant compte de l'accessibilité
+- **Navigation fluide**: Utilisation de transition-persist pour conserver les éléments communs entre les pages
 
-- **Eco-Mode Toggle**: Switch between standard and eco-friendly versions of the site to reduce carbon footprint
-- **Multilingual Support**: Available in French, English, and German
-- **Responsive Design**: Fully responsive layout that works on all devices
-- **Performance Optimized**: Fast loading times and minimal resource usage
-- **Accessibility**: Designed with accessibility in mind
+## Technologies utilisées
 
-## Tech Stack
+- [Astro](https://astro.build/) - Le framework principal pour construire le site
+- [Tailwind CSS](https://tailwindcss.com/) - Pour le stylisme
 
-- [Astro](https://astro.build/) - The main framework for building the site
-- [Tailwind CSS](https://tailwindcss.com/) - For styling
+## Caractéristiques éco-responsables
 
-## Project Structure
+Ce site web est construit avec une préoccupation pour la durabilité environnementale :
 
-```
-├── src/
-│   ├── assets/           # Images and static files
-│   ├── components/       # Reusable UI components
-│   │   ├── eco_mode_toggle.astro
-│   │   ├── language_switcher.astro
-│   │   └── cta_dispo.astro
-│   ├── layouts/          # Layout components
-│   │   ├── layout.astro   # Main layout wrapper
-│   │   ├── header.astro
-│   │   └── footer.astro
-│   ├── pages/            # All routes and pages
-│   │   ├── index.astro           # Root redirect
-│   │   └── [lang]/              # Language-specific routes
-│   │       ├── index.astro       # Homepage
-│   │       ├── about.astro       # About page
-│   │       ├── contact.astro     # Contact page
-│   │       ├── projects.astro    # Projects page
-│   │       └── eco/              # Eco-friendly versions
-│   └── styles/           # Global styles
-│       └── global.css
-├── public/              # Public assets served at root
-├── astro.config.mjs     # Astro configuration
-├── tailwind.config.js   # Tailwind CSS configuration
-├── tsconfig.json        # TypeScript configuration
-└── package.json         # Dependencies and scripts
-```
+1. **Mode Éco** : Une version éco-responsable dédiée du site avec :
+   - Utilisation réduite de JavaScript
+   - Mises en page simplifiées
+   - Requêtes réseau minimales
+   - Chargement optimisé des ressources
 
-## Eco-Friendly Features
+2. **Optimisation des performances** :
+   - Chargement d'images optimisé avec des tailles responsives
+   - Dépendances minimales
+   - CSS efficace avec Tailwind
+   - Format d'images modernes (WebP, AVIF)
 
-This website is built with environmental sustainability in mind:
+3. **Pratiques de codage durables** :
+   - Rendu côté serveur quand c'est possible
+   - Mise en cache efficace des ressources
+   - Scripts tiers minimaux
+   - Transitions entre les pages avec `transition-persist` pour éviter les rechargements inutiles
 
-1. **Eco Mode**: A dedicated eco-friendly version of the site with:
-   - Reduced JavaScript usage
-   - Simplified layouts
-   - Minimal network requests
-   - Optimized assets loading
+4. **Expérience utilisateur améliorée** :
+   - Navigation fluide et rapide
+   - Pas de bannière de cookies intrusive
+   - Focus sur le contenu essentiel
+   - Choix de la langue et du mode (standard/éco) facilement accessible
 
-2. **Performance Optimization**:
-   - Optimized image loading with responsive sizes
-   - Minimal dependencies
-   - Efficient CSS with Tailwind
+## Démarrage rapide
 
-3. **Sustainable Coding Practices**:
-   - Server-side rendering where possible
-   - Efficient asset caching
-   - Minimal third-party scripts
+### Prérequis
 
-## Getting Started
-
-### Prerequisites
-
-- Node.js (v18.17.1 or newer)
-- npm (v9.6.5 or newer) or pnpm (v7.1.0 or newer)
+- Node.js (v18.17.1 ou plus récent)
+- npm (v9.6.5 ou plus récent) ou pnpm (v7.1.0 ou plus récent)
 
 ### Installation
 
-1. Clone the repository
+1. Cloner le dépôt
 
 ```bash
 git clone https://github.com/KewneWhimsy/eco-portfolio.git
 cd eco-portfolio
 ```
 
-2. Install dependencies
+2. Installer les dépendances
 
 ```bash
 npm install
-# or
+# ou
 pnpm install
 ```
 
-3. Start the development server
+3. Démarrer le serveur de développement
 
 ```bash
 npm run dev
-# or
+# ou
 pnpm dev
 ```
 
-4. Open your browser and visit `http://localhost:4321`
+4. Ouvrez votre navigateur et visitez `http://localhost:4321`
 
-### Building for Production
+### Construction pour la production
 
 ```bash
 npm run build
-# or
+# ou
 pnpm build
 ```
 
-### Preview Production Build
+### Prévisualiser la version de production
 
 ```bash
 npm run preview
-# or
+# ou
 pnpm preview
 ```
 
-## Deployment
+## Déploiement
 
-This site is designed to be deployed on platforms like Netlify, Vercel, or Cloudflare Pages. The site includes redirects to handle language selection based on user preferences.
+Ce site est conçu pour être déployé sur des plateformes comme Netlify, Vercel ou Cloudflare Pages. Le site inclut des redirections pour gérer la sélection de la langue en fonction des préférences de l'utilisateur.
 
-### Environment Variables
+### Variables d'environnement
 
-No specific environment variables are required for basic operation.
+Aucune variable d'environnement spécifique n'est requise pour le fonctionnement de base.
 
-## Customization
+## Personnalisation
 
-### Adding a New Language
+### Ajouter une nouvelle langue
 
-1. Add the language code to the `getStaticPaths` function in each page file
-2. Add translations for the new language in the content objects
-3. Update the language switcher component to include the new language
+1. Ajoutez le code de langue à la fonction `getStaticPaths` dans chaque fichier de page
+2. Ajoutez les traductions pour la nouvelle langue dans les objets de contenu
+3. Mettez à jour le composant de sélection de langue pour inclure la nouvelle langue
 
-### Modifying the Eco Mode
+### Modifier le mode Éco
 
-The eco mode works by having separate routes with `/eco` in the path. To modify or enhance the eco mode:
+Le mode éco fonctionne en ayant des routes séparées avec `/eco` dans le chemin. Pour modifier ou améliorer le mode éco :
 
-1. Edit the eco-specific page versions in `src/pages/[lang]/*/eco.astro`
-2. Update the toggle behavior in `src/components/eco_mode_toggle.astro`
-
-## License
-
-[MIT License](LICENSE)
-
-## Contact
-
-Josselin HANEL - [josshanel@gmail.com](mailto:josshanel@gmail.com)
+1. Modifiez les versions spécifiques au mode éco des pages dans `src/pages/[lang]/*/eco.astro`
+2. Mettez à jour le comportement de basculement dans `src/components/eco_mode_toggle.astro`
 
 ---
 
-This project is committed to sustainable web development practices and aims to demonstrate how we can create beautiful, functional websites while minimizing environmental impact.
+Ce projet s'engage à suivre des pratiques de développement web durables et vise à démontrer comment nous pouvons créer des sites web beaux et fonctionnels tout en minimisant l'impact environnemental.
