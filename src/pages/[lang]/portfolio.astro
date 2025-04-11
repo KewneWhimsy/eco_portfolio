@@ -726,56 +726,99 @@ const t = content[lang] || content.fr;
       </div>
     </section>
 
-    <!-- Zoom sur transition-persist -->
-    <section class="mb-16 bg-secondary bg-opacity-20 p-6 rounded-lg border-l-4 border-accent">
-      <h2 class="text-xl font-bold mb-4 text-accent">transition-persist</h2>
-      <p class="mb-4">
+    <!-- Zoom sur ClientRouter et transition-persist -->
+<section class="mb-16 bg-secondary bg-opacity-20 p-6 rounded-lg border-l-4 border-accent">
+    <h2 class="text-xl font-bold mb-4 text-accent">ClientRouter et transition-persist</h2>
+    <p class="mb-4">
+      {lang === "fr" ? 
+        "Pour améliorer l'expérience de navigation, j'utilise <code>ClientRouter</code> d'Astro 5 avec l'attribut <code>transition-persist</code> sur plusieurs composants clés du site. Cette approche permet :" :
+        lang === "en" ? 
+        "To enhance the navigation experience, I use Astro 5's <code>ClientRouter</code> with the <code>transition-persist</code> attribute on several key components of the site. This approach allows for:" :
+        "Um das Navigationserlebnis zu verbessern, verwende ich Astro 5's <code>ClientRouter</code> mit dem <code>transition-persist</code>-Attribut auf mehreren Schlüsselkomponenten der Website. Dies ermöglicht:"}
+    </p>
+    
+    <ul class="list-disc pl-5 mb-4">
+      <li class="mb-2">
         {lang === "fr" ? 
-          "Pour améliorer l'expérience de navigation, j'utilise l'attribut <code>transition-persist</code> d'Astro sur plusieurs composants clés du site. Cela permet de :" :
+          "Navigation fluide avec effet de transition entre les pages sans rechargement complet" :
           lang === "en" ? 
-          "To enhance the navigation experience, I use Astro's <code>transition-persist</code> attribute on several key components of the site. This allows for:" :
-          "Um das Navigationserlebnis zu verbessern, verwende ich das <code>transition-persist</code>-Attribut von Astro auf mehreren Schlüsselkomponenten der Website. Dies ermöglicht:"}
+          "Smooth navigation with transition effects between pages without a full reload" :
+          "Reibungslose Navigation mit Übergangseffekten zwischen Seiten ohne vollständiges Neuladen"}
+      </li>
+      <li class="mb-2">
+        {lang === "fr" ? 
+          "Conservation des éléments communs entre les pages (logo, photo, menu, footer) sans les recharger" :
+          lang === "en" ? 
+          "Preservation of common elements between pages (logo, photo, menu, footer) without reloading them" :
+          "Beibehaltung gemeinsamer Elemente zwischen den Seiten (Logo, Foto, Menü, Footer) ohne sie neu zu laden"}
+      </li>
+      <li class="mb-2">
+        {lang === "fr" ? 
+          "Réduction drastique des requêtes réseau lors de la navigation" :
+          lang === "en" ? 
+          "Drastic reduction in network requests during navigation" :
+          "Drastische Reduzierung der Netzwerkanfragen während der Navigation"}
+      </li>
+      <li class="mb-2">
+        {lang === "fr" ? 
+          "Transitions fluides sans clignotement des éléments marqués avec transition-persist" :
+          lang === "en" ? 
+          "Smooth transitions without flickering of elements marked with transition-persist" :
+          "Sanfte Übergänge ohne Flackern von Elementen, die mit transition-persist markiert sind"}
+      </li>
+    </ul>
+    
+    <div class="mb-4 p-4 bg-primary bg-opacity-30 rounded-lg">
+      <h3 class="font-semibold mb-2 text-accent">Mode standard vs Mode éco</h3>
+      <p class="mb-2">
+        {lang === "fr" ? 
+          "Une différence clé entre les deux modes de ce site concerne l'utilisation de ClientRouter :" :
+          lang === "en" ? 
+          "A key difference between the two modes of this site concerns the use of ClientRouter:" :
+          "Ein wesentlicher Unterschied zwischen den beiden Modi dieser Website betrifft die Verwendung von ClientRouter:"}
       </p>
-      
-      <ul class="list-disc pl-5 mb-4">
-        <li class="mb-2">
+      <ul class="list-disc pl-5">
+        <li class="mb-1">
+          <strong class="text-accent">
+            {lang === "fr" ? "Mode standard:" : lang === "en" ? "Standard mode:" : "Standardmodus:"}
+          </strong> 
           {lang === "fr" ? 
-            "Conserver les éléments communs entre les pages (logo, photo, menu, footer) sans les recharger" :
+            "ClientRouter est activé pour des transitions fluides et une expérience plus riche" :
             lang === "en" ? 
-            "Preserve common elements between pages (logo, photo, menu, footer) without reloading them" :
-            "Beibehaltung gemeinsamer Elemente zwischen den Seiten (Logo, Foto, Menü, Footer) ohne sie neu zu laden"}
+            "ClientRouter is enabled for smooth transitions and a richer experience" :
+            "ClientRouter ist für reibungslose Übergänge und ein reichhaltigeres Erlebnis aktiviert"}
         </li>
-        <li class="mb-2">
+        <li>
+          <strong class="text-accent">
+            {lang === "fr" ? "Mode éco:" : lang === "en" ? "Eco mode:" : "Öko-Modus:"}
+          </strong> 
           {lang === "fr" ? 
-            "Réduire drastiquement les requêtes réseau lors de la navigation" :
+            "ClientRouter est délibérément désactivé pour une expérience plus légère et plus directe" :
             lang === "en" ? 
-            "Drastically reduce network requests during navigation" :
-            "Drastische Reduzierung der Netzwerkanfragen während der Navigation"}
-        </li>
-        <li class="mb-2">
-          {lang === "fr" ? 
-            "Assurer des transitions fluides sans clignotement des éléments persistants" :
-            lang === "en" ? 
-            "Ensure smooth transitions without flickering of persistent elements" :
-            "Gewährleistung flüssiger Übergänge ohne Flackern persistenter Elemente"}
-        </li>
-        <li class="mb-2">
-          {lang === "fr" ? 
-            "Améliorer la perception de vitesse pour une meilleure expérience utilisateur" :
-            lang === "en" ? 
-            "Improve the perception of speed for a better user experience" :
-            "Verbesserung der Wahrnehmung von Geschwindigkeit für ein besseres Benutzererlebnis"}
+            "ClientRouter is deliberately disabled for a lighter and more direct experience" :
+            "ClientRouter wird bewusst deaktiviert, um ein leichteres und direkteres Erlebnis zu ermöglichen"}
         </li>
       </ul>
-      
+    </div>
+    
+    <div class="p-4 bg-primary bg-opacity-30 rounded-lg text-sm">
+      <p class="mb-2 font-mono text-accent">
+        // Dans layout.astro - L'activation conditionnelle en fonction du mode
+      </p>
+      <pre class="bg-secondary bg-opacity-30 p-3 rounded overflow-x-auto mb-3"><code>{`// Ajouter Client Router uniquement si on n'est pas en mode éco
+  {!isEcoMode && <ClientRouter />}
+  
+  // En mode standard: transitions fluides avec éléments persistants 
+  // En mode éco: navigation classique plus légère`}</code></pre>
       <p>
         {lang === "fr" ? 
-          "Les éléments comme la photo de profil, la barre de navigation et le pied de page sont ainsi maintenus entre les pages, créant une expérience plus fluide tout en réduisant la consommation de ressources." :
+          "Cette approche permet de montrer comment une même base de code peut s'adapter à différents contextes d'utilisation, offrant soit une expérience plus riche, soit une performance et légèreté maximales." :
           lang === "en" ? 
-          "Elements such as the profile photo, navigation bar, and footer are thus maintained between pages, creating a smoother experience while reducing resource consumption." :
-          "Elemente wie das Profilfoto, die Navigationsleiste und die Fußzeile werden so zwischen den Seiten beibehalten, was ein flüssigeres Erlebnis schafft und gleichzeitig den Ressourcenverbrauch reduziert."}
+          "This approach demonstrates how the same codebase can adapt to different usage contexts, offering either a richer experience or maximum performance and lightness." :
+          "Dieser Ansatz zeigt, wie sich dieselbe Codebasis an verschiedene Nutzungskontexte anpassen kann und entweder ein reichhaltigeres Erlebnis oder maximale Leistung und Leichtigkeit bietet."}
       </p>
-    </section>
+    </div>
+  </section>
 
     <!-- Réflexion personnelle -->
     <section class="mb-10 bg-secondary bg-opacity-10 p-6 rounded-lg border-l-4 border-accent">

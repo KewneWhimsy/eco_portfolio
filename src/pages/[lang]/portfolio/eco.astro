@@ -91,7 +91,7 @@ const content = {
     ],
     
     techTitle: "Technologies utilisées",
-    techUsed: "Astro (avec transition-persist), TailwindCSS, très peu de JavaScript",
+    techUsed: "Astro, TailwindCSS, très peu de JavaScript/TypeScript",
     
     visitSite: "Visiter le site",
     viewSourceCode: "Voir le code source",
@@ -421,7 +421,59 @@ const isEcoMode = true;
         ))}
       </div>
     </section>
+    <!-- Section sur ClientRouter -->
+<section class="mb-8 border-b border-secondary pb-6">
+    <h2 class="text-xl font-semibold mb-3 text-accent">
+      ClientRouter & transition-persist
+    </h2>
     
+    <p class="mb-3">
+      {lang === "fr" ? 
+        "Le mode éco désactive délibérément le <code>ClientRouter</code> d'Astro 5, contrairement au mode standard qui l'utilise pour des transitions fluides. C'est une décision délibérée qui offre plusieurs avantages :" :
+        lang === "en" ? 
+        "Eco mode deliberately disables Astro 5's <code>ClientRouter</code>, unlike standard mode which uses it for smooth transitions. This is a deliberate decision that offers several advantages:" :
+        "Der Öko-Modus deaktiviert bewusst den <code>ClientRouter</code> von Astro 5, im Gegensatz zum Standardmodus, der ihn für reibungslose Übergänge verwendet. Dies ist eine bewusste Entscheidung, die mehrere Vorteile bietet:"}
+    </p>
+    
+    <ul class="list-disc pl-5 mb-3">
+      <li class="mb-1">
+        {lang === "fr" ? 
+          "Moins de JavaScript à charger et exécuter par le navigateur" :
+          lang === "en" ? 
+          "Less JavaScript to load and execute by the browser" :
+          "Weniger JavaScript, das vom Browser geladen und ausgeführt werden muss"}
+      </li>
+      <li class="mb-1">
+        {lang === "fr" ? 
+          "Navigation plus directe et légère, idéale pour connexions limitées" :
+          lang === "en" ? 
+          "More direct and lightweight navigation, ideal for limited connections" :
+          "Direktere und leichtere Navigation, ideal für begrenzte Verbindungen"}
+      </li>
+      <li class="mb-1">
+        {lang === "fr" ? 
+          "Moins de traitements côté client, économisant la batterie sur mobile" :
+          lang === "en" ? 
+          "Less client-side processing, saving battery on mobile" :
+          "Weniger clientseitige Verarbeitung, spart Akku auf dem Mobilgerät"}
+      </li>
+      <li class="mb-1">
+        {lang === "fr" ? 
+          "Compatibilité améliorée avec les appareils plus anciens ou moins puissants" :
+          lang === "en" ? 
+          "Improved compatibility with older or less powerful devices" :
+          "Verbesserte Kompatibilität mit älteren oder weniger leistungsstarken Geräten"}
+      </li>
+    </ul>
+    
+    <p>
+      {lang === "fr" ? 
+        "Cette approche montre qu'il est possible d'adapter l'expérience utilisateur en fonction du contexte d'utilisation, sans compromettre l'accès à l'information." :
+        lang === "en" ? 
+        "This approach shows that it's possible to adapt the user experience according to the usage context, without compromising access to information." :
+        "Dieser Ansatz zeigt, dass es möglich ist, das Benutzererlebnis an den Nutzungskontext anzupassen, ohne den Zugang zu Informationen zu beeinträchtigen."}
+    </p>
+  </section>
     <!-- Ma vision du web -->
     <section class="mb-8 border-b border-secondary pb-6">
       <h2 class="text-xl font-semibold mb-3 text-accent">
