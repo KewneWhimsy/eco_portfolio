@@ -1,12 +1,6 @@
 ---
 // Import du layout standard
 import Layout from "../layouts/layout.astro";
-
-// Simple redirection fallback vers la version anglaise
-// (Utilisé uniquement si la redirection Cloudflare échoue)
-// Notez que le redirect s'exécute avant le rendu de la page,
-// donc ce qui suit ne s'affichera que si le redirect échoue
-return Astro.redirect('/en');
 ---
 
 <Layout 
