@@ -21,6 +21,9 @@ const content = {
     projectTitle: "Portfolio personnel éco-responsable",
     projectIntro: "Ce portfolio a été conçu pour montrer qu'un site web performant et agréable à utiliser peut aussi être léger et respectueux des ressources.",
     
+    ecoModeTitle: "Mode Éco activé",
+    ecoModeText: "Vous consultez actuellement la version ultra-légère de mon portfolio.",
+    
     overviewTitle: "Aperçu du projet",
     overviewText: "Ce site propose deux versions : standard et éco. La version éco que vous consultez actuellement est délibérément simplifiée pour offrir un accès plus rapide à l'information, surtout sur mobile et connexions limitées.",
 
@@ -28,8 +31,7 @@ const content = {
     frontendDetails: [
       "Astro pour générer du HTML statique avec peu ou pas de JavaScript",
       "Tailwind CSS pour des styles optimisés et une empreinte CSS minimale",
-      "Attributs transition-persist pour conserver les éléments communs entre les pages",
-      "Support multilingue avec redirection automatique via Cloudflare en fonction de l'IP",
+      "Support multilingue (français, anglais, allemand)",
       "Mode éco accessible via une URL distincte pour un partage direct"
     ],
 
@@ -48,18 +50,22 @@ const content = {
         description: "Pages statiques avec hydratation minimale, pour une navigation rapide sans surcharge du navigateur."
       },
       {
-        title: "Éléments persistants",
-        description: "Utilisation d'attributs transition-persist pour éviter de recharger inutilement les éléments communs entre les pages."
-      },
-      {
         title: "Mode Éco direct",
         description: "Une version du site qui élimine le superflu pour aller droit à l'essentiel, particulièrement appréciable sur mobile ou connexion lente."
       },
       {
         title: "Navigation multilingue",
-        description: "Redirection automatique vers la langue appropriée via Cloudflare Rules basée sur l'origine géographique du visiteur."
+        description: "Système basé sur l'URL qui permet de partager directement une page dans la langue de votre choix."
+      },
+      {
+        title: "Design minimaliste",
+        description: "Interface épurée qui donne la priorité au contenu plutôt qu'aux effets visuels gourmands en ressources."
       }
     ],
+    
+    cookielessWebTitle: "Un web sans bandeaux de cookies",
+    cookielessWebText: "Avez-vous remarqué l'absence de bandeau de cookies sur ce site ? Les sites qui n'utilisent des cookies que pour des fonctionnalités essentielles n'ont pas besoin de votre consentement selon le RGPD. Ce portfolio respecte votre vie privée par défaut : pas de trackers, pas d'analytics, pas de publicité.",
+    cookielessWebVision: "Imaginez un web où la majorité des sites adoptent cette approche : une expérience plus fluide, moins de frustration et plus de respect pour l'attention de l'utilisateur.",
     
     ecoApproachTitle: "Avantages du mode éco",
     ecoApproach: [
@@ -67,10 +73,9 @@ const content = {
       "Navigation simplifiée qui va droit au but",
       "Meilleure expérience sur appareils anciens ou connexions limitées",
       "Consommation d'énergie réduite (moins de calculs côté navigateur)",
-      "Absence de scripts superflus qui suivent vos actions"
     ],
     
-    benchmarksTitle: "Quelques chiffres",
+    performanceTitle: "Performance et impact",
     benchmarks: [
       {
         metric: "Taille de page (mode standard)",
@@ -82,11 +87,11 @@ const content = {
       },
       {
         metric: "Temps de chargement",
-        value: "< 1 seconde (mode éco)"
+        value: "< 1 seconde"
       },
       {
         metric: "Score Lighthouse",
-        value: "98-100/100"
+        value: "99-100/100"
       }
     ],
     
@@ -99,17 +104,17 @@ const content = {
     nextProject: "Projet suivant",
     prevProject: "Projet précédent",
 
-    reflectionTitle: "Ma vision du web",
-    reflectionText: "Je crois qu'un bon site web devrait d'abord être accessible et rapide. Le mode éco n'est pas qu'une question d'environnement : c'est aussi une meilleure expérience pour beaucoup d'utilisateurs. Combien de fois avez-vous quitté un site parce qu'il était trop lent à charger, encombré de publicités, ou vous harcelait pour accepter des cookies? Je préfère un web plus léger, qui respecte l'attention de l'utilisateur et fonctionne bien sur tous les appareils sans frustration. Ce portfolio est ma modeste contribution à cette vision.",
-
-    ecoModeTitle: "Mode Éco activé",
-    ecoModeText: "Vous consultez actuellement la version ultra-légère de mon portfolio."
+    reflectionTitle: "Pourquoi un mode éco?",
+    reflectionText: "Je crois qu'un bon site web devrait d'abord être accessible et rapide. Le mode éco n'est pas qu'une question d'environnement : c'est aussi une meilleure expérience pour beaucoup d'utilisateurs. Combien de fois avez-vous quitté un site parce qu'il était trop lent à charger, encombré de publicités, ou vous harcelait pour accepter des cookies? Je préfère un web plus léger, qui respecte l'attention de l'utilisateur et fonctionne bien sur tous les appareils sans frustration. Ce portfolio est ma modeste contribution à cette vision."
   },
   en: {
     title: "Eco-friendly Personal Portfolio | Josselin HANEL (Eco Mode)",
     description: "Eco-friendly version of the page presenting my multilingual personal portfolio with eco mode.",
     projectTitle: "Eco-friendly Personal Portfolio",
     projectIntro: "This portfolio was designed to demonstrate that a high-performing, pleasant-to-use website can also be lightweight and resource-efficient.",
+    
+    ecoModeTitle: "Eco Mode Activated",
+    ecoModeText: "You are currently viewing the ultra-lightweight version of my portfolio.",
     
     overviewTitle: "Project Overview",
     overviewText: "This site offers two versions: standard and eco. The eco version you're currently viewing is deliberately simplified to provide faster access to information, especially on mobile devices and limited connections.",
@@ -142,7 +147,7 @@ const content = {
       },
       {
         title: "Multilingual Navigation",
-        description: "Intuitive URL-based system that allows sharing a page directly in the language of your choice."
+        description: "URL-based system that allows sharing a page directly in the language of your choice."
       },
       {
         title: "Minimalist Design",
@@ -150,16 +155,19 @@ const content = {
       }
     ],
     
+    cookielessWebTitle: "A web without cookie banners",
+    cookielessWebText: "Have you noticed there's no cookie banner on this site? Websites that only use cookies for essential functionalities don't need your consent under GDPR. This portfolio respects your privacy by default: no trackers, no analytics, no ads.",
+    cookielessWebVision: "Imagine a web where most sites adopt this approach: a smoother experience, less frustration, and more respect for user attention.",
+    
     ecoApproachTitle: "Benefits of Eco Mode",
     ecoApproach: [
       "Near-instant page loading (fewer resources to download)",
       "Streamlined navigation that gets straight to the point",
       "Better experience on older devices or limited connections",
       "Reduced energy consumption (less computation on the browser side)",
-      "Absence of superfluous scripts tracking your actions"
     ],
     
-    benchmarksTitle: "Some Figures",
+    performanceTitle: "Performance and Impact",
     benchmarks: [
       {
         metric: "Page Size (Standard Mode)",
@@ -171,11 +179,11 @@ const content = {
       },
       {
         metric: "Loading Time",
-        value: "< 1 second (Eco Mode)"
+        value: "< 1 second"
       },
       {
         metric: "Lighthouse Score",
-        value: "98-100/100"
+        value: "99-100/100"
       }
     ],
     
@@ -188,17 +196,17 @@ const content = {
     nextProject: "Next Project",
     prevProject: "Previous Project",
 
-    reflectionTitle: "My Web Vision",
-    reflectionText: "I believe a good website should be accessible and fast first and foremost. Eco mode isn't just about the environment—it's also a better experience for many users. How many times have you left a site because it was too slow to load, cluttered with ads, or harassing you to accept cookies? I prefer a lighter web that respects user attention and works well on all devices without frustration. This portfolio is my modest contribution to that vision.",
-
-    ecoModeTitle: "Eco Mode Activated",
-    ecoModeText: "You are currently viewing the ultra-lightweight version of my portfolio."
+    reflectionTitle: "Why an Eco Mode?",
+    reflectionText: "I believe a good website should be accessible and fast first and foremost. Eco mode isn't just about the environment—it's also a better experience for many users. How many times have you left a site because it was too slow to load, cluttered with ads, or harassing you to accept cookies? I prefer a lighter web that respects user attention and works well on all devices without frustration. This portfolio is my modest contribution to that vision."
   },
   de: {
     title: "Umweltfreundliches persönliches Portfolio | Josselin HANEL (Öko-Modus)",
     description: "Umweltfreundliche Version der Seite, die mein mehrsprachiges persönliches Portfolio mit Öko-Modus präsentiert.",
     projectTitle: "Umweltfreundliches persönliches Portfolio",
     projectIntro: "Dieses Portfolio wurde entwickelt, um zu zeigen, dass eine leistungsstarke, angenehm zu bedienende Website auch leicht und ressourceneffizient sein kann.",
+    
+    ecoModeTitle: "Öko-Modus aktiviert",
+    ecoModeText: "Sie sehen gerade die ultraleichte Version meines Portfolios.",
     
     overviewTitle: "Projektübersicht",
     overviewText: "Diese Website bietet zwei Versionen: Standard und Öko. Die Öko-Version, die Sie gerade betrachten, ist bewusst vereinfacht, um schnelleren Zugriff auf Informationen zu ermöglichen, besonders auf Mobilgeräten und bei begrenzten Verbindungen.",
@@ -231,7 +239,7 @@ const content = {
       },
       {
         title: "Mehrsprachige Navigation",
-        description: "Intuitives URL-basiertes System, das das direkte Teilen einer Seite in der Sprache Ihrer Wahl ermöglicht."
+        description: "URL-basiertes System, das das direkte Teilen einer Seite in der Sprache Ihrer Wahl ermöglicht."
       },
       {
         title: "Minimalistisches Design",
@@ -239,16 +247,19 @@ const content = {
       }
     ],
     
+    cookielessWebTitle: "Ein Web ohne Cookie-Banner",
+    cookielessWebText: "Haben Sie bemerkt, dass es auf dieser Website kein Cookie-Banner gibt? Websites, die Cookies nur für wesentliche Funktionalitäten verwenden, benötigen nach der DSGVO nicht Ihre Einwilligung. Dieses Portfolio respektiert Ihre Privatsphäre standardmäßig: keine Tracker, keine Analysetools, keine Werbung.",
+    cookielessWebVision: "Stellen Sie sich ein Web vor, in dem die meisten Websites diesen Ansatz verfolgen: ein reibungsloseres Erlebnis, weniger Frustration und mehr Respekt für die Aufmerksamkeit der Benutzer.",
+    
     ecoApproachTitle: "Vorteile des Öko-Modus",
     ecoApproach: [
       "Nahezu sofortiges Laden von Seiten (weniger Ressourcen zum Herunterladen)",
       "Optimierte Navigation, die direkt zum Punkt kommt",
       "Bessere Erfahrung auf älteren Geräten oder begrenzten Verbindungen",
       "Reduzierter Energieverbrauch (weniger Berechnungen auf der Browser-Seite)",
-      "Keine überflüssigen Skripte, die Ihre Aktionen verfolgen"
     ],
     
-    benchmarksTitle: "Einige Zahlen",
+    performanceTitle: "Leistung und Auswirkungen",
     benchmarks: [
       {
         metric: "Seitengröße (Standardmodus)",
@@ -260,11 +271,11 @@ const content = {
       },
       {
         metric: "Ladezeit",
-        value: "< 1 Sekunde (Öko-Modus)"
+        value: "< 1 Sekunde"
       },
       {
         metric: "Lighthouse-Punktzahl",
-        value: "98-100/100"
+        value: "99-100/100"
       }
     ],
     
@@ -277,11 +288,8 @@ const content = {
     nextProject: "Nächstes Projekt",
     prevProject: "Vorheriges Projekt",
 
-    reflectionTitle: "Meine Web-Vision",
-    reflectionText: "Ich glaube, dass eine gute Website in erster Linie zugänglich und schnell sein sollte. Der Öko-Modus betrifft nicht nur die Umwelt – er bietet auch eine bessere Erfahrung für viele Benutzer. Wie oft haben Sie eine Website verlassen, weil sie zu langsam geladen wurde, mit Werbung überladen war oder Sie belästigte, Cookies zu akzeptieren? Ich bevorzuge ein leichteres Web, das die Aufmerksamkeit der Benutzer respektiert und auf allen Geräten ohne Frustration gut funktioniert. Dieses Portfolio ist mein bescheidener Beitrag zu dieser Vision.",
-
-    ecoModeTitle: "Öko-Modus aktiviert",
-    ecoModeText: "Sie sehen gerade die ultraleichte Version meines Portfolios."
+    reflectionTitle: "Warum ein Öko-Modus?",
+    reflectionText: "Ich glaube, dass eine gute Website in erster Linie zugänglich und schnell sein sollte. Der Öko-Modus betrifft nicht nur die Umwelt – er bietet auch eine bessere Erfahrung für viele Benutzer. Wie oft haben Sie eine Website verlassen, weil sie zu langsam geladen wurde, mit Werbung überladen war oder Sie belästigte, Cookies zu akzeptieren? Ich bevorzuge ein leichteres Web, das die Aufmerksamkeit der Benutzer respektiert und auf allen Geräten ohne Frustration gut funktioniert. Dieses Portfolio ist mein bescheidener Beitrag zu dieser Vision."
   }
 };
 
@@ -393,6 +401,21 @@ const isEcoMode = true;
       </div>
     </section>
     
+    <!-- Section sur les bandeaux de cookies -->
+    <section class="mb-8 border-b border-secondary pb-6 max-w-4xl text-balance">
+      <h2 class="text-xl font-semibold mb-3 text-accent">
+        {t.cookielessWebTitle}
+      </h2>
+      
+      <p class="mb-3">
+        {t.cookielessWebText}
+      </p>
+      
+      <p>
+        {t.cookielessWebVision}
+      </p>
+    </section>
+    
     <!-- Avantages du mode éco -->
     <section class="mb-8 border-b border-secondary pb-6">
       <h2 class="text-xl font-semibold mb-3 text-accent">
@@ -408,7 +431,7 @@ const isEcoMode = true;
     <!-- Mesures de performance -->
     <section class="mb-8 border-b border-secondary pb-6">
       <h2 class="text-xl font-semibold mb-3 text-accent">
-        {t.benchmarksTitle}
+        {t.performanceTitle}
       </h2>
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 mb-3">
         {t.benchmarks.map(benchmark => (
@@ -421,65 +444,67 @@ const isEcoMode = true;
         ))}
       </div>
     </section>
+    
     <!-- Section sur ClientRouter -->
-<section class="mb-8 border-b border-secondary pb-6">
-    <h2 class="text-xl font-semibold mb-3 text-accent">
-      ClientRouter & transition-persist
-    </h2>
+    <section class="mb-8 border-b border-secondary pb-6">
+        <h2 class="text-xl font-semibold mb-3 text-accent">
+          ClientRouter & transition-persist
+        </h2>
+        
+        <p class="mb-3 max-w-4xl text-balance">
+          {lang === "fr" ? 
+            "Le mode éco désactive délibérément le <code>ClientRouter</code> d'Astro 5, contrairement au mode standard qui l'utilise pour des transitions fluides. C'est une décision délibérée qui offre plusieurs avantages :" :
+            lang === "en" ? 
+            "Eco mode deliberately disables Astro 5's <code>ClientRouter</code>, unlike standard mode which uses it for smooth transitions. This is a deliberate decision that offers several advantages:" :
+            "Der Öko-Modus deaktiviert bewusst den <code>ClientRouter</code> von Astro 5, im Gegensatz zum Standardmodus, der ihn für reibungslose Übergänge verwendet. Dies ist eine bewusste Entscheidung, die mehrere Vorteile bietet:"}
+        </p>
+        
+        <ul class="list-disc pl-5 mb-3">
+          <li class="mb-1">
+            {lang === "fr" ? 
+              "Moins de JavaScript à charger et exécuter par le navigateur" :
+              lang === "en" ? 
+              "Less JavaScript to load and execute by the browser" :
+              "Weniger JavaScript, das vom Browser geladen und ausgeführt werden muss"}
+          </li>
+          <li class="mb-1">
+            {lang === "fr" ? 
+              "Navigation plus directe et légère, idéale pour connexions limitées" :
+              lang === "en" ? 
+              "More direct and lightweight navigation, ideal for limited connections" :
+              "Direktere und leichtere Navigation, ideal für begrenzte Verbindungen"}
+          </li>
+          <li class="mb-1">
+            {lang === "fr" ? 
+              "Moins de traitements côté client, économisant la batterie sur mobile" :
+              lang === "en" ? 
+              "Less client-side processing, saving battery on mobile" :
+              "Weniger clientseitige Verarbeitung, spart Akku auf dem Mobilgerät"}
+          </li>
+          <li class="mb-1">
+            {lang === "fr" ? 
+              "Compatibilité améliorée avec les appareils plus anciens ou moins puissants" :
+              lang === "en" ? 
+              "Improved compatibility with older or less powerful devices" :
+              "Verbesserte Kompatibilität mit älteren oder weniger leistungsstarken Geräten"}
+          </li>
+        </ul>
+        
+        <p>
+          {lang === "fr" ? 
+            "Cette approche montre qu'il est possible d'adapter l'expérience utilisateur en fonction du contexte d'utilisation, sans compromettre l'accès à l'information." :
+            lang === "en" ? 
+            "This approach shows that it's possible to adapt the user experience according to the usage context, without compromising access to information." :
+            "Dieser Ansatz zeigt, dass es möglich ist, das Benutzererlebnis an den Nutzungskontext anzupassen, ohne den Zugang zu Informationen zu beeinträchtigen."}
+        </p>
+    </section>
     
-    <p class="mb-3">
-      {lang === "fr" ? 
-        "Le mode éco désactive délibérément le <code>ClientRouter</code> d'Astro 5, contrairement au mode standard qui l'utilise pour des transitions fluides. C'est une décision délibérée qui offre plusieurs avantages :" :
-        lang === "en" ? 
-        "Eco mode deliberately disables Astro 5's <code>ClientRouter</code>, unlike standard mode which uses it for smooth transitions. This is a deliberate decision that offers several advantages:" :
-        "Der Öko-Modus deaktiviert bewusst den <code>ClientRouter</code> von Astro 5, im Gegensatz zum Standardmodus, der ihn für reibungslose Übergänge verwendet. Dies ist eine bewusste Entscheidung, die mehrere Vorteile bietet:"}
-    </p>
-    
-    <ul class="list-disc pl-5 mb-3">
-      <li class="mb-1">
-        {lang === "fr" ? 
-          "Moins de JavaScript à charger et exécuter par le navigateur" :
-          lang === "en" ? 
-          "Less JavaScript to load and execute by the browser" :
-          "Weniger JavaScript, das vom Browser geladen und ausgeführt werden muss"}
-      </li>
-      <li class="mb-1">
-        {lang === "fr" ? 
-          "Navigation plus directe et légère, idéale pour connexions limitées" :
-          lang === "en" ? 
-          "More direct and lightweight navigation, ideal for limited connections" :
-          "Direktere und leichtere Navigation, ideal für begrenzte Verbindungen"}
-      </li>
-      <li class="mb-1">
-        {lang === "fr" ? 
-          "Moins de traitements côté client, économisant la batterie sur mobile" :
-          lang === "en" ? 
-          "Less client-side processing, saving battery on mobile" :
-          "Weniger clientseitige Verarbeitung, spart Akku auf dem Mobilgerät"}
-      </li>
-      <li class="mb-1">
-        {lang === "fr" ? 
-          "Compatibilité améliorée avec les appareils plus anciens ou moins puissants" :
-          lang === "en" ? 
-          "Improved compatibility with older or less powerful devices" :
-          "Verbesserte Kompatibilität mit älteren oder weniger leistungsstarken Geräten"}
-      </li>
-    </ul>
-    
-    <p>
-      {lang === "fr" ? 
-        "Cette approche montre qu'il est possible d'adapter l'expérience utilisateur en fonction du contexte d'utilisation, sans compromettre l'accès à l'information." :
-        lang === "en" ? 
-        "This approach shows that it's possible to adapt the user experience according to the usage context, without compromising access to information." :
-        "Dieser Ansatz zeigt, dass es möglich ist, das Benutzererlebnis an den Nutzungskontext anzupassen, ohne den Zugang zu Informationen zu beeinträchtigen."}
-    </p>
-  </section>
-    <!-- Ma vision du web -->
+    <!-- Pourquoi un mode éco -->
     <section class="mb-8 border-b border-secondary pb-6">
       <h2 class="text-xl font-semibold mb-3 text-accent">
         {t.reflectionTitle}
       </h2>
-      <p class="mb-3 max-w-4xl">
+      <p class="italic mb-3 max-w-4xl">
         {t.reflectionText}
       </p>
     </section>

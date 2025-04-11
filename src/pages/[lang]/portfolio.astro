@@ -19,31 +19,38 @@ const lang = Astro.params.lang as "fr" | "en" | "de";
 const content = {
   fr: {
     title: "Portfolio personnel éco-responsable | Josselin HANEL",
-    description: "Présentation de mon portfolio multilingue avec mode éco, conçu selon les principes de l'éco-conception web.",
+    description:
+      "Présentation de mon portfolio multilingue avec mode éco, conçu selon les principes de l'éco-conception web.",
     projectTitle: "Portfolio personnel éco-responsable",
-    projectIntro: "Ce portfolio démontre qu'un site peut être à la fois agréable visuellement, fonctionnel et léger. Il propose une version standard et une version éco, chacune avec ses avantages.",
-    
+    projectIntro:
+      "Ce portfolio démontre qu'un site peut être à la fois agréable visuellement, fonctionnel et léger. Il propose une version standard et une version éco, chacune avec ses avantages.",
+
     overviewTitle: "Aperçu du projet",
-    overviewText: "Combien de fois avez-vous quitté un site parce qu'il était trop lent, bourré de publicités intrusives, ou vous harcelait pour accepter des cookies? Ce portfolio est ma tentative de créer une expérience web plus respectueuse, qui fonctionne bien sur tous les appareils sans frustration.",
+    overviewText:
+      "Combien de fois avez-vous quitté un site parce qu'il était trop lent, bourré de publicités intrusives, ou vous harcelait pour accepter des cookies? Ce portfolio est ma tentative de créer une expérience web plus respectueuse, qui fonctionne bien sur tous les appareils sans frustration.",
 
     featuresTitle: "Caractéristiques principales",
     features: [
       {
         title: "Mode éco pratique",
-        description: "Une version simplifiée du site qui élimine le superflu pour aller droit à l'essentiel - idéale sur mobile ou connexion lente."
+        description:
+          "Une version simplifiée du site qui élimine le superflu pour aller droit à l'essentiel - idéale sur mobile ou connexion lente.",
       },
       {
         title: "Support multilingue",
-        description: "Disponible en français, anglais et allemand avec redirection automatique basée sur la localisation du visiteur."
+        description:
+          "Disponible en français, anglais et allemand avec redirection automatique basée sur la localisation du visiteur.",
       },
       {
         title: "Chargement rapide",
-        description: "Optimisation des ressources pour une expérience fluide et réactive sur tous les appareils."
+        description:
+          "Optimisation des ressources pour une expérience fluide et réactive sur tous les appareils.",
       },
       {
         title: "Transitions fluides",
-        description: "Éléments persistants entre les pages pour réduire les chargements redondants et offrir une navigation sans interruption."
-      }
+        description:
+          "Éléments persistants entre les pages pour réduire les chargements redondants et offrir une navigation sans interruption.",
+      },
     ],
 
     architectureTitle: "Approche technique",
@@ -53,7 +60,7 @@ const content = {
       "Tailwind CSS pour des styles optimisés et une empreinte minimale",
       "Transitions persistantes pour éviter de recharger les éléments communs",
       "Redirection multilingue via Cloudflare Rules",
-      "Architecture permettant deux modes distincts (standard et éco)"
+      "Architecture permettant deux modes distincts (standard et éco)",
     ],
     implementationTitle: "Optimisations",
     implementationDetails: [
@@ -61,104 +68,121 @@ const content = {
       "Images optimisées avec formats modernes (WebP, AVIF) et chargement différé",
       "Attributs transition-persist sur les composants partagés entre les pages",
       "Préchargement des ressources critiques pour une navigation instantanée",
-      "Mode éco accessible via un simple bouton pour basculer instantanément"
+      "Mode éco accessible via un simple bouton pour basculer instantanément",
     ],
 
     challengesTitle: "Défis rencontrés",
     challenges: [
       {
         title: "Expérience vs performance",
-        description: "Trouver l'équilibre entre une interface attrayante et un site ultra-performant."
+        description:
+          "Trouver l'équilibre entre une interface attrayante et un site ultra-performant.",
       },
       {
         title: "Navigation fluide",
-        description: "Concevoir une transition transparente entre les pages sans recharger les éléments communs."
+        description:
+          "Concevoir une transition transparente entre les pages sans recharger les éléments communs.",
       },
       {
         title: "Double mode",
-        description: "Concevoir deux versions du site sans dupliquer inutilement le code et les ressources."
+        description:
+          "Concevoir deux versions du site sans dupliquer inutilement le code et les ressources.",
       },
       {
         title: "Accessibilité",
-        description: "S'assurer que les deux versions restent parfaitement accessibles à tous."
-      }
+        description:
+          "S'assurer que les deux versions restent parfaitement accessibles à tous.",
+      },
     ],
-    
+
     designDecisionsTitle: "Choix de conception",
     designDecisions: [
       {
         title: "Priorité au contenu",
-        description: "L'information reste au premier plan, sans être submergée par des éléments décoratifs superflus."
+        description:
+          "L'information reste au premier plan, sans être submergée par des éléments décoratifs superflus.",
       },
       {
         title: "Composants persistants",
-        description: "Utilisation de transition-persist pour conserver les éléments communs entre les pages et améliorer la fluidité."
+        description:
+          "Utilisation de transition-persist pour conserver les éléments communs entre les pages et améliorer la fluidité.",
       },
       {
         title: "URLs intuitives",
-        description: "Structure d'URL claire par langue et mode (/fr/, /en/, /fr/eco/) pour un partage facile des pages."
+        description:
+          "Structure d'URL claire par langue et mode (/fr/, /en/, /fr/eco/) pour un partage facile des pages.",
       },
       {
         title: "Mode éco visible",
-        description: "Bouton toujours accessible pour basculer entre les modes standard et éco selon vos préférences."
-      }
+        description:
+          "Bouton toujours accessible pour basculer entre les modes standard et éco selon vos préférences.",
+      },
     ],
-    
+
+    cookielessWebTitle: "Un web sans bandeaux de cookies",
+    cookielessWebText:
+      "Avez-vous remarqué qu'il n'y a pas de bandeau de cookies sur ce site ? Ce n'est pas un oubli. La plupart des sites n'ont pas besoin de ces bandeaux intrusifs qui dégradent l'expérience utilisateur, surtout sur mobile où ils occupent parfois la moitié de l'écran.",
+    cookielessWebExplanation:
+      "Les sites qui n'utilisent des cookies que pour des fonctionnalités essentielles (comme mémoriser votre langue préférée ou maintenir une session) n'ont pas besoin de demander votre consentement. La législation RGPD ne l'exige que pour les cookies de suivi, d'analyse ou de publicité.",
+    cookielessWebVision:
+      "Ce portfolio respecte votre vie privée par défaut : pas de trackers, pas d'analytics, pas de publicité — donc pas besoin de bandeau. Imaginez un web où la majorité des sites adoptent cette approche : une expérience plus fluide, moins de frustration et plus de respect pour l'attention de l'utilisateur.",
+
     ecoApproachTitle: "Standard vs Éco",
     ecoApproach: [
       {
         metric: "JavaScript",
         standard: "Minimal, pour interactions essentielles",
-        eco: "Quasiment absent"
+        eco: "Quasiment absent",
       },
       {
         metric: "Images",
         standard: "Optimisées mais présentes",
-        eco: "Réduites au minimum nécessaire"
+        eco: "Réduites au minimum nécessaire",
       },
       {
         metric: "Transitions",
         standard: "Éléments persistants entre les pages",
-        eco: "Navigation directe sans animations"
+        eco: "Navigation directe sans animations",
       },
       {
         metric: "Expérience",
         standard: "Plus riche visuellement",
-        eco: "Plus directe, axée sur le contenu"
-      }
+        eco: "Plus directe, axée sur le contenu",
+      },
     ],
-    
+
     performanceTitle: "Performance et impact",
     performance: [
       {
         metric: "Taille de page (mode standard)",
-        value: "< 200 Ko"
+        value: "< 200 Ko",
       },
       {
         metric: "Taille de page (mode éco)",
-        value: "< 70 Ko"
+        value: "< 70 Ko",
       },
       {
         metric: "Temps de chargement",
-        value: "< 1 seconde (mode éco)"
+        value: "< 1 seconde",
       },
       {
         metric: "Score Lighthouse",
-        value: "98-100/100"
-      }
+        value: "99-100/100",
+      },
     ],
-    
+
     techTitle: "Technologies utilisées",
-    techDetails: "Voici les principales technologies et techniques mises en œuvre dans ce portfolio :",
+    techDetails:
+      "Voici les principales technologies et techniques mises en œuvre dans ce portfolio :",
     techPoints: [
       "Astro pour le rendu statique avec navigation optimisée",
       "Tailwind CSS pour les styles sans CSS inutile",
       "Attributs transition-persist pour les éléments partagés",
       "Redirection automatique via Cloudflare Rules",
       "Chargement différé des images et ressources non critiques",
-      "HTML sémantique pour une meilleure accessibilité"
+      "HTML sémantique pour une meilleure accessibilité",
     ],
-    
+
     visitSite: "Visiter le site",
     viewSourceCode: "Voir le code source",
     allProjects: "Tous les projets",
@@ -166,35 +190,43 @@ const content = {
     prevProject: "Projet précédent",
 
     reflectionTitle: "Pourquoi un mode éco?",
-    reflectionText: "Le mode éco n'est pas qu'une question d'environnement. C'est aussi une meilleure expérience pour beaucoup d'utilisateurs. Les sites web sont devenus de plus en plus lourds, lents et intrusifs. Sur mobile, entre les fenêtres de cookies, les publicités et les animations inutiles, l'expérience est souvent frustrante. Le mode éco offre une alternative : accéder rapidement à l'information sans distraction. C'est particulièrement utile sur les appareils plus anciens, les connexions lentes, ou simplement quand on veut aller à l'essentiel. J'aimerais voir plus de sites proposer cette option - un web plus respectueux de l'attention des utilisateurs et de leurs ressources."
+    reflectionText:
+      "Le mode éco n'est pas qu'une question d'environnement. C'est aussi une meilleure expérience pour beaucoup d'utilisateurs. Les sites web sont devenus de plus en plus lourds, lents et intrusifs. Sur mobile, entre les fenêtres de cookies, les publicités et les animations inutiles, l'expérience est souvent frustrante. Le mode éco offre une alternative : accéder rapidement à l'information sans distraction. C'est particulièrement utile sur les appareils plus anciens, les connexions lentes, ou simplement quand on veut aller à l'essentiel. J'aimerais voir plus de sites proposer cette option - un web plus respectueux de l'attention des utilisateurs et de leurs ressources.",
   },
   en: {
     title: "Eco-friendly Personal Portfolio | Josselin HANEL",
-    description: "Presentation of my multilingual portfolio with eco mode, designed according to web eco-design principles.",
+    description:
+      "Presentation of my multilingual portfolio with eco mode, designed according to web eco-design principles.",
     projectTitle: "Eco-friendly Personal Portfolio",
-    projectIntro: "This portfolio demonstrates that a website can be visually pleasing, functional, and lightweight. It offers both a standard version and an eco version, each with its own advantages.",
-    
+    projectIntro:
+      "This portfolio demonstrates that a website can be visually pleasing, functional, and lightweight. It offers both a standard version and an eco version, each with its own advantages.",
+
     overviewTitle: "Project Overview",
-    overviewText: "How many times have you left a website because it was too slow, full of intrusive ads, or harassing you to accept cookies? This portfolio is my attempt to create a more respectful web experience that works well on all devices without frustration.",
+    overviewText:
+      "How many times have you left a website because it was too slow, full of intrusive ads, or harassing you to accept cookies? This portfolio is my attempt to create a more respectful web experience that works well on all devices without frustration.",
 
     featuresTitle: "Key Features",
     features: [
       {
         title: "Practical Eco Mode",
-        description: "A simplified version of the site that eliminates the superfluous to get straight to the point - ideal on mobile or slow connections."
+        description:
+          "A simplified version of the site that eliminates the superfluous to get straight to the point - ideal on mobile or slow connections.",
       },
       {
         title: "Multilingual Support",
-        description: "Available in French, English, and German with automatic redirection based on visitor location."
+        description:
+          "Available in French, English, and German with automatic redirection based on visitor location.",
       },
       {
         title: "Fast Loading",
-        description: "Resource optimization for a smooth and responsive experience on all devices."
+        description:
+          "Resource optimization for a smooth and responsive experience on all devices.",
       },
       {
         title: "Smooth Transitions",
-        description: "Persistent elements between pages to reduce redundant loading and provide seamless navigation."
-      }
+        description:
+          "Persistent elements between pages to reduce redundant loading and provide seamless navigation.",
+      },
     ],
 
     architectureTitle: "Technical Approach",
@@ -204,7 +236,7 @@ const content = {
       "Tailwind CSS for optimized styles and minimal footprint",
       "Persistent transitions to avoid reloading common elements",
       "Multilingual redirection via Cloudflare Rules",
-      "Architecture allowing two distinct modes (standard and eco)"
+      "Architecture allowing two distinct modes (standard and eco)",
     ],
     implementationTitle: "Optimizations",
     implementationDetails: [
@@ -212,104 +244,121 @@ const content = {
       "Optimized images with modern formats (WebP, AVIF) and lazy loading",
       "Transition-persist attributes on components shared between pages",
       "Preloading of critical resources for instant navigation",
-      "Eco mode accessible via a simple button for instant switching"
+      "Eco mode accessible via a simple button for instant switching",
     ],
 
     challengesTitle: "Challenges Encountered",
     challenges: [
       {
         title: "Experience vs Performance",
-        description: "Finding the balance between an attractive interface and an ultra-performing site."
+        description:
+          "Finding the balance between an attractive interface and an ultra-performing site.",
       },
       {
         title: "Smooth Navigation",
-        description: "Designing a seamless transition between pages without reloading common elements."
+        description:
+          "Designing a seamless transition between pages without reloading common elements.",
       },
       {
         title: "Dual Mode",
-        description: "Designing two versions of the site without unnecessarily duplicating code and resources."
+        description:
+          "Designing two versions of the site without unnecessarily duplicating code and resources.",
       },
       {
         title: "Accessibility",
-        description: "Ensuring that both versions remain perfectly accessible to everyone."
-      }
+        description:
+          "Ensuring that both versions remain perfectly accessible to everyone.",
+      },
     ],
-    
+
     designDecisionsTitle: "Design Choices",
     designDecisions: [
       {
         title: "Content Priority",
-        description: "Information remains at the forefront, without being overwhelmed by superfluous decorative elements."
+        description:
+          "Information remains at the forefront, without being overwhelmed by superfluous decorative elements.",
       },
       {
         title: "Persistent Components",
-        description: "Using transition-persist to maintain common elements between pages and improve fluidity."
+        description:
+          "Using transition-persist to maintain common elements between pages and improve fluidity.",
       },
       {
         title: "Intuitive URLs",
-        description: "Clear URL structure by language and mode (/fr/, /en/, /fr/eco/) for easy page sharing."
+        description:
+          "Clear URL structure by language and mode (/fr/, /en/, /fr/eco/) for easy page sharing.",
       },
       {
         title: "Visible Eco Mode",
-        description: "Button always accessible to switch between standard and eco modes according to your preferences."
-      }
+        description:
+          "Button always accessible to switch between standard and eco modes according to your preferences.",
+      },
     ],
-    
+
+    cookielessWebTitle: "A web without cookie banners",
+    cookielessWebText:
+      "Have you noticed there's no cookie banner on this site? This isn't an oversight. Most sites don't actually need these intrusive banners that degrade user experience, especially on mobile where they sometimes take up half the screen.",
+    cookielessWebExplanation:
+      "Websites that only use cookies for essential functionalities (like remembering your preferred language or maintaining a session) don't need to ask for your consent. GDPR legislation only requires this for tracking, analytics, or advertising cookies.",
+    cookielessWebVision:
+      "This portfolio respects your privacy by default: no trackers, no analytics, no ads—therefore no need for a banner. Imagine a web where most sites adopt this approach: a smoother experience, less frustration, and more respect for user attention.",
+
     ecoApproachTitle: "Standard vs Eco",
     ecoApproach: [
       {
         metric: "JavaScript",
         standard: "Minimal, for essential interactions",
-        eco: "Almost none"
+        eco: "Almost none",
       },
       {
         metric: "Images",
         standard: "Optimized but present",
-        eco: "Reduced to the necessary minimum"
+        eco: "Reduced to the necessary minimum",
       },
       {
         metric: "Transitions",
         standard: "Persistent elements between pages",
-        eco: "Direct navigation without animations"
+        eco: "Direct navigation without animations",
       },
       {
         metric: "Experience",
         standard: "Richer visually",
-        eco: "More direct, content-focused"
-      }
+        eco: "More direct, content-focused",
+      },
     ],
-    
+
     performanceTitle: "Performance and Impact",
     performance: [
       {
         metric: "Page Size (Standard Mode)",
-        value: "< 200 Kb"
+        value: "< 200 Kb",
       },
       {
         metric: "Page Size (Eco Mode)",
-        value: "< 70 Kb"
+        value: "< 70 Kb",
       },
       {
         metric: "Loading Time",
-        value: "< 1 second (Eco Mode)"
+        value: "< 1 second",
       },
       {
         metric: "Lighthouse Score",
-        value: "98-100/100"
-      }
+        value: "99-100/100",
+      },
     ],
-    
+
     techTitle: "Technologies Used",
-    techDetails: "Here are the main technologies and techniques implemented in this portfolio:",
+    techDetails:
+      "Here are the main technologies and techniques implemented in this portfolio:",
     techPoints: [
       "Astro for static rendering with optimized navigation",
       "Tailwind CSS for styles without unnecessary CSS",
       "Transition-persist attributes for shared elements",
       "Automatic redirection via Cloudflare Rules",
       "Lazy loading of images and non-critical resources",
-      "Semantic HTML for better accessibility"
+      "Semantic HTML for better accessibility",
     ],
-    
+
     visitSite: "Visit Site",
     viewSourceCode: "View Source Code",
     allProjects: "All Projects",
@@ -317,35 +366,43 @@ const content = {
     prevProject: "Previous Project",
 
     reflectionTitle: "Why an Eco Mode?",
-    reflectionText: "Eco mode isn't just about the environment. It's also a better experience for many users. Websites have become increasingly heavy, slow, and intrusive. On mobile, between cookie windows, advertisements, and unnecessary animations, the experience is often frustrating. Eco mode offers an alternative: quick access to information without distraction. It's particularly useful on older devices, slow connections, or simply when you want to get to the essentials. I'd like to see more sites offer this option - a web that's more respectful of users' attention and resources."
+    reflectionText:
+      "Eco mode isn't just about the environment. It's also a better experience for many users. Websites have become increasingly heavy, slow, and intrusive. On mobile, between cookie windows, advertisements, and unnecessary animations, the experience is often frustrating. Eco mode offers an alternative: quick access to information without distraction. It's particularly useful on older devices, slow connections, or simply when you want to get to the essentials. I'd like to see more sites offer this option - a web that's more respectful of users' attention and resources.",
   },
   de: {
     title: "Umweltfreundliches persönliches Portfolio | Josselin HANEL",
-    description: "Präsentation meines mehrsprachigen Portfolios mit Öko-Modus, entwickelt nach den Prinzipien des Web-Öko-Designs.",
+    description:
+      "Präsentation meines mehrsprachigen Portfolios mit Öko-Modus, entwickelt nach den Prinzipien des Web-Öko-Designs.",
     projectTitle: "Umweltfreundliches persönliches Portfolio",
-    projectIntro: "Dieses Portfolio zeigt, dass eine Website visuell ansprechend, funktional und leichtgewichtig sein kann. Es bietet sowohl eine Standardversion als auch eine Öko-Version, jede mit ihren eigenen Vorteilen.",
-    
+    projectIntro:
+      "Dieses Portfolio zeigt, dass eine Website visuell ansprechend, funktional und leichtgewichtig sein kann. Es bietet sowohl eine Standardversion als auch eine Öko-Version, jede mit ihren eigenen Vorteilen.",
+
     overviewTitle: "Projektübersicht",
-    overviewText: "Wie oft haben Sie eine Website verlassen, weil sie zu langsam war, voller aufdringlicher Werbung oder Sie belästigte, Cookies zu akzeptieren? Dieses Portfolio ist mein Versuch, ein respektvolleres Web-Erlebnis zu schaffen, das auf allen Geräten ohne Frustration gut funktioniert.",
+    overviewText:
+      "Wie oft haben Sie eine Website verlassen, weil sie zu langsam war, voller aufdringlicher Werbung oder Sie belästigte, Cookies zu akzeptieren? Dieses Portfolio ist mein Versuch, ein respektvolleres Web-Erlebnis zu schaffen, das auf allen Geräten ohne Frustration gut funktioniert.",
 
     featuresTitle: "Hauptmerkmale",
     features: [
       {
         title: "Praktischer Öko-Modus",
-        description: "Eine vereinfachte Version der Website, die das Überflüssige eliminiert, um direkt auf den Punkt zu kommen - ideal für Mobilgeräte oder langsame Verbindungen."
+        description:
+          "Eine vereinfachte Version der Website, die das Überflüssige eliminiert, um direkt auf den Punkt zu kommen - ideal für Mobilgeräte oder langsame Verbindungen.",
       },
       {
         title: "Mehrsprachige Unterstützung",
-        description: "Verfügbar in Französisch, Englisch und Deutsch mit automatischer Weiterleitung basierend auf dem Standort des Besuchers."
+        description:
+          "Verfügbar in Französisch, Englisch und Deutsch mit automatischer Weiterleitung basierend auf dem Standort des Besuchers.",
       },
       {
         title: "Schnelles Laden",
-        description: "Ressourcenoptimierung für ein reibungsloses und reaktionsschnelles Erlebnis auf allen Geräten."
+        description:
+          "Ressourcenoptimierung für ein reibungsloses und reaktionsschnelles Erlebnis auf allen Geräten.",
       },
       {
         title: "Sanfte Übergänge",
-        description: "Persistente Elemente zwischen den Seiten, um redundantes Laden zu reduzieren und eine nahtlose Navigation zu ermöglichen."
-      }
+        description:
+          "Persistente Elemente zwischen den Seiten, um redundantes Laden zu reduzieren und eine nahtlose Navigation zu ermöglichen.",
+      },
     ],
 
     architectureTitle: "Technischer Ansatz",
@@ -355,7 +412,7 @@ const content = {
       "Tailwind CSS für optimierte Stile und minimalen Fußabdruck",
       "Persistente Übergänge, um das erneute Laden gemeinsamer Elemente zu vermeiden",
       "Mehrsprachige Weiterleitung über Cloudflare Rules",
-      "Architektur, die zwei unterschiedliche Modi ermöglicht (Standard und Öko)"
+      "Architektur, die zwei unterschiedliche Modi ermöglicht (Standard und Öko)",
     ],
     implementationTitle: "Optimierungen",
     implementationDetails: [
@@ -363,104 +420,121 @@ const content = {
       "Optimierte Bilder mit modernen Formaten (WebP, AVIF) und Lazy Loading",
       "Transition-persist-Attribute für zwischen den Seiten gemeinsam genutzte Komponenten",
       "Vorladen kritischer Ressourcen für sofortige Navigation",
-      "Öko-Modus über einen einfachen Button für sofortiges Umschalten zugänglich"
+      "Öko-Modus über einen einfachen Button für sofortiges Umschalten zugänglich",
     ],
 
     challengesTitle: "Herausforderungen",
     challenges: [
       {
         title: "Erfahrung vs. Leistung",
-        description: "Die Balance zwischen einer attraktiven Benutzeroberfläche und einer leistungsstarken Website finden."
+        description:
+          "Die Balance zwischen einer attraktiven Benutzeroberfläche und einer leistungsstarken Website finden.",
       },
       {
         title: "Reibungslose Navigation",
-        description: "Gestaltung eines nahtlosen Übergangs zwischen Seiten ohne erneutes Laden gemeinsamer Elemente."
+        description:
+          "Gestaltung eines nahtlosen Übergangs zwischen Seiten ohne erneutes Laden gemeinsamer Elemente.",
       },
       {
         title: "Dualer Modus",
-        description: "Entwicklung von zwei Versionen der Website ohne unnötige Codeduplizierung und Ressourcen."
+        description:
+          "Entwicklung von zwei Versionen der Website ohne unnötige Codeduplizierung und Ressourcen.",
       },
       {
         title: "Barrierefreiheit",
-        description: "Sicherstellen, dass beide Versionen für alle perfekt zugänglich bleiben."
-      }
+        description:
+          "Sicherstellen, dass beide Versionen für alle perfekt zugänglich bleiben.",
+      },
     ],
-    
+
     designDecisionsTitle: "Design-Entscheidungen",
     designDecisions: [
       {
         title: "Inhalt hat Priorität",
-        description: "Informationen bleiben im Vordergrund, ohne von überflüssigen dekorativen Elementen überwältigt zu werden."
+        description:
+          "Informationen bleiben im Vordergrund, ohne von überflüssigen dekorativen Elementen überwältigt zu werden.",
       },
       {
         title: "Persistente Komponenten",
-        description: "Verwendung von transition-persist, um gemeinsame Elemente zwischen Seiten beizubehalten und die Flüssigkeit zu verbessern."
+        description:
+          "Verwendung von transition-persist, um gemeinsame Elemente zwischen Seiten beizubehalten und die Flüssigkeit zu verbessern.",
       },
       {
         title: "Intuitive URLs",
-        description: "Klare URL-Struktur nach Sprache und Modus (/fr/, /en/, /fr/eco/) für einfaches Teilen von Seiten."
+        description:
+          "Klare URL-Struktur nach Sprache und Modus (/fr/, /en/, /fr/eco/) für einfaches Teilen von Seiten.",
       },
       {
         title: "Sichtbarer Öko-Modus",
-        description: "Button ist immer zugänglich, um je nach Präferenz zwischen Standard- und Öko-Modus zu wechseln."
-      }
+        description:
+          "Button ist immer zugänglich, um je nach Präferenz zwischen Standard- und Öko-Modus zu wechseln.",
+      },
     ],
-    
+
+    cookielessWebTitle: "Ein Web ohne Cookie-Banner",
+    cookielessWebText:
+      "Haben Sie bemerkt, dass es auf dieser Website kein Cookie-Banner gibt? Dies ist kein Versehen. Die meisten Websites benötigen diese aufdringlichen Banner nicht, die die Benutzererfahrung beeinträchtigen, besonders auf mobilen Geräten, wo sie manchmal die Hälfte des Bildschirms einnehmen.",
+    cookielessWebExplanation:
+      "Websites, die Cookies nur für wesentliche Funktionalitäten verwenden (wie das Speichern Ihrer bevorzugten Sprache oder das Aufrechterhalten einer Sitzung), müssen nicht um Ihre Einwilligung bitten. Die DSGVO-Gesetzgebung verlangt dies nur für Tracking-, Analyse- oder Werbe-Cookies.",
+    cookielessWebVision:
+      "Dieses Portfolio respektiert Ihre Privatsphäre standardmäßig: keine Tracker, keine Analysetools, keine Werbung – daher kein Bedarf an einem Banner. Stellen Sie sich ein Web vor, in dem die meisten Websites diesen Ansatz verfolgen: ein reibungsloseres Erlebnis, weniger Frustration und mehr Respekt für die Aufmerksamkeit der Benutzer.",
+
     ecoApproachTitle: "Standard vs. Öko",
     ecoApproach: [
       {
         metric: "JavaScript",
         standard: "Minimal, für wesentliche Interaktionen",
-        eco: "Fast keins"
+        eco: "Fast keins",
       },
       {
         metric: "Bilder",
         standard: "Optimiert, aber vorhanden",
-        eco: "Auf das notwendige Minimum reduziert"
+        eco: "Auf das notwendige Minimum reduziert",
       },
       {
         metric: "Übergänge",
         standard: "Persistente Elemente zwischen Seiten",
-        eco: "Direkte Navigation ohne Animationen"
+        eco: "Direkte Navigation ohne Animationen",
       },
       {
         metric: "Erfahrung",
         standard: "Visuell reichhaltiger",
-        eco: "Direkter, inhaltsbezogener"
-      }
+        eco: "Direkter, inhaltsbezogener",
+      },
     ],
-    
+
     performanceTitle: "Leistung und Auswirkungen",
     performance: [
       {
         metric: "Seitengröße (Standardmodus)",
-        value: "< 200 KB"
+        value: "< 200 KB",
       },
       {
         metric: "Seitengröße (Öko-Modus)",
-        value: "< 70 KB"
+        value: "< 70 KB",
       },
       {
         metric: "Ladezeit",
-        value: "< 1 Sekunde (Öko-Modus)"
+        value: "< 1 Sekunde",
       },
       {
         metric: "Lighthouse-Punktzahl",
-        value: "98-100/100"
-      }
+        value: "99-100/100",
+      },
     ],
-    
+
     techTitle: "Verwendete Technologien",
-    techDetails: "Hier sind die wichtigsten Technologien und Techniken, die in diesem Portfolio implementiert wurden:",
+    techDetails:
+      "Hier sind die wichtigsten Technologien und Techniken, die in diesem Portfolio implementiert wurden:",
     techPoints: [
       "Astro für statisches Rendering mit optimierter Navigation",
       "Tailwind CSS für Stile ohne unnötiges CSS",
       "Transition-persist-Attribute für gemeinsam genutzte Elemente",
       "Automatische Weiterleitung über Cloudflare Rules",
       "Lazy Loading von Bildern und nicht kritischen Ressourcen",
-      "Semantisches HTML für bessere Zugänglichkeit"
+      "Semantisches HTML für bessere Zugänglichkeit",
     ],
-    
+
     visitSite: "Seite besuchen",
     viewSourceCode: "Quellcode ansehen",
     allProjects: "Alle Projekte",
@@ -468,28 +542,25 @@ const content = {
     prevProject: "Vorheriges Projekt",
 
     reflectionTitle: "Warum ein Öko-Modus?",
-    reflectionText: "Der Öko-Modus betrifft nicht nur die Umwelt. Er bietet auch ein besseres Erlebnis für viele Nutzer. Websites sind zunehmend schwer, langsam und aufdringlich geworden. Auf Mobilgeräten ist die Erfahrung zwischen Cookie-Fenstern, Werbung und unnötigen Animationen oft frustrierend. Der Öko-Modus bietet eine Alternative: schneller Zugriff auf Informationen ohne Ablenkung. Das ist besonders nützlich auf älteren Geräten, langsamen Verbindungen oder einfach, wenn man zum Wesentlichen kommen möchte. Ich würde gerne mehr Websites sehen, die diese Option anbieten - ein Web, das die Aufmerksamkeit und Ressourcen der Nutzer mehr respektiert."
-  }
+    reflectionText:
+      "Der Öko-Modus betrifft nicht nur die Umwelt. Er bietet auch ein besseres Erlebnis für viele Nutzer. Websites sind zunehmend schwer, langsam und aufdringlich geworden. Auf Mobilgeräten ist die Erfahrung zwischen Cookie-Fenstern, Werbung und unnötigen Animationen oft frustrierend. Der Öko-Modus bietet eine Alternative: schneller Zugriff auf Informationen ohne Ablenkung. Das ist besonders nützlich auf älteren Geräten, langsamen Verbindungen oder einfach, wenn man zum Wesentlichen kommen möchte. Ich würde gerne mehr Websites sehen, die diese Option anbieten - ein Web, das die Aufmerksamkeit und Ressourcen der Nutzer mehr respektiert.",
+  },
 };
 
 // Obtenir les projets précédent et suivant selon la langue
 const getProjectUrl = (projectId: string) => `/${lang}/${projectId}`;
 const prevProject = {
   id: "esport",
-  title: lang === "fr" ? 
-    "Application e-sport avec chat" :
-    (lang === "en" ? 
-      "E-sport Application with Chat" : 
-      "E-Sport-Anwendung mit Chat")
+  title:
+    lang === "fr"
+      ? "Application e-sport avec chat"
+      : lang === "en"
+        ? "E-sport Application with Chat"
+        : "E-Sport-Anwendung mit Chat",
 };
 
 // Technologies utilisées
-const technologies = [
-  "Astro",
-  "TailwindCSS",
-  "JavaScript",
-  "CSS"
-];
+const technologies = ["Astro", "TailwindCSS", "TypeScript"];
 
 // Utiliser la langue demandée ou français par défaut
 const t = content[lang] || content.fr;
@@ -498,7 +569,10 @@ const t = content[lang] || content.fr;
 <Layout title={t.title} description={t.description} lang={lang}>
   <div class="container mx-auto px-4 py-8">
     <div class="mb-4">
-      <a href={`/${lang}/projects`} class="text-text-muted hover:text-accent transition-colors">
+      <a
+        href={`/${lang}/projects`}
+        class="text-text-muted hover:text-accent transition-colors"
+      >
         &larr; {t.allProjects}
       </a>
     </div>
@@ -605,17 +679,19 @@ const t = content[lang] || content.fr;
       </h2>
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-        {t.challenges.map((challenge, index) => (
-          <div class="bg-secondary bg-opacity-10 p-4 rounded-lg">
-            <div class="flex items-center mb-2">
-              <div class="w-8 h-8 bg-accent text-primary rounded-full flex items-center justify-center mr-3 flex-shrink-0">
-                {index + 1}
+        {
+          t.challenges.map((challenge, index) => (
+            <div class="bg-secondary bg-opacity-10 p-4 rounded-lg">
+              <div class="flex items-center mb-2">
+                <div class="w-8 h-8 bg-accent text-primary rounded-full flex items-center justify-center mr-3 flex-shrink-0">
+                  {index + 1}
+                </div>
+                <h4 class="font-medium">{challenge.title}</h4>
               </div>
-              <h4 class="font-medium">{challenge.title}</h4>
+              <p class="ml-11">{challenge.description}</p>
             </div>
-            <p class="ml-11">{challenge.description}</p>
-          </div>
-        ))}
+          ))
+        }
       </div>
     </section>
 
@@ -650,6 +726,27 @@ const t = content[lang] || content.fr;
       </div>
     </section>
 
+    <!-- Section sur les bandeaux de cookies -->
+    <section
+      class="mb-10 bg-secondary bg-opacity-10 p-6 rounded-lg border-l-4 border-accent"
+    >
+      <h2 class="text-2xl font-bold mb-4 text-accent">
+        {t.cookielessWebTitle}
+      </h2>
+
+      <p class="mb-4">
+        {t.cookielessWebText}
+      </p>
+
+      <p class="mb-4">
+        {t.cookielessWebExplanation}
+      </p>
+
+      <p>
+        {t.cookielessWebVision}
+      </p>
+    </section>
+
     <!-- Approche éco-responsable -->
     <section class="mb-10 bg-secondary bg-opacity-10 p-6 rounded-lg">
       <h2 class="text-2xl font-bold mb-4 text-accent">
@@ -659,19 +756,41 @@ const t = content[lang] || content.fr;
       <table class="w-full mt-4">
         <thead>
           <tr class="border-b border-secondary">
-            <th class="text-left py-2 px-4">{lang === "fr" ? "Métrique" : lang === "en" ? "Metric" : "Metrik"}</th>
-            <th class="text-left py-2 px-4">{lang === "fr" ? "Mode standard" : lang === "en" ? "Standard Mode" : "Standardmodus"}</th>
-            <th class="text-left py-2 px-4">{lang === "fr" ? "Mode éco" : lang === "en" ? "Eco Mode" : "Öko-Modus"}</th>
+            <th class="text-left py-2 px-4"
+              >{
+                lang === "fr" ? "Métrique" : lang === "en" ? "Metric" : "Metrik"
+              }</th
+            >
+            <th class="text-left py-2 px-4"
+              >{
+                lang === "fr"
+                  ? "Mode standard"
+                  : lang === "en"
+                    ? "Standard Mode"
+                    : "Standardmodus"
+              }</th
+            >
+            <th class="text-left py-2 px-4"
+              >{
+                lang === "fr"
+                  ? "Mode éco"
+                  : lang === "en"
+                    ? "Eco Mode"
+                    : "Öko-Modus"
+              }</th
+            >
           </tr>
         </thead>
         <tbody>
-          {t.ecoApproach.map((approach, index) => (
-            <tr class={index % 2 === 0 ? "bg-secondary bg-opacity-5" : ""}>
-              <td class="py-3 px-4 font-medium">{approach.metric}</td>
-              <td class="py-3 px-4">{approach.standard}</td>
-              <td class="py-3 px-4 text-accent">{approach.eco}</td>
-            </tr>
-          ))}
+          {
+            t.ecoApproach.map((approach, index) => (
+              <tr class={index % 2 === 0 ? "bg-secondary bg-opacity-5" : ""}>
+                <td class="py-3 px-4 font-medium">{approach.metric}</td>
+                <td class="py-3 px-4">{approach.standard}</td>
+                <td class="py-3 px-4 text-accent">{approach.eco}</td>
+              </tr>
+            ))
+          }
         </tbody>
       </table>
     </section>
@@ -696,25 +815,174 @@ const t = content[lang] || content.fr;
       </div>
     </section>
 
+    <!-- Zoom sur ClientRouter et transition-persist -->
+    <section
+      class="mb-16 bg-secondary bg-opacity-20 p-6 rounded-lg border-l-4 border-accent"
+    >
+      <h2 class="text-xl font-bold mb-4 text-accent">
+        ClientRouter et transition-persist
+      </h2>
+      <p class="mb-4">
+        {
+          lang === "fr"
+            ? "Pour améliorer l'expérience de navigation, j'utilise <code>ClientRouter</code> d'Astro 5 avec l'attribut <code>transition-persist</code> sur plusieurs composants clés du site. Cette approche permet :"
+            : lang === "en"
+              ? "To enhance the navigation experience, I use Astro 5's <code>ClientRouter</code> with the <code>transition-persist</code> attribute on several key components of the site. This approach allows for:"
+              : "Um das Navigationserlebnis zu verbessern, verwende ich Astro 5's <code>ClientRouter</code> mit dem <code>transition-persist</code>-Attribut auf mehreren Schlüsselkomponenten der Website. Dies ermöglicht:"
+        }
+      </p>
+
+      <ul class="list-disc pl-5 mb-4">
+        <li class="mb-2">
+          {
+            lang === "fr"
+              ? "Navigation fluide avec effet de transition entre les pages sans rechargement complet"
+              : lang === "en"
+                ? "Smooth navigation with transition effects between pages without a full reload"
+                : "Reibungslose Navigation mit Übergangseffekten zwischen Seiten ohne vollständiges Neuladen"
+          }
+        </li>
+        <li class="mb-2">
+          {
+            lang === "fr"
+              ? "Conservation des éléments communs entre les pages (logo, photo, menu, footer) sans les recharger"
+              : lang === "en"
+                ? "Preservation of common elements between pages (logo, photo, menu, footer) without reloading them"
+                : "Beibehaltung gemeinsamer Elemente zwischen den Seiten (Logo, Foto, Menü, Footer) ohne sie neu zu laden"
+          }
+        </li>
+        <li class="mb-2">
+          {
+            lang === "fr"
+              ? "Réduction drastique des requêtes réseau lors de la navigation"
+              : lang === "en"
+                ? "Drastic reduction in network requests during navigation"
+                : "Drastische Reduzierung der Netzwerkanfragen während der Navigation"
+          }
+        </li>
+        <li class="mb-2">
+          {
+            lang === "fr"
+              ? "Transitions fluides sans clignotement des éléments marqués avec transition-persist"
+              : lang === "en"
+                ? "Smooth transitions without flickering of elements marked with transition-persist"
+                : "Sanfte Übergänge ohne Flackern von Elementen, die mit transition-persist markiert sind"
+          }
+        </li>
+      </ul>
+
+      <div class="mb-4 p-4 bg-primary bg-opacity-30 rounded-lg">
+        <h3 class="font-semibold mb-2 text-accent">
+          Mode standard vs Mode éco
+        </h3>
+        <p class="mb-2">
+          {
+            lang === "fr"
+              ? "Une différence clé entre les deux modes de ce site concerne l'utilisation de ClientRouter :"
+              : lang === "en"
+                ? "A key difference between the two modes of this site concerns the use of ClientRouter:"
+                : "Ein wesentlicher Unterschied zwischen den beiden Modi dieser Website betrifft die Verwendung von ClientRouter:"
+          }
+        </p>
+        <ul class="list-disc pl-5">
+          <li class="mb-1">
+            <strong class="text-accent">
+              {
+                lang === "fr"
+                  ? "Mode standard:"
+                  : lang === "en"
+                    ? "Standard mode:"
+                    : "Standardmodus:"
+              }
+            </strong>
+            {
+              lang === "fr"
+                ? "ClientRouter est activé pour des transitions fluides et une expérience plus riche"
+                : lang === "en"
+                  ? "ClientRouter is enabled for smooth transitions and a richer experience"
+                  : "ClientRouter ist für reibungslose Übergänge und ein reichhaltigeres Erlebnis aktiviert"
+            }
+          </li>
+          <li>
+            <strong class="text-accent">
+              {
+                lang === "fr"
+                  ? "Mode éco:"
+                  : lang === "en"
+                    ? "Eco mode:"
+                    : "Öko-Modus:"
+              }
+            </strong>
+            {
+              lang === "fr"
+                ? "ClientRouter est délibérément désactivé pour une expérience plus légère et plus directe"
+                : lang === "en"
+                  ? "ClientRouter is deliberately disabled for a lighter and more direct experience"
+                  : "ClientRouter wird bewusst deaktiviert, um ein leichteres und direkteres Erlebnis zu ermöglichen"
+            }
+          </li>
+        </ul>
+      </div>
+
+      <div class="p-4 bg-primary bg-opacity-30 rounded-lg text-sm">
+        <p class="mb-2 font-mono text-accent">
+          // Dans layout.astro - L'activation conditionnelle en fonction du mode
+        </p>
+        <pre
+          class="bg-secondary bg-opacity-30 p-3 rounded overflow-x-auto mb-3"><code>{`// Ajouter Client Router uniquement si on n'est pas en mode éco
+  {!isEcoMode && <ClientRouter />}
+  
+  // En mode standard: transitions fluides avec éléments persistants 
+  // En mode éco: navigation classique plus légère`}</code></pre>
+        <p>
+          {
+            lang === "fr"
+              ? "Cette approche permet de montrer comment une même base de code peut s'adapter à différents contextes d'utilisation, offrant soit une expérience plus riche, soit une performance et légèreté maximales."
+              : lang === "en"
+                ? "This approach demonstrates how the same codebase can adapt to different usage contexts, offering either a richer experience or maximum performance and lightness."
+                : "Dieser Ansatz zeigt, wie sich dieselbe Codebasis an verschiedene Nutzungskontexte anpassen kann und entweder ein reichhaltigeres Erlebnis oder maximale Leistung und Leichtigkeit bietet."
+          }
+        </p>
+      </div>
+    </section>
+
+    <!-- Réflexion personnelle -->
+    <section
+      class="mb-10 bg-secondary bg-opacity-10 p-6 rounded-lg border-l-4 border-accent"
+    >
+      <div class="flex flex-col md:flex-row">
+        <h2
+          class="text-2xl font-bold mb-4 md:mr-20 text-accent flex items-center"
+        >
+          {t.reflectionTitle}
+        </h2>
+        <p class="italic max-w-3xl">
+          {t.reflectionText}
+        </p>
+      </div>
+    </section>
+
     <!-- Technologies utilisées -->
     <section class="mb-10">
       <h2 class="text-2xl font-bold mb-6 text-accent">
         {t.techTitle}
       </h2>
-      
+
       <p class="mb-4">{t.techDetails}</p>
-      
+
       <div class="bg-secondary bg-opacity-10 p-6 rounded-lg">
         <ul class="space-y-2">
-          {t.techPoints.map(point => (
-            <li class="flex items-start">
-              <span class="text-accent mr-2">•</span>
-              <span>{point}</span>
-            </li>
-          ))}
+          {
+            t.techPoints.map((point) => (
+              <li class="flex items-start">
+                <span class="text-accent mr-2">•</span>
+                <span>{point}</span>
+              </li>
+            ))
+          }
         </ul>
       </div>
-      
+
       <div class="flex flex-wrap gap-2 mt-6">
         {
           technologies.map((tech) => (
@@ -723,112 +991,6 @@ const t = content[lang] || content.fr;
             </span>
           ))
         }
-      </div>
-    </section>
-
-    <!-- Zoom sur ClientRouter et transition-persist -->
-<section class="mb-16 bg-secondary bg-opacity-20 p-6 rounded-lg border-l-4 border-accent">
-    <h2 class="text-xl font-bold mb-4 text-accent">ClientRouter et transition-persist</h2>
-    <p class="mb-4">
-      {lang === "fr" ? 
-        "Pour améliorer l'expérience de navigation, j'utilise <code>ClientRouter</code> d'Astro 5 avec l'attribut <code>transition-persist</code> sur plusieurs composants clés du site. Cette approche permet :" :
-        lang === "en" ? 
-        "To enhance the navigation experience, I use Astro 5's <code>ClientRouter</code> with the <code>transition-persist</code> attribute on several key components of the site. This approach allows for:" :
-        "Um das Navigationserlebnis zu verbessern, verwende ich Astro 5's <code>ClientRouter</code> mit dem <code>transition-persist</code>-Attribut auf mehreren Schlüsselkomponenten der Website. Dies ermöglicht:"}
-    </p>
-    
-    <ul class="list-disc pl-5 mb-4">
-      <li class="mb-2">
-        {lang === "fr" ? 
-          "Navigation fluide avec effet de transition entre les pages sans rechargement complet" :
-          lang === "en" ? 
-          "Smooth navigation with transition effects between pages without a full reload" :
-          "Reibungslose Navigation mit Übergangseffekten zwischen Seiten ohne vollständiges Neuladen"}
-      </li>
-      <li class="mb-2">
-        {lang === "fr" ? 
-          "Conservation des éléments communs entre les pages (logo, photo, menu, footer) sans les recharger" :
-          lang === "en" ? 
-          "Preservation of common elements between pages (logo, photo, menu, footer) without reloading them" :
-          "Beibehaltung gemeinsamer Elemente zwischen den Seiten (Logo, Foto, Menü, Footer) ohne sie neu zu laden"}
-      </li>
-      <li class="mb-2">
-        {lang === "fr" ? 
-          "Réduction drastique des requêtes réseau lors de la navigation" :
-          lang === "en" ? 
-          "Drastic reduction in network requests during navigation" :
-          "Drastische Reduzierung der Netzwerkanfragen während der Navigation"}
-      </li>
-      <li class="mb-2">
-        {lang === "fr" ? 
-          "Transitions fluides sans clignotement des éléments marqués avec transition-persist" :
-          lang === "en" ? 
-          "Smooth transitions without flickering of elements marked with transition-persist" :
-          "Sanfte Übergänge ohne Flackern von Elementen, die mit transition-persist markiert sind"}
-      </li>
-    </ul>
-    
-    <div class="mb-4 p-4 bg-primary bg-opacity-30 rounded-lg">
-      <h3 class="font-semibold mb-2 text-accent">Mode standard vs Mode éco</h3>
-      <p class="mb-2">
-        {lang === "fr" ? 
-          "Une différence clé entre les deux modes de ce site concerne l'utilisation de ClientRouter :" :
-          lang === "en" ? 
-          "A key difference between the two modes of this site concerns the use of ClientRouter:" :
-          "Ein wesentlicher Unterschied zwischen den beiden Modi dieser Website betrifft die Verwendung von ClientRouter:"}
-      </p>
-      <ul class="list-disc pl-5">
-        <li class="mb-1">
-          <strong class="text-accent">
-            {lang === "fr" ? "Mode standard:" : lang === "en" ? "Standard mode:" : "Standardmodus:"}
-          </strong> 
-          {lang === "fr" ? 
-            "ClientRouter est activé pour des transitions fluides et une expérience plus riche" :
-            lang === "en" ? 
-            "ClientRouter is enabled for smooth transitions and a richer experience" :
-            "ClientRouter ist für reibungslose Übergänge und ein reichhaltigeres Erlebnis aktiviert"}
-        </li>
-        <li>
-          <strong class="text-accent">
-            {lang === "fr" ? "Mode éco:" : lang === "en" ? "Eco mode:" : "Öko-Modus:"}
-          </strong> 
-          {lang === "fr" ? 
-            "ClientRouter est délibérément désactivé pour une expérience plus légère et plus directe" :
-            lang === "en" ? 
-            "ClientRouter is deliberately disabled for a lighter and more direct experience" :
-            "ClientRouter wird bewusst deaktiviert, um ein leichteres und direkteres Erlebnis zu ermöglichen"}
-        </li>
-      </ul>
-    </div>
-    
-    <div class="p-4 bg-primary bg-opacity-30 rounded-lg text-sm">
-      <p class="mb-2 font-mono text-accent">
-        // Dans layout.astro - L'activation conditionnelle en fonction du mode
-      </p>
-      <pre class="bg-secondary bg-opacity-30 p-3 rounded overflow-x-auto mb-3"><code>{`// Ajouter Client Router uniquement si on n'est pas en mode éco
-  {!isEcoMode && <ClientRouter />}
-  
-  // En mode standard: transitions fluides avec éléments persistants 
-  // En mode éco: navigation classique plus légère`}</code></pre>
-      <p>
-        {lang === "fr" ? 
-          "Cette approche permet de montrer comment une même base de code peut s'adapter à différents contextes d'utilisation, offrant soit une expérience plus riche, soit une performance et légèreté maximales." :
-          lang === "en" ? 
-          "This approach demonstrates how the same codebase can adapt to different usage contexts, offering either a richer experience or maximum performance and lightness." :
-          "Dieser Ansatz zeigt, wie sich dieselbe Codebasis an verschiedene Nutzungskontexte anpassen kann und entweder ein reichhaltigeres Erlebnis oder maximale Leistung und Leichtigkeit bietet."}
-      </p>
-    </div>
-  </section>
-
-    <!-- Réflexion personnelle -->
-    <section class="mb-10 bg-secondary bg-opacity-10 p-6 rounded-lg border-l-4 border-accent">
-      <div class="flex flex-col md:flex-row">
-        <h2 class="text-2xl font-bold mb-4 md:mr-20 text-accent flex items-center">
-          {t.reflectionTitle}
-        </h2>
-        <p class="italic max-w-3xl">
-          {t.reflectionText}
-        </p>
       </div>
     </section>
 
@@ -841,4 +1003,5 @@ const t = content[lang] || content.fr;
 
     <!-- CTA de contact -->
     <CtaDispo />
+  </div>
 </Layout>
