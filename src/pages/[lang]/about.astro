@@ -263,10 +263,10 @@ const skills = [
     emoji: "🖥️", // Emoji pour le design et l'interface
     items: ["Astro", "CSS Pro", "Tailwind", "TypeScript", "HTMX", "Alpine.js"],
   },
-  { 
-    category: "Backend", 
+  {
+    category: "Backend",
     emoji: "⚙️", // Emoji pour les rouages techniques
-    items: ["Express", "WebSocket", "Elixir", "Phoenix"] 
+    items: ["Express", "WebSocket", "Elixir", "Phoenix"],
   },
   {
     category:
@@ -344,24 +344,25 @@ const skills = [
     </section>
 
     <!-- Section approche -->
-    <!-- Section approche -->
-<section class="mb-12">
-  <h2 class="text-2xl font-bold mb-6 border-b border-accent pb-2">
-    {t.approachTitle}
-  </h2>
-  <div class="mb-4 max-w-5xl">
-    <ul class="space-y-3">
-      {
-        t.approach.map((item) => (
-          <li class="flex items-start">
-            <span class="text-accent mr-2">•</span>
-            <p><strong>{item.title}</strong> : {item.description}</p>
-          </li>
-        ))
-      }
-    </ul>
-  </div>
-</section>
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold mb-6 border-b border-accent pb-2">
+        {t.approachTitle}
+      </h2>
+      <div class="mb-4 max-w-5xl">
+        <ul class="space-y-3">
+          {
+            t.approach.map((item) => (
+              <li class="flex items-start">
+                <span class="text-accent mr-2">•</span>
+                <p>
+                  <strong>{item.title}</strong> : {item.description}
+                </p>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </section>
 
     <!-- Section compétences avec le nouveau composant -->
     <section class="mb-12">

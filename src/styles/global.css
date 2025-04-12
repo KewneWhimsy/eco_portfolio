@@ -170,6 +170,7 @@ footer a.text-text-muted:hover, main a.text-text-muted:hover {
 .border-accent { border-color: var(--color-accent); }
 .border-light { border-color: var(--color-accent-hover); }
 .border-secondary { border-color: var(--color-secondary); }
+.border-form { border-color: var(--color-text-muted); }
 
 /* Styles spécifiques au mode éco */
 html.eco-mode a, 

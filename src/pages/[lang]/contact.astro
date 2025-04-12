@@ -131,7 +131,7 @@ const socialLinks = [
               type="text" 
               id="name" 
               name="name"
-              class="w-full p-2 border border-secondary bg-primary rounded-md"
+              class="w-full p-2 border border-form bg-primary rounded-md"
               placeholder={t.namePlaceholder}
               required
             />
@@ -144,7 +144,7 @@ const socialLinks = [
               type="email" 
               id="email" 
               name="email"
-              class="w-full p-2 border border-secondary bg-primary rounded-md"
+              class="w-full p-2 border border-form bg-primary rounded-md"
               placeholder={t.emailPlaceholder}
               required
             />
@@ -172,7 +172,7 @@ const socialLinks = [
               type="tel" 
               id="phone" 
               name="phone"
-              class="w-full p-2 border border-secondary bg-primary rounded-md"
+              class="w-full p-2 border border-form bg-primary rounded-md"
               placeholder={t.phonePlaceholder}
             />
           </div>
@@ -184,7 +184,7 @@ const socialLinks = [
               type="text" 
               id="subject"
               name="subject" 
-              class="w-full p-2 border border-secondary bg-primary rounded-md"
+              class="w-full p-2 border border-form bg-primary rounded-md"
               placeholder={t.subjectPlaceholder}
               required
             />
@@ -196,14 +196,14 @@ const socialLinks = [
             <textarea 
               id="message"
               name="message" 
-              class="w-full p-2 border border-secondary bg-primary rounded-md h-32"
+              class="w-full p-2 border border-form bg-primary rounded-md h-32"
               placeholder={t.messagePlaceholder}
               required
             ></textarea>
           </div>
           
           <!-- Bouton d'envoi -->
-          <div class="flex items-center gap-4">
+          <div class="flex justify-end gap-4">
             <button 
               type="submit"
               class="cta-button"
