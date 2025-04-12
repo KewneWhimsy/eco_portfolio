@@ -71,10 +71,12 @@ const t = content[lang] || content.fr;
 const skills = [
   {
     category: "Frontend",
+    emoji: "🖥️", 
     items: ["Astro", "CSS Pro", "Tailwind", "TypeScript", "HTMX", "Alpine.js"],
   },
   {
     category: "Backend",
+    emoji: "⚙️", 
     items: ["Express", "WebSocket", "Elixir", "Phoenix"],
   },
   {
@@ -84,10 +86,12 @@ const skills = [
         : lang === "en"
           ? "Databases"
           : "Datenbanken",
+    emoji: "🗄️", 
     items: ["PostgreSQL", "MongoDB", "PostgREST", "Ecto"],
   },
   {
     category: lang === "fr" ? "Outils" : lang === "en" ? "Tools" : "Werkzeuge",
+    emoji: "🛠️", 
     items: ["Git", "Docker", "VS Code", "Lighthouse"],
   },
   {
@@ -97,17 +101,14 @@ const skills = [
         : lang === "en"
           ? "Methodologies"
           : "Methoden",
+    emoji: "📐", 
     items: [
       lang === "fr"
         ? "Accessibilité"
         : lang === "en"
           ? "Accessibility"
           : "Barrierefreiheit",
-      lang === "fr"
-        ? "Performance"
-        : lang === "en"
-          ? "Performance"
-          : "Performance",
+      "Performance",
       lang === "fr"
         ? "Éco-conception"
         : lang === "en"
@@ -219,9 +220,14 @@ const featuredProjects = [
         {
           skills.map((skill) => (
             <div class="bg-secondary bg-opacity-30 p-4 rounded-lg">
-              <h3 class="text-lg font-semibold mb-3 text-light">
-                {skill.category}
-              </h3>
+              <div class="flex justify-between items-center mb-3">
+                <h3 class="text-lg font-semibold text-light">
+                  {skill.category}
+                </h3>
+                <span class="text-xl">
+                  {skill.emoji}
+                </span>
+              </div>
               <div class="flex flex-wrap gap-2">
                 {skill.items.map((item) => (
                   <span class="px-2 py-1 bg-secondary rounded-full text-sm">

@@ -172,17 +172,7 @@ const content = {
     ],
 
     techTitle: "Technologies utilisées",
-    techDetails:
-      "Voici les principales technologies et techniques mises en œuvre dans ce portfolio :",
-    techPoints: [
-      "Astro pour le rendu statique avec navigation optimisée",
-      "Tailwind CSS pour les styles sans CSS inutile",
-      "Attributs transition-persist pour les éléments partagés",
-      "Redirection automatique via Cloudflare Rules",
-      "Chargement différé des images et ressources non critiques",
-      "HTML sémantique pour une meilleure accessibilité",
-    ],
-
+    
     visitSite: "Visiter le site",
     viewSourceCode: "Voir le code source",
     allProjects: "Tous les projets",
@@ -348,16 +338,6 @@ const content = {
     ],
 
     techTitle: "Technologies Used",
-    techDetails:
-      "Here are the main technologies and techniques implemented in this portfolio:",
-    techPoints: [
-      "Astro for static rendering with optimized navigation",
-      "Tailwind CSS for styles without unnecessary CSS",
-      "Transition-persist attributes for shared elements",
-      "Automatic redirection via Cloudflare Rules",
-      "Lazy loading of images and non-critical resources",
-      "Semantic HTML for better accessibility",
-    ],
 
     visitSite: "Visit Site",
     viewSourceCode: "View Source Code",
@@ -524,16 +504,6 @@ const content = {
     ],
 
     techTitle: "Verwendete Technologien",
-    techDetails:
-      "Hier sind die wichtigsten Technologien und Techniken, die in diesem Portfolio implementiert wurden:",
-    techPoints: [
-      "Astro für statisches Rendering mit optimierter Navigation",
-      "Tailwind CSS für Stile ohne unnötiges CSS",
-      "Transition-persist-Attribute für gemeinsam genutzte Elemente",
-      "Automatische Weiterleitung über Cloudflare Rules",
-      "Lazy Loading von Bildern und nicht kritischen Ressourcen",
-      "Semantisches HTML für bessere Zugänglichkeit",
-    ],
 
     visitSite: "Seite besuchen",
     viewSourceCode: "Quellcode ansehen",
@@ -963,34 +933,16 @@ const t = content[lang] || content.fr;
     </section>
 
     <!-- Technologies utilisées -->
-    <section class="mb-10">
-      <h2 class="text-2xl font-bold mb-6 text-accent">
+    <section class="mb-16">
+      <h2 class="text-2xl font-bold mb-4 text-accent">
         {t.techTitle}
       </h2>
-
-      <p class="mb-4">{t.techDetails}</p>
-
-      <div class="bg-secondary bg-opacity-10 p-6 rounded-lg">
-        <ul class="space-y-2">
-          {
-            t.techPoints.map((point) => (
-              <li class="flex items-start">
-                <span class="text-accent mr-2">•</span>
-                <span>{point}</span>
-              </li>
-            ))
-          }
-        </ul>
-      </div>
-
-      <div class="flex flex-wrap gap-2 mt-6">
-        {
-          technologies.map((tech) => (
-            <span class="px-3 py-1 border border-accent rounded-full text-light">
-              {tech}
-            </span>
-          ))
-        }
+      <div class="flex flex-wrap gap-2 mb-6">
+        {technologies.map(tech => (
+          <span class="px-3 py-1 bg-accent bg-opacity-20 rounded-full transition-all hover:bg-opacity-40">
+            {tech}
+          </span>
+        ))}
       </div>
     </section>
 

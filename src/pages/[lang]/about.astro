@@ -260,9 +260,14 @@ const t = content[lang] || content.fr;
 const skills = [
   {
     category: "Frontend",
+    emoji: "🖥️", // Emoji pour le design et l'interface
     items: ["Astro", "CSS Pro", "Tailwind", "TypeScript", "HTMX", "Alpine.js"],
   },
-  { category: "Backend", items: ["Express", "WebSocket", "Elixir", "Phoenix"] },
+  { 
+    category: "Backend", 
+    emoji: "⚙️", // Emoji pour les rouages techniques
+    items: ["Express", "WebSocket", "Elixir", "Phoenix"] 
+  },
   {
     category:
       lang === "fr"
@@ -270,10 +275,12 @@ const skills = [
         : lang === "en"
           ? "Databases"
           : "Datenbanken",
+    emoji: "🗄️", // Emoji pour le stockage/classement
     items: ["PostgreSQL", "MongoDB", "PostgREST", "Ecto"],
   },
   {
     category: lang === "fr" ? "Outils" : lang === "en" ? "Tools" : "Werkzeuge",
+    emoji: "🛠️", // Emoji pour les outils
     items: ["Git", "Docker", "VS Code", "Lighthouse"],
   },
   {
@@ -283,6 +290,7 @@ const skills = [
         : lang === "en"
           ? "Methodologies"
           : "Methoden",
+    emoji: "📐", // Emoji pour les approches analytiques
     items: [
       lang === "fr"
         ? "Accessibilité"
