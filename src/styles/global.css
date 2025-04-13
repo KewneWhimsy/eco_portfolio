@@ -172,6 +172,42 @@ footer a.text-text-muted:hover, main a.text-text-muted:hover {
 .border-secondary { border-color: var(--color-secondary); }
 .border-form { border-color: var(--color-text-muted); }
 
+@keyframes typing {
+  from { width: 0 }
+  to { width: 100% }
+}
+
+@keyframes blink-caret {
+  from, to { border-color: var(--color-accent) }
+  50% { border-color: transparent }
+}
+
+@keyframes hide-caret {
+  to { border-color: transparent }
+}
+
+.typewriter-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.typewriter-text {
+  display: inline-block;
+  overflow: hidden;
+  white-space: nowrap;
+  width: 0;
+  border-right: 0.15em solid var(--color-accent);
+  animation: 
+    typing 3.5s steps(40, end) forwards,
+    blink-caret 0.75s step-end 8,
+    hide-caret 0.1s ease-in forwards 5.5s;
+}
+
+/* Style pour la partie mise en évidence */
+.typewriter-text .highlight {
+  color: var(--color-accent-hover);
+}
+
 /* Styles spécifiques au mode éco */
 html.eco-mode a, 
 html.eco-mode button {

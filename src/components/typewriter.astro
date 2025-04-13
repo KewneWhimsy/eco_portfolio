@@ -1,0 +1,36 @@
+---
+// src/components/typewriter.astro
+export interface Props {
+  basePart: string;
+  highlightPart?: string;
+  highlightClass?: string;
+}
+
+const { 
+  basePart, 
+  highlightPart = "", 
+  highlightClass = "text-light" 
+} = Astro.props;
+
+// Générer des IDs uniques pour les animations personnalisées
+const uniqueId = Math.random().toString(36).substring(2, 9);
+---
+
+{highlightPart ? (
+  <span class="typewriter-container">
+    <span class="typewriter-base">
+      {basePart}&nbsp;
+    </span>
+    <span class={`typewriter-highlight ${highlightClass}`}>
+      {highlightPart}
+    </span>
+  </span>
+) : (
+  <span class="typewriter">
+    {basePart}
+  </span>
+)}
+
+<style define:vars={{ uniqueId }}>
+  /* Les styles sont déjà définis dans global.css */
+</style>
