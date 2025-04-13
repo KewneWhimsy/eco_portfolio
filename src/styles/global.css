@@ -172,11 +172,52 @@ footer a.text-text-muted:hover, main a.text-text-muted:hover {
 .border-secondary { border-color: var(--color-secondary); }
 .border-form { border-color: var(--color-text-muted); }
 
-@keyframes typing {
-  from { width: 0 }
-  to { width: 100% }
+/* animation de "dev web full stack" page d'acceuil */
+.typewriter-part1, .typewriter-part2 {
+  display: inline-block;
+  overflow: hidden;
 }
 
+/* Styles communs aux deux parties du texte */
+.typewriter-text-base, .typewriter-text-highlight {
+  display: inline-block;
+  overflow: hidden;
+  white-space: nowrap;
+  width: 0;
+}
+
+/* Première partie de l'animation */
+.typewriter-text-base {
+  border-right: 0.15em solid var(--color-accent);
+  animation: 
+    typing1 1.5s steps(20, end) forwards,
+    blink-caret 0.75s step-end 4,
+    hide-caret 0.1s ease-in forwards 1.5s;
+}
+
+/* Seconde partie de l'animation (avec highlight) */
+.typewriter-text-highlight {
+  border-right: 0.15em solid var(--color-accent);
+  opacity: 0;
+  animation: 
+    typing2 1.5s steps(20, end) forwards 1.6s,
+    blink-caret 0.75s step-end 4 1.6s,
+    hide-caret 0.1s ease-in forwards 5s;
+}
+
+/* Animation pour la première partie */
+@keyframes typing1 {
+  from { width: 0; opacity: 1; }
+  to { width: 100%; opacity: 1; }
+}
+
+/* Animation pour la seconde partie */
+@keyframes typing2 {
+  from { width: 0; opacity: 1; }
+  to { width: 100%; opacity: 1; }
+}
+
+/* Maintenir les animations de caret existantes */
 @keyframes blink-caret {
   from, to { border-color: var(--color-accent) }
   50% { border-color: transparent }
@@ -186,27 +227,14 @@ footer a.text-text-muted:hover, main a.text-text-muted:hover {
   to { border-color: transparent }
 }
 
-.typewriter-wrapper {
-  position: relative;
-  display: inline-block;
+/* Media queries pour s'adapter à Instagram et autres vues */
+@media (max-width: 480px) {
+  .typewriter-part1, .typewriter-part2 {
+    max-width: 90vw;
+  }
 }
 
-.typewriter-text {
-  display: inline-block;
-  overflow: hidden;
-  white-space: nowrap;
-  width: 0;
-  border-right: 0.15em solid var(--color-accent);
-  animation: 
-    typing 3.5s steps(40, end) forwards,
-    blink-caret 0.75s step-end 8,
-    hide-caret 0.1s ease-in forwards 5.5s;
-}
 
-/* Style pour la partie mise en évidence */
-.typewriter-text .highlight {
-  color: var(--color-accent-hover);
-}
 
 /* Styles spécifiques au mode éco */
 html.eco-mode a, 

@@ -180,16 +180,28 @@ const featuredProjects = [
     <section class="py-8 md:py-12">
       <div class="flex flex-col md:flex-row gap-8">
         <div class="md:w-2/3">
-          <h1 class="text-2xl sm:text-3xl md:text-4xl font-bold mb-4">
-            <div class="typewriter-wrapper">
-              <span class="typewriter-text">
-                {lang === "fr" 
-                  ? <>Développeur Web <span class="highlight">Full Stack</span></>
-                  : lang === "en" 
-                    ? <>Full Stack <span class="highlight">Web Developer</span></> 
-                    : <>Full-Stack <span class="highlight">Webentwickler</span></>
-                }
-              </span>
+          <h1 class="text-3xl md:text-4xl font-bold mb-4">
+            <div class="flex flex-wrap items-baseline gap-2">
+              <div class="typewriter-part1">
+                <span class="typewriter-text-base">
+                  {lang === "fr" 
+                    ? "Développeur Web"
+                    : lang === "en" 
+                      ? "Full Stack" 
+                      : "Full-Stack"
+                  }
+                </span>
+              </div>
+              <div class="typewriter-part2">
+                <span class="typewriter-text-highlight text-light">
+                  {lang === "fr" 
+                    ? "Full Stack"
+                    : lang === "en" 
+                      ? "Web Developer" 
+                      : "Webentwickler"
+                  }
+                </span>
+              </div>
             </div>
           </h1>
           <p class="text-lg mb-6">
