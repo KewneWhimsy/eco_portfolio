@@ -64,8 +64,9 @@ const content = {
     
     contact: {
       title: "Contact",
-      content: "Pour toute question concernant cette politique de confidentialité, vous pouvez me contacter à :",
-      email: "josshanel@gmail.com"
+      content:
+        "Pour toute question concernant cette politique de confidentialité, vous pouvez ",
+      contactMe: "me contacter",
     },
     
     backLink: "Retour à l'accueil"
@@ -120,8 +121,9 @@ const content = {
     
     contact: {
       title: "Contact",
-      content: "For any questions regarding this privacy policy, you can contact me at:",
-      email: "josshanel@gmail.com"
+      content:
+        "For any questions regarding this privacy policy, you can ",
+      contactMe: "contact me",
     },
     
     backLink: "Back to home"
@@ -176,8 +178,9 @@ const content = {
     
     contact: {
       title: "Kontakt",
-      content: "Bei Fragen zu dieser Datenschutzerklärung können Sie mich kontaktieren unter:",
-      email: "josshanel@gmail.com"
+      content:
+        "Bei Fragen zu dieser Datenschutzerklärung können Sie ",
+      contactMe: "mich kontaktieren",
     },
     
     backLink: "Zurück zur Startseite"
@@ -268,12 +271,13 @@ const t = content[lang] || content.fr;
       <h2 class="text-xl font-semibold mb-2">
         {t.contact.title}
       </h2>
-      <p>
+      <span>
         {t.contact.content}
-      </p>
-      <a href={`mailto:${t.contact.email}`} class="text-link">
-        {t.contact.email}
+      </span>
+      <a href="../contact/eco" class="text-link">
+        {t.contact.contactMe}
       </a>
+      .
     </section>
     
     <!-- Lien de retour -->

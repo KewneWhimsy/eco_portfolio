@@ -29,7 +29,9 @@ const content = {
     upcomingIntro: 'Voici un aperçu des projets sur lesquels je travaille actuellement :',
     inDevelopment: 'En développement',
     waitingForContent: 'En attente de contenu',
-    creatingDocumentation: 'Création du dossier de projet'
+    creatingDocumentation: 'Création du dossier de projet',
+    contactCTA: 'Vous avez un projet en tête ?',
+    contactButton: 'Discutons-en'
   },
   en: {
     title: 'Josselin HANEL - Projects (Eco Mode)',
@@ -45,7 +47,9 @@ const content = {
     upcomingIntro: 'Here\'s a preview of projects I\'m currently working on:',
     inDevelopment: 'In development',
     waitingForContent: 'Waiting for content',
-    creatingDocumentation: 'Creating project documentation'
+    creatingDocumentation: 'Creating project documentation',
+    contactCTA: 'Do you have a project in mind?',
+    contactButton: 'Let\'s talk about it'
   },
   de: {
     title: 'Josselin HANEL - Projekte (Öko-Modus)',
@@ -61,7 +65,9 @@ const content = {
     upcomingIntro: 'Hier ein Einblick in Projekte, an denen ich derzeit arbeite:',
     inDevelopment: 'In Entwicklung',
     waitingForContent: 'Warten auf Inhalt',
-    creatingDocumentation: 'Erstellung der Projektdokumentation'
+    creatingDocumentation: 'Erstellung der Projektdokumentation',
+    contactCTA: 'Haben Sie ein Projekt im Sinn?',
+    contactButton: 'Lassen Sie uns darüber sprechen'
   }
 };
 
@@ -130,7 +136,7 @@ const upcomingProjects = [
       (lang === 'en' ? 
         'I\'m building a minimalist portfolio and online store for a friend who creates digital and physical art. The shop is discreet — hidden from the non-commercial parts of the site.' : 
         'Ich entwickle ein minimalistisches Portfolio und einen Online-Shop für einen befreundeten Künstler, der digitale und physische Kunst schafft. Der Shop ist diskret – versteckt von den nicht-kommerziellen Teilen der Website.'),
-    tech: 'Astro, Tailwind, Stripe API, Alpine.js',
+    tech: 'Astro, Tailwind, Alpine.js, Three.js, Stripe API',
     status1: t.inDevelopment,
     status2: t.waitingForContent
   },
@@ -145,7 +151,7 @@ const upcomingProjects = [
       (lang === 'en' ? 
         'Based on my "E-sport Application with Chat" project, I\'m working on an online social strategy game inspired by "La Cosa Nostra" (2014) from Johannes Sich, but with no randomness — only raw, chaotic, human decision-making.' : 
         'Basierend auf meinem Projekt "E-Sport-Anwendung mit Chat" arbeite ich an einem Online-Strategiespiel inspiriert von "La Cosa Nostra" (2014) von Johannes Sich, aber ohne Zufälligkeit – nur rohe, chaotische, menschliche Entscheidungsfindung.'),
-    tech: 'Astro, Tailwind, Alpine.js, HTMX, WebSocket, Express, MongoDB, anime.js',
+    tech: 'Astro, Tailwind, Alpine.js, HTMX, WebSocket, Phoenix, MongoDB, anime.js',
     status1: t.inDevelopment,
     status2: t.creatingDocumentation
   }
@@ -205,7 +211,7 @@ const isEcoMode = true;
     </section>
     
     <!-- Section Projets à venir (simplifiée pour mode éco) -->
-    <section class="mb-8 pt-6 max-w-5xl">
+    <section class="mb-8 pt-6">
       <h1 class="text-2xl font-bold mb-4 border-b border-accent pb-2">
         {t.upcomingTitle}
       </h1>
@@ -214,11 +220,11 @@ const isEcoMode = true;
         {t.upcomingIntro}
       </p>
       
-      <ul class="space-y-6">
+      <ul class="space-y-6 max-w-5xl">
         {upcomingProjects.map(project => (
           <li class="border-b border-secondary pb-4">
             <h3 class="text-lg font-semibold mb-2">{project.title}</h3>
-            <p class="mb-3">{project.description}</p>
+            <p class="mb-3 max-w-5xl">{project.description}</p>
             
             <!-- Technologies simplifiées -->
             <div class="mb-3">
@@ -242,6 +248,16 @@ const isEcoMode = true;
       <p class="max-w-5xl">
         {t.ecoDesignText}
       </p>
+    </section>
+    <!-- CTA Contact -->
+    <section class="mt-10 pt-10 border-t border-secondary text-center">
+      <h2 class="text-2xl font-bold mb-6">{t.contactCTA}</h2>
+      <a 
+        href={`/${lang}/contact`}
+        class="cta-button" 
+      >
+        {t.contactButton}
+      </a>
     </section>
   </div>
 </Layout>

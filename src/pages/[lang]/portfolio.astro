@@ -180,8 +180,7 @@ const content = {
     prevProject: "Projet précédent",
 
     reflectionTitle: "Pourquoi un mode éco?",
-    reflectionText:
-      "Le mode éco n'est pas qu'une question d'environnement. C'est aussi une meilleure expérience pour beaucoup d'utilisateurs. Les sites web sont devenus de plus en plus lourds, lents et intrusifs. Sur mobile, entre les fenêtres de cookies, les publicités et les animations inutiles, l'expérience est souvent frustrante. Le mode éco offre une alternative : accéder rapidement à l'information sans distraction. C'est particulièrement utile sur les appareils plus anciens, les connexions lentes, ou simplement quand on veut aller à l'essentiel. J'aimerais voir plus de sites proposer cette option - un web plus respectueux de l'attention des utilisateurs et de leurs ressources.",
+    reflectionText: "Je crois qu'un bon site web devrait d'abord être accessible et rapide. Le mode éco n'est pas qu'une question d'environnement : c'est aussi une meilleure expérience pour beaucoup d'utilisateurs. Combien de fois avez-vous quitté un site parce qu'il était trop lent à charger, encombré de publicités, ou vous harcelait pour accepter des cookies? Je préfère un web plus léger, qui respecte l'attention de l'utilisateur et fonctionne bien sur tous les appareils sans frustration. Ce portfolio est ma modeste contribution à cette vision."
   },
   en: {
     title: "Eco-friendly Personal Portfolio | Josselin HANEL",
@@ -346,8 +345,7 @@ const content = {
     prevProject: "Previous Project",
 
     reflectionTitle: "Why an Eco Mode?",
-    reflectionText:
-      "Eco mode isn't just about the environment. It's also a better experience for many users. Websites have become increasingly heavy, slow, and intrusive. On mobile, between cookie windows, advertisements, and unnecessary animations, the experience is often frustrating. Eco mode offers an alternative: quick access to information without distraction. It's particularly useful on older devices, slow connections, or simply when you want to get to the essentials. I'd like to see more sites offer this option - a web that's more respectful of users' attention and resources.",
+    reflectionText: "I believe a good website should be accessible and fast first and foremost. Eco mode isn't just about the environment—it's also a better experience for many users. How many times have you left a site because it was too slow to load, cluttered with ads, or harassing you to accept cookies? I prefer a lighter web that respects user attention and works well on all devices without frustration. This portfolio is my modest contribution to that vision."
   },
   de: {
     title: "Umweltfreundliches persönliches Portfolio | Josselin HANEL",
@@ -512,8 +510,7 @@ const content = {
     prevProject: "Vorheriges Projekt",
 
     reflectionTitle: "Warum ein Öko-Modus?",
-    reflectionText:
-      "Der Öko-Modus betrifft nicht nur die Umwelt. Er bietet auch ein besseres Erlebnis für viele Nutzer. Websites sind zunehmend schwer, langsam und aufdringlich geworden. Auf Mobilgeräten ist die Erfahrung zwischen Cookie-Fenstern, Werbung und unnötigen Animationen oft frustrierend. Der Öko-Modus bietet eine Alternative: schneller Zugriff auf Informationen ohne Ablenkung. Das ist besonders nützlich auf älteren Geräten, langsamen Verbindungen oder einfach, wenn man zum Wesentlichen kommen möchte. Ich würde gerne mehr Websites sehen, die diese Option anbieten - ein Web, das die Aufmerksamkeit und Ressourcen der Nutzer mehr respektiert.",
+    reflectionText: "Ich glaube, dass eine gute Website in erster Linie zugänglich und schnell sein sollte. Der Öko-Modus betrifft nicht nur die Umwelt – er bietet auch eine bessere Erfahrung für viele Benutzer. Wie oft haben Sie eine Website verlassen, weil sie zu langsam geladen wurde, mit Werbung überladen war oder Sie belästigte, Cookies zu akzeptieren? Ich bevorzuge ein leichteres Web, das die Aufmerksamkeit der Benutzer respektiert und auf allen Geräten ohne Frustration gut funktioniert. Dieses Portfolio ist mein bescheidener Beitrag zu dieser Vision."
   },
 };
 
@@ -948,7 +945,7 @@ const t = content[lang] || content.fr;
 
     <!-- Navigation entre projets -->
     <div class="border-t border-secondary pt-8 mt-12 flex justify-between">
-      <a href={`/${lang}/esport`} class="btn-secondary">
+      <a href={getProjectUrl(prevProject.id)}  class="btn-secondary">
         &larr; {t.prevProject}: {prevProject.title}
       </a>
     </div>

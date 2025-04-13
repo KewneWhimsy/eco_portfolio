@@ -3,6 +3,7 @@
 import Layout from "../../layouts/layout.astro";
 import Picture from "astro/components/Picture.astro";
 import monImage from "../../assets/j.jpg";
+import CtaDispo from "../../components/cta_dispo.astro";
 
 // Récupérer le paramètre de langue depuis l'URL
 export function getStaticPaths() {
@@ -23,8 +24,8 @@ const commonSkills = {
 
 // Projets à mettre en avant (version simplifiée pour le mode éco)
 const featuredProjects = [
-  { id: "library", url: `/${lang}/objet/eco` },
   { id: "esport", url: `/${lang}/esport/eco` },
+  { id: "library", url: `/${lang}/objet/eco` },
 ];
 
 // Liste des catégories de compétences
@@ -256,5 +257,7 @@ const isEcoMode = true;
         }
       </div>
     </section>
+    <!-- Section CTA contact -->
+    <CtaDispo transition-persist="cta-dispo" />
   </div>
 </Layout>
