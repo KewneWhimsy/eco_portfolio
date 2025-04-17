@@ -1,5 +1,5 @@
 ---
-// Import du layout avec mode éco activé
+// Imports
 import Layout from "../../layouts/layout.astro";
 import Picture from "astro/components/Picture.astro";
 import monImage from "../../assets/j.jpg";
@@ -16,150 +16,215 @@ export function getStaticPaths() {
 
 const lang = Astro.params.lang as "fr" | "en" | "de";
 
-// Contenus communs pour toutes les langues
-const commonSkills = {
-  frontend: "Frontend: Astro, CSS Pro, Tailwind, TypeScript, HTMX, Alpine.js",
-  backend: "Backend: Express, WebSocket, Elixir, Phoenix",
-};
-
-// Projets à mettre en avant (version simplifiée pour le mode éco)
-const featuredProjects = [
-  { id: "esport", url: `/${lang}/esport/eco` },
-  { id: "library", url: `/${lang}/objet/eco` },
-];
-
-// Liste des catégories de compétences
-const skillCategoriesKeys = [
-  "frontend",
-  "backend",
-  "databases",
-  "methodologies",
-];
-
-// Contenu traduit pour chaque langue
+// Titre et description de la page pour SEO (à traduire selon la langue)
 const content = {
   fr: {
-    title: "Josselin HANEL - Développeur Web Full Stack (Mode Éco)",
-    description:
-      "Version éco-responsable de mon portfolio de développeur full stack, avec une empreinte carbone minimale.",
-    heroTitle:
-      'Développeur Web <span class="text-light whitespace-nowrap">Full Stack</span>',
-    heroText:
-      "Je conçois des sites web et applications complètes, durables et performantes, en privilégiant des solutions économes en ressources.",
+    title: "Josselin HANEL - Développeur Web (Mode Éco)",
+    description: "Version éco-responsable de mon portfolio de développeur full stack, avec une empreinte carbone minimale.",
+    heroTitle: "Sites Web <span class='text-light whitespace-nowrap'>Modernes et Performants</span>",
+    heroSubtitle: "Développeur Web Full Stack",
+    heroText: "Je conçois des sites et applications web qui chargent vite, fonctionnent partout, et optimisés pour être bien référencés sur Google. Le tout avec une approche éco-responsable.",
     projectsButton: "Voir mes projets",
     contactButton: "Me contacter",
     ecoModeTitle: "Mode Éco activé",
-    ecoModeText:
-      "Vous consultez actuellement la version ultra-légère de mon portfolio. Cette version:",
+    ecoModeText: "Vous consultez actuellement la version ultra-légère de mon portfolio. Cette version:",
     ecoFeatures: [
       "Minimise l'utilisation du JavaScript",
       "Réduit drastiquement la taille et le nombre d'images",
       "Optimise les ressources réseau pour un chargement rapide",
       "Propose une expérience légère et fluide, particulièrement adaptée aux appareils mobiles",
     ],
-    skillsTitle: "Compétences",
+    servicesTitle: "Services",
+    services: [
+      {
+        title: "Sites vitrines",
+        description: "Sites professionnels personnalisés, rapides et optimisés pour le référencement - sans WordPress ni abonnements coûteux.",
+      },
+      {
+        title: "Applications web",
+        description: "Applications interactives sur mesure pour automatiser vos processus et améliorer l'expérience de vos utilisateurs.",
+      },
+      {
+        title: "E-commerce",
+        description: "Solutions e-commerce modernes et performantes, sans les frais mensuels des plateformes traditionnelles.",
+      },
+      {
+        title: "Consultation",
+        description: "Conseils en éco-conception web, optimisation de performance et audit de sites existants.",
+      }
+    ],
+    values: [
+      { 
+        title: "Performance", 
+        description: "Des sites rapides qui offrent une meilleure expérience utilisateur et consomment moins d'énergie."
+      },
+      { 
+        title: "Simplicité", 
+        description: "Des solutions efficaces sans complexité inutile, faciles à maintenir dans le temps."
+      },
+      { 
+        title: "Éco-responsabilité", 
+        description: "Une conception qui minimise l'empreinte carbone de vos projets web."
+      },
+      { 
+        title: "Autonomie", 
+        description: "Des sites que vous pouvez faire évoluer facilement, sans dépendances complexes."
+      }
+    ],
     projectsTitle: "Projets récents",
-    viewProject: "Voir le projet",
-    skillCategories: {
-      ...commonSkills,
-      databases: "Bases de données: PostgreSQL, MongoDB, PostgREST, Ecto",
-      methodologies:
-        "Méthodologies: Accessibilité, Performance, Éco-conception, UX/UI",
-    },
+    projectButton: "Voir le projet",
+    viewAllProjectsButton: "Voir tous les projets",
     projects: {
       esport: {
         title: "Application e-sport avec chat (2025)",
-        description:
-          "Plateforme de gestion d'événements e-sport intégrant un système de chat en temps réel via WebSocket et HTMX. (entreprise fictive)",
+        description: "Plateforme de gestion d'événements e-sport intégrant un système de chat en temps réel via WebSocket et HTMX.",
+        techs: "Astro, HTMX, WebSocket, Express, PostgreSQL"
       },
       library: {
         title: "Bibliothèque d'objets - Quimper (2024)",
-        description:
-          'Conçu en collaboration avec <a href="https://jadephom.myportfolio.com/" target="_blank" rel="noopener" class="text-jade">Jade Ounaphom</a>, créatrice audiovisuelle, le site met en avant le fonctionnement de la bibliothèque d\'objets et ses actualités.',
-      },
+        description: "Site vitrine pour une bibliothèque d'objets associative, conçu en collaboration avec une créatrice audiovisuelle.",
+        techs: "Astro, Alpine.js, TypeScript, GitHub Actions"
+      }
     },
     imageAlt: "Photo de Josselin HANEL",
   },
   en: {
-    title: "Josselin HANEL - Full Stack Web Developer (Eco Mode)",
-    description:
-      "Eco-friendly version of my full stack developer portfolio, with minimal carbon footprint.",
-    heroTitle:
-      'Full Stack <span class="text-light whitespace-nowrap">Web Developer</span>',
-    heroText:
-      "I design complete, sustainable and high-performance websites and applications, prioritizing resource-efficient solutions.",
+    title: "Josselin HANEL - Web Developer (Eco Mode)",
+    description: "Eco-friendly version of my full stack developer portfolio, with minimal carbon footprint.",
+    heroTitle: "<span class='text-light whitespace-nowrap'>Modern and Performant</span> Websites",
+    heroSubtitle: "Full Stack Web Developer",
+    heroText: "I design websites and web applications that load quickly, work everywhere, and are optimized for good Google rankings. All with an eco-friendly approach.",
     projectsButton: "View my projects",
     contactButton: "Contact me",
     ecoModeTitle: "Eco Mode activated",
-    ecoModeText:
-      "You are currently viewing the ultra-lightweight version of my portfolio. This version:",
+    ecoModeText: "You are currently viewing the ultra-lightweight version of my portfolio. This version:",
     ecoFeatures: [
       "Minimizes JavaScript usage",
       "Drastically reduces image size and quantity",
       "Optimizes network resources for quick loading",
       "Provides a lightweight and smooth experience, especially for mobile devices",
     ],
-    skillsTitle: "Skills",
+    servicesTitle: "Services",
+    services: [
+      {
+        title: "Showcase websites",
+        description: "Personalized, fast, and SEO-optimized professional websites - without WordPress or costly subscriptions.",
+      },
+      {
+        title: "Web applications",
+        description: "Custom interactive applications to automate your processes and improve your users' experience.",
+      },
+      {
+        title: "E-commerce",
+        description: "Modern and high-performance e-commerce solutions, without the monthly fees of traditional platforms.",
+      },
+      {
+        title: "Consultation",
+        description: "Web eco-design advice, performance optimization, and auditing of existing sites.",
+      }
+    ],
+    values: [
+      { 
+        title: "Performance", 
+        description: "Fast websites that offer a better user experience and consume less energy."
+      },
+      { 
+        title: "Simplicity", 
+        description: "Effective solutions without unnecessary complexity, easy to maintain over time."
+      },
+      { 
+        title: "Eco-responsibility", 
+        description: "Design that minimizes the carbon footprint of your web projects."
+      },
+      { 
+        title: "Autonomy", 
+        description: "Websites that you can easily evolve, without complex dependencies."
+      }
+    ],
     projectsTitle: "Recent projects",
-    viewProject: "View project",
-    skillCategories: {
-      ...commonSkills,
-      databases: "Databases: PostgreSQL, MongoDB, PostgREST, Ecto",
-      methodologies:
-        "Methodologies: Accessibility, Performance, Eco-design, UX/UI",
-    },
+    projectButton: "View project",
+    viewAllProjectsButton: "View all projects",
     projects: {
       esport: {
         title: "E-sport Application with Chat (2025)",
-        description:
-          "E-sport event management platform with a real-time chat system via WebSocket and HTMX. (fictional company)",
+        description: "E-sport event management platform with a real-time chat system via WebSocket and HTMX.",
+        techs: "Astro, HTMX, WebSocket, Express, PostgreSQL"
       },
       library: {
         title: "Object Library - Quimper (2024)",
-        description:
-          'Designed in collaboration with <a href="https://jadephom.myportfolio.com/" target="_blank" rel="noopener" class="text-jade">Jade Ounaphom</a>, audiovisual creator, the website highlights how the object library works and its news.',
-      },
+        description: "Showcase website for a community object library, designed in collaboration with an audiovisual creator.",
+        techs: "Astro, Alpine.js, TypeScript, GitHub Actions"
+      }
     },
     imageAlt: "Photo of Josselin HANEL",
   },
   de: {
-    title: "Josselin HANEL - Full-Stack-Entwickler (Öko-Modus)",
-    description:
-      "Umweltfreundliche Version meines Full-Stack-Entwickler-Portfolios mit minimalem CO2-Fußabdruck.",
-    heroTitle: 'Full-Stack <span class="text-light">Webentwickler</span>',
-    heroText:
-      "Ich entwickle vollständige, nachhaltige und leistungsstarke Websites und Anwendungen, mit dem Schwerpunkt auf ressourceneffiziente Lösungen.",
-    projectsButton: "Projekte",
+    title: "Josselin HANEL - Webentwickler (Öko-Modus)",
+    description: "Umweltfreundliche Version meines Full-Stack-Entwickler-Portfolios mit minimalem CO2-Fußabdruck.",
+    heroTitle: "<span class='text-light whitespace-nowrap'>Moderne und Leistungsstarke</span> Webseiten",
+    heroSubtitle: "Full-Stack Webentwickler",
+    heroText: "Ich entwickle Websites und Webanwendungen, die schnell laden, überall funktionieren und für gute Google-Rankings optimiert sind. Alles mit einem umweltfreundlichen Ansatz.",
+    projectsButton: "Meine Projekte",
     contactButton: "Kontakt",
     ecoModeTitle: "Öko-Modus aktiviert",
-    ecoModeText:
-      "Sie sehen gerade die ultraleichte Version meines Portfolios. Diese Version:",
+    ecoModeText: "Sie sehen gerade die ultraleichte Version meines Portfolios. Diese Version:",
     ecoFeatures: [
       "Minimiert die Nutzung von JavaScript",
       "Reduziert Bildgröße und -anzahl drastisch",
       "Optimiert Netzwerkressourcen für schnelles Laden",
       "Bietet ein leichtes und flüssiges Erlebnis, besonders für mobile Geräte",
     ],
-    skillsTitle: "Fähigkeiten",
+    servicesTitle: "Dienstleistungen",
+    services: [
+      {
+        title: "Showcase-Websites",
+        description: "Personalisierte, schnelle und SEO-optimierte professionelle Websites - ohne WordPress oder kostspielige Abonnements.",
+      },
+      {
+        title: "Webanwendungen",
+        description: "Maßgeschneiderte interaktive Anwendungen zur Automatisierung Ihrer Prozesse und Verbesserung der Benutzererfahrung.",
+      },
+      {
+        title: "E-Commerce",
+        description: "Moderne und leistungsstarke E-Commerce-Lösungen ohne monatliche Gebühren traditioneller Plattformen.",
+      },
+      {
+        title: "Beratung",
+        description: "Beratung für Web-Öko-Design, Leistungsoptimierung und Audit bestehender Websites.",
+      }
+    ],
+    values: [
+      { 
+        title: "Leistung", 
+        description: "Schnelle Websites, die ein besseres Benutzererlebnis bieten und weniger Energie verbrauchen."
+      },
+      { 
+        title: "Einfachheit", 
+        description: "Effektive Lösungen ohne unnötige Komplexität, die langfristig leicht zu warten sind."
+      },
+      { 
+        title: "Umweltverantwortung", 
+        description: "Ein Design, das den CO2-Fußabdruck Ihrer Webprojekte minimiert."
+      },
+      { 
+        title: "Autonomie", 
+        description: "Websites, die Sie leicht weiterentwickeln können, ohne komplexe Abhängigkeiten."
+      }
+    ],
     projectsTitle: "Aktuelle Projekte",
-    viewProject: "Projekt ansehen",
-    skillCategories: {
-      ...commonSkills,
-      databases: "Datenbanken: PostgreSQL, MongoDB, PostgREST, Ecto",
-      methodologies:
-        "Methoden: Barrierefreiheit, Performance, Öko-Design, UX/UI",
-    },
+    projectButton: "Projekt ansehen",
+    viewAllProjectsButton: "Alle Projekte ansehen",
     projects: {
       esport: {
         title: "E-Sport-Anwendung mit Chat (2025)",
-        description:
-          "E-Sport-Eventmanagement-Plattform mit einem Echtzeit-Chat-System über WebSocket und HTMX. (fiktives Unternehmen)",
+        description: "E-Sport-Eventmanagement-Plattform mit einem Echtzeit-Chat-System über WebSocket und HTMX.",
+        techs: "Astro, HTMX, WebSocket, Express, PostgreSQL"
       },
       library: {
-        title: "Quimper Objektbibliothek (2024)",
-        description:
-          'In Zusammenarbeit mit <a href="https://jadephom.myportfolio.com/" target="_blank" rel="noopener" class="text-jade">Jade Ounaphom</a>, audiovisuelle Gestalterin, präsentiert die Website die Funktionsweise der Objektbibliothek und ihre Neuigkeiten.',
-      },
+        title: "Objektbibliothek - Quimper (2024)",
+        description: "Schaufenster-Website für eine gemeinschaftliche Objektbibliothek, gestaltet in Zusammenarbeit mit einer audiovisuellen Designerin.",
+        techs: "Astro, Alpine.js, TypeScript, GitHub Actions"
+      }
     },
     imageAlt: "Foto von Josselin HANEL",
   },
@@ -183,16 +248,17 @@ const isEcoMode = true;
     <section class="py-6 border-b border-secondary mb-6">
       <div class="flex flex-wrap gap-6 items-center">
         <div class="flex-1">
+          <p class="text-accent mb-2 font-medium">{t.heroSubtitle}</p>
           <h1 class="text-2xl font-bold mb-3" set:html={t.heroTitle} />
-          <p class="mb-4">
+          <p class="mb-4 text-balance max-w-5xl">
             {t.heroText}
           </p>
           <div class="flex flex-wrap gap-3">
-            <a href={`/${lang}/projects/eco`} class="cta-button">
-              {t.projectsButton}
-            </a>
-            <a href={`/${lang}/contact/eco`} class="btn-secondary">
+            <a href={`/${lang}/contact/eco`} class="cta-button">
               {t.contactButton}
+            </a>
+            <a href={`/${lang}/projects/eco`} class="btn-secondary">
+              {t.projectsButton}
             </a>
           </div>
         </div>
@@ -219,44 +285,62 @@ const isEcoMode = true;
       </ul>
     </section>
 
-    <!-- Section compétences simplifiée -->
+    <!-- Section services simplifiée -->
     <section class="py-6 border-b border-secondary mb-6">
-      <h2 class="text-xl font-bold mb-3 text-accent">{t.skillsTitle}</h2>
+      <h2 class="text-xl font-bold mb-3">{t.servicesTitle}</h2>
       <ul class="list-disc pl-5">
         {
-          skillCategoriesKeys.map((key) => (
-            <li class="mb-2">
-              {t.skillCategories[key as keyof typeof t.skillCategories]}
+          t.services.map((service) => (
+            <li class="mb-3">
+              <strong>{service.title}</strong>: {service.description}
             </li>
           ))
         }
       </ul>
     </section>
 
-    <!-- Section projets simplifiée -->
-    <section class="py-6">
-      <h2 class="text-xl font-bold mb-4 text-accent">{t.projectsTitle}</h2>
-      <div class="space-y-6">
+    <!-- Section valeurs simplifiée -->
+    <section class="py-6 border-b border-secondary mb-6">
+      <h2 class="text-xl font-bold mb-3 text-accent">Mon approche</h2>
+      <ul class="list-disc pl-5">
         {
-          featuredProjects.map((project) => (
-            <div class="border-b border-secondary pb-4 mb-4">
-              <h3 class="text-lg font-semibold mb-2">
-                {t.projects[project.id as keyof typeof t.projects].title}
-              </h3>
-              <p
-                class="mb-3"
-                set:html={
-                  t.projects[project.id as keyof typeof t.projects].description
-                }
-              />
-              <a href={project.url} class="text-link">
-                {t.viewProject}
-              </a>
-            </div>
+          t.values.map((value) => (
+            <li class="mb-3">
+              <strong>{value.title}</strong>: {value.description}
+            </li>
           ))
         }
+      </ul>
+    </section>
+
+    <!-- Section projets récents simplifiée -->
+    <section class="py-6 mb-8">
+      <h2 class="text-xl font-bold mb-3 text-accent">{t.projectsTitle}</h2>
+      <div class="space-y-4">
+        <div class="pb-4">
+          <h3 class="font-medium mb-1">{t.projects.esport.title}</h3>
+          <p class="mb-2">{t.projects.esport.description}</p>
+          <div class="text-sm text-text-muted">{t.projects.esport.techs}</div>
+          <a href={`/${lang}/esport/eco`} class="text-link text-sm mt-2 inline-block">
+            {t.projectButton}
+          </a>
+        </div>
+        <div class="pt-2">
+          <h3 class="font-medium mb-1">{t.projects.library.title}</h3>
+          <p class="mb-2">{t.projects.library.description}</p>
+          <div class="text-sm text-text-muted">{t.projects.library.techs}</div>
+          <a href={`/${lang}/objet/eco`} class="text-link text-sm mt-2 inline-block">
+            {t.projectButton}
+          </a>
+        </div>
+      </div>
+      <div class="text-center mt-6">
+        <a href={`/${lang}/projects/eco`} class="text-link text-sm">
+          {t.viewAllProjectsButton} →
+        </a>
       </div>
     </section>
+
     <!-- Section CTA contact -->
     <CtaDispo transition-persist="cta-dispo" />
   </div>

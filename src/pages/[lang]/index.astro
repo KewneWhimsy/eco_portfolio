@@ -22,42 +22,171 @@ const lang = Astro.params.lang as "fr" | "en" | "de";
 const content = {
   fr: {
     title: "Josselin HANEL - Développeur Web Full Stack",
-    description:
-      "Portfolio de développeur web full stack avec une approche éco-responsable, basé à Rennes, disponible à Nantes, Paris, Berlin et en télétravail.",
-    heroTitle: 'Développeur Web <span class="text-light whitespace-nowrap">Full Stack</span>',
-    heroText:
-      "Je conçois des sites web et applications complètes, durables et performantes, en privilégiant des solutions économes en ressources.",
+    description: "Développeur web éco-responsable spécialisé dans la création de sites et applications performants, modernes et durables. Basé à Rennes, disponible à Nantes, Paris, Berlin et en télétravail.",
+    heroTitle: "Sites Web <span class='text-light whitespace-nowrap'>Modernes et Performants</span>",
+    heroSubtitle: "Développeur Web Full Stack",
+    heroText: "Je conçois des sites et applications web qui chargent vite, fonctionnent partout, et optimisés pour être bien référencés sur Google. Le tout avec une approche éco-responsable.",
+    values: [
+      { 
+        title: "Performance", 
+        description: "Des sites rapides qui offrent une meilleure expérience utilisateur et consomment moins d'énergie.",
+        emoji: "⚡" 
+      },
+      { 
+        title: "Simplicité", 
+        description: "Des solutions efficaces sans complexité inutile, faciles à maintenir dans le temps.",
+        emoji: "✨" 
+      },
+      { 
+        title: "Éco-responsabilité", 
+        description: "Une conception qui minimise l'empreinte carbone de vos projets web.",
+        emoji: "🌱"
+      },
+      { 
+        title: "Autonomie", 
+        description: "Des sites que vous pouvez faire évoluer facilement, sans dépendances complexes.",
+        emoji: "🚀" 
+      }
+    ],
     projectsButton: "Voir mes projets",
     contactButton: "Me contacter",
-    skillsTitle: "Compétences",
+    servicesTitle: "Services",
+    services: [
+      {
+        title: "Sites vitrines",
+        description: "Sites professionnels personnalisés, rapides et optimisés pour le référencement - sans WordPress ni abonnements coûteux.",
+        emoji: "🌐" 
+      },
+      {
+        title: "Applications web",
+        description: "Applications interactives sur mesure pour automatiser vos processus et améliorer l'expérience de vos utilisateurs.",
+        emoji: "⚙️"
+      },
+      {
+        title: "E-commerce",
+        description: "Solutions e-commerce modernes et performantes, sans les frais mensuels des plateformes traditionnelles.",
+        emoji: "🛒"
+      },
+      {
+        title: "Consultation",
+        description: "Conseils en éco-conception web, optimisation de performance et audit de sites existants.",
+        emoji: "💡"
+      }
+    ],
     projectsTitle: "Projets récents",
     projectButton: "Découvrir le projet",
     viewAllProjectsButton: "Voir tous les projets",
   },
   en: {
     title: "Josselin HANEL - Full Stack Web Developer",
-    description:
-      "Portfolio of a full stack web developer with an eco-friendly approach, based in Rennes(France), available in Nantes, Paris, Berlin and remote work.",
-    heroTitle: 'Full Stack <span class="text-light whitespace-nowrap">Web Developer</span>',
-    heroText:
-      "I design complete, sustainable and high-performance websites and applications, prioritizing resource-efficient solutions.",
+    description: "Eco-friendly web developer specialized in creating high-performance, modern and sustainable websites and applications. Based in Rennes(France), available in Nantes, Paris, Berlin and remote work.",
+    heroTitle: "<span class='text-light whitespace-nowrap'>Modern and Performant</span> Websites",
+    heroSubtitle: "Full Stack Web Developer",
+    heroText: "I design websites and web applications that load quickly, work everywhere, and are optimized for good Google rankings. All with an eco-friendly approach.",
+    values: [
+      { 
+        title: "Performance", 
+        description: "Fast websites that offer a better user experience and consume less energy.",
+        emoji: "⚡"
+      },
+      { 
+        title: "Simplicity", 
+        description: "Effective solutions without unnecessary complexity, easy to maintain over time.",
+        emoji: "✨" 
+      },
+      { 
+        title: "Eco-responsibility", 
+        description: "Design that minimizes the carbon footprint of your web projects.",
+        emoji: "🌱"
+      },
+      { 
+        title: "Autonomy", 
+        description: "Websites that you can easily evolve, without complex dependencies.",
+        emoji: "🚀" 
+      }
+    ],
     projectsButton: "View my projects",
     contactButton: "Contact me",
-    skillsTitle: "Skills",
+    servicesTitle: "Services",
+    services: [
+      {
+        title: "Showcase websites",
+        description: "Personalized, fast, and SEO-optimized professional websites - without WordPress or costly subscriptions.",
+        emoji: "🌐"
+      },
+      {
+        title: "Web applications",
+        description: "Custom interactive applications to automate your processes and improve your users' experience.",
+        emoji: "⚙️"
+      },
+      {
+        title: "E-commerce",
+        description: "Modern and high-performance e-commerce solutions, without the monthly fees of traditional platforms.",
+        emoji: "🛒"
+      },
+      {
+        title: "Consultation",
+        description: "Web eco-design advice, performance optimization, and auditing of existing sites.",
+        emoji: "💡"
+      }
+    ],
     projectsTitle: "Recent projects",
     projectButton: "Explore project",
     viewAllProjectsButton: "View all projects",
   },
   de: {
     title: "Josselin HANEL - Full-Stack Webentwickler",
-    description:
-      "Portfolio eines Full-Stack-Webentwicklers mit umweltfreundlichem Ansatz, mit Sitz in Rennes(Frankreich) und verfügbar Nantes, Paris, Berlin und für Remote-Arbeit.",
-    heroTitle: 'Full-Stack <span class="text-light">Webentwickler</span>',
-    heroText:
-      "Ich entwickle vollständige, nachhaltige und leistungsstarke Websites und Anwendungen mit ressourcenschonenden Lösungen.",
+    description: "Umweltfreundlicher Webentwickler, spezialisiert auf die Erstellung leistungsstarker, moderner und nachhaltiger Websites und Anwendungen. Mit Sitz in Rennes(Frankreich) und verfügbar in Nantes, Paris, Berlin und für Remote-Arbeit.",
+    heroTitle: "<span class='text-light whitespace-nowrap'>Moderne und Leistungsstarke</span> Webseiten",
+    heroSubtitle: "Full-Stack Webentwickler",
+    heroText: "Ich entwickle Websites und Webanwendungen, die schnell laden, überall funktionieren und für gute Google-Rankings optimiert sind. Alles mit einem umweltfreundlichen Ansatz.",
+    values: [
+      { 
+        title: "Leistung", 
+        description: "Schnelle Websites, die ein besseres Benutzererlebnis bieten und weniger Energie verbrauchen.",
+        emoji: "⚡"
+      },
+      { 
+        title: "Einfachheit", 
+        description: "Effektive Lösungen ohne unnötige Komplexität, die langfristig leicht zu warten sind.",
+        emoji: "✨"
+      },
+      { 
+        title: "Umweltverantwortung", 
+        description: "Ein Design, das den CO2-Fußabdruck Ihrer Webprojekte minimiert.",
+        emoji: "🌱"
+      },
+      { 
+        title: "Autonomie", 
+        description: "Websites, die Sie leicht weiterentwickeln können, ohne komplexe Abhängigkeiten.",
+        emoji: "🚀"
+      }
+    ],
     projectsButton: "Meine Projekte",
     contactButton: "Kontakt",
-    skillsTitle: "Fähigkeiten",
+    servicesTitle: "Dienstleistungen",
+    services: [
+      {
+        title: "Showcase-Websites",
+        description: "Personalisierte, schnelle und SEO-optimierte professionelle Websites - ohne WordPress oder kostspielige Abonnements.",
+        emoji: "🌐"
+      },
+      {
+        title: "Webanwendungen",
+        description: "Maßgeschneiderte interaktive Anwendungen zur Automatisierung Ihrer Prozesse und Verbesserung der Benutzererfahrung.",
+        emoji: "⚙️"
+      },
+      {
+        title: "E-Commerce",
+        description: "Moderne und leistungsstarke E-Commerce-Lösungen ohne monatliche Gebühren traditioneller Plattformen.",
+        emoji: "🛒"
+      },
+      {
+        title: "Beratung",
+        description: "Beratung für Web-Öko-Design, Leistungsoptimierung und Audit bestehender Websites.",
+        emoji: "💡"
+      }
+    ],
     projectsTitle: "Aktuelle Projekte",
     projectButton: "Projekt entdecken",
     viewAllProjectsButton: "Alle Projekte ansehen",
@@ -66,58 +195,6 @@ const content = {
 
 // Utiliser la langue demandée ou français par défaut
 const t = content[lang] || content.fr;
-
-// Compétences à afficher avec traductions
-const skills = [
-  {
-    category: "Frontend",
-    emoji: "🖥️", 
-    items: ["Astro", "CSS Pro", "Tailwind", "TypeScript", "HTMX", "Alpine.js"],
-  },
-  {
-    category: "Backend",
-    emoji: "⚙️", 
-    items: ["Express", "WebSocket", "Elixir", "Phoenix"],
-  },
-  {
-    category:
-      lang === "fr"
-        ? "Bases de données"
-        : lang === "en"
-          ? "Databases"
-          : "Datenbanken",
-    emoji: "🗄️", 
-    items: ["PostgreSQL", "MongoDB", "PostgREST", "Ecto"],
-  },
-  {
-    category: lang === "fr" ? "Outils" : lang === "en" ? "Tools" : "Werkzeuge",
-    emoji: "🛠️", 
-    items: ["Git", "Docker", "VS Code", "Lighthouse"],
-  },
-  {
-    category:
-      lang === "fr"
-        ? "Méthodologies"
-        : lang === "en"
-          ? "Methodologies"
-          : "Methoden",
-    emoji: "📐", 
-    items: [
-      lang === "fr"
-        ? "Accessibilité"
-        : lang === "en"
-          ? "Accessibility"
-          : "Barrierefreiheit",
-      "Performance",
-      lang === "fr"
-        ? "Éco-conception"
-        : lang === "en"
-          ? "Eco-design"
-          : "Öko-Design",
-      "UX/UI",
-    ],
-  },
-];
 
 // Projets à mettre en avant
 const featuredProjects = [
@@ -176,29 +253,30 @@ const featuredProjects = [
 
 <Layout title={t.title} description={t.description} lang={lang}>
   <div class="container md:mt-3 mt-0 mx-auto px-4 md:py-8 py-0">
-    <!-- Section hero -->
+    <!-- Section hero repensée avec l'animation de typewriter -->
     <section class="py-8 md:py-12">
       <div class="flex flex-col md:flex-row gap-8">
         <div class="md:w-2/3">
+          <p class="text-accent mb-2 font-medium">{t.heroSubtitle}</p>
           <h1 class="text-3xl md:text-4xl font-bold mb-4">
             <div class="flex flex-wrap items-baseline gap-2">
               <div class="typewriter-part1">
                 <span class="typewriter-text-base">
                   {lang === "fr" 
-                    ? "Développeur Web"
+                    ? "Sites Web"
                     : lang === "en" 
-                      ? "Full Stack" 
-                      : "Full-Stack"
+                      ? "Modern" 
+                      : "Moderne"
                   }
                 </span>
               </div>
               <div class="typewriter-part2">
                 <span class="typewriter-text-highlight text-light">
                   {lang === "fr" 
-                    ? "Full Stack"
+                    ? "Modernes et Performants"
                     : lang === "en" 
-                      ? "Web Developer" 
-                      : "Webentwickler"
+                      ? "& Performant Websites" 
+                      : "& Leistungsstarke Webseiten"
                   }
                 </span>
               </div>
@@ -208,11 +286,11 @@ const featuredProjects = [
             {t.heroText}
           </p>
           <div class="flex flex-wrap gap-4">
-            <a href={`/${lang}/projects`} class="cta-button">
-              {t.projectsButton}
-            </a>
-            <a href={`/${lang}/contact`} class="btn-secondary">
+            <a href={`/${lang}/contact`} class="cta-button">
               {t.contactButton}
+            </a>
+            <a href={`/${lang}/projects`} class="btn-secondary">
+              {t.projectsButton}
             </a>
           </div>
         </div>
@@ -231,33 +309,38 @@ const featuredProjects = [
       </div>
     </section>
 
-    <!-- Section compétences -->
-    <section class="py-8">
-      <h2 class="text-2xl font-bold mb-6 border-b border-accent pb-2">
-        {t.skillsTitle}
-      </h2>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        {
-          skills.map((skill) => (
-            <div class="bg-secondary bg-opacity-30 p-4 rounded-lg">
-              <div class="flex justify-between items-center mb-3">
-                <h3 class="text-lg font-semibold text-light">
-                  {skill.category}
-                </h3>
-                <span class="text-xl">
-                  {skill.emoji}
-                </span>
+    <!-- Section valeurs principales -->
+    <section class="py-4 bg-secondary bg-opacity-30 rounded-lg mb-12">
+      <div class="container mx-auto px-4">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {t.values.map((value) => (
+            <div class="p-4 border border-accent border-opacity-30 rounded-lg hover:border-opacity-60 transition-all">
+              <div class="flex justify-between items-center mb-2">
+                <h3 class="text-xl font-semibold text-accent">{value.title}</h3>
+                <span class="text-2xl">{value.emoji}</span>
               </div>
-              <div class="flex flex-wrap gap-2">
-                {skill.items.map((item) => (
-                  <span class="px-2 py-1 bg-secondary rounded-full text-sm">
-                    {item}
-                  </span>
-                ))}
-              </div>
+              <p>{value.description}</p>
             </div>
-          ))
-        }
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Section services -->
+    <section class="py-8 mb-12">
+      <h2 class="text-2xl font-bold mb-6 border-b border-accent pb-2">
+        {t.servicesTitle}
+      </h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {t.services.map((service) => (
+          <div class="bg-secondary bg-opacity-30 p-5 rounded-lg">
+            <div class="flex justify-between items-center mb-3">
+              <h3 class="text-xl font-semibold text-accent">{service.title}</h3>
+              <span class="text-2xl">{service.emoji}</span>
+            </div>
+            <p>{service.description}</p>
+          </div>
+        ))}
       </div>
     </section>
 
@@ -270,52 +353,51 @@ const featuredProjects = [
         {
           featuredProjects.map((project) => (
           <div class="project-card w-full">
-  <!-- Image du projet -->
-  <div class="bg-primary bg-opacity-30 aspect-video w-full">
-    <Picture
-      src={project.image}
-      widths={[400, 740, 1080]}
-      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-      formats={["avif", "webp", "jpg"]}
-      alt={project.title}
-      class="w-full h-full object-cover"
-      loading="lazy"
-    />
-  </div>
-  
-  <!-- Contenu du projet (prendra l'espace variable) -->
-  <div class="p-4 flex flex-col h-full">
-    <div class="flex-1">
-      <h3 class="text-xl font-bold mb-2">{project.title}</h3>
-      <p class="mb-4" set:html={project.description}></p>
-      
-      <!-- Technologies -->
-      <div class="mb-4">
-        <div class="flex flex-wrap gap-1.5">
-          {project.tech.map((tech) => (
-            <span class="px-2 py-0.5 border border-accent text-light rounded-full text-xs">
-              {tech}
-            </span>
-          ))}
-        </div>
-      </div>
-    </div>
-    
-    <!-- Boutons (toujours au bas de la carte) -->
-    <div class="mt-auto">
-      <div class="flex gap-3">
-        <a href={project.url} class="btn-secondary flex-1 text-center">
-          {t.projectButton}
-        </a>
-      </div>
-    </div>
-  </div>
-</div>
+            <!-- Image du projet -->
+            <div class="bg-primary bg-opacity-30 aspect-video w-full">
+              <Picture
+                src={project.image}
+                widths={[400, 740, 1080]}
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                formats={["avif", "webp", "jpg"]}
+                alt={project.title}
+                class="w-full h-full object-cover"
+                loading="lazy"
+              />
+            </div>
+            
+            <!-- Contenu du projet -->
+            <div class="p-4 flex flex-col h-full">
+              <div class="flex-1">
+                <h3 class="text-xl font-bold mb-2">{project.title}</h3>
+                <p class="mb-4" set:html={project.description}></p>
+                
+                <!-- Technologies complètes comme demandé -->
+                <div class="mb-4">
+                  <div class="flex flex-wrap gap-1.5">
+                    {project.tech.map((tech) => (
+                      <span class="px-2 py-0.5 border border-accent text-light rounded-full text-xs">
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Boutons -->
+              <div class="mt-auto">
+                <div class="flex gap-3">
+                  <a href={project.url} class="btn-secondary flex-1 text-center">
+                    {t.projectButton}
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
           ))
         }
       </div>
       <div class="text-center mt-8">
-        <!-- Bouton autonome complet avec changement de couleur de texte -->
         <a
           href={`/${lang}/projects`}
           style="
