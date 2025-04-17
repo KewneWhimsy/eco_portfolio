@@ -46,6 +46,10 @@ const content = {
     upcomingIntro: 'Voici un aperçu des projets sur lesquels je travaille actuellement :',
     upcomingProjects: [
       {
+        title: 'Amélioration de l\'Objethèque - Quimper',
+        description: 'Ajout d\'un système de gestion de contenu (Decap CMS) et création d\'un calendrier pour la gestion des créneaux de salle et des bénévoles avec leurs compétences attitrées. Ce projet permettra à l\'association de gérer plus facilement son contenu et d\'optimiser l\'organisation des événements et la disponibilité des bénévoles.'
+      },
+      {
         title: 'Portfolio et boutique en ligne pour un artiste',
         description: 'Je développe un portfolio minimaliste et une boutique en ligne pour un ami artiste qui crée de l\'art numérique et physique. La boutique est discrète — cachée des parties non commerciales du site — et comprend un système de paiement Stripe simple pour les impressions, les packs d\'assets (pour Unreal Engine), les liens Buy Me a Coffee, et plus encore. L\'objectif est de garder l\'accent sur l\'art, sans le surcharger avec des éléments de e-commerce.'
       },
@@ -54,6 +58,9 @@ const content = {
         description: 'Sur la base de mon projet "Application e-sport avec chat", je travaille à le transformer en un jeu de stratégie sociale en ligne. Il est inspiré de "La Cosa Nostra" (2014) de Johannes Sich, mais sans aléatoire — uniquement des prises de décision humaines, brutes et chaotiques. L\'ambiance est anarchique et rapide, et la direction visuelle est influencée par "Jet Set Radio Future" et le court métrage "Dead Leaves" — bruyant, punk et expressif.'
       }
     ],
+    inProgress: 'Planification en cours',
+    discussingRequirements: 'Discussion des besoins en cours',
+    onHold: 'En attente',
     contactCTA: 'Vous avez un projet en tête ?',
     contactButton: 'Discutons-en'
   },
@@ -83,6 +90,10 @@ const content = {
     upcomingIntro: 'Here\'s a preview of projects I\'m currently working on:',
     upcomingProjects: [
       {
+        title: 'Object Library Enhancement - Quimper',
+        description: 'Addition of a content management system (Decap CMS) and creation of a calendar for managing room slots and volunteers with their assigned skills. This project will allow the association to more easily manage its content and optimize the organization of events and volunteer availability.'
+      },
+      {
         title: 'Portfolio + E-shop for an Artist Friend',
         description: 'I\'m building a minimalist portfolio and online store for a friend who creates digital and physical art. The shop is discreet — hidden from the non-commercial parts of the site — and includes a simple Stripe checkout for prints, asset packs (for Unreal Engine), Buy Me a Coffee links, and more. The goal is to keep the focus on the art, not overwhelm it with e-commerce clutter.'
       },
@@ -91,6 +102,9 @@ const content = {
         description: 'Based on my "E-sport Application with Chat" project, I\'m working on turning it into an online social strategy game. It\'s inspired by "La Cosa Nostra" (2014) from Johannes Sich, but with no randomness — only raw, chaotic, human decision-making. The vibe is anarchic and fast-paced, and the visual direction is influenced by "Jet Set Radio Future" and the short film "Dead Leaves" — loud, punk, and expressive.'
       }
     ],
+    inProgress: 'Planning in progress',
+    discussingRequirements: 'Requirements discussion in progress',
+    onHold: 'On hold',
     contactCTA: 'Do you have a project in mind?',
     contactButton: 'Let\'s talk about it'
   },
@@ -120,6 +134,10 @@ const content = {
     upcomingIntro: 'Hier ein Einblick in Projekte, an denen ich derzeit arbeite:',
     upcomingProjects: [
       {
+        title: 'Verbesserung der Objektbibliothek - Quimper',
+        description: 'Hinzufügung eines Content-Management-Systems (Decap CMS) und Erstellung eines Kalenders zur Verwaltung von Raumzeitfenstern und Freiwilligen mit ihren zugewiesenen Fähigkeiten. Dieses Projekt wird es dem Verein ermöglichen, seine Inhalte einfacher zu verwalten und die Organisation von Veranstaltungen und die Verfügbarkeit von Freiwilligen zu optimieren.'
+      },
+      {
         title: 'Portfolio und Online-Shop für einen Künstlerfreund',
         description: 'Ich entwickle ein minimalistisches Portfolio und einen Online-Shop für einen befreundeten Künstler, der digitale und physische Kunst schafft. Der Shop ist diskret – versteckt von den nicht-kommerziellen Teilen der Website – und umfasst ein einfaches Stripe-Checkout für Drucke, Asset-Pakete (für Unreal Engine), Buy Me a Coffee-Links und mehr. Das Ziel ist es, den Fokus auf die Kunst zu legen, ohne sie mit E-Commerce-Elementen zu überwältigen.'
       },
@@ -128,6 +146,9 @@ const content = {
         description: 'Basierend auf meinem Projekt "E-Sport-Anwendung mit Chat", arbeite ich daran, es in ein Online-Strategiespiel zu verwandeln. Es ist inspiriert von "La Cosa Nostra" (2014) von Johannes Sich, aber ohne Zufälligkeit – nur rohe, chaotische, menschliche Entscheidungsfindung. Die Stimmung ist anarchisch und schnelllebig, und die visuelle Richtung ist beeinflusst von "Jet Set Radio Future" und dem Kurzfilm "Dead Leaves" – laut, punk und ausdrucksstark.'
       }
     ],
+    inProgress: 'Planung im Gange',
+    discussingRequirements: 'Anforderungsdiskussion im Gange',
+    onHold: 'Auf Eis gelegt',
     contactCTA: 'Haben Sie ein Projekt im Sinn?',
     contactButton: 'Lassen Sie uns darüber sprechen'
   }
@@ -266,54 +287,101 @@ const projects = [
       </p>
       
       <div class="space-y-10">
-        {t.upcomingProjects.map((project, index) => (
-          <div class="bg-secondary bg-opacity-20 p-6 rounded-lg border-l-4 border-accent">
-            <h3 class="text-xl font-bold mb-3 text-accent">
-              {project.title}
-            </h3>
-            <p class="text-text mb-2">
-              {project.description}
-            </p>
-            
-            <!-- Tech tags for upcoming projects based on the project index -->
-            <div class="flex flex-wrap gap-1.5 mt-4">
-              {index === 0 ? 
-                ['Astro', 'Tailwind', 'Alpine.js', 'Three.js', 'Stripe API'].map(tech => (
-                  <span class="px-2 py-0.5 border border-accent text-light rounded-full text-xs">
-                    {tech}
-                  </span>
-                )) : 
-                ['Astro', 'Tailwind', 'Alpine.js', 'HTMX', 'WebSocket', 'Phoenix', 'MongoDB', 'anime.js'].map(tech => (
-                  <span class="px-2 py-0.5 border border-accent text-light rounded-full text-xs">
-                    {tech}
-                  </span>
-                ))
-              }
+        {/* Nouveau projet d'amélioration de l'Objethèque */}
+        <div class="bg-secondary bg-opacity-20 p-6 rounded-lg border-l-4 border-accent">
+          <h3 class="text-xl font-bold mb-3 text-accent">
+            {t.upcomingProjects[0].title}
+          </h3>
+          <p class="text-text mb-2">
+            {t.upcomingProjects[0].description}
+          </p>
+          
+          {/* Tech tags pour l'amélioration de l'Objethèque */}
+          <div class="flex flex-wrap gap-1.5 mt-4">
+            {['Astro', 'Decap CMS', 'Alpine.js', 'GitHub Actions', lang === 'fr' ? 'API HelloAsso' : 'HelloAsso API'].map(tech => (
+              <span class="px-2 py-0.5 border border-accent text-light rounded-full text-xs">
+                {tech}
+              </span>
+            ))}
+          </div>
+          
+          {/* Status indicator */}
+          <div class="flex flex-wrap gap-2 mt-4">
+            <div class="inline-block bg-accent bg-opacity-30 px-3 py-1 rounded-full text-xs">
+              <span class="inline-block w-2 h-2 bg-accent rounded-full mr-1"></span>
+              {lang === 'fr' ? 'En développement' : (lang === 'en' ? 'In development' : 'In Entwicklung')}
             </div>
             
-            <!-- Status indicator -->
-            <div class="flex flex-wrap gap-2 mt-4">
-              <div class="inline-block bg-accent bg-opacity-30 px-3 py-1 rounded-full text-xs">
-                <span class="inline-block w-2 h-2 bg-accent rounded-full mr-1"></span>
-                {lang === 'fr' ? 'En développement' : 
-                 lang === 'en' ? 'In development' : 
-                 'In Entwicklung'}
-              </div>
-              
-              <!-- Additional status -->
-              <div class="inline-block bg-secondary bg-opacity-40 px-3 py-1 rounded-full text-xs">
-                {index === 0 ? 
-                  (lang === 'fr' ? 'En attente de contenu' : 
-                   lang === 'en' ? 'Waiting for content' : 
-                   'Warten auf Inhalt') : 
-                  (lang === 'fr' ? 'Création du dossier de projet' : 
-                   lang === 'en' ? 'Creating project documentation' : 
-                   'Erstellung der Projektdokumentation')
-                }
-              </div>
+            {/* Additional status */}
+            <div class="inline-block bg-secondary bg-opacity-40 px-3 py-1 rounded-full text-xs">
+              {lang === 'fr' ? 'Mise en place du CMS' : (lang === 'en' ? 'CMS implementation' : 'CMS-Implementierung')}
             </div>
           </div>
-        ))}
+        </div>
+
+        {/* Projet portfolio artiste (en attente) */}
+        <div class="bg-secondary bg-opacity-20 p-6 rounded-lg border-l-4 border-secondary">
+          <h3 class="text-xl font-bold mb-3 text-text-muted">
+            {t.upcomingProjects[1].title}
+          </h3>
+          <p class="text-text mb-2">
+            {t.upcomingProjects[1].description}
+          </p>
+          
+          {/* Tech tags */}
+          <div class="flex flex-wrap gap-1.5 mt-4">
+            {['Astro', 'Tailwind', 'Alpine.js', 'Three.js', 'Stripe API'].map(tech => (
+              <span class="px-2 py-0.5 border border-accent text-light rounded-full text-xs">
+                {tech}
+              </span>
+            ))}
+          </div>
+          
+          {/* Status indicator */}
+          <div class="flex flex-wrap gap-2 mt-4">
+            <div class="inline-block bg-primary px-3 py-1 rounded-full text-xs">
+              <span class="inline-block w-2 h-2 bg-text-muted rounded-full mr-1"></span>
+              {t.onHold}
+            </div>
+            
+            {/* Additional status */}
+            <div class="inline-block bg-secondary bg-opacity-40 px-3 py-1 rounded-full text-xs">
+              {lang === 'fr' ? 'En attente de contenu' : (lang === 'en' ? 'Waiting for content' : 'Warten auf Inhalt')}
+            </div>
+          </div>
+        </div>
+
+        {/* Projet jeu web (en attente) */}
+        <div class="bg-secondary bg-opacity-20 p-6 rounded-lg border-l-4 border-secondary">
+          <h3 class="text-xl font-bold mb-3 text-text-muted">
+            {t.upcomingProjects[2].title}
+          </h3>
+          <p class="text-text mb-2">
+            {t.upcomingProjects[2].description}
+          </p>
+          
+          {/* Tech tags */}
+          <div class="flex flex-wrap gap-1.5 mt-4">
+            {['Astro', 'Tailwind', 'Alpine.js', 'HTMX', 'WebSocket', 'Phoenix', 'MongoDB', 'anime.js'].map(tech => (
+              <span class="px-2 py-0.5 border border-accent text-light rounded-full text-xs">
+                {tech}
+              </span>
+            ))}
+          </div>
+          
+          {/* Status indicator */}
+          <div class="flex flex-wrap gap-2 mt-4">
+            <div class="inline-block bg-primary px-3 py-1 rounded-full text-xs">
+              <span class="inline-block w-2 h-2 bg-text-muted rounded-full mr-1"></span>
+              {t.onHold}
+            </div>
+            
+            {/* Additional status */}
+            <div class="inline-block bg-secondary bg-opacity-40 px-3 py-1 rounded-full text-xs">
+              {lang === 'fr' ? 'Création du dossier de projet' : (lang === 'en' ? 'Creating project documentation' : 'Erstellung der Projektdokumentation')}
+            </div>
+          </div>
+        </div>
       </div>
     </section>
     
