@@ -325,7 +325,169 @@ const featuredProjects = [
         </div>
       </div>
     </section>
-
+    <!-- Section Why me / Pourquoi je fais ce que je fais -->
+<section class="py-8 mb-12">
+  <h2 class="text-2xl font-bold mb-6 border-b border-accent pb-2">
+    {lang === "fr" 
+      ? "Pourquoi je fais ce que je fais" 
+      : lang === "en" 
+        ? "Why I do what I do" 
+        : "Warum ich tue, was ich tue"}
+  </h2>
+  
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+    <!-- Colonne avec texte principal -->
+    <div class="bg-secondary bg-opacity-10 p-6 rounded-lg border-l-4 border-accent">
+      <p class="mb-4">
+        {lang === "fr"
+          ? "Je crois en un web qui conjugue créativité, performance et respect. Aujourd'hui, de nombreux sites sont surchargés de technologies mal utilisées qui nuisent à l'expérience. Ma mission est de créer des expériences numériques modernes qui respectent ces principes fondamentaux :"
+          : lang === "en"
+            ? "I believe in a web that combines creativity, performance, and respect. Today, many sites are overloaded with poorly used technologies that harm the experience. My mission is to create modern digital experiences that respect these fundamental principles:"
+            : "Ich glaube an ein Web, das Kreativität, Leistung und Respekt vereint. Heutzutage sind viele Websites mit schlecht genutzten Technologien überladen, die das Erlebnis beeinträchtigen. Meine Mission ist es, moderne digitale Erfahrungen zu schaffen, die diese grundlegenden Prinzipien respektieren:"}
+      </p>
+      
+      <ul class="space-y-3">
+        <li class="flex items-start">
+          <span class="text-accent font-bold mr-2">1.</span>
+          <p>
+            <strong>
+              {lang === "fr" 
+                ? "L'intelligence technique" 
+                : lang === "en" 
+                  ? "Technical intelligence" 
+                  : "Technische Intelligenz"}
+            </strong>: 
+            {lang === "fr"
+              ? "Je crée des sites visuellement attrayants qui utilisent les technologies modernes de façon judicieuse. Des animations fluides et des transitions élégantes réalisées en CSS plutôt qu'avec des bibliothèques volumineuses."
+              : lang === "en"
+                ? "I create visually appealing sites that use modern technologies wisely. Smooth animations and elegant transitions implemented in CSS rather than with bulky libraries."
+                : "Ich erstelle visuell ansprechende Websites, die moderne Technologien klug einsetzen. Flüssige Animationen und elegante Übergänge in CSS statt mit sperrigen Bibliotheken."}
+          </p>
+        </li>
+        
+        <li class="flex items-start">
+          <span class="text-accent font-bold mr-2">2.</span>
+          <p>
+            <strong>
+              {lang === "fr" 
+                ? "Le respect de l'utilisateur" 
+                : lang === "en" 
+                  ? "Respect for users" 
+                  : "Respekt für Benutzer"}
+            </strong>: 
+            {lang === "fr"
+              ? "Pas de popups intrusifs, pas de bandeaux de cookies envahissants, pas de dark patterns. Une expérience fluide où l'utilisateur reste maître de sa navigation et de ses données."
+              : lang === "en"
+                ? "No intrusive popups, no invasive cookie banners, no dark patterns. A smooth experience where users remain in control of their navigation and their data."
+                : "Keine aufdringlichen Popups, keine invasiven Cookie-Banner, keine Dark Patterns. Ein reibungsloses Erlebnis, bei dem die Benutzer die Kontrolle über ihre Navigation und ihre Daten behalten."}
+          </p>
+        </li>
+        
+        <li class="flex items-start">
+          <span class="text-accent font-bold mr-2">3.</span>
+          <p>
+            <strong>
+              {lang === "fr" 
+                ? "La performance raisonnée" 
+                : lang === "en" 
+                  ? "Thoughtful performance" 
+                  : "Durchdachte Leistung"}
+            </strong>: 
+            {lang === "fr"
+              ? "Chaque élément de design a sa raison d'être, et chaque effet visuel est implémenté de façon optimale. Le résultat : des sites à la fois esthétiques, rapides et économes en ressources."
+              : lang === "en"
+                ? "Each design element has its purpose, and each visual effect is implemented optimally. The result: websites that are aesthetic, fast, and resource-efficient at the same time."
+                : "Jedes Designelement hat seinen Zweck, und jeder visuelle Effekt wird optimal implementiert. Das Ergebnis: Websites, die gleichzeitig ästhetisch, schnell und ressourcenschonend sind."}
+          </p>
+        </li>
+        <li class="flex items-start">
+          <span class="text-accent font-bold mr-2">4.</span>
+          <p>
+            <strong>
+              {lang === "fr" 
+                ? "L'accessibilité inclusive" 
+                : lang === "en" 
+                  ? "Inclusive accessibility" 
+                  : "Inklusive Zugänglichkeit"}
+            </strong>: 
+            {lang === "fr"
+              ? "Des sites qui fonctionnent pour tous, quels que soient leurs appareils, leurs capacités ou leurs contraintes. Un web accessible n'est pas un luxe mais une nécessité qui profite à l'ensemble des utilisateurs."
+              : lang === "en"
+                ? "Websites that work for everyone, regardless of their devices, abilities, or constraints. An accessible web is not a luxury but a necessity that benefits all users."
+                : "Websites, die für jeden funktionieren, unabhängig von Geräten, Fähigkeiten oder Einschränkungen. Ein barrierefreies Web ist kein Luxus, sondern eine Notwendigkeit, die allen Benutzern zugute kommt."}
+          </p>
+        </li>
+      </ul>
+    </div>
+    
+    <!-- Colonne avec informations supplémentaires -->
+    <div class="flex flex-col gap-4">
+      <div class="bg-secondary bg-opacity-30 p-5 rounded-lg">
+        <h3 class="text-xl font-semibold mb-3 text-accent">
+          {lang === "fr" 
+            ? "Le saviez-vous ?" 
+            : lang === "en" 
+              ? "Did you know?" 
+              : "Wussten Sie schon?"}
+        </h3>
+        <div class="space-y-3">
+          <div class="mb-3 p-4 bg-primary bg-opacity-30 rounded-lg">
+            <p class="mb-2">
+              {lang === "fr"
+                ? "Contrairement à une idée répandue, le RGPD n'exige pas d'afficher un bandeau de cookies sur tous les sites web. Ces bandeaux ne sont obligatoires que si vous utilisez des cookies non essentiels (publicité, analyse, etc.)."
+                : lang === "en"
+                  ? "Contrary to popular belief, GDPR does not require displaying a cookie banner on all websites. These banners are only mandatory if you use non-essential cookies (advertising, analytics, etc.)."
+                  : "Entgegen der landläufigen Meinung verlangt die DSGVO nicht, auf allen Websites ein Cookie-Banner anzuzeigen. Diese Banner sind nur dann obligatorisch, wenn Sie nicht-essentielle Cookies verwenden (Werbung, Analyse usw.)."}
+            </p>
+            <p class="text-sm text-text-muted">
+              <a href="https://gdpr.eu/cookies/" target="_blank" rel="noopener noreferrer" class="text-link">GDPR.eu - Cookies, the GDPR, and the ePrivacy Directive</a>
+            </p>
+          </div>
+          
+          <div class="p-4 bg-primary bg-opacity-30 rounded-lg">
+            <p class="mb-2">
+              {lang === "fr"
+                ? "53% des visiteurs abandonnent un site qui met plus de 3 secondes à charger. Une optimisation rigoureuse des performances est essentielle."
+                : lang === "en"
+                  ? "53% of visitors abandon a site that takes more than 3 seconds to load. Rigorous performance optimization is essential."
+                  : "53% der Besucher verlassen eine Website, die mehr als 3 Sekunden zum Laden benötigt. Eine rigorose Leistungsoptimierung ist unerlässlich."}
+            </p>
+            <p class="text-sm text-text-muted">
+              <a href="https://www.thinkwithgoogle.com/marketing-strategies/app-and-mobile/mobile-page-speed-new-industry-benchmarks/" target="_blank" rel="noopener noreferrer" class="text-link">Think with Google - Mobile page speed benchmarks</a>
+            </p>
+          </div>
+          
+          <div class="p-4 bg-primary bg-opacity-30 rounded-lg">
+            <p class="mb-1">
+              {lang === "fr"
+                ? "Il est tout à fait possible d'analyser le trafic de son site sans utiliser de cookies de suivi ni compromettre la vie privée des utilisateurs."
+                : lang === "en"
+                  ? "It is entirely possible to analyze your site's traffic without using tracking cookies or compromising users' privacy."
+                  : "Es ist durchaus möglich, den Traffic Ihrer Website zu analysieren, ohne Tracking-Cookies zu verwenden oder die Privatsphäre der Benutzer zu gefährden."}
+            </p>
+            <p class="mb-0 text-sm">
+              {lang === "fr"
+                ? "Des solutions comme Plausible, Umami Cloud, Fathom ou GoatCounter offrent des insights précieux tout en respectant la vie privée des utilisateurs."
+                : lang === "en"
+                  ? "Solutions like Plausible, Umami Cloud, Fathom, or GoatCounter offer valuable insights while respecting user privacy."
+                  : "Lösungen wie Plausible, Umami Cloud, Fathom oder GoatCounter bieten wertvolle Einblicke und respektieren gleichzeitig die Privatsphäre der Benutzer."}
+            </p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="bg-secondary bg-opacity-40 p-5 rounded-lg border-l-2 border-accent">
+        <blockquote class="italic">
+          {lang === "fr"
+            ? "Combien de fois avez-vous quitté un site parce qu'il était trop lent, encombré de publicités, ou vous harcelait pour accepter des cookies? Je préfère un web plus léger, qui respecte l'attention de l'utilisateur et fonctionne bien sur tous les appareils sans frustration."
+            : lang === "en"
+              ? "How many times have you left a website because it was too slow, cluttered with ads, or harassing you to accept cookies? I prefer a lighter web that respects user attention and works well on all devices without frustration."
+              : "Wie oft haben Sie eine Website verlassen, weil sie zu langsam war, mit Werbung überladen oder Sie belästigte, Cookies zu akzeptieren? Ich bevorzuge ein leichteres Web, das die Aufmerksamkeit der Benutzer respektiert und auf allen Geräten ohne Frustration gut funktioniert."}
+        </blockquote>
+      </div>
+    </div>
+  </div>
+</section>
     <!-- Section services -->
     <section class="py-8 mb-12">
       <h2 class="text-2xl font-bold mb-6 border-b border-accent pb-2">
@@ -343,7 +505,7 @@ const featuredProjects = [
         ))}
       </div>
     </section>
-
+    
     <!-- Section projets en vedette -->
     <section class="py-8">
       <h2 class="text-2xl font-bold mb-6 border-b border-accent pb-2">

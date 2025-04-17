@@ -104,6 +104,7 @@ body {
 }
 .text-link:hover {
   color: var(--color-accent-hover);
+  text-decoration: underline;
 }
 
 
@@ -117,6 +118,7 @@ body {
 /* Animation douce au hover */
 .text-jade:hover {
   animation: subtle-pulse 1.5s infinite alternate ease-in-out;
+  text-decoration: underline;
 }
 
 /* Animation keyframes */
