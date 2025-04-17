@@ -20,14 +20,18 @@ const lang = Astro.params.lang as "fr" | "en" | "de";
 const content = {
   fr: {
     title: "Josselin HANEL - Développeur Web (Mode Éco)",
-    description: "Version éco-responsable de mon portfolio de développeur full stack, avec une empreinte carbone minimale.",
-    heroTitle: "Sites Web <span class='text-light whitespace-nowrap'>Modernes et Performants</span>",
+    description:
+      "Version éco-responsable de mon portfolio de développeur full stack, avec une empreinte carbone minimale.",
+    heroTitle:
+      "Sites Web <span class='text-light whitespace-nowrap'>Modernes et Performants</span>",
     heroSubtitle: "Développeur Web Full Stack",
-    heroText: "Je conçois des sites et applications web qui chargent vite, fonctionnent partout, et optimisés pour être bien référencés sur Google. Le tout avec une approche éco-responsable.",
+    heroText:
+      "Je conçois des sites et applications web qui chargent vite, fonctionnent partout, et optimisés pour être bien référencés sur Google. Le tout avec une approche éco-responsable.",
     projectsButton: "Voir mes projets",
     contactButton: "Me contacter",
     ecoModeTitle: "Mode Éco activé",
-    ecoModeText: "Vous consultez actuellement la version ultra-légère de mon portfolio. Cette version:",
+    ecoModeText:
+      "Vous consultez actuellement la version ultra-légère de mon portfolio. Cette version:",
     ecoFeatures: [
       "Minimise l'utilisation du JavaScript",
       "Réduit drastiquement la taille et le nombre d'images",
@@ -38,38 +42,46 @@ const content = {
     services: [
       {
         title: "Sites vitrines",
-        description: "Sites professionnels personnalisés, rapides et optimisés pour le référencement - sans WordPress ni abonnements coûteux.",
+        description:
+          "Sites professionnels personnalisés, rapides et optimisés pour le référencement - sans WordPress ni abonnements coûteux.",
       },
       {
         title: "Applications web",
-        description: "Applications interactives sur mesure pour automatiser vos processus et améliorer l'expérience de vos utilisateurs.",
+        description:
+          "Applications interactives sur mesure pour automatiser vos processus et améliorer l'expérience de vos utilisateurs.",
       },
       {
         title: "E-commerce",
-        description: "Solutions e-commerce modernes et performantes, sans les frais mensuels des plateformes traditionnelles.",
+        description:
+          "Solutions e-commerce modernes et performantes, sans les frais mensuels des plateformes traditionnelles.",
       },
       {
         title: "Consultation",
-        description: "Conseils en éco-conception web, optimisation de performance et audit de sites existants.",
-      }
+        description:
+          "Conseils en éco-conception web, optimisation de performance et audit de sites existants.",
+      },
     ],
     values: [
-      { 
-        title: "Performance", 
-        description: "Des sites rapides qui offrent une meilleure expérience utilisateur et consomment moins d'énergie."
+      {
+        title: "Performance",
+        description:
+          "Des sites rapides qui offrent une meilleure expérience utilisateur et consomment moins d'énergie.",
       },
-      { 
-        title: "Simplicité", 
-        description: "Des solutions efficaces sans complexité inutile, faciles à maintenir dans le temps."
+      {
+        title: "Simplicité",
+        description:
+          "Des solutions efficaces sans complexité inutile, faciles à maintenir dans le temps.",
       },
-      { 
-        title: "Éco-responsabilité", 
-        description: "Une conception qui minimise l'empreinte carbone de vos projets web."
+      {
+        title: "Éco-responsabilité",
+        description:
+          "Une conception qui minimise l'empreinte carbone de vos projets web.",
       },
-      { 
-        title: "Autonomie", 
-        description: "Des sites que vous pouvez faire évoluer facilement, sans dépendances complexes."
-      }
+      {
+        title: "Autonomie",
+        description:
+          "Des sites que vous pouvez faire évoluer facilement, sans dépendances complexes.",
+      },
     ],
     projectsTitle: "Projets récents",
     projectButton: "Voir le projet",
@@ -77,27 +89,58 @@ const content = {
     projects: {
       esport: {
         title: "Application e-sport avec chat (2025)",
-        description: "Plateforme de gestion d'événements e-sport intégrant un système de chat en temps réel via WebSocket et HTMX.",
-        techs: "Astro, HTMX, WebSocket, Express, PostgreSQL"
+        description:
+          "Plateforme de gestion d'événements e-sport intégrant un système de chat en temps réel via WebSocket et HTMX.",
+        techs: "Astro, HTMX, WebSocket, Express, PostgreSQL",
       },
       library: {
         title: "Bibliothèque d'objets - Quimper (2024)",
-        description: "Site vitrine pour une bibliothèque d'objets associative, conçu en collaboration avec une créatrice audiovisuelle.",
-        techs: "Astro, Alpine.js, TypeScript, GitHub Actions"
-      }
+        description:
+          "Site vitrine pour une bibliothèque d'objets associative, conçu en collaboration avec une créatrice audiovisuelle.",
+        techs: "Astro, Alpine.js, TypeScript, GitHub Actions",
+      },
     },
     imageAlt: "Photo de Josselin HANEL",
+    motivationTitle: "Ce qui m'anime",
+    motivationIntro:
+      "Je crois en un web alliant performance, élégance et respect de l'environnement. Ma démarche s'articule autour de ces principes :",
+    motivationPrinciples: [
+      {
+        title: "L'intelligence technique",
+        description:
+          "Les technologies web fondamentales ont considérablement évolué ces dernières années, mais beaucoup d'entreprises et de développeurs continuent d'utiliser des bibliothèques lourdes par habitude. Je préfère exploiter les capacités modernes des navigateurs pour créer des effets visuels et des interactions fluides, sans compromettre la vitesse.",
+      },
+      {
+        title: "Le respect de l'utilisateur",
+        description:
+          "Pas de popups intrusifs ni de bandeaux inutiles qui interrompent la navigation. Une expérience fluide où l'utilisateur reste maître de sa navigation et de ses données.",
+      },
+      {
+        title: "La performance raisonnée",
+        description:
+          "Chaque élément de design a sa raison d'être, et chaque effet visuel est implémenté de façon optimale. Le résultat : des sites à la fois esthétiques, rapides et économes en ressources.",
+      },
+      {
+        title: "Le mode éco comme option pertinente",
+        description:
+          "Ce portfolio propose un mode éco qui permet d'accéder au contenu même avec une connexion limitée. Si cette approche n'est pas pertinente pour tous les projets (notamment visuels), elle devrait être plus répandue pour les services essentiels et sites d'information.",
+      },
+    ],
   },
   en: {
     title: "Josselin HANEL - Web Developer (Eco Mode)",
-    description: "Eco-friendly version of my full stack developer portfolio, with minimal carbon footprint.",
-    heroTitle: "<span class='text-light whitespace-nowrap'>Modern and Performant</span> Websites",
+    description:
+      "Eco-friendly version of my full stack developer portfolio, with minimal carbon footprint.",
+    heroTitle:
+      "<span class='text-light whitespace-nowrap'>Modern and Performant</span> Websites",
     heroSubtitle: "Full Stack Web Developer",
-    heroText: "I design websites and web applications that load quickly, work everywhere, and are optimized for good Google rankings. All with an eco-friendly approach.",
+    heroText:
+      "I design websites and web applications that load quickly, work everywhere, and are optimized for good Google rankings. All with an eco-friendly approach.",
     projectsButton: "View my projects",
     contactButton: "Contact me",
     ecoModeTitle: "Eco Mode activated",
-    ecoModeText: "You are currently viewing the ultra-lightweight version of my portfolio. This version:",
+    ecoModeText:
+      "You are currently viewing the ultra-lightweight version of my portfolio. This version:",
     ecoFeatures: [
       "Minimizes JavaScript usage",
       "Drastically reduces image size and quantity",
@@ -108,38 +151,46 @@ const content = {
     services: [
       {
         title: "Showcase websites",
-        description: "Personalized, fast, and SEO-optimized professional websites - without WordPress or costly subscriptions.",
+        description:
+          "Personalized, fast, and SEO-optimized professional websites - without WordPress or costly subscriptions.",
       },
       {
         title: "Web applications",
-        description: "Custom interactive applications to automate your processes and improve your users' experience.",
+        description:
+          "Custom interactive applications to automate your processes and improve your users' experience.",
       },
       {
         title: "E-commerce",
-        description: "Modern and high-performance e-commerce solutions, without the monthly fees of traditional platforms.",
+        description:
+          "Modern and high-performance e-commerce solutions, without the monthly fees of traditional platforms.",
       },
       {
         title: "Consultation",
-        description: "Web eco-design advice, performance optimization, and auditing of existing sites.",
-      }
+        description:
+          "Web eco-design advice, performance optimization, and auditing of existing sites.",
+      },
     ],
     values: [
-      { 
-        title: "Performance", 
-        description: "Fast websites that offer a better user experience and consume less energy."
+      {
+        title: "Performance",
+        description:
+          "Fast websites that offer a better user experience and consume less energy.",
       },
-      { 
-        title: "Simplicity", 
-        description: "Effective solutions without unnecessary complexity, easy to maintain over time."
+      {
+        title: "Simplicity",
+        description:
+          "Effective solutions without unnecessary complexity, easy to maintain over time.",
       },
-      { 
-        title: "Eco-responsibility", 
-        description: "Design that minimizes the carbon footprint of your web projects."
+      {
+        title: "Eco-responsibility",
+        description:
+          "Design that minimizes the carbon footprint of your web projects.",
       },
-      { 
-        title: "Autonomy", 
-        description: "Websites that you can easily evolve, without complex dependencies."
-      }
+      {
+        title: "Autonomy",
+        description:
+          "Websites that you can easily evolve, without complex dependencies.",
+      },
     ],
     projectsTitle: "Recent projects",
     projectButton: "View project",
@@ -147,27 +198,58 @@ const content = {
     projects: {
       esport: {
         title: "E-sport Application with Chat (2025)",
-        description: "E-sport event management platform with a real-time chat system via WebSocket and HTMX.",
-        techs: "Astro, HTMX, WebSocket, Express, PostgreSQL"
+        description:
+          "E-sport event management platform with a real-time chat system via WebSocket and HTMX.",
+        techs: "Astro, HTMX, WebSocket, Express, PostgreSQL",
       },
       library: {
         title: "Object Library - Quimper (2024)",
-        description: "Showcase website for a community object library, designed in collaboration with an audiovisual creator.",
-        techs: "Astro, Alpine.js, TypeScript, GitHub Actions"
-      }
+        description:
+          "Showcase website for a community object library, designed in collaboration with an audiovisual creator.",
+        techs: "Astro, Alpine.js, TypeScript, GitHub Actions",
+      },
     },
     imageAlt: "Photo of Josselin HANEL",
+    motivationTitle: "What drives me",
+    motivationIntro:
+      "I believe in a web that combines performance, elegance, and environmental respect. My approach revolves around these principles:",
+    motivationPrinciples: [
+      {
+        title: "Technical intelligence",
+        description:
+          "Core web technologies have evolved significantly in recent years, but many companies and developers continue to use heavy libraries out of habit. I prefer to leverage modern browser capabilities to create visual effects and smooth interactions without compromising speed.",
+      },
+      {
+        title: "Respect for users",
+        description:
+          "No intrusive popups or unnecessary banners that interrupt browsing. A smooth experience where users remain in control of their navigation and their data.",
+      },
+      {
+        title: "Thoughtful performance",
+        description:
+          "Each design element has its purpose, and each visual effect is implemented optimally. The result: websites that are aesthetic, fast, and resource-efficient at the same time.",
+      },
+      {
+        title: "Eco mode where it matters",
+        description:
+          "This portfolio offers an eco mode that provides access to content even with limited connectivity. While this approach isn't relevant for all projects (particularly visual ones), it should be more widespread for essential services and information websites.",
+      },
+    ],
   },
   de: {
     title: "Josselin HANEL - Webentwickler (Öko-Modus)",
-    description: "Umweltfreundliche Version meines Full-Stack-Entwickler-Portfolios mit minimalem CO2-Fußabdruck.",
-    heroTitle: "<span class='text-light whitespace-nowrap'>Moderne und Leistungsstarke</span> Webseiten",
+    description:
+      "Umweltfreundliche Version meines Full-Stack-Entwickler-Portfolios mit minimalem CO2-Fußabdruck.",
+    heroTitle:
+      "<span class='text-light whitespace-nowrap'>Moderne und Leistungsstarke</span> Webseiten",
     heroSubtitle: "Full-Stack Webentwickler",
-    heroText: "Ich entwickle Websites und Webanwendungen, die schnell laden, überall funktionieren und für gute Google-Rankings optimiert sind. Alles mit einem umweltfreundlichen Ansatz.",
+    heroText:
+      "Ich entwickle Websites und Webanwendungen, die schnell laden, überall funktionieren und für gute Google-Rankings optimiert sind. Alles mit einem umweltfreundlichen Ansatz.",
     projectsButton: "Meine Projekte",
     contactButton: "Kontakt",
     ecoModeTitle: "Öko-Modus aktiviert",
-    ecoModeText: "Sie sehen gerade die ultraleichte Version meines Portfolios. Diese Version:",
+    ecoModeText:
+      "Sie sehen gerade die ultraleichte Version meines Portfolios. Diese Version:",
     ecoFeatures: [
       "Minimiert die Nutzung von JavaScript",
       "Reduziert Bildgröße und -anzahl drastisch",
@@ -178,38 +260,46 @@ const content = {
     services: [
       {
         title: "Showcase-Websites",
-        description: "Personalisierte, schnelle und SEO-optimierte professionelle Websites - ohne WordPress oder kostspielige Abonnements.",
+        description:
+          "Personalisierte, schnelle und SEO-optimierte professionelle Websites - ohne WordPress oder kostspielige Abonnements.",
       },
       {
         title: "Webanwendungen",
-        description: "Maßgeschneiderte interaktive Anwendungen zur Automatisierung Ihrer Prozesse und Verbesserung der Benutzererfahrung.",
+        description:
+          "Maßgeschneiderte interaktive Anwendungen zur Automatisierung Ihrer Prozesse und Verbesserung der Benutzererfahrung.",
       },
       {
         title: "E-Commerce",
-        description: "Moderne und leistungsstarke E-Commerce-Lösungen ohne monatliche Gebühren traditioneller Plattformen.",
+        description:
+          "Moderne und leistungsstarke E-Commerce-Lösungen ohne monatliche Gebühren traditioneller Plattformen.",
       },
       {
         title: "Beratung",
-        description: "Beratung für Web-Öko-Design, Leistungsoptimierung und Audit bestehender Websites.",
-      }
+        description:
+          "Beratung für Web-Öko-Design, Leistungsoptimierung und Audit bestehender Websites.",
+      },
     ],
     values: [
-      { 
-        title: "Leistung", 
-        description: "Schnelle Websites, die ein besseres Benutzererlebnis bieten und weniger Energie verbrauchen."
+      {
+        title: "Leistung",
+        description:
+          "Schnelle Websites, die ein besseres Benutzererlebnis bieten und weniger Energie verbrauchen.",
       },
-      { 
-        title: "Einfachheit", 
-        description: "Effektive Lösungen ohne unnötige Komplexität, die langfristig leicht zu warten sind."
+      {
+        title: "Einfachheit",
+        description:
+          "Effektive Lösungen ohne unnötige Komplexität, die langfristig leicht zu warten sind.",
       },
-      { 
-        title: "Umweltverantwortung", 
-        description: "Ein Design, das den CO2-Fußabdruck Ihrer Webprojekte minimiert."
+      {
+        title: "Umweltverantwortung",
+        description:
+          "Ein Design, das den CO2-Fußabdruck Ihrer Webprojekte minimiert.",
       },
-      { 
-        title: "Autonomie", 
-        description: "Websites, die Sie leicht weiterentwickeln können, ohne komplexe Abhängigkeiten."
-      }
+      {
+        title: "Autonomie",
+        description:
+          "Websites, die Sie leicht weiterentwickeln können, ohne komplexe Abhängigkeiten.",
+      },
     ],
     projectsTitle: "Aktuelle Projekte",
     projectButton: "Projekt ansehen",
@@ -217,16 +307,43 @@ const content = {
     projects: {
       esport: {
         title: "E-Sport-Anwendung mit Chat (2025)",
-        description: "E-Sport-Eventmanagement-Plattform mit einem Echtzeit-Chat-System über WebSocket und HTMX.",
-        techs: "Astro, HTMX, WebSocket, Express, PostgreSQL"
+        description:
+          "E-Sport-Eventmanagement-Plattform mit einem Echtzeit-Chat-System über WebSocket und HTMX.",
+        techs: "Astro, HTMX, WebSocket, Express, PostgreSQL",
       },
       library: {
         title: "Objektbibliothek - Quimper (2024)",
-        description: "Schaufenster-Website für eine gemeinschaftliche Objektbibliothek, gestaltet in Zusammenarbeit mit einer audiovisuellen Designerin.",
-        techs: "Astro, Alpine.js, TypeScript, GitHub Actions"
-      }
+        description:
+          "Schaufenster-Website für eine gemeinschaftliche Objektbibliothek, gestaltet in Zusammenarbeit mit einer audiovisuellen Designerin.",
+        techs: "Astro, Alpine.js, TypeScript, GitHub Actions",
+      },
     },
     imageAlt: "Foto von Josselin HANEL",
+    motivationTitle: "Was mich antreibt",
+    motivationIntro:
+      "Ich glaube an ein Web, das Leistung, Eleganz und Umweltbewusstsein vereint. Mein Ansatz beruht auf diesen Prinzipien:",
+    motivationPrinciples: [
+      {
+        title: "Technische Intelligenz",
+        description:
+          "Die grundlegenden Webtechnologien haben sich in den letzten Jahren erheblich weiterentwickelt, aber viele Unternehmen und Entwickler verwenden aus Gewohnheit weiterhin schwere Bibliotheken. Ich bevorzuge es, moderne Browser-Funktionen zu nutzen, um visuelle Effekte und flüssige Interaktionen zu erstellen, ohne Kompromisse bei der Geschwindigkeit einzugehen.",
+      },
+      {
+        title: "Respekt für Benutzer",
+        description:
+          "Keine aufdringlichen Popups oder unnötigen Banner, die das Surfen unterbrechen. Ein reibungsloses Erlebnis, bei dem die Benutzer die Kontrolle über ihre Navigation und ihre Daten behalten.",
+      },
+      {
+        title: "Durchdachte Leistung",
+        description:
+          "Jedes Designelement hat seinen Zweck, und jeder visuelle Effekt wird optimal implementiert. Das Ergebnis: Websites, die gleichzeitig ästhetisch, schnell und ressourcenschonend sind.",
+      },
+      {
+        title: "Öko-Modus wo es zählt",
+        description:
+          "Dieses Portfolio bietet einen Öko-Modus, der auch bei eingeschränkter Verbindung Zugriff auf Inhalte ermöglicht. Obwohl dieser Ansatz nicht für alle Projekte relevant ist (insbesondere visuelle), sollte er für wesentliche Dienste und Informationswebsites weiter verbreitet sein.",
+      },
+    ],
   },
 };
 
@@ -300,13 +417,28 @@ const isEcoMode = true;
     </section>
 
     <!-- Section valeurs simplifiée -->
-    <section class="py-6 border-b border-secondary mb-6">
+    <section class="pt-6 mb-4">
       <h2 class="text-xl font-bold mb-3 text-accent">Mon approche</h2>
       <ul class="list-disc pl-5">
         {
           t.values.map((value) => (
             <li class="mb-3">
               <strong>{value.title}</strong>: {value.description}
+            </li>
+          ))
+        }
+      </ul>
+    </section>
+
+    <!-- "Ce qui m'anime" -->
+    <section class="py-6 border-b border-secondary mb-6">
+      <h2 class="text-xl font-bold mb-3">{t.motivationTitle}</h2>
+      <p class="mb-4 max-w-5xl">{t.motivationIntro}</p>
+      <ul class="list-disc pl-5">
+        {
+          t.motivationPrinciples.map((principle) => (
+            <li class="mb-3 max-w-3xl">
+              <strong>{principle.title}</strong>: {principle.description}
             </li>
           ))
         }
@@ -321,7 +453,10 @@ const isEcoMode = true;
           <h3 class="font-medium mb-1">{t.projects.esport.title}</h3>
           <p class="mb-2">{t.projects.esport.description}</p>
           <div class="text-sm text-text-muted">{t.projects.esport.techs}</div>
-          <a href={`/${lang}/esport/eco`} class="text-link text-sm mt-2 inline-block">
+          <a
+            href={`/${lang}/esport/eco`}
+            class="text-link text-sm mt-2 inline-block"
+          >
             {t.projectButton}
           </a>
         </div>
@@ -329,7 +464,10 @@ const isEcoMode = true;
           <h3 class="font-medium mb-1">{t.projects.library.title}</h3>
           <p class="mb-2">{t.projects.library.description}</p>
           <div class="text-sm text-text-muted">{t.projects.library.techs}</div>
-          <a href={`/${lang}/objet/eco`} class="text-link text-sm mt-2 inline-block">
+          <a
+            href={`/${lang}/objet/eco`}
+            class="text-link text-sm mt-2 inline-block"
+          >
             {t.projectButton}
           </a>
         </div>
