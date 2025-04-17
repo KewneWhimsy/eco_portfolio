@@ -92,7 +92,7 @@ const content = {
       },
       {
         title: "Le mode éco comme option pertinente",
-        description: "Ce portfolio propose un mode éco qui permet d'accéder au contenu même avec une connexion limitée. Si cette approche n'est pas pertinente pour tous les projets (notamment visuels), elle devrait être plus répandue pour les services essentiels et sites d'information."
+        description: "Ce portfolio propose un mode éco qui permet d'accéder au contenu même avec une connexion limitée. Si cette approche n'est pas pertinente pour tous les projets (notamment visuels), elle devrait être plus répandue pour les <span class='font-bold'>services essentiels</span> et <span class='font-bold'>sites d'information</span>."
       }
     ],
     didYouKnowTitle: "Le saviez-vous ?",
@@ -186,7 +186,7 @@ const content = {
       },
       {
         title: "Eco mode where it matters",
-        description: "This portfolio offers an eco mode that provides access to content even with limited connectivity. While this approach isn't relevant for all projects (particularly visual ones), it should be more widespread for essential services and information websites."
+        description: "This portfolio offers an eco mode that provides access to content even with limited connectivity. While this approach isn't relevant for all projects (particularly visual ones), it should be more widespread for <span class='font-bold'>essential services</span> and <span class='font-bold'>information websites</span>."
       }
     ],
     didYouKnowTitle: "Did you know?",
@@ -280,7 +280,7 @@ const content = {
       },
       {
         title: "Öko-Modus wo es zählt",
-        description: "Dieses Portfolio bietet einen Öko-Modus, der auch bei eingeschränkter Verbindung Zugriff auf Inhalte ermöglicht. Obwohl dieser Ansatz nicht für alle Projekte relevant ist (insbesondere visuelle), sollte er für wesentliche Dienste und Informationswebsites weiter verbreitet sein."
+        description: "Dieses Portfolio bietet einen Öko-Modus, der auch bei eingeschränkter Verbindung Zugriff auf Inhalte ermöglicht. Obwohl dieser Ansatz nicht für alle Projekte relevant ist (insbesondere visuelle), sollte er für <span class='font-bold'>wesentliche Dienste</span> und <span class='font-bold'>Informationswebsites weiter verbreitet sein</span>."
       }
     ],
     didYouKnowTitle: "Wussten Sie schon?",
@@ -452,9 +452,7 @@ const featuredProjects = [
             {t.motivationPrinciples.map((principle, index) => (
               <li class="flex items-start">
                 <span class="text-accent font-bold mr-2">{index + 1}.</span>
-                <p>
-                  <strong>{principle.title}</strong>: {principle.description}
-                </p>
+                <p set:html={`<strong class="font-bold">${principle.title}</strong>: ${principle.description}`}></p>
               </li>
             ))}
           </ul>
@@ -607,9 +605,10 @@ const featuredProjects = [
             observer.unobserve(entry.target);
           }
         });
-      }, {
-          rootMargin: '0px 0px -5% 0px', // Ajustez cette valeur pour contrôler quand l'animation commence
-          threshold: 0.1,
+      }, 
+      {
+        rootMargin: '0px 0px -5% 0px', // Ajustez cette valeur pour contrôler quand l'animation commence
+        threshold: 0.1,
       });
 
       // Observez toutes les sections avec les classes 'fade-in' ou contenant des blocs 'scale-up'
@@ -617,6 +616,5 @@ const featuredProjects = [
         observer.observe(section);
       });
     });
-
   </script>
 </Layout>

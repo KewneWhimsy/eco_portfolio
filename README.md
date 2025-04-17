@@ -120,3 +120,9 @@ Le mode éco fonctionne en ayant des routes séparées avec `/eco` dans le chemi
 ---
 
 Ce projet s'engage à suivre des pratiques de développement web durables et vise à démontrer comment nous pouvons créer des sites web beaux et fonctionnels tout en minimisant l'impact environnemental.
+
+## License
+This project is licensed under the Hippocratic License 3.0.
+You are free to use, modify, and share this work — as long as you’re not using it to build surveillance tools, spread misinformation, or generally ruin the world.
+
+Let’s keep the web fast, accessible, and a little bit more friendly for Gaïa and beyond.
