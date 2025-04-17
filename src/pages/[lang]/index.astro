@@ -23,8 +23,6 @@ const content = {
   fr: {
     title: "Josselin HANEL - Développeur Web Full Stack",
     description: "Développeur web éco-responsable spécialisé dans la création de sites et applications performants, modernes et durables. Basé à Rennes, disponible à Nantes, Paris, Berlin et en télétravail.",
-    heroTitle: "Sites Web <span class='text-light whitespace-nowrap'>Modernes et Performants</span>",
-    heroSubtitle: "Développeur Web Full Stack",
     heroText: "Je conçois des sites et applications web qui chargent vite, fonctionnent partout, et optimisés pour être bien référencés sur Google. Le tout avec une approche éco-responsable.",
     values: [
       { 
@@ -119,8 +117,6 @@ const content = {
   en: {
     title: "Josselin HANEL - Full Stack Web Developer",
     description: "Eco-friendly web developer specialized in creating high-performance, modern and sustainable websites and applications. Based in Rennes(France), available in Nantes, Paris, Berlin and remote work.",
-    heroTitle: "<span class='text-light whitespace-nowrap'>Modern and Performant</span> Websites",
-    heroSubtitle: "Full Stack Web Developer",
     heroText: "I design websites and web applications that load quickly, work everywhere, and are optimized for good Google rankings. All with an eco-friendly approach.",
     values: [
       { 
@@ -215,8 +211,6 @@ const content = {
   de: {
     title: "Josselin HANEL - Full-Stack Webentwickler",
     description: "Umweltfreundlicher Webentwickler, spezialisiert auf die Erstellung leistungsstarker, moderner und nachhaltiger Websites und Anwendungen. Mit Sitz in Rennes(Frankreich) und verfügbar in Nantes, Paris, Berlin und für Remote-Arbeit.",
-    heroTitle: "<span class='text-light whitespace-nowrap'>Moderne und Leistungsstarke</span> Webseiten",
-    heroSubtitle: "Full-Stack Webentwickler",
     heroText: "Ich entwickle Websites und Webanwendungen, die schnell laden, überall funktionieren und für gute Google-Rankings optimiert sind. Alles mit einem umweltfreundlichen Ansatz.",
     values: [
       { 
@@ -374,26 +368,25 @@ const featuredProjects = [
     <section class="py-8 md:py-12">
       <div class="flex flex-col md:flex-row gap-8">
         <div class="md:w-2/3">
-          <p class="text-accent mb-2 font-medium">{t.heroSubtitle}</p>
           <h1 class="text-3xl md:text-4xl font-bold mb-4">
             <div class="flex flex-wrap items-baseline gap-2">
               <div class="typewriter-part1">
                 <span class="typewriter-text-base">
                   {lang === "fr" 
-                    ? "Sites Web"
+                    ? "Développeur Web"
                     : lang === "en" 
-                      ? "Modern" 
-                      : "Moderne"
+                      ? "Full Stack" 
+                      : "Full Stack"
                   }
                 </span>
               </div>
               <div class="typewriter-part2">
                 <span class="typewriter-text-highlight text-light">
                   {lang === "fr" 
-                    ? "Modernes et Performants"
+                    ? "Full Stack"
                     : lang === "en" 
-                      ? "& Performant Websites" 
-                      : "& Leistungsstarke Webseiten"
+                      ? "Web Developer" 
+                      : "Webentwickler"
                   }
                 </span>
               </div>
