@@ -4,6 +4,7 @@ import "../styles/global.css";
 import Header from "./header.astro";
 import Footer from "./footer.astro";
 import { ClientRouter } from "astro:transitions";
+import HreflangLinks from "../components/HreflangLinks.astro";
 
 // Props du composant
 export interface Props {
@@ -337,6 +338,9 @@ const { htmlLang, ogLocale } =
 
     <!-- Préchargement/préconnexion pour performances -->
     <link rel="preconnect" href="https://cloudflare.com" crossorigin />
+
+    <!-- Balises hreflang pour le SEO multilingue -->
+    <HreflangLinks />
 
     <!-- Pas de JavaScript pour la détection du mode éco, on utilise uniquement l'URL -->
 

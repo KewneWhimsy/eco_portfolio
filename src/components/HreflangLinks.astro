@@ -1,0 +1,44 @@
+---
+// Obtenir l'URL actuelle
+const { pathname } = Astro.url;
+
+// Extraire la partie du chemin sans le préfixe de langue
+function getPathWithoutLang(path: string): string {
+  return path.replace(/^\/[a-z]{2}/, '') || '/';
+}
+
+const pathWithoutLang = getPathWithoutLang(pathname);
+
+// Domaine du site
+const siteUrl = import.meta.env.SITE || 'https://votredomaine.com'; // Remplacer par votre domaine
+
+// Les langues supportées
+const langs = ['fr', 'en', 'de'] as const;
+type Lang = typeof langs[number];
+
+const langCodes: Record<Lang, string> = {
+  'fr': 'fr-FR',
+  'en': 'en-US',
+  'de': 'de-DE'
+};
+
+// Déterminer la langue actuelle
+const langMatch = pathname.match(/^\/([a-z]{2})(\/|$)/);
+const currentLang = langMatch ? langMatch[1] : 'fr';
+
+const isEcoMode = pathname.includes('/eco');
+---
+
+<!-- Balise hreflang pour chaque langue -->
+{langs.map(lang => {
+  // Construire l'URL pour cette langue
+  const langPath = `/${lang}${pathWithoutLang}${isEcoMode ? '/eco' : ''}`;
+  const fullUrl = `${siteUrl}${langPath}`;
+  
+  return (
+    <link rel="alternate" hreflang={langCodes[lang]} href={fullUrl} />
+  );
+})}
+
+<!-- URL par défaut (x-default) -->
+<link rel="alternate" hreflang="x-default" href={`${siteUrl}/fr${pathWithoutLang}${isEcoMode ? '/eco' : ''}`} />

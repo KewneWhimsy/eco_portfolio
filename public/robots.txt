@@ -1,0 +1,11 @@
+# robots.txt pour le portfolio de Josselin HANEL
+User-agent: *
+Allow: /
+
+# Permettre l'indexation dans toutes les langues
+Allow: /fr/
+Allow: /en/
+Allow: /de/
+
+# Sitemap (à ajouter quand vous en aurez un)
+# Sitemap: https://votredomaine.com/sitemap.xml
