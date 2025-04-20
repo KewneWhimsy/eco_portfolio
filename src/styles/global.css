@@ -358,21 +358,21 @@ html.eco-mode button {
   }
 }
 
-/* Styles pour le toggle mode technique/simplifié */
-/* Par défaut - montrer descriptions techniques, cacher descriptions simples */
+/* Styles simplifiés pour le toggle */
+/* Par défaut - montrer descriptions simples, cacher descriptions techniques */
 .technical-desc {
-  display: block;
+  display: none;
 }
 .simple-desc {
-  display: none;
+  display: block;
 }
 
-/* État inversé quand body a la classe .simple-mode */
-body.simple-mode .technical-desc {
-  display: none;
-}
-body.simple-mode .simple-desc {
+/* État inversé quand body a la classe .tech-mode */
+body.tech-mode .technical-desc {
   display: block;
+}
+body.tech-mode .simple-desc {
+  display: none;
 }
 
 /* Style du toggle et animation CSS-only */
@@ -380,7 +380,7 @@ body.simple-mode .simple-desc {
   transition: transform 0.3s ease;
   position: absolute;
   top: 50%;
-  left: 4px; /* Position initiale ajustée */
+  left: 4px;
   transform: translateY(-50%);
   width: 18px;
   height: 18px;
@@ -388,37 +388,14 @@ body.simple-mode .simple-desc {
   border-radius: 50%;
 }
 
-/* Styles pour les états du toggle */
-#tech-toggle:not(:checked) + label .tech-mode {
-  color: var(--color-accent);
-}
-#tech-toggle:not(:checked) + label .simple-mode {
-  color: var(--color-text-muted);
+
+
+/* Animation du dot avec CSS uniquement et styles pour état actif */
+#tech-toggle:checked + label .toggle-dot {
+  transform: translate(28px, -50%);
 }
 
 #tech-toggle:checked + label .tech-mode {
-  color: var(--color-text-muted);
-}
-#tech-toggle:checked + label .simple-mode {
   color: var(--color-accent);
 }
 
-/* Animation du dot avec CSS uniquement */
-#tech-toggle:checked + label .toggle-dot {
-  transform: translate(28px, -50%); /* Combine le déplacement horizontal et le centrage vertical */
-}
-
-/* Styles responsifs pour le toggle */
-@media (max-width: 768px) {
-  .inline-flex.items-center {
-    width: 100%;
-    justify-content: center;
-    margin-top: 1rem;
-  }
-}
-
-/* S'assurer que le conteneur est bien positionné */
-.relative.w-14.h-7 {
-  position: relative;
-  overflow: hidden; /* Empêche le dot de déborder */
-}
