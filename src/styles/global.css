@@ -378,6 +378,14 @@ body.simple-mode .simple-desc {
 /* Style du toggle et animation CSS-only */
 .toggle-dot {
   transition: transform 0.3s ease;
+  position: absolute;
+  top: 50%;
+  left: 4px; /* Position initiale ajustée */
+  transform: translateY(-50%);
+  width: 18px;
+  height: 18px;
+  background-color: var(--color-accent);
+  border-radius: 50%;
 }
 
 /* Styles pour les états du toggle */
@@ -397,7 +405,7 @@ body.simple-mode .simple-desc {
 
 /* Animation du dot avec CSS uniquement */
 #tech-toggle:checked + label .toggle-dot {
-  transform: translateX(28px);
+  transform: translate(28px, -50%); /* Combine le déplacement horizontal et le centrage vertical */
 }
 
 /* Styles responsifs pour le toggle */
@@ -407,4 +415,10 @@ body.simple-mode .simple-desc {
     justify-content: center;
     margin-top: 1rem;
   }
+}
+
+/* S'assurer que le conteneur est bien positionné */
+.relative.w-14.h-7 {
+  position: relative;
+  overflow: hidden; /* Empêche le dot de déborder */
 }
