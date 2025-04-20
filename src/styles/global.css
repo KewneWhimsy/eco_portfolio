@@ -375,12 +375,19 @@ body.simple-mode .simple-desc {
   display: block;
 }
 
-/* Style visuel du toggle */
-#tech-toggle:checked + label .toggle-dot {
-  transform: translateX(20px);
+/* Style du toggle et animation CSS-only */
+.toggle-dot {
+  transition: transform 0.3s ease;
 }
 
-/* Style des textes du toggle */
+/* Styles pour les états du toggle */
+#tech-toggle:not(:checked) + label .tech-mode {
+  color: var(--color-accent);
+}
+#tech-toggle:not(:checked) + label .simple-mode {
+  color: var(--color-text-muted);
+}
+
 #tech-toggle:checked + label .tech-mode {
   color: var(--color-text-muted);
 }
@@ -388,10 +395,16 @@ body.simple-mode .simple-desc {
   color: var(--color-accent);
 }
 
-/* Animation des transitions */
-.toggle-dot {
-  transition: transform 0.3s ease;
+/* Animation du dot avec CSS uniquement */
+#tech-toggle:checked + label .toggle-dot {
+  transform: translateX(28px);
 }
-.tech-mode, .simple-mode {
-  transition: color 0.3s ease;
+
+/* Styles responsifs pour le toggle */
+@media (max-width: 768px) {
+  .inline-flex.items-center {
+    width: 100%;
+    justify-content: center;
+    margin-top: 1rem;
+  }
 }
