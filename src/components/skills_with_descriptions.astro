@@ -1,22 +1,26 @@
 ---
 // src/components/skills_with_descriptions.astro
+// src/components/skills_with_descriptions.astro
 
-// Propriétés attendues - Mise à jour pour inclure l'emoji
 export interface Props {
   lang: 'fr' | 'en' | 'de';
   skills: Array<{
     category: string;
-    emoji?: string; // Ajout de la propriété emoji optionnelle
+    emoji?: string;
     items: string[];
   }>;
+  mode?: 'technical' | 'simple';  // Nouveau paramètre avec valeur par défaut
 }
 
-const { lang, skills } = Astro.props;
+const { lang, skills, mode = 'technical' } = Astro.props;
 
 // Définition du type pour les descriptions
 type DescriptionsByLang = {
   [lang: string]: {
-    [skill: string]: string;
+    [skill: string]: {
+      technical: string;
+      simple: string;
+    }
   };
 };
 
@@ -24,133 +28,335 @@ type DescriptionsByLang = {
 const descriptions: DescriptionsByLang = {
   fr: {
     // Frontend
-    'Astro': 'Framework web agnostique générant principalement du HTML statique, offrant un excellent SEO naturel et des performances optimales sans imposer de choix technologiques.',
-    'CSS Pro': 'Techniques CSS avancées pour un design responsive et des animations fluides, limitant le recours au JavaScript coûteux en ressources.',
-    'TypeScript': 'Sur-ensemble typé de JavaScript pour un code plus robuste et maintenable, réduisant les erreurs et la dette technique.',
-    'HTMX': 'Bibliothèque ultra-légère (~14kb) ajoutant des capacités AJAX et WebSocket directement au HTML. Un simple script suffit pour l\'intégrer à la volée quand le besoin s\'en fait sentir.',
-    'Alpine.js': 'Micro-framework JavaScript qui brille précisément là où le CSS moderne ne suffit plus. Parfait pour gérer les états sans recourir à un framework lourd, tout en gardant une empreinte minimale.',
-    'Tailwind': 'Framework CSS utilitaire qui facilite énormément le travail collaboratif et la gestion du responsive. Sa purge CSS en production garantit des feuilles de style ultra-optimisées.',
+    'Astro': {
+      technical: 'Framework web agnostique générant principalement du HTML statique, offrant un excellent SEO naturel et des performances optimales sans imposer de choix technologiques.',
+      simple: 'Outil qui crée des sites web rapides et faciles à trouver sur Google, sans vous forcer à utiliser une technologie particulière.'
+    },
+    'CSS Pro': {
+      technical: 'Techniques CSS avancées pour un design responsive et des animations fluides, limitant le recours au JavaScript coûteux en ressources.',
+      simple: 'Techniques pour créer des sites qui s\'adaptent à tous les écrans et avec des animations légères qui ne ralentissent pas votre appareil.'
+    },
+    'TypeScript': {
+      technical: 'Sur-ensemble typé de JavaScript pour un code plus robuste et maintenable, réduisant les erreurs et la dette technique.',
+      simple: 'Une version améliorée de JavaScript qui aide à éviter les bugs et facilite le travail en équipe.'
+    },
+    'HTMX': {
+      technical: 'Bibliothèque ultra-légère (~14kb) ajoutant des capacités AJAX et WebSocket directement au HTML. Un simple script suffit pour l\'intégrer à la volée quand le besoin s\'en fait sentir.',
+      simple: 'Un petit outil qui rend les pages web interactives sans alourdir le site.'
+    },
+    'Alpine.js': {
+      technical: 'Micro-framework JavaScript qui brille précisément là où le CSS moderne ne suffit plus. Parfait pour gérer les états sans recourir à un framework lourd, tout en gardant une empreinte minimale.',
+      simple: 'Un outil léger pour ajouter de l\'interactivité à votre site sans le ralentir.'
+    },
+    'Tailwind': {
+      technical: 'Framework CSS utilitaire qui facilite énormément le travail collaboratif et la gestion du responsive. Sa purge CSS en production garantit des feuilles de style ultra-optimisées.',
+      simple: 'Système qui permet de créer rapidement des designs adaptés à tous les écrans, tout en gardant le site léger.'
+    },
     
     // Backend
-    'Express': 'Framework Node.js minimaliste, rapide à mettre en place et économe en ressources sous faible charge, idéal pour des APIs simples à moyennement complexes.',
-    'WebSocket': 'Protocole de communication bidirectionnelle idéal pour les applications interactives, bien plus économe en ressources que les requêtes HTTP répétées.',
-    'Elixir': 'Langage fonctionnel conçu pour la concurrence, offrant une meilleure scalabilité et performance que Node.js pour des charges importantes.',
-    'Phoenix': 'Framework Elixir haute performance incluant LiveView, permettant de créer des interfaces temps réel sans JavaScript côté client.',
+    'Express': {
+      technical: 'Framework Node.js minimaliste, rapide à mettre en place et économe en ressources sous faible charge, idéal pour des APIs simples à moyennement complexes.',
+      simple: 'Un outil simple et efficace pour créer la partie invisible du site qui traite les données.'
+    },
+    'WebSocket': {
+      technical: 'Protocole de communication bidirectionnelle idéal pour les applications interactives, bien plus économe en ressources que les requêtes HTTP répétées.',
+      simple: 'Technologie qui permet aux sites web de communiquer en temps réel, comme pour les chats ou les notifications instantanées.'
+    },
+    'Elixir': {
+      technical: 'Langage fonctionnel conçu pour la concurrence, offrant une meilleure scalabilité et performance que Node.js pour des charges importantes.',
+      simple: 'Un langage de programmation spécialement conçu pour gérer de nombreux utilisateurs simultanément sans ralentir.'
+    },
+    'Phoenix': {
+      technical: 'Framework Elixir haute performance incluant LiveView, permettant de créer des interfaces temps réel sans JavaScript côté client.',
+      simple: 'Outil qui permet de créer des sites interactifs en temps réel sans alourdir la page pour l\'utilisateur.'
+    },
     
     // Bases de données
-    'PostgreSQL': 'SGBD relationnel open-source puissant avec un écosystème d\'extensions quasi infini, offrant flexibilité et performances pour tout type de projet.',
-    'MongoDB': 'Base de données NoSQL orientée documents permettant une flexibilité des données et des schémas adaptés aux besoins réels.',
-    'PostgREST': 'Transforme une BDD Postgres en API REST instantanément. Idéal pour des CRUD simples et soulage le backend des tâches répétitives. Dans certains cas, permet même de se passer complètement de backend pour une communication front/BDD directe et sécurisée.',
-    'Ecto': 'Bibliothèque Elixir pour l\'interaction avec les bases de données, optimisant les requêtes pour des performances maximales.',
+    'PostgreSQL': {
+      technical: 'SGBD relationnel open-source puissant avec un écosystème d\'extensions quasi infini, offrant flexibilité et performances pour tout type de projet.',
+      simple: 'Une base de données fiable et polyvalente qui stocke vos informations de façon organisée et sécurisée.'
+    },
+    'MongoDB': {
+      technical: 'Base de données NoSQL orientée documents permettant une flexibilité des données et des schémas adaptés aux besoins réels.',
+      simple: 'Une base de données flexible qui s\'adapte facilement aux changements et stocke des informations variées.'
+    },
+    'PostgREST': {
+      technical: 'Transforme une BDD Postgres en API REST instantanément. Idéal pour des CRUD simples et soulage le backend des tâches répétitives. Dans certains cas, permet même de se passer complètement de backend pour une communication front/BDD directe et sécurisée.',
+      simple: 'Un outil qui permet d\'accéder facilement et en toute sécurité aux données stockées, sans avoir à écrire beaucoup de code.'
+    },
+    'Ecto': {
+      technical: 'Bibliothèque Elixir pour l\'interaction avec les bases de données, optimisant les requêtes pour des performances maximales.',
+      simple: 'Un outil qui permet de communiquer efficacement avec les bases de données tout en garantissant de bonnes performances.'
+    },
     
     // Outils
-    'Git': 'Essentiel pour tout développement collaboratif, permet de garder une trace claire des modifications et facilite les contributions simultanées sur un même projet.',
-    'Docker': 'Assure une reproductibilité parfaite des environnements de dev entre les membres d\'une équipe. Docker Compose simplifie l\'orchestration de services multiples, et Swarm permet un déploiement scalable en production.',
-    'VS Code': 'Éditeur de code moderne avec un bon équilibre entre légèreté et fonctionnalités. Son système d\'extensions permet de l\'adapter précisément à chaque projet.',
-    'Lighthouse': 'Outil d\'audit essentiel pour mesurer et améliorer objectivement les performances web et l\'impact environnemental.',
+    'Git': {
+      technical: 'Essentiel pour tout développement collaboratif, permet de garder une trace claire des modifications et facilite les contributions simultanées sur un même projet.',
+      simple: 'Un système qui permet à plusieurs personnes de travailler sur le même projet sans conflit et de suivre toutes les modifications.'
+    },
+    'Docker': {
+      technical: 'Assure une reproductibilité parfaite des environnements de dev entre les membres d\'une équipe. Docker Compose simplifie l\'orchestration de services multiples, et Swarm permet un déploiement scalable en production.',
+      simple: 'Un outil qui garantit que le site fonctionnera partout de la même façon, peu importe où et comment il est installé.'
+    },
+    'VS Code': {
+      technical: 'Éditeur de code moderne avec un bon équilibre entre légèreté et fonctionnalités. Son système d\'extensions permet de l\'adapter précisément à chaque projet.',
+      simple: 'Un éditeur de texte intelligent pour les développeurs, personnalisable selon les besoins du projet.'
+    },
+    'Lighthouse': {
+      technical: 'Outil d\'audit essentiel pour mesurer et améliorer objectivement les performances web et l\'impact environnemental.',
+      simple: 'Un outil qui analyse votre site et suggère des améliorations pour le rendre plus rapide et plus écologique.'
+    },
 
     // Méthodologies
-    'Accessibilité': 'Conception d\'interfaces compatibles avec tous les appareils, navigateurs et modes d\'utilisation. Élargit l\'audience potentielle et assure une expérience utilisateur inclusive.',
-    'Performance': 'Optimisation qui réduit les temps de chargement et l\'utilisation des ressources. Une meilleure UX se traduit directement par une réduction des coûts d\'infrastructure et une augmentation des conversions.',
-    'Éco-conception': 'Approche de développement visant à optimiser chaque étape du cycle de vie des services numériques, conciliant performance et sobriété.',
-    'UX/UI': 'Interfaces intuitives qui répondent aux besoins réels des utilisateurs. Une bonne conception UX/UI réduit les frictions et améliore l\'engagement des utilisateurs.'
+    'Accessibilité': {
+      technical: 'Conception d\'interfaces compatibles avec tous les appareils, navigateurs et modes d\'utilisation. Élargit l\'audience potentielle et assure une expérience utilisateur inclusive.',
+      simple: 'Rendre le site utilisable par tous, y compris les personnes handicapées ou celles utilisant des technologies d\'assistance.'
+    },
+    'Performance': {
+      technical: 'Optimisation qui réduit les temps de chargement et l\'utilisation des ressources. Une meilleure UX se traduit directement par une réduction des coûts d\'infrastructure et une augmentation des conversions.',
+      simple: 'Faire en sorte que le site se charge rapidement et fonctionne bien, même sur des appareils ou connexions modestes.'
+    },
+    'Éco-conception': {
+      technical: 'Approche de développement visant à optimiser chaque étape du cycle de vie des services numériques, conciliant performance et sobriété.',
+      simple: 'Créer des sites qui consomment moins d\'énergie et de ressources, pour un impact environnemental réduit.'
+    },
+    'UX/UI': {
+      technical: 'Interfaces intuitives qui répondent aux besoins réels des utilisateurs. Une bonne conception UX/UI réduit les frictions et améliore l\'engagement des utilisateurs.',
+      simple: 'Concevoir des sites faciles et agréables à utiliser, qui répondent réellement aux besoins des visiteurs.'
+    }
   },
   en: {
     // Frontend
-    'Astro': 'Modern, framework-agnostic web builder generating mostly static HTML, providing excellent natural SEO and optimal performance without imposing technology choices.',
-    'CSS Pro': 'Advanced CSS techniques for responsive design and smooth animations, reducing reliance on resource-intensive JavaScript.',
-    'TypeScript': 'Typed superset of JavaScript for more robust and maintainable code, reducing errors and technical debt.',
-    'HTMX': 'Ultra-lightweight library (~14kb) adding AJAX and WebSocket capabilities directly to HTML. A simple script is all it takes to integrate it on the fly when needed.',
-    'Alpine.js': 'Micro JavaScript framework that shines precisely where modern CSS falls short. Perfect for state management without resorting to a heavy framework, while maintaining a minimal footprint.',
-    'Tailwind': 'Utility CSS framework that greatly facilitates collaborative work and responsive design management. Its CSS purging in production guarantees ultra-optimized stylesheets.',
+    'Astro': {
+      technical: 'Modern, framework-agnostic web builder generating mostly static HTML, providing excellent natural SEO and optimal performance without imposing technology choices.',
+      simple: 'A tool that creates fast websites easily found on Google, without forcing you to use any particular technology.'
+    },
+    'CSS Pro': {
+      technical: 'Advanced CSS techniques for responsive design and smooth animations, reducing reliance on resource-intensive JavaScript.',
+      simple: 'Techniques for creating websites that adapt to all screens with smooth animations that don\'t slow down your device.'
+    },
+    'TypeScript': {
+      technical: 'Typed superset of JavaScript for more robust and maintainable code, reducing errors and technical debt.',
+      simple: 'An improved version of JavaScript that helps prevent bugs and makes teamwork easier.'
+    },
+    'HTMX': {
+      technical: 'Ultra-lightweight library (~14kb) adding AJAX and WebSocket capabilities directly to HTML. A simple script is all it takes to integrate it on the fly when needed.',
+      simple: 'A small tool that makes web pages interactive without making the site heavier.'
+    },
+    'Alpine.js': {
+      technical: 'Micro JavaScript framework that shines precisely where modern CSS falls short. Perfect for state management without resorting to a heavy framework, while maintaining a minimal footprint.',
+      simple: 'A lightweight tool for adding interactivity to your site without slowing it down.'
+    },
+    'Tailwind': {
+      technical: 'Utility CSS framework that greatly facilitates collaborative work and responsive design management. Its CSS purging in production guarantees ultra-optimized stylesheets.',
+      simple: 'System that allows you to quickly create designs that adapt to all screens, while keeping the site lightweight.'
+    },
     
     // Backend
-    'Express': 'Minimalist Node.js framework, quick to implement and resource-efficient under light loads, ideal for simple to moderately complex APIs.',
-    'WebSocket': 'Bidirectional communication protocol ideal for interactive applications, much more resource-efficient than repeated HTTP requests.',
-    'Elixir': 'Functional language designed for concurrency, offering better scalability and performance than Node.js for heavy workloads.',
-    'Phoenix': 'High-performance Elixir framework featuring LiveView, enabling real-time interfaces without client-side JavaScript.',
+    'Express': {
+      technical: 'Minimalist Node.js framework, quick to implement and resource-efficient under light loads, ideal for simple to moderately complex APIs.',
+      simple: 'A simple and efficient tool for creating the invisible part of the site that processes data.'
+    },
+    'WebSocket': {
+      technical: 'Bidirectional communication protocol ideal for interactive applications, much more resource-efficient than repeated HTTP requests.',
+      simple: 'Technology that allows websites to communicate in real-time, like for chats or instant notifications.'
+    },
+    'Elixir': {
+      technical: 'Functional language designed for concurrency, offering better scalability and performance than Node.js for heavy workloads.',
+      simple: 'A programming language specially designed to handle many users simultaneously without slowing down.'
+    },
+    'Phoenix': {
+      technical: 'High-performance Elixir framework featuring LiveView, enabling real-time interfaces without client-side JavaScript.',
+      simple: 'Tool that allows creating interactive sites in real-time without making the page heavier for the user.'
+    },
     
     // Databases
-    'PostgreSQL': 'Powerful open-source relational DBMS with an almost infinite ecosystem of extensions, offering flexibility and performance for any project type.',
-    'MongoDB': 'NoSQL document database enabling data flexibility and schemas adapted to actual needs.',
-    'PostgREST': 'Instantly transforms a Postgres DB into a REST API. Perfect for simple CRUD operations and relieves the backend of repetitive tasks. In some cases, even allows completely bypassing a backend for direct and secure front/DB communication.',
-    'Ecto': 'Elixir library for database interaction, optimizing queries for maximum performance.',
+    'PostgreSQL': {
+      technical: 'Powerful open-source relational DBMS with an almost infinite ecosystem of extensions, offering flexibility and performance for any project type.',
+      simple: 'A reliable and versatile database that stores your information in an organized and secure way.'
+    },
+    'MongoDB': {
+      technical: 'NoSQL document database enabling data flexibility and schemas adapted to actual needs.',
+      simple: 'A flexible database that easily adapts to changes and stores various information types.'
+    },
+    'PostgREST': {
+      technical: 'Instantly transforms a Postgres DB into a REST API. Perfect for simple CRUD operations and relieves the backend of repetitive tasks. In some cases, even allows completely bypassing a backend for direct and secure front/DB communication.',
+      simple: 'A tool that provides easy and secure access to stored data without having to write a lot of code.'
+    },
+    'Ecto': {
+      technical: 'Elixir library for database interaction, optimizing queries for maximum performance.',
+      simple: 'A tool that allows efficient communication with databases while ensuring good performance.'
+    },
     
     // Tools
-    'Git': 'Essential for any collaborative development, maintains a clear record of changes and facilitates simultaneous contributions to the same project.',
-    'Docker': 'Ensures perfect reproducibility of dev environments across team members. Docker Compose simplifies orchestration of multiple services, and Swarm enables scalable production deployment.',
-    'VS Code': 'Modern code editor with a good balance between lightweight and features. Its extension system allows precise adaptation to each project.',
-    'Lighthouse': 'Essential audit tool for objectively measuring and improving web performance and environmental impact.',
+    'Git': {
+      technical: 'Essential for any collaborative development, maintains a clear record of changes and facilitates simultaneous contributions to the same project.',
+      simple: 'A system that allows multiple people to work on the same project without conflict and track all changes.'
+    },
+    'Docker': {
+      technical: 'Ensures perfect reproducibility of dev environments across team members. Docker Compose simplifies orchestration of multiple services, and Swarm enables scalable production deployment.',
+      simple: 'A tool that ensures the site will work the same way everywhere, regardless of where and how it\'s installed.'
+    },
+    'VS Code': {
+      technical: 'Modern code editor with a good balance between lightweight and features. Its extension system allows precise adaptation to each project.',
+      simple: 'An intelligent text editor for developers, customizable according to project needs.'
+    },
+    'Lighthouse': {
+      technical: 'Essential audit tool for objectively measuring and improving web performance and environmental impact.',
+      simple: 'A tool that analyzes your site and suggests improvements to make it faster and more environmentally friendly.'
+    },
 
     // Methodologies
-    'Accessibility': 'Designing interfaces compatible with all devices, browsers and usage modes. Expands potential audience and ensures an inclusive user experience.',
-    'Performance': 'Optimization that reduces loading times and resource usage. Better UX directly translates to reduced infrastructure costs and increased conversions.',
-    'Eco-design': 'Development approach aimed at optimizing each step of the digital service lifecycle, balancing performance and efficiency.',
-    'UX/UI': 'Intuitive interfaces that meet the actual needs of users. Good UX/UI design reduces friction and improves user engagement.'
+    'Accessibility': {
+      technical: 'Designing interfaces compatible with all devices, browsers and usage modes. Expands potential audience and ensures an inclusive user experience.',
+      simple: 'Making the site usable by everyone, including people with disabilities or those using assistive technologies.'
+    },
+    'Performance': {
+      technical: 'Optimization that reduces loading times and resource usage. Better UX directly translates to reduced infrastructure costs and increased conversions.',
+      simple: 'Ensuring that the site loads quickly and works well, even on modest devices or connections.'
+    },
+    'Eco-design': {
+      technical: 'Development approach aimed at optimizing each step of the digital service lifecycle, balancing performance and efficiency.',
+      simple: 'Creating sites that consume less energy and resources, for a reduced environmental impact.'
+    },
+    'UX/UI': {
+      technical: 'Intuitive interfaces that meet the actual needs of users. Good UX/UI design reduces friction and improves user engagement.',
+      simple: 'Designing sites that are easy and pleasant to use, genuinely meeting visitor needs.'
+    }
   },
   de: {
     // Frontend
-    'Astro': 'Modernes, framework-agnostisches Web-Tool, das überwiegend statisches HTML generiert und hervorragende natürliche SEO und optimale Leistung bietet, ohne Technologieentscheidungen zu erzwingen.',
-    'CSS Pro': 'Fortgeschrittene CSS-Techniken für responsive Designs und flüssige Animationen, die den Einsatz ressourcenintensiver JavaScript-Lösungen reduzieren.',
-    'TypeScript': 'Typisierte Erweiterung von JavaScript für robusteren und wartbaren Code, reduziert Fehler und technische Schulden.',
-    'HTMX': 'Ultraleichte Bibliothek (~14kb), die AJAX- und WebSocket-Funktionen direkt zum HTML hinzufügt. Ein einfaches Skript genügt, um es bei Bedarf im Flug zu integrieren.',
-    'Alpine.js': 'Micro-JavaScript-Framework, das genau dort glänzt, wo modernes CSS nicht mehr ausreicht. Perfekt für Zustandsverwaltung ohne Rückgriff auf ein schweres Framework, bei minimalem Footprint.',
-    'Tailwind': 'Utility-CSS-Framework, das die Zusammenarbeit und die Verwaltung von Responsive-Design erheblich erleichtert. Die CSS-Bereinigung in der Produktion garantiert ultraoptimierte Stylesheets.',
+    'Astro': {
+      technical: 'Modernes, framework-agnostisches Web-Tool, das überwiegend statisches HTML generiert und hervorragende natürliche SEO und optimale Leistung bietet, ohne Technologieentscheidungen zu erzwingen.',
+      simple: 'Ein Werkzeug, das schnelle Websites erstellt, die leicht auf Google zu finden sind, ohne Sie zu zwingen, eine bestimmte Technologie zu verwenden.'
+    },
+    'CSS Pro': {
+      technical: 'Fortgeschrittene CSS-Techniken für responsive Designs und flüssige Animationen, die den Einsatz ressourcenintensiver JavaScript-Lösungen reduzieren.',
+      simple: 'Techniken zur Erstellung von Websites, die sich an alle Bildschirme anpassen, mit flüssigen Animationen, die Ihr Gerät nicht verlangsamen.'
+    },
+    'TypeScript': {
+      technical: 'Typisierte Erweiterung von JavaScript für robusteren und wartbaren Code, reduziert Fehler und technische Schulden.',
+      simple: 'Eine verbesserte Version von JavaScript, die hilft, Fehler zu vermeiden und die Teamarbeit erleichtert.'
+    },
+    'HTMX': {
+      technical: 'Ultraleichte Bibliothek (~14kb), die AJAX- und WebSocket-Funktionen direkt zum HTML hinzufügt. Ein einfaches Skript genügt, um es bei Bedarf im Flug zu integrieren.',
+      simple: 'Ein kleines Werkzeug, das Webseiten interaktiv macht, ohne die Website zu belasten.'
+    },
+    'Alpine.js': {
+      technical: 'Micro-JavaScript-Framework, das genau dort glänzt, wo modernes CSS nicht mehr ausreicht. Perfekt für Zustandsverwaltung ohne Rückgriff auf ein schweres Framework, bei minimalem Footprint.',
+      simple: 'Ein leichtes Werkzeug, um Ihren Seiten Interaktivität hinzuzufügen, ohne sie zu verlangsamen.'
+    },
+    'Tailwind': {
+      technical: 'Utility-CSS-Framework, das die Zusammenarbeit und die Verwaltung von Responsive-Design erheblich erleichtert. Die CSS-Bereinigung in der Produktion garantiert ultraoptimierte Stylesheets.',
+      simple: 'System, mit dem Sie schnell Designs erstellen können, die sich an alle Bildschirme anpassen und die Website leicht halten.'
+    },
     
     // Backend
-    'Express': 'Minimalistisches Node.js-Framework, schnell zu implementieren und ressourceneffizient bei geringer Last, ideal für einfache bis mittelschwere APIs.',
-    'WebSocket': 'Bidirektionales Kommunikationsprotokoll, ideal für interaktive Anwendungen, deutlich ressourceneffizienter als wiederholte HTTP-Anfragen.',
-    'Elixir': 'Funktionale Sprache für Nebenläufigkeit, die bei hoher Arbeitslast bessere Skalierbarkeit und Leistung als Node.js bietet.',
-    'Phoenix': 'Hochleistungs-Elixir-Framework mit LiveView, das Echtzeit-Schnittstellen ohne clientseitiges JavaScript ermöglicht.',
+    'Express': {
+      technical: 'Minimalistisches Node.js-Framework, schnell zu implementieren und ressourceneffizient bei geringer Last, ideal für einfache bis mittelschwere APIs.',
+      simple: 'Ein einfaches und effizientes Werkzeug zum Erstellen des unsichtbaren Teils der Website, der Daten verarbeitet.'
+    },
+    'WebSocket': {
+      technical: 'Bidirektionales Kommunikationsprotokoll, ideal für interaktive Anwendungen, deutlich ressourceneffizienter als wiederholte HTTP-Anfragen.',
+      simple: 'Technologie, die es Websites ermöglicht, in Echtzeit zu kommunizieren, wie für Chats oder Sofortbenachrichtigungen.'
+    },
+    'Elixir': {
+      technical: 'Funktionale Sprache für Nebenläufigkeit, die bei hoher Arbeitslast bessere Skalierbarkeit und Leistung als Node.js bietet.',
+      simple: 'Eine Programmiersprache, die speziell dafür entwickelt wurde, viele Benutzer gleichzeitig zu verarbeiten, ohne langsamer zu werden.'
+    },
+    'Phoenix': {
+      technical: 'Hochleistungs-Elixir-Framework mit LiveView, das Echtzeit-Schnittstellen ohne clientseitiges JavaScript ermöglicht.',
+      simple: 'Werkzeug, das es ermöglicht, interaktive Websites in Echtzeit zu erstellen, ohne die Seite für den Benutzer zu belasten.'
+    },
     
     // Datenbanken
-    'PostgreSQL': 'Leistungsstarkes Open-Source-Datenbankmanagementsystem mit einem nahezu unendlichen Ökosystem von Erweiterungen, das Flexibilität und Leistung für jeden Projekttyp bietet.',
-    'MongoDB': 'NoSQL-Dokumentendatenbank, die Datenflexibilität und an tatsächliche Bedürfnisse angepasste Schemas ermöglicht.',
-    'PostgREST': 'Verwandelt eine Postgres-DB sofort in eine REST-API. Perfekt für einfache CRUD-Operationen und entlastet das Backend von repetitiven Aufgaben. In manchen Fällen ermöglicht es sogar, ein Backend vollständig zu umgehen für direkte und sichere Front/DB-Kommunikation.',
-    'Ecto': 'Elixir-Bibliothek für Datenbankinteraktion, die Abfragen für maximale Leistung optimiert.',
+    'PostgreSQL': {
+      technical: 'Leistungsstarkes Open-Source-Datenbankmanagementsystem mit einem nahezu unendlichen Ökosystem von Erweiterungen, das Flexibilität und Leistung für jeden Projekttyp bietet.',
+      simple: 'Eine zuverlässige und vielseitige Datenbank, die Ihre Informationen organisiert und sicher speichert.'
+    },
+    'MongoDB': {
+      technical: 'NoSQL-Dokumentendatenbank, die Datenflexibilität und an tatsächliche Bedürfnisse angepasste Schemas ermöglicht.',
+      simple: 'Eine flexible Datenbank, die sich leicht an Änderungen anpasst und verschiedene Informationen speichert.'
+    },
+    'PostgREST': {
+      technical: 'Verwandelt eine Postgres-DB sofort in eine REST-API. Perfekt für einfache CRUD-Operationen und entlastet das Backend von repetitiven Aufgaben. In manchen Fällen ermöglicht es sogar, ein Backend vollständig zu umgehen für direkte und sichere Front/DB-Kommunikation.',
+      simple: 'Ein Werkzeug, das einfachen und sicheren Zugriff auf gespeicherte Daten ermöglicht, ohne viel Code schreiben zu müssen.'
+    },
+    'Ecto': {
+      technical: 'Elixir-Bibliothek für Datenbankinteraktion, die Abfragen für maximale Leistung optimiert.',
+      simple: 'Ein Werkzeug, das eine effiziente Kommunikation mit Datenbanken ermöglicht und gute Leistung gewährleistet.'
+    },
     
     // Werkzeuge
-    'Git': 'Unerlässlich für jede kollaborative Entwicklung, behält eine klare Aufzeichnung der Änderungen bei und erleichtert gleichzeitige Beiträge zum selben Projekt.',
-    'Docker': 'Gewährleistet perfekte Reproduzierbarkeit von Entwicklungsumgebungen im Team. Docker Compose vereinfacht die Orchestrierung mehrerer Dienste, und Swarm ermöglicht skalierbaren Produktionseinsatz.',
-    'VS Code': 'Moderner Code-Editor mit einer guten Balance zwischen Leichtgewicht und Funktionen. Sein Erweiterungssystem ermöglicht eine präzise Anpassung an jedes Projekt.',
-    'Lighthouse': 'Wesentliches Audit-Tool zur objektiven Messung und Verbesserung von Webleistung und Umweltauswirkungen.',
+    'Git': {
+      technical: 'Unerlässlich für jede kollaborative Entwicklung, behält eine klare Aufzeichnung der Änderungen bei und erleichtert gleichzeitige Beiträge zum selben Projekt.',
+      simple: 'Ein System, das es mehreren Personen ermöglicht, ohne Konflikte am selben Projekt zu arbeiten und alle Änderungen zu verfolgen.'
+    },
+    'Docker': {
+      technical: 'Gewährleistet perfekte Reproduzierbarkeit von Entwicklungsumgebungen im Team. Docker Compose vereinfacht die Orchestrierung mehrerer Dienste, und Swarm ermöglicht skalierbaren Produktionseinsatz.',
+      simple: 'Ein Werkzeug, das sicherstellt, dass die Website überall gleich funktioniert, unabhängig davon, wo und wie sie installiert ist.'
+    },
+    'VS Code': {
+      technical: 'Moderner Code-Editor mit einer guten Balance zwischen Leichtgewicht und Funktionen. Sein Erweiterungssystem ermöglicht eine präzise Anpassung an jedes Projekt.',
+      simple: 'Ein intelligenter Texteditor für Entwickler, der je nach Projektanforderungen anpassbar ist.'
+    },
+    'Lighthouse': {
+      technical: 'Wesentliches Audit-Tool zur objektiven Messung und Verbesserung von Webleistung und Umweltauswirkungen.',
+      simple: 'Ein Werkzeug, das Ihre Website analysiert und Verbesserungen vorschlägt, um sie schneller und umweltfreundlicher zu machen.'
+    },
 
     // Methoden
-    'Barrierefreiheit': 'Gestaltung von Schnittstellen, die mit allen Geräten, Browsern und Nutzungsmodi kompatibel sind. Erweitert die potenzielle Zielgruppe und gewährleistet ein inklusives Benutzererlebnis.',
-    'Performance': 'Optimierung, die Ladezeiten und Ressourcennutzung reduziert. Bessere UX führt direkt zu reduzierten Infrastrukturkosten und erhöhten Conversions.',
-    'Öko-Design': 'Entwicklungsansatz zur Optimierung jeder Phase des Lebenszyklus digitaler Dienste, der Leistung und Effizienz in Einklang bringt.',
-    'UX/UI': 'Intuitive Schnittstellen, die den tatsächlichen Bedürfnissen der Benutzer gerecht werden. Gutes UX/UI-Design reduziert Reibungspunkte und verbessert das Engagement der Benutzer.'
+    'Barrierefreiheit': {
+      technical: 'Gestaltung von Schnittstellen, die mit allen Geräten, Browsern und Nutzungsmodi kompatibel sind. Erweitert die potenzielle Zielgruppe und gewährleistet ein inklusives Benutzererlebnis.',
+      simple: 'Die Website für alle nutzbar machen, einschließlich Menschen mit Behinderungen oder solchen, die unterstützende Technologien verwenden.'
+    },
+    'Performance': {
+      technical: 'Optimierung, die Ladezeiten und Ressourcennutzung reduziert. Bessere UX führt direkt zu reduzierten Infrastrukturkosten und erhöhten Conversions.',
+      simple: 'Sicherstellen, dass die Website schnell lädt und gut funktioniert, auch auf bescheidenen Geräten oder Verbindungen.'
+    },
+    'Öko-Design': {
+      technical: 'Entwicklungsansatz zur Optimierung jeder Phase des Lebenszyklus digitaler Dienste, der Leistung und Effizienz in Einklang bringt.',
+      simple: 'Websites erstellen, die weniger Energie und Ressourcen verbrauchen, für geringere Umweltauswirkungen.'
+    },
+    'UX/UI': {
+      technical: 'Intuitive Schnittstellen, die den tatsächlichen Bedürfnissen der Benutzer gerecht werden. Gutes UX/UI-Design reduziert Reibungspunkte und verbessert das Engagement der Benutzer.',
+      simple: 'Websites entwerfen, die einfach und angenehm zu benutzen sind und den tatsächlichen Bedürfnissen der Besucher entsprechen.'
+    }
   }
 };
 
 // Fonction pour obtenir la description d'une compétence
-const getDescription = (skill: string): string => {
+const getDescription = (skill: string): { technical: string, simple: string } => {
   // Vérifie si la compétence existe dans l'objet descriptions pour la langue actuelle
   if (lang in descriptions && skill in descriptions[lang]) {
     return descriptions[lang][skill];
   }
-  return '';
+  // Si non trouvé, retourne des descriptions vides
+  return { technical: '', simple: '' };
 };
 ---
 
 <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
   {skills.map(skill => (
     <div class="bg-secondary bg-opacity-30 p-5 rounded-lg">
-      <!-- En-tête avec justify-between pour l'emoji -->
       <div class="flex justify-between items-center mb-4">
         <h3 class="text-lg font-semibold text-accent">{skill.category}</h3>
         {skill.emoji && <span class="text-xl">{skill.emoji}</span>}
       </div>
       
       <!-- Contenu des compétences avec descriptions -->
-      <div class="space-y-4">
-        {skill.items.map(item => (
-          <div class="mb-4">
-            <div class="font-medium mb-1">{item}</div>
-            <p class="text-text-muted text-sm">{getDescription(item)}</p>
-          </div>
-        ))}
+<div class="space-y-4">
+  {skill.items.map(item => {
+    const desc = getDescription(item);
+    return (
+      <div class="mb-4">
+        <div class="font-medium mb-1">{item}</div>
+        <p class="technical-desc text-text-muted text-sm">{desc.technical}</p>
+        <p class="simple-desc text-text-muted text-sm">{desc.simple}</p>
       </div>
+    );
+  })}
+</div>
     </div>
   ))}
 </div>

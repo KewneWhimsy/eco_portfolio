@@ -357,3 +357,41 @@ html.eco-mode button {
     transform: none !important; /* Empêche la translation sur hover également */
   }
 }
+
+/* Styles pour le toggle mode technique/simplifié */
+/* Par défaut - montrer descriptions techniques, cacher descriptions simples */
+.technical-desc {
+  display: block;
+}
+.simple-desc {
+  display: none;
+}
+
+/* État inversé quand body a la classe .simple-mode */
+body.simple-mode .technical-desc {
+  display: none;
+}
+body.simple-mode .simple-desc {
+  display: block;
+}
+
+/* Style visuel du toggle */
+#tech-toggle:checked + label .toggle-dot {
+  transform: translateX(20px);
+}
+
+/* Style des textes du toggle */
+#tech-toggle:checked + label .tech-mode {
+  color: var(--color-text-muted);
+}
+#tech-toggle:checked + label .simple-mode {
+  color: var(--color-accent);
+}
+
+/* Animation des transitions */
+.toggle-dot {
+  transition: transform 0.3s ease;
+}
+.tech-mode, .simple-mode {
+  transition: color 0.3s ease;
+}

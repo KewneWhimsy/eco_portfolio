@@ -6,6 +6,8 @@ import monImage from "../../assets/j.jpg";
 import CtaDispo from "../../components/cta_dispo.astro";
 // Import du nouveau composant de compétences
 import SkillsWithDescriptions from "../../components/skills_with_descriptions.astro";
+// Import du toggle pour mode simple/technique
+import SimpleTechToggle from "../../components/simple_tech_toggle.astro";
 
 // Récupérer le paramètre de langue depuis l'URL
 export function getStaticPaths() {
@@ -310,7 +312,7 @@ const skills = [
 ---
 
 <Layout title={t.title} description={t.description} lang={lang}>
-  <div class="container mx-auto px-4 py-8">
+  <div class="container mx-auto px-4 py-8" id="about-page">
     <!-- Section d'introduction -->
     <section class="mb-12">
       <h1 class="text-3xl font-bold mb-4 border-b border-accent pb-2">
@@ -366,12 +368,38 @@ const skills = [
     </section>
 
     <!-- Section compétences avec le nouveau composant -->
-    <section class="mb-12">
-      <h2 class="text-2xl font-bold mb-6 border-b border-accent pb-2">
-        {t.skillsTitle}
-      </h2>
-      <SkillsWithDescriptions lang={lang} skills={skills} />
-    </section>
+    <!-- Section compétences avec toggle -->
+<section class="mb-12">
+  <div class="flex justify-between items-center mb-6">
+    <h2 class="text-2xl font-bold border-b border-accent pb-2">
+      {t.skillsTitle}
+    </h2>
+    
+    <!-- Toggle avec un petit bout de JavaScript inline -->
+    <div class="inline-flex items-center">
+      <input 
+        type="checkbox" 
+        id="tech-toggle" 
+        class="hidden" 
+        onclick="document.body.classList.toggle('simple-mode');"
+      >
+      <label for="tech-toggle" class="flex items-center text-sm cursor-pointer">
+        <span class="tech-mode mr-3 text-accent">
+          {lang === "fr" ? "Mode technique" : lang === "de" ? "Technischer Modus" : "Technical mode"}
+        </span>
+        <div class="relative w-12 h-6 bg-secondary border border-accent rounded-full">
+          <div class="toggle-dot absolute top-0.5 left-0.5 bg-accent rounded-full h-5 w-5"></div>
+        </div>
+        <span class="simple-mode ml-3 text-text-muted">
+          {lang === "fr" ? "Mode simplifié" : lang === "de" ? "Vereinfachter Modus" : "Simplified mode"}
+        </span>
+      </label>
+    </div>
+  </div>
+  
+  <!-- Composant de compétences inchangé -->
+  <SkillsWithDescriptions lang={lang} skills={skills} />
+</section>
 
     <!-- Section expérience -->
     <section class="mb-12">
