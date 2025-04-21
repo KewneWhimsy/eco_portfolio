@@ -319,9 +319,6 @@ const additionalOptions = {
 // Déterminer si le mode éco est actif en fonction de l'URL
 const { pathname } = Astro.url;
 const isEcoMode = pathname.includes('/eco');
-
-// L'URL complète vers la page de remerciement (incluant le domaine) - adaptée pour le mode éco
-const redirectUrl = `${Astro.url.origin}/${lang}/contact/thanks`;
 ---
 
 <Layout title={t.title} description={t.description} lang={lang} isEcoMode={isEcoMode}>
@@ -520,6 +517,13 @@ const redirectUrl = `${Astro.url.origin}/${lang}/contact/thanks`;
           
           <!-- Bouton d'envoi -->
           <div class="flex justify-end gap-4">
+            <span id="form-spinner" style="display: none;" class="inline-flex items-center">
+                <svg class="animate-spin -ml-1 mr-2 h-4 w-4 text-accent" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                  <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                  <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                </svg>
+                {t.submitting}
+              </span>
             <button 
               type="submit"
               class="cta-button"
@@ -527,13 +531,6 @@ const redirectUrl = `${Astro.url.origin}/${lang}/contact/thanks`;
             >
               {t.submitButton}
             </button>
-            <span id="form-spinner" style="display: none;" class="inline-flex items-center">
-              <svg class="animate-spin -ml-1 mr-2 h-4 w-4 text-accent" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-              </svg>
-              {t.submitting}
-            </span>
           </div>
           
           <!-- Conteneur pour les messages de feedback -->
@@ -599,7 +596,7 @@ const redirectUrl = `${Astro.url.origin}/${lang}/contact/thanks`;
   </div>
 </Layout>
 
-<script define:vars={{ successMessage: t.successMessage, errorMessage: t.errorMessage, submittingMessage: t.submitting, redirectUrl: redirectUrl }}>
+<script define:vars={{ successMessage: t.successMessage, errorMessage: t.errorMessage, submittingMessage: t.submitting }}>
   document.addEventListener('astro:page-load', function() {
     // Gestion du formulaire de devis
     const form = document.getElementById('quote-form');
@@ -637,9 +634,6 @@ const redirectUrl = `${Astro.url.origin}/${lang}/contact/thanks`;
         } else {
           formData.append('selected_options', 'Aucune option sélectionnée');
         }
-        
-        // Ajouter le redirect URL
-        formData.append('redirect', redirectUrl);
         
         // Envoyer la requête
         fetch('https://api.web3forms.com/submit', {
@@ -680,13 +674,6 @@ const redirectUrl = `${Astro.url.origin}/${lang}/contact/thanks`;
           if (data.success) {
             // Réinitialiser le formulaire
             form.reset();
-            
-            // Redirection après un court délai (si pas de redirection automatique)
-            if (!data.redirect) {
-              setTimeout(() => {
-                window.location.href = redirectUrl;
-              }, 2000);
-            }
           }
         })
         .catch(error => {
