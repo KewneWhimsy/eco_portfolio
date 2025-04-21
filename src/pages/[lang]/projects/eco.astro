@@ -1,6 +1,7 @@
 ---
 // Import du layout avec mode éco activé
 import Layout from '../../../layouts/layout.astro';
+import CtaDispo from '../../../components/cta_dispo.astro';
 
 // Récupérer le paramètre de langue depuis l'URL
 export function getStaticPaths() {
@@ -276,15 +277,7 @@ const isEcoMode = true;
         {t.ecoDesignText}
       </p>
     </section>
-    <!-- CTA Contact -->
-    <section class="mt-10 pt-10 border-t border-secondary text-center">
-      <h2 class="text-2xl font-bold mb-6">{t.contactCTA}</h2>
-      <a 
-        href={`/${lang}/contact`}
-        class="cta-button" 
-      >
-        {t.contactButton}
-      </a>
-    </section>
+    <!-- Section CTA contact -->
+    <CtaDispo transition-persist="cta-dispo" />
   </div>
 </Layout>

@@ -1,7 +1,7 @@
 ---
 // Import du layout standard
 import Layout from '../../layouts/layout.astro';
-
+import CtaDispo from '../../components/cta_dispo.astro';
 import { Picture } from 'astro:assets';
 import objetImage from '../../assets/projects/objet01.png';
 import esportImage from '../../assets/projects/esport01.png';
@@ -405,15 +405,7 @@ const projects = [
       </div>
     </section>
     
-    <!-- CTA Contact -->
-    <section class="mt-10 pt-10 border-t border-secondary text-center">
-      <h2 class="text-2xl font-bold mb-6">{t.contactCTA}</h2>
-      <a 
-        href={`/${lang}/contact`}
-        class="cta-button" 
-      >
-        {t.contactButton}
-      </a>
-    </section>
+    <!-- Section CTA contact -->
+    <CtaDispo transition-persist="cta-dispo" />
   </div>
 </Layout>

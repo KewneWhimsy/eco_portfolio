@@ -4,21 +4,21 @@ const lang = Astro.params.lang as 'fr' | 'en' | 'de';
 const content = {
   fr: {
     contactButton: "Me contacter",
-    ctaTitle: "Intéressé par une collaboration?",
+    ctaTitle: "Un projet en tête ?",
     ctaText:
-      "Je suis disponible pour des missions ponctuelles ou longue durée, des projets d'équipe ou des consultations en éco-conception web.",
+      "Je suis disponible pour des missions solos, des projets d'équipe ou des consultations en éco-conception web. N'hésitez pas à me contacter pour un devis gratuit sans engagement.",
   },
   en: {
     contactButton: "Contact me",
-    ctaTitle: "Interested in working together?",
+    ctaTitle: "Have a project in mind?",
     ctaText:
-      "I am available for short-term or long-term assignments, team projects or web eco-design consultations.",
+      "I am available for solo missions, team projects or web eco-design consultations. Feel free to contact me for a free quote with no obligation.",
   },
   de: {
     contactButton: "Kontakt",
-    ctaTitle: "Interesse an einer Zusammenarbeit?",
+    ctaTitle: "Ein Projekt im Sinn?",
     ctaText:
-      "Ich bin verfügbar für kurz- oder langfristige Aufträge, Teamprojekte oder Beratungen zum Web-Öko-Design.",
+      "Ich bin verfügbar für Einzelaufträge, Teamprojekte oder Beratungen zum Web-Öko-Design. Kontaktieren Sie mich gerne für ein kostenloses, unverbindliches Angebot.",
   },
 };
 // Utiliser la langue demandée ou anglais par défaut
@@ -29,7 +29,7 @@ const t = content[lang] || content.en;
     >
       <h2 class="text-2xl font-bold mb-4 px-1">{t.ctaTitle}</h2>
       <p class="mb-6 max-w-lg mx-auto px-1">{t.ctaText}</p>
-      <!-- Bouton autonome primaire -->
+      <!-- Bouton CTA primaire avec style amélioré -->
       <a
         href={`/${lang}/contact`}
         style="
@@ -39,6 +39,7 @@ const t = content[lang] || content.en;
           color: var(--color-primary);
           border-radius: 4px;
           transition: transform 0.3s ease, background-color 0.3s ease;
+          font-weight: 500;
         "
         onmouseover="this.style.transform='translateY(-1px)'; this.style.backgroundColor='var(--color-accent-hover)';"
         onmouseout="this.style.transform='translateY(0)'; this.style.backgroundColor='var(--color-accent)';"
