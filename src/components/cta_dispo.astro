@@ -1,33 +1,42 @@
 ---
+export interface Props {
+  withBackground?: boolean;
+}
+
+const { withBackground = true } = Astro.props;
 const lang = Astro.params.lang as 'fr' | 'en' | 'de';
+
+// Détection automatique du mode éco à partir de l'URL
+const { pathname } = Astro.url;
+const isEcoMode = pathname.includes('/eco');
 
 const content = {
   fr: {
     contactButton: "Me contacter",
     ctaTitle: "Un projet en tête ?",
     ctaText:
-      "Je suis disponible pour des missions solos, des projets d'équipe ou des consultations en éco-conception web. N'hésitez pas à me contacter pour un devis gratuit sans engagement.",
+      "N'hésitez pas à me contacter pour un devis gratuit sans engagement.",
   },
   en: {
     contactButton: "Contact me",
     ctaTitle: "Have a project in mind?",
     ctaText:
-      "I am available for solo missions, team projects or web eco-design consultations. Feel free to contact me for a free quote with no obligation.",
+      "Feel free to contact me for a free quote with no obligation.",
   },
   de: {
     contactButton: "Kontakt",
     ctaTitle: "Ein Projekt im Sinn?",
     ctaText:
-      "Ich bin verfügbar für Einzelaufträge, Teamprojekte oder Beratungen zum Web-Öko-Design. Kontaktieren Sie mich gerne für ein kostenloses, unverbindliches Angebot.",
+      "Kontaktieren Sie mich gerne für ein kostenloses, unverbindliches Angebot.",
   },
 };
 // Utiliser la langue demandée ou anglais par défaut
 const t = content[lang] || content.en;
 ---
 <section
-      class="py-8 bg-secondary bg-opacity-30 rounded-lg text-center mt-8"
+      class={`py-8 ${withBackground ? 'bg-secondary bg-opacity-30 rounded-lg' : ''} text-center mt-8`}
     >
-      <h2 class="text-2xl font-bold mb-4 px-1">{t.ctaTitle}</h2>
+      <h2 class={`${isEcoMode ? 'text-xl' : 'text-2xl'} font-bold mb-4 px-1`}>{t.ctaTitle}</h2>
       <p class="mb-6 max-w-lg mx-auto px-1">{t.ctaText}</p>
       <!-- Bouton CTA primaire avec style amélioré -->
       <a
