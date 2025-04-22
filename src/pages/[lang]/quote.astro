@@ -1,155 +1,176 @@
 ---
 // Import du layout standard
-import Layout from '../../layouts/layout.astro';
+import Layout from "../../layouts/layout.astro";
 
 // Récupérer le paramètre de langue depuis l'URL
 export function getStaticPaths() {
   return [
-    { params: { lang: 'fr' } },
-    { params: { lang: 'en' } },
-    { params: { lang: 'de' } }
+    { params: { lang: "fr" } },
+    { params: { lang: "en" } },
+    { params: { lang: "de" } },
   ];
 }
 
-const lang = Astro.params.lang as 'fr' | 'en' | 'de';
+const lang = Astro.params.lang as "fr" | "en" | "de";
 
 // Contenu traduit pour chaque langue
 const content = {
   fr: {
-    title: 'Josselin HANEL - Devis site vitrine',
-    description: 'Demandez un devis pour votre site vitrine professionnel, éco-responsable et performant',
-    quoteTitle: 'Devis site vitrine',
-    quoteIntro: "Obtenez un site web professionnel qui reflète l'identité de votre entreprise ou activité. Un site vitrine performant, éco-responsable et optimisé pour tous les appareils.",
-    
+    title: "Josselin HANEL - Devis site vitrine",
+    description:
+      "Demandez un devis pour votre site vitrine professionnel, éco-responsable et performant",
+    quoteTitle: "Devis site vitrine",
+    quoteIntro:
+      "Obtenez un site web professionnel qui reflète l'identité de votre entreprise ou activité. Un site vitrine performant, éco-responsable et optimisé pour tous les appareils.",
+
     // Labels formulaire
-    nameLabel: 'Votre nom',
-    emailLabel: 'Votre email',
-    phoneLabel: 'Votre téléphone (optionnel)',
-    projectTypeLabel: 'Type de site',
+    nameLabel: "Votre nom",
+    emailLabel: "Votre email",
+    phoneLabel: "Votre téléphone (optionnel)",
+    projectTypeLabel: "Type de site",
     projectTypeOptions: {
-      showcase: 'Site vitrine',
-      blog: 'Site vitrine avec blog',
-      portfolio: 'Portfolio / CV en ligne',
-      other: 'Autre besoin (à préciser ci-dessous)'
+      showcase: "Site vitrine",
+      blog: "Site vitrine avec blog",
+      portfolio: "Portfolio / CV en ligne",
+      other: "Autre besoin (à préciser ci-dessous)",
     },
-    budgetLabel: 'Budget approximatif',
+    budgetLabel: "Budget approximatif",
     budgetOptions: {
-      low: 'Moins de 500€',
-      medium: '500€ à 1000€',
-      high: 'Plus de 1000€',
-      flexible: 'Flexible / À discuter'
+      low: "Moins de 500€",
+      medium: "500€ à 1000€",
+      high: "Plus de 1000€",
+      flexible: "Flexible / À discuter",
     },
-    deadlineLabel: 'Échéance souhaitée',
+    deadlineLabel: "Échéance souhaitée",
     deadlineOptions: {
-      urgent: 'Urgent (moins d\'un mois)',
-      medium: 'Dans 1 à 3 mois',
-      flexible: 'Flexible / Pas d\'urgence'
+      urgent: "Urgent (moins d'un mois)",
+      medium: "Dans 1 à 3 mois",
+      flexible: "Flexible / Pas d'urgence",
     },
-    projectDescLabel: 'Votre activité et vos besoins',
-    projectDescPlaceholder: 'Décrivez brièvement votre activité et ce que vous attendez de votre site web (objectifs, style souhaité, références de sites que vous aimez...)',
-    additionalInfoLabel: 'Informations complémentaires',
-    additionalInfoPlaceholder: 'Y a-t-il d\'autres détails importants à connaître? (contenu déjà disponible, logo existant, contraintes spécifiques...)',
-    
-    submitButton: 'Demander mon devis',
-    submitting: 'Envoi en cours...',
-    successMessage: 'Merci ! Votre demande de devis a été envoyée avec succès. Je vous contacterai sous 24-48h avec une proposition personnalisée.',
-    errorMessage: 'Une erreur est survenue. Veuillez réessayer ou me contacter directement par email.',
-    requiredField: 'Ce champ est requis',
-    
+    projectDescLabel: "Votre activité et vos besoins",
+    projectDescPlaceholder:
+      "Décrivez brièvement votre activité et ce que vous attendez de votre site web (objectifs, style souhaité, références de sites que vous aimez...)",
+    additionalInfoLabel: "Informations complémentaires",
+    additionalInfoPlaceholder:
+      "Y a-t-il d'autres détails importants à connaître? (contenu déjà disponible, logo existant, contraintes spécifiques...)",
+
+    submitButton: "Demander mon devis",
+    submitting: "Envoi en cours...",
+    successMessage:
+      "Merci ! Votre demande de devis a été envoyée avec succès. Je vous contacterai sous 24-48h avec une proposition personnalisée.",
+    errorMessage:
+      "Une erreur est survenue. Veuillez réessayer ou me contacter directement par email.",
+    requiredField: "Ce champ est requis",
+
     // Préciser votre besoin (pour le type de projet "Autre")
-    specifyNeed: 'Précisez votre besoin *',
-    specifyNeedPlaceholder: 'Décrivez le type de site ou d\'application dont vous avez besoin...'
+    specifyNeed: "Précisez votre besoin *",
+    specifyNeedPlaceholder:
+      "Décrivez le type de site ou d'application dont vous avez besoin...",
   },
   en: {
-    title: 'Josselin HANEL - Showcase Website Quote',
-    description: 'Request a quote for your professional, eco-friendly and high-performance showcase website',
-    quoteTitle: 'Showcase Website Quote',
-    quoteIntro: "Get a professional website that reflects your business identity. A high-performance, eco-friendly website optimized for all devices.",
-    
+    title: "Josselin HANEL - Showcase Website Quote",
+    description:
+      "Request a quote for your professional, eco-friendly and high-performance showcase website",
+    quoteTitle: "Showcase Website Quote",
+    quoteIntro:
+      "Get a professional website that reflects your business identity. A high-performance, eco-friendly website optimized for all devices.",
+
     // Form labels
-    nameLabel: 'Your name',
-    emailLabel: 'Your email',
-    phoneLabel: 'Your phone (optional)',
-    projectTypeLabel: 'Website type',
+    nameLabel: "Your name",
+    emailLabel: "Your email",
+    phoneLabel: "Your phone (optional)",
+    projectTypeLabel: "Website type",
     projectTypeOptions: {
-      showcase: 'Showcase website',
-      blog: 'Showcase with blog',
-      portfolio: 'Portfolio / Online resume',
-      other: 'Other need (please specify below)'
+      showcase: "Showcase website",
+      blog: "Showcase with blog",
+      portfolio: "Portfolio / Online resume",
+      other: "Other need (please specify below)",
     },
-    budgetLabel: 'Approximate budget',
+    budgetLabel: "Approximate budget",
     budgetOptions: {
-      low: 'Less than €500',
-      medium: '€500 to €1000',
-      high: 'More than €1000',
-      flexible: 'Flexible / To be discussed'
+      low: "Less than €500",
+      medium: "€500 to €1000",
+      high: "More than €1000",
+      flexible: "Flexible / To be discussed",
     },
-    deadlineLabel: 'Desired deadline',
+    deadlineLabel: "Desired deadline",
     deadlineOptions: {
-      urgent: 'Urgent (less than a month)',
-      medium: 'In 1 to 3 months',
-      flexible: 'Flexible / No urgency'
+      urgent: "Urgent (less than a month)",
+      medium: "In 1 to 3 months",
+      flexible: "Flexible / No urgency",
     },
-    projectDescLabel: 'Your business and needs',
-    projectDescPlaceholder: 'Briefly describe your business and what you expect from your website (goals, desired style, references of websites you like...)',
-    additionalInfoLabel: 'Additional information',
-    additionalInfoPlaceholder: 'Are there any other important details I should know? (content already available, existing logo, specific constraints...)',
-    
-    submitButton: 'Request my quote',
-    submitting: 'Sending...',
-    successMessage: 'Thank you! Your quote request has been successfully sent. I will contact you within 24-48 hours with a personalized proposal.',
-    errorMessage: 'An error occurred. Please try again or contact me directly by email.',
-    requiredField: 'This field is required',
-    
+    projectDescLabel: "Your business and needs",
+    projectDescPlaceholder:
+      "Briefly describe your business and what you expect from your website (goals, desired style, references of websites you like...)",
+    additionalInfoLabel: "Additional information",
+    additionalInfoPlaceholder:
+      "Are there any other important details I should know? (content already available, existing logo, specific constraints...)",
+
+    submitButton: "Request my quote",
+    submitting: "Sending...",
+    successMessage:
+      "Thank you! Your quote request has been successfully sent. I will contact you within 24-48 hours with a personalized proposal.",
+    errorMessage:
+      "An error occurred. Please try again or contact me directly by email.",
+    requiredField: "This field is required",
+
     // Specify your need (for "Other" project type)
-    specifyNeed: 'Specify your need *',
-    specifyNeedPlaceholder: 'Describe the type of website or application you need...'
+    specifyNeed: "Specify your need *",
+    specifyNeedPlaceholder:
+      "Describe the type of website or application you need...",
   },
   de: {
-    title: 'Josselin HANEL - Angebot für Präsentationswebsite',
-    description: 'Fordern Sie ein Angebot für Ihre professionelle, umweltfreundliche und leistungsstarke Präsentationswebsite an',
-    quoteTitle: 'Angebot für Präsentationswebsite',
-    quoteIntro: "Erhalten Sie eine professionelle Website, die die Identität Ihres Unternehmens widerspiegelt. Eine leistungsstarke, umweltfreundliche Website, optimiert für alle Geräte.",
-    
+    title: "Josselin HANEL - Angebot für Präsentationswebsite",
+    description:
+      "Fordern Sie ein Angebot für Ihre professionelle, umweltfreundliche und leistungsstarke Präsentationswebsite an",
+    quoteTitle: "Angebot für Präsentationswebsite",
+    quoteIntro:
+      "Erhalten Sie eine professionelle Website, die die Identität Ihres Unternehmens widerspiegelt. Eine leistungsstarke, umweltfreundliche Website, optimiert für alle Geräte.",
+
     // Formular-Labels
-    nameLabel: 'Ihr Name',
-    emailLabel: 'Ihre E-Mail',
-    phoneLabel: 'Ihre Telefonnummer (optional)',
-    projectTypeLabel: 'Website-Typ',
+    nameLabel: "Ihr Name",
+    emailLabel: "Ihre E-Mail",
+    phoneLabel: "Ihre Telefonnummer (optional)",
+    projectTypeLabel: "Website-Typ",
     projectTypeOptions: {
-      showcase: 'Präsentationswebsite',
-      blog: 'Präsentation mit Blog',
-      portfolio: 'Portfolio / Online-Lebenslauf',
-      other: 'Anderer Bedarf (bitte unten angeben)'
+      showcase: "Präsentationswebsite",
+      blog: "Präsentation mit Blog",
+      portfolio: "Portfolio / Online-Lebenslauf",
+      other: "Anderer Bedarf (bitte unten angeben)",
     },
-    budgetLabel: 'Ungefähres Budget',
+    budgetLabel: "Ungefähres Budget",
     budgetOptions: {
-      low: 'Weniger als 500€',
-      medium: '500€ bis 1000€',
-      high: 'Mehr als 1000€',
-      flexible: 'Flexibel / Zu besprechen'
+      low: "Weniger als 500€",
+      medium: "500€ bis 1000€",
+      high: "Mehr als 1000€",
+      flexible: "Flexibel / Zu besprechen",
     },
-    deadlineLabel: 'Gewünschter Termin',
+    deadlineLabel: "Gewünschter Termin",
     deadlineOptions: {
-      urgent: 'Dringend (weniger als ein Monat)',
-      medium: 'In 1 bis 3 Monaten',
-      flexible: 'Flexibel / Keine Eile'
+      urgent: "Dringend (weniger als ein Monat)",
+      medium: "In 1 bis 3 Monaten",
+      flexible: "Flexibel / Keine Eile",
     },
-    projectDescLabel: 'Ihr Unternehmen und Ihre Bedürfnisse',
-    projectDescPlaceholder: 'Beschreiben Sie kurz Ihr Unternehmen und was Sie von Ihrer Website erwarten (Ziele, gewünschter Stil, Referenzen von Websites, die Ihnen gefallen...)',
-    additionalInfoLabel: 'Zusätzliche Informationen',
-    additionalInfoPlaceholder: 'Gibt es andere wichtige Details, die ich wissen sollte? (bereits verfügbarer Inhalt, bestehendes Logo, besondere Einschränkungen...)',
-    
-    submitButton: 'Angebot anfordern',
-    submitting: 'Wird gesendet...',
-    successMessage: 'Vielen Dank! Ihre Angebotsanfrage wurde erfolgreich gesendet. Ich werde mich innerhalb von 24-48 Stunden mit einem personalisierten Angebot bei Ihnen melden.',
-    errorMessage: 'Ein Fehler ist aufgetreten. Bitte versuchen Sie es erneut oder kontaktieren Sie mich direkt per E-Mail.',
-    requiredField: 'Dieses Feld ist erforderlich',
-    
+    projectDescLabel: "Ihr Unternehmen und Ihre Bedürfnisse",
+    projectDescPlaceholder:
+      "Beschreiben Sie kurz Ihr Unternehmen und was Sie von Ihrer Website erwarten (Ziele, gewünschter Stil, Referenzen von Websites, die Ihnen gefallen...)",
+    additionalInfoLabel: "Zusätzliche Informationen",
+    additionalInfoPlaceholder:
+      "Gibt es andere wichtige Details, die ich wissen sollte? (bereits verfügbarer Inhalt, bestehendes Logo, besondere Einschränkungen...)",
+
+    submitButton: "Angebot anfordern",
+    submitting: "Wird gesendet...",
+    successMessage:
+      "Vielen Dank! Ihre Angebotsanfrage wurde erfolgreich gesendet. Ich werde mich innerhalb von 24-48 Stunden mit einem personalisierten Angebot bei Ihnen melden.",
+    errorMessage:
+      "Ein Fehler ist aufgetreten. Bitte versuchen Sie es erneut oder kontaktieren Sie mich direkt per E-Mail.",
+    requiredField: "Dieses Feld ist erforderlich",
+
     // Geben Sie Ihren Bedarf an (für "Anderen" Projekttyp)
-    specifyNeed: 'Geben Sie Ihren Bedarf an *',
-    specifyNeedPlaceholder: 'Beschreiben Sie die Art der Website oder Anwendung, die Sie benötigen...'
-  }
+    specifyNeed: "Geben Sie Ihren Bedarf an *",
+    specifyNeedPlaceholder:
+      "Beschreiben Sie die Art der Website oder Anwendung, die Sie benötigen...",
+  },
 };
 
 // Utiliser la langue demandée ou français par défaut
@@ -164,7 +185,7 @@ const includedInAllPackages = {
     "Performance maximale (chargement rapide)",
     "Hébergement gratuit à vie via Cloudflare Pages",
     "Code source livré (GitHub ou archive)",
-    "Support technique d'1 mois après livraison"
+    "Support technique d'1 mois après livraison",
   ],
   en: [
     "Responsive website (mobile, tablet, desktop)",
@@ -173,7 +194,7 @@ const includedInAllPackages = {
     "Maximum performance (fast loading)",
     "Free lifetime hosting via Cloudflare Pages",
     "Delivered source code (GitHub or archive)",
-    "1 month technical support after delivery"
+    "1 month technical support after delivery",
   ],
   de: [
     "Responsive Website (Mobilgeräte, Tablets, Computer)",
@@ -182,8 +203,8 @@ const includedInAllPackages = {
     "Maximale Leistung (schnelles Laden)",
     "Kostenloses lebenslanges Hosting über Cloudflare Pages",
     "Gelieferter Quellcode (GitHub oder Archiv)",
-    "1 Monat technischer Support nach Lieferung"
-  ]
+    "1 Monat technischer Support nach Lieferung",
+  ],
 };
 
 // Formules de sites vitrines avec détails
@@ -198,8 +219,8 @@ const showcasePackages = {
         "Coordonnées & formulaire de contact",
         "Animations pour mettre en valeur vos atouts",
         "Idéal pour les petites structures",
-        "Livraison sous 1-2 semaines"
-      ]
+        "Livraison sous 1-2 semaines",
+      ],
     },
     standard: {
       title: "Site Multi-pages",
@@ -210,8 +231,8 @@ const showcasePackages = {
         "Animations et effets d'interface modernes",
         "Transitions douces, retours visuels sur les actions",
         "Fluidité de navigation sur mobile & desktop",
-        "Livraison sous 2-3 semaines"
-      ]
+        "Livraison sous 2-3 semaines",
+      ],
     },
     premium: {
       title: "Site Premium",
@@ -222,9 +243,9 @@ const showcasePackages = {
         "Animations avancées : apparition au scroll, parallaxe",
         "Transitions dynamiques et interactions subtiles",
         "Experience utilisateur optimisée",
-        "Livraison sous 3-4 semaines"
-      ]
-    }
+        "Livraison sous 3-4 semaines",
+      ],
+    },
   },
   en: {
     basic: {
@@ -236,8 +257,8 @@ const showcasePackages = {
         "Contact details & contact form",
         "Animations to highlight your strengths",
         "Ideal for small structures",
-        "Delivery within 1-2 weeks"
-      ]
+        "Delivery within 1-2 weeks",
+      ],
     },
     standard: {
       title: "Multi-page Website",
@@ -248,8 +269,8 @@ const showcasePackages = {
         "Modern animations and interface effects",
         "Smooth transitions, visual feedback on actions",
         "Fluid navigation on mobile & desktop",
-        "Delivery within 2-3 weeks"
-      ]
+        "Delivery within 2-3 weeks",
+      ],
     },
     premium: {
       title: "Premium Website",
@@ -260,9 +281,9 @@ const showcasePackages = {
         "Advanced animations: scroll appearance, parallax",
         "Dynamic transitions and subtle interactions",
         "Optimized user experience",
-        "Delivery within 3-4 weeks"
-      ]
-    }
+        "Delivery within 3-4 weeks",
+      ],
+    },
   },
   de: {
     basic: {
@@ -274,8 +295,8 @@ const showcasePackages = {
         "Kontaktdaten & Kontaktformular",
         "Animationen zur Hervorhebung Ihrer Stärken",
         "Ideal für kleine Strukturen",
-        "Lieferung innerhalb von 1-2 Wochen"
-      ]
+        "Lieferung innerhalb von 1-2 Wochen",
+      ],
     },
     standard: {
       title: "Mehrseitige Website",
@@ -286,8 +307,8 @@ const showcasePackages = {
         "Moderne Animationen und Schnittstelleneffekte",
         "Sanfte Übergänge, visuelle Rückmeldung bei Aktionen",
         "Flüssige Navigation auf Mobilgeräten & Desktop",
-        "Lieferung innerhalb von 2-3 Wochen"
-      ]
+        "Lieferung innerhalb von 2-3 Wochen",
+      ],
     },
     premium: {
       title: "Premium-Website",
@@ -298,10 +319,10 @@ const showcasePackages = {
         "Fortgeschrittene Animationen: Scroll-Erscheinung, Parallaxe",
         "Dynamische Übergänge und subtile Interaktionen",
         "Optimierte Benutzererfahrung",
-        "Lieferung innerhalb von 3-4 Wochen"
-      ]
-    }
-  }
+        "Lieferung innerhalb von 3-4 Wochen",
+      ],
+    },
+  },
 };
 
 // Options complémentaires adaptées aux sites vitrines
@@ -310,88 +331,103 @@ const additionalOptions = {
     {
       title: "Site multilingue",
       price: "150 €",
-      description: "Jusqu'à 2 langues supplémentaires avec sélecteur manuel ou détection automatique"
+      description:
+        "Jusqu'à 2 langues supplémentaires avec sélecteur manuel ou détection automatique",
     },
     {
       title: "Gestion via interface graphique (Decap CMS)",
       price: "200 €",
-      description: "Interface /admin intégrée pour modifier vos textes et images facilement sans coder"
+      description:
+        "Interface /admin intégrée pour modifier vos textes et images facilement sans coder",
     },
     {
       title: "Gestion via tableaux (Google Sheets)",
       price: "100 €",
-      description: "Édition simple via un tableau Google pour modifier descriptions, tarifs, horaires"
+      description:
+        "Édition simple via un tableau Google pour modifier descriptions, tarifs, horaires",
     },
     {
       title: "Formation Markdown",
       price: "50 €",
-      description: "Formation 1h en visio pour apprendre à modifier textes et images vous-même"
+      description:
+        "Formation 1h en visio pour apprendre à modifier textes et images vous-même",
     },
     {
       title: "Statistiques détaillées sans cookies",
       price: "70 €",
-      description: "Suivi de trafic RGPD-friendly avec tableau de bord clair et accessible"
-    }
+      description:
+        "Suivi de trafic RGPD-friendly avec tableau de bord clair et accessible",
+    },
   ],
   en: [
     {
       title: "Multilingual site",
       price: "€150",
-      description: "Up to 2 additional languages with manual selector or automatic detection"
+      description:
+        "Up to 2 additional languages with manual selector or automatic detection",
     },
     {
       title: "Management via graphical interface (Decap CMS)",
       price: "€200",
-      description: "Integrated /admin interface to modify your texts and images easily without coding"
+      description:
+        "Integrated /admin interface to modify your texts and images easily without coding",
     },
     {
       title: "Management via spreadsheets (Google Sheets)",
       price: "€100",
-      description: "Simple editing via a Google spreadsheet to modify descriptions, prices, schedules"
+      description:
+        "Simple editing via a Google spreadsheet to modify descriptions, prices, schedules",
     },
     {
       title: "Markdown training",
       price: "€50",
-      description: "1-hour video training to learn how to modify texts and images yourself"
+      description:
+        "1-hour video training to learn how to modify texts and images yourself",
     },
     {
       title: "Detailed cookie-free statistics",
       price: "€70",
-      description: "GDPR-friendly traffic tracking with a clear and accessible dashboard"
-    }
+      description:
+        "GDPR-friendly traffic tracking with a clear and accessible dashboard",
+    },
   ],
   de: [
     {
       title: "Mehrsprachige Website",
       price: "150 €",
-      description: "Bis zu 2 zusätzliche Sprachen mit manuellem Selektor oder automatischer Erkennung"
+      description:
+        "Bis zu 2 zusätzliche Sprachen mit manuellem Selektor oder automatischer Erkennung",
     },
     {
       title: "Verwaltung über grafische Oberfläche (Decap CMS)",
       price: "200 €",
-      description: "Integrierte /admin-Oberfläche zum einfachen Ändern Ihrer Texte und Bilder ohne Programmierung"
+      description:
+        "Integrierte /admin-Oberfläche zum einfachen Ändern Ihrer Texte und Bilder ohne Programmierung",
     },
     {
       title: "Verwaltung über Tabellen (Google Sheets)",
       price: "100 €",
-      description: "Einfache Bearbeitung über eine Google-Tabelle zur Änderung von Beschreibungen, Preisen, Zeitplänen"
+      description:
+        "Einfache Bearbeitung über eine Google-Tabelle zur Änderung von Beschreibungen, Preisen, Zeitplänen",
     },
     {
       title: "Markdown-Schulung",
       price: "50 €",
-      description: "1-stündige Videokonferenz-Schulung, um zu lernen, wie Sie Texte und Bilder selbst ändern können"
+      description:
+        "1-stündige Videokonferenz-Schulung, um zu lernen, wie Sie Texte und Bilder selbst ändern können",
     },
     {
       title: "Detaillierte Cookie-freie Statistiken",
       price: "70 €",
-      description: "DSGVO-freundliches Traffic-Tracking mit einem übersichtlichen und zugänglichen Dashboard"
-    }
-  ]
+      description:
+        "DSGVO-freundliches Traffic-Tracking mit einem übersichtlichen und zugänglichen Dashboard",
+    },
+  ],
 };
 
 // Déterminer si le mode éco est actif en fonction de l'URL
 const { pathname } = Astro.url;
-const isEcoMode = pathname.includes('/eco');
+const isEcoMode = pathname.includes("/eco");
 
 // Important ! Créer un objet avec toutes les traductions nécessaires pour le script client
 const clientTranslations = {
@@ -402,312 +438,487 @@ const clientTranslations = {
   specifyNeedPlaceholder: t.specifyNeedPlaceholder,
   successMessage: t.successMessage,
   errorMessage: t.errorMessage,
-  submitting: t.submitting
+  submitting: t.submitting,
 };
 ---
 
-<Layout title={t.title} description={t.description} lang={lang} isEcoMode={isEcoMode}>
+<Layout
+  title={t.title}
+  description={t.description}
+  lang={lang}
+  isEcoMode={isEcoMode}
+>
   <div class="container mx-auto px-4 py-8">
     <h1 class="text-3xl font-bold mb-6 border-b border-accent pb-2">
       {t.quoteTitle}
     </h1>
-    
+
     <div class="flex flex-col md:flex-row gap-8">
       <!-- Formulaire de devis -->
       <div class="md:w-2/3">
         <p class="mb-6">
           {t.quoteIntro}
         </p>
-        
+
         <form id="quote-form" class="space-y-5">
           <!-- Champ caché pour API Web3Forms -->
-          <input type="hidden" name="access_key" value="2dcc3f1b-036f-48a7-987a-cdada0d05ae5">
-          <input type="hidden" name="from_name" value="Portfolio Devis Site Vitrine">
-          <input type="hidden" name="subject" value="Nouvelle demande de devis site vitrine">
-          
+          <input
+            type="hidden"
+            name="access_key"
+            value="2dcc3f1b-036f-48a7-987a-cdada0d05ae5"
+          />
+          <input
+            type="hidden"
+            name="from_name"
+            value="Portfolio Devis Site Vitrine"
+          />
+          <input
+            type="hidden"
+            name="subject"
+            value="Nouvelle demande de devis site vitrine"
+          />
+
           <!-- Section Info de contact -->
           <div class="bg-secondary bg-opacity-20 p-5 rounded-lg space-y-4">
             <h2 class="text-xl font-semibold text-accent mb-3">
-              {lang === 'fr' ? 'Vos coordonnées' : lang === 'en' ? 'Your contact information' : 'Ihre Kontaktdaten'}
+              {
+                lang === "fr"
+                  ? "Vos coordonnées"
+                  : lang === "en"
+                    ? "Your contact information"
+                    : "Ihre Kontaktdaten"
+              }
             </h2>
-            
+
             <!-- Nom -->
             <div>
-              <label for="name" class="block mb-1 font-medium">{t.nameLabel} *</label>
-              <input 
-                type="text" 
-                id="name" 
+              <label for="name" class="block mb-1 font-medium"
+                >{t.nameLabel} *</label
+              >
+              <input
+                type="text"
+                id="name"
                 name="name"
                 class="w-full p-2 border border-form bg-primary rounded-md"
                 required
               />
             </div>
-            
+
             <!-- Email -->
             <div>
-              <label for="email" class="block mb-1 font-medium">{t.emailLabel} *</label>
-              <input 
-                type="email" 
-                id="email" 
+              <label for="email" class="block mb-1 font-medium"
+                >{t.emailLabel} *</label
+              >
+              <input
+                type="email"
+                id="email"
                 name="email"
                 class="w-full p-2 border border-form bg-primary rounded-md"
                 required
               />
             </div>
-            
+
             <!-- Téléphone -->
             <div>
-              <label for="phone" class="block mb-1 font-medium">{t.phoneLabel}</label>
-              <input 
-                type="tel" 
-                id="phone" 
+              <label for="phone" class="block mb-1 font-medium"
+                >{t.phoneLabel}</label
+              >
+              <input
+                type="tel"
+                id="phone"
                 name="phone"
                 class="w-full p-2 border border-form bg-primary rounded-md"
               />
             </div>
           </div>
-          
+
           <!-- Section détails du projet -->
           <div class="bg-secondary bg-opacity-20 p-5 rounded-lg space-y-4">
             <h2 class="text-xl font-semibold text-accent mb-3">
-              {lang === 'fr' ? 'Votre projet de site web' : lang === 'en' ? 'Your website project' : 'Ihr Website-Projekt'}
+              {
+                lang === "fr"
+                  ? "Votre projet de site web"
+                  : lang === "en"
+                    ? "Your website project"
+                    : "Ihr Website-Projekt"
+              }
             </h2>
-            
+
             <!-- Type de site -->
             <div>
-              <label for="project_type" class="block mb-1 font-medium">{t.projectTypeLabel} *</label>
-              <select 
-                id="project_type" 
+              <label for="project_type" class="block mb-1 font-medium"
+                >{t.projectTypeLabel} *</label
+              >
+              <select
+                id="project_type"
                 name="project_type"
                 class="w-full p-2 border border-form bg-primary rounded-md"
                 required
               >
-                <option value="showcase" selected>{t.projectTypeOptions.showcase}</option>
+                <option value="showcase" selected
+                  >{t.projectTypeOptions.showcase}</option
+                >
                 <option value="blog">{t.projectTypeOptions.blog}</option>
-                <option value="portfolio">{t.projectTypeOptions.portfolio}</option>
+                <option value="portfolio"
+                  >{t.projectTypeOptions.portfolio}</option
+                >
                 <option value="other">{t.projectTypeOptions.other}</option>
               </select>
             </div>
-            
+
             <!-- Formule souhaitée -->
             <div>
               <label for="service_package" class="block mb-1 font-medium">
-                {lang === 'fr' ? 'Formule envisagée' : lang === 'en' ? 'Desired package' : 'Gewünschtes Paket'}
+                {
+                  lang === "fr"
+                    ? "Formule envisagée"
+                    : lang === "en"
+                      ? "Desired package"
+                      : "Gewünschtes Paket"
+                }
               </label>
-              <select 
-                id="service_package" 
+              <select
+                id="service_package"
                 name="service_package"
                 class="w-full p-2 border border-form bg-primary rounded-md"
-                data-price-basic={showcasePackages[lang].basic.price.replace(/[^\d]/g, '')}
-                data-price-standard={showcasePackages[lang].standard.price.replace(/[^\d]/g, '')}
-                data-price-premium={showcasePackages[lang].premium.price.replace(/[^\d]/g, '')}
+                data-price-basic={showcasePackages[lang].basic.price.replace(
+                  /[^\d]/g,
+                  ""
+                )}
+                data-price-standard={showcasePackages[
+                  lang
+                ].standard.price.replace(/[^\d]/g, "")}
+                data-price-premium={showcasePackages[
+                  lang
+                ].premium.price.replace(/[^\d]/g, "")}
               >
-                <option value="standard" selected data-price={showcasePackages[lang].standard.price.replace(/[^\d]/g, '')}>
-                  {showcasePackages[lang].standard.title} - {showcasePackages[lang].standard.price}
+                <option
+                  value="standard"
+                  selected
+                  data-price={showcasePackages[lang].standard.price.replace(
+                    /[^\d]/g,
+                    ""
+                  )}
+                >
+                  {showcasePackages[lang].standard.title} - {
+                    showcasePackages[lang].standard.price
+                  }
                 </option>
-                <option value="basic" data-price={showcasePackages[lang].basic.price.replace(/[^\d]/g, '')}>
-                  {showcasePackages[lang].basic.title} - {showcasePackages[lang].basic.price}
+                <option
+                  value="basic"
+                  data-price={showcasePackages[lang].basic.price.replace(
+                    /[^\d]/g,
+                    ""
+                  )}
+                >
+                  {showcasePackages[lang].basic.title} - {
+                    showcasePackages[lang].basic.price
+                  }
                 </option>
-                <option value="premium" data-price={showcasePackages[lang].premium.price.replace(/[^\d]/g, '')}>
-                  {showcasePackages[lang].premium.title} - {showcasePackages[lang].premium.price}
+                <option
+                  value="premium"
+                  data-price={showcasePackages[lang].premium.price.replace(
+                    /[^\d]/g,
+                    ""
+                  )}
+                >
+                  {showcasePackages[lang].premium.title} - {
+                    showcasePackages[lang].premium.price
+                  }
                 </option>
                 <option value="not_sure">
-                  {lang === 'fr' ? 'Je ne sais pas encore' : lang === 'en' ? 'I don\'t know yet' : 'Ich weiß es noch nicht'}
+                  {
+                    lang === "fr"
+                      ? "Je ne sais pas encore"
+                      : lang === "en"
+                        ? "I don't know yet"
+                        : "Ich weiß es noch nicht"
+                  }
                 </option>
               </select>
             </div>
-            
+
             <!-- Délai -->
             <div>
-              <label for="deadline" class="block mb-1 font-medium">{t.deadlineLabel}</label>
-              <select 
-                id="deadline" 
+              <label for="deadline" class="block mb-1 font-medium"
+                >{t.deadlineLabel}</label
+              >
+              <select
+                id="deadline"
                 name="deadline"
                 class="w-full p-2 border border-form bg-primary rounded-md"
               >
-                <option value="medium" selected>{t.deadlineOptions.medium}</option>
+                <option value="medium" selected
+                  >{t.deadlineOptions.medium}</option
+                >
                 <option value="urgent">{t.deadlineOptions.urgent}</option>
                 <option value="flexible">{t.deadlineOptions.flexible}</option>
               </select>
             </div>
-            
+
             <!-- Description du projet -->
             <div>
-              <label for="project_description" class="block mb-1 font-medium">{t.projectDescLabel} *</label>
-              <textarea 
+              <label for="project_description" class="block mb-1 font-medium"
+                >{t.projectDescLabel} *</label
+              >
+              <textarea
                 id="project_description"
-                name="project_description" 
+                name="project_description"
                 class="w-full p-2 border border-form bg-primary rounded-md h-32"
                 placeholder={t.projectDescPlaceholder}
-                required
-              ></textarea>
+                required></textarea>
             </div>
           </div>
-          
-          <!-- Section Options -->
-<div class="bg-secondary bg-opacity-20 p-5 rounded-lg space-y-4">
-  <h2 class="text-xl font-semibold text-accent mb-3">
-    {lang === 'fr' ? 'Options supplémentaires' : lang === 'en' ? 'Additional options' : 'Zusätzliche Optionen'}
-  </h2>
-  
-  <div class="space-y-3">
-    {additionalOptions[lang].map((option, index) => (
-      <div class="option-item">
-        <input 
-          type="checkbox" 
-          id={`option_${index}`} 
-          name="options" 
-          value={option.title}
-          class="option-checkbox" 
-          data-price={parseInt(option.price)}
-        />
-        <label for={`option_${index}`}>
-          <span class="option-title">{option.title} - {option.price}</span>
-          <span class="text-sm text-text-muted">{option.description}</span>
-        </label>
-      </div>
-    ))}
-  </div>
-  
-  <!-- Informations complémentaires -->
-  <div class="mt-4">
-    <label for="additional_info" class="block mb-1 font-medium">{t.additionalInfoLabel}</label>
-    <textarea 
-      id="additional_info"
-      name="additional_info" 
-      class="w-full p-2 border border-form bg-primary rounded-md h-24"
-      placeholder={t.additionalInfoPlaceholder}
-    ></textarea>
-  </div>
-</div>
 
-<!-- Estimation du prix total avec animations CSS -->
-<div class="bg-secondary bg-opacity-30 p-5 rounded-lg space-y-2 mt-4 price-estimate-section">
-  <h2 class="text-xl font-semibold text-accent">
-    {lang === 'fr' ? 'Estimation du prix' : lang === 'en' ? 'Price estimate' : 'Preisschätzung'}
-  </h2>
-  
-  <div class="price-row">
-    <div>
-      <span class="font-medium">
-        {lang === 'fr' ? 'Formule choisie:' : lang === 'en' ? 'Selected package:' : 'Ausgewähltes Paket:'}
-      </span>
-      <span id="selected-package-label" class="ml-2"></span>
-    </div>
-    <span id="package-price" class="font-medium"></span>
-  </div>
-  
-  <div id="selected-options-container" class="hidden">
-    <div class="font-medium mb-1">
-      {lang === 'fr' ? 'Options sélectionnées:' : lang === 'en' ? 'Selected options:' : 'Ausgewählte Optionen:'}
-    </div>
-    <ul id="selected-options-list" class="list-disc pl-5 text-sm"></ul>
-  </div>
-  
-  <div class="border-t border-accent border-opacity-30 my-2 pt-2 price-row">
-    <div class="font-bold">
-      {lang === 'fr' ? 'Total estimé:' : lang === 'en' ? 'Estimated total:' : 'Geschätzte Summe:'}
-    </div>
-    <div id="total-price" class="text-accent text-xl font-bold"></div>
-  </div>
-  
-  <div class="text-xs italic text-text-muted mt-2">
-    {lang === 'fr' 
-      ? 'Note: Cette estimation est basée sur les options standard. Le prix final peut varier en fonction des spécificités de votre projet et des éléments graphiques à réaliser.' 
-      : lang === 'en' 
-      ? 'Note: This estimate is based on standard options. The final price may vary depending on the specifics of your project and the graphic assets to be created.'
-      : 'Hinweis: Diese Schätzung basiert auf Standardoptionen. Der endgültige Preis kann je nach Besonderheiten Ihres Projekts und den zu erstellenden Grafikressourcen variieren.'}
-  </div>
-</div>
-          
+          <!-- Section Options -->
+          <div class="bg-secondary bg-opacity-20 p-5 rounded-lg space-y-4">
+            <h2 class="text-xl font-semibold text-accent mb-3">
+              {
+                lang === "fr"
+                  ? "Options supplémentaires"
+                  : lang === "en"
+                    ? "Additional options"
+                    : "Zusätzliche Optionen"
+              }
+            </h2>
+
+            <div class="space-y-3">
+              {
+                additionalOptions[lang].map((option, index) => (
+                  <div class="option-item">
+                    <input
+                      type="checkbox"
+                      id={`option_${index}`}
+                      name="options"
+                      value={option.title}
+                      class="option-checkbox"
+                      data-price={parseInt(option.price)}
+                    />
+                    <label for={`option_${index}`}>
+                      <span class="option-title">
+                        {option.title} - {option.price}
+                      </span>
+                      <span class="text-sm text-text-muted">
+                        {option.description}
+                      </span>
+                    </label>
+                  </div>
+                ))
+              }
+            </div>
+
+            <!-- Informations complémentaires -->
+            <div class="mt-4">
+              <label for="additional_info" class="block mb-1 font-medium"
+                >{t.additionalInfoLabel}</label
+              >
+              <textarea
+                id="additional_info"
+                name="additional_info"
+                class="w-full p-2 border border-form bg-primary rounded-md h-24"
+                placeholder={t.additionalInfoPlaceholder}></textarea>
+            </div>
+          </div>
+
+          <!-- Estimation du prix total avec animations CSS -->
+          <div
+            class="bg-secondary bg-opacity-30 p-5 rounded-lg space-y-2 mt-4 price-estimate-section"
+          >
+            <h2 class="text-xl font-semibold text-accent">
+              {
+                lang === "fr"
+                  ? "Estimation du prix"
+                  : lang === "en"
+                    ? "Price estimate"
+                    : "Preisschätzung"
+              }
+            </h2>
+
+            <div class="price-row">
+              <div>
+                <span class="font-medium">
+                  {
+                    lang === "fr"
+                      ? "Formule choisie:"
+                      : lang === "en"
+                        ? "Selected package:"
+                        : "Ausgewähltes Paket:"
+                  }
+                </span>
+                <span id="selected-package-label" class="ml-2"></span>
+              </div>
+              <span id="package-price" class="font-medium"></span>
+            </div>
+
+            <div id="selected-options-container" class="hidden">
+              <div class="font-medium mb-1">
+                {
+                  lang === "fr"
+                    ? "Options sélectionnées:"
+                    : lang === "en"
+                      ? "Selected options:"
+                      : "Ausgewählte Optionen:"
+                }
+              </div>
+              <ul id="selected-options-list" class="list-disc pl-5 text-sm">
+              </ul>
+            </div>
+
+            <div
+              class="border-t border-accent border-opacity-30 my-2 pt-2 price-row"
+            >
+              <div class="font-bold">
+                {
+                  lang === "fr"
+                    ? "Total estimé:"
+                    : lang === "en"
+                      ? "Estimated total:"
+                      : "Geschätzte Summe:"
+                }
+              </div>
+              <div id="total-price" class="text-accent text-xl font-bold"></div>
+            </div>
+
+            <div class="text-xs italic text-text-muted mt-2">
+              {
+                lang === "fr"
+                  ? "Note: Cette estimation est basée sur les options standard. Le prix final peut varier en fonction des spécificités de votre projet et des éléments graphiques à réaliser."
+                  : lang === "en"
+                    ? "Note: This estimate is based on standard options. The final price may vary depending on the specifics of your project and the graphic assets to be created."
+                    : "Hinweis: Diese Schätzung basiert auf Standardoptionen. Der endgültige Preis kann je nach Besonderheiten Ihres Projekts und den zu erstellenden Grafikressourcen variieren."
+              }
+            </div>
+          </div>
+
           <!-- Champ honeypot pour éviter le spam -->
           <div class="hidden">
             <input type="text" name="botcheck" />
           </div>
-          
+
           <!-- Bouton d'envoi -->
           <div class="flex justify-end gap-4">
-            <span id="form-spinner" style="display: none;" class="inline-flex items-center">
-                <svg class="animate-spin -ml-1 mr-2 h-4 w-4 text-accent" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                  <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-                  <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                </svg>
-                {t.submitting}
-              </span>
-            <button 
-              type="submit"
-              class="cta-button"
-              id="submit-button"
+            <span
+              id="form-spinner"
+              style="display: none;"
+              class="inline-flex items-center"
             >
+              <svg
+                class="animate-spin -ml-1 mr-2 h-4 w-4 text-accent"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+              >
+                <circle
+                  class="opacity-25"
+                  cx="12"
+                  cy="12"
+                  r="10"
+                  stroke="currentColor"
+                  stroke-width="4"></circle>
+                <path
+                  class="opacity-75"
+                  fill="currentColor"
+                  d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                ></path>
+              </svg>
+              {t.submitting}
+            </span>
+            <button type="submit" class="cta-button" id="submit-button">
               {t.submitButton}
             </button>
           </div>
-          
+
           <!-- Conteneur pour les messages de feedback -->
           <div id="form-messages" class="mt-4"></div>
         </form>
       </div>
-      
+
       <!-- Sidebar avec informations sur les offres -->
       <div class="md:w-1/3">
         <div class="bg-secondary bg-opacity-30 p-5 rounded-lg mb-6">
           <h2 class="text-xl font-semibold mb-4 text-accent">
-            {lang === 'fr' ? 'Mes formules sites vitrines' : lang === 'en' ? 'My showcase website packages' : 'Meine Präsentationswebsite-Pakete'}
+            {
+              lang === "fr"
+                ? "Mes formules sites vitrines"
+                : lang === "en"
+                  ? "My showcase website packages"
+                  : "Meine Präsentationswebsite-Pakete"
+            }
           </h2>
-          
+
           <div class="space-y-4">
             {/* Standard (mis en premier car plus populaire) */}
-            <div class="p-3 border-2 border-accent rounded-lg transform scale-105 relative">
+            <div
+              class="p-3 border-2 border-accent rounded-lg transform scale-105 relative"
+            >
               <div class="font-semibold text-accent mb-1">
-                {showcasePackages[lang].standard.title} - {showcasePackages[lang].standard.price}
+                {showcasePackages[lang].standard.title} - {
+                  showcasePackages[lang].standard.price
+                }
               </div>
               <ul class="list-disc pl-5 text-sm">
-                {showcasePackages[lang].standard.features.map(feature => (
-                  <li>{feature}</li>
-                ))}
+                {
+                  showcasePackages[lang].standard.features.map((feature) => (
+                    <li>{feature}</li>
+                  ))
+                }
               </ul>
             </div>
-            
+
             {/* Basic */}
             <div class="p-3 border border-accent border-opacity-30 rounded-lg">
               <div class="font-semibold text-accent mb-1">
-                {showcasePackages[lang].basic.title} - {showcasePackages[lang].basic.price}
+                {showcasePackages[lang].basic.title} - {
+                  showcasePackages[lang].basic.price
+                }
               </div>
               <ul class="list-disc pl-5 text-sm">
-                {showcasePackages[lang].basic.features.map(feature => (
-                  <li>{feature}</li>
-                ))}
+                {
+                  showcasePackages[lang].basic.features.map((feature) => (
+                    <li>{feature}</li>
+                  ))
+                }
               </ul>
             </div>
-            
+
             {/* Premium */}
             <div class="p-3 border border-accent border-opacity-30 rounded-lg">
               <div class="font-semibold text-accent mb-1">
-                {showcasePackages[lang].premium.title} - {showcasePackages[lang].premium.price}
+                {showcasePackages[lang].premium.title} - {
+                  showcasePackages[lang].premium.price
+                }
               </div>
               <ul class="list-disc pl-5 text-sm">
-                {showcasePackages[lang].premium.features.map(feature => (
-                  <li>{feature}</li>
-                ))}
+                {
+                  showcasePackages[lang].premium.features.map((feature) => (
+                    <li>{feature}</li>
+                  ))
+                }
               </ul>
             </div>
           </div>
-          
+
           <div class="mt-6 p-3 bg-secondary bg-opacity-50 rounded-lg">
             <h3 class="font-semibold text-accent mb-2 text-sm">
-              {lang === 'fr' ? 'Tous les forfaits incluent :' : lang === 'en' ? 'All packages include:' : 'Alle Pakete beinhalten:'}
+              {
+                lang === "fr"
+                  ? "Tous les forfaits incluent :"
+                  : lang === "en"
+                    ? "All packages include:"
+                    : "Alle Pakete beinhalten:"
+              }
             </h3>
             <ul class="list-disc pl-5 text-sm">
-              {includedInAllPackages[lang].map(feature => (
-                <li>{feature}</li>
-              ))}
+              {includedInAllPackages[lang].map((feature) => <li>{feature}</li>)}
             </ul>
             <p class="mt-2 text-xs italic">
-              {lang === 'fr' 
-                ? 'Vous n\'avez qu\'à acheter un nom de domaine (à partir de 10-15€/an) : je m\'occupe du reste.'
-                : lang === 'en'
-                  ? 'You only need to buy a domain name (from €10-15/year): I take care of the rest.'
-                  : 'Sie müssen nur einen Domainnamen kaufen (ab 10-15€/Jahr): Um alles andere kümmere ich mich.'}
+              {
+                lang === "fr"
+                  ? "Vous n'avez qu'à acheter un nom de domaine (à partir de 10-15€/an) : je m'occupe du reste."
+                  : lang === "en"
+                    ? "You only need to buy a domain name (from €10-15/year): I take care of the rest."
+                    : "Sie müssen nur einen Domainnamen kaufen (ab 10-15€/Jahr): Um alles andere kümmere ich mich."
+              }
             </p>
           </div>
         </div>
@@ -719,22 +930,22 @@ const clientTranslations = {
     .option-item {
       margin-bottom: 12px;
     }
-  
+
     .option-item input[type="checkbox"] {
       /* Cacher la checkbox native mais la garder accessible */
       opacity: 0;
       position: absolute;
     }
-  
+
     .option-item input[type="checkbox"] + label {
       display: block;
       position: relative;
       cursor: pointer;
       padding-left: 28px;
     }
-  
+
     .option-item input[type="checkbox"] + label::before {
-      content: '';
+      content: "";
       position: absolute;
       left: 0;
       top: 3px;
@@ -745,14 +956,14 @@ const clientTranslations = {
       border-radius: 3px;
       transition: all 0.2s ease-in-out;
     }
-  
+
     .option-item input[type="checkbox"]:checked + label::before {
       background-color: var(--color-accent);
       border-color: var(--color-accent);
     }
-  
+
     .option-item input[type="checkbox"]:checked + label::after {
-      content: '';
+      content: "";
       position: absolute;
       left: 6px;
       top: 7px;
@@ -762,48 +973,51 @@ const clientTranslations = {
       border-width: 0 2px 2px 0;
       transform: rotate(45deg);
     }
-  
+
     /* Mise en page des informations de l'option */
     .option-title {
       display: block;
       font-weight: 500;
       margin-bottom: 2px;
     }
-  
+
     .text-sm.text-text-muted {
       display: block;
       margin-top: 2px;
     }
-  
+
     /* Animation douce pour l'affichage/masquage des options */
     .option-details {
       max-height: 0;
       overflow: hidden;
       opacity: 0;
-      transition: max-height 0.3s ease-out, opacity 0.3s ease-out, margin 0.3s ease-out;
+      transition:
+        max-height 0.3s ease-out,
+        opacity 0.3s ease-out,
+        margin 0.3s ease-out;
     }
-  
+
     input[type="checkbox"]:checked ~ .option-details {
       max-height: 200px; /* Valeur arbitraire, doit être suffisamment grande */
       opacity: 1;
       margin-top: 8px;
     }
-  
+
     /* Style pour la section d'estimation de prix */
     .price-estimate-section {
       transition: opacity 0.3s ease-out;
     }
-  
+
     .price-row {
       display: flex;
       justify-content: space-between;
       margin-bottom: 4px;
     }
-  
+
     .selected-option {
       animation: fadeIn 0.3s ease-out;
     }
-  
+
     @keyframes fadeIn {
       from {
         opacity: 0;
@@ -818,231 +1032,264 @@ const clientTranslations = {
 </Layout>
 
 <script define:vars={{ clientTranslations }}>
-document.addEventListener('astro:page-load', function() {
-  // Récupération des éléments du formulaire et du calculateur de prix
-  const form = document.getElementById('quote-form');
-  const packageSelect = document.getElementById('service_package');
-  const optionCheckboxes = document.querySelectorAll('.option-checkbox');
-  const packagePriceElement = document.getElementById('package-price');
-  const totalPriceElement = document.getElementById('total-price');
-  const selectedPackageLabel = document.getElementById('selected-package-label');
-  const selectedOptionsList = document.getElementById('selected-options-list');
-  const selectedOptionsContainer = document.getElementById('selected-options-container');
-  
-  // Fonction de calcul et mise à jour du prix total
-  function updatePriceDisplay() {
-    // Valeurs par défaut
-    let packagePrice = 0;
-    let packageName = '';
-    let isKnownPackage = true;
-    
-    // Récupération du prix du package
-    if (packageSelect.value !== 'not_sure') {
-      // Extraire la valeur du prix depuis les attributs data
-      if (packageSelect.value === 'basic') {
-        packagePrice = parseInt(packageSelect.dataset.priceBasic) || 0;
-      } else if (packageSelect.value === 'standard') {
-        packagePrice = parseInt(packageSelect.dataset.priceStandard) || 0;
-      } else if (packageSelect.value === 'premium') {
-        packagePrice = parseInt(packageSelect.dataset.pricePremium) || 0;
-      }
-      
-      // Obtenir le nom du package sélectionné
-      packageName = packageSelect.options[packageSelect.selectedIndex].text.split(' - ')[0];
-    } else {
-      isKnownPackage = false;
-      packageName = packageSelect.options[packageSelect.selectedIndex].text;
-    }
-    
-    // Mise à jour de l'affichage du package
-    selectedPackageLabel.textContent = packageName;
-    packagePriceElement.textContent = isKnownPackage ? packagePrice + ' €' : 'À définir';
-    
-    // Calcul du total des options sélectionnées
-    let optionsTotal = 0;
-    selectedOptionsList.innerHTML = '';
-    selectedOptionsContainer.classList.add('hidden');
-    
-    let hasSelectedOptions = false;
-    
-    optionCheckboxes.forEach(checkbox => {
-      if (checkbox.checked) {
-        hasSelectedOptions = true;
-        optionsTotal += parseInt(checkbox.dataset.price) || 0;
-        
-        // Ajouter l'option à la liste d'affichage
-        const optionLabel = checkbox.nextElementSibling.querySelector('.option-title').textContent;
-        const li = document.createElement('li');
-        li.className = 'selected-option';
-        li.textContent = optionLabel;
-        selectedOptionsList.appendChild(li);
-      }
-    });
-    
-    // Afficher la section des options sélectionnées si nécessaire
-    if (hasSelectedOptions) {
-      selectedOptionsContainer.classList.remove('hidden');
-    }
-    
-    // Mise à jour du prix total
-    totalPriceElement.textContent = isKnownPackage ? 
-      (packagePrice + optionsTotal) + ' €' : 
-      'À définir';
-    
-    // Animer le changement de prix
-    totalPriceElement.classList.add('price-update');
-    setTimeout(() => totalPriceElement.classList.remove('price-update'), 300);
-  }
-  
-  // Initialiser le calculateur au chargement
-  if (packageSelect && totalPriceElement) {
-    updatePriceDisplay();
-    
-    // Attacher les écouteurs d'événements avec délégation
-    form.addEventListener('change', (e) => {
-      if (e.target === packageSelect || 
-          e.target.classList.contains('option-checkbox')) {
-        updatePriceDisplay();
-      }
-    });
-  }
-  
-  // Gestion du type de projet "Autre"
-  const projectTypeSelect = document.getElementById('project_type');
-  const additionalInfoField = document.getElementById('additional_info');
-  const additionalInfoLabel = document.querySelector('label[for="additional_info"]');
-  
-  if (projectTypeSelect && additionalInfoField && additionalInfoLabel) {
-    function updateAdditionalField() {
-      const isOther = projectTypeSelect.value === 'other';
-      
-      // Utiliser des chaînes directes plutôt que des variables qui pourraient ne pas être définies
-      additionalInfoLabel.textContent = isOther ? 
-        (clientTranslations.lang === 'fr' ? 'Précisez votre besoin *' : 
-         clientTranslations.lang === 'en' ? 'Specify your need *' : 
-         'Geben Sie Ihren Bedarf an *') :
-        clientTranslations.additionalInfoLabel;
-      
-      additionalInfoField.placeholder = isOther ?
-        (clientTranslations.lang === 'fr' ? 'Décrivez le type de site ou d\'application dont vous avez besoin...' : 
-         clientTranslations.lang === 'en' ? 'Describe the type of website or application you need...' : 
-         'Beschreiben Sie die Art der Website oder Anwendung, die Sie benötigen...') :
-        clientTranslations.additionalInfoPlaceholder;
-      
-      isOther ? 
-        additionalInfoField.setAttribute('required', 'required') : 
-        additionalInfoField.removeAttribute('required');
-    }
-    
-    updateAdditionalField();
-    projectTypeSelect.addEventListener('change', updateAdditionalField);
-  }
-  
-  // Gestion de la soumission du formulaire
-  if (form) {
-    form.addEventListener('submit', function(e) {
-      e.preventDefault();
-      
-      // Afficher l'indicateur de chargement
-      const submitButton = document.getElementById('submit-button');
-      const formSpinner = document.getElementById('form-spinner');
-      const formMessages = document.getElementById('form-messages');
-      
-      submitButton.disabled = true;
-      formSpinner.style.display = 'inline-flex';
-      formMessages.innerHTML = '';
-      
-      // Préparation des données
-      const formData = new FormData(form);
-      
-      // Regrouper les options sélectionnées
-      const selectedOptions = Array.from(document.querySelectorAll('.option-checkbox:checked'))
-        .map(checkbox => checkbox.value);
-      
-      // Supprimer les entrées individuelles d'options
-      for (const pair of formData.entries()) {
-        if (pair[0] === 'options') {
-          formData.delete(pair[0]);
+  document.addEventListener("astro:page-load", function () {
+    // Récupération des éléments du formulaire et du calculateur de prix
+    const form = document.getElementById("quote-form");
+    const packageSelect = document.getElementById("service_package");
+    const optionCheckboxes = document.querySelectorAll(".option-checkbox");
+    const packagePriceElement = document.getElementById("package-price");
+    const totalPriceElement = document.getElementById("total-price");
+    const selectedPackageLabel = document.getElementById(
+      "selected-package-label"
+    );
+    const selectedOptionsList = document.getElementById(
+      "selected-options-list"
+    );
+    const selectedOptionsContainer = document.getElementById(
+      "selected-options-container"
+    );
+
+    // Fonction de calcul et mise à jour du prix total
+    function updatePriceDisplay() {
+      // Valeurs par défaut
+      let packagePrice = 0;
+      let packageName = "";
+      let isKnownPackage = true;
+
+      // Récupération du prix du package
+      if (packageSelect.value !== "not_sure") {
+        // Extraire la valeur du prix depuis les attributs data
+        if (packageSelect.value === "basic") {
+          packagePrice = parseInt(packageSelect.dataset.priceBasic) || 0;
+        } else if (packageSelect.value === "standard") {
+          packagePrice = parseInt(packageSelect.dataset.priceStandard) || 0;
+        } else if (packageSelect.value === "premium") {
+          packagePrice = parseInt(packageSelect.dataset.pricePremium) || 0;
         }
+
+        // Obtenir le nom du package sélectionné
+        packageName =
+          packageSelect.options[packageSelect.selectedIndex].text.split(
+            " - "
+          )[0];
+      } else {
+        isKnownPackage = false;
+        packageName = packageSelect.options[packageSelect.selectedIndex].text;
       }
-      
-      // Ajouter les options regroupées
-      formData.append('selected_options', 
-        selectedOptions.length > 0 ? selectedOptions.join(', ') : 'Aucune option sélectionnée');
-      
-      // Ajouter l'estimation de prix
-      if (totalPriceElement && totalPriceElement.textContent !== 'À définir') {
-        formData.append('estimated_price', totalPriceElement.textContent);
-      }
-      
-      // Envoi du formulaire
-      fetch('https://api.web3forms.com/submit', {
-        method: 'POST',
-        body: formData
-      })
-      .then(response => response.json())
-      .then(data => {
-        // Masquer l'indicateur de chargement
-        submitButton.disabled = false;
-        formSpinner.style.display = 'none';
-        
-        // Afficher le message de résultat
-        const messageElement = document.createElement('div');
-        messageElement.className = data.success ? 
-          'p-3 bg-green-100/20 text-green-500 border border-green-500/30 rounded-md' : 
-          'p-3 bg-red-100/20 text-red-500 border border-red-500/30 rounded-md';
-        messageElement.textContent = data.success ? 
-          clientTranslations.successMessage : 
-          clientTranslations.errorMessage;
-        
-        // Animation du message
-        messageElement.style.opacity = '0';
-        messageElement.style.transform = 'translateY(-10px)';
-        formMessages.appendChild(messageElement);
-        
-        // Forcer un reflow pour que l'animation fonctionne
-        void messageElement.offsetWidth;
-        
-        messageElement.style.transition = 'opacity 0.4s ease-out, transform 0.4s ease-out';
-        messageElement.style.opacity = '1';
-        messageElement.style.transform = 'translateY(0)';
-        
-        if (data.success) {
-          // Réinitialiser le formulaire
-          form.reset();
-          
-          // Remise aux valeurs par défaut
-          if (projectTypeSelect) projectTypeSelect.value = 'showcase';
-          if (packageSelect) {
-            packageSelect.value = 'standard';
-            updatePriceDisplay();
-          }
-          if (additionalInfoField) updateAdditionalField();
+
+      // Mise à jour de l'affichage du package
+      selectedPackageLabel.textContent = packageName;
+      packagePriceElement.textContent = isKnownPackage
+        ? packagePrice + " €"
+        : "À définir";
+
+      // Calcul du total des options sélectionnées
+      let optionsTotal = 0;
+      selectedOptionsList.innerHTML = "";
+      selectedOptionsContainer.classList.add("hidden");
+
+      let hasSelectedOptions = false;
+
+      optionCheckboxes.forEach((checkbox) => {
+        if (checkbox.checked) {
+          hasSelectedOptions = true;
+          optionsTotal += parseInt(checkbox.dataset.price) || 0;
+
+          // Ajouter l'option à la liste d'affichage
+          const optionLabel =
+            checkbox.nextElementSibling.querySelector(
+              ".option-title"
+            ).textContent;
+          const li = document.createElement("li");
+          li.className = "selected-option";
+          li.textContent = optionLabel;
+          selectedOptionsList.appendChild(li);
         }
-      })
-      .catch(error => {
-        // Gestion des erreurs
-        submitButton.disabled = false;
-        formSpinner.style.display = 'none';
-        
-        const messageElement = document.createElement('div');
-        messageElement.className = 'p-3 bg-red-100/20 text-red-500 border border-red-500/30 rounded-md';
-        messageElement.textContent = clientTranslations.errorMessage;
-        
-        // Animation du message d'erreur
-        messageElement.style.opacity = '0';
-        messageElement.style.transform = 'translateY(-10px)';
-        formMessages.appendChild(messageElement);
-        
-        setTimeout(() => {
-          messageElement.style.transition = 'opacity 0.4s ease-out, transform 0.4s ease-out';
-          messageElement.style.opacity = '1';
-          messageElement.style.transform = 'translateY(0)';
-        }, 10);
-        
-        console.error('Error:', error);
       });
-    });
-  }
-});
+
+      // Afficher la section des options sélectionnées si nécessaire
+      if (hasSelectedOptions) {
+        selectedOptionsContainer.classList.remove("hidden");
+      }
+
+      // Mise à jour du prix total
+      totalPriceElement.textContent = isKnownPackage
+        ? packagePrice + optionsTotal + " €"
+        : "À définir";
+
+      // Animer le changement de prix
+      totalPriceElement.classList.add("price-update");
+      setTimeout(() => totalPriceElement.classList.remove("price-update"), 300);
+    }
+
+    // Initialiser le calculateur au chargement
+    if (packageSelect && totalPriceElement) {
+      updatePriceDisplay();
+
+      // Attacher les écouteurs d'événements avec délégation
+      form.addEventListener("change", (e) => {
+        if (
+          e.target === packageSelect ||
+          e.target.classList.contains("option-checkbox")
+        ) {
+          updatePriceDisplay();
+        }
+      });
+    }
+
+    // Gestion du type de projet "Autre"
+    const projectTypeSelect = document.getElementById("project_type");
+    const additionalInfoField = document.getElementById("additional_info");
+    const additionalInfoLabel = document.querySelector(
+      'label[for="additional_info"]'
+    );
+
+    if (projectTypeSelect && additionalInfoField && additionalInfoLabel) {
+      function updateAdditionalField() {
+        const isOther = projectTypeSelect.value === "other";
+
+        // Utiliser des chaînes directes plutôt que des variables qui pourraient ne pas être définies
+        additionalInfoLabel.textContent = isOther
+          ? clientTranslations.lang === "fr"
+            ? "Précisez votre besoin *"
+            : clientTranslations.lang === "en"
+              ? "Specify your need *"
+              : "Geben Sie Ihren Bedarf an *"
+          : clientTranslations.additionalInfoLabel;
+
+        additionalInfoField.placeholder = isOther
+          ? clientTranslations.lang === "fr"
+            ? "Décrivez le type de site ou d'application dont vous avez besoin..."
+            : clientTranslations.lang === "en"
+              ? "Describe the type of website or application you need..."
+              : "Beschreiben Sie die Art der Website oder Anwendung, die Sie benötigen..."
+          : clientTranslations.additionalInfoPlaceholder;
+
+        isOther
+          ? additionalInfoField.setAttribute("required", "required")
+          : additionalInfoField.removeAttribute("required");
+      }
+
+      updateAdditionalField();
+      projectTypeSelect.addEventListener("change", updateAdditionalField);
+    }
+
+    // Gestion de la soumission du formulaire
+    if (form) {
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
+
+        // Afficher l'indicateur de chargement
+        const submitButton = document.getElementById("submit-button");
+        const formSpinner = document.getElementById("form-spinner");
+        const formMessages = document.getElementById("form-messages");
+
+        submitButton.disabled = true;
+        formSpinner.style.display = "inline-flex";
+        formMessages.innerHTML = "";
+
+        // Préparation des données
+        const formData = new FormData(form);
+
+        // Regrouper les options sélectionnées
+        const selectedOptions = Array.from(
+          document.querySelectorAll(".option-checkbox:checked")
+        ).map((checkbox) => checkbox.value);
+
+        // Supprimer les entrées individuelles d'options
+        for (const pair of formData.entries()) {
+          if (pair[0] === "options") {
+            formData.delete(pair[0]);
+          }
+        }
+
+        // Ajouter les options regroupées
+        formData.append(
+          "selected_options",
+          selectedOptions.length > 0
+            ? selectedOptions.join(", ")
+            : "Aucune option sélectionnée"
+        );
+
+        // Ajouter l'estimation de prix
+        if (
+          totalPriceElement &&
+          totalPriceElement.textContent !== "À définir"
+        ) {
+          formData.append("estimated_price", totalPriceElement.textContent);
+        }
+
+        // Envoi du formulaire
+        fetch("https://api.web3forms.com/submit", {
+          method: "POST",
+          body: formData,
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            // Masquer l'indicateur de chargement
+            submitButton.disabled = false;
+            formSpinner.style.display = "none";
+
+            // Afficher le message de résultat
+            const messageElement = document.createElement("div");
+            messageElement.className = data.success
+              ? "p-3 bg-green-100/20 text-green-500 border border-green-500/30 rounded-md"
+              : "p-3 bg-red-100/20 text-red-500 border border-red-500/30 rounded-md";
+            messageElement.textContent = data.success
+              ? clientTranslations.successMessage
+              : clientTranslations.errorMessage;
+
+            // Animation du message
+            messageElement.style.opacity = "0";
+            messageElement.style.transform = "translateY(-10px)";
+            formMessages.appendChild(messageElement);
+
+            // Forcer un reflow pour que l'animation fonctionne
+            void messageElement.offsetWidth;
+
+            messageElement.style.transition =
+              "opacity 0.4s ease-out, transform 0.4s ease-out";
+            messageElement.style.opacity = "1";
+            messageElement.style.transform = "translateY(0)";
+
+            if (data.success) {
+              // Réinitialiser le formulaire
+              form.reset();
+
+              // Remise aux valeurs par défaut
+              if (projectTypeSelect) projectTypeSelect.value = "showcase";
+              if (packageSelect) {
+                packageSelect.value = "standard";
+                updatePriceDisplay();
+              }
+              if (additionalInfoField) updateAdditionalField();
+            }
+          })
+          .catch((error) => {
+            // Gestion des erreurs
+            submitButton.disabled = false;
+            formSpinner.style.display = "none";
+
+            const messageElement = document.createElement("div");
+            messageElement.className =
+              "p-3 bg-red-100/20 text-red-500 border border-red-500/30 rounded-md";
+            messageElement.textContent = clientTranslations.errorMessage;
+
+            // Animation du message d'erreur
+            messageElement.style.opacity = "0";
+            messageElement.style.transform = "translateY(-10px)";
+            formMessages.appendChild(messageElement);
+
+            setTimeout(() => {
+              messageElement.style.transition =
+                "opacity 0.4s ease-out, transform 0.4s ease-out";
+              messageElement.style.opacity = "1";
+              messageElement.style.transform = "translateY(0)";
+            }, 10);
+
+            console.error("Error:", error);
+          });
+      });
+    }
+  });
 </script>

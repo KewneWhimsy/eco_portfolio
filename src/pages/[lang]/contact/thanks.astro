@@ -24,8 +24,6 @@ const content = {
     ecoModeTitle: 'Mode Éco activé',
     ecoModeText: 'Vous consultez actuellement la version ultra-légère de mon portfolio.',
     contactAgainText: 'Si vous avez d\'autres questions ou besoins, n\'hésitez pas à me contacter à nouveau.',
-    emailText: 'Vous pouvez également me joindre directement par email à:',
-    emailAddress: 'josshanel@gmail.com'
   },
   en: {
     title: 'Thank you for your message',
@@ -36,8 +34,6 @@ const content = {
     ecoModeTitle: 'Eco Mode activated',
     ecoModeText: 'You are currently viewing the ultra-lightweight version of my portfolio.',
     contactAgainText: 'If you have any other questions or needs, don\'t hesitate to contact me again.',
-    emailText: 'You can also reach me directly by email at:',
-    emailAddress: 'josshanel@gmail.com'
   },
   de: {
     title: 'Vielen Dank für Ihre Nachricht',
@@ -48,8 +44,6 @@ const content = {
     ecoModeTitle: 'Öko-Modus aktiviert',
     ecoModeText: 'Sie sehen gerade die ultraleichte Version meines Portfolios.',
     contactAgainText: 'Wenn Sie weitere Fragen oder Wünsche haben, zögern Sie nicht, mich erneut zu kontaktieren.',
-    emailText: 'Sie können mich auch direkt per E-Mail erreichen unter:',
-    emailAddress: 'josshanel@gmail.com'
   }
 };
 
@@ -82,13 +76,6 @@ const isEcoMode = true;
       <p class="mb-6">
         {t.contactAgainText}
       </p>
-      
-      <div class="mb-6 text-left">
-        <p class="mb-2">{t.emailText}</p>
-        <a href={`mailto:${t.emailAddress}`} class="text-accent hover:underline">
-          {t.emailAddress}
-        </a>
-      </div>
       
       <a 
   href={`/${lang}/eco`} 
