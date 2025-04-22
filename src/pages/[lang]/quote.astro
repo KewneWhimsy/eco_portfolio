@@ -54,7 +54,11 @@ const content = {
     submitting: 'Envoi en cours...',
     successMessage: 'Merci ! Votre demande de devis a été envoyée avec succès. Je vous contacterai sous 24-48h avec une proposition personnalisée.',
     errorMessage: 'Une erreur est survenue. Veuillez réessayer ou me contacter directement par email.',
-    requiredField: 'Ce champ est requis'
+    requiredField: 'Ce champ est requis',
+    
+    // Préciser votre besoin (pour le type de projet "Autre")
+    specifyNeed: 'Précisez votre besoin *',
+    specifyNeedPlaceholder: 'Décrivez le type de site ou d\'application dont vous avez besoin...'
   },
   en: {
     title: 'Josselin HANEL - Showcase Website Quote',
@@ -95,7 +99,11 @@ const content = {
     submitting: 'Sending...',
     successMessage: 'Thank you! Your quote request has been successfully sent. I will contact you within 24-48 hours with a personalized proposal.',
     errorMessage: 'An error occurred. Please try again or contact me directly by email.',
-    requiredField: 'This field is required'
+    requiredField: 'This field is required',
+    
+    // Specify your need (for "Other" project type)
+    specifyNeed: 'Specify your need *',
+    specifyNeedPlaceholder: 'Describe the type of website or application you need...'
   },
   de: {
     title: 'Josselin HANEL - Angebot für Präsentationswebsite',
@@ -136,7 +144,11 @@ const content = {
     submitting: 'Wird gesendet...',
     successMessage: 'Vielen Dank! Ihre Angebotsanfrage wurde erfolgreich gesendet. Ich werde mich innerhalb von 24-48 Stunden mit einem personalisierten Angebot bei Ihnen melden.',
     errorMessage: 'Ein Fehler ist aufgetreten. Bitte versuchen Sie es erneut oder kontaktieren Sie mich direkt per E-Mail.',
-    requiredField: 'Dieses Feld ist erforderlich'
+    requiredField: 'Dieses Feld ist erforderlich',
+    
+    // Geben Sie Ihren Bedarf an (für "Anderen" Projekttyp)
+    specifyNeed: 'Geben Sie Ihren Bedarf an *',
+    specifyNeedPlaceholder: 'Beschreiben Sie die Art der Website oder Anwendung, die Sie benötigen...'
   }
 };
 
@@ -380,6 +392,18 @@ const additionalOptions = {
 // Déterminer si le mode éco est actif en fonction de l'URL
 const { pathname } = Astro.url;
 const isEcoMode = pathname.includes('/eco');
+
+// Important ! Créer un objet avec toutes les traductions nécessaires pour le script client
+const clientTranslations = {
+  lang,
+  additionalInfoLabel: t.additionalInfoLabel,
+  additionalInfoPlaceholder: t.additionalInfoPlaceholder,
+  specifyNeed: t.specifyNeed,
+  specifyNeedPlaceholder: t.specifyNeedPlaceholder,
+  successMessage: t.successMessage,
+  errorMessage: t.errorMessage,
+  submitting: t.submitting
+};
 ---
 
 <Layout title={t.title} description={t.description} lang={lang} isEcoMode={isEcoMode}>
@@ -631,8 +655,6 @@ const isEcoMode = pathname.includes('/eco');
             {lang === 'fr' ? 'Mes formules sites vitrines' : lang === 'en' ? 'My showcase website packages' : 'Meine Präsentationswebsite-Pakete'}
           </h2>
           
-          
-          
           <div class="space-y-4">
             {/* Standard (mis en premier car plus populaire) */}
             <div class="p-3 border-2 border-accent rounded-lg transform scale-105 relative">
@@ -780,8 +802,8 @@ input[type="checkbox"]:checked ~ .option-details {
   </style>
 </Layout>
 
-<script define:vars={{ successMessage: t.successMessage, errorMessage: t.errorMessage, submittingMessage: t.submitting }}>
-  document.addEventListener('astro:page-load', function() {
+<script define:vars={{ clientTranslations }}>
+document.addEventListener('astro:page-load', function() {
   // Récupération des éléments du formulaire et du calculateur de prix
   const form = document.getElementById('quote-form');
   const packageSelect = document.getElementById('service_package');
@@ -878,17 +900,19 @@ input[type="checkbox"]:checked ~ .option-details {
   if (projectTypeSelect && additionalInfoField && additionalInfoLabel) {
     function updateAdditionalField() {
       const isOther = projectTypeSelect.value === 'other';
+      
+      // Utiliser des chaînes directes plutôt que des variables qui pourraient ne pas être définies
       additionalInfoLabel.textContent = isOther ? 
-        (lang === 'fr' ? 'Précisez votre besoin *' : 
-         lang === 'en' ? 'Specify your need *' : 
+        (clientTranslations.lang === 'fr' ? 'Précisez votre besoin *' : 
+         clientTranslations.lang === 'en' ? 'Specify your need *' : 
          'Geben Sie Ihren Bedarf an *') :
-        t.additionalInfoLabel;
+        clientTranslations.additionalInfoLabel;
       
       additionalInfoField.placeholder = isOther ?
-        (lang === 'fr' ? 'Décrivez le type de site ou d\'application dont vous avez besoin...' : 
-         lang === 'en' ? 'Describe the type of website or application you need...' : 
+        (clientTranslations.lang === 'fr' ? 'Décrivez le type de site ou d\'application dont vous avez besoin...' : 
+         clientTranslations.lang === 'en' ? 'Describe the type of website or application you need...' : 
          'Beschreiben Sie die Art der Website oder Anwendung, die Sie benötigen...') :
-        t.additionalInfoPlaceholder;
+        clientTranslations.additionalInfoPlaceholder;
       
       isOther ? 
         additionalInfoField.setAttribute('required', 'required') : 
@@ -952,7 +976,9 @@ input[type="checkbox"]:checked ~ .option-details {
         messageElement.className = data.success ? 
           'p-3 bg-green-100/20 text-green-500 border border-green-500/30 rounded-md' : 
           'p-3 bg-red-100/20 text-red-500 border border-red-500/30 rounded-md';
-        messageElement.textContent = data.success ? successMessage : errorMessage;
+        messageElement.textContent = data.success ? 
+          clientTranslations.successMessage : 
+          clientTranslations.errorMessage;
         
         // Animation du message
         messageElement.style.opacity = '0';
@@ -986,7 +1012,7 @@ input[type="checkbox"]:checked ~ .option-details {
         
         const messageElement = document.createElement('div');
         messageElement.className = 'p-3 bg-red-100/20 text-red-500 border border-red-500/30 rounded-md';
-        messageElement.textContent = errorMessage;
+        messageElement.textContent = clientTranslations.errorMessage;
         
         // Animation du message d'erreur
         messageElement.style.opacity = '0';
