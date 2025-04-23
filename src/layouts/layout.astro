@@ -95,15 +95,6 @@ const { htmlLang, ogLocale } =
         document.addEventListener('DOMContentLoaded', updateNavigationLinks);
       </script>
     )}
-
-    <!-- Ajouter les transitions CSS pures uniquement en mode éco -->
-    {isEcoMode && (
-      <style>
-        @view-transition {
-          navigation: auto; /* enabled! */
-        }
-      </style>
-    )}
     
   </head>
   <body class="min-h-screen flex flex-col">
