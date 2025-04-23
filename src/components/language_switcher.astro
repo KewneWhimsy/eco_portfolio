@@ -14,25 +14,23 @@ const langMatch = pathname.match(/^\/([a-z]{2})(\/|$)/);
 const currentLang = langMatch ? langMatch[1] : 'fr';
 const isEcoMode = pathname.includes('/eco');
 
-// Fonction de normalisation d'URL : assure un seul slash et un slash final
-function normalizeUrl(path: string): string {
-  let clean = path.replace(/\/{2,}/g, '/');        // Retirer les doubles slashes
-  clean = clean.replace(/\/?$/, '/');              // Ajouter un slash final
-  return clean;
-}
-
 // Fonction pour déterminer l'URL dans une autre langue
 const getLocalizedPath = (langCode: string): string => {
-  // Garder la structure du chemin mais changer la langue
+  // Extraire le chemin sans le code de langue
   const pathWithoutLang = pathname.replace(/^\/[a-z]{2}/, '');
-  const localizedPath = `/${langCode}${pathWithoutLang}`;
-
-  // Normaliser l'URL locale
-  return normalizeUrl(localizedPath);
+  
+  // Construire le nouveau chemin avec la langue souhaitée
+  let localizedPath = `/${langCode}${pathWithoutLang}`;
+  
+  // S'assurer qu'il y a un slash final
+  if (!localizedPath.endsWith('/')) {
+    localizedPath += '/';
+  }
+  
+  return localizedPath;
 };
 
 // Stocker la préférence de langue dans localStorage quand on clique
-
 ---
 
 <div class="relative inline-block text-left">
