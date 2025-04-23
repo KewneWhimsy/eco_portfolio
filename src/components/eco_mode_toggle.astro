@@ -6,36 +6,40 @@ const { pathname } = Astro.url;
 const langMatch = pathname.match(/^\/([a-z]{2})(\/|$)/);
 const currentLang = langMatch ? langMatch[1] : 'fr';
 
-// Vérifie si on est en mode éco
-const isEcoMode = pathname.includes('/eco/');
+// Déterminer si on est déjà en mode éco
+const isEcoMode = pathname.includes('/eco');
 
-// Fonction de nettoyage d’URL : retire les doublons et ajoute un slash final
-function normalizeUrl(path: string) {
-  let clean = path.replace(/\/{2,}/g, '/');          // pas de double slash
-  clean = clean.replace(/\/?$/, '/');                // s'assurer d'un slash final
-  return clean;
-}
-
-// Calcul de l’URL pour basculer de mode
+// Calculer l'URL pour basculer le mode
 let toggleUrl;
 
 if (isEcoMode) {
-  // Si on est sur /fr/eco/ ou un sous-chemin, on retire /eco/
-  toggleUrl = normalizeUrl(pathname.replace('/eco/', '/'));
+  // Si on est sur la page éco principale
+  if (pathname === `/${currentLang}/eco` || pathname === `/${currentLang}/eco/`) {
+    toggleUrl = `/${currentLang}/`;
+  } else {
+    // Sinon on enlève "/eco" de l'URL
+    toggleUrl = pathname.replace('/eco', '');
+  }
 } else {
-  // Sinon, on insère /eco/ après le code langue
-  toggleUrl = normalizeUrl(pathname.replace(`/${currentLang}/`, `/${currentLang}/eco/`));
+  // Si on est sur la page d'accueil de la langue
+  if (pathname === `/${currentLang}` || pathname === `/${currentLang}/`) {
+    toggleUrl = `/${currentLang}/eco/`;
+  } else {
+    // Sinon on ajoute "/eco" à l'URL actuelle
+    // S'assurer qu'il y a un slash à la fin avant d'ajouter eco
+    toggleUrl = pathname.endsWith('/') ? `${pathname}eco/` : `${pathname}/eco/`;
+  }
 }
 
-// Texte du bouton
+// Texte du bouton selon la langue
 const buttonText = {
   fr: isEcoMode ? 'Mode Standard' : 'Mode Éco',
   en: isEcoMode ? 'Standard Mode' : 'Eco Mode',
-  de: isEcoMode ? 'Standard-Modus' : 'Öko-Modus',
+  de: isEcoMode ? 'Standard-Modus' : 'Öko-Modus'
 };
 
-const text = buttonText[currentLang as keyof typeof buttonText] || buttonText.fr;
-
+// Utiliser le texte correspondant à la langue actuelle
+const text = buttonText[currentLang] || buttonText.fr;
 ---
 
 <!-- Version CSS-only du toggle mode éco -->
