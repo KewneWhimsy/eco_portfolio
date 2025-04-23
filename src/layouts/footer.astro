@@ -11,7 +11,7 @@ const currentYear = new Date().getFullYear();
 
 // Liens pour le footer
 const links = [
-  { title: 'GitHub', url: 'https://github.com/KewneWhimsy' },
+  { title: 'GitHub', url: 'https://github.com/KewneWhimsy/' },
   { title: 'LinkedIn', url: 'https://www.linkedin.com/in/josselin-hanel-030a8a358/' },
 ];
 
@@ -60,7 +60,7 @@ const isEcoMode = pathname.includes('/eco');
         </p>
         <!-- Lien vers la politique de confidentialité -->
         <div class="mt-3 text-xs">
-          <a href={`/${currentLang}/privacy${isEcoMode ? '/eco' : ''}`} class="text-text-muted hover:text-accent">
+          <a href={`/${currentLang}/privacy/${isEcoMode ? 'eco/' : ''}`} class="text-text-muted hover:text-accent">
             {t.privacyPolicy}
           </a>
         </div>

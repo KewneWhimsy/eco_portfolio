@@ -477,7 +477,7 @@ const technologies = [
 ];
 
 // Obtenir les projets précédent et suivant selon la langue
-const getProjectUrl = (projectId: string) => `/${lang}/${projectId}`;
+const getProjectUrl = (projectId: string) => `/${lang}/${projectId}/`;
 const prevProject = {
   id: "objet",
   title:
@@ -502,7 +502,7 @@ const nextProject = {
   <div class="container mx-auto px-4 py-8">
     <div class="mb-4">
       <a
-        href={`/${lang}/projects`}
+        href={`/${lang}/projects/`}
         class="text-text-muted hover:text-accent transition-colors"
       >
         &larr; {t.allProjects}
@@ -835,7 +835,7 @@ class="mb-10 bg-secondary bg-opacity-10 p-6 rounded-lg border-l-4 border-accent"
 
     <!-- Navigation entre projets -->
     <div class="border-t border-secondary pt-8 mt-12 flex justify-between">
-      <a href={`/${lang}/objet`} class="btn-secondary">
+      <a href={`/${lang}/objet/`} class="btn-secondary">
         &larr; {t.prevProject}: {prevProject.title}
       </a>
       <a href={getProjectUrl(nextProject.id)} class="btn-secondary">

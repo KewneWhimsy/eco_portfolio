@@ -303,7 +303,7 @@ const t = content[lang] || content.fr;
       <span>
         {t.contact.content}
       </span>
-      <a href="contact" class="text-link">
+      <a href={`/${lang}/contact/`} class="text-link">
         {t.contact.contactMe}
       </a>
       .
@@ -311,7 +311,7 @@ const t = content[lang] || content.fr;
 
     <!-- Lien de retour -->
     <div class="text-center mt-10">
-      <a href={`/${lang}`} class="btn-secondary inline-block">
+      <a href={`/${lang}/`} class="btn-secondary inline-block">
         {t.backLink}
       </a>
     </div>

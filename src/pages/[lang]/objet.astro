@@ -280,7 +280,7 @@ const technologies = [
 ];
 
 // Obtenir les projets précédent et suivant selon la langue
-const getProjectUrl = (projectId: string) => `/${lang}/esport`;
+const getProjectUrl = (projectId: string) => `/${lang}/esport/`;
 const nextProject = {
   id: "esport",
   title: lang === "fr" ? 
@@ -294,7 +294,7 @@ const nextProject = {
 <Layout title={t.title} description={t.description} lang={lang}>
   <div class="container mx-auto px-4 py-8">
     <div class="mb-4">
-      <a href={`/${lang}/projects`} class="text-text-muted hover:text-accent transition-colors">
+      <a href={`/${lang}/projects/`} class="text-text-muted hover:text-accent transition-colors">
         &larr; {t.allProjects}
       </a>
     </div>

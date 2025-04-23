@@ -1,7 +1,7 @@
 ---
 // Imports
 import Layout from "../../layouts/layout.astro";
-import Picture from "astro/components/Picture.astro";
+import { Picture } from 'astro:assets';
 import monImage from "../../assets/j.jpg";
 import CtaDispo from "../../components/cta_dispo.astro";
 
@@ -367,10 +367,10 @@ const isEcoMode = true;
             {t.heroText}
           </p>
           <div class="flex flex-wrap gap-3">
-            <a href={`/${lang}/contact/eco`} class="cta-button">
+            <a href={`/${lang}/contact/eco/`} class="cta-button">
               {t.contactButton}
             </a>
-            <a href={`/${lang}/projects/eco`} class="btn-secondary">
+            <a href={`/${lang}/projects/eco/`} class="btn-secondary">
               {t.projectsButton}
             </a>
           </div>
@@ -451,7 +451,7 @@ const isEcoMode = true;
           <p class="mb-2">{t.projects.esport.description}</p>
           <div class="text-sm text-text-muted">{t.projects.esport.techs}</div>
           <a
-            href={`/${lang}/esport/eco`}
+            href={`/${lang}/esport/eco/`}
             class="text-link text-sm mt-2 inline-block"
           >
             {t.projectButton}
@@ -462,7 +462,7 @@ const isEcoMode = true;
           <p class="mb-2">{t.projects.library.description}</p>
           <div class="text-sm text-text-muted">{t.projects.library.techs}</div>
           <a
-            href={`/${lang}/objet/eco`}
+            href={`/${lang}/objet/eco/`}
             class="text-link text-sm mt-2 inline-block"
           >
             {t.projectButton}
@@ -470,7 +470,7 @@ const isEcoMode = true;
         </div>
       </div>
       <div class="text-center mt-6">
-        <a href={`/${lang}/projects/eco`} class="text-link text-sm">
+        <a href={`/${lang}/projects/eco/`} class="text-link text-sm">
           {t.viewAllProjectsButton} →
         </a>
       </div>
