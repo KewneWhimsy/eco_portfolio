@@ -119,6 +119,20 @@ const socialLinks = [
       <div class="md:w-2/3">
         <p class="mb-6">
           {t.contactIntro}
+          <span class="ml-1 text-accent">
+            {lang === "fr" 
+              ? "Besoin d’un site vitrine ? " 
+              : lang === "en" 
+                ? "Looking for a showcase site? " 
+                : "Sie möchten eine Website als Visitenkarte? "}
+            <a href={`/${lang}/quote_presentation/`} class="text-link hover:text-accent-hover">
+              {lang === "fr" 
+                ? "Utilisez le formulaire dédié." 
+                : lang === "en" 
+                  ? "Use the dedicated form." 
+                  : "Nutzen Sie das Formular."}
+            </a>
+          </span>
         </p>
         
         <form id="contact-form" class="space-y-4">

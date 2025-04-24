@@ -53,7 +53,9 @@ const content = {
       {
         title: "Sites vitrines",
         description: "Sites professionnels personnalisés, rapides et optimisés pour le référencement - sans WordPress ni abonnements coûteux.",
-        emoji: "🌐" 
+        emoji: "🌐",
+        hasQuote: true, // Propriété pour identifier que ce service a un formulaire de devis
+        quoteLink: `/${lang}/quote_presentation/`
       },
       {
         title: "Applications web",
@@ -147,7 +149,9 @@ const content = {
       {
         title: "Showcase websites",
         description: "Personalized, fast, and SEO-optimized professional websites - without WordPress or costly subscriptions.",
-        emoji: "🌐"
+        emoji: "🌐",
+        hasQuote: true, // Propriété pour identifier que ce service a un formulaire de devis
+        quoteLink: `/${lang}/quote_presentation/`
       },
       {
         title: "Web applications",
@@ -241,7 +245,9 @@ const content = {
       {
         title: "Showcase-Websites",
         description: "Personalisierte, schnelle und SEO-optimierte professionelle Websites - ohne WordPress oder kostspielige Abonnements.",
-        emoji: "🌐"
+        emoji: "🌐",
+        hasQuote: true, // Propriété pour identifier que ce service a un formulaire de devis
+        quoteLink: `/${lang}/quote_presentation/`
       },
       {
         title: "Webanwendungen",
@@ -498,7 +504,14 @@ const featuredProjects = [
               <h3 class="text-xl font-semibold text-accent">{service.title}</h3>
               <span class="text-2xl">{service.emoji}</span>
             </div>
-            <p>{service.description}</p>
+            <p>
+              {service.description}
+              {service.hasQuote && (
+                <span> (<a href={service.quoteLink} class="text-link">
+                  {lang === "fr" ? "obtenir un devis" : lang === "en" ? "get a quote" : "angebot erhalten"}
+                </a>)</span>
+              )}
+            </p>
           </div>
         ))}
       </div>

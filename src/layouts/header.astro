@@ -10,21 +10,21 @@ const langMatch = pathname.match(/^\/([a-z]{2})(\/|$)/);
 const currentLang = langMatch ? langMatch[1] : 'fr';
 
 // Détecter si on est en mode éco
-const isEcoMode = pathname.includes('/eco');
+const isEcoMode = pathname.includes('/eco/');
 
 // Navigation items avec langue dynamique
 const navItems = [
   { 
     title: 'Projets', 
-    url: isEcoMode ? `/${currentLang}/projects/eco` : `/${currentLang}/projects`
+    url: isEcoMode ? `/${currentLang}/projects/eco/` : `/${currentLang}/projects/`
   },
   { 
     title: 'À propos', 
-    url: isEcoMode ? `/${currentLang}/about/eco` : `/${currentLang}/about`
+    url: isEcoMode ? `/${currentLang}/about/eco/` : `/${currentLang}/about/`
   },
   { 
     title: 'Contact', 
-    url: isEcoMode ? `/${currentLang}/contact/eco` : `/${currentLang}/contact`
+    url: isEcoMode ? `/${currentLang}/contact/eco/` : `/${currentLang}/contact/`
   }
 ];
 
@@ -58,7 +58,10 @@ const labels = navLabels[currentLang as keyof typeof navLabels] || navLabels.fr;
   <div class="flex flex-col md:flex-row justify-between items-center">
     <!-- Logo / Nom -->
     <div class="mb-4 md:mb-0 mr-2 whitespace-nowrap" data-astro-transition-persist="header-logo">
-      <a href={isEcoMode ? `/${currentLang}/eco/` : `/${currentLang}/`} class="titleName text-2xl font-bold no-underline hover:text-accent">
+      <a 
+        href={isEcoMode ? `/${currentLang}/eco/` : `/${currentLang}/index/`} 
+        class="titleName text-2xl font-bold no-underline hover:text-accent"
+      >
         Josselin HANEL<span class="titlePoint text-accent">.</span>
       </a>
     </div>

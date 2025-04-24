@@ -6,7 +6,7 @@ import sitemap from '@astrojs/sitemap';
 // https://astro.build/config
 export default defineConfig({
   trailingSlash: "always",
-  site: 'https://votredomaine.com', // Remplacez par votre domaine réel
+  site: 'https://jkw.ovh',
   vite: {
     plugins: [tailwindcss()]
   },
