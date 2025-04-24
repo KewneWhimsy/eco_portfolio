@@ -453,62 +453,84 @@ const clientTranslations = {
       {t.quoteTitle}
     </h1>
     <!-- Structure mobile-first: les packages seront affichés au-dessus sur mobile, à droite sur desktop -->
-<div class="block md:hidden mb-8">
-  <!-- Packages visibles uniquement sur mobile -->
-  <h3 class="text-lg font-semibold mb-3 text-accent">
-    {lang === 'fr' ? 'Mes formules sites vitrines' : lang === 'en' ? 'My showcase website packages' : 'Meine Präsentationswebsite-Pakete'}
-  </h3>
+    <div class="block md:hidden mb-8">
+      <!-- Packages visibles uniquement sur mobile -->
+      <h3 class="text-lg font-semibold mb-3 text-accent">
+        {
+          lang === "fr"
+            ? "Mes formules sites vitrines"
+            : lang === "en"
+              ? "My showcase website packages"
+              : "Meine Präsentationswebsite-Pakete"
+        }
+      </h3>
 
-  <div class="space-y-4">
-    <!-- Standard (mis en premier car plus populaire) -->
-    <div class="p-3 border-2 border-accent rounded-lg">
-      <div class="font-semibold text-accent mb-2">
-        {showcasePackages[lang].standard.title} - {showcasePackages[lang].standard.price}
+      <div class="space-y-4">
+        <!-- Standard (mis en premier car plus populaire) -->
+        <div class="p-3 border-2 border-accent rounded-lg">
+          <div class="font-semibold text-accent mb-2">
+            {showcasePackages[lang].standard.title} - {
+              showcasePackages[lang].standard.price
+            }
+          </div>
+          <ul class="list-disc pl-5 text-sm space-y-1">
+            {
+              showcasePackages[lang].standard.features.map((feature) => (
+                <li>{feature}</li>
+              ))
+            }
+          </ul>
+        </div>
+
+        <!-- Basic -->
+        <div class="p-3 border border-accent border-opacity-30 rounded-lg">
+          <div class="font-semibold text-accent mb-2">
+            {showcasePackages[lang].basic.title} - {
+              showcasePackages[lang].basic.price
+            }
+          </div>
+          <ul class="list-disc pl-5 text-sm space-y-1">
+            {
+              showcasePackages[lang].basic.features.map((feature) => (
+                <li>{feature}</li>
+              ))
+            }
+          </ul>
+        </div>
+
+        <!-- Premium -->
+        <div class="p-3 border border-accent border-opacity-30 rounded-lg">
+          <div class="font-semibold text-accent mb-2">
+            {showcasePackages[lang].premium.title} - {
+              showcasePackages[lang].premium.price
+            }
+          </div>
+          <ul class="list-disc pl-5 text-sm space-y-1">
+            {
+              showcasePackages[lang].premium.features.map((feature) => (
+                <li>{feature}</li>
+              ))
+            }
+          </ul>
+        </div>
       </div>
-      <ul class="list-disc pl-5 text-sm space-y-1">
-        {showcasePackages[lang].standard.features.map(feature => (
-          <li>{feature}</li>
-        ))}
-      </ul>
-    </div>
 
-    <!-- Basic -->
-    <div class="p-3 border border-accent border-opacity-30 rounded-lg">
-      <div class="font-semibold text-accent mb-2">
-        {showcasePackages[lang].basic.title} - {showcasePackages[lang].basic.price}
+      <!-- Ce que tous les forfaits incluent (sur mobile) -->
+      <div class="mt-4 p-3 bg-secondary bg-opacity-50 rounded-lg">
+        <h4 class="font-semibold text-accent mb-2 text-sm">
+          {
+            lang === "fr"
+              ? "Tous les forfaits incluent :"
+              : lang === "en"
+                ? "All packages include:"
+                : "Alle Pakete beinhalten:"
+          }
+        </h4>
+        <ul class="list-disc pl-5 text-sm">
+          {includedInAllPackages[lang].map((feature) => <li>{feature}</li>)}
+        </ul>
       </div>
-      <ul class="list-disc pl-5 text-sm space-y-1">
-        {showcasePackages[lang].basic.features.map(feature => (
-          <li>{feature}</li>
-        ))}
-      </ul>
     </div>
-
-    <!-- Premium -->
-    <div class="p-3 border border-accent border-opacity-30 rounded-lg">
-      <div class="font-semibold text-accent mb-2">
-        {showcasePackages[lang].premium.title} - {showcasePackages[lang].premium.price}
-      </div>
-      <ul class="list-disc pl-5 text-sm space-y-1">
-        {showcasePackages[lang].premium.features.map(feature => (
-          <li>{feature}</li>
-        ))}
-      </ul>
-    </div>
-  </div>
-
-  <!-- Ce que tous les forfaits incluent (sur mobile) -->
-  <div class="mt-4 p-3 bg-secondary bg-opacity-50 rounded-lg">
-    <h4 class="font-semibold text-accent mb-2 text-sm">
-      {lang === 'fr' ? 'Tous les forfaits incluent :' : lang === 'en' ? 'All packages include:' : 'Alle Pakete beinhalten:'}
-    </h4>
-    <ul class="list-disc pl-5 text-sm">
-      {includedInAllPackages[lang].map(feature => (
-        <li>{feature}</li>
-      ))}
-    </ul>
-  </div>
-</div>
 
     <div class="flex flex-col md:flex-row gap-8">
       <!-- Formulaire de devis -->
@@ -892,7 +914,9 @@ const clientTranslations = {
 
       <!-- Colonne droite: Formules et options incluses (visible uniquement sur desktop) -->
       <div class="hidden md:block md:w-1/3">
-        <div class="bg-secondary bg-opacity-30 p-5 rounded-lg mb-6 sticky top-6">
+        <div
+          class="bg-secondary bg-opacity-30 p-5 rounded-lg mb-6 sticky top-6"
+        >
           <h2 class="text-xl font-semibold mb-4 text-accent">
             {
               lang === "fr"
@@ -1037,12 +1061,32 @@ const clientTranslations = {
       "selected-options-container"
     );
 
+    // Debug pour mobile
+    console.log("Initialisation du script de calcul de prix");
+    if (packageSelect) {
+      console.log("packageSelect trouvé", packageSelect.value);
+      console.log("Data prix:", {
+        basic: packageSelect.dataset.priceBasic,
+        standard: packageSelect.dataset.priceStandard,
+        premium: packageSelect.dataset.pricePremium,
+      });
+    } else {
+      console.log("packageSelect non trouvé");
+    }
+
     // Fonction de calcul et mise à jour du prix total
     function updatePriceDisplay() {
+      if (!packageSelect || !totalPriceElement) {
+        console.log("Éléments requis non disponibles pour le calcul");
+        return;
+      }
+
       // Valeurs par défaut
       let packagePrice = 0;
       let packageName = "";
       let isKnownPackage = true;
+
+      console.log("Mise à jour des prix avec:", packageSelect.value);
 
       // Récupération du prix du package
       if (packageSelect.value !== "not_sure") {
@@ -1055,74 +1099,108 @@ const clientTranslations = {
           packagePrice = parseInt(packageSelect.dataset.pricePremium) || 0;
         }
 
+        console.log("Prix du package:", packagePrice);
+
         // Obtenir le nom du package sélectionné
-        packageName =
-          packageSelect.options[packageSelect.selectedIndex].text.split(
-            " - "
-          )[0];
+        try {
+          packageName =
+            packageSelect.options[packageSelect.selectedIndex].text.split(
+              " - "
+            )[0];
+        } catch (e) {
+          console.log("Erreur lors de l'obtention du nom du package:", e);
+          packageName = packageSelect.value;
+        }
       } else {
         isKnownPackage = false;
-        packageName = packageSelect.options[packageSelect.selectedIndex].text;
+        try {
+          packageName = packageSelect.options[packageSelect.selectedIndex].text;
+        } catch (e) {
+          console.log(
+            "Erreur lors de l'obtention du nom pour option not_sure:",
+            e
+          );
+          packageName = "À définir";
+        }
       }
 
       // Mise à jour de l'affichage du package
-      selectedPackageLabel.textContent = packageName;
-      packagePriceElement.textContent = isKnownPackage
-        ? packagePrice + " €"
-        : "À définir";
+      if (selectedPackageLabel) selectedPackageLabel.textContent = packageName;
+      if (packagePriceElement)
+        packagePriceElement.textContent = isKnownPackage
+          ? packagePrice + " €"
+          : "À définir";
 
       // Calcul du total des options sélectionnées
       let optionsTotal = 0;
-      selectedOptionsList.innerHTML = "";
-      selectedOptionsContainer.classList.add("hidden");
-
       let hasSelectedOptions = false;
+
+      if (selectedOptionsList) selectedOptionsList.innerHTML = "";
 
       optionCheckboxes.forEach((checkbox) => {
         if (checkbox.checked) {
           hasSelectedOptions = true;
-          optionsTotal += parseInt(checkbox.dataset.price) || 0;
+          const optionPrice = parseInt(checkbox.dataset.price) || 0;
+          optionsTotal += optionPrice;
 
-          // Ajouter l'option à la liste d'affichage
-          const optionLabel =
-            checkbox.nextElementSibling.querySelector(
-              ".option-title"
-            ).textContent;
-          const li = document.createElement("li");
-          li.className = "selected-option";
-          li.textContent = optionLabel;
-          selectedOptionsList.appendChild(li);
+          // Ajouter l'option à la liste d'affichage si l'élément existe
+          if (selectedOptionsList) {
+            const optionLabel =
+              checkbox.nextElementSibling?.querySelector(".option-title")
+                ?.textContent || checkbox.value;
+            const li = document.createElement("li");
+            li.className = "selected-option";
+            li.textContent = optionLabel;
+            selectedOptionsList.appendChild(li);
+          }
         }
       });
 
       // Afficher la section des options sélectionnées si nécessaire
-      if (hasSelectedOptions) {
-        selectedOptionsContainer.classList.remove("hidden");
+      if (selectedOptionsContainer) {
+        if (hasSelectedOptions) {
+          selectedOptionsContainer.classList.remove("hidden");
+        } else {
+          selectedOptionsContainer.classList.add("hidden");
+        }
       }
 
       // Mise à jour du prix total
-      totalPriceElement.textContent = isKnownPackage
-        ? packagePrice + optionsTotal + " €"
-        : "À définir";
+      if (totalPriceElement) {
+        totalPriceElement.textContent = isKnownPackage
+          ? packagePrice + optionsTotal + " €"
+          : "À définir";
 
-      // Animer le changement de prix
-      totalPriceElement.classList.add("price-update");
-      setTimeout(() => totalPriceElement.classList.remove("price-update"), 300);
+        // Animer le changement de prix
+        totalPriceElement.classList.add("price-update");
+        setTimeout(
+          () => totalPriceElement.classList.remove("price-update"),
+          300
+        );
+      }
     }
 
     // Initialiser le calculateur au chargement
     if (packageSelect && totalPriceElement) {
+      console.log("Initialisation du calculateur de prix");
       updatePriceDisplay();
 
       // Attacher les écouteurs d'événements avec délégation
-      form.addEventListener("change", (e) => {
-        if (
-          e.target === packageSelect ||
-          e.target.classList.contains("option-checkbox")
-        ) {
-          updatePriceDisplay();
-        }
-      });
+      if (form) {
+        form.addEventListener("change", (e) => {
+          if (
+            e.target === packageSelect ||
+            e.target.classList.contains("option-checkbox")
+          ) {
+            console.log("Changement détecté", e.target);
+            updatePriceDisplay();
+          }
+        });
+      }
+    } else {
+      console.log(
+        "Impossible d'initialiser le calculateur de prix: éléments manquants"
+      );
     }
 
     // Gestion du type de projet "Autre"
@@ -1137,25 +1215,21 @@ const clientTranslations = {
         const isOther = projectTypeSelect.value === "other";
 
         // Utiliser des chaînes directes plutôt que des variables qui pourraient ne pas être définies
-        additionalInfoLabel.textContent = isOther
-          ? clientTranslations.lang === "fr"
-            ? "Précisez votre besoin *"
-            : clientTranslations.lang === "en"
-              ? "Specify your need *"
-              : "Geben Sie Ihren Bedarf an *"
-          : clientTranslations.additionalInfoLabel;
+        if (additionalInfoLabel) {
+          additionalInfoLabel.textContent = isOther
+            ? clientTranslations.specifyNeed
+            : clientTranslations.additionalInfoLabel;
+        }
 
-        additionalInfoField.placeholder = isOther
-          ? clientTranslations.lang === "fr"
-            ? "Décrivez le type de site ou d'application dont vous avez besoin..."
-            : clientTranslations.lang === "en"
-              ? "Describe the type of website or application you need..."
-              : "Beschreiben Sie die Art der Website oder Anwendung, die Sie benötigen..."
-          : clientTranslations.additionalInfoPlaceholder;
+        if (additionalInfoField) {
+          additionalInfoField.placeholder = isOther
+            ? clientTranslations.specifyNeedPlaceholder
+            : clientTranslations.additionalInfoPlaceholder;
 
-        isOther
-          ? additionalInfoField.setAttribute("required", "required")
-          : additionalInfoField.removeAttribute("required");
+          isOther
+            ? additionalInfoField.setAttribute("required", "required")
+            : additionalInfoField.removeAttribute("required");
+        }
       }
 
       updateAdditionalField();
