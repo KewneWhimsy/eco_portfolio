@@ -112,8 +112,22 @@ const redirectUrl = `${Astro.url.origin}/${lang}/contact/thanks/`;
     </h1>
 
     <div class="flex flex-col gap-6">
-      <p>
+      <p class="mb-3">
         {t.contactIntro}
+        <span class="ml-1 text-accent">
+          {lang === "fr" 
+            ? "Besoin d'un site vitrine ? " 
+            : lang === "en" 
+              ? "Looking for a showcase site? " 
+              : "Sie möchten eine Website als Visitenkarte? "}
+          <a href={`/${lang}/quote_presentation/eco/`} class="text-link">
+            {lang === "fr" 
+              ? "Utilisez le formulaire dédié." 
+              : lang === "en" 
+                ? "Use the dedicated form." 
+                : "Nutzen Sie das Formular."}
+          </a>
+        </span>
       </p>
 
       <!-- Formulaire de contact simplifié -->
