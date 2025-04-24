@@ -1072,11 +1072,26 @@ const clientTranslations = {
       
       // Noms des packages pour affichage
       const packageNames = {
-        "basic": packageSelect.querySelector('option[value="basic"]')?.textContent.split(" - ")[0] || "Site One Page",
-        "standard": packageSelect.querySelector('option[value="standard"]')?.textContent.split(" - ")[0] || "Site Multi-pages",
-        "premium": packageSelect.querySelector('option[value="premium"]')?.textContent.split(" - ")[0] || "Site Premium",
+        "basic": "Site One Page",
+        "standard": "Site Multi-pages",
+        "premium": "Site Premium",
         "not_sure": "À définir"
       };
+      
+      // Fonction sécurisée pour convertir en nombre
+      function safeParseInt(value) {
+        // Si la valeur est undefined ou null, retourner 0
+        if (value === undefined || value === null) return 0;
+        
+        // Si c'est déjà un nombre, le retourner
+        if (typeof value === 'number') return value;
+        
+        // Essayer de convertir en nombre
+        const parsed = parseInt(value, 10);
+        
+        // Si la conversion échoue, retourner 0
+        return isNaN(parsed) ? 0 : parsed;
+      }
       
       function updatePrice() {
         try {
@@ -1100,13 +1115,19 @@ const clientTranslations = {
           optionCheckboxes.forEach(function(checkbox) {
             if (checkbox.checked) {
               hasOptions = true;
-              optionsTotal += parseInt(checkbox.getAttribute("data-price") || "0");
+              // Utiliser notre fonction sécurisée pour extraire le prix
+              const optionPrice = safeParseInt(checkbox.getAttribute("data-price"));
+              optionsTotal += optionPrice;
               
               // Ajouter à la liste visible si l'élément existe
               if (selectedOptionsList) {
-                const label = checkbox.nextElementSibling?.querySelector(".option-title")?.textContent || checkbox.value;
+                const label = checkbox.nextElementSibling ? 
+                  (checkbox.nextElementSibling.querySelector(".option-title") ? 
+                    checkbox.nextElementSibling.querySelector(".option-title").textContent : checkbox.value) 
+                  : checkbox.value;
+                
                 const li = document.createElement("li");
-                li.textContent = label;
+                li.textContent = label || "Option";
                 selectedOptionsList.appendChild(li);
               }
             }
@@ -1114,7 +1135,11 @@ const clientTranslations = {
           
           // Afficher/masquer la zone des options sélectionnées
           if (selectedOptionsContainer) {
-            selectedOptionsContainer.classList.toggle("hidden", !hasOptions);
+            if (hasOptions) {
+              selectedOptionsContainer.classList.remove("hidden");
+            } else {
+              selectedOptionsContainer.classList.add("hidden");
+            }
           }
           
           // Mise à jour simplifiée du prix total
@@ -1150,13 +1175,13 @@ const clientTranslations = {
             
             // Mise à jour du libellé
             additionalInfoLabel.textContent = isOther
-              ? clientTranslations.specifyNeed || "Précisez votre besoin *"
-              : clientTranslations.additionalInfoLabel || "Informations complémentaires";
+              ? (clientTranslations.specifyNeed || "Précisez votre besoin *")
+              : (clientTranslations.additionalInfoLabel || "Informations complémentaires");
             
             // Mise à jour du placeholder
             additionalInfoField.placeholder = isOther
-              ? clientTranslations.specifyNeedPlaceholder || "Décrivez le type de site..."
-              : clientTranslations.additionalInfoPlaceholder || "Informations additionnelles";
+              ? (clientTranslations.specifyNeedPlaceholder || "Décrivez le type de site...")
+              : (clientTranslations.additionalInfoPlaceholder || "Informations additionnelles");
             
             // Gestion du champ obligatoire
             if (isOther) {
@@ -1233,8 +1258,8 @@ const clientTranslations = {
                   ? "p-3 bg-green-100/20 text-green-500 border border-green-500/30 rounded-md"
                   : "p-3 bg-red-100/20 text-red-500 border border-red-500/30 rounded-md";
                 messageElement.textContent = data.success
-                  ? clientTranslations.successMessage || "Merci! Votre demande a été envoyée avec succès."
-                  : clientTranslations.errorMessage || "Une erreur est survenue. Veuillez réessayer.";
+                  ? (clientTranslations.successMessage || "Merci! Votre demande a été envoyée avec succès.")
+                  : (clientTranslations.errorMessage || "Une erreur est survenue. Veuillez réessayer.");
                 
                 formMessages.appendChild(messageElement);
               }
