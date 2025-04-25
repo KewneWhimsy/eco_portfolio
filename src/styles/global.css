@@ -452,3 +452,24 @@ body.tech-mode .simple-desc {
   font-weight: 500;
   margin-bottom: 2px;
 }
+
+@keyframes optionFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.option-fade-in {
+  opacity: 0;
+  animation: optionFadeIn 0.3s ease-out forwards;
+}
+
+/* Animation optionnelle pour le prix total */
+@keyframes priceFlash {
+  0% { color: var(--color-accent); }
+  50% { color: var(--color-accent-hover); }
+  100% { color: var(--color-accent); }
+}
+
+.price-flash {
+  animation: priceFlash 0.7s ease;
+}

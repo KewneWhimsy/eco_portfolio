@@ -1087,73 +1087,108 @@ const clientTranslations = {
       };
       
       function updatePrice() {
-        try {
-          // Obtenir le type et prix du package
-          let packageType = packageSelect.value || "standard";
-          let basePrice = prices[packageType] || 0;
-          let packageName = packageNames[packageType] || packageType;
+  try {
+    // Obtenir le type et prix du package
+    let packageType = packageSelect.value || "standard";
+    let basePrice = prices[packageType] || 0;
+    let packageName = packageNames[packageType] || packageType;
+    
+    // Mise à jour du nom et prix du package
+    if (selectedPackageLabel) selectedPackageLabel.textContent = packageName;
+    if (packagePriceElement) packagePriceElement.textContent = packageType !== "not_sure" ? basePrice + " €" : "À définir";
+    
+    // Calculer les options
+    let optionsTotal = 0;
+    let hasOptions = false;
+    
+    // Mémoriser les options actuellement affichées
+    const existingOptions = new Set();
+    if (selectedOptionsList) {
+      Array.from(selectedOptionsList.children).forEach(li => {
+        existingOptions.add(li.getAttribute('data-option-id'));
+      });
+    }
+    
+    // Collecter les options sélectionnées
+    const selectedOptions = new Set();
+    optionCheckboxes.forEach((checkbox, index) => {
+      if (checkbox.checked) {
+        hasOptions = true;
+        const optionId = checkbox.id || `option_${index}`;
+        selectedOptions.add(optionId);
+        
+        // Calculer le prix
+        const optionPrice = prices[optionId] || 0;
+        optionsTotal += optionPrice;
+      }
+    });
+    
+    // Gérer l'affichage des options
+    if (selectedOptionsList) {
+      // Supprimer les options qui ne sont plus sélectionnées
+      Array.from(selectedOptionsList.children).forEach(li => {
+        const optionId = li.getAttribute('data-option-id');
+        if (!selectedOptions.has(optionId)) {
+          li.remove();
+        }
+      });
+      
+      // Ajouter uniquement les nouvelles options avec animation
+      optionCheckboxes.forEach((checkbox, index) => {
+        if (checkbox.checked) {
+          const optionId = checkbox.id || `option_${index}`;
           
-          // Mise à jour du nom et prix du package
-          if (selectedPackageLabel) selectedPackageLabel.textContent = packageName;
-          if (packagePriceElement) packagePriceElement.textContent = packageType !== "not_sure" ? basePrice + " €" : "À définir";
-          
-          // Calculer les options
-          let optionsTotal = 0;
-          let hasOptions = false;
-          
-          // Réinitialiser la liste des options
-          if (selectedOptionsList) selectedOptionsList.innerHTML = "";
-          
-          // Parcourir les options sélectionnées
-          optionCheckboxes.forEach(function(checkbox, index) {
-            if (checkbox.checked) {
-              hasOptions = true;
-              
-              // Utiliser l'ID du checkbox pour récupérer le prix dans notre objet prices
-              const optionId = checkbox.id || `option_${index}`;
-              const optionPrice = prices[optionId] || 0;
-              optionsTotal += optionPrice;
-              
-              // Ajouter à la liste visible
-              if (selectedOptionsList) {
-                let optionLabel = "Option";
-                // Essayer de récupérer le label de plusieurs façons
-                if (checkbox.nextElementSibling) {
-                  const titleElement = checkbox.nextElementSibling.querySelector(".option-title");
-                  if (titleElement && titleElement.textContent) {
-                    optionLabel = titleElement.textContent;
-                  }
-                }
-                
-                const li = document.createElement("li");
-                li.textContent = optionLabel;
-                selectedOptionsList.appendChild(li);
+          // Vérifier si cette option est déjà affichée
+          if (!existingOptions.has(optionId)) {
+            // C'est une nouvelle option, l'ajouter avec animation
+            let optionLabel = "Option";
+            if (checkbox.nextElementSibling) {
+              const titleElement = checkbox.nextElementSibling.querySelector(".option-title");
+              if (titleElement && titleElement.textContent) {
+                optionLabel = titleElement.textContent;
               }
             }
-          });
-          
-          // Afficher/masquer la zone des options sélectionnées
-          if (selectedOptionsContainer) {
-            if (hasOptions) {
-              selectedOptionsContainer.classList.remove("hidden");
-            } else {
-              selectedOptionsContainer.classList.add("hidden");
-            }
+            
+            const li = document.createElement("li");
+            li.textContent = optionLabel;
+            li.setAttribute('data-option-id', optionId);
+            li.classList.add("option-fade-in");
+            selectedOptionsList.appendChild(li);
           }
-          
-          // Mise à jour simplifiée du prix total
-          const total = basePrice + optionsTotal;
-          if (totalPriceElement) {
-            totalPriceElement.textContent = packageType !== "not_sure" ? total + " €" : "À définir";
-          }
-          
-          // Debug
-          console.log("Prix mis à jour:", { basePrice, optionsTotal, total });
-        } catch (e) {
-          console.log("Erreur calcul:", e);
-          if (totalPriceElement) totalPriceElement.textContent = "Erreur de calcul";
         }
+      });
+    }
+    
+    // Afficher/masquer la zone des options sélectionnées
+    if (selectedOptionsContainer) {
+      if (hasOptions) {
+        selectedOptionsContainer.classList.remove("hidden");
+      } else {
+        selectedOptionsContainer.classList.add("hidden");
       }
+    }
+    
+    // Mise à jour du prix total
+    const total = basePrice + optionsTotal;
+    if (totalPriceElement) {
+      // Vérifier si le prix a changé avant d'animer
+      const newPriceText = packageType !== "not_sure" ? total + " €" : "À définir";
+      if (totalPriceElement.textContent !== newPriceText) {
+        totalPriceElement.textContent = newPriceText;
+        totalPriceElement.classList.add("price-flash");
+        setTimeout(() => {
+          totalPriceElement.classList.remove("price-flash");
+        }, 700);
+      } else {
+        totalPriceElement.textContent = newPriceText;
+      }
+    }
+    
+  } catch (e) {
+    console.log("Erreur calcul:", e);
+    if (totalPriceElement) totalPriceElement.textContent = "Erreur de calcul";
+  }
+}
       
       // Premier calcul au chargement
       updatePrice();
