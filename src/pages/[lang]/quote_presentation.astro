@@ -1046,7 +1046,7 @@ const clientTranslations = {
 <script define:vars={{ clientTranslations }}>
   document.addEventListener("DOMContentLoaded", initPriceCalculator);
   document.addEventListener("astro:page-load", initPriceCalculator);
-  
+
   function initPriceCalculator() {
     try {
       // Version ultra-simplifiée du calculateur
@@ -1054,158 +1054,171 @@ const clientTranslations = {
       const packageSelect = document.getElementById("service_package");
       const optionCheckboxes = document.querySelectorAll(".option-checkbox");
       const totalPriceElement = document.getElementById("total-price");
-      const selectedPackageLabel = document.getElementById("selected-package-label");
+      const selectedPackageLabel = document.getElementById(
+        "selected-package-label"
+      );
       const packagePriceElement = document.getElementById("package-price");
-      const selectedOptionsList = document.getElementById("selected-options-list");
-      const selectedOptionsContainer = document.getElementById("selected-options-container");
-      
+      const selectedOptionsList = document.getElementById(
+        "selected-options-list"
+      );
+      const selectedOptionsContainer = document.getElementById(
+        "selected-options-container"
+      );
+
       // Vérification des éléments essentiels
       if (!packageSelect || !totalPriceElement) return;
-      
+
       // Prix fixes pour tous les éléments
       const prices = {
         // Formules
-        "basic": 230,
-        "standard": 450,
-        "premium": 650,
-        "not_sure": 0,
-        
+        basic: 230,
+        standard: 450,
+        premium: 650,
+        not_sure: 0,
+
         // Options (utiliser les mêmes valeurs que celles définies dans data-price)
-        "option_0": 150, // "Site multilingue"
-        "option_1": 200, // "Gestion via interface graphique"
-        "option_2": 100, // "Gestion via tableaux"
-        "option_3": 50,  // "Formation Markdown"
-        "option_4": 70   // "Statistiques détaillées sans cookies"
+        option_0: 150, // "Site multilingue"
+        option_1: 200, // "Gestion via interface graphique"
+        option_2: 100, // "Gestion via tableaux"
+        option_3: 50, // "Formation Markdown"
+        option_4: 70, // "Statistiques détaillées sans cookies"
       };
-      
+
       // Noms des packages pour affichage
       const packageNames = {
-        "basic": "Site One Page",
-        "standard": "Site Multi-pages",
-        "premium": "Site Premium",
-        "not_sure": "À définir"
+        basic: "Site One Page",
+        standard: "Site Multi-pages",
+        premium: "Site Premium",
+        not_sure: "À définir",
       };
-      
+
       function updatePrice() {
-  try {
-    // Obtenir le type et prix du package
-    let packageType = packageSelect.value || "standard";
-    let basePrice = prices[packageType] || 0;
-    let packageName = packageNames[packageType] || packageType;
-    
-    // Mise à jour du nom et prix du package
-    if (selectedPackageLabel) selectedPackageLabel.textContent = packageName;
-    if (packagePriceElement) packagePriceElement.textContent = packageType !== "not_sure" ? basePrice + " €" : "À définir";
-    
-    // Calculer les options
-    let optionsTotal = 0;
-    let hasOptions = false;
-    
-    // Mémoriser les options actuellement affichées
-    const existingOptions = new Set();
-    if (selectedOptionsList) {
-      Array.from(selectedOptionsList.children).forEach(li => {
-        existingOptions.add(li.getAttribute('data-option-id'));
-      });
-    }
-    
-    // Collecter les options sélectionnées
-    const selectedOptions = new Set();
-    optionCheckboxes.forEach((checkbox, index) => {
-      if (checkbox.checked) {
-        hasOptions = true;
-        const optionId = checkbox.id || `option_${index}`;
-        selectedOptions.add(optionId);
-        
-        // Calculer le prix
-        const optionPrice = prices[optionId] || 0;
-        optionsTotal += optionPrice;
-      }
-    });
-    
-    // Gérer l'affichage des options
-    if (selectedOptionsList) {
-      // Supprimer les options qui ne sont plus sélectionnées
-      Array.from(selectedOptionsList.children).forEach(li => {
-        const optionId = li.getAttribute('data-option-id');
-        if (!selectedOptions.has(optionId)) {
-          li.remove();
-        }
-      });
-      
-      // Ajouter uniquement les nouvelles options avec animation
-      optionCheckboxes.forEach((checkbox, index) => {
-        if (checkbox.checked) {
-          const optionId = checkbox.id || `option_${index}`;
-          
-          // Vérifier si cette option est déjà affichée
-          if (!existingOptions.has(optionId)) {
-            // C'est une nouvelle option, l'ajouter avec animation
-            let optionLabel = "Option";
-            if (checkbox.nextElementSibling) {
-              const titleElement = checkbox.nextElementSibling.querySelector(".option-title");
-              if (titleElement && titleElement.textContent) {
-                optionLabel = titleElement.textContent;
-              }
-            }
-            
-            const li = document.createElement("li");
-            li.textContent = optionLabel;
-            li.setAttribute('data-option-id', optionId);
-            li.classList.add("option-fade-in");
-            selectedOptionsList.appendChild(li);
+        try {
+          // Obtenir le type et prix du package
+          let packageType = packageSelect.value || "standard";
+          let basePrice = prices[packageType] || 0;
+          let packageName = packageNames[packageType] || packageType;
+
+          // Mise à jour du nom et prix du package
+          if (selectedPackageLabel)
+            selectedPackageLabel.textContent = packageName;
+          if (packagePriceElement)
+            packagePriceElement.textContent =
+              packageType !== "not_sure" ? basePrice + " €" : "À définir";
+
+          // Calculer les options
+          let optionsTotal = 0;
+          let hasOptions = false;
+
+          // Mémoriser les options actuellement affichées
+          const existingOptions = new Set();
+          if (selectedOptionsList) {
+            Array.from(selectedOptionsList.children).forEach((li) => {
+              existingOptions.add(li.getAttribute("data-option-id"));
+            });
           }
+
+          // Collecter les options sélectionnées
+          const selectedOptions = new Set();
+          optionCheckboxes.forEach((checkbox, index) => {
+            if (checkbox.checked) {
+              hasOptions = true;
+              const optionId = checkbox.id || `option_${index}`;
+              selectedOptions.add(optionId);
+
+              // Calculer le prix
+              const optionPrice = prices[optionId] || 0;
+              optionsTotal += optionPrice;
+            }
+          });
+
+          // Gérer l'affichage des options
+          if (selectedOptionsList) {
+            // Supprimer les options qui ne sont plus sélectionnées
+            Array.from(selectedOptionsList.children).forEach((li) => {
+              const optionId = li.getAttribute("data-option-id");
+              if (!selectedOptions.has(optionId)) {
+                li.remove();
+              }
+            });
+
+            // Ajouter uniquement les nouvelles options avec animation
+            optionCheckboxes.forEach((checkbox, index) => {
+              if (checkbox.checked) {
+                const optionId = checkbox.id || `option_${index}`;
+
+                // Vérifier si cette option est déjà affichée
+                if (!existingOptions.has(optionId)) {
+                  // C'est une nouvelle option, l'ajouter avec animation
+                  let optionLabel = "Option";
+                  if (checkbox.nextElementSibling) {
+                    const titleElement =
+                      checkbox.nextElementSibling.querySelector(
+                        ".option-title"
+                      );
+                    if (titleElement && titleElement.textContent) {
+                      optionLabel = titleElement.textContent;
+                    }
+                  }
+
+                  const li = document.createElement("li");
+                  li.textContent = optionLabel;
+                  li.setAttribute("data-option-id", optionId);
+                  li.classList.add("option-fade-in");
+                  selectedOptionsList.appendChild(li);
+                }
+              }
+            });
+          }
+
+          // Afficher/masquer la zone des options sélectionnées
+          if (selectedOptionsContainer) {
+            if (hasOptions) {
+              selectedOptionsContainer.classList.remove("hidden");
+            } else {
+              selectedOptionsContainer.classList.add("hidden");
+            }
+          }
+
+          // Mise à jour du prix total
+          const total = basePrice + optionsTotal;
+          if (totalPriceElement) {
+            // Vérifier si le prix a changé avant d'animer
+            const newPriceText =
+              packageType !== "not_sure" ? total + " €" : "À définir";
+            if (totalPriceElement.textContent !== newPriceText) {
+              totalPriceElement.textContent = newPriceText;
+              totalPriceElement.classList.add("price-flash");
+              setTimeout(() => {
+                totalPriceElement.classList.remove("price-flash");
+              }, 700);
+            } else {
+              totalPriceElement.textContent = newPriceText;
+            }
+          }
+        } catch (e) {
+          console.log("Erreur calcul:", e);
+          if (totalPriceElement)
+            totalPriceElement.textContent = "Erreur de calcul";
         }
-      });
-    }
-    
-    // Afficher/masquer la zone des options sélectionnées
-    if (selectedOptionsContainer) {
-      if (hasOptions) {
-        selectedOptionsContainer.classList.remove("hidden");
-      } else {
-        selectedOptionsContainer.classList.add("hidden");
       }
-    }
-    
-    // Mise à jour du prix total
-    const total = basePrice + optionsTotal;
-    if (totalPriceElement) {
-      // Vérifier si le prix a changé avant d'animer
-      const newPriceText = packageType !== "not_sure" ? total + " €" : "À définir";
-      if (totalPriceElement.textContent !== newPriceText) {
-        totalPriceElement.textContent = newPriceText;
-        totalPriceElement.classList.add("price-flash");
-        setTimeout(() => {
-          totalPriceElement.classList.remove("price-flash");
-        }, 700);
-      } else {
-        totalPriceElement.textContent = newPriceText;
-      }
-    }
-    
-  } catch (e) {
-    console.log("Erreur calcul:", e);
-    if (totalPriceElement) totalPriceElement.textContent = "Erreur de calcul";
-  }
-}
-      
+
       // Premier calcul au chargement
       updatePrice();
-      
+
       // Écouteurs d'événements avec une approche différente
       if (packageSelect) {
         packageSelect.onchange = updatePrice;
       }
-      
-      optionCheckboxes.forEach(function(checkbox) {
+
+      optionCheckboxes.forEach(function (checkbox) {
         checkbox.onclick = updatePrice;
       });
-      
+
       // Reste du code pour le type de projet et la soumission du formulaire...
       // [Code omis pour plus de clarté]
     } catch (e) {
       console.log("Erreur initialisation globale:", e);
     }
   }
-  </script>
+</script>
