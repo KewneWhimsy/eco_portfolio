@@ -4,6 +4,8 @@ import Layout from "../../layouts/layout.astro";
 import { Picture } from 'astro:assets';
 import monImage from "../../assets/j.jpg";
 import CtaDispo from "../../components/cta_dispo.astro";
+import objetImage from "../../assets/projects/objet01.png";
+import esportImage from "../../assets/projects/esport01.png";
 
 // Récupérer le paramètre de langue depuis l'URL
 export function getStaticPaths() {
@@ -19,73 +21,73 @@ const lang = Astro.params.lang as "fr" | "en" | "de";
 // Titre et description de la page pour SEO (à traduire selon la langue)
 const content = {
   fr: {
-    title: "Josselin HANEL - Développeur Web (Mode Éco)",
+    title: "Josselin HANEL - Créateur de sites internet (Mode Éco)",
     description:
-      "Version éco-responsable de mon portfolio de développeur full stack, avec une empreinte carbone minimale.",
+      "Version éco-responsable de mon portfolio de créateur de sites internet, avec une empreinte carbone minimale.",
     heroTitle:
-      "Développeur Web <span class='text-light whitespace-nowrap'>Full Stack</span>",
+      "Créateur de <span class='text-light whitespace-nowrap'>sites internet</span>",
     heroText:
-      "Je conçois des sites et applications web qui chargent vite, fonctionnent partout, et optimisés pour être bien référencés sur Google. Le tout avec une approche éco-responsable.",
-    projectsButton: "Voir mes projets",
+      "Je crée des sites qui chargent vite, s'affichent correctement sur tous les appareils, et sont bien placés sur Google. Le tout avec un souci d'économie d'énergie.",
+    projectsButton: "Voir mes réalisations",
     contactButton: "Me contacter",
     ecoModeTitle: "Mode Éco activé",
     ecoModeText:
       "Vous consultez actuellement la version ultra-légère de mon portfolio. Cette version:",
     ecoFeatures: [
-      "Minimise l'utilisation du JavaScript",
+      "Utilise très peu de JavaScript",
       "Réduit drastiquement la taille et le nombre d'images",
       "Optimise les ressources réseau pour un chargement rapide",
-      "Propose une expérience légère et fluide, particulièrement adaptée aux appareils mobiles",
+      "Propose une expérience légère et fluide, idéale pour les connexions limitées",
     ],
     servicesTitle: "Services",
     services: [
       {
-        title: "Sites vitrines",
+        title: "Sites pour présenter votre activité",
         description:
-          "Sites professionnels personnalisés, rapides et optimisés pour le référencement - sans WordPress ni abonnements coûteux.",
-        hasQuote: true, // Propriété pour identifier que ce service a un formulaire de devis
+          "Sites professionnels personnalisés, rapides et bien placés sur Google - sans WordPress ni abonnements coûteux.",
+        hasQuote: true,
         quoteLink: `/${lang}/quote_presentation/eco/`
       },
       {
         title: "Applications web",
         description:
-          "Applications interactives sur mesure pour automatiser vos processus et améliorer l'expérience de vos utilisateurs.",
+          "Outils en ligne sur mesure pour automatiser vos tâches et améliorer l'expérience de vos utilisateurs.",
       },
       {
-        title: "E-commerce",
+        title: "Boutiques en ligne",
         description:
-          "Solutions e-commerce modernes et performantes, sans les frais mensuels des plateformes traditionnelles.",
+          "Solutions de vente en ligne modernes et rapides, sans les frais mensuels des plateformes habituelles.",
       },
       {
-        title: "Consultation",
+        title: "Conseils",
         description:
-          "Conseils en éco-conception web, optimisation de performance et audit de sites existants.",
+          "Conseils pour rendre vos sites existants plus rapides, moins énergivores et plus agréables à utiliser.",
       },
     ],
     values: [
       {
-        title: "Performance",
+        title: "Rapidité",
         description:
-          "Des sites rapides qui offrent une meilleure expérience utilisateur et consomment moins d'énergie.",
+          "Des sites qui ne font pas attendre vos visiteurs et qui consomment moins de batterie.",
       },
       {
         title: "Simplicité",
         description:
-          "Des solutions efficaces sans complexité inutile, faciles à maintenir dans le temps.",
+          "Des solutions qui vont droit au but, sans gadgets inutiles, faciles à mettre à jour.",
       },
       {
-        title: "Éco-responsabilité",
+        title: "Économie d'énergie",
         description:
-          "Une conception qui minimise l'empreinte carbone de vos projets web.",
+          "Des sites plus légers qui respectent la planète et font baisser vos factures d'hébergement.",
       },
       {
         title: "Autonomie",
         description:
-          "Des sites que vous pouvez faire évoluer facilement, sans dépendances complexes.",
+          "Des sites que vous pouvez faire évoluer facilement, sans dépendre constamment d'un prestataire.",
       },
     ],
     projectsTitle: "Projets récents",
-    projectButton: "Voir le projet",
+    projectButton: "Voir ce projet",
     viewAllProjectsButton: "Voir tous les projets",
     projects: {
       esport: {
@@ -102,30 +104,30 @@ const content = {
       },
     },
     imageAlt: "Photo de Josselin HANEL",
-    motivationTitle: "Ce qui m'anime",
+    motivationTitle: "Ce qui me motive",
     motivationIntro:
-      "Je crois en un web alliant performance, élégance et respect de l'environnement. Ma démarche s'articule autour de ces principes :",
+      "Je crois à un web qui allie rapidité, simplicité et respect de l'environnement. Aujourd'hui, trop de sites sont lourds, lents à charger et consomment beaucoup d'énergie. Ma démarche s'appuie sur ces principes :",
     motivationPrinciples: [
       {
-        title: "L'intelligence technique",
+        title: "La bonne technique au bon endroit",
         description:
-          "Les technologies web fondamentales ont considérablement évolué ces dernières années, mais beaucoup d'entreprises et de développeurs continuent d'utiliser des bibliothèques lourdes par habitude. Je préfère exploiter les capacités modernes des navigateurs pour créer des effets visuels et des interactions fluides, sans compromettre la vitesse.",
+          "Les navigateurs modernes peuvent faire beaucoup de choses sans avoir besoin d'installer des tonnes de modules supplémentaires. J'utilise les technologies existantes de manière intelligente pour créer des sites fluides qui ne rament pas."
       },
       {
-        title: "Le respect de l'utilisateur",
+        title: "Le respect du visiteur",
         description:
-          "Pas de popups intrusifs ni de bandeaux inutiles qui interrompent la navigation. Une expérience fluide où l'utilisateur reste maître de sa navigation et de ses données.",
+          "Pas de fenêtres pop-up agaçantes ni de bandeaux qui gênent la navigation. Une expérience agréable où l'utilisateur reste maître de sa navigation et de ses données."
       },
       {
-        title: "La performance raisonnée",
+        title: "La performance bien pensée",
         description:
-          "Chaque élément de design a sa raison d'être, et chaque effet visuel est implémenté de façon optimale. Le résultat : des sites à la fois esthétiques, rapides et économes en ressources.",
+          "Chaque élément a sa raison d'être, et chaque effet visuel est fait pour ne pas ralentir le site. Résultat : des sites à la fois beaux, rapides et économes en ressources."
       },
       {
-        title: "Le mode éco comme option pertinente",
+        title: "Un mode économie quand c'est utile",
         description:
-          "Ce portfolio propose un mode éco qui permet d'accéder au contenu même avec une connexion limitée. Si cette approche n'est pas pertinente pour tous les projets (notamment visuels), elle devrait être plus répandue pour les services essentiels et sites d'information.",
-      },
+          "Ce site propose un mode économie qui permet d'y accéder même avec une connexion limitée. Si cette approche n'est pas idéale pour tous les projets (surtout ceux avec beaucoup d'images), elle devrait être plus répandue pour les services essentiels et sites d'information."
+      }
     ],
   },
   en: {
@@ -441,51 +443,80 @@ const isEcoMode = true;
     <!-- "Ce qui m'anime" -->
     <section class="py-6 border-b border-secondary mb-6">
       <h2 class="text-xl font-bold mb-3">{t.motivationTitle}</h2>
-      <p class="mb-4 max-w-5xl">{t.motivationIntro}</p>
+      <p class="mb-4 max-w-5xl text-balance">{t.motivationIntro}</p>
       <ul class="list-disc pl-5">
         {
           t.motivationPrinciples.map((principle) => (
             <li class="mb-3 max-w-3xl">
-              <strong>{principle.title}</strong>: {principle.description}
+              <p class="text-balance"><strong>{principle.title}</strong>: {principle.description}</p>
             </li>
           ))
         }
       </ul>
     </section>
 
-    <!-- Section projets récents simplifiée -->
-    <section class="py-6 mb-8">
-      <h2 class="text-xl font-bold mb-3 text-accent">{t.projectsTitle}</h2>
-      <div class="space-y-4">
-        <div class="pb-4">
+    <!-- Section projets récents avec vignettes très légères -->
+<section class="py-6 mb-8">
+  <h2 class="text-xl font-bold mb-3 text-accent">{t.projectsTitle}</h2>
+  <div class="space-y-4">
+    <!-- Projet e-sport -->
+    <div class="pb-4 border-b border-secondary border-opacity-30">
+      <div class="flex items-start gap-3">
+        <!-- Vignette miniature très petite -->
+        <Picture
+          src={esportImage}
+          width={128}
+          formats={["avif", "webp", "png"]}
+          alt=""
+          class="w-16 h-16 object-cover rounded flex-shrink-0 opacity-90"
+          loading="lazy"
+        />
+        <div>
           <h3 class="font-medium mb-1">{t.projects.esport.title}</h3>
-          <p class="mb-2">{t.projects.esport.description}</p>
-          <div class="text-sm text-text-muted">{t.projects.esport.techs}</div>
+          <p class="mb-2 text-sm">{t.projects.esport.description}</p>
+          <div class="text-xs text-text-muted mb-1">{t.projects.esport.techs}</div>
           <a
             href={`/${lang}/esport/eco/`}
-            class="text-link text-sm mt-2 inline-block"
+            class="text-link text-xs inline-block"
           >
             {t.projectButton}
           </a>
         </div>
-        <div class="pt-2">
+      </div>
+    </div>
+
+    <!-- Projet bibliothèque -->
+    <div class="pt-2">
+      <div class="flex items-start gap-3">
+        <!-- Vignette miniature très petite -->
+        <Picture
+          src={objetImage}
+          width={128}
+          formats={["avif", "webp", "png"]}
+          alt=""
+          class="w-16 h-16 object-cover rounded flex-shrink-0 opacity-90"
+          loading="lazy"
+        />
+        <div>
           <h3 class="font-medium mb-1">{t.projects.library.title}</h3>
-          <p class="mb-2">{t.projects.library.description}</p>
-          <div class="text-sm text-text-muted">{t.projects.library.techs}</div>
+          <p class="mb-2 text-sm">{t.projects.library.description}</p>
+          <div class="text-xs text-text-muted mb-1">{t.projects.library.techs}</div>
           <a
             href={`/${lang}/objet/eco/`}
-            class="text-link text-sm mt-2 inline-block"
+            class="text-link text-xs inline-block"
           >
             {t.projectButton}
           </a>
         </div>
       </div>
-      <div class="text-center mt-6">
-        <a href={`/${lang}/projects/eco/`} class="text-link text-sm">
-          {t.viewAllProjectsButton} →
-        </a>
-      </div>
-    </section>
+    </div>
+  </div>
+  <div class="text-center mt-6">
+    <a href={`/${lang}/projects/eco/`} class="text-link text-sm">
+      {t.viewAllProjectsButton} →
+    </a>
+  </div>
+</section>
 
     <!-- Section CTA contact -->
     <CtaDispo withBackground={false} transition-persist="cta-dispo"/>
