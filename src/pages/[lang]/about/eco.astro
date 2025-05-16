@@ -19,107 +19,107 @@ const skillDescriptions: {
 } = {
   // Frontend
   Astro: {
-    fr: "Framework web agnostique générant principalement du HTML statique, offrant un excellent SEO naturel et des performances optimales sans imposer de choix technologiques.",
+    fr: "Outil pour créer des sites web rapides et légers, qui demandent peu de ressources.",
     en: "Modern, framework-agnostic web builder generating mostly static HTML, providing excellent natural SEO and optimal performance without imposing technology choices.",
     de: "Modernes, framework-agnostisches Web-Tool, das überwiegend statisches HTML generiert und hervorragende natürliche SEO und optimale Leistung bietet, ohne Technologieentscheidungen zu erzwingen.",
   },
   "CSS Pro": {
-    fr: "Techniques CSS avancées pour un design responsive et des animations fluides, limitant le recours au JavaScript coûteux en ressources.",
+    fr: "Design et animations fluides, sans avoir besoin de fonctions compliquées qui ralentissent le site.",
     en: "Advanced CSS techniques for responsive design and smooth animations, reducing reliance on resource-intensive JavaScript.",
     de: "Fortgeschrittene CSS-Techniken für responsive Designs und flüssige Animationen, die den Einsatz ressourcenintensiver JavaScript-Lösungen reduzieren.",
   },
   TypeScript: {
-    fr: "Sur-ensemble typé de JavaScript pour un code plus robuste et maintenable, réduisant les erreurs et la dette technique.",
+    fr: "Langage qui aide à éviter les erreurs et rend le code plus fiable.",
     en: "Typed superset of JavaScript for more robust and maintainable code, reducing errors and technical debt.",
     de: "Typisierte Erweiterung von JavaScript für robusteren und wartbaren Code, reduziert Fehler und technische Schulden.",
   },
   HTMX: {
-    fr: "Bibliothèque ultra-légère (~14kb) ajoutant des capacités AJAX et WebSocket directement au HTML. Un simple script suffit pour l'intégrer à la volée quand le besoin s'en fait sentir.",
+    fr: "Permet des sites interactifs sans alourdir la page. Très léger (14kb) et efficace.",
     en: "Ultra-lightweight library (~14kb) adding AJAX and WebSocket capabilities directly to HTML. A simple script is all it takes to integrate it on the fly when needed.",
     de: "Ultraleichte Bibliothek (~14kb), die AJAX- und WebSocket-Funktionen direkt zum HTML hinzufügt. Ein einfaches Skript genügt, um es bei Bedarf im Flug zu integrieren.",
   },
   "Alpine.js": {
-    fr: "Micro-framework JavaScript qui brille précisément là où le CSS moderne ne suffit plus. Parfait pour gérer les états sans recourir à un framework lourd, tout en gardant une empreinte minimale.",
+    fr: "Ajoute des fonctions interactives simples sans surcharger le site. Idéal quand on a besoin de plus que du CSS.",
     en: "Micro JavaScript framework that shines precisely where modern CSS falls short. Perfect for state management without resorting to a heavy framework, while maintaining a minimal footprint.",
     de: "Micro-JavaScript-Framework, das genau dort glänzt, wo modernes CSS nicht mehr ausreicht. Perfekt für Zustandsverwaltung ohne Rückgriff auf ein schweres Framework, bei minimalem Footprint.",
   },
   Express: {
-    fr: "Framework Node.js minimaliste, rapide à mettre en place et économe en ressources sous faible charge, idéal pour des APIs simples à moyennement complexes.",
+    fr: "Système simple et rapide pour créer l'arrière-plan technique d'un site. Fonctionne bien pour les petits sites.",
     en: "Minimalist Node.js framework, quick to implement and resource-efficient under light loads, ideal for simple to moderately complex APIs.",
     de: "Minimalistisches Node.js-Framework, schnell zu implementieren und ressourceneffizient bei geringer Last, ideal für einfache bis mittelschwere APIs.",
   },
   WebSocket: {
-    fr: "Protocole de communication bidirectionnelle idéal pour les applications interactives, bien plus économe en ressources que les requêtes HTTP répétées.",
+    fr: "Permet d'avoir des mises à jour en direct sur votre site, sans gaspiller la bande passante.",
     en: "Bidirectional communication protocol ideal for interactive applications, much more resource-efficient than repeated HTTP requests.",
     de: "Bidirektionales Kommunikationsprotokoll, ideal für interaktive Anwendungen, deutlich ressourceneffizienter als wiederholte HTTP-Anfragen.",
   },
   Elixir: {
-    fr: "Langage fonctionnel conçu pour la concurrence, offrant une meilleure scalabilité et performance que Node.js pour des charges importantes.",
+    fr: "Langage très efficace pour les sites qui ont beaucoup de visiteurs simultanés.",
     en: "Functional language designed for concurrency, offering better scalability and performance than Node.js for heavy workloads.",
     de: "Funktionale Sprache für Nebenläufigkeit, die bei hoher Arbeitslast bessere Skalierbarkeit und Leistung als Node.js bietet.",
   },
   Phoenix: {
-    fr: "Framework Elixir haute performance incluant LiveView, permettant de créer des interfaces temps réel sans JavaScript côté client.",
+    fr: "Système complet pour sites web rapides, avec des fonctions en temps réel sans surcharger le navigateur.",
     en: "High-performance Elixir framework featuring LiveView, enabling real-time interfaces without client-side JavaScript.",
     de: "Hochleistungs-Elixir-Framework mit LiveView, das Echtzeit-Schnittstellen ohne clientseitiges JavaScript ermöglicht.",
   },
   PostgreSQL: {
-    fr: "SGBD relationnel open-source puissant avec un écosystème d'extensions quasi infini, offrant flexibilité et performances pour tout type de projet.",
+    fr: "Base de données solide et fiable, adaptable à tous les types de projets.",
     en: "Powerful open-source relational DBMS with an almost infinite ecosystem of extensions, offering flexibility and performance for any project type.",
     de: "Leistungsstarkes Open-Source-Datenbankmanagementsystem mit einem nahezu unendlichen Ökosystem von Erweiterungen, das Flexibilität und Leistung für jeden Projekttyp bietet.",
   },
   MongoDB: {
-    fr: "Base de données NoSQL orientée documents permettant une flexibilité des données et des schémas adaptés aux besoins réels.",
+    fr: "Stockage de données flexible qui s'adapte facilement aux besoins changeants de votre activité.",
     en: "NoSQL document database enabling data flexibility and schemas adapted to actual needs.",
     de: "NoSQL-Dokumentendatenbank, die Datenflexibilität und an tatsächliche Bedürfnisse angepasste Schemas ermöglicht.",
   },
   PostgREST: {
-    fr: "Transforme une BDD Postgres en API REST instantanément. Idéal pour des CRUD simples et soulage le backend des tâches répétitives. Dans certains cas, permet même de se passer complètement de backend pour une communication front/BDD directe et sécurisée.",
+    fr: "Transforme une base de données en API web instantanément. Parfois, permet même de se passer d'un 'backend' complet.",
     en: "Instantly transforms a Postgres DB into a REST API. Perfect for simple CRUD operations and relieves the backend of repetitive tasks. In some cases, even allows completely bypassing a backend for direct and secure front/DB communication.",
     de: "Verwandelt eine Postgres-DB sofort in eine REST-API. Perfekt für einfache CRUD-Operationen und entlastet das Backend von repetitiven Aufgaben. In manchen Fällen ermöglicht es sogar, ein Backend vollständig zu umgehen für direkte und sichere Front/DB-Kommunikation.",
   },
   Ecto: {
-    fr: "Bibliothèque Elixir pour l'interaction avec les bases de données, optimisant les requêtes pour des performances maximales.",
+    fr: "Outil qui simplifie et optimise les échanges avec les bases de données.",
     en: "Elixir library for database interaction, optimizing queries for maximum performance.",
     de: "Elixir-Bibliothek für Datenbankinteraktion, die Abfragen für maximale Leistung optimiert.",
   },
   Git: {
-    fr: "Essentiel pour tout développement collaboratif, permet de garder une trace claire des modifications et facilite les contributions simultanées sur un même projet.",
+    fr: "Permet de garder une trace de toutes les modifications du site et de travailler à plusieurs sans conflit.",
     en: "Essential for any collaborative development, maintains a clear record of changes and facilitates simultaneous contributions to the same project.",
     de: "Unerlässlich für jede kollaborative Entwicklung, behält eine klare Aufzeichnung der Änderungen bei und erleichtert gleichzeitige Beiträge zum selben Projekt.",
   },
   Docker: {
-    fr: "Assure une reproductibilité parfaite des environnements de dev entre les membres d'une équipe. Docker Compose simplifie l'orchestration de services multiples, et Swarm permet un déploiement scalable en production.",
+    fr: "Assure que le site fonctionne pareil partout. Simplifie la mise en place et l'évolution de votre site web.",
     en: "Ensures perfect reproducibility of dev environments across team members. Docker Compose simplifies orchestration of multiple services, and Swarm enables scalable production deployment.",
     de: "Gewährleistet perfekte Reproduzierbarkeit von Entwicklungsumgebungen im Team. Docker Compose vereinfacht die Orchestrierung mehrerer Dienste, und Swarm ermöglicht skalierbaren Produktionseinsatz.",
   },
   "VS Code": {
-    fr: "Éditeur de code moderne avec un bon équilibre entre légèreté et fonctionnalités. Son système d'extensions permet de l'adapter précisément à chaque projet.",
+    fr: "Éditeur moderne et léger pour écrire le code du site, avec tous les outils nécessaires.",
     en: "Modern code editor with a good balance between lightweight and features. Its extension system allows precise adaptation to each project.",
     de: "Moderner Code-Editor mit einer guten Balance zwischen Leichtgewicht und Funktionen. Sein Erweiterungssystem ermöglicht eine präzise Anpassung an jedes Projekt.",
   },
   Lighthouse: {
-    fr: "Outil d'audit essentiel pour mesurer et améliorer objectivement les performances web et l'impact environnemental.",
+    fr: "Outil qui mesure la performance et l'impact écologique de votre site pour aider à l'améliorer.",
     en: "Essential audit tool for objectively measuring and improving web performance and environmental impact.",
     de: "Wesentliches Audit-Tool zur objektiven Messung und Verbesserung von Webleistung und Umweltauswirkungen.",
   },
   Accessibilité: {
-    fr: "Conception d'interfaces compatibles avec tous les appareils, navigateurs et modes d'utilisation. Élargit l'audience potentielle et assure une expérience utilisateur inclusive.",
+    fr: "Méthodes pour que votre site soit utilisable par tous, même les personnes âgées ou avec un handicap.",
     en: "Designing interfaces compatible with all devices, browsers and usage modes. Expands potential audience and ensures an inclusive user experience.",
     de: "Gestaltung von Schnittstellen, die mit allen Geräten, Browsern und Nutzungsmodi kompatibel sind. Erweitert die potenzielle Zielgruppe und gewährleistet ein inklusives Benutzererlebnis.",
   },
   Performance: {
-    fr: "Optimisation qui réduit les temps de chargement et l'utilisation des ressources. Une meilleure UX se traduit directement par une réduction des coûts d'infrastructure et une augmentation des conversions.",
+    fr: "Optimisations qui font que votre site se charge vite et utilise moins de ressources. Vos clients restent plus longtemps.",
     en: "Optimization that reduces loading times and resource usage. Better UX directly translates to reduced infrastructure costs and increased conversions.",
     de: "Optimierung, die Ladezeiten und Ressourcennutzung reduziert. Bessere UX führt direkt zu reduzierten Infrastrukturkosten und erhöhten Conversions.",
   },
   "Éco-conception": {
-    fr: "Éco-conception: Je conçois des solutions légères, peu gourmandes en ressources serveur et en bande passante. Moins de charge, moins de coûts, plus d'efficacité. Des systèmes faciles à maintenir, pensés pour évoluer sereinement au rythme des besoins.",
+    fr: "Sites légers qui consomment peu, coûtent moins cher et sont plus efficaces. Moins de complications techniques = plus de performance et meilleure expérience pour vos visiteurs.",
     en: "Eco-design: I design lightweight solutions with low server resource and bandwidth requirements. Less load, lower costs, greater efficiency. Easy-to-maintain systems designed to evolve smoothly according to needs.",
     de: "Entwicklungsansatz zur Optimierung jeder Phase des Lebenszyklus digitaler Dienste, der Leistung und Effizienz in Einklang bringt.",
   },
   "UX/UI": {
-    fr: "Interfaces intuitives qui répondent aux besoins réels des utilisateurs. Une bonne conception UX/UI réduit les frictions et améliore l'engagement des utilisateurs.",
+    fr: "Conception de sites intuitifs et agréables à utiliser, qui gardent les visiteurs plus longtemps sur votre site.",
     en: "Intuitive interfaces that meet the actual needs of users. Good UX/UI design reduces friction and improves user engagement.",
     de: "Öko-Design: Ich entwickle leichte Lösungen mit geringem Serverressourcen- und Bandbreitenbedarf. Weniger Last, niedrigere Kosten, höhere Effizienz. Wartungsfreundliche Systeme, die sich reibungslos an neue Anforderungen anpassen können.",
   },
@@ -141,13 +141,13 @@ const content = {
       "Version éco-responsable de ma page à propos, découvrez mon parcours avec une empreinte carbone minimale.",
     aboutTitle: "À propos de moi",
     aboutText:
-      "Je suis un développeur web passionné par la création d'expériences numériques performantes et respectueuses de l'environnement. Basé à Rennes, disponible pour des projets à Nantes, Paris, Berlin ou en télétravail.",
+      "Je suis un créateur de sites web basé à Rennes. Je conçois des sites internet simples, rapides et qui consomment moins d'énergie pour des artisans, commerçants et associations. Je travaille aussi pour des clients à Nantes, Paris, Berlin ou à distance depuis chez moi.",
     visionTitle: "Ma vision",
     visionText:
-      "Le numérique représente aujourd'hui une part croissante de notre empreinte carbone. En tant que développeur web, je m'engage à concevoir des sites et applications qui minimisent leur impact environnemental sans compromettre l'expérience utilisateur.",
+      "Internet consomme de plus en plus d'électricité dans le monde. En tant que créateur de sites, je m'engage à faire des sites plus légers, qui marchent bien sans gaspiller de l'énergie et <strong>sans vous ruiner</strong>. Un site bien fait, c'est un site que les gens trouvent facilement, qui se charge vite et qui donne envie de rester.",
     approachTitle: "Mon approche",
-    skillsTitle: "Compétences techniques",
-    expTitle: "Expérience professionnelle",
+    skillsTitle: "Ce que je sais faire",
+    expTitle: "Mon expérience",
     eduTitle: "Formation",
     contactButton: "Me contacter",
     ecoModeTitle: "Mode Éco activé",
@@ -198,10 +198,10 @@ const t = content[lang] || content.fr;
 
 // Approche simplifiée
 const approach = [
-  "Éco-conception: Solutions légères qui consomment moins de ressources serveur et moins de bande passante",
-  "Performance: Un site rapide est plus agréable à utiliser et consomme moins d'énergie côté utilisateur",
-  "Accessibilité: Interfaces accessibles à tous, quel que soit le handicap ou l'appareil utilisé",
-  "Durabilité: Sites avec des technologies pérennes et maintenables sur le long terme",
+  "Sites légers : Je crée des sites qui consomment moins de données et coûtent moins cher à héberger. Un site écologique est souvent un site plus économique.",
+  "Rapidité : Un site qui se charge vite est plus agréable et vos visiteurs y restent plus longtemps. Plus rapide = plus écologique = plus efficace pour votre business.",
+  "Pour tous : Je fais des sites que tout le monde peut utiliser facilement, même les personnes âgées ou avec un handicap. Accessible = plus de clients potentiels.",
+  "Qui durent : Je construis des sites solides qui fonctionneront longtemps sans tout casser. Pas besoin de tout refaire dans 2 ans = économies sur le long terme.",
 ];
 
 const skills = [
@@ -218,7 +218,7 @@ const skills = [
       ? "Tools: Git, Docker, VS Code, Lighthouse"
       : "Werkzeuge: Git, Docker, VS Code, Lighthouse",
   lang === "fr"
-    ? "Méthodologies: Accessibilité, Performance, Éco-conception, UX/UI"
+    ? "Méthodes: Accessibilité, Performance, Éco-conception, UX/UI"
     : lang === "en"
       ? "Methodologies: Accessibility, Performance, Eco-design, UX/UI"
       : "Methoden: Barrierefreiheit, Performance, Öko-Design, UX/UI",
@@ -226,7 +226,7 @@ const skills = [
 
 const experiences = [
   lang === "fr"
-    ? "2025 - Aujourd'hui: Développeur web freelance, Indépendant"
+    ? "2025 - Aujourd'hui: Créateur de sites internet écologiques et économiques pour artisans, commerçants et associations"
     : lang === "en"
       ? "2025 - Present: Freelance web developer, Independent"
       : "2025 - Heute: Freelance Webentwickler, Unabhängig",
@@ -235,7 +235,7 @@ const experiences = [
 
 const education = [
   lang === "fr"
-    ? "2025: Titre RNCP de niveau 5, développeur web et web mobile, Studi"
+    ? "2025: Diplôme de développeur web, Studi"
     : lang === "en"
       ? "2025: Professional Title in Web and Mobile Web Development, Studi"
       : "2025: Beruflicher Titel für Web- und Mobile-Web-Entwicklung, Studi",
@@ -245,10 +245,10 @@ const education = [
       ? "2023 - 2024: The Odin Project, online Self-Training"
       : "2023 - 2024: The Odin Project, online-Selbststudium",
   lang === "fr"
-    ? "2022 - Présent: veille technologique, sources diverses"
+    ? "2022 - Présent: Formation continue et veille technologique"
     : lang === "en"
-      ? "2022 - Présent: technology Watch, various sources"
-      : "2022 - Présent: technologiebeobachtung, verschiedene quellen",
+      ? "2022 - Present: Technology Watch, various sources"
+      : "2022 - Present: Technologiebeobachtung, verschiedene Quellen",
 ];
 
 // Mode éco activé
@@ -281,9 +281,7 @@ const isEcoMode = true;
       <h2 class="text-xl font-semibold mb-2">
         {t.visionTitle}
       </h2>
-      <p class="mb-4 max-w-4xl">
-        {t.visionText}
-      </p>
+      <p class="mb-4 max-w-4xl" set:html={t.visionText}></p>
     </section>
 
     <!-- Section approche -->
@@ -296,7 +294,7 @@ const isEcoMode = true;
       </ul>
     </section>
 
-    <!-- Section compétences -->
+    <!-- Section compétences avec balises details simplifiées -->
     <section class="mb-4 max-w-3xl">
       <h2 class="text-xl font-semibold mb-3">
         {t.skillsTitle}
@@ -306,17 +304,19 @@ const isEcoMode = true;
           // Séparer la catégorie et les compétences
           const [category, skillList] = skillCategory.split(": ");
           return (
-            <div class="mb-4">
-              <h3 class="text-lg font-semibold mb-3 text-accent">{category}</h3>
-              {skillList.split(", ").map((skill) => (
-                <div class="mb-2">
-                  <div class="font-medium">{skill}</div>
-                  <p class="text-text-muted text-sm">
-                    {getSkillDescription(skill, lang)}
-                  </p>
-                </div>
-              ))}
-            </div>
+            <details class="mb-3 border border-secondary rounded p-2">
+              <summary class="text-lg font-semibold text-accent cursor-pointer py-1">{category}</summary>
+              <div class="mt-3 pl-2">
+                {skillList.split(", ").map((skill) => (
+                  <div class="mb-2">
+                    <div class="font-medium text-accent">{skill}</div>
+                    <p class="text-text-muted text-sm mb-3 max-w-lg text-balance">
+                      {getSkillDescription(skill, lang)}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </details>
           );
         })
       }
