@@ -16,23 +16,23 @@ const content = {
     title: "Josselin HANEL - Devis site vitrine (Mode Éco)",
     description:
       "Version éco-responsable de ma page de devis, avec une empreinte carbone minimale.",
-    quoteTitle: "Devis site vitrine",
+    quoteTitle: "Devis pour un site de présentation",
     quoteIntro:
-      "Obtenez un site web professionnel qui reflète l'identité de votre entreprise ou activité. Un site vitrine performant, éco-responsable et optimisé pour tous les appareils.",
+      "Obtenez un site internet professionnel qui présente votre activité à vos clients. Un site qui s'affiche bien sur mobile comme sur ordinateur, qui charge vite tout en étant économe.",
     // Labels formulaire
     nameLabel: "Votre nom",
     emailLabel: "Votre email",
     phoneLabel: "Votre téléphone (optionnel)",
     projectTypeLabel: "Type de site",
     projectTypeOptions: {
-      showcase: "Site vitrine",
-      blog: "Site vitrine avec blog",
+      showcase: "Site de présentation",
+      blog: "Site de présentation avec blog",
       portfolio: "Portfolio / CV en ligne",
       other: "Autre besoin (à préciser ci-dessous)",
     },
     projectDescLabel: "Votre activité et vos besoins",
     projectDescPlaceholder:
-      "Décrivez brièvement votre activité et ce que vous attendez de votre site web (objectifs, style souhaité, références de sites que vous aimez...)",
+      "Dites-moi simplement ce que vous faites et ce que vous attendez de votre site (à quoi il doit servir, ce que vous aimeriez qu'il contienne, exemples de sites que vous aimez...)",
     additionalInfoLabel: "Informations complémentaires",
     additionalInfoPlaceholder:
       "Y a-t-il d'autres détails importants à connaître? (contenu déjà disponible, logo existant, contraintes spécifiques...)",
@@ -142,15 +142,13 @@ const content = {
 const showcasePackages = {
   fr: {
     basic: {
-      title: "Site One Page",
+      title: "Site Une Page",
       price: "230 €",
       features: [
-        "Une page vitrine efficace et complète",
-        "Présentation de votre activité",
+        "Une page complète qui présente votre activité",
         "Coordonnées & formulaire de contact",
-        "Animations pour mettre en valeur vos atouts",
-        "Idéal pour les petites structures",
-        "Livraison sous 1-2 semaines",
+        "Animations pour attirer l'attention",
+        "Idéal pour les petites entreprises ou artisans",
       ],
     },
     standard: {
@@ -159,22 +157,18 @@ const showcasePackages = {
       features: [
         "Jusqu'à 3 pages (ex. : Accueil, À propos, Contact)",
         "Formulaire de contact avec envoi de fichiers",
-        "Animations et effets d'interface modernes",
-        "Transitions douces, retours visuels sur les actions",
-        "Fluidité de navigation sur mobile & desktop",
-        "Livraison sous 2-3 semaines",
+        "Effets visuels modernes",
+        "Navigation fluide sur mobile et ordinateur",
       ],
     },
     premium: {
-      title: "Site Premium",
+      title: "Site Avancé",
       price: "650 €",
       features: [
-        "Jusqu'à 6 pages ou sections distinctes",
-        "Design sur-mesure sans limite",
-        "Animations avancées : apparition au scroll, parallaxe",
-        "Transitions dynamiques et interactions subtiles",
-        "Experience utilisateur optimisée",
-        "Livraison sous 3-4 semaines",
+        "Jusqu'à 6 pages ou sections",
+        "Design sur-mesure selon vos goûts",
+        "Animations avancées",
+        "Expérience utilisateur optimale",
       ],
     },
   },
@@ -188,7 +182,6 @@ const showcasePackages = {
         "Contact details & contact form",
         "Animations to highlight your strengths",
         "Ideal for small structures",
-        "Delivery within 1-2 weeks",
       ],
     },
     standard: {
@@ -200,7 +193,6 @@ const showcasePackages = {
         "Modern animations and interface effects",
         "Smooth transitions, visual feedback on actions",
         "Fluid navigation on mobile & desktop",
-        "Delivery within 2-3 weeks",
       ],
     },
     premium: {
@@ -212,7 +204,6 @@ const showcasePackages = {
         "Advanced animations: scroll appearance, parallax",
         "Dynamic transitions and subtle interactions",
         "Optimized user experience",
-        "Delivery within 3-4 weeks",
       ],
     },
   },
@@ -226,7 +217,6 @@ const showcasePackages = {
         "Kontaktdaten & Kontaktformular",
         "Animationen zur Hervorhebung Ihrer Stärken",
         "Ideal für kleine Strukturen",
-        "Lieferung innerhalb von 1-2 Wochen",
       ],
     },
     standard: {
@@ -238,7 +228,6 @@ const showcasePackages = {
         "Moderne Animationen und Schnittstelleneffekte",
         "Sanfte Übergänge, visuelle Rückmeldung bei Aktionen",
         "Flüssige Navigation auf Mobilgeräten & Desktop",
-        "Lieferung innerhalb von 2-3 Wochen",
       ],
     },
     premium: {
@@ -250,7 +239,6 @@ const showcasePackages = {
         "Fortgeschrittene Animationen: Scroll-Erscheinung, Parallaxe",
         "Dynamische Übergänge und subtile Interaktionen",
         "Optimierte Benutzererfahrung",
-        "Lieferung innerhalb von 3-4 Wochen",
       ],
     },
   },
@@ -258,12 +246,12 @@ const showcasePackages = {
 // Ce que tous les forfaits incluent
 const includedInAllPackages = {
   fr: [
-    "Site responsive (mobiles, tablettes, ordinateurs)",
-    "Design moderne et accessible",
-    "Référencement naturel optimisé",
-    "Performance maximale (chargement rapide)",
+    "S'affiche bien sur tous les appareils (mobile, tablette, PC)",
+    "Design moderne et facile à utiliser",
+    "Bien placé sur Google",
+    "Chargement rapide",
     "Hébergement gratuit à vie via Cloudflare Pages",
-    "Code source livré (GitHub ou archive)",
+    "Code source livré (vous en êtes propriétaire)",
     "Support technique d'1 mois après livraison",
   ],
   en: [
@@ -289,34 +277,34 @@ const includedInAllPackages = {
 const additionalOptions = {
   fr: [
     {
-      title: "Site multilingue",
+      title: "Site en plusieurs langues",
       price: "150 €",
       description:
-        "Jusqu'à 2 langues supplémentaires avec sélecteur manuel ou détection automatique",
+        "Ajout de 2 langues (anglais, allemand...) avec un bouton pour passer de l'une à l'autre",
     },
     {
-      title: "Gestion via interface graphique (Decap CMS)",
+      title: "Interface pour modifier vos contenus",
       price: "200 €",
       description:
-        "Interface /admin intégrée pour modifier vos textes et images facilement sans coder",
+        "Un espace /admin pour changer vos textes et images sans toucher au code",
     },
     {
       title: "Gestion via tableaux (Google Sheets)",
       price: "100 €",
       description:
-        "Édition simple via un tableau Google pour modifier descriptions, tarifs, horaires",
+        "Modifiez facilement vos textes, tarifs ou horaires directement dans un tableau Google",
     },
     {
-      title: "Formation Markdown",
+      title: "Formation simple d'1h",
       price: "50 €",
       description:
-        "Formation 1h en visio pour apprendre à modifier textes et images vous-même",
+        "Je vous montre comment modifier vous-même les textes et images de votre site",
     },
     {
-      title: "Statistiques détaillées sans cookies",
+      title: "Statistiques de visites sans cookies",
       price: "70 €",
       description:
-        "Suivi de trafic RGPD-friendly avec tableau de bord clair et accessible",
+        "Savoir combien de personnes visitent votre site et d'où elles viennent, sans traquer vos visiteurs",
     },
   ],
   en: [
@@ -715,7 +703,7 @@ const isEcoMode = true;
           </div>
 
           <!-- Bouton d'envoi -->
-          <div class="flex justify-end">
+          <div class="flex pr-2 justify-end">
             <button type="submit" class="cta-button">
               {t.submitButton}
             </button>
