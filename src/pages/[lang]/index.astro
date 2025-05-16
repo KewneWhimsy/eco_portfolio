@@ -21,100 +21,100 @@ const lang = Astro.params.lang as "fr" | "en" | "de";
 // Titre et description de la page pour SEO (à traduire selon la langue)
 const content = {
   fr: {
-    title: "Josselin HANEL - Développeur Web Full Stack",
-    description: "Développeur web éco-responsable spécialisé dans la création de sites et applications performants, modernes et durables. Basé à Rennes, disponible à Nantes, Paris, Berlin et en télétravail.",
-    heroText: "Je conçois des sites et applications web qui chargent vite, fonctionnent partout, et optimisés pour être bien référencés sur Google. Le tout avec une approche éco-responsable.",
+    title: "Josselin HANEL - Créateur de sites internet",
+    description: "Créateur de sites internet qui marchent bien, rapides et moins gourmands en énergie. Basé à Rennes, disponible à Nantes, Paris, Berlin et à distance.",
+    heroText: "Je crée des sites internet qui chargent vite, s'affichent correctement sur tous les appareils, et sont bien placés sur Google. Le tout avec un souci d'économie d'énergie.",
     values: [
       { 
-        title: "Performance", 
-        description: "Des sites rapides qui offrent une meilleure expérience utilisateur et consomment moins d'énergie.",
+        title: "Rapidité", 
+        description: "Des sites qui ne font pas attendre vos visiteurs et qui consomment moins de batterie.",
         emoji: "⚡" 
       },
       { 
         title: "Simplicité", 
-        description: "Des solutions efficaces sans complexité inutile, faciles à maintenir dans le temps.",
+        description: "Des solutions qui vont droit au but, sans gadgets inutiles, faciles à mettre à jour.",
         emoji: "✨" 
       },
       { 
-        title: "Éco-responsabilité", 
-        description: "Une conception qui minimise l'empreinte carbone de vos projets web.",
+        title: "Économie d'énergie", 
+        description: "Des sites plus légers qui respectent la planète et font baisser vos factures d'hébergement.",
         emoji: "🌱"
       },
       { 
         title: "Autonomie", 
-        description: "Des sites que vous pouvez faire évoluer facilement, sans dépendances complexes.",
+        description: "Des sites que vous pouvez faire évoluer facilement, sans dépendre constamment d'un prestataire.",
         emoji: "🚀" 
       }
     ],
-    projectsButton: "Voir mes projets",
+    projectsButton: "Voir mes réalisations",
     contactButton: "Me contacter",
     servicesTitle: "Services",
     services: [
       {
-        title: "Sites vitrines",
-        description: "Sites professionnels personnalisés, rapides et optimisés pour le référencement - sans WordPress ni abonnements coûteux.",
+        title: "Sites pour présenter votre activité",
+        description: "Sites professionnels personnalisés, rapides et bien placés sur Google - sans WordPress ni abonnements coûteux.",
         emoji: "🌐",
         hasQuote: true, // Propriété pour identifier que ce service a un formulaire de devis
         quoteLink: `/${lang}/quote_presentation/`
       },
       {
         title: "Applications web",
-        description: "Applications interactives sur mesure pour automatiser vos processus et améliorer l'expérience de vos utilisateurs.",
+        description: "Outils en ligne sur mesure pour automatiser vos tâches et améliorer l'expérience de vos utilisateurs.",
         emoji: "⚙️"
       },
       {
-        title: "E-commerce",
-        description: "Solutions e-commerce modernes et performantes, sans les frais mensuels des plateformes traditionnelles.",
+        title: "Boutiques en ligne",
+        description: "Solutions de vente en ligne modernes et rapides, sans les frais mensuels des plateformes habituelles.",
         emoji: "🛒"
       },
       {
-        title: "Consultation",
-        description: "Conseils en éco-conception web, optimisation de performance et audit de sites existants.",
+        title: "Conseils",
+        description: "Conseils pour rendre vos sites existants plus rapides, moins énergivores et plus agréables à utiliser.",
         emoji: "💡"
       }
     ],
     projectsTitle: "Projets récents",
-    projectButton: "Découvrir le projet",
+    projectButton: "Voir ce projet",
     viewAllProjectsButton: "Voir tous les projets",
     // Nouvelle section
-    motivationTitle: "Ce qui m'anime",
-    motivationIntro: "Je crois en un web alliant performance, élégance et respect de l'environnement. Aujourd'hui, trop de sites utilisent des technologies lourdes qui ralentissent l'expérience et augmentent l'empreinte carbone. Ma démarche s'articule autour de ces principes :",
+    motivationTitle: "Ce qui me motive",
+    motivationIntro: "Je crois à un web qui allie rapidité, simplicité et respect de l'environnement. Aujourd'hui, trop de sites sont lourds, lents à charger et consomment beaucoup d'énergie. Ma démarche s'appuie sur ces principes :",
     motivationPrinciples: [
       {
-        title: "L'intelligence technique",
-        description: "Les technologies web fondamentales ont considérablement évolué ces dernières années, mais beaucoup d'entreprises et de développeurs continuent d'utiliser des bibliothèques lourdes par habitude. Je préfère exploiter les capacités modernes des navigateurs pour créer des effets visuels et des interactions fluides, sans compromettre la vitesse."
+        title: "La bonne technique au bon endroit",
+        description: "Les navigateurs modernes peuvent faire beaucoup de choses sans avoir besoin d'installer des tonnes de modules supplémentaires. J'utilise les technologies existantes de manière intelligente pour créer des sites fluides qui ne rament pas."
       },
       {
-        title: "Le respect de l'utilisateur",
-        description: "Pas de popups intrusifs ni de bandeaux inutiles qui interrompent la navigation. Une expérience fluide où l'utilisateur reste maître de sa navigation et de ses données."
+        title: "Le respect du visiteur",
+        description: "Pas de fenêtres pop-up agaçantes ni de bandeaux qui gênent la navigation. Une expérience agréable où l'utilisateur reste maître de sa navigation et de ses données."
       },
       {
-        title: "La performance raisonnée",
-        description: "Chaque élément de design a sa raison d'être, et chaque effet visuel est implémenté de façon optimale. Le résultat : des sites à la fois esthétiques, rapides et économes en ressources."
+        title: "La performance bien pensée",
+        description: "Chaque élément a sa raison d'être, et chaque effet visuel est fait pour ne pas ralentir le site. Résultat : des sites à la fois beaux, rapides et économes en ressources."
       },
       {
-        title: "Le mode éco comme option pertinente",
-        description: "Ce portfolio propose un mode éco qui permet d'accéder au contenu même avec une connexion limitée. Si cette approche n'est pas pertinente pour tous les projets (notamment visuels), elle devrait être plus répandue pour les <span class='font-bold'>services essentiels</span> et <span class='font-bold'>sites d'information</span>."
+        title: "Un mode économie quand c'est utile",
+        description: "Ce site propose un mode économie qui permet d'y accéder même avec une connexion limitée. Si cette approche n'est pas idéale pour tous les projets (surtout ceux avec beaucoup d'images), elle devrait être plus répandue pour les <span class='font-bold'>services essentiels</span> et <span class='font-bold'>sites d'information</span>."
       }
     ],
     didYouKnowTitle: "Le saviez-vous ?",
     didYouKnowItems: [
       {
-        text: "Contrairement à une idée répandue, le RGPD n'exige pas d'afficher un bandeau de cookies sur tous les sites web. Ces bandeaux ne sont obligatoires que si vous utilisez des cookies non essentiels (publicité, analyse, etc.).",
+        text: "Contrairement à ce qu'on croit souvent, la loi n'oblige pas à afficher un bandeau de cookies sur tous les sites. Ces bandeaux ne sont obligatoires que si vous utilisez des cookies pour la pub ou pour suivre les visiteurs.",
         source: "GDPR.eu - Cookies, the GDPR, and the ePrivacy Directive",
         link: "https://gdpr.eu/cookies/"
       },
       {
-        text: "53% des visiteurs abandonnent un site qui met plus de 3 secondes à charger. Une optimisation rigoureuse des performances est essentielle.",
+        text: "53% des visiteurs quittent un site qui met plus de 3 secondes à charger. Avoir un site rapide est essentiel pour ne pas perdre de clients.",
         source: "Think with Google - Mobile page speed benchmarks",
         link: "https://www.thinkwithgoogle.com/marketing-strategies/app-and-mobile/mobile-page-speed-new-industry-benchmarks/"
       },
       {
-        text: "Il est tout à fait possible d'analyser le trafic de son site sans utiliser de cookies de suivi ni compromettre la vie privée des utilisateurs.",
-        details: "Des solutions comme Plausible, Umami Cloud, Fathom ou GoatCounter offrent des insights précieux tout en respectant la vie privée des utilisateurs."
+        text: "Il est tout à fait possible d'analyser les visites de votre site sans utiliser de cookies de suivi ni compromettre la vie privée de vos visiteurs.",
+        details: "Des solutions comme Plausible, Umami Cloud, Fathom ou GoatCounter vous donnent des statistiques précises tout en respectant la vie privée de vos visiteurs."
       }
     ],
-    quoteText: "Combien de fois avez-vous quitté un site parce qu'il était trop lent, encombré de publicités, ou vous harcelait pour accepter des cookies? Je préfère un web plus léger, qui respecte l'attention de l'utilisateur et fonctionne bien sur tous les appareils sans frustration."
+    quoteText: "Combien de fois avez-vous quitté un site parce qu'il était trop lent, rempli de pubs, ou vous harcelait pour accepter des cookies? Je préfère un web plus léger, qui respecte l'attention du visiteur et fonctionne bien sur tous les appareils sans frustration."
   },
   en: {
     title: "Josselin HANEL - Full Stack Web Developer",
@@ -379,7 +379,7 @@ const featuredProjects = [
               <div class="typewriter-part1">
                 <span class="typewriter-text-base">
                   {lang === "fr" 
-                    ? "Développeur Web"
+                    ? "Créateur de sites"
                     : lang === "en" 
                       ? "Full Stack" 
                       : "Full Stack"
@@ -389,7 +389,7 @@ const featuredProjects = [
               <div class="typewriter-part2">
                 <span class="typewriter-text-highlight text-light">
                   {lang === "fr" 
-                    ? "Full Stack"
+                    ? "internet"
                     : lang === "en" 
                       ? "Web Developer" 
                       : "Webentwickler"
@@ -416,7 +416,7 @@ const featuredProjects = [
               src={monImage}
               widths={[400, 600]}
               formats={["avif", "webp", "jpg"]}
-              alt={`Josselin HANEL - ${lang === "fr" ? "Développeur Full Stack" : lang === "en" ? "Full Stack Developer" : "Full-Stack-Entwickler"}`}
+              alt={`Josselin HANEL - ${lang === "fr" ? "Créateur de sites internet" : lang === "en" ? "Full Stack Developer" : "Full-Stack-Entwickler"}`}
               class="w-full h-auto object-cover rounded"
               data-astro-transition-persist="profile-image"
               loading="eager"

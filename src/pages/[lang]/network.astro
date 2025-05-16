@@ -18,13 +18,13 @@ const lang = Astro.params.lang as "fr" | "en" | "de";
 
 const content = {
   fr: {
-    title: 'Josselin HANEL - Mon réseau professionnel',
-    description: 'Découvrez mon réseau de collaborateurs professionnels et les talents avec qui je travaille régulièrement.',
-    networkTitle: 'Mon réseau professionnel',
-    networkIntro: "Voici les talentueux professionnels avec qui je fais une bonne équipe. N'hésitez pas à me contacter pour établir des connexions.",
+    title: 'Josselin HANEL - Mon réseau',
+    description: 'Voici les personnes de talent que je peux vous recommander pour des besoins spécifiques.',
+    networkTitle: 'Mon réseau',
+    networkIntro: "Je connais ces professionnels talentueux et peux vous les recommander si votre projet nécessite des compétences spécifiques. N'hésitez pas à me contacter pour en savoir plus.",
     viewWork: "Voir le travail",
-    contactCTA: "Votre projet nécessite une séparation des responsabilités ?",
-    contactButton: "Discutons-en"
+    contactCTA: "Votre projet a besoin de compétences particulières ?",
+    contactButton: "Parlons-en"
   },
   en: {
     title: 'Josselin HANEL - My professional network',
@@ -53,11 +53,11 @@ const collaborators = [
   {
     name: 'Nino Leskargo',
     image: ninoImage,
-    title: lang === 'fr' ? 'Tatoueur & Illustrateur' :
+    title: lang === 'fr' ? 'Tatoueur & Dessinateur' :
            lang === 'en' ? 'Tattoo Artist & Illustrator' :
            'Tätowierer & Illustrator',
     description: lang === 'fr' ?
-      'Nino combine un style unique mêlant réalisme ultra-précis et esthétique graff/cartoon dans ses tatouages, avec un talent d’illustrateur 2D polyvalent.' :
+      'Nino mélange le réalisme précis et le style graffiti/cartoon dans ses tatouages. Il est aussi très doué pour le dessin 2D.' :
       lang === 'en' ?
       'Nino blends precise realism with graffiti/cartoon aesthetics in his tattoos, showing versatile talent as a 2D illustrator.' :
       'Nino kombiniert präzisen Realismus mit Graffiti- und Cartoon-Ästhetik in seinen Tattoos und zeigt sich als vielseitiger 2D-Illustrator.',
@@ -67,11 +67,11 @@ const collaborators = [
   {
     name: 'Jade Ounaphom',
     image: jadeImage,
-    title: lang === 'fr' ? 'Designer UI/UX & Créatrice audiovisuelle' : 
+    title: lang === 'fr' ? 'Designer & Créatrice vidéo' : 
            lang === 'en' ? 'UI/UX Designer & Audiovisual Creator' : 
            'UI/UX Designer & Audiovisuelle Gestalterin',
     description: lang === 'fr' ? 
-      'Jade apporte une vision unique aux projets numériques grâce à sa double compétence en design et en création audiovisuelle.' : 
+      'Jade apporte un regard unique aux projets web grâce à ses talents en design et en création vidéo.' : 
       lang === 'en' ? 
       'Jade brings a unique vision to digital projects thanks to her dual expertise in design and audiovisual creation.' : 
       'Jade bringt mit ihrer Doppelkompetenz in Design und audiovisueller Gestaltung eine einzigartige Vision in digitale Projekte ein.',
@@ -81,11 +81,11 @@ const collaborators = [
   {
     name: 'François Bourdin',
     image: francoisImage,
-    title: lang === 'fr' ? 'Character Designer & Concept Artist' : 
+    title: lang === 'fr' ? 'Créateur de personnages' : 
            lang === 'en' ? 'Character Designer & Concept Artist' : 
            'Character Designer & Concept Artist',
     description: lang === 'fr' ? 
-      'François apporte une expertise artistique pointue dans le design de personnages et le design conceptuel, avec une efficacité et un style moderne reconnus dans l\'industrie de l\'animation.' : 
+      'François est spécialiste de la création de personnages et du design artistique. Son style moderne est très apprécié dans le monde de l\'animation.' : 
       lang === 'en' ? 
       'François brings sharp artistic expertise in character and concept design, with recognized efficiency and a modern style in the animation industry.' : 
       'François bringt scharfe künstlerische Expertise im Character- und Concept Design mit anerkannter Effizienz und modernem Stil in der Animationsindustrie.',
@@ -95,11 +95,11 @@ const collaborators = [
   {
     name: 'Violette Dubois',
     image: violetteImage,
-    title: lang === 'fr' ? 'Cheffe de Projet Web & Automatisation No-Code' :
+    title: lang === 'fr' ? 'Cheffe de Projet & Spécialiste No-Code' :
            lang === 'en' ? 'Web Project Manager & No-Code Automation Expert' :
            'Web-Projektleiterin & Automatisierungsexpertin',
     description: lang === 'fr' ?
-      'Violette a travaillé plusieurs années dans les castings TV avant de se tourner vers le web. Diplômée en com’, elle s’est initiée au code via la prépa 42 et gère des projets en s’appuyant sur des outils comme Zapier ou Notion.' :
+      'Violette a d\'abord travaillé dans les castings TV avant de se tourner vers le web. Elle gère maintenant des projets web et utilise des outils comme Zapier ou Notion pour automatiser les tâches.' :
       lang === 'en' ?
       'Violette worked for years in TV casting before moving into web projects. With a background in comms and a 42 prep in coding, she now drives projects using tools like Zapier and Notion.' :
       'Violette war mehrere Jahre im TV-Casting tätig, bevor sie ins Web wechselte. Mit einem Abschluss in Kommunikation und Coding-Erfahrung von 42 steuert sie Projekte mit Tools wie Zapier und Notion.',

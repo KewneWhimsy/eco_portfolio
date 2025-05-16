@@ -21,80 +21,80 @@ const lang = Astro.params.lang as "fr" | "en" | "de";
 // Contenu traduit pour chaque langue
 const content = {
   fr: {
-    title: "Josselin HANEL - À propos de moi",
+    title: "Josselin HANEL - Qui je suis",
     description:
-      "Découvrez mon parcours, mes compétences et ma vision du développement web éco-responsable.",
-    aboutTitle: "À propos de moi",
+      "Découvrez mon parcours, mes compétences et ma façon de créer des sites internet qui respectent la planète.",
+    aboutTitle: "Qui suis-je ?",
     aboutText:
-      "Je suis un développeur web passionné par la création d'expériences numériques performantes et respectueuses de l'environnement. Basé à Rennes et également disponible pour des projets à Nantes, Paris, Berlin ou en télétravail.",
+      "Je crée des sites internet rapides et qui consomment moins d'énergie. Basé à Rennes, je travaille aussi pour des clients à Nantes, Paris, Berlin ou à distance depuis chez moi.",
     visionTitle: "Ma vision",
     visionText:
-      "Le numérique représente aujourd'hui une part croissante de notre empreinte carbone. En tant que développeur web, je m'engage à concevoir des sites et applications qui minimisent leur impact environnemental sans compromettre l'expérience utilisateur.",
-    approachTitle: "Mon approche",
+      "Internet consomme de plus en plus d'électricité dans le monde. En tant que créateur de sites, je m'engage à faire des sites plus légers, qui marchent bien sans gaspiller de l'énergie et <strong>sans vous ruiner</strong>.",
+    approachTitle: "Ma façon de travailler",
     approach: [
       {
-        title: "Éco-conception",
+        title: "Sites légers",
         description:
-          "Je conçois des solutions légères, peu gourmandes en ressources serveur et en bande passante. Moins de charge, moins de coûts, plus d'efficacité. Des systèmes faciles à maintenir, pensés pour évoluer sereinement au rythme des besoins.",
+          "Je crée des sites qui ne pompent pas toutes vos données et qui coûtent moins cher à héberger. Des solutions simples qui évoluent facilement quand votre activité grandit.",
       },
       {
-        title: "Performance",
+        title: "Rapidité",
         description:
-          "Un site rapide est plus agréable à utiliser et consomme moins d'énergie côté utilisateur.",
+          "Un site rapide est plus agréable à utiliser et vos visiteurs restent plus longtemps. En bonus, ça consomme moins de batterie sur leur téléphone !",
       },
       {
-        title: "Accessibilité",
+        title: "Pour tous",
         description:
-          "Je conçois des interfaces accessibles à tous, quel que soit le handicap ou l'appareil utilisé.",
+          "Je fais des sites que tout le monde peut utiliser facilement, même les personnes âgées ou avec un handicap.",
       },
       {
-        title: "Durabilité",
+        title: "Qui durent",
         description:
-          "Je construis des sites avec des technologies pérennes et maintenables sur le long terme.",
+          "Plutôt que des solutions à la mode qui seront obsolètes dans 2 ans, je construis des sites solides qui fonctionneront longtemps sans tout casser.",
       },
     ],
-    expTitle: "Expérience professionnelle",
+    expTitle: "Mon expérience",
     experiences: [
       {
         period: "2025 - Aujourd'hui",
-        position: "Développeur web freelance",
-        company: "Indépendant",
+        position: "Créateur de sites internet",
+        company: "À mon compte",
         description:
-          "Conception et développement de sites web et applications pour des clients variés avec une attention particulière à l'impact environnemental.",
+          "Je crée des sites pour différents clients (artisans, commerçants, associations) en faisant attention à ce qu'ils soient économes en énergie.",
       },
       {
         period: "2024 - 2025",
-        position: "Webmaster",
+        position: "Responsable du site internet",
         company: "Objethèque de Cornouaille",
         description:
-          "Intégration et développement d'interfaces utilisateur pour mettre en valeur les activités et évènements de l'association.",
+          "J'ai créé et mis à jour le site internet pour mettre en valeur les activités et événements de l'association.",
       },
     ],
     eduTitle: "Formation",
     education: [
       {
         year: "2025",
-        degree: "TP développeur web et web mobile",
+        degree: "Diplôme de développeur web",
         school: "Studi",
         description:
-          "Titre RNCP de niveau 5, formation full stack (backend et frontend).",
+          "Formation complète pour créer des sites de A à Z (côté visiteur et côté technique).",
       },
       {
         year: "2023 - 2024",
         degree: "The Odin Project",
-        school: "Auto-formation",
+        school: "Formation en ligne",
         description:
-          "Parcours complet de développement web full stack avec focus sur JavaScript et technologies modernes.",
+          "Apprentissage complet pour créer des sites modernes avec les dernières technologies.",
       },
       {
         year: "2022 - Présent",
-        degree: "Veille technologique",
-        school: "Sources diverses",
+        degree: "Formation continue",
+        school: "Diverses sources",
         description:
-          "Auto-formation continue à travers documentation, blogs techniques, conférences et communautés spécialisées en développement web.",
+          "Je me forme en permanence pour rester à jour et vous proposer les meilleures solutions.",
       },
     ],
-    skillsTitle: "Compétences techniques",
+    skillsTitle: "Ce que je sais faire",
     contactButton: "Me contacter",
   },
   en: {
@@ -259,12 +259,18 @@ const t = content[lang] || content.fr;
 // Compétences à afficher
 const skills = [
   {
-    category: "Frontend",
+    category:
+      lang === "fr"
+        ? "Côté visible"
+        : "Frontend",
     emoji: "🖥️", // Emoji pour le design et l'interface
     items: ["Astro", "CSS Pro", "Tailwind", "TypeScript", "HTMX", "Alpine.js"],
   },
   {
-    category: "Backend",
+    category:
+      lang === "fr"
+        ? "Côté serveur"
+        : "Backend",
     emoji: "⚙️", // Emoji pour les rouages techniques
     items: ["Express", "WebSocket", "Elixir", "Phoenix"],
   },
@@ -324,9 +330,7 @@ const skills = [
           <h2 class="text-xl font-semibold mb-3 text-accent">
             {t.visionTitle}
           </h2>
-          <p class="mb-6">
-            {t.visionText}
-          </p>
+          <p set:html={t.visionText}></p>
         </div>
         <div class="md:w-1/3">
           <div class="bg-secondary rounded-lg p-4">
@@ -334,7 +338,7 @@ const skills = [
               src={monImage}
               widths={[400, 600]}
               formats={["avif", "webp", "jpg"]}
-              alt={`Josselin HANEL - ${lang === "fr" ? "Développeur Full Stack" : lang === "en" ? "Full Stack Developer" : "Full-Stack-Entwickler"}`}
+              alt={`Josselin HANEL - ${lang === "fr" ? "Créateur de sites internet" : lang === "en" ? "Full Stack Developer" : "Full-Stack-Entwickler"}`}
               class="w-full h-auto object-cover rounded"
               data-astro-transition-persist="profile-image"
               loading="eager"
