@@ -12,41 +12,28 @@ const currentLang = langMatch ? langMatch[1] : 'fr';
 // Détecter si on est en mode éco
 const isEcoMode = pathname.includes('/eco/');
 
-// Navigation items avec langue dynamique
-const navItems = [
-  { 
-    title: 'Projets', 
-    url: isEcoMode ? `/${currentLang}/projects/eco/` : `/${currentLang}/projects/`
-  },
-  { 
-    title: 'À propos', 
-    url: isEcoMode ? `/${currentLang}/about/eco/` : `/${currentLang}/about/`
-  },
-  { 
-    title: 'Contact', 
-    url: isEcoMode ? `/${currentLang}/contact/eco/` : `/${currentLang}/contact/`
-  }
-];
-
 // Traduction des labels de navigation
 const navLabels = {
   fr: {
     projects: 'Projets',
     about: 'À propos',
     network: 'Réseau',
-    contact: 'Contact'
+    contact: 'Contact',
+    quote: 'Devis'
   },
   en: {
     projects: 'Projects',
     about: 'About',
     network: 'Network',
-    contact: 'Contact'
+    contact: 'Contact',
+    quote: 'Quote'
   },
   de: {
     projects: 'Projekte',
     about: 'Über mich',
     network: 'Netzwerk',
-    contact: 'Kontakt'
+    contact: 'Kontakt',
+    quote: 'Angebot'
   }
 };
 
@@ -66,10 +53,10 @@ const labels = navLabels[currentLang as keyof typeof navLabels] || navLabels.fr;
       </a>
     </div>
     
-    <div class="flex flex-wrap justify-center items-center gap-6">
+    <div class="flex flex-col md:flex-row gap-4 items-center">
       <!-- Navigation principale avec URL localisées -->
-      <nav>
-        <ul class="flex items-center gap-4 md:gap-6 max-w-96">
+      <nav class="w-full md:w-auto">
+        <ul class="flex flex-wrap justify-center items-center gap-3 md:gap-4">
           <li>
             <a 
               href={isEcoMode ? `/${currentLang}/projects/eco/` : `/${currentLang}/projects/`} 
@@ -102,14 +89,25 @@ const labels = navLabels[currentLang as keyof typeof navLabels] || navLabels.fr;
               {labels.contact}
             </a>
           </li>
+          <li>
+            <a 
+              href={isEcoMode ? `/${currentLang}/quote_presentation/eco/` : `/${currentLang}/quote_presentation/`} 
+              class={`nav-link ${pathname.includes('/quote_presentation') ? 'nav-link-active' : ''}`}
+            >
+              {labels.quote}
+            </a>
+          </li>
         </ul>
       </nav>
       
-      <!-- Sélecteur de langue -->
-      <LanguageSwitcher transition-persist="language-switcher"/>
-      
-      <!-- Toggle button eco-mode -->
-      <EcoModeToggle transition-persist="eco-mode-toggle"/>
+      <!-- Sélecteur de langue et toggle eco -->
+      <div class="flex items-center gap-4">
+        <!-- Sélecteur de langue -->
+        <LanguageSwitcher transition-persist="language-switcher"/>
+        
+        <!-- Toggle button eco-mode -->
+        <EcoModeToggle transition-persist="eco-mode-toggle"/>
+      </div>
     </div>
   </div>
 </div>
