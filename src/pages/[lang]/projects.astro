@@ -21,48 +21,48 @@ const lang = Astro.params.lang as 'fr' | 'en' | 'de';
 // Contenu traduit pour chaque langue
 const content = {
   fr: {
-    title: 'Josselin HANEL - Projets',
-    description: 'Découvrez mes projets de développement web éco-responsable et mes réalisations récentes.',
-    projectsTitle: 'Mes projets',
-    projectsIntro: "Voici une sélection de mes projets récents. Chaque réalisation est pensée avec une approche d'éco-conception et d'accessibilité.",
-    viewProject: 'Découvrir le projet',
-    showcaseTitle: 'Focus sur l\'éco-conception',
-    showcaseText: "L'éco-conception web consiste à créer des sites et applications qui minimisent leur impact environnemental tout au long de leur cycle de vie. Voici quelques principes que j'applique dans mes projets.",
+    title: 'Josselin HANEL - Mes réalisations',
+    description: 'Découvrez mes sites web éco-responsables et mes dernières réalisations.',
+    projectsTitle: 'Mes réalisations',
+    projectsIntro: "Voici quelques-uns de mes derniers travaux. Chaque site est conçu pour être facile à utiliser et léger pour la planète.",
+    viewProject: 'Voir le projet',
+    showcaseTitle: 'Sites web écologiques',
+    showcaseText: "Un site web écologique, c'est un site qui consomme moins d'énergie et qui pollue moins. Voici comment je m'y prends pour mes clients.",
     principles: [
       {
-        title: 'Sobriété technique',
-        description: 'Chaque fonctionnalité est analysée en fonction de sa valeur ajoutée réelle pour éviter les fonctionnalités superflues consommatrices de ressources.'
+        title: 'Le juste nécessaire',
+        description: 'Je ne rajoute que les fonctions vraiment utiles pour éviter de surcharger votre site et de ralentir son chargement.'
       },
       {
         title: 'Optimisation des ressources',
-        description: 'Minimisation des requêtes serveur, compression des contenus, utilisation rationnelle des scripts et optimisation des médias.'
+        description: 'Je compresse les images, limite les requêtes serveur et allège les scripts pour que votre site soit rapide et économe.'
       },
       {
-        title: 'Pérennité',
-        description: 'Choix de technologies durables et bien maintenues, code modulaire et évolutif, architecture adaptable aux besoins futurs.'
+        title: 'Pensé pour durer',
+        description: 'J\'utilise des technologies fiables et je code proprement pour que votre site reste performant et facile à mettre à jour pendant des années.'
       }
     ],
-    upcomingTitle: 'Projets à venir',
-    upcomingIntro: 'Voici un aperçu des projets sur lesquels je travaille actuellement :',
+    upcomingTitle: 'En cours de réalisation',
+    upcomingIntro: 'Voici les projets sur lesquels je travaille en ce moment :',
     upcomingProjects: [
       {
-        title: 'Amélioration de l\'Objethèque - Quimper',
-        description: 'Ajout d\'un système de gestion de contenu (Decap CMS) et création d\'un calendrier pour la gestion des créneaux de salle et des bénévoles avec leurs compétences attitrées. Ce projet permettra à l\'association de gérer plus facilement son contenu et d\'optimiser l\'organisation des événements et la disponibilité des bénévoles.'
+        title: 'Amélioration du site de l\'Objethèque - Quimper',
+        description: 'J\'ajoute un système simple pour gérer le contenu du site et un calendrier pour organiser les créneaux et les bénévoles. Ça va rendre la gestion du site beaucoup plus simple pour l\'association.'
       },
       {
-        title: 'Portfolio et boutique en ligne pour un artiste',
-        description: 'Je développe un portfolio minimaliste et une boutique en ligne pour un ami artiste qui crée de l\'art numérique et physique. La boutique est discrète — cachée des parties non commerciales du site — et comprend un système de paiement Stripe simple pour les impressions, les packs d\'assets (pour Unreal Engine), les liens Buy Me a Coffee, et plus encore. L\'objectif est de garder l\'accent sur l\'art, sans le surcharger avec des éléments de e-commerce.'
+        title: 'Site et boutique en ligne pour un artiste',
+        description: 'Je crée un site simple et une petite boutique en ligne pour un ami artiste. La boutique reste discrète pour mettre en avant ses œuvres. Il pourra vendre ses créations avec un système de paiement facile à utiliser.'
       },
       {
-        title: 'Jeu web asynchrone avec chat en temps réel',
-        description: 'Sur la base de mon projet "Application e-sport avec chat", je travaille à le transformer en un jeu de stratégie sociale en ligne. Il est inspiré de "La Cosa Nostra" (2014) de Johannes Sich, mais sans aléatoire — uniquement des prises de décision humaines, brutes et chaotiques. L\'ambiance est anarchique et rapide, et la direction visuelle est influencée par "Jet Set Radio Future" et le court métrage "Dead Leaves" — bruyant, punk et expressif.'
+        title: 'Jeu en ligne avec chat',
+        description: 'Je transforme mon projet de site e-sport en jeu de stratégie en ligne. C\'est inspiré du jeu "La Cosa Nostra", mais sans hasard - juste des décisions prises par les joueurs. L\'ambiance sera dynamique avec un style visuel coloré et énergique.'
       }
     ],
-    inProgress: 'Planification en cours',
-    discussingRequirements: 'Discussion des besoins en cours',
+    inProgress: 'En préparation',
+    discussingRequirements: 'En discussion avec le client',
     onHold: 'En attente',
-    contactCTA: 'Vous avez un projet en tête ?',
-    contactButton: 'Discutons-en'
+    contactCTA: 'Vous avez un projet de site web ?',
+    contactButton: 'Parlons-en'
   },
   en: {
     title: 'Josselin HANEL - Projects',
@@ -162,12 +162,12 @@ const projects = [
   {
     id: 'portfolio',
     title: lang === 'fr' ? 
-      'Portfolio personnel éco-responsable (2025)' :
+      'Mon site personnel écologique (2025)' :
       (lang === 'en' ? 
         'Eco-friendly personal portfolio (2025)' : 
         'Umweltfreundliches persönliches Portfolio (2025)'),
     description: lang === 'fr' ? 
-      'Mon portfolio personnel avec mode éco, multilingue et conçu selon les principes de l\'éco-conception web.' :
+      'Mon site professionnel avec un mode économique, disponible en plusieurs langues et conçu pour être léger.' :
       (lang === 'en' ? 
         'My personal portfolio with eco-mode, multilingual, and designed following web eco-design principles.' : 
         'Mein persönliches Portfolio mit Öko-Modus, mehrsprachig und nach den Prinzipien des Web-Öko-Designs gestaltet.'),
@@ -179,12 +179,12 @@ const projects = [
   {
     id: 'esport',
     title: lang === 'fr' ? 
-      'Application e-sport avec chat (2025)' :
+      'Site e-sport avec messagerie (2025)' :
       (lang === 'en' ? 
         'E-sport Application with Chat (2025)' : 
         'E-Sport-Anwendung mit Chat (2025)'),
     description: lang === 'fr' ? 
-      'Plateforme de gestion d\'événements e-sport intégrant un système de chat en temps réel via WebSocket et HTMX. (entreprise fictive)' :
+      'Site pour gérer des événements de jeux vidéo avec un système de messagerie instantanée. (exemple fictif)' :
       (lang === 'en' ? 
         'E-sport event management platform with a real-time chat system via WebSocket and HTMX. (fictional company)' : 
         'E-Sport-Eventmanagement-Plattform mit einem Echtzeit-Chat-System über WebSocket und HTMX. (fiktives Unternehmen)'),
@@ -196,12 +196,12 @@ const projects = [
   {
     id: 'library',
     title: lang === 'fr' ? 
-      'Bibliothèque d\'objets - Quimper (2024)' :
+      'Site de la Bibliothèque d\'objets - Quimper (2024)' :
       (lang === 'en' ? 
         'Object Library - Quimper (2024)' : 
         'Objektbibliothek - Quimper (2024)'),
     description: lang === 'fr' ? 
-      'Conçu en collaboration avec <a href="https://jadephom.myportfolio.com/" target="_blank" rel="noopener" class="text-jade">Jade Ounaphom</a>, créatrice audiovisuelle, le site met en avant le fonctionnement de la bibliothèque d\'objets et ses actualités.' :
+      'Créé avec <a href="https://jadephom.myportfolio.com/" target="_blank" rel="noopener" class="text-jade">Jade Ounaphom</a>, le site explique simplement comment fonctionne la bibliothèque d\'objets et présente ses actualités.' :
       (lang === 'en' ? 
         'Designed in collaboration with <a href="https://jadephom.myportfolio.com/" target="_blank" rel="noopener" class="text-jade">Jade Ounaphom</a>, audiovisual creator, the website highlights how the object library works and its news.' : 
         'In Zusammenarbeit mit <a href="https://jadephom.myportfolio.com/" target="_blank" rel="noopener" class="text-jade">Jade Ounaphom</a>, audiovisuelle Gestalterin, präsentiert die Website die Funktionsweise der Objektbibliothek und ihre Neuigkeiten.'),
@@ -309,12 +309,12 @@ const projects = [
           <div class="flex flex-wrap gap-2 mt-4">
             <div class="inline-block bg-accent bg-opacity-30 px-3 py-1 rounded-full text-xs">
               <span class="inline-block w-2 h-2 bg-accent rounded-full mr-1"></span>
-              {lang === 'fr' ? 'En développement' : (lang === 'en' ? 'In development' : 'In Entwicklung')}
+              {lang === 'fr' ? 'En cours' : (lang === 'en' ? 'In development' : 'In Entwicklung')}
             </div>
             
             {/* Additional status */}
             <div class="inline-block bg-secondary bg-opacity-40 px-3 py-1 rounded-full text-xs">
-              {lang === 'fr' ? 'Mise en place du CMS' : (lang === 'en' ? 'CMS implementation' : 'CMS-Implementierung')}
+              {lang === 'fr' ? 'Installation du système de gestion' : (lang === 'en' ? 'CMS implementation' : 'CMS-Implementierung')}
             </div>
           </div>
         </div>
@@ -378,7 +378,7 @@ const projects = [
             
             {/* Additional status */}
             <div class="inline-block bg-secondary bg-opacity-40 px-3 py-1 rounded-full text-xs">
-              {lang === 'fr' ? 'Création du dossier de projet' : (lang === 'en' ? 'Creating project documentation' : 'Erstellung der Projektdokumentation')}
+              {lang === 'fr' ? 'Préparation du projet' : (lang === 'en' ? 'Creating project documentation' : 'Erstellung der Projektdokumentation')}
             </div>
           </div>
         </div>
