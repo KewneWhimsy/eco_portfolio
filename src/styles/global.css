@@ -24,6 +24,7 @@ html {
   color: var(--color-text);
   font-family: system-ui, sans-serif;
   scroll-behavior: smooth;
+  scrollbar-color: var(--color-accent) var(--color-primary);
 }
 
 body {
