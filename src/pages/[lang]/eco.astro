@@ -32,13 +32,7 @@ const content = {
     contactButton: "Me contacter",
     ecoModeTitle: "Mode Éco activé",
     ecoModeText:
-      "Vous consultez actuellement la version ultra-légère de mon portfolio. Cette version:",
-    ecoFeatures: [
-      "Utilise très peu de JavaScript",
-      "Réduit drastiquement la taille et le nombre d'images",
-      "Optimise les ressources réseau pour un chargement rapide",
-      "Propose une expérience légère et fluide, idéale pour les connexions limitées",
-    ],
+      "Vous consultez actuellement la version ultra-légère de mon portfolio.",
     servicesTitle: "Services",
     services: [
       {
@@ -142,13 +136,7 @@ const content = {
     contactButton: "Contact me",
     ecoModeTitle: "Eco Mode activated",
     ecoModeText:
-      "You are currently viewing the ultra-lightweight version of my portfolio. This version:",
-    ecoFeatures: [
-      "Minimizes JavaScript usage",
-      "Drastically reduces image size and quantity",
-      "Optimizes network resources for quick loading",
-      "Provides a lightweight and smooth experience, especially for mobile devices",
-    ],
+      "You are currently viewing the ultra-lightweight version of my portfolio.",
     servicesTitle: "Services",
     services: [
       {
@@ -252,13 +240,7 @@ const content = {
     contactButton: "Kontakt",
     ecoModeTitle: "Öko-Modus aktiviert",
     ecoModeText:
-      "Sie sehen gerade die ultraleichte Version meines Portfolios. Diese Version:",
-    ecoFeatures: [
-      "Minimiert die Nutzung von JavaScript",
-      "Reduziert Bildgröße und -anzahl drastisch",
-      "Optimiert Netzwerkressourcen für schnelles Laden",
-      "Bietet ein leichtes und flüssiges Erlebnis, besonders für mobile Geräte",
-    ],
+      "Sie sehen gerade die ultraleichte Version meines Portfolios.",
     servicesTitle: "Dienstleistungen",
     services: [
       {
@@ -397,15 +379,21 @@ const isEcoMode = true;
     </section>
 
     <!-- Section d'intro sur l'éco-conception -->
-    <section class="py-6 border-b border-secondary mb-6">
-      <h2 class="text-xl font-bold mb-3">{t.ecoModeTitle}</h2>
-      <p class="mb-3">
-        {t.ecoModeText}
-      </p>
-      <ul class="list-disc pl-5 mb-3">
-        {t.ecoFeatures.map((feature) => <li>{feature}</li>)}
-      </ul>
-    </section>
+<section class="py-6 border-b border-secondary mb-6">
+  <h2 class="text-xl font-bold mb-3">{t.ecoModeTitle}</h2>
+  <p class="mb-3">
+    {t.ecoModeText}
+  </p>
+  <p class="text-sm text-text-muted">
+    <a href={`/${lang}/about/eco/`} class="text-link">
+      {lang === "fr" 
+        ? "En savoir plus sur mon approche d'éco-conception" 
+        : lang === "en" 
+          ? "Learn more about my eco-design approach" 
+          : "Mehr über meinen Öko-Design-Ansatz erfahren"}
+    </a>
+  </p>
+</section>
 
     <!-- Section services simplifiée -->
     <section class="py-6 border-b border-secondary mb-6">

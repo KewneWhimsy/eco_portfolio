@@ -151,8 +151,15 @@ const content = {
     eduTitle: "Formation",
     contactButton: "Me contacter",
     ecoModeTitle: "Mode Éco activé",
-    ecoModeText:
-      "Vous consultez actuellement la version ultra-légère de mon portfolio.",
+    ecoModeText: "Cette version allégée de mon site :",
+    ecoFeatures: [
+      "Pèse moins de 50 Ko par page (contre 2-5 Mo pour un site normal)",
+      "Consomme 90% moins d'énergie qu'un site classique",
+      "Fonctionne avec très peu de code (3 Ko contre 500+ Ko habituels)",
+      "S'affiche quasi instantanément, même avec une mauvaise connexion",
+    ],
+    ecoExplanation:
+      "Ce mode allégé facilite l'accès au site même avec un vieil ordinateur ou une connexion lente. Idéal pour les sites d'infos ou services. En plus, ça consomme moins d'énergie et ça coûte moins cher à héberger !",
   },
   en: {
     title: "Josselin HANEL - About me (Eco Mode)",
@@ -170,8 +177,15 @@ const content = {
     eduTitle: "Education",
     contactButton: "Contact me",
     ecoModeTitle: "Eco Mode activated",
-    ecoModeText:
-      "You are currently viewing the ultra-lightweight version of my portfolio.",
+    ecoModeText: "This lightweight version of my website:",
+    ecoFeatures: [
+      "Weighs less than 50 KB per page (vs 2-5 MB for a typical site)",
+      "Uses 90% less energy than a standard website",
+      "Works with minimal code (only 3 KB vs typical 500+ KB)",
+      "Loads almost instantly, even with poor internet",
+    ],
+    ecoExplanation:
+      "This lightweight mode works well even with old computers or slow connections. Perfect for information sites or services. Plus, it uses less energy and costs less to host!",
   },
   de: {
     title: "Josselin HANEL - Über mich (Öko-Modus)",
@@ -189,7 +203,15 @@ const content = {
     eduTitle: "Ausbildung",
     contactButton: "Kontaktieren Sie mich",
     ecoModeTitle: "Öko-Modus aktiviert",
-    ecoModeText: "Sie sehen gerade die ultraleichte Version meines Portfolios.",
+    ecoModeText: "Diese abgespeckte Version meiner Website:",
+    ecoFeatures: [
+      "Wiegt weniger als 50 KB pro Seite (im Vergleich zu 2-5 MB für typische Websites)",
+      "Verbraucht 90% weniger Energie als eine Standard-Website",
+      "Funktioniert mit minimalem Code (nur 3 KB gegenüber üblichen 500+ KB)",
+      "Lädt fast sofort, selbst bei schlechtem Internet",
+    ],
+    ecoExplanation:
+      "Dieser abgespeckte Modus funktioniert auch mit alten Computern oder langsamen Verbindungen. Perfekt für Informationsseiten oder Dienstleistungen. Außerdem verbraucht es weniger Energie und kostet weniger beim Hosting!",
   },
 };
 
@@ -268,6 +290,12 @@ const isEcoMode = true;
       <p class="mb-3">
         {t.ecoModeText}
       </p>
+      <ul class="list-disc pl-5 mb-3">
+        {t.ecoFeatures.map((feature) => <li>{feature}</li>)}
+      </ul>
+      <p class="text-sm text-balance max-w-xl">
+        {t.ecoExplanation}
+      </p>
     </section>
 
     <!-- Section d'introduction -->
@@ -281,7 +309,7 @@ const isEcoMode = true;
       <h2 class="text-xl font-semibold mb-2">
         {t.visionTitle}
       </h2>
-      <p class="mb-4 max-w-4xl" set:html={t.visionText}></p>
+      <p class="mb-4 max-w-4xl" set:html={t.visionText} />
     </section>
 
     <!-- Section approche -->
@@ -305,7 +333,9 @@ const isEcoMode = true;
           const [category, skillList] = skillCategory.split(": ");
           return (
             <details class="mb-3 border border-secondary rounded p-2">
-              <summary class="text-lg font-semibold text-accent cursor-pointer py-1">{category}</summary>
+              <summary class="text-lg font-semibold text-accent cursor-pointer py-1">
+                {category}
+              </summary>
               <div class="mt-3 pl-2">
                 {skillList.split(", ").map((skill) => (
                   <div class="mb-2">
@@ -343,6 +373,6 @@ const isEcoMode = true;
     </section>
 
     <!-- Section CTA contact -->
-    <CtaDispo withBackground={false} transition-persist="cta-dispo"/>
+    <CtaDispo withBackground={false} transition-persist="cta-dispo" />
   </div>
 </Layout>
