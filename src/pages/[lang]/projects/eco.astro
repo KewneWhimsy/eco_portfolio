@@ -2,6 +2,7 @@
 // Import du layout avec mode éco activé
 import Layout from '../../../layouts/layout.astro';
 import CtaDispo from '../../../components/cta_dispo.astro';
+import EcoModeInfo from "../../../components/eco_mode_info.astro";
 import { Picture } from 'astro:assets';
 import objetImage from '../../../assets/projects/objet01.png';
 import esportImage from '../../../assets/projects/esport01.png';
@@ -28,8 +29,6 @@ const content = {
     viewProject: 'Voir le projet',
     ecoDesignTitle: 'Éco-conception web',
     ecoDesignText: "L'éco-conception web vise à réduire l'impact environnemental des sites et applications tout en gardant une bonne expérience utilisateur.",
-    ecoModeTitle: 'Mode Éco activé',
-    ecoModeText: 'Vous consultez actuellement la version ultra-légère de mon portfolio.',
     upcomingTitle: 'Projets à venir',
     upcomingIntro: 'Voici les projets sur lesquels je travaille en ce moment :',
     inDevelopment: 'En cours',
@@ -48,8 +47,6 @@ const content = {
     viewProject: 'View project',
     ecoDesignTitle: 'Web eco-design',
     ecoDesignText: "Web eco-design aims to reduce the environmental impact of websites and applications while preserving a quality user experience.",
-    ecoModeTitle: 'Eco Mode activated',
-    ecoModeText: 'You are currently viewing the ultra-lightweight version of my portfolio.',
     upcomingTitle: 'Upcoming Projects',
     upcomingIntro: 'Here\'s a preview of projects I\'m currently working on:',
     inDevelopment: 'In development',
@@ -68,8 +65,6 @@ const content = {
     viewProject: 'Projekt ansehen',
     ecoDesignTitle: 'Web-Öko-Design',
     ecoDesignText: "Web-Öko-Design zielt darauf ab, die Umweltauswirkungen von Websites und Anwendungen zu reduzieren und gleichzeitig ein qualitativ hochwertiges Benutzererlebnis zu bewahren.",
-    ecoModeTitle: 'Öko-Modus aktiviert',
-    ecoModeText: 'Sie sehen gerade die ultraleichte Version meines Portfolios.',
     upcomingTitle: 'Kommende Projekte',
     upcomingIntro: 'Hier ein Einblick in Projekte, an denen ich derzeit arbeite:',
     inDevelopment: 'In Entwicklung',
@@ -192,13 +187,8 @@ const isEcoMode = true;
 
 <Layout title={t.title} description={t.description} lang={lang} isEcoMode={isEcoMode}>
   <div class="container mx-auto px-4 py-6">
-    <!-- Section d'introduction du mode éco -->
-    <section class="py-4 border-b border-secondary mb-6">
-      <h2 class="text-xl font-bold mb-2">{t.ecoModeTitle}</h2>
-      <p class="mb-3">
-        {t.ecoModeText}
-      </p>
-    </section>
+    <!-- Utilisation du composant EcoModeInfo -->
+    <EcoModeInfo lang={lang} />
 
     <h1 class="text-2xl font-bold mb-4 border-b border-accent pb-2">
       {t.projectsTitle}

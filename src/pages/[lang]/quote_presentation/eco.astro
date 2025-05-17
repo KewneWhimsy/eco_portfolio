@@ -1,6 +1,8 @@
 ---
 // Import du layout avec mode éco activé
 import Layout from "../../../layouts/layout.astro";
+import EcoModeInfo from "../../../components/eco_mode_info.astro";
+
 // Récupérer le paramètre de langue depuis l'URL
 export function getStaticPaths() {
   return [
@@ -36,11 +38,7 @@ const content = {
     additionalInfoLabel: "Informations complémentaires",
     additionalInfoPlaceholder:
       "Y a-t-il d'autres détails importants à connaître? (contenu déjà disponible, logo existant, contraintes spécifiques...)",
-
     submitButton: "Demander mon devis",
-    ecoModeTitle: "Mode Éco activé",
-    ecoModeText:
-      "Vous consultez actuellement la version ultra-légère de mon portfolio.",
 
     packageTitle: "Formule envisagée",
     notSure: "Je ne sais pas encore",
@@ -78,11 +76,7 @@ const content = {
     additionalInfoLabel: "Additional information",
     additionalInfoPlaceholder:
       "Are there any other important details I should know? (content already available, existing logo, specific constraints...)",
-
     submitButton: "Request my quote",
-    ecoModeTitle: "Eco Mode activated",
-    ecoModeText:
-      "You are currently viewing the ultra-lightweight version of my portfolio.",
 
     packageTitle: "Desired package",
     notSure: "I don't know yet",
@@ -120,10 +114,7 @@ const content = {
     additionalInfoLabel: "Zusätzliche Informationen",
     additionalInfoPlaceholder:
       "Gibt es andere wichtige Details, die ich wissen sollte? (bereits verfügbarer Inhalt, bestehendes Logo, besondere Einschränkungen...)",
-
     submitButton: "Angebot anfordern",
-    ecoModeTitle: "Öko-Modus aktiviert",
-    ecoModeText: "Sie sehen gerade die ultraleichte Version meines Portfolios.",
 
     packageTitle: "Gewünschtes Paket",
     notSure: "Ich weiß es noch nicht",
@@ -387,13 +378,9 @@ const isEcoMode = true;
   isEcoMode={isEcoMode}
 >
   <div class="container mx-auto px-4 py-6">
-    <!-- Section d'introduction du mode éco -->
-    <section class="py-4 border-b border-secondary mb-6">
-      <h2 class="text-xl font-bold mb-2">{t.ecoModeTitle}</h2>
-      <p class="mb-3">
-        {t.ecoModeText}
-      </p>
-    </section>
+    <!-- Utilisation du composant EcoModeInfo -->
+    <EcoModeInfo lang={lang} />
+
     <h1 class="text-2xl font-bold mb-6 border-b border-accent pb-2">
       {t.quoteTitle}
     </h1>

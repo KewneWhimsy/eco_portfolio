@@ -1,6 +1,7 @@
 ---
 // Import du layout avec mode éco activé
 import Layout from '../../../layouts/layout.astro';
+import EcoModeInfo from "../../../components/eco_mode_info.astro";
 import { Picture } from 'astro:assets';
 import jadeImage from '../../../assets/network/jade.jpeg';
 import ninoImage from '../../../assets/network/nino.jpg';
@@ -26,8 +27,6 @@ const content = {
     viewWork: "Voir le travail",
     contactCTA: "Votre projet a besoin de compétences particulières ?",
     contactButton: "Discutons-en",
-    ecoModeTitle: "Mode Éco activé",
-    ecoModeText: "Vous consultez actuellement la version ultra-légère de mon portfolio."
   },
   en: {
     title: 'Josselin HANEL - My professional network (Eco Mode)',
@@ -37,8 +36,6 @@ const content = {
     viewWork: "View work",
     contactCTA: "Does your project's setup require a separation of responsibilities?",
     contactButton: "Let's discuss",
-    ecoModeTitle: "Eco Mode activated",
-    ecoModeText: "You are currently viewing the ultra-lightweight version of my portfolio."
   },
   de: {
     title: 'Josselin HANEL - Mein berufliches Netzwerk (Öko-Modus)',
@@ -48,8 +45,6 @@ const content = {
     viewWork: "Arbeit ansehen",
     contactCTA: "Benötigt Ihr Projekt eine Aufteilung der Verantwortlichkeiten?",
     contactButton: "Lassen Sie uns darüber sprechen",
-    ecoModeTitle: "Öko-Modus aktiviert",
-    ecoModeText: "Sie sehen gerade die ultraleichte Version meines Portfolios."
   }
 };
 
@@ -121,13 +116,8 @@ const isEcoMode = true;
 
 <Layout title={t.title} description={t.description} lang={lang} isEcoMode={isEcoMode}>
   <div class="container mx-auto px-4 py-6">
-    <!-- Section d'introduction du mode éco -->
-    <section class="py-4 border-b border-secondary mb-6">
-      <h2 class="text-xl font-bold mb-2">{t.ecoModeTitle}</h2>
-      <p class="mb-3">
-        {t.ecoModeText}
-      </p>
-    </section>
+    <!-- Utilisation du composant EcoModeInfo -->
+    <EcoModeInfo lang={lang} />
 
     <h1 class="text-2xl font-bold mb-4 border-b border-accent pb-2">
       {t.networkTitle}

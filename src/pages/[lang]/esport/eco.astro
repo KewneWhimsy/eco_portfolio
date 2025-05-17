@@ -1,6 +1,8 @@
 ---
 // Import du layout avec mode éco activé
 import Layout from "../../../layouts/layout.astro";
+import EcoModeInfo from "../../../components/eco_mode_info.astro";
+
 import { Picture } from "astro:assets";
 import esportImage from "../../../assets/projects/esport00.png";
 
@@ -88,9 +90,6 @@ const content = {
 
     reflectionTitle: "Réflexion personnelle",
     reflectionText: "Ce projet a été une excellente occasion d'explorer une architecture monolithique bien structurée avec des responsabilités clairement définies. L'utilisation d'Express avec son module WebSocket natif pour gérer à la fois l'API REST et la communication en temps réel s'est avérée être une solution élégante et performante. J'ai particulièrement apprécié l'intégration de HTMX qui permet d'obtenir une expérience utilisateur dynamique avec un minimum de JavaScript. Ce projet a été développé avec Express pour sa simplicité d'implémentation et sa flexibilité. Si l'application venait à gagner en popularité, j'envisagerais de migrer vers un backend Phoenix/Elixir pour ses capacités de concurrence et de mise à l'échelle supérieures.",
-
-    ecoModeTitle: "Mode Éco activé",
-    ecoModeText: "Vous consultez actuellement la version ultra-légère de mon portfolio."
   },
   en: {
     title: "E-sport Application with Chat | Josselin HANEL (Eco Mode)",
@@ -163,9 +162,6 @@ const content = {
 
     reflectionTitle: "Personal reflection",
     reflectionText: "This project was an excellent opportunity to explore a well-structured monolithic architecture with clearly defined responsibilities. Using Express with its native WebSocket module to handle both REST API and real-time communication proved to be an elegant and performant solution. I particularly appreciated the integration of HTMX, which provides a dynamic user experience with minimal JavaScript. This project was developed with Express for its ease of implementation and flexibility. If the application were to gain popularity, I would consider migrating to a Phoenix/Elixir backend for its superior concurrency and scaling capabilities.",
-
-    ecoModeTitle: "Eco Mode activated",
-    ecoModeText: "You are currently viewing the ultra-lightweight version of my portfolio."
   },
   de: {
     title: "E-Sport-Anwendung mit Chat | Josselin HANEL (Öko-Modus)",
@@ -238,9 +234,6 @@ const content = {
 
     reflectionTitle: "Persönliche Reflexion",
     reflectionText: "Dieses Projekt war eine ausgezeichnete Gelegenheit, eine gut strukturierte monolithische Architektur mit klar definierten Verantwortlichkeiten zu erkunden. Die Verwendung von Express mit seinem nativen WebSocket-Modul zur Verarbeitung sowohl der REST-API als auch der Echtzeit-Kommunikation erwies sich als elegante und leistungsstarke Lösung. Besonders geschätzt habe ich die Integration von HTMX, das ein dynamisches Benutzererlebnis mit minimalem JavaScript bietet. Dieses Projekt wurde mit Express für seine einfache Implementierung und Flexibilität entwickelt. Sollte die Anwendung an Popularität gewinnen, würde ich eine Migration zu einem Phoenix/Elixir-Backend für seine überlegenen Nebenläufigkeits- und Skalierungsfähigkeiten in Betracht ziehen.",
-
-    ecoModeTitle: "Öko-Modus aktiviert",
-    ecoModeText: "Sie sehen gerade die ultraleichte Version meines Portfolios."
   }
 };
 
@@ -272,13 +265,8 @@ const isEcoMode = true;
 
 <Layout title={t.title} description={t.description} lang={lang} isEcoMode={isEcoMode}>
   <div class="container mx-auto px-4 py-6">
-    <!-- Section d'introduction du mode éco -->
-    <section class="py-4 border-b border-secondary mb-6">
-      <h2 class="text-xl font-bold mb-2">{t.ecoModeTitle}</h2>
-      <p class="mb-3 max-w-4xl">
-        {t.ecoModeText}
-      </p>
-    </section>
+    <!-- Utilisation du composant EcoModeInfo -->
+    <EcoModeInfo lang={lang} />
 
     <div class="mb-4">
       <a href={`/${lang}/projects/eco/`} class="text-text-muted hover:text-accent transition-colors">

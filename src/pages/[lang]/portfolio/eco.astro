@@ -1,6 +1,7 @@
 ---
 // Import du layout avec mode éco activé
 import Layout from "../../../layouts/layout.astro";
+import EcoModeInfo from "../../../components/eco_mode_info.astro";
 
 // Récupérer le paramètre de langue depuis l'URL
 export function getStaticPaths() {
@@ -20,10 +21,7 @@ const content = {
     description: "Version éco-responsable de la page présentant mon portfolio personnel multilingue avec mode éco.",
     projectTitle: "Portfolio personnel éco-responsable",
     projectIntro: "Ce portfolio a été conçu pour montrer qu'un site web performant et agréable à utiliser peut aussi être léger et respectueux des ressources.",
-    
-    ecoModeTitle: "Mode Éco activé",
-    ecoModeText: "Vous consultez actuellement la version ultra-légère de mon portfolio.",
-    
+
     overviewTitle: "Aperçu du projet",
     overviewText: "Ce site propose deux versions : standard et éco. La version éco que vous consultez actuellement est délibérément simplifiée pour offrir un accès plus rapide à l'information, surtout sur mobile et connexions limitées.",
 
@@ -112,10 +110,7 @@ const content = {
     description: "Eco-friendly version of the page presenting my multilingual personal portfolio with eco mode.",
     projectTitle: "Eco-friendly Personal Portfolio",
     projectIntro: "This portfolio was designed to demonstrate that a high-performing, pleasant-to-use website can also be lightweight and resource-efficient.",
-    
-    ecoModeTitle: "Eco Mode Activated",
-    ecoModeText: "You are currently viewing the ultra-lightweight version of my portfolio.",
-    
+
     overviewTitle: "Project Overview",
     overviewText: "This site offers two versions: standard and eco. The eco version you're currently viewing is deliberately simplified to provide faster access to information, especially on mobile devices and limited connections.",
 
@@ -204,10 +199,7 @@ const content = {
     description: "Umweltfreundliche Version der Seite, die mein mehrsprachiges persönliches Portfolio mit Öko-Modus präsentiert.",
     projectTitle: "Umweltfreundliches persönliches Portfolio",
     projectIntro: "Dieses Portfolio wurde entwickelt, um zu zeigen, dass eine leistungsstarke, angenehm zu bedienende Website auch leicht und ressourceneffizient sein kann.",
-    
-    ecoModeTitle: "Öko-Modus aktiviert",
-    ecoModeText: "Sie sehen gerade die ultraleichte Version meines Portfolios.",
-    
+
     overviewTitle: "Projektübersicht",
     overviewText: "Diese Website bietet zwei Versionen: Standard und Öko. Die Öko-Version, die Sie gerade betrachten, ist bewusst vereinfacht, um schnelleren Zugriff auf Informationen zu ermöglichen, besonders auf Mobilgeräten und bei begrenzten Verbindungen.",
 
@@ -313,13 +305,8 @@ const isEcoMode = true;
 
 <Layout title={t.title} description={t.description} lang={lang} isEcoMode={isEcoMode}>
   <div class="container mx-auto px-4 py-6">
-    <!-- Section d'introduction du mode éco -->
-    <section class="py-4 border-b border-secondary mb-6">
-      <h2 class="text-xl font-bold mb-2">{t.ecoModeTitle}</h2>
-      <p class="mb-3 max-w-4xl">
-        {t.ecoModeText}
-      </p>
-    </section>
+    <!-- Utilisation du composant EcoModeInfo -->
+    <EcoModeInfo lang={lang} />
 
     <div class="mb-4">
       <a href={`/${lang}/projects/eco/`} class="text-text-muted hover:text-accent transition-colors">

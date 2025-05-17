@@ -1,6 +1,7 @@
 ---
 // Import du layout avec mode éco activé
 import Layout from "../../../layouts/layout.astro";
+import EcoModeInfo from "../../../components/eco_mode_info.astro";
 import { Picture } from "astro:assets";
 import objetImage from "../../../assets/projects/objet00.png";
 
@@ -85,10 +86,6 @@ const content = {
     reflectionTitle: "Réflexion personnelle",
     reflectionText:
       "Ce projet, bien qu'imparfait d'un point de vue technique, représente une étape importante dans mon parcours. Réalisé bénévolement, il répond à un besoin concret avec les moyens disponibles. Si je devais le refaire aujourd'hui, j'explorerais des alternatives aux iframes et je mettrais davantage l'accent sur les performances. Néanmoins, ce site remplit efficacement sa mission principale : aider une association éco-responsable à promouvoir le partage d'objets dans sa communauté.",
-
-    ecoModeTitle: "Mode Éco activé",
-    ecoModeText:
-      "Vous consultez actuellement la version ultra-légère de mon portfolio.",
   },
   en: {
     title: "Object Library - Quimper | Josselin HANEL (Eco Mode)",
@@ -158,10 +155,6 @@ const content = {
     reflectionTitle: "Personal reflection",
     reflectionText:
       "This project, although technically imperfect, represents an important step in my journey. Created voluntarily, it addresses a concrete need with available resources. If I were to do it again today, I would explore alternatives to iframes and place more emphasis on performance. Nevertheless, this site effectively fulfills its main mission: helping an eco-friendly association promote object sharing in its community.",
-
-    ecoModeTitle: "Eco Mode activated",
-    ecoModeText:
-      "You are currently viewing the ultra-lightweight version of my portfolio.",
   },
   de: {
     title: "Objektbibliothek - Quimper | Josselin HANEL (Öko-Modus)",
@@ -231,9 +224,6 @@ const content = {
     reflectionTitle: "Persönliche Reflexion",
     reflectionText:
       "Dieses Projekt, obwohl technisch nicht perfekt, stellt einen wichtigen Schritt in meiner Entwicklung dar. Es wurde freiwillig erstellt und adressiert mit den verfügbaren Ressourcen einen konkreten Bedarf. Wenn ich es heute noch einmal machen würde, würde ich Alternativen zu Iframes erkunden und mehr Wert auf Leistung legen. Nichtsdestotrotz erfüllt diese Website ihre Hauptaufgabe effektiv: einer umweltfreundlichen Vereinigung zu helfen, das Teilen von Objekten in ihrer Gemeinschaft zu fördern.",
-
-    ecoModeTitle: "Öko-Modus aktiviert",
-    ecoModeText: "Sie sehen gerade die ultraleichte Version meines Portfolios.",
   },
 };
 
@@ -263,13 +253,8 @@ const isEcoMode = true;
   isEcoMode={isEcoMode}
 >
   <div class="container mx-auto px-4 py-6">
-    <!-- Section d'introduction du mode éco -->
-    <section class="py-4 border-b border-secondary mb-6">
-      <h2 class="text-xl font-bold mb-2">{t.ecoModeTitle}</h2>
-      <p class="mb-3 max-w-4xl">
-        {t.ecoModeText}
-      </p>
-    </section>
+    <!-- Utilisation du composant EcoModeInfo -->
+    <EcoModeInfo lang={lang} />
 
     <div class="mb-4">
       <a

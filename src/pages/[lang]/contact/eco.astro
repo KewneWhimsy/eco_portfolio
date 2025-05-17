@@ -1,6 +1,7 @@
 ---
 // Import du layout avec mode éco activé
 import Layout from "../../../layouts/layout.astro";
+import EcoModeInfo from "../../../components/eco_mode_info.astro";
 import { Picture } from 'astro:assets';
 import monImage from "../../../assets/j.jpg";
 
@@ -36,9 +37,6 @@ const content = {
       "Je suis actuellement disponible pour de nouveaux projets à partir de fin Mai 2025.",
     locationTitle: "Où je travaille",
     locationText: "Basé à Rennes, je me déplace dans toute la Bretagne et travaille aussi à distance avec des clients partout en Europe.",
-    ecoModeTitle: "Mode Éco activé",
-    ecoModeText:
-      "Vous consultez actuellement la version ultra-légère de mon portfolio.",
     afterFormText: "Je vous répondrai généralement sous 24h. Si votre demande est urgente, n'hésitez pas à m'appeler directement.",
     // Options de sujet prédéfinies 
     subjectOptions: {
@@ -67,9 +65,6 @@ const content = {
       "I am currently available for new projects starting end of May 2025.",
     locationTitle: "Where I work",
     locationText: "Based in Rennes, France, I work throughout Brittany and also remotely with clients across Europe.",
-    ecoModeTitle: "Eco Mode activated",
-    ecoModeText:
-      "You are currently viewing the ultra-lightweight version of my portfolio.",
     afterFormText: "I typically respond within 24 hours. For urgent matters, please don't hesitate to call me directly.",
     // Predefined subject options 
     subjectOptions: {
@@ -98,8 +93,6 @@ const content = {
       "Ich bin derzeit für neue Projekte ab Ende Mai 2025 verfügbar.",
     locationTitle: "Wo ich arbeite",
     locationText: "Mit Sitz in Rennes, Frankreich, arbeite ich in der gesamten Bretagne und auch remote mit Kunden in ganz Europa.",
-    ecoModeTitle: "Öko-Modus aktiviert",
-    ecoModeText: "Sie sehen gerade die ultraleichte Version meines Portfolios.",
     afterFormText: "Ich antworte in der Regel innerhalb von 24 Stunden. Bei dringenden Angelegenheiten können Sie mich gerne direkt anrufen.",
     // Vordefinierte Betreffoptionen 
     subjectOptions: {
@@ -134,13 +127,8 @@ const isEcoMode = true;
   isEcoMode={isEcoMode}
 >
   <div class="container mx-auto px-4 py-6 max-w-3xl">
-    <!-- Section d'introduction du mode éco -->
-    <section class="py-4 border-b border-secondary mb-6">
-      <h2 class="text-xl font-bold mb-2">{t.ecoModeTitle}</h2>
-      <p class="mb-3">
-        {t.ecoModeText}
-      </p>
-    </section>
+    <!-- Utilisation du composant EcoModeInfo -->
+    <EcoModeInfo lang={lang} />
 
     <h1 class="text-2xl font-bold mb-4 border-b border-accent pb-2">
       {t.contactTitle}

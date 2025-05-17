@@ -1,0 +1,63 @@
+---
+// src/components/eco_mode_info.astro
+export interface Props {
+lang: "fr" | "en" | "de";
+}
+const { lang } = Astro.props;
+// Contenu traduit pour chaque langue
+const content = {
+fr: {
+ecoModeTitle: "Mode Éco activé",
+ecoModeText: "Cette version allégée de mon site :",
+ecoFeatures: [
+"Pèse moins de 50 Ko par page (contre 2-5 Mo pour un site normal)",
+"Consomme 90% moins d'énergie qu'un site classique",
+"Fonctionne avec très peu de code (3 Ko contre 500+ Ko habituels)",
+"S'affiche quasi instantanément, même avec une mauvaise connexion",
+],
+ecoExplanation:
+"Ce mode allégé facilite l'accès au site même avec un vieil ordinateur ou une connexion lente. Idéal pour les sites d'infos ou services. En plus, ça consomme moins d'énergie et ça coûte moins cher à héberger !",
+},
+en: {
+ecoModeTitle: "Eco Mode activated",
+ecoModeText: "This lightweight version of my website:",
+ecoFeatures: [
+"Weighs less than 50 KB per page (vs 2-5 MB for a typical site)",
+"Uses 90% less energy than a standard website",
+"Works with minimal code (only 3 KB vs typical 500+ KB)",
+"Loads almost instantly, even with poor internet",
+],
+ecoExplanation:
+"This lightweight mode works well even with old computers or slow connections. Perfect for information sites or services. Plus, it uses less energy and costs less to host!",
+},
+de: {
+ecoModeTitle: "Öko-Modus aktiviert",
+ecoModeText: "Diese abgespeckte Version meiner Website:",
+ecoFeatures: [
+"Wiegt weniger als 50 KB pro Seite (im Vergleich zu 2-5 MB für typische Websites)",
+"Verbraucht 90% weniger Energie als eine Standard-Website",
+"Funktioniert mit minimalem Code (nur 3 KB gegenüber üblichen 500+ KB)",
+"Lädt fast sofort, selbst bei schlechtem Internet",
+],
+ecoExplanation:
+"Dieser abgespeckte Modus funktioniert auch mit alten Computern oder langsamen Verbindungen. Perfekt für Informationsseiten oder Dienstleistungen. Außerdem verbraucht es weniger Energie und kostet weniger beim Hosting!",
+},
+};
+// Utiliser la langue demandée ou français par défaut
+const t = content[lang] || content.fr;
+---
+<!-- Section d'introduction du mode éco intégrée dans une balise details -->
+<details class="mb-6 border border-secondary rounded-lg">
+  <summary class="font-bold text-xl p-3 cursor-pointer">{t.ecoModeTitle}</summary>
+  <div class="p-3 pt-2 border-t border-secondary">
+    <p class="mb-3">
+      {t.ecoModeText}
+    </p>
+    <ul class="list-disc pl-5 mb-3">
+      {t.ecoFeatures.map((feature) => <li>{feature}</li>)}
+    </ul>
+    <p class="text-sm text-balance max-w-xl">
+      {t.ecoExplanation}
+    </p>
+  </div>
+</details>

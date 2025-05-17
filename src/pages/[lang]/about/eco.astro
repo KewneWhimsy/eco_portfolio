@@ -2,6 +2,7 @@
 // Import du layout avec mode éco activé
 import Layout from "../../../layouts/layout.astro";
 import CtaDispo from "../../../components/cta_dispo.astro";
+import EcoModeInfo from "../../../components/eco_mode_info.astro";
 
 // Récupérer le paramètre de langue depuis l'URL
 export function getStaticPaths() {
@@ -11,9 +12,7 @@ export function getStaticPaths() {
     { params: { lang: "de" } },
   ];
 }
-
 const lang = Astro.params.lang as "fr" | "en" | "de";
-
 const skillDescriptions: {
   [key: string]: { [lang in "fr" | "en" | "de"]: string };
 } = {
@@ -124,7 +123,6 @@ const skillDescriptions: {
     de: "Öko-Design: Ich entwickle leichte Lösungen mit geringem Serverressourcen- und Bandbreitenbedarf. Weniger Last, niedrigere Kosten, höhere Effizienz. Wartungsfreundliche Systeme, die sich reibungslos an neue Anforderungen anpassen können.",
   },
 };
-
 // Fonction pour obtenir la description d'une compétence
 const getSkillDescription = (
   skill: string,
@@ -132,7 +130,6 @@ const getSkillDescription = (
 ): string => {
   return skillDescriptions[skill]?.[currentLang] || "";
 };
-
 // Contenu traduit pour chaque langue
 const content = {
   fr: {
@@ -150,16 +147,6 @@ const content = {
     expTitle: "Mon expérience",
     eduTitle: "Formation",
     contactButton: "Me contacter",
-    ecoModeTitle: "Mode Éco activé",
-    ecoModeText: "Cette version allégée de mon site :",
-    ecoFeatures: [
-      "Pèse moins de 50 Ko par page (contre 2-5 Mo pour un site normal)",
-      "Consomme 90% moins d'énergie qu'un site classique",
-      "Fonctionne avec très peu de code (3 Ko contre 500+ Ko habituels)",
-      "S'affiche quasi instantanément, même avec une mauvaise connexion",
-    ],
-    ecoExplanation:
-      "Ce mode allégé facilite l'accès au site même avec un vieil ordinateur ou une connexion lente. Idéal pour les sites d'infos ou services. En plus, ça consomme moins d'énergie et ça coûte moins cher à héberger !",
   },
   en: {
     title: "Josselin HANEL - About me (Eco Mode)",
@@ -176,16 +163,6 @@ const content = {
     expTitle: "Professional experience",
     eduTitle: "Education",
     contactButton: "Contact me",
-    ecoModeTitle: "Eco Mode activated",
-    ecoModeText: "This lightweight version of my website:",
-    ecoFeatures: [
-      "Weighs less than 50 KB per page (vs 2-5 MB for a typical site)",
-      "Uses 90% less energy than a standard website",
-      "Works with minimal code (only 3 KB vs typical 500+ KB)",
-      "Loads almost instantly, even with poor internet",
-    ],
-    ecoExplanation:
-      "This lightweight mode works well even with old computers or slow connections. Perfect for information sites or services. Plus, it uses less energy and costs less to host!",
   },
   de: {
     title: "Josselin HANEL - Über mich (Öko-Modus)",
@@ -202,22 +179,10 @@ const content = {
     expTitle: "Berufserfahrung",
     eduTitle: "Ausbildung",
     contactButton: "Kontaktieren Sie mich",
-    ecoModeTitle: "Öko-Modus aktiviert",
-    ecoModeText: "Diese abgespeckte Version meiner Website:",
-    ecoFeatures: [
-      "Wiegt weniger als 50 KB pro Seite (im Vergleich zu 2-5 MB für typische Websites)",
-      "Verbraucht 90% weniger Energie als eine Standard-Website",
-      "Funktioniert mit minimalem Code (nur 3 KB gegenüber üblichen 500+ KB)",
-      "Lädt fast sofort, selbst bei schlechtem Internet",
-    ],
-    ecoExplanation:
-      "Dieser abgespeckte Modus funktioniert auch mit alten Computern oder langsamen Verbindungen. Perfekt für Informationsseiten oder Dienstleistungen. Außerdem verbraucht es weniger Energie und kostet weniger beim Hosting!",
   },
 };
-
 // Utiliser la langue demandée ou français par défaut
 const t = content[lang] || content.fr;
-
 // Approche simplifiée
 const approach = [
   "Sites légers : Je crée des sites qui consomment moins de données et coûtent moins cher à héberger. Un site écologique est souvent un site plus économique.",
@@ -225,7 +190,6 @@ const approach = [
   "Pour tous : Je fais des sites que tout le monde peut utiliser facilement, même les personnes âgées ou avec un handicap. Accessible = plus de clients potentiels.",
   "Qui durent : Je construis des sites solides qui fonctionneront longtemps sans tout casser. Pas besoin de tout refaire dans 2 ans = économies sur le long terme.",
 ];
-
 const skills = [
   "Frontend: Astro, CSS Pro, TypeScript, HTMX, Alpine.js",
   "Backend: Express, WebSocket, Elixir, Phoenix",
@@ -245,7 +209,6 @@ const skills = [
       ? "Methodologies: Accessibility, Performance, Eco-design, UX/UI"
       : "Methoden: Barrierefreiheit, Performance, Öko-Design, UX/UI",
 ];
-
 const experiences = [
   lang === "fr"
     ? "2025 - Aujourd'hui: Créateur de sites internet écologiques et économiques pour artisans, commerçants et associations"
@@ -254,7 +217,6 @@ const experiences = [
       : "2025 - Heute: Freelance Webentwickler, Unabhängig",
   "2024 - 2025: Webmaster, Objethèque de Cornouaille",
 ];
-
 const education = [
   lang === "fr"
     ? "2025: Diplôme de développeur web, Studi"
@@ -272,7 +234,6 @@ const education = [
       ? "2022 - Present: Technology Watch, various sources"
       : "2022 - Present: Technologiebeobachtung, verschiedene Quellen",
 ];
-
 // Mode éco activé
 const isEcoMode = true;
 ---
@@ -284,20 +245,8 @@ const isEcoMode = true;
   isEcoMode={isEcoMode}
 >
   <div class="container mx-auto px-4 py-6">
-    <!-- Section d'introduction du mode éco -->
-    <section class="py-4 border-b border-secondary mb-6">
-      <h2 class="text-xl font-bold mb-2">{t.ecoModeTitle}</h2>
-      <p class="mb-3">
-        {t.ecoModeText}
-      </p>
-      <ul class="list-disc pl-5 mb-3">
-        {t.ecoFeatures.map((feature) => <li>{feature}</li>)}
-      </ul>
-      <p class="text-sm text-balance max-w-xl">
-        {t.ecoExplanation}
-      </p>
-    </section>
-
+    <!-- Utilisation du composant EcoModeInfo -->
+    <EcoModeInfo lang={lang} />
     <!-- Section d'introduction -->
     <section class="mb-8 border-b border-secondary pb-6">
       <h1 class="text-2xl font-bold mb-4 border-b border-accent pb-2">
