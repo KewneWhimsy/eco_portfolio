@@ -1,6 +1,8 @@
 ---
 // Import du layout avec mode éco activé
 import Layout from "../../../layouts/layout.astro";
+import { Picture } from "astro:assets";
+import esportImage from "../../../assets/projects/esport00.png";
 
 // Récupérer le paramètre de langue depuis l'URL
 export function getStaticPaths() {
@@ -295,7 +297,7 @@ const isEcoMode = true;
     </header>
     
     <!-- Aperçu du projet -->
-    <section class="mb-8 border-b border-secondary pb-6">
+    <section class="mb-8 pb-6">
       <h2 class="text-xl font-semibold mb-3 text-accent">
         {t.overviewTitle}
       </h2>
@@ -337,6 +339,17 @@ const isEcoMode = true;
               : "Backend Repo"
           }
         </a>
+      </div>
+      <!-- Image principale légère en mode éco -->
+      <div class="mb-8 border-b border-secondary pb-6">
+        <Picture
+          src={esportImage}
+          widths={[1200]}
+          formats={["avif, webp, png"]}
+          alt={t.projectTitle}
+          class="w-full rounded my-3 max-w-5xl mx-auto"
+          loading="lazy"
+        />
       </div>
     </section>
     
