@@ -2,6 +2,13 @@
 // Import du layout avec mode éco activé
 import Layout from "../../../layouts/layout.astro";
 import EcoModeInfo from "../../../components/eco_mode_info.astro";
+// Import de la configuration centralisée des prix (TypeScript)
+import { 
+  getPackagesForLang, 
+  getAdditionalOptionsForLang, 
+  getIncludedFeaturesForLang,
+  type Lang
+} from "../../../config/pricing.ts";
 
 // Récupérer le paramètre de langue depuis l'URL
 export function getStaticPaths() {
@@ -11,16 +18,21 @@ export function getStaticPaths() {
     { params: { lang: "de" } },
   ];
 }
-const lang = Astro.params.lang as "fr" | "en" | "de";
-// Contenu traduit pour chaque langue
+
+const lang = Astro.params.lang as Lang;
+
+// Obtenir les données de prix depuis la configuration centralisée
+const showcasePackages = getPackagesForLang(lang);
+const additionalOptions = getAdditionalOptionsForLang(lang);
+const includedInAllPackages = getIncludedFeaturesForLang(lang);
+
+// Contenu traduit pour chaque langue (seulement les textes de l'interface)
 const content = {
   fr: {
     title: "Josselin HANEL - Devis site vitrine (Mode Éco)",
-    description:
-      "Version éco-responsable de ma page de devis, avec une empreinte carbone minimale.",
+    description: "Version éco-responsable de ma page de devis, avec une empreinte carbone minimale.",
     quoteTitle: "Devis pour un site de présentation",
-    quoteIntro:
-      "Obtenez un site internet professionnel qui présente votre activité à vos clients. Un site qui s'affiche bien sur mobile comme sur ordinateur, qui charge vite tout en étant économe.",
+    quoteIntro: "Obtenez un site internet professionnel qui présente votre activité à vos clients. Un site qui s'affiche bien sur mobile comme sur ordinateur, qui charge vite tout en étant économe.",
     // Labels formulaire
     nameLabel: "Votre nom",
     emailLabel: "Votre email",
@@ -28,39 +40,32 @@ const content = {
     projectTypeLabel: "Type de site",
     projectTypeOptions: {
       showcase: "Site de présentation",
-      blog: "Site de présentation avec blog",
+      blog: "Site de présentation avec blog", 
       portfolio: "Portfolio / CV en ligne",
       other: "Autre besoin (à préciser ci-dessous)",
     },
     projectDescLabel: "Votre activité et vos besoins",
-    projectDescPlaceholder:
-      "Dites-moi simplement ce que vous faites et ce que vous attendez de votre site (à quoi il doit servir, ce que vous aimeriez qu'il contienne, exemples de sites que vous aimez...)",
+    projectDescPlaceholder: "Dites-moi simplement ce que vous faites et ce que vous attendez de votre site (à quoi il doit servir, ce que vous aimeriez qu'il contienne, exemples de sites que vous aimez...)",
     additionalInfoLabel: "Informations complémentaires",
-    additionalInfoPlaceholder:
-      "Y a-t-il d'autres détails importants à connaître? (contenu déjà disponible, logo existant, contraintes spécifiques...)",
+    additionalInfoPlaceholder: "Y a-t-il d'autres détails importants à connaître? (contenu déjà disponible, logo existant, contraintes spécifiques...)",
     submitButton: "Demander mon devis",
-
     packageTitle: "Formule envisagée",
     notSure: "Je ne sais pas encore",
-
     deadlineLabel: "Échéance souhaitée",
     deadlineOptions: {
       urgent: "Urgent (moins d'un mois)",
       medium: "Dans 1 à 3 mois",
       flexible: "Flexible / Pas d'urgence",
     },
-
     optionsTitle: "Options supplémentaires",
   },
   en: {
     title: "Josselin HANEL - Showcase Website Quote (Eco Mode)",
-    description:
-      "Eco-friendly version of my quote page, with minimal carbon footprint.",
+    description: "Eco-friendly version of my quote page, with minimal carbon footprint.",
     quoteTitle: "Showcase Website Quote",
-    quoteIntro:
-      "Get a professional website that reflects your business identity. A high-performance, eco-friendly website optimized for all devices.",
+    quoteIntro: "Get a professional website that reflects your business identity. A high-performance, eco-friendly website optimized for all devices.",
     // Form labels
-    nameLabel: "Your name",
+    nameLabel: "Your name", 
     emailLabel: "Your email",
     phoneLabel: "Your phone (optional)",
     projectTypeLabel: "Website type",
@@ -71,32 +76,25 @@ const content = {
       other: "Other need (please specify below)",
     },
     projectDescLabel: "Your business and needs",
-    projectDescPlaceholder:
-      "Briefly describe your business and what you expect from your website (goals, desired style, references of websites you like...)",
+    projectDescPlaceholder: "Briefly describe your business and what you expect from your website (goals, desired style, references of websites you like...)",
     additionalInfoLabel: "Additional information",
-    additionalInfoPlaceholder:
-      "Are there any other important details I should know? (content already available, existing logo, specific constraints...)",
+    additionalInfoPlaceholder: "Are there any other important details I should know? (content already available, existing logo, specific constraints...)",
     submitButton: "Request my quote",
-
     packageTitle: "Desired package",
     notSure: "I don't know yet",
-
     deadlineLabel: "Desired deadline",
     deadlineOptions: {
       urgent: "Urgent (less than a month)",
-      medium: "In 1 to 3 months",
+      medium: "In 1 to 3 months", 
       flexible: "Flexible / No urgency",
     },
-
     optionsTitle: "Additional options",
   },
   de: {
     title: "Josselin HANEL - Angebot für Präsentationswebsite (Öko-Modus)",
-    description:
-      "Umweltfreundliche Version meiner Angebotsseite mit minimalem CO2-Fußabdruck.",
+    description: "Umweltfreundliche Version meiner Angebotsseite mit minimalem CO2-Fußabdruck.",
     quoteTitle: "Angebot für Präsentationswebsite",
-    quoteIntro:
-      "Erhalten Sie eine professionelle Website, die die Identität Ihres Unternehmens widerspiegelt. Eine leistungsstarke, umweltfreundliche Website, optimiert für alle Geräte.",
+    quoteIntro: "Erhalten Sie eine professionelle Website, die die Identität Ihres Unternehmens widerspiegelt. Eine leistungsstarke, umweltfreundliche Website, optimiert für alle Geräte.",
     // Formular-Labels
     nameLabel: "Ihr Name",
     emailLabel: "Ihre E-Mail",
@@ -109,264 +107,28 @@ const content = {
       other: "Anderer Bedarf (bitte unten angeben)",
     },
     projectDescLabel: "Ihr Unternehmen und Ihre Bedürfnisse",
-    projectDescPlaceholder:
-      "Beschreiben Sie kurz Ihr Unternehmen und was Sie von Ihrer Website erwarten (Ziele, gewünschter Stil, Referenzen von Websites, die Ihnen gefallen...)",
+    projectDescPlaceholder: "Beschreiben Sie kurz Ihr Unternehmen und was Sie von Ihrer Website erwarten (Ziele, gewünschter Stil, Referenzen von Websites, die Ihnen gefallen...)",
     additionalInfoLabel: "Zusätzliche Informationen",
-    additionalInfoPlaceholder:
-      "Gibt es andere wichtige Details, die ich wissen sollte? (bereits verfügbarer Inhalt, bestehendes Logo, besondere Einschränkungen...)",
+    additionalInfoPlaceholder: "Gibt es andere wichtige Details, die ich wissen sollte? (bereits verfügbarer Inhalt, bestehendes Logo, besondere Einschränkungen...)",
     submitButton: "Angebot anfordern",
-
     packageTitle: "Gewünschtes Paket",
     notSure: "Ich weiß es noch nicht",
-
     deadlineLabel: "Gewünschter Termin",
     deadlineOptions: {
       urgent: "Dringend (weniger als ein Monat)",
       medium: "In 1 bis 3 Monaten",
       flexible: "Flexibel / Keine Eile",
     },
-
     optionsTitle: "Zusätzliche Optionen",
   },
-};
-// Détails des formules de sites vitrines
-const showcasePackages = {
-  fr: {
-    basic: {
-      title: "Site Une Page",
-      price: "230 €",
-      features: [
-        "Une page complète qui présente votre activité",
-        "Coordonnées & formulaire de contact",
-        "Animations pour attirer l'attention",
-        "Idéal pour les petites entreprises ou artisans",
-      ],
-    },
-    standard: {
-      title: "Site Multi-pages",
-      price: "450 €",
-      features: [
-        "Jusqu'à 3 pages (ex. : Accueil, À propos, Contact)",
-        "Formulaire de contact avec envoi de fichiers",
-        "Effets visuels modernes",
-        "Navigation fluide sur mobile et ordinateur",
-      ],
-    },
-    premium: {
-      title: "Site Avancé",
-      price: "650 €",
-      features: [
-        "Jusqu'à 6 pages ou sections",
-        "Design sur-mesure selon vos goûts",
-        "Animations avancées",
-        "Expérience utilisateur optimale",
-      ],
-    },
-  },
-  en: {
-    basic: {
-      title: "One-Page Website",
-      price: "€230",
-      features: [
-        "An effective and complete showcase page",
-        "Presentation of your business",
-        "Contact details & contact form",
-        "Animations to highlight your strengths",
-        "Ideal for small structures",
-      ],
-    },
-    standard: {
-      title: "Multi-page Website",
-      price: "€450",
-      features: [
-        "Up to 3 pages (e.g.: Home, About, Contact)",
-        "Contact form with file upload capability",
-        "Modern animations and interface effects",
-        "Smooth transitions, visual feedback on actions",
-        "Fluid navigation on mobile & desktop",
-      ],
-    },
-    premium: {
-      title: "Premium Website",
-      price: "€650",
-      features: [
-        "Up to 6 pages or distinct sections",
-        "Unlimited custom design",
-        "Advanced animations: scroll appearance, parallax",
-        "Dynamic transitions and subtle interactions",
-        "Optimized user experience",
-      ],
-    },
-  },
-  de: {
-    basic: {
-      title: "Einseitige Website",
-      price: "230 €",
-      features: [
-        "Eine effektive und vollständige Präsentationsseite",
-        "Darstellung Ihrer Geschäftstätigkeit",
-        "Kontaktdaten & Kontaktformular",
-        "Animationen zur Hervorhebung Ihrer Stärken",
-        "Ideal für kleine Strukturen",
-      ],
-    },
-    standard: {
-      title: "Mehrseitige Website",
-      price: "450 €",
-      features: [
-        "Bis zu 3 Seiten (z.B.: Startseite, Über uns, Kontakt)",
-        "Kontaktformular mit Datei-Upload-Funktion",
-        "Moderne Animationen und Schnittstelleneffekte",
-        "Sanfte Übergänge, visuelle Rückmeldung bei Aktionen",
-        "Flüssige Navigation auf Mobilgeräten & Desktop",
-      ],
-    },
-    premium: {
-      title: "Premium-Website",
-      price: "650 €",
-      features: [
-        "Bis zu 6 Seiten oder verschiedene Abschnitte",
-        "Unbegrenztes individuelles Design",
-        "Fortgeschrittene Animationen: Scroll-Erscheinung, Parallaxe",
-        "Dynamische Übergänge und subtile Interaktionen",
-        "Optimierte Benutzererfahrung",
-      ],
-    },
-  },
-};
-// Ce que tous les forfaits incluent
-const includedInAllPackages = {
-  fr: [
-    "S'affiche bien sur tous les appareils (mobile, tablette, PC)",
-    "Design moderne et facile à utiliser",
-    "Bien placé sur Google",
-    "Chargement rapide",
-    "Hébergement gratuit à vie via Cloudflare Pages",
-    "Code source livré (vous en êtes propriétaire)",
-    "Support technique d'1 mois après livraison",
-  ],
-  en: [
-    "Responsive website (mobile, tablet, desktop)",
-    "Modern and accessible design",
-    "Optimized natural SEO",
-    "Maximum performance (fast loading)",
-    "Free lifetime hosting via Cloudflare Pages",
-    "Delivered source code (GitHub or archive)",
-    "1 month technical support after delivery",
-  ],
-  de: [
-    "Responsive Website (Mobilgeräte, Tablets, Computer)",
-    "Modernes und zugängliches Design",
-    "Optimiertes natürliches SEO",
-    "Maximale Leistung (schnelles Laden)",
-    "Kostenloses lebenslanges Hosting über Cloudflare Pages",
-    "Gelieferter Quellcode (GitHub oder Archiv)",
-    "1 Monat technischer Support nach Lieferung",
-  ],
-};
-// Options complémentaires adaptées aux sites vitrines
-const additionalOptions = {
-  fr: [
-    {
-      title: "Site en plusieurs langues",
-      price: "150 €",
-      description:
-        "Ajout de 2 langues (anglais, allemand...) avec un bouton pour passer de l'une à l'autre",
-    },
-    {
-      title: "Interface pour modifier vos contenus",
-      price: "200 €",
-      description:
-        "Un espace /admin pour changer vos textes et images sans toucher au code",
-    },
-    {
-      title: "Gestion via tableaux (Google Sheets)",
-      price: "100 €",
-      description:
-        "Modifiez facilement vos textes, tarifs ou horaires directement dans un tableau Google",
-    },
-    {
-      title: "Formation simple d'1h",
-      price: "50 €",
-      description:
-        "Je vous montre comment modifier vous-même les textes et images de votre site",
-    },
-    {
-      title: "Statistiques de visites sans cookies",
-      price: "70 €",
-      description:
-        "Savoir combien de personnes visitent votre site et d'où elles viennent, sans traquer vos visiteurs",
-    },
-  ],
-  en: [
-    {
-      title: "Multilingual site",
-      price: "€150",
-      description:
-        "Up to 2 additional languages with manual selector or automatic detection",
-    },
-    {
-      title: "Management via graphical interface (Decap CMS)",
-      price: "€200",
-      description:
-        "Integrated /admin interface to modify your texts and images easily without coding",
-    },
-    {
-      title: "Management via spreadsheets (Google Sheets)",
-      price: "€100",
-      description:
-        "Simple editing via a Google spreadsheet to modify descriptions, prices, schedules",
-    },
-    {
-      title: "Markdown training",
-      price: "€50",
-      description:
-        "1-hour video training to learn how to modify texts and images yourself",
-    },
-    {
-      title: "Detailed cookie-free statistics",
-      price: "€70",
-      description:
-        "GDPR-friendly traffic tracking with a clear and accessible dashboard",
-    },
-  ],
-  de: [
-    {
-      title: "Mehrsprachige Website",
-      price: "150 €",
-      description:
-        "Bis zu 2 zusätzliche Sprachen mit manuellem Selektor oder automatischer Erkennung",
-    },
-    {
-      title: "Verwaltung über grafische Oberfläche (Decap CMS)",
-      price: "200 €",
-      description:
-        "Integrierte /admin-Oberfläche zum einfachen Ändern Ihrer Texte und Bilder ohne Programmierung",
-    },
-    {
-      title: "Verwaltung über Tabellen (Google Sheets)",
-      price: "100 €",
-      description:
-        "Einfache Bearbeitung über eine Google-Tabelle zur Änderung von Beschreibungen, Preisen, Zeitplänen",
-    },
-    {
-      title: "Markdown-Schulung",
-      price: "50 €",
-      description:
-        "1-stündige Videokonferenz-Schulung, um zu lernen, wie Sie Texte und Bilder selbst ändern können",
-    },
-    {
-      title: "Detaillierte Cookie-freie Statistiken",
-      price: "70 €",
-      description:
-        "DSGVO-freundliches Traffic-Tracking mit einem übersichtlichen und zugänglichen Dashboard",
-    },
-  ],
-};
+} as const;
+
 // Utiliser la langue demandée ou français par défaut
 const t = content[lang] || content.fr;
+
 // L'URL complète vers la page de remerciement (incluant le domaine)
 const redirectUrl = `${Astro.url.origin}/${lang}/contact/thanks`;
+
 // Mode éco activé
 const isEcoMode = true;
 ---
@@ -389,61 +151,39 @@ const isEcoMode = true;
     <div class="block lg:hidden mb-8">
       <!-- Packages visibles uniquement sur mobile -->
       <h3 class="text-lg font-semibold mb-3 text-accent">
-        {
-          lang === "fr"
-            ? "Mes formules sites vitrines"
-            : lang === "en"
-              ? "My showcase website packages"
-              : "Meine Präsentationswebsite-Pakete"
-        }
+        {lang === "fr" ? "Mes formules sites vitrines" : 
+         lang === "en" ? "My showcase website packages" : 
+         "Meine Präsentationswebsite-Pakete"}
       </h3>
 
       <div class="space-y-4">
         <!-- Standard (mis en premier car plus populaire) -->
         <div class="p-3 border-2 border-accent rounded-lg">
           <div class="font-semibold text-accent mb-2">
-            {showcasePackages[lang].standard.title} - {
-              showcasePackages[lang].standard.price
-            }
+            {showcasePackages.standard.title} - {showcasePackages.standard.price}
           </div>
           <ul class="list-disc pl-5 text-sm space-y-1">
-            {
-              showcasePackages[lang].standard.features.map((feature) => (
-                <li>{feature}</li>
-              ))
-            }
+            {showcasePackages.standard.features.map((feature: string) => <li>{feature}</li>)}
           </ul>
         </div>
 
         <!-- Basic -->
         <div class="p-3 border border-accent border-opacity-30 rounded-lg">
           <div class="font-semibold text-accent mb-2">
-            {showcasePackages[lang].basic.title} - {
-              showcasePackages[lang].basic.price
-            }
+            {showcasePackages.basic.title} - {showcasePackages.basic.price}
           </div>
           <ul class="list-disc pl-5 text-sm space-y-1">
-            {
-              showcasePackages[lang].basic.features.map((feature) => (
-                <li>{feature}</li>
-              ))
-            }
+            {showcasePackages.basic.features.map((feature: string) => <li>{feature}</li>)}
           </ul>
         </div>
 
         <!-- Premium -->
         <div class="p-3 border border-accent border-opacity-30 rounded-lg">
           <div class="font-semibold text-accent mb-2">
-            {showcasePackages[lang].premium.title} - {
-              showcasePackages[lang].premium.price
-            }
+            {showcasePackages.premium.title} - {showcasePackages.premium.price}
           </div>
           <ul class="list-disc pl-5 text-sm space-y-1">
-            {
-              showcasePackages[lang].premium.features.map((feature) => (
-                <li>{feature}</li>
-              ))
-            }
+            {showcasePackages.premium.features.map((feature: string) => <li>{feature}</li>)}
           </ul>
         </div>
       </div>
@@ -451,16 +191,12 @@ const isEcoMode = true;
       <!-- Ce que tous les forfaits incluent (sur mobile) -->
       <div class="mt-4 p-3 bg-secondary bg-opacity-50 rounded-lg">
         <h4 class="font-semibold text-accent mb-2 text-sm">
-          {
-            lang === "fr"
-              ? "Tous les forfaits incluent :"
-              : lang === "en"
-                ? "All packages include:"
-                : "Alle Pakete beinhalten:"
-          }
+          {lang === "fr" ? "Tous les forfaits incluent :" : 
+           lang === "en" ? "All packages include:" : 
+           "Alle Pakete beinhalten:"}
         </h4>
         <ul class="list-disc pl-5 text-sm">
-          {includedInAllPackages[lang].map((feature) => <li>{feature}</li>)}
+          {includedInAllPackages.map((feature: string) => <li>{feature}</li>)}
         </ul>
       </div>
     </div>
@@ -503,13 +239,9 @@ const isEcoMode = true;
           <!-- Informations de contact -->
           <div class="p-3 bg-secondary bg-opacity-20 rounded-md space-y-3">
             <h3 class="font-medium mb-1">
-              {
-                lang === "fr"
-                  ? "Vos coordonnées"
-                  : lang === "en"
-                    ? "Your contact information"
-                    : "Ihre Kontaktdaten"
-              }
+              {lang === "fr" ? "Vos coordonnées" : 
+               lang === "en" ? "Your contact information" : 
+               "Ihre Kontaktdaten"}
             </h3>
 
             <!-- Nom -->
@@ -551,61 +283,43 @@ const isEcoMode = true;
           <!-- Détails du projet -->
           <div class="p-3 bg-secondary bg-opacity-20 rounded-md space-y-3">
             <h3 class="font-medium mb-1">
-              {
-                lang === "fr"
-                  ? "Votre projet"
-                  : lang === "en"
-                    ? "Your project"
-                    : "Ihr Projekt"
-              }
+              {lang === "fr" ? "Votre projet" : 
+               lang === "en" ? "Your project" : 
+               "Ihr Projekt"}
             </h3>
 
             <!-- Type de site -->
             <div>
-              <label for="project_type" class="block mb-1"
-                >{t.projectTypeLabel} *</label
-              >
+              <label for="project_type" class="block mb-1">{t.projectTypeLabel} *</label>
               <select
                 id="project_type"
                 name="project_type"
                 class="w-full p-2 border border-form bg-primary rounded-md"
                 required
               >
-                <option value="showcase" selected
-                  >{t.projectTypeOptions.showcase}</option
-                >
+                <option value="showcase" selected>{t.projectTypeOptions.showcase}</option>
                 <option value="blog">{t.projectTypeOptions.blog}</option>
-                <option value="portfolio"
-                  >{t.projectTypeOptions.portfolio}</option
-                >
+                <option value="portfolio">{t.projectTypeOptions.portfolio}</option>
                 <option value="other">{t.projectTypeOptions.other}</option>
               </select>
             </div>
 
             <!-- Formule envisagée -->
             <div>
-              <label for="service_package" class="block mb-1"
-                >{t.packageTitle}</label
-              >
+              <label for="service_package" class="block mb-1">{t.packageTitle}</label>
               <select
                 id="service_package"
                 name="service_package"
                 class="w-full p-2 border border-form bg-primary rounded-md"
               >
                 <option value="standard" selected>
-                  {showcasePackages[lang].standard.title} - {
-                    showcasePackages[lang].standard.price
-                  }
+                  {showcasePackages.standard.title} - {showcasePackages.standard.price}
                 </option>
                 <option value="basic">
-                  {showcasePackages[lang].basic.title} - {
-                    showcasePackages[lang].basic.price
-                  }
+                  {showcasePackages.basic.title} - {showcasePackages.basic.price}
                 </option>
                 <option value="premium">
-                  {showcasePackages[lang].premium.title} - {
-                    showcasePackages[lang].premium.price
-                  }
+                  {showcasePackages.premium.title} - {showcasePackages.premium.price}
                 </option>
                 <option value="not_sure">{t.notSure}</option>
               </select>
@@ -619,9 +333,7 @@ const isEcoMode = true;
                 name="deadline"
                 class="w-full p-2 border border-form bg-primary rounded-md"
               >
-                <option value="medium" selected
-                  >{t.deadlineOptions.medium}</option
-                >
+                <option value="medium" selected>{t.deadlineOptions.medium}</option>
                 <option value="urgent">{t.deadlineOptions.urgent}</option>
                 <option value="flexible">{t.deadlineOptions.flexible}</option>
               </select>
@@ -635,53 +347,49 @@ const isEcoMode = true;
             </h3>
 
             <div class="space-y-3">
-              {
-                additionalOptions[lang].map((option, index) => (
-                  <div class="flex items-start option-item">
-                    <input
-                      type="checkbox"
-                      id={`option_${index}`}
-                      name="options"
-                      value={option.title}
-                      class="mt-1 mr-2"
-                    />
-                    <label for={`option_${index}`} class="text-sm">
-                      <span class="font-medium">
-                        {option.title} - {option.price}
-                      </span>
-                      <span class="block text-text-muted text-xs">
-                        {option.description}
-                      </span>
-                    </label>
-                  </div>
-                ))
-              }
+              {additionalOptions.map((option: any, index: number) => (
+                <div class="flex items-start option-item">
+                  <input
+                    type="checkbox"
+                    id={`option_${index}`}
+                    name="options"
+                    value={option.title}
+                    class="mt-1 mr-2"
+                  />
+                  <label for={`option_${index}`} class="text-sm">
+                    <span class="font-medium">
+                      {option.title} - {option.price}
+                    </span>
+                    <span class="block text-text-muted text-xs">
+                      {option.description}
+                    </span>
+                  </label>
+                </div>
+              ))}
             </div>
           </div>
 
           <!-- Description du projet -->
           <div>
-            <label for="project_description" class="block mb-1"
-              >{t.projectDescLabel} *</label
-            >
+            <label for="project_description" class="block mb-1">{t.projectDescLabel} *</label>
             <textarea
               id="project_description"
               name="project_description"
               class="w-full p-2 border border-form bg-primary rounded-md h-32"
               placeholder={t.projectDescPlaceholder}
-              required></textarea>
+              required
+            ></textarea>
           </div>
 
           <!-- Informations complémentaires -->
           <div>
-            <label for="additional_info" class="block mb-1"
-              >{t.additionalInfoLabel}</label
-            >
+            <label for="additional_info" class="block mb-1">{t.additionalInfoLabel}</label>
             <textarea
               id="additional_info"
               name="additional_info"
               class="w-full p-2 border border-form bg-primary rounded-md h-24"
-              placeholder={t.additionalInfoPlaceholder}></textarea>
+              placeholder={t.additionalInfoPlaceholder}
+            ></textarea>
           </div>
 
           <!-- Champ honeypot pour éviter le spam -->
@@ -702,86 +410,56 @@ const isEcoMode = true;
       <div class="hidden lg:block lg:w-1/3">
         <div class="bg-secondary bg-opacity-30 p-5 rounded-lg">
           <h2 class="text-xl font-semibold mb-4 text-accent">
-            {
-              lang === "fr"
-                ? "Mes formules sites vitrines"
-                : lang === "en"
-                  ? "My showcase website packages"
-                  : "Meine Präsentationswebsite-Pakete"
-            }
+            {lang === "fr" ? "Mes formules sites vitrines" : 
+             lang === "en" ? "My showcase website packages" : 
+             "Meine Präsentationswebsite-Pakete"}
           </h2>
 
           <div class="space-y-4">
-            {/* Standard (mis en premier car plus populaire) */}
+            <!-- Standard (mis en premier car plus populaire) -->
             <div class="p-3 border-2 border-accent rounded-lg relative">
               <div class="font-semibold text-accent mb-1">
-                {showcasePackages[lang].standard.title} - {
-                  showcasePackages[lang].standard.price
-                }
+                {showcasePackages.standard.title} - {showcasePackages.standard.price}
               </div>
               <ul class="list-disc pl-5 text-sm">
-                {
-                  showcasePackages[lang].standard.features.map((feature) => (
-                    <li>{feature}</li>
-                  ))
-                }
+                {showcasePackages.standard.features.map((feature: string) => <li>{feature}</li>)}
               </ul>
             </div>
 
-            {/* Basic */}
+            <!-- Basic -->
             <div class="p-3 border border-accent border-opacity-30 rounded-lg">
               <div class="font-semibold text-accent mb-1">
-                {showcasePackages[lang].basic.title} - {
-                  showcasePackages[lang].basic.price
-                }
+                {showcasePackages.basic.title} - {showcasePackages.basic.price}
               </div>
               <ul class="list-disc pl-5 text-sm">
-                {
-                  showcasePackages[lang].basic.features.map((feature) => (
-                    <li>{feature}</li>
-                  ))
-                }
+                {showcasePackages.basic.features.map((feature: string) => <li>{feature}</li>)}
               </ul>
             </div>
 
-            {/* Premium */}
+            <!-- Premium -->
             <div class="p-3 border border-accent border-opacity-30 rounded-lg">
               <div class="font-semibold text-accent mb-1">
-                {showcasePackages[lang].premium.title} - {
-                  showcasePackages[lang].premium.price
-                }
+                {showcasePackages.premium.title} - {showcasePackages.premium.price}
               </div>
               <ul class="list-disc pl-5 text-sm">
-                {
-                  showcasePackages[lang].premium.features.map((feature) => (
-                    <li>{feature}</li>
-                  ))
-                }
+                {showcasePackages.premium.features.map((feature: string) => <li>{feature}</li>)}
               </ul>
             </div>
           </div>
 
           <div class="mt-6 p-3 bg-secondary bg-opacity-50 rounded-lg">
             <h3 class="font-semibold text-accent mb-2 text-sm">
-              {
-                lang === "fr"
-                  ? "Tous les forfaits incluent :"
-                  : lang === "en"
-                    ? "All packages include:"
-                    : "Alle Pakete beinhalten:"
-              }
+              {lang === "fr" ? "Tous les forfaits incluent :" : 
+               lang === "en" ? "All packages include:" : 
+               "Alle Pakete beinhalten:"}
             </h3>
             <ul class="list-disc pl-5 text-sm">
-              {includedInAllPackages[lang].map((feature) => <li>{feature}</li>)}
+              {includedInAllPackages.map((feature: string) => <li>{feature}</li>)}
             </ul>
             <p class="mt-2 text-xs italic">
-              {
-                lang === "fr"
-                  ? "Vous n'avez qu'à acheter un nom de domaine (à partir de 10-15€/an) : je m'occupe du reste."
-                  : lang === "en"
-                    ? "You only need to buy a domain name (from €10-15/year): I take care of the rest."
-                    : "Sie müssen nur einen Domainnamen kaufen (ab 10-15€/Jahr): Um alles andere kümmere ich mich."
-              }
+              {lang === "fr" ? "Vous n'avez qu'à acheter un nom de domaine (à partir de 10-15€/an) : je m'occupe du reste." : 
+               lang === "en" ? "You only need to buy a domain name (from €10-15/year): I take care of the rest." : 
+               "Sie müssen nur einen Domainnamen kaufen (ab 10-15€/Jahr): Um alles andere kümmere ich mich."}
             </p>
           </div>
         </div>
