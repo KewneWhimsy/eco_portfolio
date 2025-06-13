@@ -43,7 +43,7 @@ export const PRICING_CONFIG = {
   // Prix des packages (en euros, sans symbole)
   packages: {
     basic: {
-      price: 250,
+      price: 300,
       features: {
         fr: [
           "Une page complète qui présente votre activité",
@@ -68,7 +68,7 @@ export const PRICING_CONFIG = {
       }
     },
     standard: {
-      price: 500,
+      price: 600,
       features: {
         fr: [
           "Jusqu'à 3 pages (ex. : Accueil, À propos, Contact)",
@@ -93,7 +93,7 @@ export const PRICING_CONFIG = {
       }
     },
     premium: {
-      price: 800,
+      price: 1000,
       features: {
         fr: [
           "Jusqu'à 6 pages ou sections",
@@ -149,8 +149,8 @@ export const PRICING_CONFIG = {
       price: 50,
       descriptions: {
         fr: "Je vous montre comment modifier vous-même les textes et images de votre site",
-        en: "1-hour video training to learn how to modify texts and images yourself",
-        de: "1-stündige Videokonferenz-Schulung, um zu lernen, wie Sie Texte und Bilder selbst ändern können"
+        en: "I'll show you how to modify the text and images on your website yourself",
+        de: "Ich zeige Ihnen, wie Sie die Texte und Bilder Ihrer Website selbst bearbeiten können"
       }
     },
     analytics: {
