@@ -1,0 +1,403 @@
+---
+// Import du layout avec mode éco activé
+import Layout from "../../../layouts/layout.astro";
+import EcoModeInfo from "../../../components/eco_mode_info.astro";
+
+// Récupérer le paramètre de langue depuis l'URL
+export function getStaticPaths() {
+  return [
+    { params: { lang: "fr" } },
+    { params: { lang: "en" } },
+    { params: { lang: "de" } },
+  ];
+}
+
+const lang = Astro.params.lang as 'fr' | 'en' | 'de';
+
+// Contenu traduit pour chaque langue (version simplifiée pour mode éco)
+const content = {
+  fr: {
+    title: "Josselin HANEL - Services & Tarifs (Mode Éco)",
+    description: "Version éco-responsable de mes services avec une empreinte carbone minimale.",
+    pageTitle: "Services & Tarifs",
+    intro: "Sites web éco-responsables alliant performance et durabilité.",
+    
+    // Services simplifiés
+    servicesTitle: "Mes services",
+    services: [
+      {
+        title: "Site de Présentation",
+        price: "À partir de 1500€",
+        features: [
+          "Temps de chargement < 1 seconde",
+          "Hébergement GRATUIT À VIE",
+          "Design responsive",
+          "Formulaire de contact"
+        ]
+      },
+      {
+        title: "Site Avancé & E-commerce",
+        price: "À partir de 3000€",
+        features: [
+          "Fonctionnalités avancées",
+          "Système de gestion intégré",
+          "Intégrations tierces",
+          "Support complet"
+        ]
+      },
+      {
+        title: "Audit & Optimisation",
+        price: "À partir de 800€",
+        features: [
+          "Audit complet",
+          "Optimisation performances",
+          "Amélioration SEO",
+          "Rapport détaillé"
+        ]
+      }
+    ],
+
+    // Avantages éco
+    ecoTitle: "Pourquoi éco-responsable ?",
+    ecoFeatures: [
+      "3x plus rapide que la moyenne",
+      "90% moins d'énergie consommée",
+      "Meilleur référencement Google",
+      "Coûts d'hébergement réduits"
+    ],
+
+    // Contact
+    contactTitle: "Me contacter",
+    contactText: "Parlons de votre projet simplement :",
+    
+    // Form
+    formTitle: "Formulaire de contact",
+    nameLabel: "Nom",
+    emailLabel: "Email",
+    projectLabel: "Votre projet",
+    messageLabel: "Message",
+    messagePlaceholder: "Décrivez votre projet en quelques mots...",
+    submitButton: "Envoyer",
+    
+    // Inclus
+    includesTitle: "Toujours inclus",
+    includes: [
+      "Code source livré",
+      "Design responsive",
+      "Site optimisé",
+      "Référencement inclus",
+      "Support technique"
+    ]
+  },
+  en: {
+    title: "Josselin HANEL - Services & Pricing (Eco Mode)",
+    description: "Eco-friendly version of my services with minimal carbon footprint.",
+    pageTitle: "Services & Pricing",
+    intro: "Eco-responsible websites combining performance and sustainability.",
+    
+    // Services
+    servicesTitle: "My services",
+    services: [
+      {
+        title: "Presentation Website",
+        price: "From €1500",
+        features: [
+          "Loading time < 1 second",
+          "FREE LIFETIME hosting",
+          "Responsive design",
+          "Contact form"
+        ]
+      },
+      {
+        title: "Advanced Site & E-commerce",
+        price: "From €3000",
+        features: [
+          "Advanced features",
+          "Integrated management system",
+          "Third-party integrations",
+          "Complete support"
+        ]
+      },
+      {
+        title: "Audit & Optimization",
+        price: "From €800",
+        features: [
+          "Complete audit",
+          "Performance optimization",
+          "SEO improvement",
+          "Detailed report"
+        ]
+      }
+    ],
+
+    // Eco advantages
+    ecoTitle: "Why eco-responsible?",
+    ecoFeatures: [
+      "3x faster than average",
+      "90% less energy consumed",
+      "Better Google ranking",
+      "Reduced hosting costs"
+    ],
+
+    // Contact
+    contactTitle: "Contact me",
+    contactText: "Let's talk about your project simply:",
+    
+    // Form
+    formTitle: "Contact form",
+    nameLabel: "Name",
+    emailLabel: "Email",
+    projectLabel: "Your project",
+    messageLabel: "Message",
+    messagePlaceholder: "Describe your project in a few words...",
+    submitButton: "Send",
+    
+    // Included
+    includesTitle: "Always included",
+    includes: [
+      "Source code delivered",
+      "Responsive design",
+      "Optimized site",
+      "SEO included",
+      "Technical support"
+    ]
+  },
+  de: {
+    title: "Josselin HANEL - Leistungen & Preise (Öko-Modus)",
+    description: "Umweltfreundliche Version meiner Leistungen mit minimalem CO2-Fußabdruck.",
+    pageTitle: "Leistungen & Preise",
+    intro: "Umweltverantwortliche Websites, die Leistung und Nachhaltigkeit verbinden.",
+    
+    // Services
+    servicesTitle: "Meine Leistungen",
+    services: [
+      {
+        title: "Präsentationswebsite",
+        price: "Ab 1500€",
+        features: [
+          "Ladezeit < 1 Sekunde",
+          "KOSTENLOSES LEBENSLÄNGLICH Hosting",
+          "Responsive Design",
+          "Kontaktformular"
+        ]
+      },
+      {
+        title: "Erweiterte Site & E-Commerce",
+        price: "Ab 3000€",
+        features: [
+          "Erweiterte Funktionen",
+          "Integriertes Verwaltungssystem",
+          "Drittanbieter-Integrationen",
+          "Vollständige Unterstützung"
+        ]
+      },
+      {
+        title: "Audit & Optimierung",
+        price: "Ab 800€",
+        features: [
+          "Vollständiges Audit",
+          "Leistungsoptimierung",
+          "SEO-Verbesserung",
+          "Detaillierter Bericht"
+        ]
+      }
+    ],
+
+    // Eco advantages
+    ecoTitle: "Warum umweltverantwortlich?",
+    ecoFeatures: [
+      "3x schneller als der Durchschnitt",
+      "90% weniger Energieverbrauch",
+      "Besseres Google-Ranking",
+      "Reduzierte Hosting-Kosten"
+    ],
+
+    // Contact
+    contactTitle: "Kontakt",
+    contactText: "Lassen Sie uns einfach über Ihr Projekt sprechen:",
+    
+    // Form
+    formTitle: "Kontaktformular",
+    nameLabel: "Name",
+    emailLabel: "E-Mail",
+    projectLabel: "Ihr Projekt",
+    messageLabel: "Nachricht",
+    messagePlaceholder: "Beschreiben Sie Ihr Projekt in wenigen Worten...",
+    submitButton: "Senden",
+    
+    // Included
+    includesTitle: "Immer enthalten",
+    includes: [
+      "Quellcode geliefert",
+      "Responsive Design",
+      "Optimierte Site",
+      "SEO inklusive",
+      "Technischer Support"
+    ]
+  }
+} as const;
+
+// Utiliser la langue demandée ou français par défaut
+const t = content[lang] || content.fr;
+
+// L'URL complète vers la page de remerciement
+const redirectUrl = `${Astro.url.origin}/${lang}/contact/thanks/eco/`;
+
+// Mode éco activé
+const isEcoMode = true;
+---
+
+<Layout
+  title={t.title}
+  description={t.description}
+  lang={lang}
+  isEcoMode={isEcoMode}
+>
+  <div class="container mx-auto px-4 py-6 max-w-3xl">
+    <!-- Info mode éco -->
+    <EcoModeInfo lang={lang} />
+
+    <!-- En-tête simplifié -->
+    <div class="text-center mb-8">
+      <h1 class="text-2xl font-bold mb-3">{t.pageTitle}</h1>
+      <p class="text-text-muted">{t.intro}</p>
+    </div>
+
+    <!-- Services en layout simple -->
+    <section class="mb-8">
+      <h2 class="text-xl font-bold mb-4 text-accent border-b border-accent pb-1">
+        {t.servicesTitle}
+      </h2>
+      
+      <div class="space-y-4">
+        {t.services.map((service) => (
+          <div class="border border-secondary p-4 rounded">
+            <div class="flex justify-between items-start mb-2">
+              <h3 class="font-bold">{service.title}</h3>
+              <span class="text-accent font-bold text-sm">{service.price}</span>
+            </div>
+            <ul class="text-sm space-y-1">
+              {service.features.map((feature) => (
+                <li>• {feature}</li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Avantages éco -->
+    <section class="mb-8">
+      <h2 class="text-xl font-bold mb-4 text-accent border-b border-accent pb-1">
+        {t.ecoTitle}
+      </h2>
+      <ul class="space-y-2">
+        {t.ecoFeatures.map((feature) => (
+          <li class="flex items-start">
+            <span class="text-accent mr-2">🌱</span>
+            <span class="text-sm">{feature}</span>
+          </li>
+        ))}
+      </ul>
+    </section>
+
+    <!-- Ce qui est inclus -->
+    <section class="mb-8">
+      <h2 class="text-xl font-bold mb-4 text-accent border-b border-accent pb-1">
+        {t.includesTitle}
+      </h2>
+      <ul class="space-y-2">
+        {t.includes.map((item) => (
+          <li class="flex items-start">
+            <span class="text-accent mr-2">✓</span>
+            <span class="text-sm">{item}</span>
+          </li>
+        ))}
+      </ul>
+    </section>
+
+    <!-- Contact simplifié -->
+    <section class="bg-secondary bg-opacity-20 p-4 rounded">
+      <h2 class="text-xl font-bold mb-3 text-accent">{t.contactTitle}</h2>
+      <p class="mb-4 text-sm">{t.contactText}</p>
+
+      <!-- Contact direct -->
+      <div class="mb-6 text-center">
+        <p>📞 <span class="text-accent select-all mb-2">+33 7 81 33 97 68</span></p>
+        <p>✉️ <span class="text-accent select-all">josshanel@gmail.com</span></p>
+      </div>
+
+      <!-- Formulaire minimal -->
+      <form
+        method="POST"
+        action="https://api.web3forms.com/submit"
+        class="space-y-3"
+      >
+        <!-- Configuration Web3Forms -->
+        <input type="hidden" name="access_key" value="2dcc3f1b-036f-48a7-987a-cdada0d05ae5" />
+        <input type="hidden" name="redirect" value={redirectUrl} />
+        <input type="hidden" name="from_name" value="Portfolio Services (Eco)" />
+        <input type="hidden" name="subject" value="Nouvelle demande - Services (Eco)" />
+
+        <h3 class="font-medium mb-3">{t.formTitle}</h3>
+
+        <div class="grid md:grid-cols-2 gap-3">
+          <div>
+            <label for="name" class="block mb-1 text-sm">{t.nameLabel} *</label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              class="w-full p-2 border border-form bg-primary rounded text-sm"
+              required
+            />
+          </div>
+          <div>
+            <label for="email" class="block mb-1 text-sm">{t.emailLabel} *</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              class="w-full p-2 border border-form bg-primary rounded text-sm"
+              required
+            />
+          </div>
+        </div>
+
+        <div>
+          <label for="project_type" class="block mb-1 text-sm">{t.projectLabel}</label>
+          <select
+            id="project_type"
+            name="project_type"
+            class="w-full p-2 border border-form bg-primary rounded text-sm"
+          >
+            <option value="showcase">{t.services[0].title}</option>
+            <option value="advanced">{t.services[1].title}</option>
+            <option value="audit">{t.services[2].title}</option>
+          </select>
+        </div>
+
+        <div>
+          <label for="message" class="block mb-1 text-sm">{t.messageLabel} *</label>
+          <textarea
+            id="message"
+            name="message"
+            rows="3"
+            class="w-full p-2 border border-form bg-primary rounded text-sm"
+            placeholder={t.messagePlaceholder}
+            required
+          ></textarea>
+        </div>
+
+        <!-- Honeypot -->
+        <input type="text" name="botcheck" class="hidden" />
+
+        <div class="text-center">
+          <button type="submit" class="cta-button">
+            {t.submitButton}
+          </button>
+        </div>
+      </form>
+    </section>
+  </div>
+</Layout>

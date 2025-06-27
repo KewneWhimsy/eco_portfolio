@@ -684,12 +684,12 @@ const isEcoMode = pathname.includes("/eco");
          'Rufen Sie mich an oder senden Sie mir eine E-Mail, um Ihr Projekt zu besprechen. Domain-Name auf Ihre Kosten (ca. 10-15€/Jahr).'}
       </p>
       <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
-        <a href="tel:+33781339768" class="text-accent hover:text-accent-hover">
-          📞 +33 7 81 33 97 68
-        </a>
-        <a href={`mailto:contact@jkw.ovh?subject=${lang === 'fr' ? 'Demande de devis' : lang === 'en' ? 'Quote request' : 'Angebotsanfrage'}`} class="text-accent hover:text-accent-hover">
-          ✉️ contact@jkw.ovh
-        </a>
+        <p class="text-accent hover:text-accent-hover">
+          📞 <span class="select-all">+33 7 81 33 97 68</span>
+        </p>
+        <p class="text-accent hover:text-accent-hover">
+          ✉️ <span class="select-all">josshanel@gmail.com</span>
+        </p>
       </div>
     </div>
   </div>
