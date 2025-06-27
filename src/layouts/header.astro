@@ -17,23 +17,23 @@ const navLabels = {
   fr: {
     projects: 'Projets',
     about: 'Qui suis-je ?',
+    services: 'Services & Tarifs',
     network: 'Réseau',
-    contact: 'Contact',
-    quote: 'Devis'
+    contact: 'Contact'
   },
   en: {
     projects: 'Projects',
     about: 'About',
+    services: 'Services & Pricing',
     network: 'Network',
-    contact: 'Contact',
-    quote: 'Quote'
+    contact: 'Contact'
   },
   de: {
     projects: 'Projekte',
     about: 'Über mich',
+    services: 'Leistungen & Preise',
     network: 'Netzwerk',
-    contact: 'Kontakt',
-    quote: 'Angebot'
+    contact: 'Kontakt'
   }
 };
 
@@ -75,6 +75,14 @@ const labels = navLabels[currentLang as keyof typeof navLabels] || navLabels.fr;
           </li>
           <li>
             <a 
+              href={isEcoMode ? `/${currentLang}/services/eco/` : `/${currentLang}/services/`} 
+              class={`nav-link ${pathname.includes('/services') ? 'nav-link-active' : ''}`}
+            >
+              {labels.services}
+            </a>
+          </li>
+          <li>
+            <a 
               href={isEcoMode ? `/${currentLang}/network/eco/` : `/${currentLang}/network/`} 
               class={`nav-link ${pathname.includes('/network') ? 'nav-link-active' : ''}`}
             >
@@ -87,14 +95,6 @@ const labels = navLabels[currentLang as keyof typeof navLabels] || navLabels.fr;
               class={`nav-link ${pathname.includes('/contact') ? 'nav-link-active' : ''}`}
             >
               {labels.contact}
-            </a>
-          </li>
-          <li>
-            <a 
-              href={isEcoMode ? `/${currentLang}/quote_presentation/eco/` : `/${currentLang}/quote_presentation/`} 
-              class={`nav-link ${pathname.includes('/quote_presentation') ? 'nav-link-active' : ''}`}
-            >
-              {labels.quote}
             </a>
           </li>
         </ul>

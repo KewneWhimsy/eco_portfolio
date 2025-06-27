@@ -1,0 +1,696 @@
+---
+// Import du layout standard
+import Layout from "../../layouts/layout.astro";
+
+// Récupérer le paramètre de langue depuis l'URL
+export function getStaticPaths() {
+  return [
+    { params: { lang: "fr" } },
+    { params: { lang: "en" } },
+    { params: { lang: "de" } },
+  ];
+}
+
+const lang = Astro.params.lang as 'fr' | 'en' | 'de';
+
+// Contenu traduit pour chaque langue
+const content = {
+  fr: {
+    title: "Josselin HANEL - Services et Tarifs",
+    description: "Découvrez mes services de développement web éco-responsable. Sites performants, durables et sur-mesure.",
+    pageTitle: "Services & Tarifs",
+    intro: "Je crée des sites web éco-responsables qui allient performance, durabilité et design moderne. Chaque projet est unique, voici comment nous pouvons travailler ensemble.",
+    
+    // Approches
+    approachTitle: "Mon approche éco-responsable",
+    approaches: [
+      {
+        icon: "🌱",
+        title: "Performance optimisée",
+        desc: "Sites ultra-rapides qui consomment moins d'énergie"
+      },
+      {
+        icon: "♻️", 
+        title: "Code durable",
+        desc: "Technologies pérennes, maintenance facilitée"
+      },
+      {
+        icon: "📱",
+        title: "Design accessible",
+        desc: "Interface intuitive sur tous les appareils"
+      },
+      {
+        icon: "🌍",
+        title: "Impact minimal",
+        desc: "Hébergement vert et optimisations écologiques"
+      }
+    ],
+
+    // Services
+    servicesTitle: "Mes services",
+    services: [
+      {
+        title: "Site de Présentation Éco-Responsable",
+        price: "À partir de 1500€",
+        description: "Site de présentation optimisé pour votre activité",
+        features: [
+          "Temps de chargement < 1 seconde",
+          "Système de gestion de contenu possible",
+          "Formulaire de contact sécurisé",
+          "🎁 Hébergement GRATUIT À VIE",
+          "Maintenance facile à faible coût"
+        ],
+        ideal: "Idéal pour : artisans, professions libérales, PME"
+      },
+      {
+        title: "Site Avancé & E-commerce",
+        price: "À partir de 3000€",
+        description: "Solution complète avec fonctionnalités avancées",
+        features: [
+          "Architecture logique et évolutive",
+          "Système de gestion de contenu intégré",
+          "Intégrations tierces (paiement, analytics...)",
+          "Animations et interactions avancées",
+          "Accompagnement approfondi"
+        ],
+        ideal: "Idéal pour : e-commerce, plateformes, projets complexes"
+      },
+      {
+        title: "Audit & Optimisation",
+        price: "À partir de 800€",
+        description: "Amélioration de votre site existant",
+        features: [
+          "Audit technique et éco-responsabilité",
+          "Optimisation des performances",
+          "Amélioration du SEO",
+          "Corrections d'accessibilité",
+          "Rapport détaillé et recommandations"
+        ],
+        ideal: "Idéal pour : sites existants à optimiser"
+      }
+    ],
+
+    // Process
+    processTitle: "Comment ça marche",
+    processSteps: [
+      {
+        step: "1",
+        title: "Échange initial",
+        desc: "Nous discutons de votre projet et de vos besoins"
+      },
+      {
+        step: "2", 
+        title: "Proposition sur-mesure",
+        desc: "Je vous envoie un devis personnalisé sous 48h"
+      },
+      {
+        step: "3",
+        title: "Conception",
+        desc: "Design et développement en collaboration étroite"
+      },
+      {
+        step: "4",
+        title: "Livraison & formation",
+        desc: "Mise en ligne et formation pour l'autonomie"
+      }
+    ],
+
+    // CTA
+    ctaTitle: "Prêt à démarrer votre projet ?",
+    ctaDesc: "Parlons de votre projet et voyons comment créer ensemble un site qui vous ressemble.",
+    
+    // Form
+    formTitle: "Parlez-moi de votre projet",
+    nameLabel: "Votre nom",
+    emailLabel: "Votre email",
+    companyLabel: "Votre entreprise (optionnel)",
+    projectTypeLabel: "Type de projet",
+    projectTypes: {
+      showcase: "Site de présentation",
+      ecommerce: "E-commerce", 
+      audit: "Audit/Optimisation",
+      other: "Autre projet"
+    },
+    budgetLabel: "Budget envisagé",
+    budgetOptions: {
+      small: "1000 - 2500€",
+      medium: "2500 - 5000€",
+      large: "5000€ et plus",
+      flexible: "À discuter"
+    },
+    messageLabel: "Décrivez votre projet",
+    messagePlaceholder: "Parlez-moi de votre activité, vos objectifs, ce que vous aimeriez pour votre site...",
+    submitButton: "Demander un devis personnalisé",
+    
+    // Mentions
+    includesTitle: "Ce qui est toujours inclus",
+    includes: [
+      "Code source livré (vous en êtes propriétaire)",
+      "Design sur-mesure et responsive",
+      "Site ultra-rapide et optimisé",
+      "Bien placé sur Google (référencement inclus)",
+      "Aide pour l'achat du nom de domaine",
+      "Formation à l'utilisation"
+    ],
+    
+    whyTitle: "Pourquoi choisir un site éco-responsable ?",
+    whyReasons: [
+      "3x plus rapide que la moyenne",
+      "90% moins d'énergie consommée", 
+      "Meilleur référencement Google",
+      "Experience utilisateur optimale",
+      "Coûts d'hébergement réduits",
+      "Image de marque responsable"
+    ]
+  },
+  en: {
+    title: "Josselin HANEL - Services & Pricing",
+    description: "Discover my eco-responsible web development services. High-performance, sustainable and custom websites.",
+    pageTitle: "Services & Pricing",
+    intro: "I create eco-responsible websites that combine performance, sustainability and modern design. Each project is unique, here's how we can work together.",
+    
+    // Approaches
+    approachTitle: "My eco-responsible approach",
+    approaches: [
+      {
+        icon: "🌱",
+        title: "Optimized performance", 
+        desc: "Ultra-fast sites that consume less energy"
+      },
+      {
+        icon: "♻️",
+        title: "Sustainable code",
+        desc: "Durable technologies, easier maintenance"
+      },
+      {
+        icon: "📱", 
+        title: "Accessible design",
+        desc: "Intuitive interface on all devices"
+      },
+      {
+        icon: "🌍",
+        title: "Minimal impact",
+        desc: "Green hosting and ecological optimizations"
+      }
+    ],
+
+    // Services
+    servicesTitle: "My services",
+    services: [
+      {
+        title: "Eco-Responsible Presentation Website",
+        price: "From €1500",
+        description: "Presentation site optimized for your business",
+        features: [
+          "Loading time < 1 second",
+          "Content management system possible",
+          "Secure contact form",
+          "🎁 FREE LIFETIME hosting",
+          "Easy low-cost maintenance"
+        ],
+        ideal: "Ideal for: craftsmen, freelancers, SMEs"
+      },
+      {
+        title: "Advanced Site & E-commerce",
+        price: "From €3000", 
+        description: "Complete solution with advanced features",
+        features: [
+          "Logical and scalable architecture",
+          "Integrated content management system",
+          "Third-party integrations (payment, analytics...)",
+          "Advanced animations and interactions",
+          "In-depth support"
+        ],
+        ideal: "Ideal for: e-commerce, platforms, complex projects"
+      },
+      {
+        title: "Audit & Optimization",
+        price: "From €800",
+        description: "Improvement of your existing site",
+        features: [
+          "Technical and eco-responsibility audit",
+          "Performance optimization", 
+          "SEO improvement",
+          "Accessibility corrections",
+          "Detailed report and recommendations"
+        ],
+        ideal: "Ideal for: existing sites to optimize"
+      }
+    ],
+
+    // Process
+    processTitle: "How it works",
+    processSteps: [
+      {
+        step: "1",
+        title: "Initial discussion",
+        desc: "We discuss your project and your needs"
+      },
+      {
+        step: "2",
+        title: "Custom proposal", 
+        desc: "I send you a personalized quote within 48h"
+      },
+      {
+        step: "3",
+        title: "Design",
+        desc: "Design and development in close collaboration"
+      },
+      {
+        step: "4",
+        title: "Delivery & training",
+        desc: "Go live and training for autonomy"
+      }
+    ],
+
+    // CTA
+    ctaTitle: "Ready to start your project?",
+    ctaDesc: "Let's talk about your project and see how we can create a site that reflects you.",
+    
+    // Form
+    formTitle: "Tell me about your project",
+    nameLabel: "Your name",
+    emailLabel: "Your email",
+    companyLabel: "Your company (optional)",
+    projectTypeLabel: "Project type",
+    projectTypes: {
+      showcase: "Presentation website",
+      ecommerce: "E-commerce",
+      audit: "Audit/Optimization", 
+      other: "Other project"
+    },
+    budgetLabel: "Expected budget",
+    budgetOptions: {
+      small: "€1000 - €2500",
+      medium: "€2500 - €5000",
+      large: "€5000 and more",
+      flexible: "To be discussed"
+    },
+    messageLabel: "Describe your project",
+    messagePlaceholder: "Tell me about your business, your goals, what you'd like for your site...",
+    submitButton: "Request a personalized quote",
+    
+    // Mentions
+    includesTitle: "What's always included",
+    includes: [
+      "Source code delivered (you own it)",
+      "Custom responsive design",
+      "Ultra-fast and optimized site",
+      "Well ranked on Google (SEO included)",
+      "Help with domain name purchase",
+      "Usage training"
+    ],
+    
+    whyTitle: "Why choose an eco-responsible site?",
+    whyReasons: [
+      "3x faster than average",
+      "90% less energy consumed",
+      "Better Google ranking",
+      "Optimal user experience", 
+      "Reduced hosting costs",
+      "Responsible brand image"
+    ]
+  },
+  de: {
+    title: "Josselin HANEL - Leistungen & Preise",
+    description: "Entdecken Sie meine umweltverantwortlichen Webentwicklungsdienste. Leistungsstarke, nachhaltige und maßgeschneiderte Websites.",
+    pageTitle: "Leistungen & Preise",
+    intro: "Ich erstelle umweltverantwortliche Websites, die Leistung, Nachhaltigkeit und modernes Design verbinden. Jedes Projekt ist einzigartig, so können wir zusammenarbeiten.",
+    
+    // Approaches
+    approachTitle: "Mein umweltverantwortlicher Ansatz",
+    approaches: [
+      {
+        icon: "🌱",
+        title: "Optimierte Leistung",
+        desc: "Ultraschnelle Sites, die weniger Energie verbrauchen"
+      },
+      {
+        icon: "♻️",
+        title: "Nachhaltiger Code", 
+        desc: "Dauerhafte Technologien, erleichterte Wartung"
+      },
+      {
+        icon: "📱",
+        title: "Zugängliches Design",
+        desc: "Intuitive Benutzeroberfläche auf allen Geräten"
+      },
+      {
+        icon: "🌍",
+        title: "Minimale Auswirkungen",
+        desc: "Grünes Hosting und ökologische Optimierungen"
+      }
+    ],
+
+    // Services
+    servicesTitle: "Meine Leistungen",
+    services: [
+      {
+        title: "Umweltverantwortliche Präsentationswebsite",
+        price: "Ab 1500€",
+        description: "Präsentationssite optimiert für Ihr Unternehmen",
+        features: [
+          "Ladezeit < 1 Sekunde",
+          "Content-Management-System möglich",
+          "Sicheres Kontaktformular", 
+          "🎁 KOSTENLOSES LEBENSLÄNGLICH Hosting",
+          "Einfache kostengünstige Wartung"
+        ],
+        ideal: "Ideal für: Handwerker, Freiberufler, KMU"
+      },
+      {
+        title: "Erweiterte Site & E-Commerce",
+        price: "Ab 3000€",
+        description: "Komplette Lösung mit erweiterten Funktionen",
+        features: [
+          "Logische und skalierbare Architektur",
+          "Integriertes Content-Management-System",
+          "Drittanbieter-Integrationen (Zahlung, Analytics...)",
+          "Erweiterte Animationen und Interaktionen",
+          "Umfassende Betreuung"
+        ],
+        ideal: "Ideal für: E-Commerce, Plattformen, komplexe Projekte"
+      },
+      {
+        title: "Audit & Optimierung",
+        price: "Ab 800€",
+        description: "Verbesserung Ihrer bestehenden Site",
+        features: [
+          "Technisches und Umweltverantwortungs-Audit",
+          "Leistungsoptimierung",
+          "SEO-Verbesserung", 
+          "Barrierefreiheitskorrekturen",
+          "Detaillierter Bericht und Empfehlungen"
+        ],
+        ideal: "Ideal für: bestehende Sites zur Optimierung"
+      }
+    ],
+
+    // Process
+    processTitle: "Wie es funktioniert",
+    processSteps: [
+      {
+        step: "1",
+        title: "Erste Besprechung",
+        desc: "Wir besprechen Ihr Projekt und Ihre Bedürfnisse"
+      },
+      {
+        step: "2",
+        title: "Maßgeschneiderter Vorschlag",
+        desc: "Ich sende Ihnen innerhalb von 48h ein personalisiertes Angebot"
+      },
+      {
+        step: "3", 
+        title: "Konzeption",
+        desc: "Design und Entwicklung in enger Zusammenarbeit"
+      },
+      {
+        step: "4",
+        title: "Lieferung & Schulung",
+        desc: "Online-Stellung und Schulung für Autonomie"
+      }
+    ],
+
+    // CTA
+    ctaTitle: "Bereit, Ihr Projekt zu starten?",
+    ctaDesc: "Lassen Sie uns über Ihr Projekt sprechen und sehen, wie wir gemeinsam eine Site erstellen können, die Sie widerspiegelt.",
+    
+    // Form
+    formTitle: "Erzählen Sie mir von Ihrem Projekt",
+    nameLabel: "Ihr Name",
+    emailLabel: "Ihre E-Mail",
+    companyLabel: "Ihr Unternehmen (optional)",
+    projectTypeLabel: "Projekttyp",
+    projectTypes: {
+      showcase: "Präsentationswebsite",
+      ecommerce: "E-Commerce",
+      audit: "Audit/Optimierung",
+      other: "Anderes Projekt"
+    },
+    budgetLabel: "Erwartetes Budget",
+    budgetOptions: {
+      small: "1000€ - 2500€",
+      medium: "2500€ - 5000€", 
+      large: "5000€ und mehr",
+      flexible: "Zu besprechen"
+    },
+    messageLabel: "Beschreiben Sie Ihr Projekt",
+    messagePlaceholder: "Erzählen Sie mir von Ihrem Unternehmen, Ihren Zielen, was Sie sich für Ihre Site wünschen...",
+    submitButton: "Personalisiertes Angebot anfordern",
+    
+    // Mentions
+    includesTitle: "Was immer enthalten ist",
+    includes: [
+      "Quellcode geliefert (Sie besitzen ihn)",
+      "Maßgeschneidertes responsives Design",
+      "Ultraschnelle und optimierte Site",
+      "Gut positioniert auf Google (SEO inklusive)",
+      "Hilfe beim Domain-Namen-Kauf",
+      "Nutzungsschulung"
+    ],
+    
+    whyTitle: "Warum eine umweltverantwortliche Site wählen?",
+    whyReasons: [
+      "3x schneller als der Durchschnitt",
+      "90% weniger Energieverbrauch",
+      "Besseres Google-Ranking",
+      "Optimale Benutzererfahrung",
+      "Reduzierte Hosting-Kosten", 
+      "Verantwortliches Markenimage"
+    ]
+  }
+} as const;
+
+// Utiliser la langue demandée ou français par défaut
+const t = content[lang] || content.fr;
+
+// Déterminer si le mode éco est actif en fonction de l'URL
+const { pathname } = Astro.url;
+const isEcoMode = pathname.includes("/eco");
+---
+
+<Layout
+  title={t.title}
+  description={t.description}
+  lang={lang}
+  isEcoMode={isEcoMode}
+>
+  <div class="container mx-auto px-4 py-8">
+    <!-- En-tête -->
+    <div class="text-center mb-12">
+      <h1 class="text-4xl font-bold mb-4">{t.pageTitle}</h1>
+      <p class="text-xl text-text-muted max-w-3xl mx-auto">{t.intro}</p>
+    </div>
+
+    <!-- Approche éco-responsable -->
+    <section class="mb-16">
+      <h2 class="text-2xl font-bold mb-8 text-center text-accent">{t.approachTitle}</h2>
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {t.approaches.map((approach) => (
+          <div class="text-center p-4">
+            <div class="text-4xl mb-3">{approach.icon}</div>
+            <h3 class="font-semibold mb-2">{approach.title}</h3>
+            <p class="text-sm text-text-muted">{approach.desc}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Services -->
+    <section class="mb-16">
+      <h2 class="text-2xl font-bold mb-8 text-center text-accent">{t.servicesTitle}</h2>
+      <div class="grid lg:grid-cols-3 gap-8">
+        {t.services.map((service) => (
+          <div class="bg-secondary bg-opacity-30 p-6 rounded-lg">
+            <h3 class="text-xl font-bold mb-2">{service.title}</h3>
+            <div class="text-accent font-bold text-lg mb-3">{service.price}</div>
+            <p class="text-text-muted mb-4">{service.description}</p>
+            <ul class="space-y-2 mb-4">
+              {service.features.map((feature) => (
+                <li class="flex items-start">
+                  <span class="text-accent mr-2">✓</span>
+                  <span class="text-sm">{feature}</span>
+                </li>
+              ))}
+            </ul>
+            <p class="text-xs text-accent italic">{service.ideal}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Processus -->
+    <section class="mb-16">
+      <h2 class="text-2xl font-bold mb-8 text-center text-accent">{t.processTitle}</h2>
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {t.processSteps.map((step) => (
+          <div class="text-center">
+            <div class="bg-accent text-primary w-12 h-12 rounded-full flex items-center justify-center font-bold text-xl mx-auto mb-4">
+              {step.step}
+            </div>
+            <h3 class="font-semibold mb-2">{step.title}</h3>
+            <p class="text-sm text-text-muted">{step.desc}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- CTA et formulaire -->
+    <section class="bg-secondary bg-opacity-20 p-8 rounded-lg mb-16">
+      <div class="text-center mb-8">
+        <h2 class="text-2xl font-bold mb-4 text-accent">{t.ctaTitle}</h2>
+        <p class="text-text-muted">{t.ctaDesc}</p>
+      </div>
+
+      <div class="max-w-2xl mx-auto">
+        <form
+          method="POST"
+          action="https://api.web3forms.com/submit"
+          class="space-y-6"
+        >
+          <!-- Configuration Web3Forms -->
+          <input type="hidden" name="access_key" value="2dcc3f1b-036f-48a7-987a-cdada0d05ae5" />
+          <input type="hidden" name="subject" value="Nouvelle demande de devis - Services" />
+          <input type="hidden" name="from_name" value="Portfolio Services" />
+
+          <h3 class="text-xl font-semibold mb-4">{t.formTitle}</h3>
+
+          <div class="grid md:grid-cols-2 gap-4">
+            <div>
+              <label for="name" class="block mb-1 font-medium">{t.nameLabel} *</label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                class="w-full p-3 border border-form bg-primary rounded-md"
+                required
+              />
+            </div>
+            <div>
+              <label for="email" class="block mb-1 font-medium">{t.emailLabel} *</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                class="w-full p-3 border border-form bg-primary rounded-md"
+                required
+              />
+            </div>
+          </div>
+
+          <div>
+            <label for="company" class="block mb-1 font-medium">{t.companyLabel}</label>
+            <input
+              type="text"
+              id="company"
+              name="company"
+              class="w-full p-3 border border-form bg-primary rounded-md"
+            />
+          </div>
+
+          <div class="grid md:grid-cols-2 gap-4">
+            <div>
+              <label for="project_type" class="block mb-1 font-medium">{t.projectTypeLabel} *</label>
+              <select
+                id="project_type"
+                name="project_type"
+                class="w-full p-3 border border-form bg-primary rounded-md"
+                required
+              >
+                <option value="showcase">{t.projectTypes.showcase}</option>
+                <option value="ecommerce">{t.projectTypes.ecommerce}</option>
+                <option value="audit">{t.projectTypes.audit}</option>
+                <option value="other">{t.projectTypes.other}</option>
+              </select>
+            </div>
+            <div>
+              <label for="budget" class="block mb-1 font-medium">{t.budgetLabel}</label>
+              <select
+                id="budget"
+                name="budget"
+                class="w-full p-3 border border-form bg-primary rounded-md"
+              >
+                <option value="small">{t.budgetOptions.small}</option>
+                <option value="medium">{t.budgetOptions.medium}</option>
+                <option value="large">{t.budgetOptions.large}</option>
+                <option value="flexible">{t.budgetOptions.flexible}</option>
+              </select>
+            </div>
+          </div>
+
+          <div>
+            <label for="message" class="block mb-1 font-medium">{t.messageLabel} *</label>
+            <textarea
+              id="message"
+              name="message"
+              rows="5"
+              class="w-full p-3 border border-form bg-primary rounded-md"
+              placeholder={t.messagePlaceholder}
+              required
+            ></textarea>
+          </div>
+
+          <!-- Honeypot -->
+          <input type="text" name="botcheck" class="hidden" />
+
+          <div class="text-center">
+            <button type="submit" class="cta-button text-lg px-8 py-3">
+              {t.submitButton}
+            </button>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <!-- Informations complémentaires -->
+    <div class="grid lg:grid-cols-2 gap-8">
+      <!-- Ce qui est inclus -->
+      <div class="bg-secondary bg-opacity-20 p-6 rounded-lg">
+        <h3 class="text-xl font-bold mb-4 text-accent">{t.includesTitle}</h3>
+        <ul class="space-y-2">
+          {t.includes.map((item) => (
+            <li class="flex items-start">
+              <span class="text-accent mr-2">✓</span>
+              <span class="text-sm">{item}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <!-- Pourquoi éco-responsable -->
+      <div class="bg-secondary bg-opacity-20 p-6 rounded-lg">
+        <h3 class="text-xl font-bold mb-4 text-accent">{t.whyTitle}</h3>
+        <ul class="space-y-2">
+          {t.whyReasons.map((reason) => (
+            <li class="flex items-start">
+              <span class="text-accent mr-2">🌱</span>
+              <span class="text-sm">{reason}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+
+    <!-- Contact direct -->
+    <div class="text-center mt-12 p-6 border border-accent border-opacity-30 rounded-lg">
+      <h3 class="text-lg font-semibold mb-2">
+        {lang === 'fr' ? 'Vous préférez échanger directement ?' : 
+         lang === 'en' ? 'Prefer to talk directly?' : 
+         'Möchten Sie lieber direkt sprechen?'}
+      </h3>
+      <p class="text-text-muted mb-4">
+        {lang === 'fr' ? 'Appelez-moi ou envoyez-moi un email pour discuter de votre projet. Le nom de domaine reste à votre charge (env. 10-15€/an).' : 
+         lang === 'en' ? 'Call me or send me an email to discuss your project. Domain name at your expense (approx. €10-15/year).' : 
+         'Rufen Sie mich an oder senden Sie mir eine E-Mail, um Ihr Projekt zu besprechen. Domain-Name auf Ihre Kosten (ca. 10-15€/Jahr).'}
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+        <a href="tel:+33781339768" class="text-accent hover:text-accent-hover">
+          📞 +33 7 81 33 97 68
+        </a>
+        <a href={`mailto:contact@jkw.ovh?subject=${lang === 'fr' ? 'Demande de devis' : lang === 'en' ? 'Quote request' : 'Angebotsanfrage'}`} class="text-accent hover:text-accent-hover">
+          ✉️ contact@jkw.ovh
+        </a>
+      </div>
+    </div>
+  </div>
+</Layout>

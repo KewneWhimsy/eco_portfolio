@@ -40,7 +40,7 @@ const content = {
         description:
           "Sites professionnels personnalisés, rapides et bien placés sur Google - sans WordPress ni abonnements coûteux.",
         hasQuote: true,
-        quoteLink: `/${lang}/quote_presentation/eco/`
+        quoteLink: `/${lang}/services/eco/`
       },
       {
         title: "Applications web",
@@ -144,7 +144,7 @@ const content = {
         description:
           "Personalized, fast, and SEO-optimized professional websites - without WordPress or costly subscriptions.",
         hasQuote: true, // Propriété pour identifier que ce service a un formulaire de devis
-        quoteLink: `/${lang}/quote_presentation/eco/`
+        quoteLink: `/${lang}/services/eco/`
       },
       {
         title: "Web applications",
@@ -248,7 +248,7 @@ const content = {
         description:
           "Personalisierte, schnelle und SEO-optimierte professionelle Websites - ohne WordPress oder kostspielige Abonnements.",
         hasQuote: true, // Propriété pour identifier que ce service a un formulaire de devis
-        quoteLink: `/${lang}/quote_presentation/eco/`
+        quoteLink: `/${lang}/services/eco/`
       },
       {
         title: "Webanwendungen",
@@ -404,7 +404,7 @@ const isEcoMode = true;
             <li class="mb-3">
               <strong>{service.title}</strong>: {service.description}
               {service.hasQuote && (
-                <span> (<a href={`/${lang}/quote_presentation/eco/`} class="text-link">
+                <span> (<a href={`/${lang}/services/eco/`} class="text-link">
                   {lang === "fr" ? "obtenir un devis" : lang === "en" ? "get a quote" : "angebot erhalten"}
                 </a>)</span>
               )}
