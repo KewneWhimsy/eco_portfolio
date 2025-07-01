@@ -1,0 +1,271 @@
+---
+// src/pages/[lang]/[slug]/eco.astro
+import { getCollection } from "astro:content";
+import Layout from "../../../layouts/layout.astro";
+import EcoModeInfo from "../../../components/eco_mode_info.astro";
+import { marked } from "marked";
+
+type Lang = "fr" | "en" | "de";
+
+export async function getStaticPaths() {
+  const projects = await getCollection("projects");
+  const langs = ["fr", "en", "de"];
+
+  return langs.flatMap((lang) =>
+    projects.map((project) => ({
+      params: {
+        lang,
+        slug: project.data.slug,
+      },
+      props: { project, lang },
+    }))
+  );
+}
+
+const { project, lang } = Astro.props;
+
+// Fonction pour extraire le contenu selon la langue
+const getContentForLang = (body: string, currentLang: string): string => {
+  if (!body || !body.includes("---lang:")) {
+    return body || "";
+  }
+
+  const sections = body.split(/---lang:([a-z]{2})---/);
+
+  if (currentLang === "fr") {
+    return sections[0]?.trim() || "";
+  }
+
+  for (let i = 1; i < sections.length; i += 2) {
+    if (sections[i] === currentLang) {
+      return sections[i + 1]?.trim() || "";
+    }
+  }
+
+  return sections[0]?.trim() || "";
+};
+
+// Récupérer et compiler le contenu pour la langue courante
+const rawContent = getContentForLang(project.body || "", lang);
+const htmlContent = marked(rawContent);
+
+// Navigation éco (simplifié)
+const navContent = {
+  fr: {
+    allProjects: "Tous les projets",
+    visitSite: "Visiter le site",
+    viewCode: "Code source",
+    techTitle: "Technologies",
+    collaboratorRole: "Avec",
+    nextProject: "Projet suivant",
+    prevProject: "Projet précédent",
+  },
+  en: {
+    allProjects: "All projects",
+    visitSite: "Visit site",
+    viewCode: "Source code",
+    techTitle: "Technologies",
+    collaboratorRole: "With",
+    nextProject: "Next project",
+    prevProject: "Previous project",
+  },
+  de: {
+    allProjects: "Alle Projekte",
+    visitSite: "Website besuchen",
+    viewCode: "Quellcode",
+    techTitle: "Technologien",
+    collaboratorRole: "Mit",
+    nextProject: "Nächstes Projekt",
+    prevProject: "Vorheriges Projekt",
+  },
+};
+
+const t = navContent[lang as keyof typeof navContent] || navContent.fr;
+const collaborators = project.data.collaborators || [];
+
+// Navigation entre projets
+const allProjects = await getCollection("projects");
+const sortedProjects = allProjects.sort((a, b) => a.data.order - b.data.order);
+const currentIndex = sortedProjects.findIndex(
+  (p) => p.data.slug === project.data.slug
+);
+const prevProject = currentIndex > 0 ? sortedProjects[currentIndex - 1] : null;
+const nextProject =
+  currentIndex < sortedProjects.length - 1
+    ? sortedProjects[currentIndex + 1]
+    : null;
+---
+
+<Layout
+  title={`${project.data.title[lang]} | Josselin HANEL (Mode Éco)`}
+  description={project.data.description[lang]}
+  lang={lang}
+  isEcoMode={true}
+>
+  <div class="container mx-auto px-4 py-8 max-w-4xl">
+    <!-- Info mode éco -->
+    <EcoModeInfo lang={lang as "fr" | "en" | "de"} />
+    
+    <!-- Navigation retour -->
+    <div class="mb-6">
+      <a href={`/${lang}/projects/eco/`} class="text-accent hover:underline">
+        ← {t.allProjects}
+      </a>
+    </div>
+
+    <!-- En-tête -->
+    <header class="mb-8">
+      <h1
+        class="text-3xl font-bold mb-2 text-accent border-b border-accent pb-2"
+      >
+        {project.data.title[lang]}
+      </h1>
+      <p class="text-text-muted mb-4">{project.data.year}</p>
+
+      <!-- Collaborateurs si présents -->
+      {
+        collaborators.length > 0 && (
+          <p class="text-text-muted mb-4">
+            {t.collaboratorRole}:
+            {collaborators.map((collab, index) => (
+              <>
+                {collab.url ? (
+                  <a
+                    href={collab.url}
+                    target="_blank"
+                    rel="noopener"
+                    class="text-accent hover:underline"
+                  >
+                    {collab.name}
+                  </a>
+                ) : (
+                  <span class="text-accent">{collab.name}</span>
+                )}
+                {collab.role?.[lang] && <span> ({collab.role[lang]})</span>}
+                {index < collaborators.length - 1 && ", "}
+              </>
+            ))}
+          </p>
+        )
+      }
+    </header>
+
+    <!-- Image du projet (plus petite) -->
+    <div class="mb-8 text-center">
+      <img
+        src={project.data.images.hero.replace("../../assets/", "/src/assets/")}
+        alt={project.data.title[lang]}
+        class="max-w-md mx-auto rounded border border-secondary"
+        loading="lazy"
+      />
+    </div>
+
+    <!-- Liens principaux -->
+    <section class="mb-8">
+      <div class="flex flex-wrap gap-3">
+        {
+          project.data.links?.website && (
+            <a
+              href={project.data.links.website}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="bg-accent text-white px-4 py-2 rounded hover:bg-accent-hover"
+            >
+              {t.visitSite}
+            </a>
+          )
+        }
+
+        {
+          project.data.links?.github && (
+            <a
+              href={project.data.links.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="border border-accent text-accent px-4 py-2 rounded hover:bg-accent hover:text-white"
+            >
+              {t.viewCode}
+            </a>
+          )
+        }
+
+        {
+          project.data.links?.githubFrontend && (
+            <a
+              href={project.data.links.githubFrontend}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="border border-accent text-accent px-4 py-2 rounded hover:bg-accent hover:text-white"
+            >
+              Frontend
+            </a>
+          )
+        }
+
+        {
+          project.data.links?.githubBackend && (
+            <a
+              href={project.data.links.githubBackend}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="border border-accent text-accent px-4 py-2 rounded hover:bg-accent hover:text-white"
+            >
+              Backend
+            </a>
+          )
+        }
+      </div>
+    </section>
+
+    <!-- Contenu du projet -->
+    <article
+      class="mb-8 prose max-w-none [&>h1]:text-2xl [&>h1]:font-bold [&>h1]:text-accent [&>h1]:mb-4 [&>h1]:border-b [&>h1]:border-accent [&>h1]:pb-2 [&>h2]:text-xl [&>h2]:font-bold [&>h2]:text-accent [&>h2]:mb-3 [&>h2]:border-b [&>h2]:border-accent [&>h2]:pb-2 [&>h3]:text-lg [&>h3]:font-semibold [&>h3]:text-accent [&>h3]:mb-2 [&>p]:mb-4 [&>p]:leading-relaxed [&>strong]:font-semibold [&>strong]:text-accent [&>ul]:list-disc [&>ul]:pl-6 [&>ul]:mb-4 [&>ul]:space-y-2 [&>li]:leading-relaxed"
+      set:html={htmlContent}
+    />
+
+    <!-- Technologies utilisées -->
+    <section class="mb-8">
+      <h2
+        class="text-xl font-bold mb-3 text-accent border-b border-accent pb-2"
+      >
+        {t.techTitle}
+      </h2>
+      <div class="flex flex-wrap gap-2">
+        {
+          project.data.tech.map((tech) => (
+            <span class="bg-secondary text-text px-3 py-1 rounded-full text-sm">
+              {tech}
+            </span>
+          ))
+        }
+      </div>
+    </section>
+
+    <!-- Navigation entre projets -->
+    <nav class="border-t border-secondary pt-6 mt-8 flex justify-between">
+      {
+        prevProject ? (
+          <a
+            href={`/${lang}/${prevProject.data.slug}/eco/`}
+            class="text-accent hover:underline"
+          >
+            ← {t.prevProject}: {prevProject.data.title[lang]}
+          </a>
+        ) : (
+          <div />
+        )
+      }
+
+      {
+        nextProject && (
+          <a
+            href={`/${lang}/${nextProject.data.slug}/eco/`}
+            class="text-accent hover:underline text-right"
+          >
+            {t.nextProject}: {nextProject.data.title[lang]} →
+          </a>
+        )
+      }
+    </nav>
+  </div>
+</Layout>
