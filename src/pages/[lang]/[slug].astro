@@ -1,0 +1,302 @@
+---
+// src/pages/[lang]/[slug].astro
+import { getCollection, type CollectionEntry } from "astro:content";
+import { Picture } from "astro:assets";
+import Layout from "../../layouts/layout.astro";
+import CtaDispo from "../../components/cta_dispo.astro";
+import MarkdownContent from "../../components/markdown_content.astro";
+
+type Lang = "fr" | "en" | "de";
+
+export async function getStaticPaths() {
+  const projects = await getCollection("projects");
+  const langs: Lang[] = ["fr", "en", "de"];
+
+  return langs.flatMap((lang) =>
+    projects.map((project: CollectionEntry<"projects">) => ({
+      params: { lang, slug: project.data.slug },
+      props: { project, lang },
+    }))
+  );
+}
+
+interface Props {
+  project: CollectionEntry<"projects">;
+  lang: Lang;
+}
+
+const { project, lang } = Astro.props as Props;
+const { Content } = await project.render();
+
+// Contenu multilingue pour les éléments de navigation
+const navContent = {
+  fr: {
+    allProjects: "Tous les projets",
+    nextProject: "Projet suivant",
+    prevProject: "Projet précédent",
+    visitSite: "Visiter le site web",
+    viewSourceCode: "Voir le code source",
+    viewFrontendCode: "Repo Frontend",
+    viewBackendCode: "Repo Backend",
+    techTitle: "Technologies utilisées",
+    collaboratorRole: "En collaboration avec",
+  },
+  en: {
+    allProjects: "All projects",
+    nextProject: "Next project",
+    prevProject: "Previous project",
+    visitSite: "Visit the website",
+    viewSourceCode: "View source code",
+    viewFrontendCode: "Frontend Repo",
+    viewBackendCode: "Backend Repo",
+    techTitle: "Technologies used",
+    collaboratorRole: "In collaboration with",
+  },
+  de: {
+    allProjects: "Alle Projekte",
+    nextProject: "Nächstes Projekt",
+    prevProject: "Vorheriges Projekt",
+    visitSite: "Website besuchen",
+    viewSourceCode: "Quellcode ansehen",
+    viewFrontendCode: "Frontend Repo",
+    viewBackendCode: "Backend Repo",
+    techTitle: "Verwendete Technologien",
+    collaboratorRole: "In Zusammenarbeit mit",
+  },
+};
+
+const t = navContent[lang as keyof typeof navContent] || navContent.fr;
+
+// Récupérer tous les projets pour la navigation
+const allProjects = await getCollection("projects");
+const sortedProjects = allProjects.sort(
+  (a: CollectionEntry<"projects">, b: CollectionEntry<"projects">) =>
+    a.data.order - b.data.order
+);
+const currentIndex = sortedProjects.findIndex(
+  (p: CollectionEntry<"projects">) => p.data.slug === project.data.slug
+);
+
+const prevProject = currentIndex > 0 ? sortedProjects[currentIndex - 1] : null;
+const nextProject =
+  currentIndex < sortedProjects.length - 1
+    ? sortedProjects[currentIndex + 1]
+    : null;
+
+// Import dynamique des images
+const heroImage = await import(/* @vite-ignore */ project.data.images.hero);
+let galleryImages: any[] = [];
+if (project.data.images.gallery) {
+  galleryImages = await Promise.all(
+    project.data.images.gallery.map(async (imagePath: string) => {
+      const img = await import(/* @vite-ignore */ imagePath);
+      return img.default;
+    })
+  );
+}
+---
+
+<Layout
+  title={`${project.data.title[lang]} | Josselin HANEL`}
+  description={project.data.description[lang]}
+  lang={lang}
+>
+  <div class="container mx-auto px-4 py-8">
+    <div class="mb-4">
+      <a
+        href={`/${lang}/projects/`}
+        class="text-text-muted hover:text-accent transition-colors"
+      >
+        &larr; {t.allProjects}
+      </a>
+    </div>
+
+    <!-- En-tête du projet -->
+    <header class="mb-10">
+      <h1 class="text-3xl font-bold mb-6 border-b border-accent pb-2">
+        {project.data.title[lang]} ({project.data.year})
+      </h1>
+
+      <!-- Collaborateurs si présents -->
+      {
+        project.data.collaborators && project.data.collaborators.length > 0 && (
+          <div class="mb-4">
+            <p class="text-text-muted">
+              {t.collaboratorRole}{" "}
+              {project.data.collaborators.map((collab: any, index: number) => (
+                <>
+                  {collab.url ? (
+                    <a
+                      href={collab.url}
+                      target="_blank"
+                      rel="noopener"
+                      class="text-jade"
+                    >
+                      {collab.name}
+                    </a>
+                  ) : (
+                    <span class="text-jade">{collab.name}</span>
+                  )}
+                  {collab.role &&
+                    collab.role[lang as keyof typeof collab.role] && (
+                      <span class="text-text-muted">
+                        {" "}
+                        ({collab.role[lang as keyof typeof collab.role]})
+                      </span>
+                    )}
+                  {index < project.data.collaborators.length - 1 && ", "}
+                </>
+              ))}
+            </p>
+          </div>
+        )
+      }
+    </header>
+
+    <!-- Image principale du projet -->
+    <div class="mb-10 bg-secondary bg-opacity-30 p-4 rounded-lg">
+      <Picture
+        src={heroImage.default}
+        widths={[800, 1200, 1600]}
+        formats={["avif", "webp", "jpg"]}
+        alt={project.data.title[lang]}
+        class="w-full rounded-lg"
+      />
+    </div>
+
+    <!-- Actions principales -->
+    <section class="mb-10">
+      <div class="flex flex-wrap gap-4 mb-8">
+        {
+          project.data.links?.website && (
+            <a
+              href={project.data.links.website}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="cta-button"
+            >
+              {t.visitSite}
+            </a>
+          )
+        }
+
+        {
+          project.data.links?.github && (
+            <a
+              href={project.data.links.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn-secondary"
+            >
+              {t.viewSourceCode}
+            </a>
+          )
+        }
+
+        {
+          project.data.links?.githubFrontend && (
+            <a
+              href={project.data.links.githubFrontend}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn-secondary"
+            >
+              {t.viewFrontendCode}
+            </a>
+          )
+        }
+
+        {
+          project.data.links?.githubBackend && (
+            <a
+              href={project.data.links.githubBackend}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn-secondary"
+            >
+              {t.viewBackendCode}
+            </a>
+          )
+        }
+      </div>
+    </section>
+
+    <!-- Contenu du projet (Markdown) -->
+    <MarkdownContent class="mb-10 max-w-none">
+      <Content />
+    </MarkdownContent>
+
+    <!-- Images de galerie si présentes -->
+    {
+      galleryImages.length > 0 && (
+        <section class="mb-10">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {galleryImages.map((image, index) => (
+              <div class="bg-secondary bg-opacity-30 p-2 rounded-lg">
+                <Picture
+                  src={image}
+                  widths={[400, 600, 900]}
+                  formats={["avif", "webp", "jpg"]}
+                  alt={`${project.data.title[lang]} - Image ${index + 1}`}
+                  class="w-full h-full object-cover rounded-lg"
+                  loading="lazy"
+                />
+              </div>
+            ))}
+          </div>
+        </section>
+      )
+    }
+
+    <!-- Technologies utilisées -->
+    <section class="mb-16">
+      <h2 class="text-2xl font-bold mb-4 text-accent">
+        {t.techTitle}
+      </h2>
+      <div class="flex flex-wrap gap-2 mb-6">
+        {
+          project.data.tech.map((tech: string) => (
+            <span class="px-3 py-1 bg-accent bg-opacity-20 rounded-full transition-all hover:bg-opacity-40">
+              {tech}
+            </span>
+          ))
+        }
+      </div>
+    </section>
+
+    <!-- Navigation entre projets -->
+    <div class="border-t border-secondary pt-8 mt-12 flex justify-between">
+      {
+        prevProject ? (
+          <a href={`/${lang}/${prevProject.data.slug}/`} class="btn-secondary">
+            &larr; {t.prevProject}:{" "}
+            {
+              prevProject.data.title[
+                lang as keyof typeof prevProject.data.title
+              ]
+            }
+          </a>
+        ) : (
+          <div />
+        )
+      }
+
+      {
+        nextProject && (
+          <a href={`/${lang}/${nextProject.data.slug}/`} class="btn-secondary">
+            {t.nextProject}:{" "}
+            {
+              nextProject.data.title[
+                lang as keyof typeof nextProject.data.title
+              ]
+            }{" "}
+            &rarr;
+          </a>
+        )
+      }
+    </div>
+
+    <!-- CTA de contact -->
+    <CtaDispo />
+  </div>
+</Layout>
