@@ -6,6 +6,8 @@ import monImage from "../../assets/j.jpg";
 import objetImage from "../../assets/projects/objet01.png";
 import esportImage from "../../assets/projects/esport01.png";
 import CtaDispo from "../../components/cta_dispo.astro";
+import { getCollection } from 'astro:content';
+import { loadHeroImage } from '../../utils/imageLoader';
 
 // Récupérer le paramètre de langue depuis l'URL
 export function getStaticPaths() {
@@ -15,6 +17,23 @@ export function getStaticPaths() {
     { params: { lang: "de" } },
   ];
 }
+
+// Récupération des 2 projets les plus récents
+const allProjects = await getCollection("projects");
+const recentProjects = allProjects
+  .sort((a, b) => b.data.order - a.data.order)
+  .slice(0, 2);
+
+// Chargement des images hero pour les projets récents
+const recentProjectsWithImages = await Promise.all(
+  recentProjects.map(async (project) => {
+    const heroImage = await loadHeroImage(project.data.slug);
+    return {
+      ...project,
+      image: heroImage
+    };
+  })
+);
 
 const lang = Astro.params.lang as "fr" | "en" | "de";
 
@@ -507,37 +526,41 @@ const featuredProjects = [
     </section>
     
     <!-- Section projets en vedette -->
-    <section class="py-2 sm:py-8 fade-in opacity-0 translate-y-6 transition-all duration-500">
-      <h2 class="text-2xl font-bold mb-6 border-b border-accent pb-2">
-        {t.projectsTitle}
-      </h2>
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {
-          featuredProjects.map((project) => (
-          <div class="project-card w-full">
-            <!-- Image du projet -->
-            <div class="bg-primary bg-opacity-30 aspect-video w-full">
+    <!-- Section projets en vedette -->
+<section class="py-2 sm:py-8 fade-in opacity-0 translate-y-6 transition-all duration-500">
+  <h2 class="text-2xl font-bold mb-6 border-b border-accent pb-2">
+    {t.projectsTitle}
+  </h2>
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    {recentProjects.map(async (project) => {
+      const heroImage = await loadHeroImage(project.data.slug);
+      return (
+        <div class="project-card w-full">
+          <div class="flex flex-col flex-1">
+            <!-- Couverture du projet -->
+            <a href={`/${lang}/${project.data.slug}/`} class="block bg-primary bg-opacity-30 aspect-video w-full relative">
               <Picture
-                src={project.image}
+                src={heroImage}
                 widths={[400, 740, 1080]}
                 sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                 formats={["avif", "webp", "jpg"]}
-                alt={project.title}
+                alt={project.data.title[lang]}
                 class="w-full h-full object-cover"
                 loading="lazy"
+                transition:name={`project-image-${project.data.slug}`}
               />
-            </div>
-            
+            </a>
+          
             <!-- Contenu du projet -->
             <div class="p-4 flex flex-col h-full">
               <div class="flex-1">
-                <h3 class="text-xl font-bold mb-2">{project.title}</h3>
-                <p class="mb-4" set:html={project.description}></p>
+                <h3 class="text-xl font-bold mb-2">{project.data.title[lang]}</h3>
+                <p class="mb-4" set:html={project.data.description[lang]}></p>
                 
                 <!-- Technologies complètes comme demandé -->
                 <div class="mb-4">
                   <div class="flex flex-wrap gap-1.5">
-                    {project.tech.map((tech) => (
+                    {project.data.tech.map((tech) => (
                       <span class="px-2 py-0.5 border border-accent text-light rounded-full text-xs">
                         {tech}
                       </span>
@@ -549,35 +572,23 @@ const featuredProjects = [
               <!-- Boutons -->
               <div class="mt-auto">
                 <div class="flex gap-3">
-                  <a href={project.url} class="btn-secondary flex-1 text-center">
+                  <a href={`/${lang}/${project.data.slug}/`} class="btn-secondary flex-1 text-center">
                     {t.projectButton}
                   </a>
                 </div>
               </div>
             </div>
           </div>
-          ))
-        }
-      </div>
-      <div class="text-center mt-8">
-        <a
-          href={`/${lang}/projects/`}
-          style="
-            display: inline-block;
-            padding: 8px 16px;
-            background-color: transparent;
-            border: 1px solid var(--color-accent);
-            color: var(--color-accent);
-            border-radius: 4px;
-            transition: transform 0.3s ease, background-color 0.3s ease, color 0.3s ease;
-          "
-          onmouseover="this.style.transform='translateY(-1px)'; this.style.backgroundColor='rgba(77, 163, 77, 0.1)'; this.style.color='var(--color-text)';"
-          onmouseout="this.style.transform='translateY(0)'; this.style.backgroundColor='transparent'; this.style.color='var(--color-accent)';"
-        >
-          {t.viewAllProjectsButton}
-        </a>
-      </div>
-    </section>
+        </div>
+      );
+    })}
+  </div>
+  <div class="text-center mt-8">
+    <a href={`/${lang}/projects/`} class="btn-secondary">
+      {t.viewAllProjectsButton}
+    </a>
+  </div>
+</section>
 
     <!-- Section appel à l'action -->
     <section>
