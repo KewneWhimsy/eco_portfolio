@@ -1,6 +1,7 @@
 ---
 // src/pages/[lang]/[slug]/eco.astro
 import { getCollection } from "astro:content";
+import { Picture } from "astro:assets";
 import Layout from "../../../layouts/layout.astro";
 import EcoModeInfo from "../../../components/eco_mode_info.astro";
 import { marked } from "marked";
@@ -23,6 +24,22 @@ export async function getStaticPaths() {
 }
 
 const { project, lang } = Astro.props;
+
+// Fonction simple pour charger seulement l'image hero en mode éco
+async function loadHeroImageBySlug(slug: string) {
+  const formats = ['png', 'jpg', 'jpeg', 'webp'];
+  
+  for (const format of formats) {
+    try {
+      const img = await import(`../../../assets/projects/${slug}00.${format}`);
+      return img.default;
+    } catch {
+      continue;
+    }
+  }
+  
+  return null;
+}
 
 // Fonction pour extraire le contenu selon la langue
 const getContentForLang = (body: string, currentLang: string): string => {
@@ -90,10 +107,10 @@ const currentIndex = sortedProjects.findIndex(
   (p) => p.data.slug === project.data.slug
 );
 const prevProject = currentIndex > 0 ? sortedProjects[currentIndex - 1] : null;
-const nextProject =
-  currentIndex < sortedProjects.length - 1
-    ? sortedProjects[currentIndex + 1]
-    : null;
+const nextProject = currentIndex < sortedProjects.length - 1 ? sortedProjects[currentIndex + 1] : null;
+
+// Charger seulement l'image hero pour le mode éco
+const heroImage = await loadHeroImageBySlug(project.data.slug);
 ---
 
 <Layout
@@ -150,15 +167,19 @@ const nextProject =
       }
     </header>
 
-    <!-- Image du projet (plus petite) -->
-    <div class="mb-8 text-center">
-      <img
-        src={project.data.images.hero.replace("../../assets/", "/src/assets/")}
-        alt={project.data.title[lang]}
-        class="max-w-md mx-auto rounded border border-secondary"
-        loading="lazy"
-      />
-    </div>
+    <!-- Image du projet (optimisée mais plus petite) -->
+    {heroImage && (
+      <div class="mb-8 text-center">
+        <Picture
+          src={heroImage}
+          widths={[400, 600]}
+          formats={["avif", "webp", "jpg"]}
+          alt={project.data.title[lang]}
+          class="max-w-md mx-auto rounded border border-secondary"
+          loading="lazy"
+        />
+      </div>
+    )}
 
     <!-- Liens principaux -->
     <section class="mb-8">

@@ -6,6 +6,8 @@ import Layout from "../../layouts/layout.astro";
 import CtaDispo from "../../components/cta_dispo.astro";
 import { marked } from 'marked';
 
+type Lang = 'fr' | 'en' | 'de';
+
 export async function getStaticPaths() {
   const projects = await getCollection("projects");
   const langs = ["fr", "en", "de"];
@@ -22,6 +24,45 @@ export async function getStaticPaths() {
 }
 
 const { project, lang } = Astro.props;
+
+// Fonction simple pour charger les images basées sur le nom du slug
+async function loadImagesBySlug(slug: string) {
+  let heroImage: any = null;
+  
+  // Essayer différents formats pour l'image hero (00)
+  const formats = ['png', 'jpg', 'jpeg', 'webp'];
+  for (const format of formats) {
+    try {
+      const img = await import(`../../assets/projects/${slug}00.${format}`);
+      heroImage = img.default;
+      break;
+    } catch {
+      continue;
+    }
+  }
+  
+  // Charger les images de galerie (01, 02, 03...)
+  const galleryImages: any[] = [];
+  for (let i = 1; i <= 20; i++) {
+    const paddedIndex = i.toString().padStart(2, '0');
+    let found = false;
+    
+    for (const format of formats) {
+      try {
+        const img = await import(`../../assets/projects/${slug}${paddedIndex}.${format}`);
+        galleryImages.push(img.default);
+        found = true;
+        break;
+      } catch {
+        continue;
+      }
+    }
+    
+    if (!found) break; // Plus d'images séquentielles
+  }
+  
+  return { heroImage, galleryImages };
+}
 
 // Fonction pour extraire le contenu selon la langue
 const getContentForLang = (body: string, currentLang: string): string => {
@@ -97,19 +138,9 @@ const currentIndex = sortedProjects.findIndex(p => p.data.slug === project.data.
 const prevProject = currentIndex > 0 ? sortedProjects[currentIndex - 1] : null;
 const nextProject = currentIndex < sortedProjects.length - 1 ? sortedProjects[currentIndex + 1] : null;
 
-// Images
-const heroImage = await import(/* @vite-ignore */ project.data.images.hero);
+// Charger les images automatiquement
+const { heroImage, galleryImages } = await loadImagesBySlug(project.data.slug);
 const collaborators = project.data.collaborators || [];
-
-let galleryImages = [];
-if (project.data.images.gallery) {
-  galleryImages = await Promise.all(
-    project.data.images.gallery.map(async (imagePath) => {
-      const img = await import(/* @vite-ignore */ imagePath);
-      return img.default;
-    })
-  );
-}
 ---
 
 <Layout 
@@ -167,15 +198,17 @@ if (project.data.images.gallery) {
     </header>
 
     <!-- Image principale du projet -->
-    <div class="mb-10 bg-secondary bg-opacity-30 p-4 rounded-lg">
-      <Picture
-        src={heroImage.default}
-        widths={[800, 1200, 1600]}
-        formats={["avif", "webp", "jpg"]}
-        alt={project.data.title[lang]}
-        class="w-full rounded-lg"
-      />
-    </div>
+    {heroImage && (
+      <div class="mb-10 bg-secondary bg-opacity-30 p-4 rounded-lg">
+        <Picture
+          src={heroImage}
+          widths={[800, 1200, 1600]}
+          formats={["avif", "webp", "jpg"]}
+          alt={project.data.title[lang]}
+          class="w-full rounded-lg"
+        />
+      </div>
+    )}
 
     <!-- Actions principales -->
     <section class="mb-10">
