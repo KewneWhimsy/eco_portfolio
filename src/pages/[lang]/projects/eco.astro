@@ -4,9 +4,8 @@ import Layout from '../../../layouts/layout.astro';
 import CtaDispo from '../../../components/cta_dispo.astro';
 import EcoModeInfo from "../../../components/eco_mode_info.astro";
 import { Picture } from 'astro:assets';
-import objetImage from '../../../assets/projects/objet01.png';
-import esportImage from '../../../assets/projects/esport01.png';
-import portfolioImage from '../../../assets/projects/portfolio01.png';
+import { getCollection } from 'astro:content';
+import { loadHeroImage } from '../../../utils/imageLoader';
 
 // Récupérer le paramètre de langue depuis l'URL
 export function getStaticPaths() {
@@ -19,23 +18,33 @@ export function getStaticPaths() {
 
 const lang = Astro.params.lang as 'fr' | 'en' | 'de';
 
+// Récupération de tous les projets depuis les fichiers .md
+const allProjects = await getCollection("projects");
+
+// Tri par ordre (du plus récent au plus ancien pour l'affichage)
+const sortedProjects = allProjects.sort((a, b) => b.data.order - a.data.order);
+
+// Chargement des images hero pour chaque projet (optimisé)
+const projectsWithImages = await Promise.all(
+  sortedProjects.map(async (project) => {
+    const heroImage = await loadHeroImage(project.data.slug);
+    return {
+      ...project,
+      image: heroImage
+    };
+  })
+);
+
 // Contenu traduit pour chaque langue
 const content = {
   fr: {
     title: 'Josselin HANEL - Projets (Mode Éco)',
     description: 'Version éco-responsable de ma page de projets, avec une empreinte carbone minimale.',
     projectsTitle: 'Mes projets',
-    projectsIntro: "Voici quelques-uns de mes derniers travaux. Chaque site est conçu pour être facile à utiliser et léger pour la planète.",
+    projectsIntro: "Voici une sélection de mes réalisations récentes. Chaque projet reflète mon approche du développement web.",
     viewProject: 'Voir le projet',
     ecoDesignTitle: 'Éco-conception web',
     ecoDesignText: "L'éco-conception web vise à réduire l'impact environnemental des sites et applications tout en gardant une bonne expérience utilisateur.",
-    upcomingTitle: 'Projets à venir',
-    upcomingIntro: 'Voici les projets sur lesquels je travaille en ce moment :',
-    inDevelopment: 'En cours',
-    cmsImplementation: 'Installation du système de gestion',
-    onHold: 'En attente',
-    waitingForContent: 'En attente de contenu',
-    creatingDocumentation: 'Préparation du projet',
     contactCTA: 'Vous avez un projet en tête ?',
     contactButton: 'Discutons-en'
   },
@@ -43,17 +52,10 @@ const content = {
     title: 'Josselin HANEL - Projects (Eco Mode)',
     description: 'Eco-friendly version of my projects page, with minimal carbon footprint.',
     projectsTitle: 'My projects',
-    projectsIntro: "Here is a selection of my recent projects. Each creation is designed with an eco-design approach.",
+    projectsIntro: "Here is a selection of my recent work. Each project reflects my approach to web development.",
     viewProject: 'View project',
     ecoDesignTitle: 'Web eco-design',
     ecoDesignText: "Web eco-design aims to reduce the environmental impact of websites and applications while preserving a quality user experience.",
-    upcomingTitle: 'Upcoming Projects',
-    upcomingIntro: 'Here\'s a preview of projects I\'m currently working on:',
-    inDevelopment: 'In development',
-    cmsImplementation: 'CMS implementation',
-    onHold: 'On hold',
-    waitingForContent: 'Waiting for content',
-    creatingDocumentation: 'Creating project documentation',
     contactCTA: 'Do you have a project in mind?',
     contactButton: 'Let\'s talk about it'
   },
@@ -61,125 +63,16 @@ const content = {
     title: 'Josselin HANEL - Projekte (Öko-Modus)',
     description: 'Umweltfreundliche Version meiner Projektseite mit minimalem CO2-Fußabdruck.',
     projectsTitle: 'Meine Projekte',
-    projectsIntro: "Hier ist eine Auswahl meiner neuesten Projekte. Jede Kreation ist mit einem Öko-Design-Ansatz konzipiert.",
+    projectsIntro: "Hier ist eine Auswahl meiner neuesten Arbeiten. Jedes Projekt spiegelt meinen Ansatz der Webentwicklung wider.",
     viewProject: 'Projekt ansehen',
     ecoDesignTitle: 'Web-Öko-Design',
     ecoDesignText: "Web-Öko-Design zielt darauf ab, die Umweltauswirkungen von Websites und Anwendungen zu reduzieren und gleichzeitig ein qualitativ hochwertiges Benutzererlebnis zu bewahren.",
-    upcomingTitle: 'Kommende Projekte',
-    upcomingIntro: 'Hier ein Einblick in Projekte, an denen ich derzeit arbeite:',
-    inDevelopment: 'In Entwicklung',
-    cmsImplementation: 'CMS-Implementierung',
-    onHold: 'Auf Eis gelegt',
-    waitingForContent: 'Warten auf Inhalt',
-    creatingDocumentation: 'Erstellung der Projektdokumentation',
     contactCTA: 'Haben Sie ein Projekt im Sinn?',
     contactButton: 'Lassen Sie uns darüber sprechen'
   }
 };
 
-// Utiliser la langue demandée ou français par défaut
 const t = content[lang] || content.fr;
-
-// Projets à afficher (version simplifiée pour le mode éco)
-const projects = [
-  {
-    id: 'portfolio',
-    title: lang === 'fr' ? 
-      'Mon site personnel écologique (2025)' :
-      (lang === 'en' ? 
-        'Eco-friendly personal portfolio (2025)' : 
-        'Umweltfreundliches persönliches Portfolio (2025)'),
-    description: lang === 'fr' ? 
-      'Mon site professionnel avec un mode économique, disponible en plusieurs langues et conçu pour être léger.' :
-      (lang === 'en' ? 
-        'My personal portfolio with eco-mode, multilingual, and designed following web eco-design principles.' : 
-        'Mein persönliches Portfolio mit Öko-Modus, mehrsprachig und nach den Prinzipien des Web-Öko-Designs gestaltet.'),
-    image: portfolioImage,
-    tech: ['Astro', 'TailwindCSS'],
-    url: `/${lang}/portfolio/eco/`
-  },
-  {
-    id: 'esport',
-    title: lang === 'fr' ? 
-      'Site e-sport avec messagerie (2025)' :
-      (lang === 'en' ? 
-        'E-sport Application with Chat (2025)' : 
-        'E-Sport-Anwendung mit Chat (2025)'),
-    description: lang === 'fr' ? 
-      'Site pour gérer des événements de jeux vidéo avec un système de messagerie instantanée. (exemple fictif)' :
-      (lang === 'en' ? 
-        'E-sport event management platform with a real-time chat system via WebSocket and HTMX. (fictional company)' : 
-        'E-Sport-Eventmanagement-Plattform mit einem Echtzeit-Chat-System über WebSocket und HTMX. (fiktives Unternehmen)'),
-    image: esportImage,
-    tech: ['Astro', 'Tailwind', 'Alpine.js', 'HTMX', 'WebSocket', 'Express', 'PostgreSQL', 'MongoDB'],
-    url: `/${lang}/esport/eco/`
-  },
-  {
-    id: 'library',
-    title: lang === 'fr' ? 
-      'Site de la Bibliothèque d\'objets - Quimper (2024)' :
-      (lang === 'en' ? 
-        'Object Library - Quimper' : 
-        'Objektbibliothek - Quimper'),
-    description: lang === 'fr' ? 
-      'Créé avec <a href="https://jadephom.myportfolio.com/" target="_blank" rel="noopener" class="text-jade">Jade Ounaphom</a>, le site explique simplement comment fonctionne la bibliothèque d\'objets et présente ses actualités.' :
-      (lang === 'en' ? 
-        'Designed in collaboration with <a href="https://jadephom.myportfolio.com/" target="_blank" rel="noopener" class="text-jade">Jade Ounaphom</a>, audiovisual creator, the website highlights how the object library works and its news.' : 
-        'In Zusammenarbeit mit <a href="https://jadephom.myportfolio.com/" target="_blank" rel="noopener" class="text-jade">Jade Ounaphom</a>, audiovisuelle Gestalterin, präsentiert die Website die Funktionsweise der Objektbibliothek und ihre Neuigkeiten.'),
-    image: objetImage,
-    tech: ['Astro', 'CSS Pro', 'TypeScript', 'Alpine.js', 'GitHub Actions'],
-    url: `/${lang}/objet/eco/`
-  },
-];
-
-// Projets à venir (version simplifiée pour mode éco)
-const upcomingProjects = [
-  {
-    title: lang === 'fr' ? 
-      'Amélioration du site de l\'Objethèque - Quimper' :
-      (lang === 'en' ? 
-        'Object Library Enhancement - Quimper' : 
-        'Verbesserung der Objektbibliothek - Quimper'),
-    description: lang === 'fr' ? 
-      'J\'ajoute un système simple pour gérer le contenu du site et un calendrier pour organiser les créneaux et les bénévoles. Ça va rendre la gestion du site beaucoup plus simple pour l\'association.' :
-      (lang === 'en' ? 
-        'Addition of a content management system (Decap CMS) and creation of a calendar for managing room slots and volunteers with their assigned skills.' : 
-        'Hinzufügung eines Content-Management-Systems (Decap CMS) und Erstellung eines Kalenders zur Verwaltung von Raumzeitfenstern und Freiwilligen mit ihren zugewiesenen Fähigkeiten.'),
-    tech: 'Astro, Tina CMS, Alpine.js, GitHub Actions, ' + (lang === 'fr' ? 'API HelloAsso' : 'HelloAsso API'),
-    status1: t.inDevelopment,
-    status2: t.cmsImplementation
-  },
-  {
-    title: lang === 'fr' ? 
-      'Site et boutique en ligne pour un artiste' :
-      (lang === 'en' ? 
-        'Portfolio + E-shop for an Artist Friend' : 
-        'Portfolio und Online-Shop für einen Künstlerfreund'),
-    description: lang === 'fr' ? 
-      'Je crée un site simple et une petite boutique en ligne pour un ami artiste. La boutique reste discrète pour mettre en avant ses œuvres. Il pourra vendre ses créations avec un système de paiement facile à utiliser.' :
-      (lang === 'en' ? 
-        'I\'m building a minimalist portfolio and online store for a friend who creates digital and physical art. The shop is discreet — hidden from the non-commercial parts of the site.' : 
-        'Ich entwickle ein minimalistisches Portfolio und einen Online-Shop für einen befreundeten Künstler, der digitale und physische Kunst schafft. Der Shop ist diskret – versteckt von den nicht-kommerziellen Teilen der Website.'),
-    tech: 'Astro, Tailwind, Alpine.js, Three.js, Stripe API',
-    status1: t.onHold,
-    status2: t.waitingForContent
-  },
-  {
-    title: lang === 'fr' ? 
-      'Jeu en ligne avec chat' :
-      (lang === 'en' ? 
-        'Online Asynchronous Webgame with Real-time Chat' : 
-        'Asynchrones Online-Webspiel mit Echtzeit-Chat'),
-    description: lang === 'fr' ? 
-      'Je transforme mon projet de site e-sport en jeu de stratégie en ligne. C\'est inspiré du jeu "La Cosa Nostra", mais sans hasard - juste des décisions prises par les joueurs. L\'ambiance sera dynamique avec un style visuel coloré et énergique.' :
-      (lang === 'en' ? 
-        'Based on my "E-sport Application with Chat" project, I\'m working on an online social strategy game inspired by "La Cosa Nostra" (2014) from Johannes Sich, but with no randomness — only raw, chaotic, human decision-making.' : 
-        'Basierend auf meinem Projekt "E-Sport-Anwendung mit Chat" arbeite ich an einem Online-Strategiespiel inspiriert von "La Cosa Nostra" (2014) von Johannes Sich, aber ohne Zufälligkeit – nur rohe, chaotische, menschliche Entscheidungsfindung.'),
-    tech: 'Astro, Tailwind, Alpine.js, HTMX, WebSocket, Phoenix, MongoDB, anime.js',
-    status1: t.onHold,
-    status2: t.creatingDocumentation
-  }
-];
 
 // Mode éco activé
 const isEcoMode = true;
@@ -198,83 +91,55 @@ const isEcoMode = true;
       {t.projectsIntro}
     </p>
     
-    <!-- Liste des projets simplifiée -->
+    <!-- Liste des projets simplifiée - Même style que votre version originale -->
     <section class="mb-8">
       <ul class="space-y-6 max-w-5xl">
-        {projects.map(project => (
+        {projectsWithImages.map(project => (
           <li class="border-b border-secondary pb-4">
             <div class="flex flex-col md:flex-row gap-4">
-              <!-- Image légère du projet -->
+              <!-- Image légère du projet - Cliquable -->
               <div class="md:w-1/3 mb-3 md:mb-0">
-                <Picture
-                  src={project.image}
-                  widths={[600]}
-                  formats={["avif", "webp", "png"]}
-                  alt={project.title}
-                  class="w-full rounded-md"
-                  loading="lazy"
-                />
+                <a href={`/${lang}/${project.data.slug}/eco/`}>
+                  {project.image ? (
+                    <Picture
+                      src={project.image}
+                      widths={[600]}
+                      formats={["avif", "webp", "png"]}
+                      alt={project.data.title[lang]}
+                      class="w-full rounded-md hover:opacity-80 transition-opacity"
+                      loading="lazy"
+                    />
+                  ) : (
+                    <div class="w-full aspect-video bg-primary bg-opacity-30 rounded-md flex items-center justify-center hover:opacity-80 transition-opacity">
+                      <span class="text-text-muted text-sm">Image</span>
+                    </div>
+                  )}
+                </a>
               </div>
               
               <div class="md:w-2/3">
-                <h3 class="text-xl font-semibold mb-2">{project.title}</h3>
-                <p class="mb-4" set:html={project.description}></p>
+                <h3 class="text-xl font-semibold mb-2">
+                  {project.data.title[lang]} ({project.data.year})
+                </h3>
+                <p class="mb-4" set:html={project.data.description[lang]}></p>
                 
                 <!-- Technologies simplifiées -->
                 <div class="mb-3">
                   <p class="text-text-muted text-sm">
-                    {project.tech.join(' • ')}
+                    {project.data.tech.join(' • ')}
                   </p>
                 </div>
                 
                 <!-- Liens simplifiés -->
-                {project.url && (
-                  <div class="flex gap-4">
-                    <a 
-                      href={project.url} 
-                      class="text-link"
-                    >
-                      {t.viewProject}
-                    </a>
-                  </div>
-                )}
+                <div class="flex gap-4">
+                  <a 
+                    href={`/${lang}/${project.data.slug}/eco/`}
+                    class="text-link"
+                  >
+                    {t.viewProject}
+                  </a>
+                </div>
               </div>
-            </div>
-          </li>
-        ))}
-      </ul>
-    </section>
-    
-    <!-- Section Projets à venir (simplifiée pour mode éco) -->
-    <section class="mb-8 pt-6">
-      <h1 class="text-2xl font-bold mb-4 border-b border-accent pb-2">
-        {t.upcomingTitle}
-      </h1>
-      
-      <p class="mb-4">
-        {t.upcomingIntro}
-      </p>
-      
-      <ul class="space-y-6 max-w-5xl">
-        {upcomingProjects.map((project, index) => (
-          <li class="border-b border-secondary pb-4">
-            <h3 class="text-lg font-semibold mb-2">{project.title}</h3>
-            <p class="mb-3 max-w-5xl">{project.description}</p>
-            
-            <!-- Technologies simplifiées -->
-            <div class="mb-3">
-              <p class="text-text-muted text-sm">{project.tech}</p>
-            </div>
-            
-            <!-- Statuts simplifiés -->
-            <div class="text-xs">
-              <span class={index === 0 ? "text-accent" : "text-text-muted"}>
-                {project.status1}
-              </span> 
-              • 
-              <span class="text-text-muted">
-                {project.status2}
-              </span>
             </div>
           </li>
         ))}
@@ -290,7 +155,8 @@ const isEcoMode = true;
         {t.ecoDesignText}
       </p>
     </section>
+    
     <!-- Section CTA contact -->
-    <CtaDispo withBackground={true} transition-persist="cta-dispo"/>
+    <CtaDispo />
   </div>
 </Layout>
