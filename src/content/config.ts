@@ -11,10 +11,6 @@ const projectsCollection = defineCollection({
     year: z.number(),
     featured: z.boolean().default(false),
     tech: z.array(z.string()),
-    images: z.object({
-      hero: z.string(),
-      gallery: z.array(z.string()).optional(),
-    }),
     links: z.object({
       website: z.string().url().optional(),
       github: z.string().url().optional(),

@@ -11,13 +11,6 @@ description:
 year: 2025
 featured: true
 tech: ["Astro", "Tailwind", "Alpine.js", "HTMX", "WebSocket", "Express", "PostgreSQL", "MongoDB"]
-images:
-  hero: "../../assets/projects/esport00.png"
-  gallery: 
-    - "../../assets/projects/esport02.png"
-    - "../../assets/projects/esport03.png"
-    - "../../assets/projects/esport04.png"
-    - "../../assets/projects/esport01.png"
 links:
   website: "https://kewnewhimsy.github.io/esportify-f/"
   githubFrontend: "https://github.com/KewneWhimsy/esportify-f"

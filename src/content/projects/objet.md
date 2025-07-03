@@ -11,13 +11,6 @@ description:
 year: 2024
 featured: true
 tech: ["Astro", "CSS Pro", "TypeScript", "Alpine.js", "GitHub Actions", "API HelloAsso"]
-images:
-  hero: "../../assets/projects/objet00.png"
-  gallery: 
-    - "../../assets/projects/objet02.png"
-    - "../../assets/projects/objet03.png"
-    - "../../assets/projects/objet04.png"
-    - "../../assets/projects/objet05.png"
 links:
   website: "https://objethequecornouaille.fr/"
 collaborators:
