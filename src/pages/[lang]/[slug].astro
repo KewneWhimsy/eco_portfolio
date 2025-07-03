@@ -206,6 +206,7 @@ const collaborators = project.data.collaborators || [];
           formats={["avif", "webp", "jpg"]}
           alt={project.data.title[lang]}
           class="w-full rounded-lg"
+          transition:name={`project-image-${project.data.slug}`}
         />
       </div>
     )}

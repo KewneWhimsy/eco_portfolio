@@ -98,6 +98,7 @@ const t = content[lang] || content.fr;
                   alt={project.data.title[lang]}
                   class="w-full h-full object-cover"
                   loading="lazy"
+                  transition:name={`project-image-${project.data.slug}`}
                 />
               ) : (
                 <div class="w-full h-full flex items-center justify-center text-text-muted">
