@@ -12,7 +12,6 @@ year: 2025
 featured: true
 tech: ["Astro", "Tailwind", "Alpine.js", "HTMX", "WebSocket", "Express", "PostgreSQL", "MongoDB"]
 links:
-  website: "https://kewnewhimsy.github.io/esportify-f/"
   githubFrontend: "https://github.com/KewneWhimsy/esportify-f"
   githubBackend: "https://github.com/KewneWhimsy/esportify-b"
 order: 2
