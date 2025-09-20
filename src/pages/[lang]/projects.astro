@@ -112,19 +112,21 @@ const t = content[lang] || content.fr;
             <!-- Titre et année -->
             <div class="p-4 pb-2">
               <h3 class="text-xl font-bold mb-1">
-                {project.data.title[lang]}
+                {project.data.title[lang]} ({project.data.year})
               </h3>
-              <p class="text-sm text-text-muted">
-                {t.year}: {project.data.year}
-              </p>
             </div>
           
             <!-- Description et technologies -->
             <div class="p-4 pt-0 flex-1">
               <p class="mb-4 leading-relaxed" set:html={project.data.description[lang]}></p>
             
-              <!-- Technologies -->
-              <div class="mb-4">
+              
+            </div>
+          </div>
+
+          <!-- Boutons d'action -->
+          <!-- Technologies -->
+              <div class="p-4 pt-0 mb-4">
                 <p class="text-sm font-medium text-text-muted mb-2">{t.technologies}:</p>
                 <div class="flex flex-wrap gap-1.5">
                   {project.data.tech.map(tech => (
@@ -134,10 +136,6 @@ const t = content[lang] || content.fr;
                   ))}
                 </div>
               </div>
-            </div>
-          </div>
-
-          <!-- Boutons d'action -->
           <div class="p-4 pt-0">
             <div class="flex gap-2 mt-auto">
               <!-- Bouton principal vers le projet -->

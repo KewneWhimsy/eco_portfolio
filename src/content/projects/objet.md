@@ -10,7 +10,7 @@ description:
   de: "Projekt zur Erstellung der Website der Objektbibliothek Cornouaille - Ein kollaboratives Gemeinschaftsprojekt zur Förderung des Objektteilens."
 year: 2024
 featured: true
-tech: ["Astro", "CSS Pro", "TypeScript", "Alpine.js", "GitHub Actions", "API HelloAsso"]
+tech: ["Astro", "CSS", "TypeScript", "Alpine.js", "GitHub Actions", "API HelloAsso"]
 links:
   website: "https://objethequecornouaille.fr/"
 collaborators:

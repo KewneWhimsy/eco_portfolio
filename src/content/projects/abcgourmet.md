@@ -1,9 +1,9 @@
 ---
 slug: "abcgourmet"
 title:
-  fr: "ABC GOURMET - Conseil stratégique et accompagnement opérationnel"
-  en: "ABC GOURMET - Strategic consulting and operational support"
-  de: "ABC GOURMET - Strategische Beratung und operative Unterstützung"
+  fr: "ABC GOURMET"
+  en: "ABC GOURMET"
+  de: "ABC GOURMET"
 description:
   fr: "Site web multilingue pour ABC GOURMET, spécialisée dans le conseil stratégique et l'accompagnement opérationnel d'entreprises. Formations professionnelles et workshops inclus."
   en: "Multilingual website for ABC GOURMET, specialized in strategic consulting and operational support for businesses. Professional training and workshops included."
