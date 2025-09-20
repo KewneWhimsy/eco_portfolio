@@ -3,8 +3,6 @@
 import Layout from "../../layouts/layout.astro";
 import { Picture } from "astro:assets";
 import monImage from "../../assets/j.jpg";
-import objetImage from "../../assets/projects/objet01.png";
-import esportImage from "../../assets/projects/esport01.png";
 import CtaDispo from "../../components/cta_dispo.astro";
 import { getCollection } from 'astro:content';
 import { loadHeroImage } from '../../utils/imageLoader';
@@ -23,17 +21,6 @@ const allProjects = await getCollection("projects");
 const recentProjects = allProjects
   .sort((a, b) => b.data.order - a.data.order)
   .slice(0, 2);
-
-// Chargement des images hero pour les projets récents
-const recentProjectsWithImages = await Promise.all(
-  recentProjects.map(async (project) => {
-    const heroImage = await loadHeroImage(project.data.slug);
-    return {
-      ...project,
-      image: heroImage
-    };
-  })
-);
 
 const lang = Astro.params.lang as "fr" | "en" | "de";
 
@@ -493,7 +480,6 @@ const t = content[lang] || content.fr;
                 alt={project.data.title[lang]}
                 class="w-full h-full object-cover"
                 loading="lazy"
-                transition:name={`project-image-${project.data.slug}`}
               />
             </a>
           
@@ -503,7 +489,7 @@ const t = content[lang] || content.fr;
                 <h3 class="text-xl font-bold mb-2">{project.data.title[lang]}</h3>
                 <p class="mb-4" set:html={project.data.description[lang]}></p>
                 
-                <!-- Technologies complètes comme demandé -->
+                <!-- Technologies -->
                 <div class="mb-4">
                   <div class="flex flex-wrap gap-1.5">
                     {project.data.tech.map((tech) => (
