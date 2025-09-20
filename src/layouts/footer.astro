@@ -26,7 +26,7 @@ const footerContent = {
       "Ce site a été conçu avec une approche d'éco-conception pour minimiser son impact environnemental.",
     findMe: "Me retrouver",
     availability: "Disponibilité",
-    locations: "Rennes · Nantes · Paris · Berlin · Télétravail",
+    locations: "Quimper · Rennes · Paris · Berlin · Télétravail",
     privacyPolicy: "Politique de confidentialité",
   },
   en: {
@@ -35,7 +35,7 @@ const footerContent = {
       "This site was designed with an eco-design approach to minimize its environmental impact.",
     findMe: "Find me",
     availability: "Availability",
-    locations: "Rennes · Nantes · Paris · Berlin · Remote",
+    locations: "Quimper · Rennes · Paris · Berlin · Remote",
     privacyPolicy: "Privacy Policy",
   },
   de: {
@@ -44,7 +44,7 @@ const footerContent = {
       "Diese Website wurde mit einem Öko-Design-Ansatz entwickelt, um ihre Umweltauswirkungen zu minimieren.",
     findMe: "Finden Sie mich",
     availability: "Verfügbarkeit",
-    locations: "Rennes · Nantes · Paris · Berlin · Remote",
+    locations: "Quimper · Rennes · Paris · Berlin · Remote",
     privacyPolicy: "Datenschutzerklärung",
   },
 };
@@ -81,36 +81,13 @@ const isEcoMode = pathname.includes("/eco");
       <div
         class="flex flex-col md:flex-row items-start md:items-center gap-4 md:gap-8"
       >
-        <div>
-          <h3 class="text-xs font-bold mb-2 md:mb-0 md:mr-2">{t.findMe}</h3>
-          <ul class="flex gap-4">
-            {
-              links.map((link) => (
-                <li>
-                  <a
-                    href={link.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="text-text-muted text-sm transition-colors"
-                  >
-                    {link.title}
-                  </a>
-                </li>
-              ))
-            }
-          </ul>
-        </div>
+        
 
         <div>
           <h3 class="text-xs font-bold mb-2 md:mb-0 md:mr-2">
             {t.availability}
           </h3>
           <p class="text-text-muted text-sm">{t.locations}</p>
-          <p
-            class="text-text-muted text-sm mt-1 select-all"
-          >
-            +33 7 81 33 97 68
-          </p>
         </div>
       </div>
     </div>
