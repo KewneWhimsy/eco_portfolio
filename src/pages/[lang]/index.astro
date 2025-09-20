@@ -326,59 +326,6 @@ const content = {
 // Utiliser la langue demandée ou français par défaut
 const t = content[lang] || content.fr;
 
-// Projets à mettre en avant
-const featuredProjects = [
-  {
-    title:
-      lang === "fr"
-        ? "Application e-sport avec chat (2025)"
-        : lang === "en"
-          ? "E-sport Application with Chat (2025)"
-          : "E-Sport-Anwendung mit Chat (2025)",
-    description:
-      lang === "fr"
-        ? "Plateforme de gestion d'événements e-sport intégrant un système de chat en temps réel via WebSocket et HTMX. (entreprise fictive)"
-        : lang === "en"
-          ? "E-sport event management platform with a real-time chat system via WebSocket and HTMX. (fictional company)"
-          : "E-Sport-Eventmanagement-Plattform mit einem Echtzeit-Chat-System über WebSocket und HTMX. (fiktives Unternehmen)",
-    image: esportImage,
-    tech: [
-      "Astro",
-      "Tailwind",
-      "CSS Pro",
-      "Alpine.js",
-      "HTMX",
-      "WebSocket",
-      "Express",
-      "Postgresql",
-      "MongoDB",
-    ],
-    url: `/${lang}/esport/`,
-  },
-  {
-    title:
-      lang === "fr"
-        ? "Bibliothèque d'objets - Quimper (2024)"
-        : lang === "en"
-          ? "Object Library - Quimper (2024)"
-          : "Objektbibliothek - Quimper (2024)",
-    description:
-      lang === "fr"
-        ? "Conçu en collaboration avec <a href='https://jadephom.myportfolio.com/' target='_blank' class='text-jade'>Jade Ounaphom</a>, créatrice audiovisuelle, le site met en avant le fonctionnement de la bibliothèque d'objets et ses actualités."
-        : lang === "en"
-          ? "Designed in collaboration with <a href='https://jadephom.myportfolio.com/' target='_blank' class='text-jade'>Jade Ounaphom</a>, audiovisual creator, the website highlights how the object library works and its news."
-          : "In Zusammenarbeit mit <a href='https://jadephom.myportfolio.com/' target='_blank' class='text-jade'>Jade Ounaphom</a>, audiovisuelle Gestalterin, präsentiert die Website die Funktionsweise der Objektbibliothek und ihre Neuigkeiten.",
-    image: objetImage,
-    tech: [
-      "Astro",
-      "CSS Pro", 
-      "TypeScript",
-      "Alpine.js",
-      "GitHub Actions",
-    ],
-    url: `/${lang}/objet/`,
-  },
-];
 ---
 
 <Layout title={t.title} description={t.description} lang={lang}>
