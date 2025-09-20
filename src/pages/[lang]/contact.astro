@@ -31,8 +31,6 @@ const content = {
     phoneLabel: "Téléphone",
     locationTitle: "Où je travaille",
     locationText: "Basé à <strong>Rennes</strong>, je me déplace dans toute la Bretagne et travaille aussi à distance avec des clients partout en Europe.",
-    availabilityTitle: "Disponibilité",
-    availabilityText: "Je suis actuellement disponible pour de nouveaux projets à partir de <strong>fin Mai 2025</strong>.",
     preferenceTitle: "Comment je préfère travailler",
     preferenceText: "J'aime comprendre votre activité et vos besoins réels avant de proposer des solutions. Ça permet d'éviter les mauvaises surprises et d'avoir un résultat qui vous convient vraiment.",
     formTitle: "Envoyez-moi un message",
@@ -191,16 +189,11 @@ const contactInfo = {
           </div>
           
           <!-- Localisation -->
-          <div class="mb-6">
+          <div class="mb-2">
             <h2 class="text-xl font-semibold text-accent mb-2">{t.locationTitle}</h2>
             <p set:html={t.locationText}></p>
           </div>
           
-          <!-- Disponibilité -->
-          <div>
-            <h2 class="text-xl font-semibold text-accent mb-2">{t.availabilityTitle}</h2>
-            <p set:html={t.availabilityText}></p>
-          </div>
         </div>
         
         <!-- Comment je travaille -->

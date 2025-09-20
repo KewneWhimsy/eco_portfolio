@@ -32,9 +32,6 @@ const content = {
     messageLabel: "Message",
     messagePlaceholder: "Décrivez brièvement votre projet ou vos questions. N'hésitez pas à préciser vos délais, budget ou attentes particulières.",
     submitButton: "Envoyer",
-    availabilityTitle: "Disponibilité",
-    availabilityText:
-      "Je suis actuellement disponible pour de nouveaux projets à partir de fin Mai 2025.",
     locationTitle: "Où je travaille",
     locationText: "Basé à Rennes, je me déplace dans toute la Bretagne et travaille aussi à distance avec des clients partout en Europe.",
     afterFormText: "Je vous répondrai généralement sous 24h. Si votre demande est urgente, n'hésitez pas à m'appeler directement.",
@@ -166,17 +163,13 @@ const isEcoMode = true;
               />
             </div>
             <!-- Localisation -->
-            <div class="mb-4">
+            <div class="mb-2">
               <h3 class="font-medium mb-1">{t.locationTitle}</h3>
               <p>{t.locationText}</p>
             </div>
-            
-            <!-- Disponibilité -->
-            <div>
-              <h3 class="font-medium mb-1">{t.availabilityTitle}</h3>
-              <p>{t.availabilityText}</p>
-            </div>
+
           </div>
+          
           <Picture
           src={monImage}
           width={384}
