@@ -26,7 +26,7 @@ const content = {
     servicesTitle: "Mes services",
     services: [
       {
-        title: "Site de Présentation",
+        title: "Site de Présentation/Site Vitrine",
         price: "À partir de 1500€",
         features: [
           "Temps de chargement < 1 seconde",
@@ -241,7 +241,7 @@ const content = {
 const t = content[lang] || content.fr;
 
 // L'URL complète vers la page de remerciement
-const redirectUrl = `${Astro.url.origin}/${lang}/contact/thanks/eco/`;
+const redirectUrl = `${Astro.url.origin}/${lang}/contact/thanks/`;
 
 // Mode éco activé
 const isEcoMode = true;
@@ -274,9 +274,9 @@ const isEcoMode = true;
           <div class="border border-secondary p-4 rounded">
             <div class="flex justify-between items-start mb-2">
               <h3 class="font-bold">{service.title}</h3>
-              <span class="text-accent font-bold text-sm">{service.price}</span>
+              <span class="text-accent font-bold">{service.price}</span>
             </div>
-            <ul class="text-sm space-y-1">
+            <ul class="space-y-1">
               {service.features.map((feature) => (
                 <li>• {feature}</li>
               ))}
@@ -295,7 +295,7 @@ const isEcoMode = true;
         {t.ecoFeatures.map((feature) => (
           <li class="flex items-start">
             <span class="text-accent mr-2">🌱</span>
-            <span class="text-sm">{feature}</span>
+            <span>{feature}</span>
           </li>
         ))}
       </ul>
@@ -310,7 +310,7 @@ const isEcoMode = true;
         {t.includes.map((item) => (
           <li class="flex items-start">
             <span class="text-accent mr-2">✓</span>
-            <span class="text-sm">{item}</span>
+            <span>{item}</span>
           </li>
         ))}
       </ul>
@@ -319,7 +319,7 @@ const isEcoMode = true;
     <!-- Contact simplifié -->
     <section class="bg-secondary bg-opacity-20 p-4 rounded">
       <h2 class="text-xl font-bold mb-3 text-accent">{t.contactTitle}</h2>
-      <p class="mb-4 text-sm">{t.contactText}</p>
+      <p class="mb-4">{t.contactText}</p>
 
       <!-- Contact direct -->
       <div class="mb-6 text-center">
