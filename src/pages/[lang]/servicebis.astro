@@ -1,0 +1,745 @@
+---
+// Import du layout standard
+import Layout from "../../layouts/layout.astro";
+
+// Récupérer le paramètre de langue depuis l'URL
+export function getStaticPaths() {
+  return [
+    { params: { lang: "fr" } },
+    { params: { lang: "en" } },
+    { params: { lang: "de" } },
+  ];
+}
+
+const lang = Astro.params.lang as 'fr' | 'en' | 'de';
+
+// Contenu traduit pour chaque langue
+const content = {
+  fr: {
+    title: "Josselin HANEL - Services et Tarifs",
+    description: "Sites web performants et durables avec peu ou pas de frais récurrents. Du site vitrine éternel à la boutique en ligne complète.",
+    pageTitle: "Services & Tarifs",
+    intro: "Des sites web performants et durables, avec peu ou pas de frais récurrents.",
+    
+    // Approches - simplifiées
+    approachTitle: "Pourquoi me choisir ?",
+    approaches: [
+      {
+        icon: "⚡",
+        title: "10x plus rapide",
+        desc: "Sites ultra-performants (score 95+ Lighthouse)"
+      },
+      {
+        icon: "💰", 
+        title: "3-10x moins cher",
+        desc: "Maintenance minimale vs WordPress/agences"
+      },
+      {
+        icon: "🔒",
+        title: "Zéro faille",
+        desc: "Sécurité maximale, pas de PHP/MySQL à pirater"
+      },
+      {
+        icon: "🌱",
+        title: "10x plus écologique",
+        desc: "Consommation serveur minimale"
+      }
+    ],
+
+    // Services
+    servicesTitle: "Mes services",
+    services: [
+      {
+        title: "Site Vitrine Éternel",
+        price: "À partir de 1200€",
+        maintenance: "0€/an",
+        description: "Site immortel sans maintenance nécessaire",
+        features: [
+          "Aucune maintenance nécessaire",
+          "🎁 Hébergement GRATUIT À VIE",
+          "Design responsive",
+          "Formulaire de contact",
+          "SEO optimisé",
+          "2 modifications mineures/an offertes"
+        ],
+        extra: "Modifs supplémentaires : 30€ (texte/image) / 60-120€ (page)",
+        ideal: "Artisan, restaurant, profession libérale, association"
+      },
+      {
+        title: "Site Vitrine Pro",
+        price: "À partir de 1700€",
+        maintenance: "120€/an",
+        description: "Site moderne avec gestion de contenu autonome",
+        features: [
+          "Gestion de contenu 100% autonome",
+          "Interface admin intuitive",
+          "🎁 Hébergement GRATUIT",
+          "Maintenance légère (2 interventions/an)",
+          "Multilingue possible",
+          "SEO optimisé"
+        ],
+        extra: "Économie de 500-700€/an vs WordPress",
+        ideal: "TPE/PME, cabinet conseil, commerce avec actualités"
+      },
+      {
+        title: "E-Boutique Simple",
+        price: "À partir de 2200€",
+        maintenance: "400€/an",
+        description: "Boutique optimisée pour achat rapide sans inscription",
+        features: [
+          "Paiement Stripe sécurisé",
+          "Gestion produits autonome",
+          "🎁 Hébergement GRATUIT",
+          "Jusqu'à 500 produits",
+          "Achat rapide sans inscription",
+          "Emails confirmation automatiques"
+        ],
+        extra: "Checkout rapide sans friction",
+        ideal: "Vente créations artisanales, boutique ponctuelle"
+      },
+      {
+        title: "E-Boutique Avancée",
+        price: "À partir de 3600€",
+        maintenance: "500€/an",
+        description: "Boutique complète avec comptes clients",
+        features: [
+          "Tout de la Simple +",
+          "Comptes clients avec authentification",
+          "Dashboard client complet",
+          "Produits illimités",
+          "Synchronisation multi-appareils",
+          "Historique des commandes"
+        ],
+        extra: "Économie de 1500-2500€/an vs WooCommerce",
+        ideal: "E-commerce avec clientèle récurrente, fidélisation"
+      },
+      {
+        title: "Audit & Optimisation",
+        price: "À partir de 800€",
+        maintenance: "Ponctuel",
+        description: "Amélioration de votre site existant",
+        features: [
+          "Audit complet",
+          "Optimisation performances",
+          "Amélioration SEO",
+          "Corrections d'accessibilité",
+          "Rapport détaillé et recommandations"
+        ],
+        extra: "Idéal pour sites existants à améliorer",
+        ideal: "Sites existants à optimiser"
+      },
+      {
+        title: "Développement Sur-Mesure",
+        price: "40€/h",
+        maintenance: "Sur devis",
+        description: "Projet web unique adapté à vos besoins",
+        features: [
+          "Application web custom",
+          "Plateforme SaaS simple",
+          "Système de réservation",
+          "Intégrations API tierces",
+          "Migration technique"
+        ],
+        extra: "Analyse gratuite + devis détaillé",
+        ideal: "Projets spécifiques et innovants"
+      }
+    ],
+
+    // Développement sur-mesure
+    customTitle: "Développement Sur-Mesure",
+    customPrice: "40€/h",
+    customDesc: "Projet web unique adapté à vos besoins spécifiques",
+    customExamples: [
+      "Application web custom",
+      "Plateforme SaaS simple",
+      "Dashboard/outil interne",
+      "Système de réservation",
+      "Migration/refonte technique",
+      "Intégrations API tierces"
+    ],
+    customProcess: "Analyse gratuite → Devis détaillé → Développement → Livraison + doc",
+
+    // Tableau comparatif e-boutiques
+    comparisonTitle: "Comparatif E-Boutiques",
+    comparisonFeatures: [
+      { name: "Prix initial", simple: "2200€", advanced: "3600€" },
+      { name: "Maintenance/an", simple: "400€", advanced: "500€" },
+      { name: "Produits max", simple: "500", advanced: "Illimité" },
+      { name: "Panier", simple: "Sur l'appareil", advanced: "Multi-appareils" },
+      { name: "Favoris", simple: "Sur l'appareil", advanced: "Multi-appareils" },
+      { name: "Adresse", simple: "Pré-remplie", advanced: "Plusieurs adresses" },
+      { name: "Comptes clients", simple: "Non", advanced: "Oui" },
+      { name: "Historique", simple: "Non", advanced: "Dashboard complet" }
+    ],
+
+    // Évolution
+    evolutionTitle: "Évolution Possible",
+    evolutionText: "Tous mes sites peuvent évoluer avec votre business",
+    evolutions: [
+      {
+        from: "Site Éternel",
+        to: "Site Pro",
+        cost: "800-1500€",
+        note: "Refonte technique nécessaire"
+      },
+      {
+        from: "Site Pro",
+        to: "E-boutique",
+        cost: "500-1900€",
+        note: "Évolution fluide, même stack"
+      },
+      {
+        from: "E-boutique Simple",
+        to: "Avancée",
+        cost: "1400€",
+        note: "Upgrade direct"
+      }
+    ],
+    evolutionTip: "💡 Si vous anticipez des besoins futurs, partir sur Site Pro ou E-boutique dès le départ optimise votre investissement.",
+
+    // CTA
+    ctaTitle: "Prêt à démarrer votre projet ?",
+    ctaDesc: "Échangeons sur vos besoins et trouvons la solution adaptée.",
+    
+    // Contact
+    contactDirect: "Vous préférez échanger directement ?",
+    contactText: "Appelez-moi ou envoyez-moi un email. Le nom de domaine reste à votre charge (env. 10-15€/an).",
+    
+    // Form
+    formTitle: "Demander un devis",
+    nameLabel: "Votre nom",
+    emailLabel: "Votre email",
+    companyLabel: "Votre entreprise (optionnel)",
+    projectTypeLabel: "Type de projet",
+    projectTypes: {
+      eternal: "Site Vitrine Éternel",
+      pro: "Site Vitrine Pro",
+      shopSimple: "E-Boutique Simple",
+      shopAdvanced: "E-Boutique Avancée",
+      audit: "Audit & Optimisation",
+      custom: "Développement Sur-Mesure"
+    },
+    messageLabel: "Décrivez votre projet",
+    messagePlaceholder: "Parlez-moi de votre activité, vos besoins, vos objectifs...",
+    submitButton: "Envoyer ma demande"
+  },
+  en: {
+    title: "Josselin HANEL - Services & Pricing",
+    description: "High-performance, sustainable websites with little to no recurring fees. From eternal showcase sites to complete online stores.",
+    pageTitle: "Services & Pricing",
+    intro: "High-performance, sustainable websites with little to no recurring fees.",
+    
+    approachTitle: "Why choose me?",
+    approaches: [
+      {
+        icon: "⚡",
+        title: "10x faster",
+        desc: "Ultra-performant sites (95+ Lighthouse score)"
+      },
+      {
+        icon: "💰", 
+        title: "3-10x cheaper",
+        desc: "Minimal maintenance vs WordPress/agencies"
+      },
+      {
+        icon: "🔒",
+        title: "Zero vulnerabilities",
+        desc: "Maximum security, no PHP/MySQL to hack"
+      },
+      {
+        icon: "🌱",
+        title: "10x greener",
+        desc: "Minimal server consumption"
+      }
+    ],
+
+    servicesTitle: "My offers",
+    services: [
+      {
+        title: "Eternal Showcase Site",
+        badge: "Most economical",
+        price: "From €1200",
+        maintenance: "€0/year",
+        description: "Pure HTML/CSS site, immortal and maintenance-free",
+        features: [
+          "No maintenance required",
+          "Free lifetime hosting",
+          "Clean code accessible to any developer",
+          "2 minor changes/year included",
+          "3-7 responsive pages",
+          "SEO optimized"
+        ],
+        extra: "Changes: €30 (minor) / €60-120 (page)",
+        ideal: "Craftsman, restaurant, freelancer, association"
+      },
+      {
+        title: "Pro Showcase Site",
+        badge: "Most popular",
+        price: "From €1700",
+        maintenance: "€120/year",
+        description: "Modern site with intuitive admin interface",
+        features: [
+          "100% autonomous content management",
+          "Custom admin interface",
+          "Free hosting",
+          "Light maintenance (2 interventions/year)",
+          "Multilingual possible",
+          "SEO optimized"
+        ],
+        extra: "vs WordPress: save €500-700/year minimum",
+        ideal: "SME, consulting firm, business with news"
+      },
+      {
+        title: "Simple E-Shop",
+        badge: "Limited to 500 products",
+        price: "From €2200",
+        maintenance: "€400/year",
+        description: "Shop optimized for quick purchase without registration",
+        features: [
+          "Secure Stripe payment",
+          "Admin interface for product management",
+          "100% autonomous management",
+          "Automatic confirmation emails",
+          "Cart and favorites saved",
+          "Free hosting"
+        ],
+        extra: "Quick checkout without friction",
+        ideal: "Artisan creations, occasional shop"
+      },
+      {
+        title: "Advanced E-Shop",
+        badge: "Unlimited",
+        price: "From €3600",
+        maintenance: "€500/year",
+        description: "Complete shop with customer accounts",
+        features: [
+          "Everything from Simple Shop +",
+          "Customer accounts with authentication",
+          "Complete customer dashboard",
+          "Order history and tracking",
+          "Multi-device sync",
+          "Unlimited product catalog"
+        ],
+        extra: "vs WooCommerce: save €1500-2500/year",
+        ideal: "E-commerce with recurring customers, loyalty"
+      }
+    ],
+
+    customTitle: "Custom Development",
+    customPrice: "€40/h",
+    customDesc: "Unique web project tailored to your specific needs",
+    customExamples: [
+      "Custom web application",
+      "Simple SaaS platform",
+      "Dashboard/internal tool",
+      "Booking system",
+      "Technical migration/redesign",
+      "Third-party API integrations"
+    ],
+    customProcess: "Free analysis → Detailed quote → Development → Delivery + doc",
+
+    comparisonTitle: "E-Shop Comparison",
+    comparisonFeatures: [
+      { name: "Initial price", simple: "€2200", advanced: "€3600" },
+      { name: "Maintenance/year", simple: "€400", advanced: "€500" },
+      { name: "Max products", simple: "500", advanced: "Unlimited" },
+      { name: "Cart", simple: "On device", advanced: "Multi-device" },
+      { name: "Favorites", simple: "On device", advanced: "Multi-device" },
+      { name: "Address", simple: "Pre-filled", advanced: "Multiple addresses" },
+      { name: "Customer accounts", simple: "No", advanced: "Yes" },
+      { name: "History", simple: "No", advanced: "Full dashboard" }
+    ],
+
+    evolutionTitle: "Possible Evolution",
+    evolutionText: "All my sites can evolve with your business",
+    evolutions: [
+      {
+        from: "Eternal Site",
+        to: "Pro Site",
+        cost: "€800-1500",
+        note: "Technical redesign required"
+      },
+      {
+        from: "Pro Site",
+        to: "E-shop",
+        cost: "€500-1900",
+        note: "Smooth evolution, same stack"
+      },
+      {
+        from: "Simple E-shop",
+        to: "Advanced",
+        cost: "€1400",
+        note: "Direct upgrade"
+      }
+    ],
+    evolutionTip: "💡 If you anticipate future needs, starting with Pro Site or E-shop from the start optimizes your investment.",
+
+    ctaTitle: "Ready to start your project?",
+    ctaDesc: "Let's discuss your needs and find the right solution.",
+    
+    contactDirect: "Prefer to talk directly?",
+    contactText: "Call me or send me an email. Domain name at your expense (approx. €10-15/year).",
+    
+    formTitle: "Request a quote",
+    nameLabel: "Your name",
+    emailLabel: "Your email",
+    companyLabel: "Your company (optional)",
+    projectTypeLabel: "Project type",
+    projectTypes: {
+      eternal: "Eternal Showcase Site",
+      pro: "Pro Showcase Site",
+      shopSimple: "Simple E-Shop",
+      shopAdvanced: "Advanced E-Shop",
+      audit: "Audit & Optimization",
+      custom: "Custom Development"
+    },
+    messageLabel: "Describe your project",
+    messagePlaceholder: "Tell me about your business, needs, goals...",
+    submitButton: "Send my request"
+  },
+  de: {
+    title: "Josselin HANEL - Leistungen & Preise",
+    description: "Leistungsstarke, nachhaltige Websites mit wenig oder keinen wiederkehrenden Kosten. Von der ewigen Schaufenster-Website bis zum kompletten Online-Shop.",
+    pageTitle: "Leistungen & Preise",
+    intro: "Leistungsstarke, nachhaltige Websites mit wenig oder keinen wiederkehrenden Kosten.",
+    
+    approachTitle: "Warum mich wählen?",
+    approaches: [
+      {
+        icon: "⚡",
+        title: "10x schneller",
+        desc: "Ultra-performante Sites (95+ Lighthouse-Score)"
+      },
+      {
+        icon: "💰", 
+        title: "3-10x günstiger",
+        desc: "Minimale Wartung vs WordPress/Agenturen"
+      },
+      {
+        icon: "🔒",
+        title: "Null Schwachstellen",
+        desc: "Maximale Sicherheit, kein PHP/MySQL zu hacken"
+      },
+      {
+        icon: "🌱",
+        title: "10x grüner",
+        desc: "Minimaler Server-Verbrauch"
+      }
+    ],
+
+    servicesTitle: "Meine Angebote",
+    services: [
+      {
+        title: "Ewige Schaufenster-Site",
+        badge: "Am wirtschaftlichsten",
+        price: "Ab 1200€",
+        maintenance: "0€/Jahr",
+        description: "Reine HTML/CSS-Site, unsterblich und wartungsfrei",
+        features: [
+          "Keine Wartung erforderlich",
+          "Kostenloses lebenslanges Hosting",
+          "Sauberer Code für jeden Entwickler zugänglich",
+          "2 kleinere Änderungen/Jahr inklusive",
+          "3-7 responsive Seiten",
+          "SEO optimiert"
+        ],
+        extra: "Änderungen: 30€ (klein) / 60-120€ (Seite)",
+        ideal: "Handwerker, Restaurant, Freiberufler, Verein"
+      },
+      {
+        title: "Pro Schaufenster-Site",
+        badge: "Am beliebtesten",
+        price: "Ab 1700€",
+        maintenance: "120€/Jahr",
+        description: "Moderne Site mit intuitiver Admin-Oberfläche",
+        features: [
+          "100% autonome Inhaltsverwaltung",
+          "Maßgeschneiderte Admin-Oberfläche",
+          "Kostenloses Hosting",
+          "Leichte Wartung (2 Eingriffe/Jahr)",
+          "Mehrsprachig möglich",
+          "SEO optimiert"
+        ],
+        extra: "vs WordPress: sparen Sie mind. 500-700€/Jahr",
+        ideal: "KMU, Beratungsfirma, Geschäft mit Nachrichten"
+      },
+      {
+        title: "Einfacher E-Shop",
+        badge: "Begrenzt auf 500 Produkte",
+        price: "Ab 2200€",
+        maintenance: "400€/Jahr",
+        description: "Shop optimiert für schnellen Kauf ohne Registrierung",
+        features: [
+          "Sichere Stripe-Zahlung",
+          "Admin-Oberfläche für Produktverwaltung",
+          "100% autonome Verwaltung",
+          "Automatische Bestätigungs-E-Mails",
+          "Warenkorb und Favoriten gespeichert",
+          "Kostenloses Hosting"
+        ],
+        extra: "Schneller Checkout ohne Reibung",
+        ideal: "Handwerkskreationen, gelegentlicher Shop"
+      },
+      {
+        title: "Erweiterter E-Shop",
+        badge: "Unbegrenzt",
+        price: "Ab 3600€",
+        maintenance: "500€/Jahr",
+        description: "Kompletter Shop mit Kundenkonten",
+        features: [
+          "Alles vom Einfachen Shop +",
+          "Kundenkonten mit Authentifizierung",
+          "Komplettes Kunden-Dashboard",
+          "Bestellverlauf und Tracking",
+          "Multi-Geräte-Synchronisation",
+          "Unbegrenzter Produktkatalog"
+        ],
+        extra: "vs WooCommerce: sparen Sie 1500-2500€/Jahr",
+        ideal: "E-Commerce mit wiederkehrenden Kunden, Loyalität"
+      }
+    ],
+
+    customTitle: "Maßgeschneiderte Entwicklung",
+    customPrice: "40€/h",
+    customDesc: "Einzigartiges Webprojekt auf Ihre spezifischen Bedürfnisse zugeschnitten",
+    customExamples: [
+      "Maßgeschneiderte Webanwendung",
+      "Einfache SaaS-Plattform",
+      "Dashboard/internes Tool",
+      "Buchungssystem",
+      "Technische Migration/Neugestaltung",
+      "Drittanbieter-API-Integrationen"
+    ],
+    customProcess: "Kostenlose Analyse → Detailliertes Angebot → Entwicklung → Lieferung + Dok",
+
+    comparisonTitle: "E-Shop-Vergleich",
+    comparisonFeatures: [
+      { name: "Anfangspreis", simple: "2200€", advanced: "3600€" },
+      { name: "Wartung/Jahr", simple: "400€", advanced: "500€" },
+      { name: "Max. Produkte", simple: "500", advanced: "Unbegrenzt" },
+      { name: "Warenkorb", simple: "Auf Gerät", advanced: "Multi-Gerät" },
+      { name: "Favoriten", simple: "Auf Gerät", advanced: "Multi-Gerät" },
+      { name: "Adresse", simple: "Vorausgefüllt", advanced: "Mehrere Adressen" },
+      { name: "Kundenkonten", simple: "Nein", advanced: "Ja" },
+      { name: "Verlauf", simple: "Nein", advanced: "Vollständiges Dashboard" }
+    ],
+
+    evolutionTitle: "Mögliche Entwicklung",
+    evolutionText: "Alle meine Sites können mit Ihrem Geschäft wachsen",
+    evolutions: [
+      {
+        from: "Ewige Site",
+        to: "Pro Site",
+        cost: "800-1500€",
+        note: "Technische Neugestaltung erforderlich"
+      },
+      {
+        from: "Pro Site",
+        to: "E-Shop",
+        cost: "500-1900€",
+        note: "Reibungslose Entwicklung, gleicher Stack"
+      },
+      {
+        from: "Einfacher E-Shop",
+        to: "Erweitert",
+        cost: "1400€",
+        note: "Direktes Upgrade"
+      }
+    ],
+    evolutionTip: "💡 Wenn Sie zukünftige Bedürfnisse antizipieren, optimiert der Start mit Pro Site oder E-Shop von Anfang an Ihre Investition.",
+
+    ctaTitle: "Bereit, Ihr Projekt zu starten?",
+    ctaDesc: "Lassen Sie uns über Ihre Bedürfnisse sprechen und die richtige Lösung finden.",
+    
+    contactDirect: "Möchten Sie lieber direkt sprechen?",
+    contactText: "Rufen Sie mich an oder senden Sie mir eine E-Mail. Domain-Name auf Ihre Kosten (ca. 10-15€/Jahr).",
+    
+    formTitle: "Angebot anfordern",
+    nameLabel: "Ihr Name",
+    emailLabel: "Ihre E-Mail",
+    companyLabel: "Ihr Unternehmen (optional)",
+    projectTypeLabel: "Projekttyp",
+    projectTypes: {
+      eternal: "Ewige Schaufenster-Site",
+      pro: "Pro Schaufenster-Site",
+      shopSimple: "Einfacher E-Shop",
+      shopAdvanced: "Erweiterter E-Shop",
+      audit: "Audit & Optimierung",
+      custom: "Maßgeschneiderte Entwicklung"
+    },
+    messageLabel: "Beschreiben Sie Ihr Projekt",
+    messagePlaceholder: "Erzählen Sie mir von Ihrem Geschäft, Bedürfnissen, Zielen...",
+    submitButton: "Anfrage senden"
+  }
+} as const;
+
+const t = content[lang] || content.fr;
+
+const { pathname } = Astro.url;
+const isEcoMode = pathname.includes("/eco");
+---
+
+<Layout
+  title={t.title}
+  description={t.description}
+  lang={lang}
+  isEcoMode={isEcoMode}
+>
+  <div class="container mx-auto px-4 py-8">
+    <!-- En-tête -->
+    <div class="text-center mb-12">
+      <h1 class="text-4xl font-bold mb-4">{t.pageTitle}</h1>
+      <p class="text-xl text-text-muted max-w-3xl mx-auto">{t.intro}</p>
+    </div>
+
+    <!-- Pourquoi me choisir -->
+    <section class="mb-16">
+      <h2 class="text-2xl font-bold mb-8 text-center text-accent">{t.approachTitle}</h2>
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {t.approaches.map((approach) => (
+          <div class="text-center p-4 bg-secondary bg-opacity-20 rounded-lg">
+            <div class="text-4xl mb-3">{approach.icon}</div>
+            <h3 class="font-semibold mb-2">{approach.title}</h3>
+            <p class="text-sm text-text-muted">{approach.desc}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Services -->
+    <section class="mb-16">
+      <h2 class="text-2xl font-bold mb-8 text-center text-accent">{t.servicesTitle}</h2>
+      <div class="grid lg:grid-cols-3 gap-8">
+        {t.services.map((service) => (
+          <div class="bg-secondary bg-opacity-30 p-6 rounded-lg">
+            <h3 class="text-xl font-bold mb-2">{service.title}</h3>
+            <div class="mb-3">
+              <div class="text-accent font-bold text-lg">{service.price}</div>
+              <div class="text-sm text-text-muted">{service.maintenance}</div>
+            </div>
+            <p class="text-sm text-text-muted mb-4">{service.description}</p>
+            <ul class="space-y-2 mb-4">
+              {service.features.map((feature) => (
+                <li class="flex items-start">
+                  <span class="text-accent mr-2">✓</span>
+                  <span class="text-sm">{feature}</span>
+                </li>
+              ))}
+            </ul>
+            <div class="border-t border-secondary pt-3 mt-3">
+              <p class="text-xs text-accent font-medium mb-1">{service.extra}</p>
+              <p class="text-xs text-text-muted italic">💡 {service.ideal}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Formulaire de contact -->
+    <section class="bg-secondary bg-opacity-20 p-8 rounded-lg mb-16">
+      <div class="text-center mb-8">
+        <h2 class="text-2xl font-bold mb-4 text-accent">{t.ctaTitle}</h2>
+        <p class="text-text-muted">{t.ctaDesc}</p>
+      </div>
+
+      <div class="max-w-2xl mx-auto">
+        <form
+          method="POST"
+          action="https://api.web3forms.com/submit"
+          class="space-y-6"
+        >
+          <!-- Configuration Web3Forms -->
+          <input type="hidden" name="access_key" value="2dcc3f1b-036f-48a7-987a-cdada0d05ae5" />
+          <input type="hidden" name="subject" value="Nouvelle demande de devis - Services 2025" />
+          <input type="hidden" name="from_name" value="Portfolio Services 2025" />
+
+          <h3 class="text-xl font-semibold mb-4">{t.formTitle}</h3>
+
+          <div class="grid md:grid-cols-2 gap-4">
+            <div>
+              <label for="name" class="block mb-1 font-medium">{t.nameLabel} *</label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                class="w-full p-3 border border-form bg-primary rounded-md"
+                required
+              />
+            </div>
+            <div>
+              <label for="email" class="block mb-1 font-medium">{t.emailLabel} *</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                class="w-full p-3 border border-form bg-primary rounded-md"
+                required
+              />
+            </div>
+          </div>
+
+          <div>
+            <label for="company" class="block mb-1 font-medium">{t.companyLabel}</label>
+            <input
+              type="text"
+              id="company"
+              name="company"
+              class="w-full p-3 border border-form bg-primary rounded-md"
+            />
+          </div>
+
+          <div>
+            <label for="project_type" class="block mb-1 font-medium">{t.projectTypeLabel} *</label>
+            <select
+              id="project_type"
+              name="project_type"
+              class="w-full p-3 border border-form bg-primary rounded-md"
+              required
+            >
+              <option value="eternal">{t.projectTypes.eternal}</option>
+              <option value="pro">{t.projectTypes.pro}</option>
+              <option value="shop_simple">{t.projectTypes.shopSimple}</option>
+              <option value="shop_advanced">{t.projectTypes.shopAdvanced}</option>
+              <option value="custom">{t.projectTypes.custom}</option>
+            </select>
+          </div>
+
+          <div>
+            <label for="message" class="block mb-1 font-medium">{t.messageLabel} *</label>
+            <textarea
+              id="message"
+              name="message"
+              rows="5"
+              class="w-full p-3 border border-form bg-primary rounded-md"
+              placeholder={t.messagePlaceholder}
+              required
+            ></textarea>
+          </div>
+
+          <!-- Honeypot -->
+          <input type="text" name="botcheck" class="hidden" />
+
+          <div class="text-center">
+            <button type="submit" class="cta-button text-lg px-8 py-3">
+              {t.submitButton}
+            </button>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <!-- Contact direct -->
+    <div class="text-center p-6 border border-accent border-opacity-30 rounded-lg">
+      <h3 class="text-lg font-semibold mb-2">{t.contactDirect}</h3>
+      <p class="text-text-muted mb-4">{t.contactText}</p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+        <p class="text-accent hover:text-accent-hover">
+          📞 <span class="select-all">+33 7 81 33 97 68</span>
+        </p>
+        <p class="text-accent hover:text-accent-hover">
+          ✉️ <span class="select-all">josshanel@gmail.com</span>
+        </p>
+      </div>
+    </div>
+  </div>
+</Layout>

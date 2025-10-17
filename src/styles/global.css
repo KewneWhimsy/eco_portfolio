@@ -474,3 +474,45 @@ body.tech-mode .simple-desc {
 .price-flash {
   animation: priceFlash 0.7s ease;
 }
+
+details {
+  --_duration: .2s;
+  
+  @media (prefers-reduced-motion: no-preference) {
+    interpolate-size: allow-keywords;
+  }
+  
+  summary {
+    cursor: pointer;
+    list-style: none;
+    
+    &::before {
+      content: '▶';
+      display: inline-block;
+      margin-inline-end: .5ch;
+      transition: rotate var(--_duration);
+    }
+    
+    &::-webkit-details-marker {
+      display: none;
+    }
+  }
+  
+  &[open] summary::before {
+    rotate: 90deg;
+  }
+  
+  &::details-content {
+    opacity: 0;
+    block-size: 0;
+    overflow-y: clip; 
+    transition: content-visibility var(--_duration) allow-discrete,
+                opacity var(--_duration),
+                block-size var(--_duration);
+  }
+  
+  &[open]::details-content {
+    opacity: 1;
+    block-size: auto;
+  }
+}
