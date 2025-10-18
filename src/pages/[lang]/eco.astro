@@ -4,8 +4,8 @@ import Layout from "../../layouts/layout.astro";
 import { Picture } from 'astro:assets';
 import monImage from "../../assets/j.jpg";
 import CtaDispo from "../../components/cta_dispo.astro";
-import objetImage from "../../assets/projects/objet01.png";
-import esportImage from "../../assets/projects/esport01.png";
+import { getCollection } from 'astro:content';
+import { loadHeroImage } from '../../utils/imageLoader';
 
 // Récupérer le paramètre de langue depuis l'URL
 export function getStaticPaths() {
@@ -17,6 +17,12 @@ export function getStaticPaths() {
 }
 
 const lang = Astro.params.lang as "fr" | "en" | "de";
+
+// Récupération des 2 projets les plus récents
+const allProjects = await getCollection("projects");
+const recentProjects = allProjects
+  .sort((a, b) => b.data.order - a.data.order)
+  .slice(0, 2);
 
 // Titre et description de la page pour SEO (à traduire selon la langue)
 const content = {
@@ -60,50 +66,36 @@ const content = {
       {
         title: "Rapidité",
         description:
-          "Des sites qui ne font pas attendre vos visiteurs et qui consomment moins de batterie.",
+          "Des sites qui ne font pas attendre vos visiteurs.",
       },
       {
         title: "Simplicité",
         description:
-          "Des solutions qui vont droit au but, sans gadgets inutiles, faciles à mettre à jour.",
+          "Des solutions qui vont droit au but, faciles à mettre à jour.",
       },
       {
         title: "Économie d'énergie",
         description:
-          "Des sites plus légers qui respectent la planète et font baisser vos factures d'hébergement.",
+          "Des sites plus légers qui font baisser vos factures d'hébergement.",
       },
       {
         title: "Autonomie",
         description:
-          "Des sites que vous pouvez faire évoluer facilement, sans dépendre constamment d'un prestataire.",
+          "Des sites que vous pouvez faire évoluer facilement.",
       },
     ],
     projectsTitle: "Projets récents",
     projectButton: "Voir ce projet",
     viewAllProjectsButton: "Voir tous les projets",
-    projects: {
-      esport: {
-        title: "Application e-sport avec chat (2025)",
-        description:
-          "Plateforme de gestion d'événements e-sport intégrant un système de chat en temps réel via WebSocket et HTMX.",
-        techs: "Astro, HTMX, WebSocket, Express, PostgreSQL",
-      },
-      library: {
-        title: "Bibliothèque d'objets - Quimper (2024)",
-        description:
-          "Site vitrine pour une bibliothèque d'objets associative, conçu en collaboration avec une créatrice audiovisuelle.",
-        techs: "Astro, Alpine.js, TypeScript, GitHub Actions",
-      },
-    },
     imageAlt: "Photo de Josselin HANEL",
     motivationTitle: "Ce qui me motive",
     motivationIntro:
-      "Je crois à un web qui allie rapidité, simplicité et respect de l'environnement. Aujourd'hui, trop de sites sont lourds, lents à charger et consomment beaucoup d'énergie. Ma démarche s'appuie sur ces principes :",
+      "Je crois à un web qui allie rapidité, simplicité et respect de l'environnement. Aujourd'hui, trop de sites sont lourds, lents à charger et consomment beaucoup d'énergie alors qu'on peut facilement faire autrement ! Ma démarche s'appuie sur ces principes :",
     motivationPrinciples: [
       {
         title: "La bonne technique au bon endroit",
         description:
-          "Les navigateurs modernes peuvent faire beaucoup de choses sans avoir besoin d'installer des tonnes de modules supplémentaires. J'utilise les technologies existantes de manière intelligente pour créer des sites fluides qui ne rament pas."
+          "Les navigateurs modernes peuvent faire beaucoup de choses sans avoir besoin d'installer des tonnes de modules supplémentaires. J'utilise les technologies existantes et leurs évolutions de manière intelligente pour créer des expériences fluides."
       },
       {
         title: "Le respect du visiteur",
@@ -111,25 +103,20 @@ const content = {
           "Pas de fenêtres pop-up agaçantes ni de bandeaux qui gênent la navigation. Une expérience agréable où l'utilisateur reste maître de sa navigation et de ses données."
       },
       {
-        title: "La performance bien pensée",
+        title: "Léger d'abord, puissant si besoin",
         description:
-          "Chaque élément a sa raison d'être, et chaque effet visuel est fait pour ne pas ralentir le site. Résultat : des sites à la fois beaux, rapides et économes en ressources."
+          "Site vitrine ? Pages pré-générées ultra-rapides. E-commerce simple ? Pareil, avec juste quelques fonctions à la demande. Application interactive avec chat ? Là j'utilise Elixir/Phoenix, conçu pour gérer des milliers d'utilisateurs simultanés efficacement."
       },
-      {
-        title: "Un mode économie quand c'est utile",
-        description:
-          "Ce site propose un mode économie qui permet d'y accéder même avec une connexion limitée. Si cette approche n'est pas idéale pour tous les projets (surtout ceux avec beaucoup d'images), elle devrait être plus répandue pour les services essentiels et sites d'information."
-      }
     ],
   },
   en: {
-    title: "Josselin HANEL - Web Developer (Eco Mode)",
+    title: "Josselin HANEL - Full Stack Web Developer (Eco Mode)",
     description:
       "Eco-friendly version of my full stack developer portfolio, with minimal carbon footprint.",
     heroTitle:
       "<span class='text-light whitespace-nowrap'>Full Stack</span> Web Developer",
     heroText:
-      "I design websites and web applications that load quickly, work everywhere, and are optimized for good Google rankings. All with an eco-friendly approach.",
+      "I create websites that load quickly, display correctly on all devices, and rank well on Google. All using modern, cost-effective and eco-friendly technologies.",
     projectsButton: "View my projects",
     contactButton: "Contact me",
     ecoModeTitle: "Eco Mode activated",
@@ -140,98 +127,79 @@ const content = {
       {
         title: "Showcase websites",
         description:
-          "Personalized, fast, and SEO-optimized professional websites - without WordPress or costly subscriptions."
+          "Personalized, fast and well-ranked professional websites - without WordPress or costly subscriptions."
       },
       {
         title: "Web applications",
         description:
-          "Custom interactive applications to automate your processes and improve your users' experience.",
+          "Custom online tools to automate your tasks and improve your users' experience.",
       },
       {
-        title: "E-commerce",
+        title: "Online stores",
         description:
-          "Modern and high-performance e-commerce solutions, without the monthly fees of traditional platforms.",
+          "Modern and fast e-commerce solutions, without the monthly fees of traditional platforms.",
       },
       {
-        title: "Consultation",
+        title: "Consulting",
         description:
-          "Web eco-design advice, performance optimization, and auditing of existing sites.",
+          "Advice to make your existing sites faster, less energy-intensive and more user-friendly.",
       },
     ],
     values: [
       {
-        title: "Performance",
+        title: "Speed",
         description:
-          "Fast websites that offer a better user experience and consume less energy.",
+          "Websites that don't keep your visitors waiting.",
       },
       {
         title: "Simplicity",
         description:
-          "Effective solutions without unnecessary complexity, easy to maintain over time.",
+          "Solutions that get straight to the point, easy to update.",
       },
       {
-        title: "Eco-responsibility",
+        title: "Energy saving",
         description:
-          "Design that minimizes the carbon footprint of your web projects.",
+          "Lighter websites that lower your hosting bills.",
       },
       {
         title: "Autonomy",
         description:
-          "Websites that you can easily evolve, without complex dependencies.",
+          "Websites you can easily evolve.",
       },
     ],
     projectsTitle: "Recent projects",
     projectButton: "View project",
     viewAllProjectsButton: "View all projects",
-    projects: {
-      esport: {
-        title: "E-sport Application with Chat (2025)",
-        description:
-          "E-sport event management platform with a real-time chat system via WebSocket and HTMX.",
-        techs: "Astro, HTMX, WebSocket, Express, PostgreSQL",
-      },
-      library: {
-        title: "Object Library - Quimper (2024)",
-        description:
-          "Showcase website for a community object library, designed in collaboration with an audiovisual creator.",
-        techs: "Astro, Alpine.js, TypeScript, GitHub Actions",
-      },
-    },
     imageAlt: "Photo of Josselin HANEL",
     motivationTitle: "What drives me",
     motivationIntro:
-      "I believe in a web that combines performance, elegance, and environmental respect. My approach revolves around these principles:",
+      "I believe in a web that combines speed, simplicity and environmental respect. Today, too many sites are heavy, slow to load and consume a lot of energy when we can easily do otherwise! My approach is based on these principles:",
     motivationPrinciples: [
       {
-        title: "Technical intelligence",
+        title: "The right technology in the right place",
         description:
-          "Core web technologies have evolved significantly in recent years, but many companies and developers continue to use heavy libraries out of habit. I prefer to leverage modern browser capabilities to create visual effects and smooth interactions without compromising speed.",
+          "Modern browsers can do many things without needing to install tons of additional modules. I use existing technologies intelligently to create smooth sites that don't lag."
       },
       {
-        title: "Respect for users",
+        title: "Respect for visitors",
         description:
-          "No intrusive popups or unnecessary banners that interrupt browsing. A smooth experience where users remain in control of their navigation and their data.",
+          "No annoying pop-ups or banners that interfere with navigation. A pleasant experience where users remain in control of their navigation and data."
       },
       {
-        title: "Thoughtful performance",
+        title: "Well-thought-out performance",
         description:
-          "Each design element has its purpose, and each visual effect is implemented optimally. The result: websites that are aesthetic, fast, and resource-efficient at the same time.",
-      },
-      {
-        title: "Eco mode where it matters",
-        description:
-          "This portfolio offers an eco mode that provides access to content even with limited connectivity. While this approach isn't relevant for all projects (particularly visual ones), it should be more widespread for essential services and information websites.",
+          "Every element has its purpose, and every visual effect is designed not to slow down the site. Result: sites that are both beautiful, fast and resource-efficient."
       },
     ],
   },
   de: {
-    title: "Josselin HANEL - Webentwickler (Öko-Modus)",
+    title: "Josselin HANEL - Full-Stack Webentwickler (Öko-Modus)",
     description:
       "Umweltfreundliche Version meines Full-Stack-Entwickler-Portfolios mit minimalem CO2-Fußabdruck.",
     heroTitle:
       "<span class='text-light whitespace-nowrap'>Full-Stack</span> Webentwickler",
     heroText:
-      "Ich entwickle Websites und Webanwendungen, die schnell laden, überall funktionieren und für gute Google-Rankings optimiert sind. Alles mit einem umweltfreundlichen Ansatz.",
+      "Ich erstelle Websites, die schnell laden, auf allen Geräten korrekt angezeigt werden und gut bei Google platziert sind. Alles mit modernen, kostengünstigen und umweltfreundlichen Technologien.",
     projectsButton: "Meine Projekte",
     contactButton: "Kontakt",
     ecoModeTitle: "Öko-Modus aktiviert",
@@ -240,89 +208,70 @@ const content = {
     servicesTitle: "Dienstleistungen",
     services: [
       {
-        title: "Showcase-Websites",
+        title: "Präsentations-Websites",
         description:
-          "Personalisierte, schnelle und SEO-optimierte professionelle Websites - ohne WordPress oder kostspielige Abonnements."
+          "Personalisierte, schnelle und gut platzierte professionelle Websites - ohne WordPress oder kostspielige Abonnements."
       },
       {
         title: "Webanwendungen",
         description:
-          "Maßgeschneiderte interaktive Anwendungen zur Automatisierung Ihrer Prozesse und Verbesserung der Benutzererfahrung.",
+          "Maßgeschneiderte Online-Tools zur Automatisierung Ihrer Aufgaben und Verbesserung der Benutzererfahrung.",
       },
       {
-        title: "E-Commerce",
+        title: "Online-Shops",
         description:
-          "Moderne und leistungsstarke E-Commerce-Lösungen ohne monatliche Gebühren traditioneller Plattformen.",
+          "Moderne und schnelle E-Commerce-Lösungen ohne monatliche Gebühren traditioneller Plattformen.",
       },
       {
         title: "Beratung",
         description:
-          "Beratung für Web-Öko-Design, Leistungsoptimierung und Audit bestehender Websites.",
+          "Beratung, um Ihre bestehenden Websites schneller, weniger energieintensiv und benutzerfreundlicher zu machen.",
       },
     ],
     values: [
       {
-        title: "Leistung",
+        title: "Schnelligkeit",
         description:
-          "Schnelle Websites, die ein besseres Benutzererlebnis bieten und weniger Energie verbrauchen.",
+          "Websites, die Ihre Besucher nicht warten lassen.",
       },
       {
         title: "Einfachheit",
         description:
-          "Effektive Lösungen ohne unnötige Komplexität, die langfristig leicht zu warten sind.",
+          "Lösungen, die auf den Punkt kommen, leicht zu aktualisieren.",
       },
       {
-        title: "Umweltverantwortung",
+        title: "Energieeinsparung",
         description:
-          "Ein Design, das den CO2-Fußabdruck Ihrer Webprojekte minimiert.",
+          "Leichtere Websites, die Ihre Hosting-Kosten senken.",
       },
       {
         title: "Autonomie",
         description:
-          "Websites, die Sie leicht weiterentwickeln können, ohne komplexe Abhängigkeiten.",
+          "Websites, die Sie leicht weiterentwickeln können.",
       },
     ],
     projectsTitle: "Aktuelle Projekte",
     projectButton: "Projekt ansehen",
     viewAllProjectsButton: "Alle Projekte ansehen",
-    projects: {
-      esport: {
-        title: "E-Sport-Anwendung mit Chat (2025)",
-        description:
-          "E-Sport-Eventmanagement-Plattform mit einem Echtzeit-Chat-System über WebSocket und HTMX.",
-        techs: "Astro, HTMX, WebSocket, Express, PostgreSQL",
-      },
-      library: {
-        title: "Objektbibliothek - Quimper (2024)",
-        description:
-          "Schaufenster-Website für eine gemeinschaftliche Objektbibliothek, gestaltet in Zusammenarbeit mit einer audiovisuellen Designerin.",
-        techs: "Astro, Alpine.js, TypeScript, GitHub Actions",
-      },
-    },
     imageAlt: "Foto von Josselin HANEL",
     motivationTitle: "Was mich antreibt",
     motivationIntro:
-      "Ich glaube an ein Web, das Leistung, Eleganz und Umweltbewusstsein vereint. Mein Ansatz beruht auf diesen Prinzipien:",
+      "Ich glaube an ein Web, das Geschwindigkeit, Einfachheit und Umweltbewusstsein vereint. Heute sind zu viele Websites schwer, laden langsam und verbrauchen viel Energie, obwohl man es leicht anders machen kann! Mein Ansatz basiert auf diesen Prinzipien:",
     motivationPrinciples: [
       {
-        title: "Technische Intelligenz",
+        title: "Die richtige Technologie am richtigen Ort",
         description:
-          "Die grundlegenden Webtechnologien haben sich in den letzten Jahren erheblich weiterentwickelt, aber viele Unternehmen und Entwickler verwenden aus Gewohnheit weiterhin schwere Bibliotheken. Ich bevorzuge es, moderne Browser-Funktionen zu nutzen, um visuelle Effekte und flüssige Interaktionen zu erstellen, ohne Kompromisse bei der Geschwindigkeit einzugehen.",
+          "Moderne Browser können viele Dinge tun, ohne tonnenweise zusätzliche Module installieren zu müssen. Ich nutze bestehende Technologien intelligent, um flüssige Websites zu erstellen, die nicht hängen."
       },
       {
-        title: "Respekt für Benutzer",
+        title: "Respekt für Besucher",
         description:
-          "Keine aufdringlichen Popups oder unnötigen Banner, die das Surfen unterbrechen. Ein reibungsloses Erlebnis, bei dem die Benutzer die Kontrolle über ihre Navigation und ihre Daten behalten.",
+          "Keine nervigen Pop-ups oder Banner, die die Navigation stören. Ein angenehmes Erlebnis, bei dem Benutzer die Kontrolle über ihre Navigation und Daten behalten."
       },
       {
         title: "Durchdachte Leistung",
         description:
-          "Jedes Designelement hat seinen Zweck, und jeder visuelle Effekt wird optimal implementiert. Das Ergebnis: Websites, die gleichzeitig ästhetisch, schnell und ressourcenschonend sind.",
-      },
-      {
-        title: "Öko-Modus wo es zählt",
-        description:
-          "Dieses Portfolio bietet einen Öko-Modus, der auch bei eingeschränkter Verbindung Zugriff auf Inhalte ermöglicht. Obwohl dieser Ansatz nicht für alle Projekte relevant ist (insbesondere visuelle), sollte er für wesentliche Dienste und Informationswebsites weiter verbreitet sein.",
+          "Jedes Element hat seinen Zweck, und jeder visuelle Effekt ist so gestaltet, dass er die Website nicht verlangsamt. Ergebnis: Websites, die gleichzeitig schön, schnell und ressourcenschonend sind."
       },
     ],
   },
@@ -373,21 +322,21 @@ const isEcoMode = true;
     </section>
 
     <!-- Section d'intro sur l'éco-conception -->
-<section class="py-6 border-b border-secondary mb-6">
-  <h2 class="text-xl font-bold mb-3">{t.ecoModeTitle}</h2>
-  <p class="mb-3">
-    {t.ecoModeText}
-  </p>
-  <p class="text-sm text-text-muted">
-    <a href={`/${lang}/about/eco/`} class="text-link">
-      {lang === "fr" 
-        ? "En savoir plus sur mon approche d'éco-conception" 
-        : lang === "en" 
-          ? "Learn more about my eco-design approach" 
-          : "Mehr über meinen Öko-Design-Ansatz erfahren"}
-    </a>
-  </p>
-</section>
+    <section class="py-6 border-b border-secondary mb-6">
+      <h2 class="text-xl font-bold mb-3">{t.ecoModeTitle}</h2>
+      <p class="mb-3">
+        {t.ecoModeText}
+      </p>
+      <p class="text-sm text-text-muted">
+        <a href={`/${lang}/about/eco/`} class="text-link">
+          {lang === "fr" 
+            ? "En savoir plus sur mon approche d'éco-conception" 
+            : lang === "en" 
+              ? "Learn more about my eco-design approach" 
+              : "Mehr über meinen Öko-Design-Ansatz erfahren"}
+        </a>
+      </p>
+    </section>
 
     <!-- Section services simplifiée -->
     <section class="py-6 border-b border-secondary mb-6">
@@ -433,67 +382,47 @@ const isEcoMode = true;
     </section>
 
     <!-- Section projets récents avec vignettes très légères -->
-<section class="py-6 mb-8">
-  <h2 class="text-xl font-bold mb-4 text-accent">{t.projectsTitle}</h2>
-  <div class="space-y-4">
-    <!-- Projet e-sport -->
-    <div class="pb-4 border-b border-secondary border-opacity-30">
-      <div class="flex items-start gap-3">
-        <!-- Vignette miniature très petite -->
-        <Picture
-          src={esportImage}
-          width={128}
-          formats={["avif", "webp", "png"]}
-          alt=""
-          class="w-16 h-16 object-cover rounded flex-shrink-0 opacity-90"
-          loading="lazy"
-        />
-        <div>
-          <h3 class="font-medium mb-1">{t.projects.esport.title}</h3>
-          <p class="mb-2 text-sm">{t.projects.esport.description}</p>
-          <div class="text-xs text-text-muted mb-1">{t.projects.esport.techs}</div>
-          <a
-            href={`/${lang}/esport/eco/`}
-            class="text-link text-xs inline-block"
-          >
-            {t.projectButton}
-          </a>
-        </div>
+    <section class="py-6 mb-8">
+      <h2 class="text-xl font-bold mb-4 text-accent">{t.projectsTitle}</h2>
+      <div class="space-y-4">
+        {recentProjects.map(async (project) => {
+          const heroImage = await loadHeroImage(project.data.slug);
+          return (
+            <div class="pb-4 border-b border-secondary border-opacity-30">
+              <div class="flex items-start gap-3">
+                <!-- Vignette miniature très petite -->
+                <Picture
+                  src={heroImage}
+                  width={128}
+                  formats={["avif", "webp", "png"]}
+                  alt=""
+                  class="w-16 h-16 object-cover rounded flex-shrink-0 opacity-90"
+                  loading="lazy"
+                />
+                <div>
+                  <h3 class="font-medium mb-1">{project.data.title[lang]}</h3>
+                  <p class="mb-2">{project.data.description[lang]}</p>
+                  <div class="text-sm text-text-muted mb-1">
+                    {project.data.tech.join(', ')}
+                  </div>
+                  <a
+                    href={`/${lang}/${project.data.slug}/eco/`}
+                    class="text-link inline-block"
+                  >
+                    {t.projectButton}
+                  </a>
+                </div>
+              </div>
+            </div>
+          );
+        })}
       </div>
-    </div>
-
-    <!-- Projet bibliothèque -->
-    <div class="pt-2">
-      <div class="flex items-start gap-3">
-        <!-- Vignette miniature très petite -->
-        <Picture
-          src={objetImage}
-          width={128}
-          formats={["avif", "webp", "png"]}
-          alt=""
-          class="w-16 h-16 object-cover rounded flex-shrink-0 opacity-90"
-          loading="lazy"
-        />
-        <div>
-          <h3 class="font-medium mb-1">{t.projects.library.title}</h3>
-          <p class="mb-2 text-sm">{t.projects.library.description}</p>
-          <div class="text-xs text-text-muted mb-1">{t.projects.library.techs}</div>
-          <a
-            href={`/${lang}/objet/eco/`}
-            class="text-link text-xs inline-block"
-          >
-            {t.projectButton}
-          </a>
-        </div>
+      <div class="text-center mt-6">
+        <a href={`/${lang}/projects/eco/`} class="text-link">
+          {t.viewAllProjectsButton} →
+        </a>
       </div>
-    </div>
-  </div>
-  <div class="text-center mt-6">
-    <a href={`/${lang}/projects/eco/`} class="text-link text-sm">
-      {t.viewAllProjectsButton} →
-    </a>
-  </div>
-</section>
+    </section>
 
     <!-- Section CTA contact -->
     <CtaDispo withBackground={false} transition-persist="cta-dispo"/>

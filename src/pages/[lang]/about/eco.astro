@@ -138,12 +138,12 @@ const content = {
       "Version éco-responsable de ma page à propos, découvrez mon parcours avec une empreinte carbone minimale.",
     aboutTitle: "À propos de moi",
     aboutText:
-      "Je suis un créateur de sites web basé à Rennes. Je conçois des sites internet simples, rapides et qui consomment moins d'énergie pour des artisans, commerçants et associations. Je travaille aussi pour des clients à Quimper, Paris, Berlin ou à distance depuis chez moi.",
+      "Je crée des sites internet rapides et qui consomment moins d'énergie. Basé à Rennes, je travaille aussi pour des clients à Quimper, Paris, Berlin ou à distance depuis chez moi.",
     visionTitle: "Ma vision",
     visionText:
-      "Internet consomme de plus en plus d'électricité dans le monde. En tant que créateur de sites, je m'engage à faire des sites plus légers, qui marchent bien sans gaspiller de l'énergie et <strong>sans vous ruiner</strong>. Un site bien fait, c'est un site que les gens trouvent facilement, qui se charge vite et qui donne envie de rester.",
+      "Internet consomme de plus en plus d'électricité dans le monde. En tant que créateur de sites, je m'engage à faire des sites plus légers, qui fonctionnent bien sur tout les appareils, sans gaspiller de l'énergie.",
     approachTitle: "Mon approche",
-    skillsTitle: "Ce que je sais faire",
+    skillsTitle: "Compétences",
     expTitle: "Mon expérience",
     eduTitle: "Formation",
     contactButton: "Me contacter",
@@ -211,7 +211,7 @@ const skills = [
 ];
 const experiences = [
   lang === "fr"
-    ? "2025 - Aujourd'hui: Créateur de sites internet écologiques et économiques pour artisans, commerçants et associations"
+    ? "2025 - Aujourd'hui: Créateur de sites internet indépendant (fullstack)"
     : lang === "en"
       ? "2025 - Present: Freelance web developer, Independent"
       : "2025 - Heute: Freelance Webentwickler, Unabhängig",
@@ -266,7 +266,7 @@ const isEcoMode = true;
       <h2 class="text-xl font-semibold mb-3">
         {t.approachTitle}
       </h2>
-      <ul class="list-disc pl-5 mb-3">
+      <ul class="list-disc pl-5 mb-3 space-y-4">
         {approach.map((item) => <li>{item}</li>)}
       </ul>
     </section>

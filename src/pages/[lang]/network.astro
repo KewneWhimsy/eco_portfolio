@@ -123,7 +123,7 @@ const collaborators = [
     <!-- Grille de collaborateurs -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
       {collaborators.map((person, index) => (
-        <div class="bg-secondary bg-opacity-30 rounded-lg overflow-hidden border border-secondary hover:border-accent transition-all duration-300 flex flex-col">
+        <div class="bg-secondary bg-opacity-30 corner-style overflow-hidden border border-secondary hover:border-accent transition-all duration-300 flex flex-col">
           <div class="p-5 flex-1 flex flex-col">
             <!-- En-tête de la carte avec photo -->
             <div class="flex items-center gap-4 mb-4">
@@ -151,7 +151,7 @@ const collaborators = [
             <div class="mb-4">
               <div class="flex flex-wrap gap-1.5">
                 {person.skills.map(skill => (
-                  <span class="px-2 py-0.5 bg-secondary bg-opacity-50 rounded-full text-xs">
+                  <span class="px-2 py-0.5 bg-secondary bg-opacity-50 rounded-full text-sm">
                     {skill}
                   </span>
                 ))}
@@ -165,7 +165,7 @@ const collaborators = [
                   href={person.portfolio} 
                   target="_blank" 
                   rel="noopener noreferrer" 
-                  class="btn-secondary text-xs px-3 py-1"
+                  class="btn-secondary text-sm px-3 py-1"
                 >
                   {t.viewWork}
                 </a>
