@@ -80,27 +80,23 @@ const content = {
     projectsTitle: "Projets récents",
     projectButton: "Voir ce projet",
     viewAllProjectsButton: "Voir tous les projets",
-    // Nouvelle section
+    // Motivations
     motivationTitle: "Ce qui me motive",
-    motivationIntro: "Je crois à un web qui allie rapidité, simplicité et respect de l'environnement. Aujourd'hui, trop de sites sont lourds, lents à charger et consomment beaucoup d'énergie alors qu'on peut facilement faire autrement ! Ma démarche s'appuie sur ces principes :",
-    motivationPrinciples: [
-      {
-        title: "La bonne technique au bon endroit",
-        description: "Les navigateurs modernes peuvent faire beaucoup de choses sans avoir besoin d'installer des tonnes de modules supplémentaires. J'utilise les technologies existantes et leurs évolutions de manière intelligente pour créer des expériences fluides."
-      },
-      {
-        title: "Le respect du visiteur",
-        description: "Pas de fenêtres pop-up agaçantes ni de bandeaux qui gênent la navigation. Une expérience agréable où l'utilisateur reste maître de sa navigation et de ses données."
-      },
-      {
-        title: "La performance bien pensée",
-        description: "Chaque élément a sa raison d'être, et chaque effet visuel est fait pour ne pas ralentir le site. Résultat : des sites à la fois beaux, rapides et économes en ressources."
-      },
-      {
-        title: "Un mode économie quand c'est utile",
-        description: "Ce site propose un mode économie qui permet d'y accéder même avec une connexion limitée. Si cette approche n'est pas idéale pour tous les projets (surtout ceux avec beaucoup d'images), elle devrait être plus répandue pour les <span class='font-bold'>services essentiels</span> et <span class='font-bold'>sites d'information</span>."
-      }
-    ],
+motivationIntro: "Je crois à un web qui allie rapidité, simplicité et respect de l'environnement. Aujourd'hui, trop de sites sont lourds, lents à charger et consomment beaucoup d'énergie alors qu'on peut facilement faire autrement ! Ma démarche s'appuie sur ces principes :",
+motivationPrinciples: [
+  {
+    title: "La bonne technique au bon endroit",
+    description: "Les navigateurs modernes peuvent faire beaucoup de choses sans avoir besoin d'installer des tonnes de modules supplémentaires. J'utilise les technologies existantes et leurs évolutions de manière intelligente pour créer des expériences fluides."
+  },
+  {
+    title: "Le respect du visiteur",
+    description: "Pas de fenêtres pop-up agaçantes ni de bandeaux qui gênent la navigation. Une expérience agréable où l'utilisateur reste maître de sa navigation et de ses données."
+  },
+ {
+  title: "Léger d'abord, puissant si besoin",
+  description: "Site vitrine ? Pages pré-générées ultra-rapides. E-commerce simple ? Pareil, avec juste quelques fonctions à la demande. Application interactive avec chat ? Là j'utilise Elixir/Phoenix, conçu pour gérer des milliers d'utilisateurs simultanés efficacement."
+}
+],
     didYouKnowTitle: "Le saviez-vous ?",
     didYouKnowItems: [
       {
@@ -392,52 +388,53 @@ const t = content[lang] || content.fr;
     
 
     <!-- Section ce qui m'anime -->
-    <section class=" py-2 sm:py-8 mb-12 fade-in opacity-0 translate-y-6 transition-all duration-500">
-      <h2 class="text-2xl font-bold mb-6 border-b border-accent pb-2">
-        {t.motivationTitle}
-      </h2>
+<section class="py-2 sm:py-8 mb-12 fade-in opacity-0 translate-y-6 transition-all duration-500">
+  <h2 class="text-2xl font-bold mb-6 border-b border-accent pb-2">
+    {t.motivationTitle}
+  </h2>
+  
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+    <!-- Colonne avec texte principal -->
+    <div class="bg-secondary bg-opacity-10 p-6 rounded-lg border-l-4 border-accent">
+      <p class="text-lg mb-4">{t.motivationIntro}</p>
       
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-        <!-- Colonne avec texte principal -->
-        <div class="bg-secondary bg-opacity-10 p-6 rounded-lg border-l-4 border-accent">
-          <p class="mb-4">{t.motivationIntro}</p>
-          
-          <ul class="space-y-3">
-            {t.motivationPrinciples.map((principle, index) => (
-              <li class="flex items-start">
-                <span class="text-accent font-bold mr-2">{index + 1}.</span>
-                <p set:html={`<strong class="font-bold">${principle.title}</strong>: ${principle.description}`}></p>
-              </li>
-            ))}
-          </ul>
-        </div>
-        
-        <div class="flex flex-col gap-4">
-          <div class="bg-secondary bg-opacity-30 p-5 rounded-lg">
-            <h3 class="text-xl font-semibold mb-3 text-accent">
-              {t.didYouKnowTitle}
-            </h3>
-            <div class="space-y-3">
-              {t.didYouKnowItems.map((item) => (
-                <div class="mb-3 p-4 bg-primary bg-opacity-30 corner-style">
-                  <p class="mb-2">{item.text}</p>
-                  {item.details && <p class="mb-0 text-sm">{item.details}</p>}
-                  {item.source && (
-                    <p class="text-sm text-text-muted">
-                      <a href={item.link} target="_blank" rel="noopener noreferrer" class="text-link">{item.source}</a>
-                    </p>
-                  )}
-                </div>
-              ))}
+      <ul class="text-lg space-y-6">
+        {t.motivationPrinciples.map((principle, index) => (
+          <li class="flex items-start">
+            <span class="text-accent font-bold mr-2">{index + 1}.</span>
+            <p><strong>{principle.title}</strong> : {principle.description}</p>
+          </li>
+        ))}
+      </ul>
+    </div>
+    
+    <!-- Colonne avec le "savais-tu" et la citation -->
+    <div class="flex flex-col gap-4">
+      <div class="bg-secondary bg-opacity-30 p-5 rounded-lg">
+        <h3 class="text-xl font-semibold mb-3 text-accent">
+          {t.didYouKnowTitle}
+        </h3>
+        <div class="space-y-3">
+          {t.didYouKnowItems.map((item) => (
+            <div class="mb-3 p-3 bg-primary bg-opacity-30 rounded">
+              <p class="mb-2">{item.text}</p>
+              {item.details && <p class="text-sm text-text-muted">{item.details}</p>}
+              {item.source && (
+                <p class="text-sm text-text-muted mt-2">
+                  <a href={item.link} target="_blank" rel="noopener noreferrer" class="text-link">{item.source}</a>
+                </p>
+              )}
             </div>
-          </div>
-          
-          <div class="bg-secondary bg-opacity-40 p-5 rounded-lg border-l-2 border-accent">
-            <blockquote class="italic">{t.quoteText}</blockquote>
-          </div>
+          ))}
         </div>
       </div>
-    </section>
+      
+      <div class="bg-secondary bg-opacity-40 p-5 rounded-lg border-l-2 border-accent">
+        <blockquote class="italic">{t.quoteText}</blockquote>
+      </div>
+    </div>
+  </div>
+</section>
 
     <!-- Section services -->
     <section class="py-2 sm:py-8 mb-12 fade-in opacity-0 translate-y-6 transition-all duration-500">
