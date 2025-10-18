@@ -16,7 +16,7 @@ ecoFeatures: [
 "S'affiche quasi instantanément, même avec une mauvaise connexion",
 ],
 ecoExplanation:
-"Ce mode allégé facilite l'accès au site même avec un vieil ordinateur ou une connexion lente. Idéal pour les sites d'infos ou services. En plus, ça consomme moins d'énergie et ça coûte moins cher à héberger !",
+"Ce mode allégé facilite l'accès au site même avec un vieil ordinateur ou une connexion lente. Idéal pour les sites d'infos ou services.",
 },
 en: {
 ecoModeTitle: "Eco Mode activated",
@@ -28,7 +28,7 @@ ecoFeatures: [
 "Loads almost instantly, even with poor internet",
 ],
 ecoExplanation:
-"This lightweight mode works well even with old computers or slow connections. Perfect for information sites or services. Plus, it uses less energy and costs less to host!",
+"This lightweight mode works well even with old computers or slow connections. Perfect for information sites or services.",
 },
 de: {
 ecoModeTitle: "Öko-Modus aktiviert",
@@ -40,7 +40,7 @@ ecoFeatures: [
 "Lädt fast sofort, selbst bei schlechtem Internet",
 ],
 ecoExplanation:
-"Dieser abgespeckte Modus funktioniert auch mit alten Computern oder langsamen Verbindungen. Perfekt für Informationsseiten oder Dienstleistungen. Außerdem verbraucht es weniger Energie und kostet weniger beim Hosting!",
+"Dieser abgespeckte Modus funktioniert auch mit alten Computern oder langsamen Verbindungen. Perfekt für Informationsseiten oder Dienstleistungen.",
 },
 };
 // Utiliser la langue demandée ou français par défaut
@@ -48,7 +48,7 @@ const t = content[lang] || content.fr;
 ---
 <!-- Section d'introduction du mode éco intégrée dans une balise details -->
 <details class="mb-6 border border-secondary rounded-lg">
-  <summary class="font-bold text-xl p-3 cursor-pointer">{t.ecoModeTitle}</summary>
+  <summary class="font-bold text-xl p-3 cursor-pointer"><span class="ml-0.5">{t.ecoModeTitle}</span></summary>
   <div class="p-3 pt-2 border-t border-secondary">
     <p class="mb-3">
       {t.ecoModeText}

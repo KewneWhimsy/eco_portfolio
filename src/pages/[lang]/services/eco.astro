@@ -20,230 +20,330 @@ const content = {
     title: "Josselin HANEL - Services & Tarifs (Mode Éco)",
     description: "Version éco-responsable de mes services avec une empreinte carbone minimale.",
     pageTitle: "Services & Tarifs",
-    intro: "Sites web éco-responsables alliant performance et durabilité.",
+    intro: "Sites web performants et durables, avec peu ou pas de frais récurrents.",
     
-    // Services simplifiés
+    // Services simplifiés mais complets
     servicesTitle: "Mes services",
-    services: [
+    
+    vitrineTitle: "Site Vitrine",
+    vitrineOptions: [
       {
-        title: "Site de Présentation/Site Vitrine",
-        price: "À partir de 1500€",
+        name: "Site Éternel",
+        price: "À partir de 1400€",
+        maintenance: "0€/an",
+        desc: "Site immortel en pur HTML/CSS, sans maintenance nécessaire",
         features: [
-          "Temps de chargement < 1 seconde",
-          "Hébergement GRATUIT À VIE",
-          "Design responsive",
-          "Formulaire de contact"
+          "3-7 pages responsive",
+          "SEO optimisé",
+          "2 modifications mineures/an offertes",
+          "🎁 Hébergement GRATUIT À VIE"
         ]
       },
       {
-        title: "Site Avancé & E-commerce",
-        price: "À partir de 3000€",
+        name: "Site Pro",
+        price: "À partir de 1800€",
+        maintenance: "120€/an",
+        desc: "Gestion de contenu autonome via interface simple",
         features: [
-          "Fonctionnalités avancées",
-          "Système de gestion intégré",
-          "Intégrations tierces",
-          "Support complet"
-        ]
-      },
-      {
-        title: "Audit & Optimisation",
-        price: "À partir de 800€",
-        features: [
-          "Audit complet",
-          "Optimisation performances",
-          "Amélioration SEO",
-          "Rapport détaillé"
+          "Formulaires personnalisés",
+          "Mise à jour automatique",
+          "Multilingue possible",
+          "Hébergement gratuit"
         ]
       }
     ],
+    
+    ecommerceTitle: "E-commerce",
+    ecommerceOptions: [
+      {
+        name: "Boutique Simple",
+        price: "À partir de 3600€",
+        maintenance: "400€/an",
+        desc: "Jusqu'à 500 produits, achat rapide sans inscription",
+        features: [
+          "Paiement Stripe sécurisé",
+          "Interface admin simple",
+          "Panier sauvegardé sur appareil",
+          "Hébergement gratuit"
+        ]
+      },
+      {
+        name: "Boutique Avancée",
+        price: "À partir de 5400€",
+        maintenance: "920€/an",
+        desc: "Produits illimités, comptes clients, dashboard",
+        features: [
+          "Comptes clients",
+          "Dashboard personnalisé",
+          "Synchronisation multi-appareils",
+          "Architecture scalable"
+        ]
+      }
+    ],
+    
+    otherServices: [
+      {
+        name: "Audit & Optimisation",
+        price: "À partir de 800€",
+        desc: "Amélioration de site existant"
+      },
+      {
+        name: "Développement Sur-Mesure",
+        price: "40€/h",
+        desc: "Projet unique adapté à vos besoins"
+      }
+    ],
 
-    // Avantages éco
-    ecoTitle: "Pourquoi éco-responsable ?",
-    ecoFeatures: [
-      "3x plus rapide que la moyenne",
+    // Avantages
+    whyTitle: "Pourquoi éco-responsable ?",
+    whyReasons: [
+      "3-10x plus rapide que WordPress",
       "90% moins d'énergie consommée",
       "Meilleur référencement Google",
-      "Coûts d'hébergement réduits"
+      "3-10x moins cher en maintenance"
     ],
 
     // Contact
     contactTitle: "Me contacter",
-    contactText: "Parlons de votre projet simplement :",
+    contactText: "Parlons simplement de votre projet :",
     
-    // Form
-    formTitle: "Formulaire de contact",
+    formTitle: "Demander un devis",
     nameLabel: "Nom",
     emailLabel: "Email",
-    projectLabel: "Votre projet",
-    messageLabel: "Message",
-    messagePlaceholder: "Décrivez votre projet en quelques mots...",
+    companyLabel: "Entreprise (optionnel)",
+    projectLabel: "Type de projet",
+    projectTypes: {
+      eternal: "Site Éternel",
+      pro: "Site Pro",
+      shopSimple: "Boutique Simple",
+      shopAdvanced: "Boutique Avancée",
+      audit: "Audit",
+      custom: "Sur-mesure"
+    },
+    messageLabel: "Votre projet",
+    messagePlaceholder: "Décrivez votre activité, vos besoins, vos objectifs...",
     submitButton: "Envoyer",
     
-    // Inclus
-    includesTitle: "Toujours inclus",
-    includes: [
-      "Code source livré",
-      "Design responsive",
-      "Site optimisé",
-      "Référencement inclus",
-      "Support technique"
-    ]
+    note: "Note : Nom de domaine à votre charge (env. 10-15€/an)"
   },
   en: {
     title: "Josselin HANEL - Services & Pricing (Eco Mode)",
     description: "Eco-friendly version of my services with minimal carbon footprint.",
     pageTitle: "Services & Pricing",
-    intro: "Eco-responsible websites combining performance and sustainability.",
+    intro: "High-performance, sustainable websites with little to no recurring fees.",
     
-    // Services
     servicesTitle: "My services",
-    services: [
+    
+    vitrineTitle: "Showcase Website",
+    vitrineOptions: [
       {
-        title: "Presentation Website",
-        price: "From €1500",
+        name: "Eternal Site",
+        price: "From €1400",
+        maintenance: "€0/year",
+        desc: "Immortal pure HTML/CSS site, no maintenance needed",
         features: [
-          "Loading time < 1 second",
-          "FREE LIFETIME hosting",
-          "Responsive design",
-          "Contact form"
+          "3-7 responsive pages",
+          "Optimized SEO",
+          "2 minor updates/year included",
+          "🎁 FREE HOSTING FOR LIFE"
         ]
       },
       {
-        title: "Advanced Site & E-commerce",
-        price: "From €3000",
+        name: "Pro Site",
+        price: "From €1800",
+        maintenance: "€120/year",
+        desc: "Autonomous content management via simple interface",
         features: [
-          "Advanced features",
-          "Integrated management system",
-          "Third-party integrations",
-          "Complete support"
-        ]
-      },
-      {
-        title: "Audit & Optimization",
-        price: "From €800",
-        features: [
-          "Complete audit",
-          "Performance optimization",
-          "SEO improvement",
-          "Detailed report"
+          "Custom forms",
+          "Automatic updates",
+          "Multilingual possible",
+          "Free hosting"
         ]
       }
     ],
+    
+    ecommerceTitle: "E-commerce",
+    ecommerceOptions: [
+      {
+        name: "Simple Store",
+        price: "From €3600",
+        maintenance: "€400/year",
+        desc: "Up to 500 products, quick checkout without registration",
+        features: [
+          "Secure Stripe payment",
+          "Simple admin interface",
+          "Cart saved on device",
+          "Free hosting"
+        ]
+      },
+      {
+        name: "Advanced Store",
+        price: "From €5400",
+        maintenance: "€920/year",
+        desc: "Unlimited products, customer accounts, dashboard",
+        features: [
+          "Customer accounts",
+          "Personalized dashboard",
+          "Multi-device sync",
+          "Scalable architecture"
+        ]
+      }
+    ],
+    
+    otherServices: [
+      {
+        name: "Audit & Optimization",
+        price: "From €800",
+        desc: "Existing site improvement"
+      },
+      {
+        name: "Custom Development",
+        price: "€40/h",
+        desc: "Unique project adapted to your needs"
+      }
+    ],
 
-    // Eco advantages
-    ecoTitle: "Why eco-responsible?",
-    ecoFeatures: [
-      "3x faster than average",
+    whyTitle: "Why eco-responsible?",
+    whyReasons: [
+      "3-10x faster than WordPress",
       "90% less energy consumed",
       "Better Google ranking",
-      "Reduced hosting costs"
+      "3-10x cheaper maintenance"
     ],
 
-    // Contact
     contactTitle: "Contact me",
-    contactText: "Let's talk about your project simply:",
+    contactText: "Let's talk simply about your project:",
     
-    // Form
-    formTitle: "Contact form",
+    formTitle: "Request a quote",
     nameLabel: "Name",
     emailLabel: "Email",
-    projectLabel: "Your project",
-    messageLabel: "Message",
-    messagePlaceholder: "Describe your project in a few words...",
+    companyLabel: "Company (optional)",
+    projectLabel: "Project type",
+    projectTypes: {
+      eternal: "Eternal Site",
+      pro: "Pro Site",
+      shopSimple: "Simple Store",
+      shopAdvanced: "Advanced Store",
+      audit: "Audit",
+      custom: "Custom"
+    },
+    messageLabel: "Your project",
+    messagePlaceholder: "Describe your business, needs, goals...",
     submitButton: "Send",
     
-    // Included
-    includesTitle: "Always included",
-    includes: [
-      "Source code delivered",
-      "Responsive design",
-      "Optimized site",
-      "SEO included",
-      "Technical support"
-    ]
+    note: "Note: Domain name at your expense (approx. €10-15/year)"
   },
   de: {
-    title: "Josselin HANEL - Leistungen & Preise (Öko-Modus)",
-    description: "Umweltfreundliche Version meiner Leistungen mit minimalem CO2-Fußabdruck.",
-    pageTitle: "Leistungen & Preise",
-    intro: "Umweltverantwortliche Websites, die Leistung und Nachhaltigkeit verbinden.",
+    title: "Josselin HANEL - Dienstleistungen & Preise (Öko-Modus)",
+    description: "Umweltfreundliche Version meiner Dienstleistungen mit minimalem CO2-Fußabdruck.",
+    pageTitle: "Dienstleistungen & Preise",
+    intro: "Leistungsstarke, nachhaltige Websites mit wenig oder keinen wiederkehrenden Kosten.",
     
-    // Services
-    servicesTitle: "Meine Leistungen",
-    services: [
+    servicesTitle: "Meine Dienstleistungen",
+    
+    vitrineTitle: "Präsentations-Website",
+    vitrineOptions: [
       {
-        title: "Präsentationswebsite",
-        price: "Ab 1500€",
+        name: "Ewige Site",
+        price: "Ab €1400",
+        maintenance: "€0/Jahr",
+        desc: "Unsterbliche reine HTML/CSS-Site, keine Wartung erforderlich",
         features: [
-          "Ladezeit < 1 Sekunde",
-          "KOSTENLOSES LEBENSLÄNGLICH Hosting",
-          "Responsive Design",
-          "Kontaktformular"
+          "3-7 responsive Seiten",
+          "Optimiertes SEO",
+          "2 kleinere Updates/Jahr inklusive",
+          "🎁 KOSTENLOSES HOSTING AUF LEBENSZEIT"
         ]
       },
       {
-        title: "Erweiterte Site & E-Commerce",
-        price: "Ab 3000€",
+        name: "Pro-Site",
+        price: "Ab €1800",
+        maintenance: "€120/Jahr",
+        desc: "Autonome Inhaltsverwaltung über einfache Oberfläche",
         features: [
-          "Erweiterte Funktionen",
-          "Integriertes Verwaltungssystem",
-          "Drittanbieter-Integrationen",
-          "Vollständige Unterstützung"
-        ]
-      },
-      {
-        title: "Audit & Optimierung",
-        price: "Ab 800€",
-        features: [
-          "Vollständiges Audit",
-          "Leistungsoptimierung",
-          "SEO-Verbesserung",
-          "Detaillierter Bericht"
+          "Individuelle Formulare",
+          "Automatische Updates",
+          "Mehrsprachig möglich",
+          "Kostenloses Hosting"
         ]
       }
     ],
-
-    // Eco advantages
-    ecoTitle: "Warum umweltverantwortlich?",
-    ecoFeatures: [
-      "3x schneller als der Durchschnitt",
-      "90% weniger Energieverbrauch",
-      "Besseres Google-Ranking",
-      "Reduzierte Hosting-Kosten"
+    
+    ecommerceTitle: "E-Commerce",
+    ecommerceOptions: [
+      {
+        name: "Einfacher Shop",
+        price: "Ab €3600",
+        maintenance: "€400/Jahr",
+        desc: "Bis zu 500 Produkte, schneller Checkout ohne Registrierung",
+        features: [
+          "Sichere Stripe-Zahlung",
+          "Einfache Admin-Oberfläche",
+          "Warenkorb auf Gerät gespeichert",
+          "Kostenloses Hosting"
+        ]
+      },
+      {
+        name: "Erweiterter Shop",
+        price: "Ab €5400",
+        maintenance: "€920/Jahr",
+        desc: "Unbegrenzte Produkte, Kundenkonten, Dashboard",
+        features: [
+          "Kundenkonten",
+          "Personalisiertes Dashboard",
+          "Multi-Geräte-Sync",
+          "Skalierbare Architektur"
+        ]
+      }
+    ],
+    
+    otherServices: [
+      {
+        name: "Audit & Optimierung",
+        price: "Ab €800",
+        desc: "Verbesserung bestehender Site"
+      },
+      {
+        name: "Maßgeschneiderte Entwicklung",
+        price: "€40/Std.",
+        desc: "Einzigartiges Projekt nach Ihren Bedürfnissen"
+      }
     ],
 
-    // Contact
+    whyTitle: "Warum umweltfreundlich?",
+    whyReasons: [
+      "3-10x schneller als WordPress",
+      "90% weniger Energieverbrauch",
+      "Besseres Google-Ranking",
+      "3-10x günstigere Wartung"
+    ],
+
     contactTitle: "Kontakt",
     contactText: "Lassen Sie uns einfach über Ihr Projekt sprechen:",
     
-    // Form
-    formTitle: "Kontaktformular",
+    formTitle: "Angebot anfordern",
     nameLabel: "Name",
     emailLabel: "E-Mail",
-    projectLabel: "Ihr Projekt",
-    messageLabel: "Nachricht",
-    messagePlaceholder: "Beschreiben Sie Ihr Projekt in wenigen Worten...",
+    companyLabel: "Unternehmen (optional)",
+    projectLabel: "Projekttyp",
+    projectTypes: {
+      eternal: "Ewige Site",
+      pro: "Pro-Site",
+      shopSimple: "Einfacher Shop",
+      shopAdvanced: "Erweiterter Shop",
+      audit: "Audit",
+      custom: "Maßgeschneidert"
+    },
+    messageLabel: "Ihr Projekt",
+    messagePlaceholder: "Beschreiben Sie Ihr Geschäft, Bedürfnisse, Ziele...",
     submitButton: "Senden",
     
-    // Included
-    includesTitle: "Immer enthalten",
-    includes: [
-      "Quellcode geliefert",
-      "Responsive Design",
-      "Optimierte Site",
-      "SEO inklusive",
-      "Technischer Support"
-    ]
+    note: "Hinweis: Domain-Name auf Ihre Kosten (ca. €10-15/Jahr)"
   }
 } as const;
 
-// Utiliser la langue demandée ou français par défaut
 const t = content[lang] || content.fr;
-
-// L'URL complète vers la page de remerciement
 const redirectUrl = `${Astro.url.origin}/${lang}/contact/thanks/`;
-
-// Mode éco activé
 const isEcoMode = true;
 ---
 
@@ -254,150 +354,177 @@ const isEcoMode = true;
   isEcoMode={isEcoMode}
 >
   <div class="container mx-auto px-4 py-6 max-w-3xl">
-    <!-- Info mode éco -->
     <EcoModeInfo lang={lang} />
 
-    <!-- En-tête simplifié -->
     <div class="text-center mb-8">
       <h1 class="text-2xl font-bold mb-3">{t.pageTitle}</h1>
       <p class="text-text-muted">{t.intro}</p>
     </div>
 
-    <!-- Services en layout simple -->
-    <section class="mb-8">
+    <!-- Services -->
+    <section class="mb-8 space-y-6">
       <h2 class="text-xl font-bold mb-4 text-accent border-b border-accent pb-1">
         {t.servicesTitle}
       </h2>
       
-      <div class="space-y-4">
-        {t.services.map((service) => (
-          <div class="border border-secondary p-4 rounded">
-            <div class="flex justify-between items-start mb-2">
-              <h3 class="font-bold">{service.title}</h3>
+      <!-- Site Vitrine -->
+      <details class="border border-secondary rounded">
+        <summary class="p-3 font-bold cursor-pointer hover:bg-secondary hover:bg-opacity-10 flex">
+          <span class="mr-auto ml-0.5">🖥️ {t.vitrineTitle}</span>
+          <span class="text-accent font-bold">À partir de 1400€</span>
+        </summary>
+        <div class="p-3 pt-0 space-y-3">
+          {t.vitrineOptions.map((option) => (
+            <div class="border-l-2 border-accent pl-3">
+              <strong class="block mb-1">{option.name} - {option.price}</strong>
+              <p class="text-accent mb-2">{option.maintenance}</p>
+              <p class="mb-2">{option.desc}</p>
+              <ul class="space-y-1">
+                {option.features.map((f) => (
+                  <li class="flex items-start">
+                    <span class="mr-2">✓</span>
+                    <span>{f}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+      </details>
+
+      <!-- E-commerce -->
+      <details class="border border-secondary rounded">
+        <summary class="p-3 font-bold cursor-pointer hover:bg-secondary hover:bg-opacity-10 flex">
+          <span class="mr-auto ml-0.5">🛒 {t.ecommerceTitle}</span>
+          <span class="text-accent font-bold">À partir de 3600€</span>
+        </summary>
+        <div class="p-3 pt-0 space-y-3">
+          {t.ecommerceOptions.map((option) => (
+            <div class="border-l-2 border-accent pl-3">
+              <strong class="block mb-1">{option.name} - {option.price}</strong>
+              <p class="text-accent mb-2">{option.maintenance}</p>
+              <p class="mb-2">{option.desc}</p>
+              <ul class="space-y-1">
+                {option.features.map((f) => (
+                  <li class="flex items-start">
+                    <span class="mr-2">✓</span>
+                    <span>{f}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+      </details>
+
+      <!-- Autres services -->
+      <div class="space-y-2">
+        {t.otherServices.map((service) => (
+          <div class="border border-secondary p-3 rounded">
+            <div class="flex justify-between items-baseline">
+              <strong>{service.name}</strong>
               <span class="text-accent font-bold">{service.price}</span>
             </div>
-            <ul class="space-y-1">
-              {service.features.map((feature) => (
-                <li>• {feature}</li>
-              ))}
-            </ul>
+            <p class="text-text-muted">{service.desc}</p>
           </div>
         ))}
       </div>
     </section>
 
-    <!-- Avantages éco -->
-    <section class="mb-8">
-      <h2 class="text-xl font-bold mb-4 text-accent border-b border-accent pb-1">
-        {t.ecoTitle}
-      </h2>
+    <!-- Pourquoi éco -->
+    <section class="mb-8 bg-secondary bg-opacity-10 p-4 rounded">
+      <h3 class="font-bold mb-3 text-accent">{t.whyTitle}</h3>
       <ul class="space-y-2">
-        {t.ecoFeatures.map((feature) => (
-          <li class="flex items-start">
-            <span class="text-accent mr-2">🌱</span>
-            <span>{feature}</span>
+        {t.whyReasons.map((reason) => (
+          <li class="flex">
+            <span>→</span>
+            <span class="ml-0.5 mt-0.5">{reason}</span>
           </li>
         ))}
       </ul>
     </section>
 
-    <!-- Ce qui est inclus -->
-    <section class="mb-8">
+    <!-- Formulaire -->
+    <section>
       <h2 class="text-xl font-bold mb-4 text-accent border-b border-accent pb-1">
-        {t.includesTitle}
+        {t.contactTitle}
       </h2>
-      <ul class="space-y-2">
-        {t.includes.map((item) => (
-          <li class="flex items-start">
-            <span class="text-accent mr-2">✓</span>
-            <span>{item}</span>
-          </li>
-        ))}
-      </ul>
-    </section>
-
-    <!-- Contact simplifié -->
-    <section class="bg-secondary bg-opacity-20 p-4 rounded">
-      <h2 class="text-xl font-bold mb-3 text-accent">{t.contactTitle}</h2>
       <p class="mb-4">{t.contactText}</p>
-
-      <!-- Contact direct -->
-      <div class="mb-6 text-center">
-        <p class="text-accent mb-2">📞 <span class="select-all">+33 7 81 33 97 68</span></p>
-        <p class="text-accent">✉️ <span class="select-all">josshanel@gmail.com</span></p>
-      </div>
-
-      <!-- Formulaire minimal -->
+      
       <form
+        action="https://formspree.io/f/mwpklqak"
         method="POST"
-        action="https://api.web3forms.com/submit"
-        class="space-y-3"
+        class="space-y-4"
       >
-        <!-- Configuration Web3Forms -->
-        <input type="hidden" name="access_key" value="2dcc3f1b-036f-48a7-987a-cdada0d05ae5" />
-        <input type="hidden" name="redirect" value={redirectUrl} />
-        <input type="hidden" name="from_name" value="Portfolio Services (Eco)" />
-        <input type="hidden" name="subject" value="Nouvelle demande - Services (Eco)" />
-
-        <h3 class="font-medium mb-3">{t.formTitle}</h3>
-
-        <div class="grid md:grid-cols-2 gap-3">
-          <div>
-            <label for="name" class="block mb-1 text-sm">{t.nameLabel} *</label>
-            <input
-              type="text"
-              id="name"
-              name="name"
-              class="w-full p-2 border border-form bg-primary rounded text-sm"
-              required
-            />
-          </div>
-          <div>
-            <label for="email" class="block mb-1 text-sm">{t.emailLabel} *</label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              class="w-full p-2 border border-form bg-primary rounded text-sm"
-              required
-            />
-          </div>
-        </div>
-
+        <input type="hidden" name="_next" value={redirectUrl} />
+        
         <div>
-          <label for="project_type" class="block mb-1 text-sm">{t.projectLabel}</label>
+          <label for="name" class="block font-medium mb-1">{t.nameLabel}</label>
+          <input
+            type="text"
+            id="name"
+            name="name"
+            required
+            class="w-full px-3 py-2 bg-primary border border-secondary rounded"
+          />
+        </div>
+        
+        <div>
+          <label for="email" class="block font-medium mb-1">{t.emailLabel}</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            required
+            class="w-full px-3 py-2 bg-primary border border-secondary rounded"
+          />
+        </div>
+        
+        <div>
+          <label for="company" class="block font-medium mb-1">{t.companyLabel}</label>
+          <input
+            type="text"
+            id="company"
+            name="company"
+            class="w-full px-3 py-2 bg-primary border border-secondary rounded"
+          />
+        </div>
+        
+        <div>
+          <label for="project" class="block font-medium mb-1">{t.projectLabel}</label>
           <select
-            id="project_type"
-            name="project_type"
-            class="w-full p-2 border border-form bg-primary rounded text-sm"
+            id="project"
+            name="project"
+            required
+            class="w-full px-3 py-2 bg-primary border border-secondary rounded"
           >
-            <option value="showcase">{t.services[0].title}</option>
-            <option value="advanced">{t.services[1].title}</option>
-            <option value="audit">{t.services[2].title}</option>
+            {Object.entries(t.projectTypes).map(([key, value]) => (
+              <option value={key}>{value}</option>
+            ))}
           </select>
         </div>
-
+        
         <div>
-          <label for="message" class="block mb-1 text-sm">{t.messageLabel} *</label>
+          <label for="message" class="block font-medium mb-1">{t.messageLabel}</label>
           <textarea
             id="message"
             name="message"
-            rows="3"
-            class="w-full p-2 border border-form bg-primary rounded text-sm"
+            rows="4"
             placeholder={t.messagePlaceholder}
             required
+            class="w-full px-3 py-2 bg-primary border border-secondary rounded"
           ></textarea>
         </div>
-
-        <!-- Honeypot -->
-        <input type="text" name="botcheck" class="hidden" />
-
-        <div class="text-center">
-          <button type="submit" class="cta-button">
-            {t.submitButton}
-          </button>
-        </div>
+        
+        <button
+          type="submit"
+          class="w-full bg-accent text-primary font-bold py-2 px-4 rounded hover:opacity-90 transition-opacity"
+        >
+          {t.submitButton}
+        </button>
       </form>
+      
+      <p class="mt-4 text-text-muted italic">{t.note}</p>
     </section>
   </div>
 </Layout>
