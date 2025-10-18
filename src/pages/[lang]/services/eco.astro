@@ -371,7 +371,7 @@ const isEcoMode = true;
       <details class="border border-secondary rounded">
         <summary class="p-3 font-bold cursor-pointer hover:bg-secondary hover:bg-opacity-10 flex">
           <span class="mr-auto ml-0.5">🖥️ {t.vitrineTitle}</span>
-          <span class="text-accent font-bold">À partir de 1400€</span>
+          <span class="text-accent font-bold">{lang === 'fr' ? 'À partir de' : lang === 'en' ? 'From' : 'Ab'} 1400€</span>
         </summary>
         <div class="p-3 pt-0 space-y-3">
           {t.vitrineOptions.map((option) => (
@@ -396,7 +396,7 @@ const isEcoMode = true;
       <details class="border border-secondary rounded">
         <summary class="p-3 font-bold cursor-pointer hover:bg-secondary hover:bg-opacity-10 flex">
           <span class="mr-auto ml-0.5">🛒 {t.ecommerceTitle}</span>
-          <span class="text-accent font-bold">À partir de 3600€</span>
+          <span class="text-accent font-bold">{lang === 'fr' ? 'À partir de' : lang === 'en' ? 'From' : 'Ab'} 3600€</span>
         </summary>
         <div class="p-3 pt-0 space-y-3">
           {t.ecommerceOptions.map((option) => (
