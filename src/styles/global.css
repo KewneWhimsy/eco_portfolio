@@ -516,3 +516,17 @@ details {
     block-size: auto;
   }
 }
+
+/* Coins personnalisés pour les cartes de valeurs */
+.corner-style {
+  border-radius: 0.5rem; /* 8px - coin normal */
+  border-top-right-radius: 0; /* coin carré */
+  border-bottom-left-radius: 0; /* coin carré */
+}
+
+/* Variante avec des coins plus arrondis sur les autres angles */
+.corner-style-bold {
+  border-radius: 1rem; /* 16px - coins plus prononcés */
+  border-top-right-radius: 0;
+  border-bottom-left-radius: 0;
+}

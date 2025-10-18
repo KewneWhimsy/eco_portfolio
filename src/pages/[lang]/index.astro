@@ -33,22 +33,22 @@ const content = {
     values: [
       { 
         title: "Rapidité", 
-        description: "Des sites qui ne font pas attendre vos visiteurs et qui consomment moins de batterie.",
+        description: "Des sites qui ne font pas attendre vos visiteurs.",
         emoji: "⚡" 
       },
       { 
         title: "Simplicité", 
-        description: "Des solutions qui vont droit au but, sans gadgets inutiles, faciles à mettre à jour.",
+        description: "Des solutions qui vont droit au but, faciles à mettre à jour.",
         emoji: "✨" 
       },
       { 
         title: "Économie d'énergie", 
-        description: "Des sites plus légers qui respectent la planète et font baisser vos factures d'hébergement.",
+        description: "Des sites plus légers qui font baisser vos factures d'hébergement.",
         emoji: "🌱"
       },
       { 
         title: "Autonomie", 
-        description: "Des sites que vous pouvez faire évoluer facilement, sans dépendre constamment d'un prestataire.",
+        description: "Des sites que vous pouvez faire évoluer facilement.",
         emoji: "🚀" 
       }
     ],
@@ -82,11 +82,11 @@ const content = {
     viewAllProjectsButton: "Voir tous les projets",
     // Nouvelle section
     motivationTitle: "Ce qui me motive",
-    motivationIntro: "Je crois à un web qui allie rapidité, simplicité et respect de l'environnement. Aujourd'hui, trop de sites sont lourds, lents à charger et consomment beaucoup d'énergie. Ma démarche s'appuie sur ces principes :",
+    motivationIntro: "Je crois à un web qui allie rapidité, simplicité et respect de l'environnement. Aujourd'hui, trop de sites sont lourds, lents à charger et consomment beaucoup d'énergie alors qu'on peut facilement faire autrement ! Ma démarche s'appuie sur ces principes :",
     motivationPrinciples: [
       {
         title: "La bonne technique au bon endroit",
-        description: "Les navigateurs modernes peuvent faire beaucoup de choses sans avoir besoin d'installer des tonnes de modules supplémentaires. J'utilise les technologies existantes de manière intelligente pour créer des sites fluides qui ne rament pas."
+        description: "Les navigateurs modernes peuvent faire beaucoup de choses sans avoir besoin d'installer des tonnes de modules supplémentaires. J'utilise les technologies existantes et leurs évolutions de manière intelligente pour créer des expériences fluides."
       },
       {
         title: "Le respect du visiteur",
@@ -111,14 +111,14 @@ const content = {
       {
         text: "53% des visiteurs quittent un site qui met plus de 3 secondes à charger. Avoir un site rapide est essentiel pour ne pas perdre de clients.",
         source: "Think with Google - Mobile page speed benchmarks",
-        link: "https://www.thinkwithgoogle.com/marketing-strategies/app-and-mobile/mobile-page-speed-new-industry-benchmarks/"
+        link: "https://support.google.com/adsense/answer/7450973/"
       },
       {
         text: "Il est tout à fait possible d'analyser les visites de votre site sans utiliser de cookies de suivi ni compromettre la vie privée de vos visiteurs.",
         details: "Des solutions comme Plausible, Umami Cloud, Fathom ou GoatCounter vous donnent des statistiques précises tout en respectant la vie privée de vos visiteurs."
       }
     ],
-    quoteText: "Combien de fois avez-vous quitté un site parce qu'il était trop lent, rempli de pubs, ou vous harcelait pour accepter des cookies? Je préfère un web plus léger, qui respecte l'attention du visiteur et fonctionne bien sur tous les appareils sans frustration."
+    quoteText: "Combien de fois avez-vous quitté un site parce qu'il était trop lent ou vous harcelait pour accepter des cookies? Je préfère un web plus léger, qui respecte l'attention du visiteur et fonctionne bien sur tous les appareils sans frustration."
   },
   en: {
     title: "Josselin HANEL - Full Stack Web Developer",
@@ -221,12 +221,12 @@ const content = {
     values: [
       { 
         title: "Leistung", 
-        description: "Schnelle Websites, die ein besseres Benutzererlebnis bieten und weniger Energie verbrauchen.",
+        description: "Schnelle Websites, die ein besseres Benutzererlebnis bieten.",
         emoji: "⚡"
       },
       { 
         title: "Einfachheit", 
-        description: "Effektive Lösungen ohne unnötige Komplexität, die langfristig leicht zu warten sind.",
+        description: "Effektive Lösungen, die langfristig leicht zu warten sind.",
         emoji: "✨"
       },
       { 
@@ -378,12 +378,12 @@ const t = content[lang] || content.fr;
       <div class="container mx-auto px-4">
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {t.values.map((value, index) => (
-            <div class={`p-4 border border-accent border-opacity-30 rounded-lg scale-up`} data-index={index}>
+            <div class={`p-4 border border-accent border-opacity-30 corner-style-bold scale-up`} data-index={index}>
               <div class="flex justify-between items-center mb-2">
                 <h2 class="text-xl font-semibold text-accent">{value.title}</h2>
                 <span class="text-2xl">{value.emoji}</span>
               </div>
-              <p>{value.description}</p>
+              <p class="text-pretty">{value.description}</p>
             </div>
           ))}
         </div>
@@ -419,7 +419,7 @@ const t = content[lang] || content.fr;
             </h3>
             <div class="space-y-3">
               {t.didYouKnowItems.map((item) => (
-                <div class="mb-3 p-4 bg-primary bg-opacity-30 rounded-lg">
+                <div class="mb-3 p-4 bg-primary bg-opacity-30 corner-style">
                   <p class="mb-2">{item.text}</p>
                   {item.details && <p class="mb-0 text-sm">{item.details}</p>}
                   {item.source && (
