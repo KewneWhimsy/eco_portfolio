@@ -37,11 +37,6 @@ const skillDescriptions: {
     en: "Ultra-lightweight library (~14kb) adding AJAX and WebSocket capabilities directly to HTML. A simple script is all it takes to integrate it on the fly when needed.",
     de: "Ultraleichte Bibliothek (~14kb), die AJAX- und WebSocket-Funktionen direkt zum HTML hinzufügt. Ein einfaches Skript genügt, um es bei Bedarf im Flug zu integrieren.",
   },
-  "Alpine.js": {
-    fr: "Ajoute des fonctions interactives simples sans surcharger le site. Idéal quand on a besoin de plus que du CSS.",
-    en: "Micro JavaScript framework that shines precisely where modern CSS falls short. Perfect for state management without resorting to a heavy framework, while maintaining a minimal footprint.",
-    de: "Micro-JavaScript-Framework, das genau dort glänzt, wo modernes CSS nicht mehr ausreicht. Perfekt für Zustandsverwaltung ohne Rückgriff auf ein schweres Framework, bei minimalem Footprint.",
-  },
   Express: {
     fr: "Système simple et rapide pour créer l'arrière-plan technique d'un site. Fonctionne bien pour les petits sites.",
     en: "Minimalist Node.js framework, quick to implement and resource-efficient under light loads, ideal for simple to moderately complex APIs.",
@@ -133,18 +128,17 @@ const getSkillDescription = (
 // Contenu traduit pour chaque langue
 const content = {
   fr: {
-    title: "Josselin HANEL - À propos de moi (Mode Éco)",
+    title: "Josselin HANEL - à propos (Mode Éco)",
     description:
       "Version éco-responsable de ma page à propos, découvrez mon parcours avec une empreinte carbone minimale.",
-    aboutTitle: "À propos de moi",
+    aboutTitle: "Qui suis-je ?",
     aboutText:
       "Je crée des sites internet rapides et qui consomment moins d'énergie. Basé à Rennes, je travaille aussi pour des clients à Quimper, Paris, Berlin ou à distance depuis chez moi.",
     visionTitle: "Ma vision",
     visionText:
       "Internet consomme de plus en plus d'électricité dans le monde. En tant que créateur de sites, je m'engage à faire des sites plus légers, qui fonctionnent bien sur tout les appareils, sans gaspiller de l'énergie.",
-    approachTitle: "Mon approche",
     skillsTitle: "Compétences",
-    expTitle: "Mon expérience",
+    expTitle: "Mon parcours",
     eduTitle: "Formation",
     contactButton: "Me contacter",
   },
@@ -158,7 +152,6 @@ const content = {
     visionTitle: "My vision",
     visionText:
       "Digital technology now represents a growing part of our carbon footprint. As a web developer, I'm committed to designing websites and applications that minimize their environmental impact without compromising user experience.",
-    approachTitle: "My approach",
     skillsTitle: "Technical skills",
     expTitle: "Professional experience",
     eduTitle: "Education",
@@ -174,7 +167,6 @@ const content = {
     visionTitle: "Meine Vision",
     visionText:
       "Die digitale Technologie stellt heute einen wachsenden Teil unseres CO2-Fußabdrucks dar. Als Webentwickler setze ich mich dafür ein, Websites und Anwendungen zu entwickeln, die ihre Umweltauswirkungen minimieren, ohne die Benutzererfahrung zu beeinträchtigen.",
-    approachTitle: "Mein Ansatz",
     skillsTitle: "Technische Fähigkeiten",
     expTitle: "Berufserfahrung",
     eduTitle: "Ausbildung",
@@ -183,15 +175,9 @@ const content = {
 };
 // Utiliser la langue demandée ou français par défaut
 const t = content[lang] || content.fr;
-// Approche simplifiée
-const approach = [
-  "Sites légers : Je crée des sites qui consomment moins de données et coûtent moins cher à héberger. Un site écologique est souvent un site plus économique.",
-  "Rapidité : Un site qui se charge vite est plus agréable et vos visiteurs y restent plus longtemps. Plus rapide = plus écologique = plus efficace pour votre business.",
-  "Pour tous : Je fais des sites que tout le monde peut utiliser facilement, même les personnes âgées ou avec un handicap. Accessible = plus de clients potentiels.",
-  "Qui durent : Je construis des sites solides qui fonctionneront longtemps sans tout casser. Pas besoin de tout refaire dans 2 ans = économies sur le long terme.",
-];
+
 const skills = [
-  "Frontend: Astro, CSS Pro, TypeScript, HTMX, Alpine.js",
+  "Frontend: Astro, Tailwind, CSS Pro, TypeScript, HTMX",
   "Backend: Express, WebSocket, Elixir, Phoenix",
   lang === "fr"
     ? "Bases de données: PostgreSQL, MongoDB, PostgREST, Ecto"
@@ -259,16 +245,6 @@ const isEcoMode = true;
         {t.visionTitle}
       </h2>
       <p class="mb-4 max-w-4xl" set:html={t.visionText} />
-    </section>
-
-    <!-- Section approche -->
-    <section class="mb-8 border-b border-secondary pb-6">
-      <h2 class="text-xl font-semibold mb-3">
-        {t.approachTitle}
-      </h2>
-      <ul class="list-disc pl-5 mb-3 space-y-4">
-        {approach.map((item) => <li>{item}</li>)}
-      </ul>
     </section>
 
     <!-- Section compétences avec balises details simplifiées -->

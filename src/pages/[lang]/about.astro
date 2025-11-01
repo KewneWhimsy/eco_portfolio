@@ -26,38 +26,16 @@ const content = {
       "Découvrez mon parcours, mes compétences et ma façon de créer des sites internet qui respectent la planète.",
     aboutTitle: "Qui suis-je ?",
     aboutText:
-      "Je crée des sites internet rapides et qui consomment moins d'énergie. Basé à Rennes, je travaille aussi pour des clients à Quimper, Paris, Berlin ou à distance depuis chez moi.",
+      "Je crée des sites internet puissants et solides. Basé à Rennes, je travaille aussi pour des clients à Quimper, Paris, Berlin ou à distance depuis chez moi.",
     visionTitle: "Ma vision",
     visionText:
       "Internet consomme de plus en plus d'électricité dans le monde. En tant que créateur de sites, je m'engage à faire des sites plus légers, qui fonctionnent bien sur tout les appareils, sans gaspiller de l'énergie.",
     approachTitle: "Ma façon de travailler",
-    approach: [
-      {
-        title: "Sites légers",
-        description:
-          "Je crée des sites qui ne pompent pas toutes vos données et qui coûtent moins cher à héberger. Des solutions simples qui évoluent facilement quand votre activité grandit.",
-      },
-      {
-        title: "Rapidité",
-        description:
-          "Un site rapide est plus agréable à utiliser et vos visiteurs restent plus longtemps. En bonus, ça consomme moins de batterie sur leur téléphone !",
-      },
-      {
-        title: "Pour tous",
-        description:
-          "Je fais des sites que tout le monde peut utiliser facilement, même les personnes âgées ou avec un handicap.",
-      },
-      {
-        title: "Qui durent",
-        description:
-          "Plutôt que des solutions à la mode qui seront obsolètes dans 2 ans, je construis des sites solides qui fonctionneront longtemps sans tout casser.",
-      },
-    ],
-    expTitle: "Mon expérience",
+    expTitle: "Mon parcours",
     experiences: [
       {
         period: "2025 - Aujourd'hui",
-        position: "Créateur de sites internet indépendant (fullstack)",
+        position: "Développeur Web Fullstack indépendant",
         company: "À mon compte",
         description:
           "Je crée des sites pour différents clients en faisant attention à ce qu'ils soient économes en énergie.",
@@ -94,7 +72,7 @@ const content = {
           "Je me forme en permanence pour rester à jour et vous proposer les meilleures solutions.",
       },
     ],
-    skillsTitle: "Compétences",
+    skillsTitle: "Compétences techniques",
     contactButton: "Me contacter",
   },
   en: {
@@ -107,29 +85,6 @@ const content = {
     visionTitle: "My vision",
     visionText:
       "Digital technology now represents a growing part of our carbon footprint. As a web developer, I'm committed to designing websites and applications that minimize their environmental impact without compromising user experience.",
-    approachTitle: "My approach",
-    approach: [
-      {
-        title: "Eco-design",
-        description:
-          "I design lightweight solutions with low server resource and bandwidth requirements. Less load, lower costs, greater efficiency. Easy-to-maintain systems designed to evolve smoothly according to needs.",
-      },
-      {
-        title: "Performance",
-        description:
-          "A fast website is more pleasant to use and consumes less energy on the user side.",
-      },
-      {
-        title: "Accessibility",
-        description:
-          "I design interfaces accessible to everyone, regardless of disability or device used.",
-      },
-      {
-        title: "Sustainability",
-        description:
-          "I build websites with lasting technologies that can be maintained over the long term.",
-      },
-    ],
     expTitle: "Professional experience",
     experiences: [
       {
@@ -184,29 +139,6 @@ const content = {
     visionTitle: "Meine Vision",
     visionText:
       "Die digitale Technologie stellt heute einen wachsenden Teil unseres CO2-Fußabdrucks dar. Als Webentwickler setze ich mich dafür ein, Websites und Anwendungen zu entwickeln, die ihre Umweltauswirkungen minimieren, ohne die Benutzererfahrung zu beeinträchtigen.",
-    approachTitle: "Mein Ansatz",
-    approach: [
-      {
-        title: "Öko-Design",
-        description:
-          "Ich entwickle leichte Lösungen mit geringem Serverressourcen- und Bandbreitenbedarf. Weniger Last, niedrigere Kosten, höhere Effizienz. Wartungsfreundliche Systeme, die sich reibungslos an neue Anforderungen anpassen können.",
-      },
-      {
-        title: "Leistung",
-        description:
-          "Eine schnelle Website ist angenehmer zu benutzen und verbraucht auf der Benutzerseite weniger Energie.",
-      },
-      {
-        title: "Zugänglichkeit",
-        description:
-          "Ich entwerfe Schnittstellen, die für jeden zugänglich sind, unabhängig von Behinderung oder verwendetem Gerät.",
-      },
-      {
-        title: "Nachhaltigkeit",
-        description:
-          "Ich baue Websites mit dauerhaften Technologien, die langfristig gewartet werden können.",
-      },
-    ],
     expTitle: "Berufserfahrung",
     experiences: [
       {
@@ -264,7 +196,7 @@ const skills = [
         ? "Côté visible"
         : "Frontend",
     emoji: "🖥️", // Emoji pour le design et l'interface
-    items: ["Astro", "CSS Pro", "Tailwind", "TypeScript", "HTMX", "Alpine.js"],
+    items: ["Astro", "Tailwind", "CSS Pro", "TypeScript", "HTMX"],
   },
   {
     category:
@@ -272,7 +204,7 @@ const skills = [
         ? "Côté serveur"
         : "Backend",
     emoji: "⚙️", // Emoji pour les rouages techniques
-    items: ["Express", "WebSocket", "Elixir", "Phoenix"],
+    items: ["Astro + Workers", "Supabase", "Phoenix (Elixir)"],
   },
   {
     category:
@@ -282,12 +214,12 @@ const skills = [
           ? "Databases"
           : "Datenbanken",
     emoji: "🗄️", // Emoji pour le stockage/classement
-    items: ["PostgreSQL", "MongoDB", "PostgREST", "Ecto"],
+    items: ["PostgreSQL", "PostgREST", "MongoDB"],
   },
   {
     category: lang === "fr" ? "Outils" : lang === "en" ? "Tools" : "Werkzeuge",
     emoji: "🛠️", // Emoji pour les outils
-    items: ["Git", "Docker", "VS Code", "Lighthouse"],
+    items: ["Git", "Docker", "Lighthouse"],
   },
   {
     category:
@@ -345,27 +277,6 @@ const skills = [
             />
           </div>
         </div>
-      </div>
-    </section>
-
-    <!-- Section approche -->
-    <section class="mb-12">
-      <h2 class="text-2xl font-bold mb-6 border-b border-accent pb-2">
-        {t.approachTitle}
-      </h2>
-      <div class="mb-4 max-w-5xl">
-        <ul class="space-y-3">
-          {
-            t.approach.map((item) => (
-              <li class="flex items-start">
-                <span class="text-accent mr-2">•</span>
-                <p>
-                  <strong>{item.title}</strong> : {item.description}
-                </p>
-              </li>
-            ))
-          }
-        </ul>
       </div>
     </section>
 

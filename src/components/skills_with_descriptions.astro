@@ -1,6 +1,5 @@
 ---
 // src/components/skills_with_descriptions.astro
-// src/components/skills_with_descriptions.astro
 
 export interface Props {
   lang: 'fr' | 'en' | 'de';
@@ -9,7 +8,7 @@ export interface Props {
     emoji?: string;
     items: string[];
   }>;
-  mode?: 'technical' | 'simple';  // Nouveau paramètre avec valeur par défaut
+  mode?: 'technical' | 'simple';  // Paramètre avec valeur par défaut
 }
 
 const { lang, skills, mode = 'technical' } = Astro.props;
@@ -44,31 +43,25 @@ const descriptions: DescriptionsByLang = {
       technical: 'Bibliothèque ultra-légère (~14kb) ajoutant des capacités AJAX et WebSocket directement au HTML. Un simple script suffit pour l\'intégrer à la volée quand le besoin s\'en fait sentir.',
       simple: 'Un petit outil qui rend les pages web interactives sans alourdir le site.'
     },
-    'Alpine.js': {
-      technical: 'Micro-framework JavaScript qui brille précisément là où le CSS moderne ne suffit plus. Parfait pour gérer les états sans recourir à un framework lourd, tout en gardant une empreinte minimale.',
-      simple: 'Un outil léger pour ajouter de l\'interactivité à votre site sans le ralentir.'
-    },
     'Tailwind': {
       technical: 'Framework CSS utilitaire qui facilite énormément le travail collaboratif et la gestion du responsive. Sa purge CSS en production garantit des feuilles de style ultra-optimisées.',
       simple: 'Système qui permet de créer rapidement des designs adaptés à tous les écrans, tout en gardant le site léger.'
     },
     
     // Backend
-    'Express': {
-      technical: 'Framework Node.js minimaliste, rapide à mettre en place et économe en ressources sous faible charge, idéal pour des APIs simples à moyennement complexes.',
-      simple: 'Un outil simple et efficace pour créer la partie invisible du site qui traite les données.'
+    'Astro + Workers': {
+      technical: 'Architecture edge-first ultra-légère : Astro pour le rendu statique/SSR avec routes API intégrées, complété par Workers (Cloudflare/Deno) pour la logique métier côté edge. Les endpoints Astro gèrent facilement les formulaires, webhooks et API simples. Idéal pour sites à faible/moyenne interactivité backend. Coûts dérisoires, performances maximales.',
+      simple: 'Astro construit les pages et crée des routes d\'instructions pour des agents dormants (Workers) qui se réveillent uniquement quand on a besoin d\'eux, puis se rendorment. Plus économique et écologique qu\'un serveur qui tourne en permanence.'
     },
-    'WebSocket': {
-      technical: 'Protocole de communication bidirectionnelle idéal pour les applications interactives, bien plus économe en ressources que les requêtes HTTP répétées.',
-      simple: 'Technologie qui permet aux sites web de communiquer en temps réel, comme pour les chats ou les notifications instantanées.'
+
+    'Supabase': {
+      technical: 'Backend managé pour besoins classiques (CRUD, auth, storage). PostgreSQL + PostgREST qui génère automatiquement une API REST depuis votre schéma de base de données. Idéal pour démarrer rapidement. Dès que l\'interactivité ou la logique métier se complexifient, Phoenix devient plus pertinent.',
+      simple: 'Un service qui stocke vos données et gère les connexions utilisateurs, sans avoir à installer ou maintenir un serveur. Idéal pour démarrer rapidement.'
     },
-    'Elixir': {
-      technical: 'Langage fonctionnel conçu pour la concurrence, offrant une meilleure scalabilité et performance que Node.js pour des charges importantes.',
-      simple: 'Un langage de programmation spécialement conçu pour gérer de nombreux utilisateurs simultanément sans ralentir.'
-    },
-    'Phoenix': {
-      technical: 'Framework Elixir haute performance incluant LiveView, permettant de créer des interfaces temps réel sans JavaScript côté client.',
-      simple: 'Outil qui permet de créer des sites interactifs en temps réel sans alourdir la page pour l\'utilisateur.'
+
+    'Phoenix (Elixir)': {
+      technical: 'Backend custom pour applications interactives, temps réel et charges importantes. LiveView élimine le JavaScript client pour les interfaces réactives. Excellent pour du temps réel intensif et pour gérer des milliers de visiteurs simultanés avec une consommation de ressources minimale. Plus économique à l\'échelle.',
+      simple: 'Un serveur complet que l\'on contrôle entièrement. Plus de travail initial, mais excellent pour du temps réel intensif et pour gérer des milliers de visiteurs simultanés avec une consommation de ressources minimale. Plus économique à l\'échelle.'
     },
     
     // Bases de données
@@ -76,17 +69,13 @@ const descriptions: DescriptionsByLang = {
       technical: 'SGBD relationnel open-source puissant avec un écosystème d\'extensions quasi infini, offrant flexibilité et performances pour tout type de projet.',
       simple: 'Une base de données fiable et polyvalente qui stocke vos informations de façon organisée et sécurisée.'
     },
-    'MongoDB': {
-      technical: 'Base de données NoSQL orientée documents permettant une flexibilité des données et des schémas adaptés aux besoins réels.',
-      simple: 'Une base de données flexible qui s\'adapte facilement aux changements et stocke des informations variées.'
-    },
     'PostgREST': {
       technical: 'Transforme une BDD Postgres en API REST instantanément. Idéal pour des CRUD simples et soulage le backend des tâches répétitives. Dans certains cas, permet même de se passer complètement de backend pour une communication front/BDD directe et sécurisée.',
       simple: 'Un outil qui permet d\'accéder facilement et en toute sécurité aux données stockées, sans avoir à écrire beaucoup de code.'
     },
-    'Ecto': {
-      technical: 'Bibliothèque Elixir pour l\'interaction avec les bases de données, optimisant les requêtes pour des performances maximales.',
-      simple: 'Un outil qui permet de communiquer efficacement avec les bases de données tout en garantissant de bonnes performances.'
+    'MongoDB': {
+      technical: 'Base de données NoSQL orientée documents permettant une flexibilité des données et des schémas adaptés aux besoins réels.',
+      simple: 'Une base de données flexible qui s\'adapte facilement aux changements et stocke des informations variées.'
     },
     
     // Outils
@@ -97,10 +86,6 @@ const descriptions: DescriptionsByLang = {
     'Docker': {
       technical: 'Assure une reproductibilité parfaite des environnements de dev entre les membres d\'une équipe. Docker Compose simplifie l\'orchestration de services multiples, et Swarm permet un déploiement scalable en production.',
       simple: 'Un outil qui garantit que le site fonctionnera partout de la même façon, peu importe où et comment il est installé.'
-    },
-    'VS Code': {
-      technical: 'Éditeur de code moderne avec un bon équilibre entre légèreté et fonctionnalités. Son système d\'extensions permet de l\'adapter précisément à chaque projet.',
-      simple: 'Un éditeur de texte intelligent pour les développeurs, personnalisable selon les besoins du projet.'
     },
     'Lighthouse': {
       technical: 'Outil d\'audit essentiel pour mesurer et améliorer objectivement les performances web et l\'impact environnemental.',
@@ -143,31 +128,25 @@ const descriptions: DescriptionsByLang = {
       technical: 'Ultra-lightweight library (~14kb) adding AJAX and WebSocket capabilities directly to HTML. A simple script is all it takes to integrate it on the fly when needed.',
       simple: 'A small tool that makes web pages interactive without making the site heavier.'
     },
-    'Alpine.js': {
-      technical: 'Micro JavaScript framework that shines precisely where modern CSS falls short. Perfect for state management without resorting to a heavy framework, while maintaining a minimal footprint.',
-      simple: 'A lightweight tool for adding interactivity to your site without slowing it down.'
-    },
     'Tailwind': {
       technical: 'Utility CSS framework that greatly facilitates collaborative work and responsive design management. Its CSS purging in production guarantees ultra-optimized stylesheets.',
       simple: 'System that allows you to quickly create designs that adapt to all screens, while keeping the site lightweight.'
     },
     
     // Backend
-    'Express': {
-      technical: 'Minimalist Node.js framework, quick to implement and resource-efficient under light loads, ideal for simple to moderately complex APIs.',
-      simple: 'A simple and efficient tool for creating the invisible part of the site that processes data.'
+    'Astro + Workers': {
+      technical: 'Ultra-lightweight edge-first architecture: Astro for static/SSR rendering with built-in API routes, complemented by Workers (Cloudflare/Deno) for edge-side business logic. Astro endpoints easily handle forms, webhooks and simple APIs. Ideal for sites with low/medium backend interactivity. Negligible costs, maximum performance.',
+      simple: 'Astro builds pages and creates instruction routes for dormant agents (Workers) that wake up only when needed, then go back to sleep. More economical and ecological than a server running 24/7.'
     },
-    'WebSocket': {
-      technical: 'Bidirectional communication protocol ideal for interactive applications, much more resource-efficient than repeated HTTP requests.',
-      simple: 'Technology that allows websites to communicate in real-time, like for chats or instant notifications.'
+
+    'Supabase': {
+      technical: 'Managed backend for traditional needs (CRUD, auth, storage). PostgreSQL + PostgREST which automatically generates a REST API from your database schema. Ideal for getting started quickly. As soon as interactivity or business logic becomes complex, Phoenix becomes more relevant.',
+      simple: 'A service that stores your data and manages user logins, without having to install or maintain a server. Ideal for getting started quickly.'
     },
-    'Elixir': {
-      technical: 'Functional language designed for concurrency, offering better scalability and performance than Node.js for heavy workloads.',
-      simple: 'A programming language specially designed to handle many users simultaneously without slowing down.'
-    },
-    'Phoenix': {
-      technical: 'High-performance Elixir framework featuring LiveView, enabling real-time interfaces without client-side JavaScript.',
-      simple: 'Tool that allows creating interactive sites in real-time without making the page heavier for the user.'
+
+    'Phoenix (Elixir)': {
+      technical: 'Custom backend for interactive applications, real-time and heavy loads. LiveView eliminates client-side JavaScript for reactive interfaces. Excellent for intensive real-time features and handling thousands of simultaneous visitors with minimal resource consumption. More economical at scale.',
+      simple: 'A complete server that you control entirely. More initial work, but excellent for intensive real-time features and handling thousands of simultaneous visitors with minimal resource consumption. More economical at scale.'
     },
     
     // Databases
@@ -175,17 +154,13 @@ const descriptions: DescriptionsByLang = {
       technical: 'Powerful open-source relational DBMS with an almost infinite ecosystem of extensions, offering flexibility and performance for any project type.',
       simple: 'A reliable and versatile database that stores your information in an organized and secure way.'
     },
-    'MongoDB': {
-      technical: 'NoSQL document database enabling data flexibility and schemas adapted to actual needs.',
-      simple: 'A flexible database that easily adapts to changes and stores various information types.'
-    },
     'PostgREST': {
       technical: 'Instantly transforms a Postgres DB into a REST API. Perfect for simple CRUD operations and relieves the backend of repetitive tasks. In some cases, even allows completely bypassing a backend for direct and secure front/DB communication.',
       simple: 'A tool that provides easy and secure access to stored data without having to write a lot of code.'
     },
-    'Ecto': {
-      technical: 'Elixir library for database interaction, optimizing queries for maximum performance.',
-      simple: 'A tool that allows efficient communication with databases while ensuring good performance.'
+    'MongoDB': {
+      technical: 'NoSQL document database enabling data flexibility and schemas adapted to actual needs.',
+      simple: 'A flexible database that easily adapts to changes and stores various information types.'
     },
     
     // Tools
@@ -196,10 +171,6 @@ const descriptions: DescriptionsByLang = {
     'Docker': {
       technical: 'Ensures perfect reproducibility of dev environments across team members. Docker Compose simplifies orchestration of multiple services, and Swarm enables scalable production deployment.',
       simple: 'A tool that ensures the site will work the same way everywhere, regardless of where and how it\'s installed.'
-    },
-    'VS Code': {
-      technical: 'Modern code editor with a good balance between lightweight and features. Its extension system allows precise adaptation to each project.',
-      simple: 'An intelligent text editor for developers, customizable according to project needs.'
     },
     'Lighthouse': {
       technical: 'Essential audit tool for objectively measuring and improving web performance and environmental impact.',
@@ -242,31 +213,25 @@ const descriptions: DescriptionsByLang = {
       technical: 'Ultraleichte Bibliothek (~14kb), die AJAX- und WebSocket-Funktionen direkt zum HTML hinzufügt. Ein einfaches Skript genügt, um es bei Bedarf im Flug zu integrieren.',
       simple: 'Ein kleines Werkzeug, das Webseiten interaktiv macht, ohne die Website zu belasten.'
     },
-    'Alpine.js': {
-      technical: 'Micro-JavaScript-Framework, das genau dort glänzt, wo modernes CSS nicht mehr ausreicht. Perfekt für Zustandsverwaltung ohne Rückgriff auf ein schweres Framework, bei minimalem Footprint.',
-      simple: 'Ein leichtes Werkzeug, um Ihren Seiten Interaktivität hinzuzufügen, ohne sie zu verlangsamen.'
-    },
     'Tailwind': {
       technical: 'Utility-CSS-Framework, das die Zusammenarbeit und die Verwaltung von Responsive-Design erheblich erleichtert. Die CSS-Bereinigung in der Produktion garantiert ultraoptimierte Stylesheets.',
       simple: 'System, mit dem Sie schnell Designs erstellen können, die sich an alle Bildschirme anpassen und die Website leicht halten.'
     },
     
     // Backend
-    'Express': {
-      technical: 'Minimalistisches Node.js-Framework, schnell zu implementieren und ressourceneffizient bei geringer Last, ideal für einfache bis mittelschwere APIs.',
-      simple: 'Ein einfaches und effizientes Werkzeug zum Erstellen des unsichtbaren Teils der Website, der Daten verarbeitet.'
+    'Astro + Workers': {
+      technical: 'Ultraleichte Edge-First-Architektur: Astro für statisches/SSR-Rendering mit integrierten API-Routen, ergänzt durch Workers (Cloudflare/Deno) für Edge-seitige Geschäftslogik. Astro-Endpoints verarbeiten problemlos Formulare, Webhooks und einfache APIs. Ideal für Websites mit geringer/mittlerer Backend-Interaktivität. Vernachlässigbare Kosten, maximale Leistung.',
+      simple: 'Astro erstellt Seiten und Anweisungsrouten für schlafende Agenten (Workers), die nur bei Bedarf aufwachen und dann wieder einschlafen. Wirtschaftlicher und ökologischer als ein 24/7-laufender Server.'
     },
-    'WebSocket': {
-      technical: 'Bidirektionales Kommunikationsprotokoll, ideal für interaktive Anwendungen, deutlich ressourceneffizienter als wiederholte HTTP-Anfragen.',
-      simple: 'Technologie, die es Websites ermöglicht, in Echtzeit zu kommunizieren, wie für Chats oder Sofortbenachrichtigungen.'
+
+    'Supabase': {
+      technical: 'Verwaltetes Backend für traditionelle Anforderungen (CRUD, Auth, Storage). PostgreSQL + PostgREST, das automatisch eine REST-API aus Ihrem Datenbankschema generiert. Ideal für schnellen Einstieg. Sobald Interaktivität oder Geschäftslogik komplex werden, wird Phoenix relevanter.',
+      simple: 'Ein Service, der Ihre Daten speichert und Benutzeranmeldungen verwaltet, ohne einen Server installieren oder warten zu müssen. Ideal für schnellen Einstieg.'
     },
-    'Elixir': {
-      technical: 'Funktionale Sprache für Nebenläufigkeit, die bei hoher Arbeitslast bessere Skalierbarkeit und Leistung als Node.js bietet.',
-      simple: 'Eine Programmiersprache, die speziell dafür entwickelt wurde, viele Benutzer gleichzeitig zu verarbeiten, ohne langsamer zu werden.'
-    },
-    'Phoenix': {
-      technical: 'Hochleistungs-Elixir-Framework mit LiveView, das Echtzeit-Schnittstellen ohne clientseitiges JavaScript ermöglicht.',
-      simple: 'Werkzeug, das es ermöglicht, interaktive Websites in Echtzeit zu erstellen, ohne die Seite für den Benutzer zu belasten.'
+
+    'Phoenix (Elixir)': {
+      technical: 'Custom-Backend für interaktive Anwendungen, Echtzeit und hohe Lasten. LiveView eliminiert clientseitiges JavaScript für reaktive Schnittstellen. Hervorragend für intensive Echtzeit-Funktionen und die Verarbeitung von Tausenden gleichzeitiger Besucher mit minimalem Ressourcenverbrauch. Wirtschaftlicher im großen Maßstab.',
+      simple: 'Ein vollständiger Server, den man vollständig kontrolliert. Mehr Anfangsarbeit, aber hervorragend für intensive Echtzeit-Funktionen und die Verarbeitung von Tausenden gleichzeitiger Besucher mit minimalem Ressourcenverbrauch. Wirtschaftlicher im großen Maßstab.'
     },
     
     // Datenbanken
@@ -274,17 +239,13 @@ const descriptions: DescriptionsByLang = {
       technical: 'Leistungsstarkes Open-Source-Datenbankmanagementsystem mit einem nahezu unendlichen Ökosystem von Erweiterungen, das Flexibilität und Leistung für jeden Projekttyp bietet.',
       simple: 'Eine zuverlässige und vielseitige Datenbank, die Ihre Informationen organisiert und sicher speichert.'
     },
-    'MongoDB': {
-      technical: 'NoSQL-Dokumentendatenbank, die Datenflexibilität und an tatsächliche Bedürfnisse angepasste Schemas ermöglicht.',
-      simple: 'Eine flexible Datenbank, die sich leicht an Änderungen anpasst und verschiedene Informationen speichert.'
-    },
     'PostgREST': {
       technical: 'Verwandelt eine Postgres-DB sofort in eine REST-API. Perfekt für einfache CRUD-Operationen und entlastet das Backend von repetitiven Aufgaben. In manchen Fällen ermöglicht es sogar, ein Backend vollständig zu umgehen für direkte und sichere Front/DB-Kommunikation.',
       simple: 'Ein Werkzeug, das einfachen und sicheren Zugriff auf gespeicherte Daten ermöglicht, ohne viel Code schreiben zu müssen.'
     },
-    'Ecto': {
-      technical: 'Elixir-Bibliothek für Datenbankinteraktion, die Abfragen für maximale Leistung optimiert.',
-      simple: 'Ein Werkzeug, das eine effiziente Kommunikation mit Datenbanken ermöglicht und gute Leistung gewährleistet.'
+    'MongoDB': {
+      technical: 'NoSQL-Dokumentendatenbank, die Datenflexibilität und an tatsächliche Bedürfnisse angepasste Schemas ermöglicht.',
+      simple: 'Eine flexible Datenbank, die sich leicht an Änderungen anpasst und verschiedene Informationen speichert.'
     },
     
     // Werkzeuge
@@ -295,10 +256,6 @@ const descriptions: DescriptionsByLang = {
     'Docker': {
       technical: 'Gewährleistet perfekte Reproduzierbarkeit von Entwicklungsumgebungen im Team. Docker Compose vereinfacht die Orchestrierung mehrerer Dienste, und Swarm ermöglicht skalierbaren Produktionseinsatz.',
       simple: 'Ein Werkzeug, das sicherstellt, dass die Website überall gleich funktioniert, unabhängig davon, wo und wie sie installiert ist.'
-    },
-    'VS Code': {
-      technical: 'Moderner Code-Editor mit einer guten Balance zwischen Leichtgewicht und Funktionen. Sein Erweiterungssystem ermöglicht eine präzise Anpassung an jedes Projekt.',
-      simple: 'Ein intelligenter Texteditor für Entwickler, der je nach Projektanforderungen anpassbar ist.'
     },
     'Lighthouse': {
       technical: 'Wesentliches Audit-Tool zur objektiven Messung und Verbesserung von Webleistung und Umweltauswirkungen.',
@@ -345,18 +302,18 @@ const getDescription = (skill: string): { technical: string, simple: string } =>
       </div>
       
       <!-- Contenu des compétences avec descriptions -->
-<div class="space-y-4">
-  {skill.items.map(item => {
-    const desc = getDescription(item);
-    return (
-      <div class="mb-4">
-        <div class="font-medium mb-1">{item}</div>
-        <p class="technical-desc text-text-muted text-sm">{desc.technical}</p>
-        <p class="simple-desc text-text-muted text-sm">{desc.simple}</p>
+      <div class="space-y-4">
+        {skill.items.map(item => {
+          const desc = getDescription(item);
+          return (
+            <div class="mb-4">
+              <div class="font-medium mb-1">{item}</div>
+              <p class="technical-desc text-text-muted text-sm">{desc.technical}</p>
+              <p class="simple-desc text-text-muted text-sm">{desc.simple}</p>
+            </div>
+          );
+        })}
       </div>
-    );
-  })}
-</div>
     </div>
   ))}
 </div>
