@@ -94,19 +94,16 @@ const content = {
     motivationPrinciples: [
       {
         title: "La bonne technique au bon endroit",
-        description:
-          "Les navigateurs modernes peuvent faire beaucoup de choses sans avoir besoin d'installer des tonnes de modules supplémentaires. J'utilise les technologies existantes et leurs évolutions de manière intelligente pour créer des expériences fluides."
+        description: "Les navigateurs modernes peuvent faire beaucoup de choses sans avoir besoin d'installer des tonnes de modules supplémentaires. J'utilise les technologies existantes et leurs évolutions de manière intelligente pour créer des expériences fluides."
       },
       {
-        title: "Le respect du visiteur",
-        description:
-          "Pas de fenêtres pop-up agaçantes ni de bandeaux qui gênent la navigation. Une expérience agréable où l'utilisateur reste maître de sa navigation et de ses données."
+        title: "Autonomie réelle",
+        description: "Je fais un site pour vous, au plus proche de votre besoin. Vous gardez votre nom de domaine, je vous fournis le code documenté, le site est à votre nom. Ni prisonnier d'une plateforme, ni d'une agence aux tarifs douteux. Maintenance minimale, coûts transparents, architecture durable."
       },
       {
         title: "Léger d'abord, puissant si besoin",
-        description:
-          "Site vitrine ? Pages pré-générées ultra-rapides. E-commerce simple ? Pareil, avec juste quelques fonctions à la demande. Application interactive avec chat ? Là j'utilise Elixir/Phoenix, conçu pour gérer des milliers d'utilisateurs simultanés efficacement."
-      },
+        description: "Site pour présenter votre activité ? Pages ultra-rapides qui se chargent instantanément. Boutique en ligne simple ? Même principe, avec juste ce qu'il faut de fonctionnalités. Application web complexe avec interactions en temps réel ? Là j'utilise des technologies robustes capables de gérer des milliers d'utilisateurs sans ralentir."
+      }
     ],
   },
   en: {
@@ -177,19 +174,16 @@ const content = {
     motivationPrinciples: [
       {
         title: "The right technology in the right place",
-        description:
-          "Modern browsers can do many things without needing to install tons of additional modules. I use existing technologies intelligently to create smooth sites that don't lag."
+        description: "Modern browsers can do many things without needing to install tons of additional modules. I use existing technologies and their evolutions intelligently to create smooth experiences."
       },
       {
-        title: "Respect for visitors",
-        description:
-          "No annoying pop-ups or banners that interfere with navigation. A pleasant experience where users remain in control of their navigation and data."
+        title: "Real autonomy",
+        description: "I build a website for you, tailored to your needs. You keep your domain name, I provide you with documented code, the site is in your name. Not locked into a platform or an agency with questionable pricing. Minimal maintenance, transparent costs, sustainable architecture."
       },
       {
-        title: "Well-thought-out performance",
-        description:
-          "Every element has its purpose, and every visual effect is designed not to slow down the site. Result: sites that are both beautiful, fast and resource-efficient."
-      },
+        title: "Light first, powerful when needed",
+        description: "Website to showcase your business? Ultra-fast pages that load instantly. Simple online store? Same principle, with just the right features. Complex web application with real-time interactions? There I use robust technologies capable of handling thousands of users without slowing down."
+      }
     ],
   },
   de: {
@@ -260,19 +254,16 @@ const content = {
     motivationPrinciples: [
       {
         title: "Die richtige Technologie am richtigen Ort",
-        description:
-          "Moderne Browser können viele Dinge tun, ohne tonnenweise zusätzliche Module installieren zu müssen. Ich nutze bestehende Technologien intelligent, um flüssige Websites zu erstellen, die nicht hängen."
+        description: "Moderne Browser können viele Dinge tun, ohne tonnenweise zusätzliche Module installieren zu müssen. Ich nutze bestehende Technologien und ihre Weiterentwicklungen intelligent, um flüssige Erlebnisse zu schaffen."
       },
       {
-        title: "Respekt für Besucher",
-        description:
-          "Keine nervigen Pop-ups oder Banner, die die Navigation stören. Ein angenehmes Erlebnis, bei dem Benutzer die Kontrolle über ihre Navigation und Daten behalten."
+        title: "Echte Autonomie",
+        description: "Ich erstelle eine Website für Sie, maßgeschneidert auf Ihre Bedürfnisse. Sie behalten Ihren Domainnamen, ich liefere Ihnen dokumentierten Code, die Website gehört Ihnen. Nicht an eine Plattform oder eine Agentur mit fragwürdigen Preisen gebunden. Minimale Wartung, transparente Kosten, nachhaltige Architektur."
       },
       {
-        title: "Durchdachte Leistung",
-        description:
-          "Jedes Element hat seinen Zweck, und jeder visuelle Effekt ist so gestaltet, dass er die Website nicht verlangsamt. Ergebnis: Websites, die gleichzeitig schön, schnell und ressourcenschonend sind."
-      },
+        title: "Leicht zuerst, leistungsstark bei Bedarf",
+        description: "Website zur Präsentation Ihres Unternehmens? Ultraschnelle Seiten, die sofort laden. Einfacher Online-Shop? Gleiches Prinzip, mit genau den richtigen Funktionen. Komplexe Webanwendung mit Echtzeit-Interaktionen? Dort verwende ich robuste Technologien, die Tausende von Benutzern verarbeiten können, ohne langsamer zu werden."
+      }
     ],
   },
 };
@@ -314,7 +305,7 @@ const isEcoMode = true;
           width={128}
           formats={["avif", "webp", "jpg"]}
           alt={t.imageAlt}
-          class="w-32 h-32 flex-shrink-0 border-2 border-accent rounded"
+          class="w-32 h-32 shrink-0 border-2 border-accent rounded"
           data-astro-transition-persist="profile-image"
           loading="eager"
         />
@@ -396,7 +387,7 @@ const isEcoMode = true;
                   width={128}
                   formats={["avif", "webp", "png"]}
                   alt=""
-                  class="w-16 h-16 object-cover rounded flex-shrink-0 opacity-90"
+                  class="w-16 h-16 object-cover rounded shrink-0 opacity-90"
                   loading="lazy"
                 />
                 <div>

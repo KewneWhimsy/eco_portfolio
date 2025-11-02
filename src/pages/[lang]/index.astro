@@ -89,12 +89,12 @@ const content = {
         description: "Les navigateurs modernes peuvent faire beaucoup de choses sans avoir besoin d'installer des tonnes de modules supplémentaires. J'utilise les technologies existantes et leurs évolutions de manière intelligente pour créer des expériences fluides."
       },
       {
-        title: "Le respect du visiteur",
-        description: "Pas de fenêtres pop-up agaçantes ni de bandeaux qui gênent la navigation. Une expérience agréable où l'utilisateur reste maître de sa navigation et de ses données."
+        title: "Autonomie réelle",
+        description: "Je fais un site pour vous, au plus proche de votre besoin. Vous gardez votre nom de domaine, je vous fournis le code documenté, le site est à votre nom. Ni prisonnier d'une plateforme, ni d'une agence aux tarifs douteux. Maintenance minimale, coûts transparents, architecture durable."
       },
       {
         title: "Léger d'abord, puissant si besoin",
-        description: "Site vitrine ? Pages pré-générées ultra-rapides. E-commerce simple ? Pareil, avec juste quelques fonctions à la demande. Application interactive avec chat ? Là j'utilise Elixir/Phoenix, conçu pour gérer des milliers d'utilisateurs simultanés efficacement."
+        description: "Site pour présenter votre activité ? Pages ultra-rapides qui se chargent instantanément. Boutique en ligne simple ? Même principe, avec juste ce qu'il faut de fonctionnalités. Application web complexe avec interactions en temps réel ? Là j'utilise des technologies robustes capables de gérer des milliers d'utilisateurs sans ralentir."
       }
     ],
     didYouKnowTitle: "Le saviez-vous ?",
@@ -179,12 +179,12 @@ const content = {
         description: "Modern browsers can do many things without needing to install tons of additional modules. I use existing technologies and their evolutions intelligently to create smooth experiences."
       },
       {
-        title: "Respect for visitors",
-        description: "No annoying pop-ups or banners that interfere with navigation. A pleasant experience where users remain in control of their navigation and data."
+        title: "Real autonomy",
+        description: "I build a website for you, tailored to your needs. You keep your domain name, I provide you with documented code, the site is in your name. Not locked into a platform or an agency with questionable pricing. Minimal maintenance, transparent costs, sustainable architecture."
       },
       {
         title: "Light first, powerful when needed",
-        description: "Showcase website? Ultra-fast pre-generated pages. Simple e-commerce? Same, with just a few on-demand functions. Interactive app with chat? There I use Elixir/Phoenix, designed to efficiently handle thousands of simultaneous users."
+        description: "Website to showcase your business? Ultra-fast pages that load instantly. Simple online store? Same principle, with just the right features. Complex web application with real-time interactions? There I use robust technologies capable of handling thousands of users without slowing down."
       }
     ],
     didYouKnowTitle: "Did you know?",
@@ -269,12 +269,12 @@ const content = {
         description: "Moderne Browser können viele Dinge tun, ohne tonnenweise zusätzliche Module installieren zu müssen. Ich nutze bestehende Technologien und ihre Weiterentwicklungen intelligent, um flüssige Erlebnisse zu schaffen."
       },
       {
-        title: "Respekt für Besucher",
-        description: "Keine nervigen Pop-ups oder Banner, die die Navigation stören. Ein angenehmes Erlebnis, bei dem Benutzer die Kontrolle über ihre Navigation und Daten behalten."
+        title: "Echte Autonomie",
+        description: "Ich erstelle eine Website für Sie, maßgeschneidert auf Ihre Bedürfnisse. Sie behalten Ihren Domainnamen, ich liefere Ihnen dokumentierten Code, die Website gehört Ihnen. Nicht an eine Plattform oder eine Agentur mit fragwürdigen Preisen gebunden. Minimale Wartung, transparente Kosten, nachhaltige Architektur."
       },
       {
         title: "Leicht zuerst, leistungsstark bei Bedarf",
-        description: "Präsentations-Website? Ultraschnelle vorgenerierte Seiten. Einfacher E-Commerce? Dasselbe, mit nur wenigen On-Demand-Funktionen. Interaktive App mit Chat? Dort verwende ich Elixir/Phoenix, entwickelt, um Tausende simultane Benutzer effizient zu verarbeiten."
+        description: "Website zur Präsentation Ihres Unternehmens? Ultraschnelle Seiten, die sofort laden. Einfacher Online-Shop? Gleiches Prinzip, mit genau den richtigen Funktionen. Komplexe Webanwendung mit Echtzeit-Interaktionen? Dort verwende ich robuste Technologien, die Tausende von Benutzern verarbeiten können, ohne langsamer zu werden."
       }
     ],
     didYouKnowTitle: "Wussten Sie schon?",
@@ -440,7 +440,7 @@ const t = content[lang] || content.fr;
               <h3 class="text-xl font-semibold text-accent">{service.title}</h3>
               <span class="text-2xl">{service.emoji}</span>
             </div>
-            <p>
+            <p class="text-pretty">
               {service.description}
             </p>
           </div>
