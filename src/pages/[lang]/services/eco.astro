@@ -42,7 +42,7 @@ const content = {
       {
         name: "Site Pro",
         price: "À partir de 1800€",
-        maintenance: "120€/an",
+        maintenance: "120€/an - maintenance et évolution",
         desc: "Gestion de contenu autonome via interface simple",
         features: [
           "Formulaires personnalisés",
@@ -58,7 +58,7 @@ const content = {
       {
         name: "Boutique Simple",
         price: "À partir de 3600€",
-        maintenance: "400€/an",
+        maintenance: "400€/an - maintenance et évolution",
         desc: "Jusqu'à 500 produits, achat rapide sans inscription",
         features: [
           "Paiement Stripe sécurisé",
@@ -70,7 +70,7 @@ const content = {
       {
         name: "Boutique Avancée",
         price: "À partir de 5400€",
-        maintenance: "920€/an",
+        maintenance: "920€/an - maintenance et évolution",
         desc: "Produits illimités, comptes clients, dashboard",
         features: [
           "Comptes clients",
@@ -151,7 +151,7 @@ const content = {
       {
         name: "Pro Site",
         price: "From €1800",
-        maintenance: "€120/year",
+        maintenance: "€120/year - maintenance and updates",
         desc: "Autonomous content management via simple interface",
         features: [
           "Custom forms",
@@ -167,7 +167,7 @@ const content = {
       {
         name: "Simple Store",
         price: "From €3600",
-        maintenance: "€400/year",
+        maintenance: "€400/year - maintenance and updates",
         desc: "Up to 500 products, quick checkout without registration",
         features: [
           "Secure Stripe payment",
@@ -179,7 +179,7 @@ const content = {
       {
         name: "Advanced Store",
         price: "From €5400",
-        maintenance: "€920/year",
+        maintenance: "€920/year - maintenance and updates",
         desc: "Unlimited products, customer accounts, dashboard",
         features: [
           "Customer accounts",
@@ -246,7 +246,7 @@ const content = {
       {
         name: "Ewige Site",
         price: "Ab €1400",
-        maintenance: "€0/Jahr",
+        maintenance: "€0/Jahr - Keine Wartung erforderlich",
         desc: "Unsterbliche reine HTML/CSS-Site, keine Wartung erforderlich",
         features: [
           "3-7 responsive Seiten",
@@ -258,7 +258,7 @@ const content = {
       {
         name: "Pro-Site",
         price: "Ab €1800",
-        maintenance: "€120/Jahr",
+        maintenance: "€120/Jahr - Wartung und Weiterentwicklung",
         desc: "Autonome Inhaltsverwaltung über einfache Oberfläche",
         features: [
           "Individuelle Formulare",
@@ -274,7 +274,7 @@ const content = {
       {
         name: "Einfacher Shop",
         price: "Ab €3600",
-        maintenance: "€400/Jahr",
+        maintenance: "€400/Jahr - Wartung und Weiterentwicklung",
         desc: "Bis zu 500 Produkte, schneller Checkout ohne Registrierung",
         features: [
           "Sichere Stripe-Zahlung",
@@ -286,7 +286,7 @@ const content = {
       {
         name: "Erweiterter Shop",
         price: "Ab €5400",
-        maintenance: "€920/Jahr",
+        maintenance: "€920/Jahr - Wartung und Weiterentwicklung",
         desc: "Unbegrenzte Produkte, Kundenkonten, Dashboard",
         features: [
           "Kundenkonten",
@@ -368,7 +368,7 @@ const isEcoMode = true;
       </h2>
       
       <!-- Site Vitrine -->
-      <details class="border border-secondary rounded">
+      <details name="services" class="border border-secondary rounded">
         <summary class="p-3 font-bold cursor-pointer hover:bg-secondary hover:bg-opacity-10 flex">
           <span class="mr-auto ml-0.5">🖥️ {t.vitrineTitle}</span>
           <span class="text-accent font-bold">{lang === 'fr' ? 'À partir de' : lang === 'en' ? 'From' : 'Ab'} 1400€</span>
@@ -393,7 +393,7 @@ const isEcoMode = true;
       </details>
 
       <!-- E-commerce -->
-      <details class="border border-secondary rounded">
+      <details name="services" class="border border-secondary rounded">
         <summary class="p-3 font-bold cursor-pointer hover:bg-secondary hover:bg-opacity-10 flex">
           <span class="mr-auto ml-0.5">🛒 {t.ecommerceTitle}</span>
           <span class="text-accent font-bold">{lang === 'fr' ? 'À partir de' : lang === 'en' ? 'From' : 'Ab'} 3600€</span>
