@@ -1,0 +1,22 @@
+---
+// src/pages/[lang]/blog.astro — Standard
+import Layout from '../../layouts/layout.astro';
+import BlogListContent from '../../components/BlogListContent.astro';
+import { getCollection } from 'astro:content';
+import { getLangPaths, t } from '../../i18n';
+import { blog } from '../../i18n/blog';
+
+export function getStaticPaths() { return getLangPaths(); }
+
+const lang = Astro.params.lang as 'fr' | 'en' | 'de';
+const text = t(blog, lang);
+
+const allPosts = await getCollection('blog');
+const posts = allPosts
+  .filter(post => post.data.published)
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+---
+
+<Layout title={text.title} description={text.description} lang={lang}>
+  <BlogListContent posts={posts} lang={lang} />
+</Layout>

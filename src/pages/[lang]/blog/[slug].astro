@@ -1,0 +1,37 @@
+---
+// src/pages/[lang]/blog/[slug].astro — Standard
+import Layout from '../../../layouts/layout.astro';
+import BlogArticleContent from '../../../components/BlogArticleContent.astro';
+import { getCollection } from 'astro:content';
+import { t } from '../../../i18n';
+import { blog } from '../../../i18n/blog';
+import { getContentForLang } from '../../../utils/blog';
+import { marked } from 'marked';
+import type { Lang } from '../../../i18n';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  const langs = ['fr', 'en', 'de'];
+  return langs.flatMap(lang =>
+    posts.filter(p => p.data.published).map(post => ({
+      params: { lang, slug: post.data.slug },
+      props: { post, lang },
+    }))
+  );
+}
+
+const { post, lang } = Astro.props;
+const text = t(blog, lang);
+const htmlContent = await marked(getContentForLang(post.body || '', lang));
+
+const allPosts = await getCollection('blog');
+const related = allPosts
+  .filter(p => p.data.published && p.data.slug !== post.data.slug)
+  .filter(p => p.data.tags.some(tag => post.data.tags.includes(tag)))
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
+  .slice(0, 2);
+---
+
+<Layout title={`${post.data.title[lang]} | Blog - Josselin HANEL`} description={post.data.description[lang]} lang={lang}>
+  <BlogArticleContent post={post} htmlContent={htmlContent} related={related} lang={lang as Lang} />
+</Layout>

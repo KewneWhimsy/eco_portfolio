@@ -1,303 +1,44 @@
 ---
-// src/components/skills_with_descriptions.astro
+// src/components/skills_with_descriptions.astro — utilise i18n/skills.ts
+import { getDescription } from '../i18n/skills';
+import type { Lang } from '../i18n';
+import Icon from './Icon.astro';
 
 export interface Props {
-  lang: 'fr' | 'en' | 'de';
+  lang: Lang;
   skills: Array<{
     category: string;
-    emoji?: string;
+    icon?: string;
     items: string[];
   }>;
-  mode?: 'technical' | 'simple';  // Paramètre avec valeur par défaut
 }
 
-const { lang, skills, mode = 'technical' } = Astro.props;
-
-// Définition du type pour les descriptions
-type DescriptionsByLang = {
-  [lang: string]: {
-    [skill: string]: {
-      technical: string;
-      simple: string;
-    }
-  };
-};
-
-// Définition des descriptions pour chaque technologie selon la langue
-const descriptions: DescriptionsByLang = {
-  fr: {
-    // Frontend
-    'Astro': {
-      technical: 'Framework web agnostique générant principalement du HTML statique, offrant un excellent SEO naturel et des performances optimales sans imposer de choix technologiques.',
-      simple: 'Outil qui crée des sites web rapides et faciles à trouver sur Google, sans vous forcer à utiliser une technologie particulière.'
-    },
-    'CSS Pro': {
-      technical: 'Techniques CSS avancées pour un design responsive et des animations fluides, limitant le recours au JavaScript coûteux en ressources.',
-      simple: 'Techniques pour créer des sites qui s\'adaptent à tous les écrans et avec des animations légères qui ne ralentissent pas votre appareil.'
-    },
-    'TypeScript': {
-      technical: 'Sur-ensemble typé de JavaScript pour un code plus robuste et maintenable, réduisant les erreurs et la dette technique.',
-      simple: 'Une version améliorée de JavaScript qui aide à éviter les bugs et facilite le travail en équipe.'
-    },
-    'HTMX': {
-      technical: 'Bibliothèque ultra-légère (~14kb) ajoutant des capacités AJAX et WebSocket directement au HTML. Un simple script suffit pour l\'intégrer à la volée quand le besoin s\'en fait sentir.',
-      simple: 'Un petit outil qui rend les pages web interactives sans alourdir le site.'
-    },
-    'Tailwind': {
-      technical: 'Framework CSS utilitaire qui facilite énormément le travail collaboratif et la gestion du responsive. Sa purge CSS en production garantit des feuilles de style ultra-optimisées.',
-      simple: 'Système qui permet de créer rapidement des designs adaptés à tous les écrans, tout en gardant le site léger.'
-    },
-    
-    // Backend
-    'Astro + Workers': {
-      technical: 'Architecture edge-first ultra-légère : Astro pour le rendu statique/SSR avec routes API intégrées, complété par Workers (Cloudflare/Deno) pour la logique métier côté edge. Les endpoints Astro gèrent facilement les formulaires, webhooks et API simples. Idéal pour sites à faible/moyenne interactivité backend. Coûts dérisoires, performances maximales.',
-      simple: 'Astro construit les pages et crée des routes d\'instructions pour des agents dormants (Workers) qui se réveillent uniquement quand on a besoin d\'eux, puis se rendorment. Plus économique et écologique qu\'un serveur qui tourne en permanence.'
-    },
-
-    'Supabase': {
-      technical: 'Backend managé pour besoins classiques (CRUD, auth, storage). PostgreSQL + PostgREST qui génère automatiquement une API REST depuis votre schéma de base de données. Idéal pour démarrer rapidement. Dès que l\'interactivité ou la logique métier se complexifient, Phoenix devient plus pertinent.',
-      simple: 'Un service qui stocke vos données et gère les connexions utilisateurs, sans avoir à installer ou maintenir un serveur. Idéal pour démarrer rapidement.'
-    },
-
-    'Phoenix (Elixir)': {
-      technical: 'Backend custom pour applications interactives, temps réel et charges importantes. LiveView élimine le JavaScript client pour les interfaces réactives. Excellent pour du temps réel intensif et pour gérer des milliers de visiteurs simultanés avec une consommation de ressources minimale. Plus économique à l\'échelle.',
-      simple: 'Un serveur complet que l\'on contrôle entièrement. Plus de travail initial, mais excellent pour du temps réel intensif et pour gérer des milliers de visiteurs simultanés avec une consommation de ressources minimale. Plus économique à l\'échelle.'
-    },
-    
-    // Bases de données
-    'PostgreSQL': {
-      technical: 'SGBD relationnel open-source puissant avec un écosystème d\'extensions quasi infini, offrant flexibilité et performances pour tout type de projet.',
-      simple: 'Une base de données fiable et polyvalente qui stocke vos informations de façon organisée et sécurisée.'
-    },
-    'PostgREST': {
-      technical: 'Transforme une BDD Postgres en API REST instantanément. Idéal pour des CRUD simples et soulage le backend des tâches répétitives. Dans certains cas, permet même de se passer complètement de backend pour une communication front/BDD directe et sécurisée.',
-      simple: 'Un outil qui permet d\'accéder facilement et en toute sécurité aux données stockées, sans avoir à écrire beaucoup de code.'
-    },
-    'MongoDB': {
-      technical: 'Base de données NoSQL orientée documents permettant une flexibilité des données et des schémas adaptés aux besoins réels.',
-      simple: 'Une base de données flexible qui s\'adapte facilement aux changements et stocke des informations variées.'
-    },
-    
-    // Outils
-    'Git': {
-      technical: 'Essentiel pour tout développement collaboratif, permet de garder une trace claire des modifications et facilite les contributions simultanées sur un même projet.',
-      simple: 'Un système qui permet à plusieurs personnes de travailler sur le même projet sans conflit et de suivre toutes les modifications.'
-    },
-    'Docker': {
-      technical: 'Assure une reproductibilité parfaite des environnements de dev entre les membres d\'une équipe. Docker Compose simplifie l\'orchestration de services multiples, et Swarm permet un déploiement scalable en production.',
-      simple: 'Un outil qui garantit que le site fonctionnera partout de la même façon, peu importe où et comment il est installé.'
-    },
-    'Lighthouse': {
-      technical: 'Outil d\'audit essentiel pour mesurer et améliorer objectivement les performances web et l\'impact environnemental.',
-      simple: 'Un outil qui analyse votre site et suggère des améliorations pour le rendre plus rapide et plus écologique.'
-    },
-
-    // Méthodologies
-    'Accessibilité': {
-      technical: 'Conception d\'interfaces compatibles avec tous les appareils, navigateurs et modes d\'utilisation. Élargit l\'audience potentielle et assure une expérience utilisateur inclusive.',
-      simple: 'Rendre le site utilisable par tous, y compris les personnes handicapées ou celles utilisant des technologies d\'assistance.'
-    },
-    'Performance & Éco-conception': {
-      technical: 'Optimisation qui réduit les temps de chargement et l\'utilisation des ressources. Un site performant est par nature éco-conçu : moins de ressources consommées, moins d\'énergie gaspillée.',
-      simple: 'Du web durable qui demande peu d\'entretien et restera accessible dans 10 ans : un site rapide et efficace consomme moins d\'énergie et est valorisé par les moteurs de recherche.'
-    },
-    'UX/UI': {
-      technical: 'Interfaces intuitives qui répondent aux besoins réels des utilisateurs. Une bonne conception UX/UI réduit les frictions et améliore l\'engagement des utilisateurs.',
-      simple: 'Concevoir des sites faciles et agréables à utiliser, qui répondent réellement aux besoins des visiteurs.'
-    }
-  },
-  en: {
-    // Frontend
-    'Astro': {
-      technical: 'Modern, framework-agnostic web builder generating mostly static HTML, providing excellent natural SEO and optimal performance without imposing technology choices.',
-      simple: 'A tool that creates fast websites easily found on Google, without forcing you to use any particular technology.'
-    },
-    'CSS Pro': {
-      technical: 'Advanced CSS techniques for responsive design and smooth animations, reducing reliance on resource-intensive JavaScript.',
-      simple: 'Techniques for creating websites that adapt to all screens with smooth animations that don\'t slow down your device.'
-    },
-    'TypeScript': {
-      technical: 'Typed superset of JavaScript for more robust and maintainable code, reducing errors and technical debt.',
-      simple: 'An improved version of JavaScript that helps prevent bugs and makes teamwork easier.'
-    },
-    'HTMX': {
-      technical: 'Ultra-lightweight library (~14kb) adding AJAX and WebSocket capabilities directly to HTML. A simple script is all it takes to integrate it on the fly when needed.',
-      simple: 'A small tool that makes web pages interactive without making the site heavier.'
-    },
-    'Tailwind': {
-      technical: 'Utility CSS framework that greatly facilitates collaborative work and responsive design management. Its CSS purging in production guarantees ultra-optimized stylesheets.',
-      simple: 'System that allows you to quickly create designs that adapt to all screens, while keeping the site lightweight.'
-    },
-    
-    // Backend
-    'Astro + Workers': {
-      technical: 'Ultra-lightweight edge-first architecture: Astro for static/SSR rendering with built-in API routes, complemented by Workers (Cloudflare/Deno) for edge-side business logic. Astro endpoints easily handle forms, webhooks and simple APIs. Ideal for sites with low/medium backend interactivity. Negligible costs, maximum performance.',
-      simple: 'Astro builds pages and creates instruction routes for dormant agents (Workers) that wake up only when needed, then go back to sleep. More economical and ecological than a server running 24/7.'
-    },
-
-    'Supabase': {
-      technical: 'Managed backend for traditional needs (CRUD, auth, storage). PostgreSQL + PostgREST which automatically generates a REST API from your database schema. Ideal for getting started quickly. As soon as interactivity or business logic becomes complex, Phoenix becomes more relevant.',
-      simple: 'A service that stores your data and manages user logins, without having to install or maintain a server. Ideal for getting started quickly.'
-    },
-
-    'Phoenix (Elixir)': {
-      technical: 'Custom backend for interactive applications, real-time and heavy loads. LiveView eliminates client-side JavaScript for reactive interfaces. Excellent for intensive real-time features and handling thousands of simultaneous visitors with minimal resource consumption. More economical at scale.',
-      simple: 'A complete server that you control entirely. More initial work, but excellent for intensive real-time features and handling thousands of simultaneous visitors with minimal resource consumption. More economical at scale.'
-    },
-    
-    // Databases
-    'PostgreSQL': {
-      technical: 'Powerful open-source relational DBMS with an almost infinite ecosystem of extensions, offering flexibility and performance for any project type.',
-      simple: 'A reliable and versatile database that stores your information in an organized and secure way.'
-    },
-    'PostgREST': {
-      technical: 'Instantly transforms a Postgres DB into a REST API. Perfect for simple CRUD operations and relieves the backend of repetitive tasks. In some cases, even allows completely bypassing a backend for direct and secure front/DB communication.',
-      simple: 'A tool that provides easy and secure access to stored data without having to write a lot of code.'
-    },
-    'MongoDB': {
-      technical: 'NoSQL document database enabling data flexibility and schemas adapted to actual needs.',
-      simple: 'A flexible database that easily adapts to changes and stores various information types.'
-    },
-    
-    // Tools
-    'Git': {
-      technical: 'Essential for any collaborative development, maintains a clear record of changes and facilitates simultaneous contributions to the same project.',
-      simple: 'A system that allows multiple people to work on the same project without conflict and track all changes.'
-    },
-    'Docker': {
-      technical: 'Ensures perfect reproducibility of dev environments across team members. Docker Compose simplifies orchestration of multiple services, and Swarm enables scalable production deployment.',
-      simple: 'A tool that ensures the site will work the same way everywhere, regardless of where and how it\'s installed.'
-    },
-    'Lighthouse': {
-      technical: 'Essential audit tool for objectively measuring and improving web performance and environmental impact.',
-      simple: 'A tool that analyzes your site and suggests improvements to make it faster and more environmentally friendly.'
-    },
-
-    // Methodologies
-    'Accessibility': {
-      technical: 'Designing interfaces compatible with all devices, browsers and usage modes. Expands potential audience and ensures an inclusive user experience.',
-      simple: 'Making the site usable by everyone, including people with disabilities or those using assistive technologies.'
-    },
-    'Performance & Eco-design': {
-      technical: 'Optimization that reduces loading times and resource usage. A performant site is by nature eco-designed: less resources consumed, less energy wasted.',
-      simple: 'Sustainable web requiring minimal maintenance that will remain accessible in 10 years: a fast and efficient site consumes less energy and is valued by search engines.'
-    },
-    'UX/UI': {
-      technical: 'Intuitive interfaces that meet the actual needs of users. Good UX/UI design reduces friction and improves user engagement.',
-      simple: 'Designing sites that are easy and pleasant to use, genuinely meeting visitor needs.'
-    }
-  },
-  de: {
-    // Frontend
-    'Astro': {
-      technical: 'Modernes, framework-agnostisches Web-Tool, das überwiegend statisches HTML generiert und hervorragende natürliche SEO und optimale Leistung bietet, ohne Technologieentscheidungen zu erzwingen.',
-      simple: 'Ein Werkzeug, das schnelle Websites erstellt, die leicht auf Google zu finden sind, ohne Sie zu zwingen, eine bestimmte Technologie zu verwenden.'
-    },
-    'CSS Pro': {
-      technical: 'Fortgeschrittene CSS-Techniken für responsive Designs und flüssige Animationen, die den Einsatz ressourcenintensiver JavaScript-Lösungen reduzieren.',
-      simple: 'Techniken zur Erstellung von Websites, die sich an alle Bildschirme anpassen, mit flüssigen Animationen, die Ihr Gerät nicht verlangsamen.'
-    },
-    'TypeScript': {
-      technical: 'Typisierte Erweiterung von JavaScript für robusteren und wartbaren Code, reduziert Fehler und technische Schulden.',
-      simple: 'Eine verbesserte Version von JavaScript, die hilft, Fehler zu vermeiden und die Teamarbeit erleichtert.'
-    },
-    'HTMX': {
-      technical: 'Ultraleichte Bibliothek (~14kb), die AJAX- und WebSocket-Funktionen direkt zum HTML hinzufügt. Ein einfaches Skript genügt, um es bei Bedarf im Flug zu integrieren.',
-      simple: 'Ein kleines Werkzeug, das Webseiten interaktiv macht, ohne die Website zu belasten.'
-    },
-    'Tailwind': {
-      technical: 'Utility-CSS-Framework, das die Zusammenarbeit und die Verwaltung von Responsive-Design erheblich erleichtert. Die CSS-Bereinigung in der Produktion garantiert ultraoptimierte Stylesheets.',
-      simple: 'System, mit dem Sie schnell Designs erstellen können, die sich an alle Bildschirme anpassen und die Website leicht halten.'
-    },
-    
-    // Backend
-    'Astro + Workers': {
-      technical: 'Ultraleichte Edge-First-Architektur: Astro für statisches/SSR-Rendering mit integrierten API-Routen, ergänzt durch Workers (Cloudflare/Deno) für Edge-seitige Geschäftslogik. Astro-Endpoints verarbeiten problemlos Formulare, Webhooks und einfache APIs. Ideal für Websites mit geringer/mittlerer Backend-Interaktivität. Vernachlässigbare Kosten, maximale Leistung.',
-      simple: 'Astro erstellt Seiten und Anweisungsrouten für schlafende Agenten (Workers), die nur bei Bedarf aufwachen und dann wieder einschlafen. Wirtschaftlicher und ökologischer als ein 24/7-laufender Server.'
-    },
-
-    'Supabase': {
-      technical: 'Verwaltetes Backend für traditionelle Anforderungen (CRUD, Auth, Storage). PostgreSQL + PostgREST, das automatisch eine REST-API aus Ihrem Datenbankschema generiert. Ideal für schnellen Einstieg. Sobald Interaktivität oder Geschäftslogik komplex werden, wird Phoenix relevanter.',
-      simple: 'Ein Service, der Ihre Daten speichert und Benutzeranmeldungen verwaltet, ohne einen Server installieren oder warten zu müssen. Ideal für schnellen Einstieg.'
-    },
-
-    'Phoenix (Elixir)': {
-      technical: 'Custom-Backend für interaktive Anwendungen, Echtzeit und hohe Lasten. LiveView eliminiert clientseitiges JavaScript für reaktive Schnittstellen. Hervorragend für intensive Echtzeit-Funktionen und die Verarbeitung von Tausenden gleichzeitiger Besucher mit minimalem Ressourcenverbrauch. Wirtschaftlicher im großen Maßstab.',
-      simple: 'Ein vollständiger Server, den man vollständig kontrolliert. Mehr Anfangsarbeit, aber hervorragend für intensive Echtzeit-Funktionen und die Verarbeitung von Tausenden gleichzeitiger Besucher mit minimalem Ressourcenverbrauch. Wirtschaftlicher im großen Maßstab.'
-    },
-    
-    // Datenbanken
-    'PostgreSQL': {
-      technical: 'Leistungsstarkes Open-Source-Datenbankmanagementsystem mit einem nahezu unendlichen Ökosystem von Erweiterungen, das Flexibilität und Leistung für jeden Projekttyp bietet.',
-      simple: 'Eine zuverlässige und vielseitige Datenbank, die Ihre Informationen organisiert und sicher speichert.'
-    },
-    'PostgREST': {
-      technical: 'Verwandelt eine Postgres-DB sofort in eine REST-API. Perfekt für einfache CRUD-Operationen und entlastet das Backend von repetitiven Aufgaben. In manchen Fällen ermöglicht es sogar, ein Backend vollständig zu umgehen für direkte und sichere Front/DB-Kommunikation.',
-      simple: 'Ein Werkzeug, das einfachen und sicheren Zugriff auf gespeicherte Daten ermöglicht, ohne viel Code schreiben zu müssen.'
-    },
-    'MongoDB': {
-      technical: 'NoSQL-Dokumentendatenbank, die Datenflexibilität und an tatsächliche Bedürfnisse angepasste Schemas ermöglicht.',
-      simple: 'Eine flexible Datenbank, die sich leicht an Änderungen anpasst und verschiedene Informationen speichert.'
-    },
-    
-    // Werkzeuge
-    'Git': {
-      technical: 'Unerlässlich für jede kollaborative Entwicklung, behält eine klare Aufzeichnung der Änderungen bei und erleichtert gleichzeitige Beiträge zum selben Projekt.',
-      simple: 'Ein System, das es mehreren Personen ermöglicht, ohne Konflikte am selben Projekt zu arbeiten und alle Änderungen zu verfolgen.'
-    },
-    'Docker': {
-      technical: 'Gewährleistet perfekte Reproduzierbarkeit von Entwicklungsumgebungen im Team. Docker Compose vereinfacht die Orchestrierung mehrerer Dienste, und Swarm ermöglicht skalierbaren Produktionseinsatz.',
-      simple: 'Ein Werkzeug, das sicherstellt, dass die Website überall gleich funktioniert, unabhängig davon, wo und wie sie installiert ist.'
-    },
-    'Lighthouse': {
-      technical: 'Wesentliches Audit-Tool zur objektiven Messung und Verbesserung von Webleistung und Umweltauswirkungen.',
-      simple: 'Ein Werkzeug, das Ihre Website analysiert und Verbesserungen vorschlägt, um sie schneller und umweltfreundlicher zu machen.'
-    },
-
-    // Methoden
-    'Barrierefreiheit': {
-      technical: 'Gestaltung von Schnittstellen, die mit allen Geräten, Browsern und Nutzungsmodi kompatibel sind. Erweitert die potenzielle Zielgruppe und gewährleistet ein inklusives Benutzererlebnis.',
-      simple: 'Die Website für alle nutzbar machen, einschließlich Menschen mit Behinderungen oder solchen, die unterstützende Technologien verwenden.'
-    },
-    'Performance & Eco-design': {
-      technical: 'Optimization that reduces loading times and resource usage. A performant site is by nature eco-designed: less resources consumed, less energy wasted.',
-      simple: 'Sustainable web requiring minimal maintenance that will remain accessible in 10 years: a fast and efficient site consumes less energy and is valued by search engines.'
-    },
-    'UX/UI': {
-      technical: 'Intuitive Schnittstellen, die den tatsächlichen Bedürfnissen der Benutzer gerecht werden. Gutes UX/UI-Design reduziert Reibungspunkte und verbessert das Engagement der Benutzer.',
-      simple: 'Websites entwerfen, die einfach und angenehm zu benutzen sind und den tatsächlichen Bedürfnissen der Besucher entsprechen.'
-    }
-  }
-};
-
-// Fonction pour obtenir la description d'une compétence
-const getDescription = (skill: string): { technical: string, simple: string } => {
-  // Vérifie si la compétence existe dans l'objet descriptions pour la langue actuelle
-  if (lang in descriptions && skill in descriptions[lang]) {
-    return descriptions[lang][skill];
-  }
-  // Si non trouvé, retourne des descriptions vides
-  return { technical: '', simple: '' };
-};
+const { lang, skills } = Astro.props;
 ---
 
-<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<div class="skills-grid">
   {skills.map(skill => (
-    <div class="bg-secondary bg-opacity-30 p-5 rounded-lg">
-      <div class="flex justify-between items-center mb-4">
-        <h3 class="text-lg font-semibold text-accent">{skill.category}</h3>
-        {skill.emoji && <span class="text-xl">{skill.emoji}</span>}
+    <div class="skill-card">
+      <div class="skill-card-bar" aria-hidden="true"></div>
+      <div class="skill-card-header">
+        <h3 class="skill-card-title">{skill.category}</h3>
+        {skill.icon && (
+          <span class="skill-card-icon">
+            <Icon name={skill.icon as any} size={26} />
+          </span>
+        )}
       </div>
-      
-      <!-- Contenu des compétences avec descriptions -->
-      <div class="space-y-4">
+      <div class="skill-items">
         {skill.items.map(item => {
-          const desc = getDescription(item);
+          const desc = getDescription(item, lang);
           return (
-            <div class="mb-4">
-              <div class="font-medium mb-1">{item}</div>
-              <p class="technical-desc text-text-muted text-sm">{desc.technical}</p>
-              <p class="simple-desc text-text-muted text-sm">{desc.simple}</p>
+            <div class="skill-item">
+              <span class="skill-item-dot" aria-hidden="true"></span>
+              <div class="skill-item-content">
+                <span class="skill-item-name">{item}</span>
+                <p class="technical-desc skill-item-desc">{desc.technical}</p>
+                <p class="simple-desc skill-item-desc">{desc.simple}</p>
+              </div>
             </div>
           );
         })}
@@ -305,3 +46,106 @@ const getDescription = (skill: string): { technical: string, simple: string } =>
     </div>
   ))}
 </div>
+
+<style>
+  .skills-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+
+  @media (min-width: 768px) {
+    .skills-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .skill-card {
+    position: relative;
+    background: color-mix(in srgb, var(--color-secondary) 25%, transparent);
+    border: 1px solid color-mix(in srgb, var(--color-accent) 20%, transparent);
+    border-radius: 1rem;
+    border-top-right-radius: 0;
+    border-bottom-left-radius: 0;
+    overflow: hidden;
+  }
+
+  /* Barre accent en haut */
+  .skill-card-bar {
+    height: 2px;
+    background: linear-gradient(90deg, var(--color-accent), var(--color-light), transparent);
+    opacity: 0.7;
+  }
+
+  .skill-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 1.1rem 1.25rem 0.75rem;
+    border-bottom: 1px solid color-mix(in srgb, var(--color-accent) 12%, transparent);
+    margin-bottom: 0.25rem;
+  }
+
+  .skill-card-title {
+    font-weight: 700;
+    color: var(--color-accent);
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+  }
+
+  .skill-card-icon {
+    color: var(--color-light);
+    margin-top: -0.4rem;
+    margin-right: -0.4rem;
+  }
+
+  .skill-items {
+    padding: 0.5rem 1.25rem 1.1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .skill-item {
+    display: flex;
+    gap: 0.65rem;
+    align-items: baseline;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid color-mix(in srgb, var(--color-secondary) 40%, transparent);
+  }
+
+  .skill-item:last-child {
+    border-bottom: none;
+  }
+
+  .skill-item-dot {
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: var(--color-accent);
+    flex-shrink: 0;
+    margin-top: 0.45rem;
+  }
+
+  .skill-item-content {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .skill-item-name {
+    display: block;
+    font-weight: 600;
+    font-size: 1rem;
+    color: var(--color-text, inherit);
+    margin-bottom: 0.2rem;
+  }
+
+  .skill-item-desc {
+    font-size: 0.9rem;
+    color: var(--color-text-muted, #888);
+    line-height: 1.5;
+    text-wrap: pretty;
+    margin: 0;
+  }
+</style>

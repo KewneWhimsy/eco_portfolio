@@ -1,25 +1,31 @@
 @import "tailwindcss";
 
-/* Variables de couleurs */
-:root {
-  /* Couleurs principales */
+/* ═══════════════════════════════════════════════
+   Tailwind v4 : @theme expose automatiquement
+   les classes utilitaires (bg-primary, text-accent, etc.)
+   → Plus besoin de .bg-primary { ... } manuels !
+   ═══════════════════════════════════════════════ */
+@theme {
   --color-primary: #1a1a1a;
   --color-secondary: #2a2a2a;
   --color-accent: #4da34d;
+  --color-accent-light: rgba(58, 119, 58, 0.2);
+  --color-accent-light-hover: rgba(58, 119, 58, 0.3);
   --color-link: #56de56;
   --color-text: #e0e0e0;
   --color-text-muted: #a0a0a0;
+  --color-light: #5ccc5c;
+  --color-form: var(--color-text-muted);
+}
 
-  /* Variations et états */
-  --color-accent-hover: #5ccc5c;
-  --color-accent-light: rgba(58, 119, 58, 0.2);
-  --color-accent-light-hover: rgba(58, 119, 58, 0.3);
-
-  /* Transition standard */
+/* Variables CSS supplémentaires (non-Tailwind) */
+:root {
   --transition-standard: 250ms ease-in-out;
 }
 
-/* Base styles */
+/* ═══════════════════════════
+   Base
+   ═══════════════════════════ */
 html {
   color: var(--color-text);
   font-family: system-ui, sans-serif;
@@ -31,46 +37,44 @@ body {
   background-color: var(--color-primary);
 }
 
+/* ═══════════════════════════
+   Logo / Titre
+   ═══════════════════════════ */
 .titleName {
   transition: color var(--transition-standard);
 }
-
 .titleName .titlePoint {
   transition: color var(--transition-standard);
 }
-
 .titleName:hover {
-  color: var(--color-accent-hover);
+  color: var(--color-light);
 }
-
 .titleName:hover .titlePoint {
   color: var(--color-text);
 }
 
-/* Style pour les boutons CTA */
+/* ═══════════════════════════
+   Boutons
+   ═══════════════════════════ */
 .cta-button {
   background-color: var(--color-accent);
   color: var(--color-primary);
   padding: 0.5rem 1rem;
   border-radius: 0.25rem;
   display: inline-block;
-  transition: background-color var(--transition-standard),
-    transform var(--transition-standard);
+  transition: background-color var(--transition-standard), transform var(--transition-standard);
 }
-
 .cta-button:hover {
-  background-color: var(--color-accent-hover);
+  background-color: var(--color-light);
   transform: translateY(-1px);
 }
 
-/* Classe pour les boutons secondaires */
 .btn-secondary {
   border: 1px solid var(--color-accent);
-  color: var(--color-accent-hover);
+  color: var(--color-light);
   padding: 0.5rem 1rem;
   border-radius: 0.25rem;
-  transition: background-color var(--transition-standard),
-    color var(--transition-standard), transform var(--transition-standard);
+  transition: background-color var(--transition-standard), color var(--transition-standard), transform var(--transition-standard);
 }
 .btn-secondary:hover {
   background-color: var(--color-accent-light);
@@ -78,142 +82,92 @@ body {
   transform: translateY(-1px);
 }
 
-/* Liens de navigation */
+.btn-eco {
+  color: var(--color-accent);
+  transition: background-color var(--transition-standard), color var(--transition-standard);
+}
+.btn-eco:hover {
+  background-color: var(--color-accent-light);
+  color: var(--color-light);
+}
+
+/* ═══════════════════════════
+   Liens
+   ═══════════════════════════ */
 .nav-link {
   text-decoration: none;
   transition: color var(--transition-standard);
 }
 .nav-link:hover {
-  color: var(--color-accent-hover);
+  color: var(--color-light);
 }
 .nav-link-active {
   color: var(--color-accent);
   font-weight: 500;
 }
 
-/* Classe pour les boutons secondaires */
-.btn-eco {
-  color: var(--color-accent);
-  transition: background-color var(--transition-standard),
-    color var(--transition-standard);
-}
-.btn-eco:hover {
-  background-color: var(--color-accent-light);
-  color: var(--color-accent-hover);
-}
-
-/* Liens textuels */
 .text-link {
   color: var(--color-accent);
   transition: color var(--transition-standard);
   text-decoration: underline;
 }
 .text-link:hover {
-  color: var(--color-accent-hover);
+  color: var(--color-light);
 }
 
 .text-jade {
-  color: var(--color-accent-hover);
+  color: var(--color-light);
   cursor: pointer;
   text-decoration: underline;
 }
-
-/* Animation douce au hover */
 .text-jade:hover {
   animation: subtle-pulse 1.5s infinite alternate ease-in-out;
 }
 
-.pt-8.mt-12.flex.justify-between a {
-  text-decoration: none;
-}
-
-/* Animation keyframes */
 @keyframes subtle-pulse {
-  0% {
-    color: var(--color-accent-hover);
-  }
-  100% {
-    color: #db88ff; /* une variation légère de accent-hover */
-  }
+  0% { color: var(--color-light); }
+  100% { color: #db88ff; }
 }
 
-/* Cartes de projet */
+/* ═══════════════════════════
+   Cartes projet
+   ═══════════════════════════ */
 .project-card {
   display: flex;
   flex-direction: column;
   background-color: rgba(42, 42, 42, 0.4);
-  border: 1px solid rgba(80, 80, 80, 0.3);
-  border-radius: 0.5rem;
+  border: 1px solid color-mix(in srgb, var(--color-accent) 20%, transparent);
+  border-radius: 0.75rem;
   overflow: hidden;
-  transition: transform var(--transition-standard),
-    box-shadow var(--transition-standard);
+  transition: border-color var(--transition-standard);
 }
 .project-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  border-color: color-mix(in srgb, var(--color-accent) 45%, transparent);
+}
+.project-content { flex: 1; }
+.project-buttons { margin-top: auto; }
+
+/* Coins stylisés */
+.corner-style {
+  border-radius: 0.5rem;
+  border-top-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+.corner-style-bold {
+  border-radius: 1rem;
+  border-top-right-radius: 0;
+  border-bottom-left-radius: 0;
 }
 
-.project-content {
-  flex: 1; /* Le contenu va prendre tout l'espace disponible */
-}
-
-.project-buttons {
-  margin-top: auto; /* Pousse les boutons vers le bas */
-}
-
-/* Liens du footer */
-footer a.text-text-muted:hover,
-main a.text-text-muted:hover {
-  color: var(--color-text);
-  transition: color var(--transition-standard);
-}
-
-/* Classes de compatibilité pour les classes Tailwind spécifiques */
-.bg-primary {
-  background-color: var(--color-primary);
-}
-.bg-secondary {
-  background-color: var(--color-secondary);
-}
-.bg-accent {
-  background-color: var(--color-accent);
-}
-.text-primary {
-  color: var(--color-primary);
-}
-.text-accent {
-  color: var(--color-accent);
-}
-.text-light {
-  color: var(--color-accent-hover);
-}
-.text-text {
-  color: var(--color-text);
-}
-.text-text-muted {
-  color: var(--color-text-muted);
-}
-.border-accent {
-  border-color: var(--color-accent);
-}
-.border-light {
-  border-color: var(--color-accent-hover);
-}
-.border-secondary {
-  border-color: var(--color-secondary);
-}
-.border-form {
-  border-color: var(--color-text-muted);
-}
-
-/* animation de "dev web full stack" page d'acceuil */
+/* ═══════════════════════════
+   Typewriter (homepage hero)
+   ═══════════════════════════ */
 .typewriter-part1,
 .typewriter-part2 {
   display: inline-block;
   overflow: hidden;
 }
 
-/* Styles communs aux deux parties du texte */
 .typewriter-text-base,
 .typewriter-text-highlight {
   display: inline-block;
@@ -222,14 +176,12 @@ main a.text-text-muted:hover {
   width: 0;
 }
 
-/* Première partie de l'animation */
 .typewriter-text-base {
   border-right: 0.15em solid var(--color-accent);
   animation: typing1 1.5s steps(20, end) forwards, blink-caret 0.75s step-end 4,
     hide-caret 0.1s ease-in forwards 1.5s;
 }
 
-/* Seconde partie de l'animation (avec highlight) */
 .typewriter-text-highlight {
   border-right: 0.15em solid var(--color-accent);
   opacity: 0;
@@ -237,48 +189,22 @@ main a.text-text-muted:hover {
     blink-caret 0.75s step-end 4 1.6s, hide-caret 0.1s ease-in forwards 5s;
 }
 
-/* Animation pour la première partie */
 @keyframes typing1 {
-  from {
-    width: 0;
-    opacity: 1;
-  }
-  to {
-    width: 100%;
-    opacity: 1;
-  }
+  from { width: 0; opacity: 1; }
+  to { width: 100%; opacity: 1; }
 }
-
-/* Animation pour la seconde partie */
 @keyframes typing2 {
-  from {
-    width: 0;
-    opacity: 1;
-  }
-  to {
-    width: 100%;
-    opacity: 1;
-  }
+  from { width: 0; opacity: 1; }
+  to { width: 100%; opacity: 1; }
 }
-
-/* Maintenir les animations de caret existantes */
 @keyframes blink-caret {
-  from,
-  to {
-    border-color: var(--color-accent);
-  }
-  50% {
-    border-color: transparent;
-  }
+  from, to { border-color: var(--color-accent); }
+  50% { border-color: transparent; }
 }
-
 @keyframes hide-caret {
-  to {
-    border-color: transparent;
-  }
+  to { border-color: transparent; }
 }
 
-/* Media queries pour s'adapter à Instagram et autres vues */
 @media (max-width: 480px) {
   .typewriter-part1,
   .typewriter-part2 {
@@ -286,195 +212,30 @@ main a.text-text-muted:hover {
   }
 }
 
-/* Classe pour l'animation de scale up */
+/* ═══════════════════════════
+   Animations d'apparition
+   ═══════════════════════════ */
 .scale-up {
   opacity: 0;
   transform: scale(0.8);
   transition: opacity 0.6s ease-out,
     transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
-
-/* Classe pour déclencher l'animation */
 .scale-up.visible {
   opacity: 1;
   transform: scale(1);
   animation: scaleUp 0.6s forwards cubic-bezier(0.2, 0.8, 0.2, 1);
 }
-
 @keyframes scaleUp {
-  0% {
-    transform: scale(0.8);
-  }
-  50% {
-    transform: scale(1.05);
-  }
-  100% {
-    transform: scale(1);
-  }
+  0% { transform: scale(0.8); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
 }
 
-/* Styles spécifiques au mode éco */
-html.eco-mode a,
-html.eco-mode button {
-  transform: none !important; /* Empêche tout transform, y compris sur l'axe y */
-  transition: background-color var(--transition-standard),
-    color var(--transition-standard); /* Conserve les transitions de couleur */
-}
-
-html.eco-mode button {
-  transform: none !important; /* Empêche la translation sur hover également */
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .fade-in,
-  .scale-up,
-  .project-card {
-    animation: none !important;
-    transition: none !important;
-    transform: none !important;
-  }
-
-  .fade-in,
-  .scale-up {
-    opacity: 1 !important;
-  }
-
-  .scale-up {
-    transform: scale(1) !important;
-  }
-
-  html {
-    scroll-behavior: auto;
-  }
-
-  a,
-  button {
-    transform: none !important; /* Empêche tout transform, y compris sur l'axe y */
-    transition: background-color var(--transition-standard),
-      color var(--transition-standard); /* Conserve les transitions de couleur */
-  }
-
-  button {
-    transform: none !important; /* Empêche la translation sur hover également */
-  }
-}
-
-/* Styles simplifiés pour le toggle */
-/* Par défaut - montrer descriptions simples, cacher descriptions techniques */
-.technical-desc {
-  display: none;
-}
-.simple-desc {
-  display: block;
-}
-
-/* État inversé quand body a la classe .tech-mode */
-body.tech-mode .technical-desc {
-  display: block;
-}
-body.tech-mode .simple-desc {
-  display: none;
-}
-
-/* Style du toggle et animation CSS-only */
-.toggle-dot {
-  transition: transform 0.3s ease;
-  position: absolute;
-  top: 50%;
-  left: 4px;
-  transform: translateY(-50%);
-  width: 18px;
-  height: 18px;
-  background-color: var(--color-accent);
-  border-radius: 50%;
-}
-
-
-
-/* Animation du dot avec CSS uniquement et styles pour état actif */
-#tech-toggle:checked + label .toggle-dot {
-  transform: translate(28px, -50%);
-}
-
-#tech-toggle:checked + label .tech-mode {
-  color: var(--color-accent);
-}
-
-/* checkbox devis */
-.option-item {
-  margin-bottom: 12px;
-}
-
-.option-item input[type="checkbox"] {
-  /* Cacher la checkbox native mais la garder accessible */
-  opacity: 0;
-  position: absolute;
-}
-
-.option-item input[type="checkbox"] + label {
-  display: block;
-  position: relative;
-  cursor: pointer;
-  padding-left: 28px;
-}
-
-.option-item input[type="checkbox"] + label::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 3px;
-  width: 18px;
-  height: 18px;
-  border: 1px solid var(--color-text-muted);
-  background-color: var(--color-primary);
-  border-radius: 3px;
-  transition: all 0.2s ease-in-out;
-}
-
-.option-item input[type="checkbox"]:checked + label::before {
-  background-color: var(--color-accent);
-  border-color: var(--color-accent);
-}
-
-.option-item input[type="checkbox"]:checked + label::after {
-  content: "";
-  position: absolute;
-  left: 6px;
-  top: 7px;
-  width: 6px;
-  height: 10px;
-  border: solid var(--color-primary);
-  border-width: 0 2px 2px 0;
-  transform: rotate(45deg);
-}
-
-.option-title {
-  display: block;
-  font-weight: 500;
-  margin-bottom: 2px;
-}
-
-@keyframes optionFadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-.option-fade-in {
-  opacity: 0;
-  animation: optionFadeIn 0.3s ease-out forwards;
-}
-
-/* Animation optionnelle pour le prix total */
-@keyframes priceFlash {
-  0% { color: var(--color-accent); }
-  50% { color: var(--color-accent-hover); }
-  100% { color: var(--color-accent); }
-}
-
-.price-flash {
-  animation: priceFlash 0.7s ease;
-}
-
+/* ═══════════════════════════
+   Details / accordion
+   Restauré à l'identique de la v1
+   ═══════════════════════════ */
 details {
   --_duration: .2s;
   
@@ -517,16 +278,195 @@ details {
   }
 }
 
-/* Coins personnalisés pour les cartes de valeurs */
-.corner-style {
-  border-radius: 0.5rem; /* 8px - coin normal */
-  border-top-right-radius: 0; /* coin carré */
-  border-bottom-left-radius: 0; /* coin carré */
+/* ═══════════════════════════
+   Toggle technique/simple
+   ═══════════════════════════ */
+.toggle-dot {
+  transition: transform 0.3s ease;
+  position: absolute;
+  top: 50%;
+  left: 4px;
+  transform: translateY(-50%);
+  width: 18px;
+  height: 18px;
+  background-color: var(--color-accent);
+  border-radius: 50%;
 }
 
-/* Variante avec des coins plus arrondis sur les autres angles */
-.corner-style-bold {
-  border-radius: 1rem; /* 16px - coins plus prononcés */
-  border-top-right-radius: 0;
-  border-bottom-left-radius: 0;
+.technical-desc { display: none; }
+.simple-desc { display: block; }
+
+body.tech-mode .technical-desc { display: block; }
+body.tech-mode .simple-desc { display: none; }
+
+#tech-toggle:checked + label .toggle-dot {
+  transform: translate(28px, -50%);
+}
+#tech-toggle:checked + label .tech-mode {
+  color: var(--color-accent);
+}
+
+/* ═══════════════════════════
+   Checkbox devis (services)
+   ═══════════════════════════ */
+.option-item {
+  margin-bottom: 12px;
+}
+.option-item input[type="checkbox"] {
+  opacity: 0;
+  position: absolute;
+}
+.option-item input[type="checkbox"] + label {
+  display: block;
+  position: relative;
+  cursor: pointer;
+  padding-left: 28px;
+}
+.option-item input[type="checkbox"] + label::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 3px;
+  width: 18px;
+  height: 18px;
+  border: 1px solid var(--color-text-muted);
+  background-color: var(--color-primary);
+  border-radius: 3px;
+  transition: all 0.2s ease-in-out;
+}
+.option-item input[type="checkbox"]:checked + label::before {
+  background-color: var(--color-accent);
+  border-color: var(--color-accent);
+}
+.option-item input[type="checkbox"]:checked + label::after {
+  content: "";
+  position: absolute;
+  left: 6px;
+  top: 7px;
+  width: 6px;
+  height: 10px;
+  border: solid var(--color-primary);
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+.option-title {
+  display: block;
+  font-weight: 500;
+  margin-bottom: 2px;
+}
+
+@keyframes optionFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+.option-fade-in {
+  opacity: 0;
+  animation: optionFadeIn 0.3s ease-out forwards;
+}
+
+@keyframes priceFlash {
+  0% { color: var(--color-accent); }
+  50% { color: var(--color-accent-hover); }
+  100% { color: var(--color-accent); }
+}
+.price-flash {
+  animation: priceFlash 0.7s ease;
+}
+
+/* ═══════════════════════════
+   Footer liens
+   ═══════════════════════════ */
+footer a.text-text-muted:hover,
+main a.text-text-muted:hover {
+  color: var(--color-text);
+  transition: color var(--transition-standard);
+}
+
+.pt-8.mt-12.flex.justify-between a {
+  text-decoration: none;
+}
+
+/* ═══════════════════════════
+   Mode Éco — Styles légers
+   Les pages éco contrôlent leur
+   propre contenu via les templates.
+   Le CSS ne masque que les animations.
+   ═══════════════════════════ */
+html.eco-mode a,
+html.eco-mode button {
+  transform: none !important;
+  transition: background-color var(--transition-standard),
+    color var(--transition-standard);
+}
+
+/* Protéger les <details> du override éco */
+html.eco-mode details summary::before {
+  transition: rotate .2s;
+}
+html.eco-mode details::details-content {
+  transition: content-visibility .2s allow-discrete,
+              opacity .2s,
+              block-size .2s;
+}
+
+html.eco-mode .typewriter-text-base,
+html.eco-mode .typewriter-text-highlight {
+  animation: none;
+  width: 100%;
+  opacity: 1;
+  border-right: none;
+}
+
+html.eco-mode .scale-up {
+  animation: none;
+  opacity: 1;
+  transform: scale(1);
+}
+
+html.eco-mode .fade-in {
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+/* ═══════════════════════════
+   Reduced motion (accessibility)
+   ═══════════════════════════ */
+@media (prefers-reduced-motion: reduce) {
+  .fade-in,
+  .scale-up {
+    animation: none !important;
+    transition: none !important;
+    transform: none !important;
+  }
+
+  .fade-in,
+  .scale-up {
+    opacity: 1 !important;
+  }
+
+  .scale-up {
+    transform: scale(1) !important;
+  }
+
+  html {
+    scroll-behavior: auto;
+  }
+
+  a,
+  button {
+    transform: none !important;
+    transition: background-color var(--transition-standard),
+      color var(--transition-standard);
+  }
+
+  /* Protéger les <details> du override reduced-motion */
+  details summary::before {
+    transition: rotate .2s !important;
+  }
+  details::details-content {
+    transition: content-visibility .2s allow-discrete,
+                opacity .2s,
+                block-size .2s !important;
+  }
 }

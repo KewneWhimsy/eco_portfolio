@@ -1,94 +1,42 @@
 ---
-// Import du layout avec mode éco activé
-import Layout from '../../../layouts/layout.astro';
+// src/pages/[lang]/projects/eco.astro — fidèle à l'original, avec i18n
+import LayoutEco from '../../../layouts/layout-eco.astro';
 import CtaDispo from '../../../components/cta_dispo.astro';
-import EcoModeInfo from "../../../components/eco_mode_info.astro";
+import EcoModeInfo from '../../../components/eco_mode_info.astro';
 import { Picture } from 'astro:assets';
 import { getCollection } from 'astro:content';
 import { loadHeroImage } from '../../../utils/imageLoader';
+import { getLangPaths, t } from '../../../i18n';
+import { projects } from '../../../i18n/projects';
 
-// Récupérer le paramètre de langue depuis l'URL
 export function getStaticPaths() {
-  return [
-    { params: { lang: 'fr' } },
-    { params: { lang: 'en' } },
-    { params: { lang: 'de' } }
-  ];
+  return getLangPaths();
 }
 
 const lang = Astro.params.lang as 'fr' | 'en' | 'de';
+const text = t(projects, lang);
 
-// Récupération de tous les projets depuis les fichiers .md
-const allProjects = await getCollection("projects");
-
-// Tri par ordre (du plus récent au plus ancien pour l'affichage)
+const allProjects = await getCollection('projects');
 const sortedProjects = allProjects.sort((a, b) => b.data.order - a.data.order);
 
-// Chargement des images hero pour chaque projet (optimisé)
 const projectsWithImages = await Promise.all(
   sortedProjects.map(async (project) => {
     const heroImage = await loadHeroImage(project.data.slug);
-    return {
-      ...project,
-      image: heroImage
-    };
+    return { ...project, image: heroImage };
   })
 );
-
-// Contenu traduit pour chaque langue
-const content = {
-  fr: {
-    title: 'Josselin HANEL - Projets (Mode Éco)',
-    description: 'Version éco-responsable de ma page de projets, avec une empreinte carbone minimale.',
-    projectsTitle: 'Mes projets',
-    projectsIntro: "Voici une sélection de mes réalisations récentes. Chaque projet reflète mon approche du développement web.",
-    viewProject: 'Voir le projet',
-    ecoDesignTitle: 'Éco-conception web',
-    ecoDesignText: "L'éco-conception web vise à réduire l'impact environnemental des sites et applications tout en gardant une bonne expérience utilisateur.",
-    contactCTA: 'Vous avez un projet en tête ?',
-    contactButton: 'Discutons-en'
-  },
-  en: {
-    title: 'Josselin HANEL - Projects (Eco Mode)',
-    description: 'Eco-friendly version of my projects page, with minimal carbon footprint.',
-    projectsTitle: 'My projects',
-    projectsIntro: "Here is a selection of my recent work. Each project reflects my approach to web development.",
-    viewProject: 'View project',
-    ecoDesignTitle: 'Web eco-design',
-    ecoDesignText: "Web eco-design aims to reduce the environmental impact of websites and applications while preserving a quality user experience.",
-    contactCTA: 'Do you have a project in mind?',
-    contactButton: 'Let\'s talk about it'
-  },
-  de: {
-    title: 'Josselin HANEL - Projekte (Öko-Modus)',
-    description: 'Umweltfreundliche Version meiner Projektseite mit minimalem CO2-Fußabdruck.',
-    projectsTitle: 'Meine Projekte',
-    projectsIntro: "Hier ist eine Auswahl meiner neuesten Arbeiten. Jedes Projekt spiegelt meinen Ansatz der Webentwicklung wider.",
-    viewProject: 'Projekt ansehen',
-    ecoDesignTitle: 'Web-Öko-Design',
-    ecoDesignText: "Web-Öko-Design zielt darauf ab, die Umweltauswirkungen von Websites und Anwendungen zu reduzieren und gleichzeitig ein qualitativ hochwertiges Benutzererlebnis zu bewahren.",
-    contactCTA: 'Haben Sie ein Projekt im Sinn?',
-    contactButton: 'Lassen Sie uns darüber sprechen'
-  }
-};
-
-const t = content[lang] || content.fr;
-
-// Mode éco activé
-const isEcoMode = true;
 ---
 
-<Layout title={t.title} description={t.description} lang={lang} isEcoMode={isEcoMode}>
+<LayoutEco title={text.title} description={text.description} lang={lang}>
   <div class="container mx-auto px-4 py-6">
-    <!-- Utilisation du composant EcoModeInfo -->
     <EcoModeInfo lang={lang} />
 
     <h1 class="text-2xl font-bold mb-4 border-b border-accent pb-2">
-      {t.projectsTitle}
+      {text.projectsTitle}
     </h1>
     
     <p class="mb-6">
-      {t.projectsIntro}
+      {text.projectsIntro}
     </p>
     
     <!-- Liste des projets simplifiée -->
@@ -104,7 +52,7 @@ const isEcoMode = true;
                     <Picture
                       src={project.image}
                       widths={[600]}
-                      formats={["avif", "webp", "png"]}
+                      formats={['avif', 'webp', 'png']}
                       alt={project.data.title[lang]}
                       class="w-full rounded-md hover:opacity-80 transition-opacity"
                       loading="lazy"
@@ -136,7 +84,7 @@ const isEcoMode = true;
                     href={`/${lang}/${project.data.slug}/eco/`}
                     class="text-link"
                   >
-                    {t.viewProject}
+                    {text.viewProject}
                   </a>
                 </div>
               </div>
@@ -149,14 +97,14 @@ const isEcoMode = true;
     <!-- Section sur l'éco-conception -->
     <section class="py-6">
       <h2 class="text-xl text-accent font-semibold mb-3">
-        {t.ecoDesignTitle}
+        {text.ecoDesignTitle}
       </h2>
       <p class="max-w-5xl">
-        {t.ecoDesignText}
+        {text.ecoDesignText}
       </p>
     </section>
     
     <!-- Section CTA contact -->
     <CtaDispo />
   </div>
-</Layout>
+</LayoutEco>

@@ -1,421 +1,130 @@
 ---
-// Imports
-import Layout from "../../layouts/layout.astro";
+// src/pages/[lang]/eco.astro — Homepage éco, mêmes traductions, template léger
+import LayoutEco from '../../layouts/layout-eco.astro';
 import { Picture } from 'astro:assets';
-import monImage from "../../assets/j.jpg";
-import CtaDispo from "../../components/cta_dispo.astro";
+import monImage from '../../assets/j.jpg';
+import CtaDispo from '../../components/cta_dispo.astro';
+import EcoModeInfo from '../../components/eco_mode_info.astro';
 import { getCollection } from 'astro:content';
 import { loadHeroImage } from '../../utils/imageLoader';
+import { getLangPaths, t } from '../../i18n';
+import { home } from '../../i18n/home';
 
-// Récupérer le paramètre de langue depuis l'URL
 export function getStaticPaths() {
-  return [
-    { params: { lang: "fr" } },
-    { params: { lang: "en" } },
-    { params: { lang: "de" } },
-  ];
+  return getLangPaths();
 }
 
-const lang = Astro.params.lang as "fr" | "en" | "de";
+const lang = Astro.params.lang as 'fr' | 'en' | 'de';
+const text = t(home, lang);
 
-// Récupération des 2 projets les plus récents
-const allProjects = await getCollection("projects");
-const recentProjects = allProjects
-  .sort((a, b) => b.data.order - a.data.order)
-  .slice(0, 2);
+const allProjects = await getCollection('projects');
+const recentProjects = allProjects.sort((a, b) => b.data.order - a.data.order).slice(0, 2);
 
-// Titre et description de la page pour SEO (à traduire selon la langue)
-const content = {
-  fr: {
-    title: "Josselin HANEL - Créateur de sites internet (Mode Éco)",
-    description:
-      "Version éco-responsable de mon portfolio de créateur de sites internet, avec une empreinte carbone minimale.",
-    heroTitle:
-      "Créateur de <span class='text-light whitespace-nowrap'>sites internet</span>",
-    heroText:
-      "Je crée des sites web durables au chargement rapide, qui s'affichent correctement sur tous les appareils, et sont bien placés sur Google. Le tout avec des technologies modernes, économiques et écologiques.",
-    projectsButton: "Voir mes réalisations",
-    contactButton: "Me contacter",
-    ecoModeTitle: "Mode Éco activé",
-    ecoModeText:
-      "Vous consultez actuellement la version ultra-légère de mon portfolio.",
-    servicesTitle: "Services",
-    services: [
-      {
-        title: "Sites pour présenter votre activité",
-        description:
-          "Sites professionnels personnalisés, rapides et bien placés sur Google - sans WordPress ni abonnements coûteux."
-      },
-      {
-        title: "Applications web",
-        description:
-          "Outils en ligne sur mesure pour automatiser vos tâches et améliorer l'expérience de vos utilisateurs.",
-      },
-      {
-        title: "Boutiques en ligne",
-        description:
-          "Solutions de vente en ligne modernes et rapides, sans les frais mensuels des plateformes habituelles.",
-      },
-      {
-        title: "Conseils",
-        description:
-          "Conseils pour rendre vos sites existants plus rapides, moins énergivores et plus agréables à utiliser.",
-      },
-    ],
-    values: [
-      {
-        title: "Rapidité",
-        description:
-          "Des sites qui ne font pas attendre vos visiteurs.",
-      },
-      {
-        title: "Simplicité",
-        description:
-          "Des solutions qui vont droit au but, faciles à mettre à jour.",
-      },
-      {
-        title: "Économie d'énergie",
-        description:
-          "Des sites plus légers qui font baisser vos factures d'hébergement.",
-      },
-      {
-        title: "Autonomie",
-        description:
-          "Des sites que vous pouvez faire évoluer facilement.",
-      },
-    ],
-    projectsTitle: "Projets récents",
-    projectButton: "Voir ce projet",
-    viewAllProjectsButton: "Voir tous les projets",
-    imageAlt: "Photo de Josselin HANEL",
-    motivationTitle: "Ce qui me motive",
-    motivationIntro:
-      "Je crois à un web qui allie rapidité, simplicité et respect de l'environnement. Aujourd'hui, trop de sites sont lourds, lents à charger et consomment beaucoup d'énergie alors qu'on peut facilement faire autrement ! Ma démarche s'appuie sur ces principes :",
-    motivationPrinciples: [
-      {
-        title: "La bonne technique au bon endroit",
-        description: "Les navigateurs modernes peuvent faire beaucoup de choses sans avoir besoin d'installer des tonnes de modules supplémentaires. J'utilise les technologies existantes et leurs évolutions de manière intelligente pour créer des expériences fluides."
-      },
-      {
-        title: "Autonomie réelle",
-        description: "Je fais un site pour vous, au plus proche de votre besoin. Vous gardez votre nom de domaine, je vous fournis le code documenté, le site est à votre nom. Ni prisonnier d'une plateforme, ni d'une agence aux tarifs douteux. Maintenance minimale, coûts transparents, architecture durable."
-      },
-      {
-        title: "Léger d'abord, puissant si besoin",
-        description: "Site pour présenter votre activité ? Pages ultra-rapides qui se chargent instantanément. Boutique en ligne simple ? Même principe, avec juste ce qu'il faut de fonctionnalités. Application web complexe avec interactions en temps réel ? Là j'utilise des technologies robustes capables de gérer des milliers d'utilisateurs sans ralentir."
-      }
-    ],
-  },
-  en: {
-    title: "Josselin HANEL - Full Stack Web Developer (Eco Mode)",
-    description:
-      "Eco-friendly version of my full stack developer portfolio, with minimal carbon footprint.",
-    heroTitle:
-      "<span class='text-light whitespace-nowrap'>Full Stack</span> Web Developer",
-    heroText:
-      "I create sustainable websites with fast loading, that display correctly on all devices, and rank well on Google. All with modern, cost-effective and eco-friendly technologies.",
-    projectsButton: "View my projects",
-    contactButton: "Contact me",
-    ecoModeTitle: "Eco Mode activated",
-    ecoModeText:
-      "You are currently viewing the ultra-lightweight version of my portfolio.",
-    servicesTitle: "Services",
-    services: [
-      {
-        title: "Showcase websites",
-        description:
-          "Personalized, fast and well-ranked professional websites - without WordPress or costly subscriptions."
-      },
-      {
-        title: "Web applications",
-        description:
-          "Custom online tools to automate your tasks and improve your users' experience.",
-      },
-      {
-        title: "Online stores",
-        description:
-          "Modern and fast e-commerce solutions, without the monthly fees of traditional platforms.",
-      },
-      {
-        title: "Consulting",
-        description:
-          "Advice to make your existing sites faster, less energy-intensive and more user-friendly.",
-      },
-    ],
-    values: [
-      {
-        title: "Speed",
-        description:
-          "Websites that don't keep your visitors waiting.",
-      },
-      {
-        title: "Simplicity",
-        description:
-          "Solutions that get straight to the point, easy to update.",
-      },
-      {
-        title: "Energy saving",
-        description:
-          "Lighter websites that lower your hosting bills.",
-      },
-      {
-        title: "Autonomy",
-        description:
-          "Websites you can easily evolve.",
-      },
-    ],
-    projectsTitle: "Recent projects",
-    projectButton: "View project",
-    viewAllProjectsButton: "View all projects",
-    imageAlt: "Photo of Josselin HANEL",
-    motivationTitle: "What drives me",
-    motivationIntro:
-      "I believe in a web that combines speed, simplicity and environmental respect. Today, too many sites are heavy, slow to load and consume a lot of energy when we can easily do otherwise! My approach is based on these principles:",
-    motivationPrinciples: [
-      {
-        title: "The right technology in the right place",
-        description: "Modern browsers can do many things without needing to install tons of additional modules. I use existing technologies and their evolutions intelligently to create smooth experiences."
-      },
-      {
-        title: "Real autonomy",
-        description: "I build a website for you, tailored to your needs. You keep your domain name, I provide you with documented code, the site is in your name. Not locked into a platform or an agency with questionable pricing. Minimal maintenance, transparent costs, sustainable architecture."
-      },
-      {
-        title: "Light first, powerful when needed",
-        description: "Website to showcase your business? Ultra-fast pages that load instantly. Simple online store? Same principle, with just the right features. Complex web application with real-time interactions? There I use robust technologies capable of handling thousands of users without slowing down."
-      }
-    ],
-  },
-  de: {
-    title: "Josselin HANEL - Full-Stack Webentwickler (Öko-Modus)",
-    description:
-      "Umweltfreundliche Version meines Full-Stack-Entwickler-Portfolios mit minimalem CO2-Fußabdruck.",
-    heroTitle:
-      "<span class='text-light whitespace-nowrap'>Full-Stack</span> Webentwickler",
-    heroText:
-      "Ich erstelle nachhaltige Websites mit schnellem Ladevorgang, die auf allen Geräten korrekt angezeigt werden und bei Google gut platziert sind. Alles mit modernen, wirtschaftlichen und ökologischen Technologien.",
-    projectsButton: "Meine Projekte",
-    contactButton: "Kontakt",
-    ecoModeTitle: "Öko-Modus aktiviert",
-    ecoModeText:
-      "Sie sehen gerade die ultraleichte Version meines Portfolios.",
-    servicesTitle: "Dienstleistungen",
-    services: [
-      {
-        title: "Präsentations-Websites",
-        description:
-          "Personalisierte, schnelle und gut platzierte professionelle Websites - ohne WordPress oder kostspielige Abonnements."
-      },
-      {
-        title: "Webanwendungen",
-        description:
-          "Maßgeschneiderte Online-Tools zur Automatisierung Ihrer Aufgaben und Verbesserung der Benutzererfahrung.",
-      },
-      {
-        title: "Online-Shops",
-        description:
-          "Moderne und schnelle E-Commerce-Lösungen ohne monatliche Gebühren traditioneller Plattformen.",
-      },
-      {
-        title: "Beratung",
-        description:
-          "Beratung, um Ihre bestehenden Websites schneller, weniger energieintensiv und benutzerfreundlicher zu machen.",
-      },
-    ],
-    values: [
-      {
-        title: "Schnelligkeit",
-        description:
-          "Websites, die Ihre Besucher nicht warten lassen.",
-      },
-      {
-        title: "Einfachheit",
-        description:
-          "Lösungen, die auf den Punkt kommen, leicht zu aktualisieren.",
-      },
-      {
-        title: "Energieeinsparung",
-        description:
-          "Leichtere Websites, die Ihre Hosting-Kosten senken.",
-      },
-      {
-        title: "Autonomie",
-        description:
-          "Websites, die Sie leicht weiterentwickeln können.",
-      },
-    ],
-    projectsTitle: "Aktuelle Projekte",
-    projectButton: "Projekt ansehen",
-    viewAllProjectsButton: "Alle Projekte ansehen",
-    imageAlt: "Foto von Josselin HANEL",
-    motivationTitle: "Was mich antreibt",
-    motivationIntro:
-      "Ich glaube an ein Web, das Geschwindigkeit, Einfachheit und Umweltbewusstsein vereint. Heute sind zu viele Websites schwer, laden langsam und verbrauchen viel Energie, obwohl man es leicht anders machen kann! Mein Ansatz basiert auf diesen Prinzipien:",
-    motivationPrinciples: [
-      {
-        title: "Die richtige Technologie am richtigen Ort",
-        description: "Moderne Browser können viele Dinge tun, ohne tonnenweise zusätzliche Module installieren zu müssen. Ich nutze bestehende Technologien und ihre Weiterentwicklungen intelligent, um flüssige Erlebnisse zu schaffen."
-      },
-      {
-        title: "Echte Autonomie",
-        description: "Ich erstelle eine Website für Sie, maßgeschneidert auf Ihre Bedürfnisse. Sie behalten Ihren Domainnamen, ich liefere Ihnen dokumentierten Code, die Website gehört Ihnen. Nicht an eine Plattform oder eine Agentur mit fragwürdigen Preisen gebunden. Minimale Wartung, transparente Kosten, nachhaltige Architektur."
-      },
-      {
-        title: "Leicht zuerst, leistungsstark bei Bedarf",
-        description: "Website zur Präsentation Ihres Unternehmens? Ultraschnelle Seiten, die sofort laden. Einfacher Online-Shop? Gleiches Prinzip, mit genau den richtigen Funktionen. Komplexe Webanwendung mit Echtzeit-Interaktionen? Dort verwende ich robuste Technologien, die Tausende von Benutzern verarbeiten können, ohne langsamer zu werden."
-      }
-    ],
-  },
-};
-
-// Utiliser la langue demandée ou français par défaut
-const t = content[lang] || content.fr;
-
-// Mode éco activé
-const isEcoMode = true;
+const allPosts = await getCollection('blog');
+const recentPosts = allPosts
+  .filter(p => p.data.published)
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
+  .slice(0, 3);
 ---
 
-<Layout
-  title={t.title}
-  description={t.description}
-  lang={lang}
-  isEcoMode={isEcoMode}
->
+<LayoutEco title={text.title} description={text.description} lang={lang}>
   <div class="container mx-auto px-4 py-8">
-    <!-- Section hero simplifiée -->
+    <EcoModeInfo lang={lang} />
+
+    <!-- Hero simplifié -->
     <section class="py-6 border-b border-secondary mb-6">
       <div class="flex flex-wrap gap-6 items-center">
         <div class="flex-1">
-          <h1 class="text-2xl font-bold mb-3" set:html={t.heroTitle} />
-          <p class="mb-4 text-balance max-w-5xl">
-            {t.heroText}
-          </p>
+          <h1 class="text-2xl font-bold mb-3">
+            {text.heroTypePart1} <span class="text-light">{text.heroTypePart2}</span>
+          </h1>
+          <p class="mb-4 text-balance max-w-5xl">{text.heroText}</p>
           <div class="flex flex-wrap gap-3">
-            <a href={`/${lang}/contact/eco/`} class="cta-button">
-              {t.contactButton}
-            </a>
-            <a href={`/${lang}/projects/eco/`} class="btn-secondary">
-              {t.projectsButton}
-            </a>
+            <a href={`/${lang}/contact/eco/`} class="cta-button">{text.contactButton}</a>
+            <a href={`/${lang}/projects/eco/`} class="btn-secondary">{text.projectsButton}</a>
           </div>
         </div>
-
         <Picture
           src={monImage}
           width={128}
-          formats={["avif", "webp", "jpg"]}
-          alt={t.imageAlt}
+          formats={['avif', 'webp', 'jpg']}
+          alt="Josselin HANEL"
           class="w-32 h-32 shrink-0 border-2 border-accent rounded"
-          data-astro-transition-persist="profile-image"
           loading="eager"
         />
       </div>
     </section>
 
-    <!-- Section d'intro sur l'éco-conception -->
+    <!-- Valeurs en liste -->
     <section class="py-6 border-b border-secondary mb-6">
-      <h2 class="text-xl font-bold mb-3">{t.ecoModeTitle}</h2>
-      <p class="mb-3">
-        {t.ecoModeText}
-      </p>
-      <p class="text-sm text-text-muted">
-        <a href={`/${lang}/about/eco/`} class="text-link">
-          {lang === "fr" 
-            ? "En savoir plus sur mon approche d'éco-conception" 
-            : lang === "en" 
-              ? "Learn more about my eco-design approach" 
-              : "Mehr über meinen Öko-Design-Ansatz erfahren"}
+      <ul class="list-disc pl-5">
+        {text.values.map(v => (
+          <li class="mb-2"><strong>{v.title}</strong> : {v.description}</li>
+        ))}
+      </ul>
+    </section>
+
+    <!-- Services en liste -->
+    <section class="py-6 border-b border-secondary mb-6">
+      <h2 class="text-xl font-bold mb-3">{text.servicesTitle}</h2>
+      <ul class="list-disc pl-5">
+        {text.services.map(s => (
+          <li class="mb-2"><strong>{s.title}</strong> : {s.description}</li>
+        ))}
+      </ul>
+    </section>
+
+    <!-- Blog récent -->
+    {recentPosts.length > 0 && (
+      <section class="py-6 border-b border-secondary mb-6">
+        <h2 class="text-xl font-bold mb-3">{text.blogTitle}</h2>
+        <div class="space-y-3">
+          {recentPosts.map(post => (
+            <div class="border-b border-secondary border-opacity-30 pb-3">
+              <a href={`/${lang}/blog/${post.data.slug}/eco/`} class="text-link font-medium">
+                {post.data.title[lang]}
+              </a>
+              <p class="text-sm text-text-muted">{post.data.description[lang]}</p>
+            </div>
+          ))}
+        </div>
+        <a href={`/${lang}/blog/eco/`} class="text-link text-sm mt-3 inline-block">
+          {text.viewAllBlogButton} →
         </a>
-      </p>
-    </section>
+      </section>
+    )}
 
-    <!-- Section services simplifiée -->
-    <section class="py-6 border-b border-secondary mb-6">
-      <h2 class="text-xl font-bold mb-3">{t.servicesTitle}</h2>
-      <ul class="list-disc pl-5">
-        {
-          t.services.map((service) => (
-            <li class="mb-3">
-              <strong>{service.title}</strong>: {service.description}
-            </li>
-          ))
-        }
-      </ul>
-    </section>
-
-    <!-- Section valeurs simplifiée -->
-    <section class="pt-6 mb-4">
-      <h2 class="text-xl font-bold mb-3 text-accent">Mon approche</h2>
-      <ul class="list-disc pl-5">
-        {
-          t.values.map((value) => (
-            <li class="mb-3">
-              <strong>{value.title}</strong>: {value.description}
-            </li>
-          ))
-        }
-      </ul>
-    </section>
-
-    <!-- "Ce qui m'anime" -->
-    <section class="py-6 border-b border-secondary mb-6">
-      <h2 class="text-xl font-bold mb-3">{t.motivationTitle}</h2>
-      <p class="mb-4 max-w-5xl text-balance">{t.motivationIntro}</p>
-      <ul class="list-disc pl-5">
-        {
-          t.motivationPrinciples.map((principle) => (
-            <li class="mb-3 max-w-3xl">
-              <p class="text-balance"><strong>{principle.title}</strong>: {principle.description}</p>
-            </li>
-          ))
-        }
-      </ul>
-    </section>
-
-    <!-- Section projets récents avec vignettes très légères -->
-    <section class="py-6 mb-8">
-      <h2 class="text-xl font-bold mb-4 text-accent">{t.projectsTitle}</h2>
+    <!-- Projets récents -->
+    <section class="py-6 mb-6">
+      <h2 class="text-xl font-bold mb-4">{text.projectsTitle}</h2>
       <div class="space-y-4">
         {recentProjects.map(async (project) => {
           const heroImage = await loadHeroImage(project.data.slug);
           return (
-            <div class="pb-4 border-b border-secondary border-opacity-30">
-              <div class="flex items-start gap-3">
-                <!-- Vignette miniature très petite -->
-                <Picture
-                  src={heroImage}
-                  width={128}
-                  formats={["avif", "webp", "png"]}
-                  alt=""
-                  class="w-16 h-16 object-cover rounded shrink-0 opacity-90"
-                  loading="lazy"
-                />
-                <div>
-                  <h3 class="font-medium mb-1">{project.data.title[lang]}</h3>
-                  <p class="mb-2">{project.data.description[lang]}</p>
-                  <div class="text-sm text-text-muted mb-1">
-                    {project.data.tech.join(', ')}
-                  </div>
-                  <a
-                    href={`/${lang}/${project.data.slug}/eco/`}
-                    class="text-link inline-block"
-                  >
-                    {t.projectButton}
-                  </a>
-                </div>
+            <div class="flex items-start gap-3 pb-4 border-b border-secondary border-opacity-30">
+              <Picture
+                src={heroImage}
+                width={128}
+                formats={['avif', 'webp', 'png']}
+                alt=""
+                class="w-16 h-16 object-cover rounded shrink-0 opacity-90"
+                loading="lazy"
+              />
+              <div>
+                <h3 class="font-medium mb-1">{project.data.title[lang]}</h3>
+                <p class="mb-1 text-sm">{project.data.description[lang]}</p>
+                <p class="text-xs text-text-muted mb-1">{project.data.tech.join(', ')}</p>
+                <a href={`/${lang}/${project.data.slug}/eco/`} class="text-link text-sm">{text.projectButton}</a>
               </div>
             </div>
           );
         })}
       </div>
-      <div class="text-center mt-6">
-        <a href={`/${lang}/projects/eco/`} class="text-link">
-          {t.viewAllProjectsButton} →
-        </a>
-      </div>
+      <a href={`/${lang}/projects/eco/`} class="text-link text-sm mt-3 inline-block">
+        {text.viewAllProjectsButton} →
+      </a>
     </section>
 
-    <!-- Section CTA contact -->
-    <CtaDispo withBackground={false} transition-persist="cta-dispo"/>
+    <CtaDispo withBackground={false} />
   </div>
-</Layout>
+</LayoutEco>

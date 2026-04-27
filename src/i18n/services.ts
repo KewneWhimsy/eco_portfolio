@@ -1,0 +1,130 @@
+// src/i18n/services.ts
+import type { Lang } from './index';
+
+const approachIcons = ['lightning', 'infinity', 'mobile', 'leaf'] as const;
+const processStepNumbers = ['1', '2', '3', '4'] as const;
+export const services = {
+  fr: {
+    title: 'Josselin HANEL - Services et Tarifs', description: 'Découvrez mes services de développement web éco-responsable. Sites performants, durables et sur-mesure.',
+    pageTitle: 'Services & Tarifs', intro: 'Des sites web performants et durables, avec peu ou pas de frais récurrents.',
+    approachTitle: 'Mon approche éco-responsable',
+    approaches: [
+      { icon: approachIcons[0], title: 'Performance optimisée', desc: 'Sites ultra-performants (score 95+ Lighthouse)' },
+      { icon: approachIcons[1], title: 'Code durable', desc: 'Technologies pérennes, maintenance facilitée' },
+      { icon: approachIcons[2], title: 'Design accessible', desc: 'Interface intuitive sur tous les appareils' },
+      { icon: approachIcons[3], title: 'Impact minimal', desc: 'Sans coût d\'hébergement et optimisations écologiques' },
+    ],
+    servicesTitle: 'Mes services',
+    services: [
+      { title: 'Site Vitrine', price: 'À partir de 1800€', description: 'Site de présentation adapté à vos besoins', features: ['Temps de chargement < 1 seconde', 'Design responsive moderne', 'Formulaire de contact', 'Sans coût d\'hébergement (Cloudflare Pages)'], ideal: 'Idéal pour : artisans, professions libérales, associations' },
+      { title: 'E-commerce', price: 'À partir de 4200€', description: 'Boutique en ligne performante et évolutive', features: ['Paiement sécurisé Stripe', 'Gestion autonome des produits', 'Panier et favoris intelligents', 'Hébergement gratuit jusqu\'à ~10 000 visiteurs/jour'], ideal: 'Idéal pour : vente en ligne, créateurs, artisans' },
+      { title: 'Audit & Optimisation', price: 'À partir de 400€', description: 'Amélioration de votre site existant', features: ['Audit technique complet', 'Optimisation des performances', 'Amélioration du SEO', 'Rapport détaillé avec recommandations'], ideal: 'Idéal pour : sites existants à optimiser' },
+    ],
+    processSteps: [
+      { step: processStepNumbers[0], title: 'Échange initial', desc: 'On discute et cerne vos besoins' },
+      { step: processStepNumbers[1], title: 'Proposition sur-mesure', desc: 'Je vous envoie un devis personnalisé sous 48h' },
+      { step: processStepNumbers[2], title: 'Conception', desc: 'Développement en restant en contact régulier' },
+      { step: processStepNumbers[3], title: 'Livraison & formation', desc: 'Mise en ligne et formation pour être autonome' },
+    ],
+    ctaTitle: 'Prêt à démarrer votre projet ?', ctaDesc: 'Parlons de votre projet et voyons comment créer ensemble un site qui vous ressemble.',
+    formTitle: 'Parlez-moi de votre projet', nameLabel: 'Votre nom', emailLabel: 'Votre email', companyLabel: 'Votre entreprise (optionnel)', projectTypeLabel: 'Type de projet',
+    projectTypes: { showcase: 'Site vitrine', ecommerce: 'E-commerce', audit: 'Audit/Optimisation', custom: 'Projet sur-mesure', other: 'Autre' },
+    messageLabel: 'Décrivez votre projet', messagePlaceholder: 'Parlez-moi de votre activité, vos objectifs, ce que vous aimeriez pour votre site...', submitButton: 'Demander un devis personnalisé',
+    detailsTitle: 'Le détail de mes offres', detailsIntro: "Cliquez sur chaque offre pour voir ce qu'elle inclut exactement :",
+    vitrineDetails: { title: 'Site Vitrine : du simple au complet', options: [
+      { name: 'Site Éternel', price: 'À partir de 1800€', maintenance: '0€/an - Aucune maintenance nécessaire', desc: 'Site en pur HTML/CSS, le langage natif du web. Simple, rapide, immortel.', features: ['3-7 pages (Accueil, Services, À propos, Contact...)', 'Design responsive moderne', 'SEO optimisé', 'Code accessible à tout développeur', '2 modifications mineures/an offertes', 'Zéro frais récurrent'], modifications: 'Modifications supplémentaires : 30€ (texte/image) à 120€ (section/page)', ideal: 'Parfait pour : restaurants, artisans, professions libérales, associations, portfolio' },
+      { name: 'Site Pro avec Gestion de Contenu', price: 'À partir de 2400€', maintenance: '400€/an - maintenance et évolution', desc: "Site Astro moderne avec interface d'administration sur-mesure.", features: ['Formulaires personnalisés selon vos besoins', 'Mise à jour automatique via GitHub', 'Multilingue possible', 'Gestion 100% autonome de votre contenu', 'Architecture moderne et évolutive', 'Maintenance technique légère (2 interventions/an)'], tech: 'Stack technique : Astro + Routes API + Cloudflare Workers', ideal: 'Parfait pour : TPE/PME, cabinets de conseil, centres de formation' },
+    ], comparison: 'Site Éternel = Vitrine statique immortelle | Site Pro = Autonomie totale sur le contenu' },
+    ecommerceDetails: { title: 'E-commerce : adaptable à votre échelle', options: [
+      { name: "Boutique Simple (jusqu'à 500 produits)", price: 'À partir de 4200€', maintenance: '600€/an - maintenance et évolution', desc: "Boutique optimisée pour l'achat rapide sans inscription.", features: ["Catalogue jusqu'à 500 produits", 'Paiement Stripe sécurisé', 'Interface admin pour gérer les produits', 'Achat invité (pas de compte à créer)', "Panier et favoris sauvegardés sur l'appareil", 'Emails de confirmation automatiques', 'Suivi des commandes via Stripe'], ideal: 'Parfait pour : créateurs, artisans, vente ponctuelle, produits uniques' },
+      { name: 'Boutique Avancée (sans limite)', price: 'À partir de 6000€', maintenance: '920€/an - maintenance et évolution', desc: 'Boutique complète avec comptes clients et dashboard personnalisé.', features: ['Catalogue produits illimité', 'Comptes clients avec authentification', 'Dashboard client (historique, commandes, adresses)', 'Synchronisation multi-appareils', 'Gestion multi-adresses', 'Architecture scalable professionnelle'], tech: 'Stack technique : Astro + HTMX + Supabase (ou PostgreSQL) + Fonctions serveur', ideal: 'Parfait pour : e-commerce avec clientèle récurrente, fidélisation client' },
+    ], comparison: 'Simple = Achat rapide sans friction | Avancée = Expérience client premium avec espace personnel' },
+    customDetails: { title: 'Développement sur-mesure', rate: '55€/h (devis personnalisé)', desc: "Votre projet ne rentre pas dans les cases ? Pas de problème.", examplesLabel: 'Exemples de projets :', examples: ['PWA', 'Dashboard ou outil interne pour votre entreprise', 'Système de réservation/booking personnalisé', 'Intégrations API tierces', 'Automatisations (webhooks, workers)', 'Migration ou refonte technique'],
+      largeProjects: { title: "Projets avec beaucoup d'interactivité", desc: 'Pour les projets nécessitant des fonctionnalités temps réel, je privilégie Phoenix/Elixir.', why: "Elixir est conçu pour gérer des milliers de connexions simultanées avec une efficacité maximale." } },
+    includesTitle: 'Ce qui est toujours inclus', includes: ['Site ultra-rapide et optimisé', 'Bien placé sur Google (référencement inclus)', '0€ de frais d\'hébergement (sauf besoins spécifiques)', "Aide pour l'achat du nom de domaine", "Formation à l'utilisation"],
+    whyTitle: 'Pourquoi choisir un site éco-responsable ?', whyReasons: ['3x plus rapide que la moyenne (10x vs Wordpress)', "90% moins d'énergie consommée", 'Meilleur référencement Google', 'Maintenance 3-10x moins chère', 'Image de marque responsable'],
+    contactDirect: { title: 'Vous préférez échanger directement ?', text: 'Appelez-moi ou envoyez-moi un email pour discuter de votre projet sans engagement.', note: 'Note : Le nom de domaine reste à votre charge (env. 10-15€/an)' },
+  },
+  en: {
+    title: 'Josselin HANEL - Services & Pricing', description: 'Discover my eco-responsible web development services.',
+    pageTitle: 'Services & Pricing', intro: 'High-performance, sustainable websites with little to no recurring fees.',
+    approachTitle: 'My eco-responsible approach',
+    approaches: [
+      { icon: approachIcons[0], title: 'Optimized performance', desc: 'Ultra-fast sites that consume less energy' },
+      { icon: approachIcons[1], title: 'Sustainable code', desc: 'Durable technologies, easier maintenance' },
+      { icon: approachIcons[2], title: 'Accessible design', desc: 'Intuitive interface on all devices' },
+      { icon: approachIcons[3], title: 'Minimal impact', desc: 'No hosting costs and ecological optimizations' },
+    ],
+    servicesTitle: 'My services',
+    services: [
+      { title: 'Showcase Website', price: 'From €1800', description: 'Presentation site adapted to your needs', features: ['Loading time < 1 second', 'Modern responsive design', 'Contact form', 'No hosting cost (Cloudflare Pages)'], ideal: 'Ideal for: craftsmen, freelancers, associations' },
+      { title: 'E-commerce', price: 'From €4200', description: 'High-performance and scalable online store', features: ['Secure Stripe payment', 'Autonomous product management', 'Smart cart and favorites', 'Free hosting up to ~10,000 visitors/day'], ideal: 'Ideal for: online sales, creators, craftsmen' },
+      { title: 'Audit & Optimization', price: 'From €400', description: 'Improvement of your existing site', features: ['Complete technical audit', 'Performance optimization', 'SEO improvement', 'Detailed report with recommendations'], ideal: 'Ideal for: existing sites to optimize' },
+    ],
+    processSteps: [
+      { step: processStepNumbers[0], title: 'Initial discussion', desc: 'We discuss and identify your needs' },
+      { step: processStepNumbers[1], title: 'Custom proposal', desc: 'I send you a personalized quote within 48h' },
+      { step: processStepNumbers[2], title: 'Development', desc: 'Development while staying in regular contact' },
+      { step: processStepNumbers[3], title: 'Delivery & training', desc: 'Go live and training to be autonomous' },
+    ],
+    ctaTitle: 'Ready to start your project?', ctaDesc: "Let's talk about your project and see how we can create a site that reflects you.",
+    formTitle: 'Tell me about your project', nameLabel: 'Your name', emailLabel: 'Your email', companyLabel: 'Your company (optional)', projectTypeLabel: 'Project type',
+    projectTypes: { showcase: 'Showcase website', ecommerce: 'E-commerce', audit: 'Audit/Optimization', custom: 'Custom project', other: 'Other' },
+    messageLabel: 'Describe your project', messagePlaceholder: "Tell me about your business, your goals, what you'd like for your site...", submitButton: 'Request a personalized quote',
+    detailsTitle: 'Service details', detailsIntro: 'Click on each offer to see exactly what it includes:',
+    vitrineDetails: { title: 'Showcase Website: from simple to complete', options: [
+      { name: 'Eternal Site', price: 'From €1800', maintenance: '€0/year - No maintenance needed', desc: 'Pure HTML/CSS site, the native language of the web. Simple, fast, immortal.', features: ['3-7 pages (Home, Services, About, Contact...)', 'Modern responsive design', 'Optimized SEO', 'Code accessible to any developer', '2 minor modifications/year included', 'Zero recurring fees'], modifications: 'Additional modifications: €30 (text/image) to €120 (section/page)', ideal: 'Perfect for: restaurants, craftsmen, freelancers, associations, portfolio' },
+      { name: 'Pro Site with Content Management', price: 'From €2400', maintenance: '€400/year - maintenance and updates', desc: 'Modern Astro site with custom admin interface.', features: ['Custom forms according to your needs', 'Automatic update via GitHub', 'Multilingual possible', '100% autonomous content management', 'Modern and scalable architecture', 'Light technical maintenance (2 interventions/year)'], tech: 'Tech stack: Astro + API Routes + Cloudflare Workers', ideal: 'Perfect for: SMEs, consulting firms, training centers' },
+    ], comparison: 'Eternal Site = Immortal static showcase | Pro Site = Total autonomy on content' },
+    ecommerceDetails: { title: 'E-commerce: adaptable to your scale', options: [
+      { name: 'Simple Store (up to 500 products)', price: 'From €4200', maintenance: '€600/year - maintenance and updates', desc: 'Store optimized for quick purchase without registration.', features: ['Catalog up to 500 products', 'Secure Stripe payment', 'Admin interface to manage products', 'Guest checkout (no account needed)', 'Cart and favorites saved on device', 'Automatic confirmation emails', 'Order tracking via Stripe'], ideal: 'Perfect for: creators, craftsmen, occasional sales' },
+      { name: 'Advanced Store (unlimited)', price: 'From €6000', maintenance: '€920/year - maintenance and updates', desc: 'Complete store with customer accounts and personalized dashboard.', features: ['Unlimited product catalog', 'Customer accounts with authentication', 'Customer dashboard (history, orders, addresses)', 'Multi-device synchronization', 'Multi-address management', 'Professional scalable architecture'], tech: 'Tech stack: Astro + HTMX + Supabase (or PostgreSQL) + Server functions', ideal: 'Perfect for: e-commerce with recurring customers' },
+    ], comparison: 'Simple = Quick purchase without friction | Advanced = Premium customer experience' },
+    customDetails: { title: 'Custom development', rate: '€55/h (personalized quote)', desc: "Your project doesn't fit the boxes? No problem.", examplesLabel: 'Project examples:', examples: ['PWA', 'Dashboard or internal tool for your business', 'Custom booking/reservation system', 'Third-party API integrations', 'Automations (webhooks, workers)', 'Technical migration or redesign'],
+      largeProjects: { title: 'Projects with high interactivity', desc: 'For projects requiring real-time features, I prefer Phoenix/Elixir.', why: 'Elixir is designed to handle thousands of simultaneous connections with maximum efficiency.' } },
+    includesTitle: "What's always included", includes: ['Ultra-fast and optimized site', 'Well ranked on Google (SEO included)', 'No hosting fees (except specific needs)', 'Help with domain name purchase', 'Usage training'],
+    whyTitle: 'Why choose an eco-responsible site?', whyReasons: ['3x faster than average (10x vs Wordpress)', '90% less energy consumed', 'Better Google ranking', '3-10x cheaper maintenance', 'Responsible brand image'],
+    contactDirect: { title: 'Prefer to talk directly?', text: 'Call me or send me an email to discuss your project without commitment.', note: 'Note: Domain name at your expense (approx. €10-15/year)' },
+  },
+  de: {
+    title: 'Josselin HANEL - Leistungen & Preise', description: 'Entdecken Sie meine umweltverantwortlichen Webentwicklungsdienste.',
+    pageTitle: 'Leistungen & Preise', intro: 'Leistungsstarke, nachhaltige Websites mit wenig oder keinen wiederkehrenden Gebühren.',
+    approachTitle: 'Mein umweltverantwortlicher Ansatz',
+    approaches: [
+      { icon: approachIcons[0], title: 'Optimierte Leistung', desc: 'Ultraschnelle Sites, die weniger Energie verbrauchen' },
+      { icon: approachIcons[1], title: 'Nachhaltiger Code', desc: 'Dauerhafte Technologien, erleichterte Wartung' },
+      { icon: approachIcons[2], title: 'Zugängliches Design', desc: 'Intuitive Benutzeroberfläche auf allen Geräten' },
+      { icon: approachIcons[3], title: 'Minimale Auswirkungen', desc: 'Keine Hosting-Kosten und ökologische Optimierungen' },
+    ],
+    servicesTitle: 'Meine Leistungen',
+    services: [
+      { title: 'Showcase-Website', price: 'Ab €1800', description: 'Präsentationssite angepasst an Ihre Bedürfnisse', features: ['Ladezeit < 1 Sekunde', 'Modernes responsives Design', 'Kontaktformular', 'Keine Hosting-Kosten (Cloudflare Pages)'], ideal: 'Ideal für: Handwerker, Freiberufler, Vereine' },
+      { title: 'E-Commerce', price: 'Ab €4200', description: 'Leistungsstarker und skalierbarer Online-Shop', features: ['Sichere Stripe-Zahlung', 'Autonome Produktverwaltung', 'Intelligenter Warenkorb und Favoriten', 'Kostenloses Hosting bis ~10.000 Besucher/Tag'], ideal: 'Ideal für: Online-Verkauf, Kreative, Handwerker' },
+      { title: 'Audit & Optimierung', price: 'Ab €400', description: 'Verbesserung Ihrer bestehenden Site', features: ['Vollständiges technisches Audit', 'Leistungsoptimierung', 'SEO-Verbesserung', 'Detaillierter Bericht mit Empfehlungen'], ideal: 'Ideal für: bestehende Sites zur Optimierung' },
+    ],
+    processSteps: [
+      { step: processStepNumbers[0], title: 'Erste Besprechung', desc: 'Wir besprechen und ermitteln Ihren Bedarf' },
+      { step: processStepNumbers[1], title: 'Maßgeschneiderter Vorschlag', desc: 'Ich sende Ihnen innerhalb von 48h ein personalisiertes Angebot' },
+      { step: processStepNumbers[2], title: 'Konzeption', desc: 'Entwicklung mit regelmäßigem Kontakt' },
+      { step: processStepNumbers[3], title: 'Lieferung & Schulung', desc: 'Online-Stellung und Schulung für Autonomie' },
+    ],
+    ctaTitle: 'Bereit, Ihr Projekt zu starten?', ctaDesc: 'Lassen Sie uns über Ihr Projekt sprechen.',
+    formTitle: 'Erzählen Sie mir von Ihrem Projekt', nameLabel: 'Ihr Name', emailLabel: 'Ihre E-Mail', companyLabel: 'Ihr Unternehmen (optional)', projectTypeLabel: 'Projekttyp',
+    projectTypes: { showcase: 'Showcase-Website', ecommerce: 'E-Commerce', audit: 'Audit/Optimierung', custom: 'Maßgeschneidertes Projekt', other: 'Anderes' },
+    messageLabel: 'Beschreiben Sie Ihr Projekt', messagePlaceholder: 'Erzählen Sie mir von Ihrem Unternehmen, Ihren Zielen...', submitButton: 'Personalisiertes Angebot anfordern',
+    detailsTitle: 'Servicebeschreibung', detailsIntro: 'Klicken Sie auf jedes Angebot, um genau zu sehen, was es beinhaltet:',
+    vitrineDetails: { title: 'Showcase-Website: von einfach bis komplett', options: [
+      { name: 'Ewige Site', price: 'Ab €1800', maintenance: '€0/Jahr - Keine Wartung erforderlich', desc: 'Reine HTML/CSS-Site. Einfach, schnell, unsterblich.', features: ['3-7 Seiten', 'Modernes responsives Design', 'Optimiertes SEO', 'Code für jeden Entwickler zugänglich', '2 kleinere Änderungen/Jahr inklusive', 'Null wiederkehrende Gebühren'], modifications: 'Zusätzliche Änderungen: €30 (Text/Bild) bis €120 (Abschnitt/Seite)', ideal: 'Perfekt für: Restaurants, Handwerker, Freiberufler, Vereine, Portfolio' },
+      { name: 'Pro-Site mit Content-Management', price: 'Ab €2400', maintenance: '€400/Jahr - Wartung und Weiterentwicklung', desc: 'Moderne Astro-Site mit individueller Admin-Oberfläche.', features: ['Individuelle Formulare', 'Automatisches Update über GitHub', 'Mehrsprachig möglich', '100% autonome Content-Verwaltung', 'Moderne und skalierbare Architektur', 'Leichte technische Wartung'], tech: 'Tech-Stack: Astro + API-Routen + Cloudflare Workers', ideal: 'Perfekt für: KMU, Beratungsfirmen, Schulungszentren' },
+    ], comparison: 'Ewige Site = Unsterbliche statische Showcase | Pro-Site = Totale Autonomie über Inhalte' },
+    ecommerceDetails: { title: 'E-Commerce: anpassbar an Ihre Größe', options: [
+      { name: 'Einfacher Shop (bis zu 500 Produkte)', price: 'Ab €4200', maintenance: '€600/Jahr', desc: 'Shop optimiert für schnellen Kauf ohne Registrierung.', features: ['Katalog bis zu 500 Produkte', 'Sichere Stripe-Zahlung', 'Admin-Oberfläche', 'Gast-Checkout', 'Warenkorb und Favoriten gespeichert', 'Automatische Bestätigungs-E-Mails', 'Bestellverfolgung via Stripe'], ideal: 'Perfekt für: Kreative, Handwerker, gelegentliche Verkäufe' },
+      { name: 'Erweiterter Shop (unbegrenzt)', price: 'Ab €6000', maintenance: '€920/Jahr', desc: 'Vollständiger Shop mit Kundenkonten und Dashboard.', features: ['Unbegrenzter Produktkatalog', 'Kundenkonten mit Authentifizierung', 'Kunden-Dashboard', 'Multi-Geräte-Synchronisation', 'Multi-Adress-Verwaltung', 'Professionelle skalierbare Architektur'], tech: 'Tech-Stack: Astro + HTMX + Supabase + Serverfunktionen', ideal: 'Perfekt für: E-Commerce mit wiederkehrenden Kunden' },
+    ], comparison: 'Einfach = Schneller Kauf | Erweitert = Premium-Kundenerlebnis' },
+    customDetails: { title: 'Maßgeschneiderte Entwicklung', rate: '€55/Std. (personalisiertes Angebot)', desc: 'Ihr Projekt passt nicht in die Kategorien? Kein Problem.', examplesLabel: 'Projektbeispiele:', examples: ['PWA', 'Dashboard oder internes Tool', 'Individuelles Buchungssystem', 'Drittanbieter-API-Integrationen', 'Automatisierungen (Webhooks, Workers)', 'Technische Migration oder Neugestaltung'],
+      largeProjects: { title: 'Projekte mit hoher Interaktivität', desc: 'Für Echtzeit-Funktionen bevorzuge ich Phoenix/Elixir.', why: 'Elixir verarbeitet Tausende gleichzeitiger Verbindungen effizient.' } },
+    includesTitle: 'Was immer enthalten ist', includes: ['Ultraschnelle und optimierte Site', 'Gut positioniert auf Google', 'Keine Hosting-Kosten (außer bei spezifischen Bedürfnissen)', 'Hilfe beim Domain-Namen-Kauf', 'Nutzungsschulung'],
+    whyTitle: 'Warum eine umweltverantwortliche Site?', whyReasons: ['3x schneller als der Durchschnitt', '90% weniger Energieverbrauch', 'Besseres Google-Ranking', '3-10x günstigere Wartung', 'Verantwortliches Markenimage'],
+    contactDirect: { title: 'Möchten Sie lieber direkt sprechen?', text: 'Rufen Sie mich an oder senden Sie mir eine E-Mail.', note: 'Hinweis: Domain-Name auf Ihre Kosten (ca. €10-15/Jahr)' },
+  },
+} satisfies Record<Lang, any>;

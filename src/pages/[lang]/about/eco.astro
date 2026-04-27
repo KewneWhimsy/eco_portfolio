@@ -1,371 +1,90 @@
 ---
-// Import du layout avec mode éco activé
-import Layout from "../../../layouts/layout.astro";
-import CtaDispo from "../../../components/cta_dispo.astro";
-import EcoModeInfo from "../../../components/eco_mode_info.astro";
+// src/pages/[lang]/about/eco.astro — menus déroulants avec descriptions simples
+import LayoutEco from '../../../layouts/layout-eco.astro';
+import EcoModeInfo from '../../../components/eco_mode_info.astro';
+import CtaDispo from '../../../components/cta_dispo.astro';
+import Icon from '../../../components/Icon.astro';
+import { getLangPaths, t } from '../../../i18n';
+import { about } from '../../../i18n/about';
+import { getSimpleDescription } from '../../../i18n/skills';
 
-// Récupérer le paramètre de langue depuis l'URL
 export function getStaticPaths() {
-  return [
-    { params: { lang: "fr" } },
-    { params: { lang: "en" } },
-    { params: { lang: "de" } },
-  ];
+  return getLangPaths();
 }
-const lang = Astro.params.lang as "fr" | "en" | "de";
 
-// Définition du type pour les descriptions
-type DescriptionsByLang = {
-  [lang: string]: {
-    [skill: string]: string;
-  };
-};
-
-// Descriptions simplifiées pour le mode éco (version simple uniquement)
-const skillDescriptions: DescriptionsByLang = {
-  fr: {
-    // Frontend
-    'Astro': 'Outil qui crée des sites web rapides et faciles à trouver sur Google, sans vous forcer à utiliser une technologie particulière.',
-    'CSS Pro': 'Techniques pour créer des sites qui s\'adaptent à tous les écrans et avec des animations légères qui ne ralentissent pas votre appareil.',
-    'TypeScript': 'Une version améliorée de JavaScript qui aide à éviter les bugs et facilite le travail en équipe.',
-    'HTMX': 'Un petit outil qui rend les pages web interactives sans alourdir le site.',
-    'Tailwind': 'Système qui permet de créer rapidement des designs adaptés à tous les écrans, tout en gardant le site léger.',
-    
-    // Backend
-    'Astro + Workers': 'Astro construit les pages et crée des routes d\'instructions pour des agents dormants (Workers) qui se réveillent uniquement quand on a besoin d\'eux, puis se rendorment. Plus économique et écologique qu\'un serveur qui tourne en permanence.',
-    'Supabase': 'Un service qui stocke vos données et gère les connexions utilisateurs, sans avoir à installer ou maintenir un serveur. Idéal pour démarrer rapidement.',
-    'Phoenix (Elixir)': 'Un serveur complet que l\'on contrôle entièrement. Plus de travail initial, mais excellent pour du temps réel intensif et pour gérer des milliers de visiteurs simultanés avec une consommation de ressources minimale. Plus économique à l\'échelle.',
-    
-    // Bases de données
-    'PostgreSQL': 'Une base de données fiable et polyvalente qui stocke vos informations de façon organisée et sécurisée.',
-    'PostgREST': 'Un outil qui permet d\'accéder facilement et en toute sécurité aux données stockées, sans avoir à écrire beaucoup de code.',
-    'MongoDB': 'Une base de données flexible qui s\'adapte facilement aux changements et stocke des informations variées.',
-    
-    // Outils
-    'Git': 'Un système qui permet à plusieurs personnes de travailler sur le même projet sans conflit et de suivre toutes les modifications.',
-    'Docker': 'Un outil qui garantit que le site fonctionnera partout de la même façon, peu importe où et comment il est installé.',
-    'Lighthouse': 'Un outil qui analyse votre site et suggère des améliorations pour le rendre plus rapide et plus écologique.',
-
-    // Méthodologies
-    'Accessibilité': 'Rendre le site utilisable par tous, y compris les personnes handicapées ou celles utilisant des technologies d\'assistance.',
-    'Performance & Éco-conception': 'Du web durable qui demande peu d\'entretien et restera accessible dans 10 ans : un site rapide et efficace consomme moins d\'énergie et est valorisé par les moteurs de recherche.',
-    'UX/UI': 'Concevoir des sites faciles et agréables à utiliser, qui répondent réellement aux besoins des visiteurs.'
-  },
-  en: {
-    // Frontend
-    'Astro': 'A tool that creates fast websites easily found on Google, without forcing you to use any particular technology.',
-    'CSS Pro': 'Techniques for creating websites that adapt to all screens with smooth animations that don\'t slow down your device.',
-    'TypeScript': 'An improved version of JavaScript that helps prevent bugs and makes teamwork easier.',
-    'HTMX': 'A small tool that makes web pages interactive without making the site heavier.',
-    'Tailwind': 'System that allows you to quickly create designs that adapt to all screens, while keeping the site lightweight.',
-    
-    // Backend
-    'Astro + Workers': 'Astro builds pages and creates instruction routes for dormant agents (Workers) that wake up only when needed, then go back to sleep. More economical and ecological than a server running 24/7.',
-    'Supabase': 'A service that stores your data and manages user logins, without having to install or maintain a server. Ideal for getting started quickly.',
-    'Phoenix (Elixir)': 'A complete server that you control entirely. More initial work, but excellent for intensive real-time features and handling thousands of simultaneous visitors with minimal resource consumption. More economical at scale.',
-    
-    // Databases
-    'PostgreSQL': 'A reliable and versatile database that stores your information in an organized and secure way.',
-    'PostgREST': 'A tool that provides easy and secure access to stored data without having to write a lot of code.',
-    'MongoDB': 'A flexible database that easily adapts to changes and stores various information types.',
-    
-    // Tools
-    'Git': 'A system that allows multiple people to work on the same project without conflict and track all changes.',
-    'Docker': 'A tool that ensures the site will work the same way everywhere, regardless of where and how it\'s installed.',
-    'Lighthouse': 'A tool that analyzes your site and suggests improvements to make it faster and more environmentally friendly.',
-
-    // Methodologies
-    'Accessibility': 'Making the site usable by everyone, including people with disabilities or those using assistive technologies.',
-    'Performance & Eco-design': 'Sustainable web requiring minimal maintenance that will remain accessible in 10 years: a fast and efficient site consumes less energy and is valued by search engines.',
-    'UX/UI': 'Designing sites that are easy and pleasant to use, genuinely meeting visitor needs.'
-  },
-  de: {
-    // Frontend
-    'Astro': 'Ein Werkzeug, das schnelle Websites erstellt, die leicht auf Google zu finden sind, ohne Sie zu zwingen, eine bestimmte Technologie zu verwenden.',
-    'CSS Pro': 'Techniken zur Erstellung von Websites, die sich an alle Bildschirme anpassen, mit flüssigen Animationen, die Ihr Gerät nicht verlangsamen.',
-    'TypeScript': 'Eine verbesserte Version von JavaScript, die hilft, Fehler zu vermeiden und die Teamarbeit erleichtert.',
-    'HTMX': 'Ein kleines Werkzeug, das Webseiten interaktiv macht, ohne die Website zu belasten.',
-    'Tailwind': 'System, mit dem Sie schnell Designs erstellen können, die sich an alle Bildschirme anpassen und die Website leicht halten.',
-    
-    // Backend
-    'Astro + Workers': 'Astro erstellt Seiten und Anweisungsrouten für schlafende Agenten (Workers), die nur bei Bedarf aufwachen und dann wieder einschlafen. Wirtschaftlicher und ökologischer als ein 24/7-laufender Server.',
-    'Supabase': 'Ein Service, der Ihre Daten speichert und Benutzeranmeldungen verwaltet, ohne einen Server installieren oder warten zu müssen. Ideal für schnellen Einstieg.',
-    'Phoenix (Elixir)': 'Ein vollständiger Server, den man vollständig kontrolliert. Mehr Anfangsarbeit, aber hervorragend für intensive Echtzeit-Funktionen und die Verarbeitung von Tausenden gleichzeitiger Besucher mit minimalem Ressourcenverbrauch. Wirtschaftlicher im großen Maßstab.',
-    
-    // Datenbanken
-    'PostgreSQL': 'Eine zuverlässige und vielseitige Datenbank, die Ihre Informationen organisiert und sicher speichert.',
-    'PostgREST': 'Ein Werkzeug, das einfachen und sicheren Zugriff auf gespeicherte Daten ermöglicht, ohne viel Code schreiben zu müssen.',
-    'MongoDB': 'Eine flexible Datenbank, die sich leicht an Änderungen anpasst und verschiedene Informationen speichert.',
-    
-    // Werkzeuge
-    'Git': 'Ein System, das es mehreren Personen ermöglicht, ohne Konflikte am selben Projekt zu arbeiten und alle Änderungen zu verfolgen.',
-    'Docker': 'Ein Werkzeug, das sicherstellt, dass die Website überall gleich funktioniert, unabhängig davon, wo und wie sie installiert ist.',
-    'Lighthouse': 'Ein Werkzeug, das Ihre Website analysiert und Verbesserungen vorschlägt, um sie schneller und umweltfreundlicher zu machen.',
-
-    // Methoden
-    'Barrierefreiheit': 'Die Website für alle nutzbar machen, einschließlich Menschen mit Behinderungen oder solchen, die unterstützende Technologien verwenden.',
-    'Performance & Öko-Design': 'Nachhaltiges Web, das wenig Wartung erfordert und in 10 Jahren zugänglich bleibt: Eine schnelle und effiziente Website verbraucht weniger Energie und wird von Suchmaschinen geschätzt.',
-    'UX/UI': 'Websites entwerfen, die einfach und angenehm zu benutzen sind und den tatsächlichen Bedürfnissen der Besucher entsprechen.'
-  }
-};
-
-// Fonction pour obtenir la description d'une compétence
-const getSkillDescription = (skill: string): string => {
-  return skillDescriptions[lang]?.[skill] || "";
-};
-
-// Contenu traduit pour chaque langue
-const content = {
-  fr: {
-    title: "Josselin HANEL - à propos (Mode Éco)",
-    description:
-      "Version éco-responsable de ma page à propos, découvrez mon parcours avec une empreinte carbone minimale.",
-    aboutTitle: "Qui suis-je ?",
-    aboutText:
-      "Je crée des sites web écologiques avec une vraie démarche d'éco-conception, pas du greenwashing marketing. Basé à Rennes, je travaille aussi pour des clients à Quimper, Paris, Berlin ou à distance.",
-    visionTitle: "Ma vision",
-    visionText:
-      "Internet consomme de plus en plus d'électricité dans le monde. En tant que créateur de sites, je m'engage à faire des sites plus légers, plus rapide, qui fonctionnent parfaitement même sur des appareils anciens, sans sacrifier l'expérience utilisateur.",
-    skillsTitle: "Compétences",
-    expTitle: "Mon parcours",
-    eduTitle: "Formation",
-    contactButton: "Me contacter",
-  },
-  en: {
-    title: "Josselin HANEL - About me (Eco Mode)",
-    description:
-      "Eco-friendly version of my about page, discover my background with minimal carbon footprint.",
-    aboutTitle: "About me",
-    aboutText:
-      "I create eco-friendly websites with a real eco-design approach, not marketing greenwashing. Based in Rennes, I also work for clients in Quimper, Paris, Berlin or remotely.",
-    visionTitle: "My vision",
-    visionText:
-      "Digital technology now represents a growing part of our carbon footprint. As a web developer, I'm committed to designing websites and applications that minimize their environmental impact without compromising user experience.",
-    skillsTitle: "Technical skills",
-    expTitle: "Professional experience",
-    eduTitle: "Education",
-    contactButton: "Contact me",
-  },
-  de: {
-    title: "Josselin HANEL - Über mich (Öko-Modus)",
-    description:
-      "Umweltfreundliche Version meiner Über-mich-Seite, entdecken Sie meinen Hintergrund mit minimalem CO2-Fußabdruck.",
-    aboutTitle: "Über mich",
-    aboutText:
-      "Ich erstelle ökologische Websites mit einem echten Öko-Design-Ansatz, kein Marketing-Greenwashing. Mit Sitz in Rennes arbeite ich auch für Kunden in Quimper, Paris, Berlin oder remote.",
-    visionTitle: "Meine Vision",
-    visionText:
-      "Die digitale Technologie stellt heute einen wachsenden Teil unseres CO2-Fußabdrucks dar. Als Webentwickler setze ich mich dafür ein, Websites und Anwendungen zu entwickeln, die ihre Umweltauswirkungen minimieren, ohne die Benutzererfahrung zu beeinträchtigen.",
-    skillsTitle: "Technische Fähigkeiten",
-    expTitle: "Berufserfahrung",
-    eduTitle: "Ausbildung",
-    contactButton: "Kontaktieren Sie mich",
-  },
-};
-
-// Utiliser la langue demandée ou français par défaut
-const t = content[lang] || content.fr;
-
-// Compétences mises à jour selon la version standard
-const skills = [
-  {
-    category: lang === "fr" ? "Côté visible" : "Frontend",
-    items: ["Astro", "Tailwind", "CSS Pro", "TypeScript", "HTMX"],
-  },
-  {
-    category: lang === "fr" ? "Côté serveur" : "Backend",
-    items: ["Astro + Workers", "Supabase", "Phoenix (Elixir)"],
-  },
-  {
-    category:
-      lang === "fr"
-        ? "Bases de données"
-        : lang === "en"
-          ? "Databases"
-          : "Datenbanken",
-    items: ["PostgreSQL", "PostgREST", "MongoDB"],
-  },
-  {
-    category: lang === "fr" ? "Outils" : lang === "en" ? "Tools" : "Werkzeuge",
-    items: ["Git", "Docker", "Lighthouse"],
-  },
-  {
-    category:
-      lang === "fr"
-        ? "Méthodes"
-        : lang === "en"
-          ? "Methodologies"
-          : "Methoden",
-    items: [
-      lang === "fr"
-        ? "Accessibilité"
-        : lang === "en"
-          ? "Accessibility"
-          : "Barrierefreiheit",
-      lang === "fr"
-        ? "Performance & Éco-conception"
-        : lang === "en"
-          ? "Performance & Eco-design"
-          : "Performance & Öko-Design",
-      "UX/UI",
-    ],
-  },
-];
-
-// Expériences et formations mises à jour
-const experiences = [
-  {
-    period: lang === "fr" ? "2025 - Aujourd'hui" : lang === "en" ? "2025 - Present" : "2025 - Heute",
-    position: lang === "fr" ? "Développeur Web Fullstack indépendant" : lang === "en" ? "Freelance web developer" : "Freelance Webentwickler",
-    company: lang === "fr" ? "À mon compte" : lang === "en" ? "Independent" : "Unabhängig",
-    description: lang === "fr" 
-      ? "Je crée des sites pour différents clients en faisant attention à ce qu'ils soient économes en énergie."
-      : lang === "en"
-      ? "Design and development of websites and applications for various clients with special attention to environmental impact."
-      : "Design und Entwicklung von Websites und Anwendungen für verschiedene Kunden mit besonderem Augenmerk auf Umweltauswirkungen.",
-  },
-  {
-    period: "2024 - 2025",
-    position: lang === "fr" ? "Responsable du site internet" : "Webmaster",
-    company: "Objethèque de Cornouaille",
-    description: lang === "fr"
-      ? "J'ai créé et mis à jour le site internet pour mettre en valeur les activités et événements de l'association."
-      : lang === "en"
-      ? "Integration and development of user interfaces to showcase the association's activities and events."
-      : "Integration und Entwicklung von Benutzeroberflächen zur Präsentation der Aktivitäten und Veranstaltungen des Vereins.",
-  },
-];
-
-const education = [
-  {
-    year: "2025",
-    degree: lang === "fr" ? "Diplôme de développeur web" : lang === "en" ? "TP développeur web et web mobile" : "Beruflicher Titel für Web- und Mobile-Web-Entwicklung",
-    school: "Studi",
-    description: lang === "fr"
-      ? "Formation complète pour créer des sites de A à Z (côté visiteur et côté technique)."
-      : lang === "en"
-      ? "Titre RNCP de niveau 5, formation full stack (backend et frontend)."
-      : "RNCP Qualifikation Stufe 5, Full-Stack-Ausbildung (Backend und Frontend).",
-  },
-  {
-    year: "2023 - 2024",
-    degree: "The Odin Project",
-    school: lang === "fr" ? "Formation en ligne" : lang === "en" ? "Auto-formation" : "Selbststudium",
-    description: lang === "fr"
-      ? "Apprentissage complet pour créer des sites modernes avec les dernières technologies."
-      : lang === "en"
-      ? "Parcours complet de développement web full stack avec focus sur JavaScript et technologies modernes."
-      : "Kompletter Full-Stack-Webentwicklungslehrplan mit Schwerpunkt auf JavaScript und modernen Technologien.",
-  },
-  {
-    year: lang === "fr" ? "2022 - Présent" : lang === "en" ? "2022 - Présent" : "2022 - Heute",
-    degree: lang === "fr" ? "Formation continue" : lang === "en" ? "Veille technologique" : "Technologische Wachsamkeit",
-    school: lang === "fr" ? "Diverses sources" : lang === "en" ? "Sources diverses" : "Verschiedene Quellen",
-    description: lang === "fr"
-      ? "Je me forme en permanence pour rester à jour et vous proposer les meilleures solutions."
-      : lang === "en"
-      ? "Auto-formation continue à travers documentation, blogs techniques, conférences et communautés spécialisées en développement web."
-      : "Kontinuierliches Selbststudium durch Dokumentation, technische Blogs, Konferenzen und spezialisierte Webentwicklungs-Communities.",
-  },
-];
-
-// Mode éco activé
-const isEcoMode = true;
+const lang = Astro.params.lang as 'fr' | 'en' | 'de';
+const text = t(about, lang);
 ---
 
-<Layout
-  title={t.title}
-  description={t.description}
-  lang={lang}
-  isEcoMode={isEcoMode}
->
+<LayoutEco title={text.title} description={text.description} lang={lang}>
   <div class="container mx-auto px-4 py-6">
-    <!-- Utilisation du composant EcoModeInfo -->
     <EcoModeInfo lang={lang} />
-    
-    <!-- Section d'introduction -->
+
     <section class="mb-8 border-b border-secondary pb-6">
-      <h1 class="text-2xl font-bold mb-4 border-b border-accent pb-2">
-        {t.aboutTitle}
-      </h1>
-      <p class="mb-4 max-w-4xl">
-        {t.aboutText}
-      </p>
-      <h2 class="text-xl font-semibold mb-2">
-        {t.visionTitle}
-      </h2>
-      <p class="mb-4 max-w-4xl" set:html={t.visionText} />
+      <h1 class="text-2xl font-bold mb-4 border-b border-accent pb-2">{text.aboutTitle}</h1>
+      <p class="mb-4 max-w-4xl">{text.aboutText}</p>
+      <h2 class="text-xl font-semibold mb-2">{text.visionTitle}</h2>
+      <p class="mb-4 max-w-4xl" set:html={text.visionText} />
     </section>
 
-    <!-- Section compétences avec balises details simplifiées -->
+    <!-- Compétences en menus déroulants avec descriptions simples -->
     <section class="mb-4 max-w-3xl">
-      <h2 class="text-xl font-semibold mb-3">
-        {t.skillsTitle}
-      </h2>
-      {
-        skills.map((skillCategory) => (
-          <details class="mb-3 border border-secondary rounded p-2">
-            <summary class="text-lg font-semibold text-light cursor-pointer py-1">
-              {skillCategory.category}
-            </summary>
-            <div class="mt-3 pl-2">
-              {skillCategory.items.map((skill) => (
-                <div class="mb-2">
-                  <div class="font-medium text-light">{skill}</div>
-                  <p class="mb-3 max-w-lg text-balance">
-                    {getSkillDescription(skill)}
-                  </p>
+      <h2 class="text-xl font-semibold mb-3">{text.skillsTitle}</h2>
+      {text.skillCategories.map(cat => (
+        <details class="mb-3 border border-secondary rounded p-2">
+          <summary class="flex items-center gap-3 text-lg font-semibold text-light cursor-pointer py-1">
+            {cat.icon && <Icon name={cat.icon as any} size={20} class="text-light shrink-0" />}
+            {cat.category}
+          </summary>
+          <div class="pt-3 pl-2">
+            {cat.items.map(item => {
+              const desc = getSimpleDescription(item, lang);
+              return (
+                <div class="pb-2">
+                  <div class="font-medium text-light">{item}</div>
+                  {desc && <p class="pb-1 max-w-lg text-balance">{desc}</p>}
                 </div>
-              ))}
-            </div>
-          </details>
-        ))
-      }
+              );
+            })}
+          </div>
+        </details>
+      ))}
     </section>
 
-    <!-- Section expérience -->
+    <!-- Expérience -->
     <section class="my-10 border-t border-b border-secondary pb-6 pt-10">
-      <h2 class="text-xl font-semibold mb-3">
-        {t.expTitle}
-      </h2>
+      <h2 class="text-xl font-semibold mb-3">{text.expTitle}</h2>
       <div class="space-y-4">
-        {
-          experiences.map((exp) => (
-            <div class="border-l-2 border-accent pl-3 py-1">
-              <div class="flex flex-wrap justify-between mb-1">
-                <h3 class="font-semibold">{exp.position}</h3>
-                <span class="text-text-muted text-sm">{exp.period}</span>
-              </div>
-              <p class="text-light text-sm mb-1">{exp.company}</p>
-              <p>{exp.description}</p>
+        {text.experiences.map(exp => (
+          <div class="border-l-2 border-accent pl-3 py-1">
+            <div class="flex flex-wrap justify-between mb-1">
+              <h3 class="font-semibold">{exp.position}</h3>
+              <span class="text-text-muted text-sm">{exp.period}</span>
             </div>
-          ))
-        }
+            <p class="text-light text-sm mb-1">{exp.company}</p>
+            <p>{exp.description}</p>
+          </div>
+        ))}
       </div>
     </section>
 
-    <!-- Section formation -->
+    <!-- Formation -->
     <section class="mb-8 border-b border-secondary pb-6">
-      <h2 class="text-xl font-semibold mb-3">
-        {t.eduTitle}
-      </h2>
+      <h2 class="text-xl font-semibold mb-3">{text.eduTitle}</h2>
       <div class="space-y-4">
-        {
-          education.map((edu) => (
-            <div class="border-l-2 border-accent pl-3 py-1">
-              <div class="flex flex-wrap justify-between mb-1">
-                <h3 class="font-semibold">{edu.degree}</h3>
-                <span class="text-text-muted text-sm">{edu.year}</span>
-              </div>
-              <p class="text-light text-sm mb-1">{edu.school}</p>
-              <p>{edu.description}</p>
+        {text.education.map(edu => (
+          <div class="border-l-2 border-accent pl-3 py-1">
+            <div class="flex flex-wrap justify-between mb-1">
+              <h3 class="font-semibold">{edu.degree}</h3>
+              <span class="text-text-muted text-sm">{edu.year}</span>
             </div>
-          ))
-        }
+            <p class="text-light text-sm mb-1">{edu.school}</p>
+            <p>{edu.description}</p>
+          </div>
+        ))}
       </div>
     </section>
 
-    <!-- Section CTA contact -->
-    <CtaDispo withBackground={false} transition-persist="cta-dispo" />
+    <CtaDispo withBackground={false} />
   </div>
-</Layout>
+</LayoutEco>

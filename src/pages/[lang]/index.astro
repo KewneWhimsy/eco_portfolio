@@ -1,357 +1,74 @@
 ---
-// Imports
-import Layout from "../../layouts/layout.astro";
-import { Picture } from "astro:assets";
-import monImage from "../../assets/j.jpg";
-import CtaDispo from "../../components/cta_dispo.astro";
+// src/pages/[lang]/index.astro — v2 avec i18n externalisé
+import Layout from '../../layouts/layout.astro';
+import { Picture } from 'astro:assets';
+import monImage from '../../assets/j.jpg';
+import CtaDispo from '../../components/cta_dispo.astro';
 import { getCollection } from 'astro:content';
 import { loadHeroImage } from '../../utils/imageLoader';
+import { getLangPaths, t } from '../../i18n';
+import { home } from '../../i18n/home';
+import Icon from '../../components/Icon.astro';
 
-// Récupérer le paramètre de langue depuis l'URL
 export function getStaticPaths() {
-  return [
-    { params: { lang: "fr" } },
-    { params: { lang: "en" } },
-    { params: { lang: "de" } },
-  ];
+  return getLangPaths();
 }
 
-// Récupération des 2 projets les plus récents
-const allProjects = await getCollection("projects");
+const lang = Astro.params.lang as 'fr' | 'en' | 'de';
+const text = t(home, lang);
+
+// Projets récents (2 derniers)
+const allProjects = await getCollection('projects');
 const recentProjects = allProjects
   .sort((a, b) => b.data.order - a.data.order)
   .slice(0, 2);
 
-const lang = Astro.params.lang as "fr" | "en" | "de";
+// Articles de blog récents (3 derniers)
+const allPosts = await getCollection('blog');
+const recentPosts = allPosts
+  .filter(p => p.data.published)
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
+  .slice(0, 3);
 
-// Titre et description de la page pour SEO (à traduire selon la langue)
-const content = {
-  fr: {
-    title: "Josselin HANEL - Créateur de sites internet",
-    description: "Créateur de sites internet qui marchent bien, rapides et moins gourmands en énergie. Basé à Rennes, disponible à Quimper, Paris, Berlin et à distance.",
-    heroText: "Je crée des sites web durables au chargement rapide, qui s'affichent correctement sur tous les appareils, et sont bien placés sur Google. Le tout avec des technologies modernes, économiques et écologiques.",
-    values: [
-      { 
-        title: "Rapidité", 
-        description: "Des sites qui ne font pas attendre vos visiteurs.",
-        emoji: "⚡" 
-      },
-      { 
-        title: "Simplicité", 
-        description: "Des solutions qui vont droit au but, faciles à mettre à jour.",
-        emoji: "✨" 
-      },
-      { 
-        title: "Économie d'énergie", 
-        description: "Des sites plus légers qui font baisser vos factures d'hébergement.",
-        emoji: "🌱"
-      },
-      { 
-        title: "Autonomie", 
-        description: "Des sites que vous pouvez faire évoluer facilement.",
-        emoji: "🚀" 
-      }
-    ],
-    projectsButton: "Voir mes réalisations",
-    contactButton: "Me contacter",
-    servicesTitle: "Services",
-    services: [
-      {
-        title: "Sites pour présenter votre activité",
-        description: "Sites professionnels personnalisés, rapides et bien placés sur Google - sans WordPress ni abonnements coûteux.",
-        emoji: "🌐"
-      },
-      {
-        title: "Applications web",
-        description: "Outils en ligne sur mesure pour automatiser vos tâches et améliorer l'expérience de vos utilisateurs.",
-        emoji: "⚙️"
-      },
-      {
-        title: "Boutiques en ligne",
-        description: "Solutions de vente en ligne modernes et rapides, sans les frais mensuels des plateformes habituelles.",
-        emoji: "🛒"
-      },
-      {
-        title: "Conseils",
-        description: "Conseils pour rendre vos sites existants plus rapides, moins énergivores et plus agréables à utiliser.",
-        emoji: "💡"
-      }
-    ],
-    projectsTitle: "Projets récents",
-    projectButton: "Voir ce projet",
-    viewAllProjectsButton: "Voir tous les projets",
-    // Motivations
-    motivationTitle: "Ce qui me motive",
-    motivationIntro: "Je crois à un web qui allie rapidité, simplicité et respect de l'environnement. Aujourd'hui, trop de sites sont lourds, lents à charger et consomment beaucoup d'énergie alors qu'on peut facilement faire autrement ! Ma démarche s'appuie sur ces principes :",
-    motivationPrinciples: [
-      {
-        title: "La bonne technique au bon endroit",
-        description: "Les navigateurs modernes peuvent faire beaucoup de choses sans avoir besoin d'installer des tonnes de modules supplémentaires. J'utilise les technologies existantes et leurs évolutions de manière intelligente pour créer des expériences fluides."
-      },
-      {
-        title: "Autonomie réelle",
-        description: "Je fais un site pour vous, au plus proche de votre besoin. Vous gardez votre nom de domaine, je vous fournis le code documenté, le site est à votre nom. Ni prisonnier d'une plateforme, ni d'une agence aux tarifs douteux. Maintenance minimale, coûts transparents, architecture durable."
-      },
-      {
-        title: "Léger d'abord, puissant si besoin",
-        description: "Site pour présenter votre activité ? Pages ultra-rapides qui se chargent instantanément. Boutique en ligne simple ? Même principe, avec juste ce qu'il faut de fonctionnalités. Application web complexe avec interactions en temps réel ? Là j'utilise des technologies robustes capables de gérer des milliers d'utilisateurs sans ralentir."
-      }
-    ],
-    didYouKnowTitle: "Le saviez-vous ?",
-    didYouKnowItems: [
-      {
-        text: "Contrairement à ce qu'on croit souvent, la loi n'oblige pas à afficher un bandeau de cookies sur tous les sites. Ces bandeaux ne sont obligatoires que si votre site utilise des traceurs autres que ceux strictement nécessaires au fonctionnement.",
-        source: "GDPR.eu - Cookies, the GDPR, and the ePrivacy Directive",
-        link: "https://gdpr.eu/cookies/"
-      },
-      {
-        text: "53% des visiteurs quittent un site qui met plus de 3 secondes à charger. Avoir un site rapide est essentiel pour ne pas perdre de visiteurs.",
-        source: "Think with Google - Mobile page speed benchmarks",
-        link: "https://support.google.com/adsense/answer/7450973/"
-      },
-      {
-        text: "Il est tout à fait possible d'analyser les visites de votre site sans utiliser de cookies de suivi ni compromettre la vie privée de vos visiteurs.",
-        details: "Des solutions comme Plausible, Umami Cloud ou Matomo (en mode sans cookies) vous donnent des statistiques précises en respectant la vie privée, sans nécessiter de consentement explicite."
-      }
-    ],
-    quoteText: "Combien de fois avez-vous quitté un site parce qu'il était trop lent ou vous harcelait pour accepter des cookies? Je préfère un web plus léger, qui respecte l'attention du visiteur et fonctionne bien sur tous les appareils sans frustration."
-  },
-  en: {
-    title: "Josselin HANEL - Full Stack Web Developer",
-    description: "Full stack web developer creating fast, efficient and eco-friendly websites. Based in Rennes (France), available in Quimper, Paris, Berlin and for remote work.",
-    heroText: "I create sustainable websites with fast loading, that display correctly on all devices, and rank well on Google. All with modern, cost-effective and eco-friendly technologies.",
-    values: [
-      { 
-        title: "Speed", 
-        description: "Websites that don't keep your visitors waiting.",
-        emoji: "⚡" 
-      },
-      { 
-        title: "Simplicity", 
-        description: "Solutions that get straight to the point, easy to update.",
-        emoji: "✨" 
-      },
-      { 
-        title: "Energy saving", 
-        description: "Lighter websites that lower your hosting bills.",
-        emoji: "🌱"
-      },
-      { 
-        title: "Autonomy", 
-        description: "Websites you can easily evolve.",
-        emoji: "🚀" 
-      }
-    ],
-    projectsButton: "View my projects",
-    contactButton: "Contact me",
-    servicesTitle: "Services",
-    services: [
-      {
-        title: "Showcase websites",
-        description: "Personalized, fast and well-ranked professional websites - without WordPress or costly subscriptions.",
-        emoji: "🌐"
-      },
-      {
-        title: "Web applications",
-        description: "Custom online tools to automate your tasks and improve your users' experience.",
-        emoji: "⚙️"
-      },
-      {
-        title: "Online stores",
-        description: "Modern and fast e-commerce solutions, without the monthly fees of traditional platforms.",
-        emoji: "🛒"
-      },
-      {
-        title: "Consulting",
-        description: "Advice to make your existing sites faster, less energy-intensive and more user-friendly.",
-        emoji: "💡"
-      }
-    ],
-    projectsTitle: "Recent projects",
-    projectButton: "Explore project",
-    viewAllProjectsButton: "View all projects",
-    // Motivations
-    motivationTitle: "What drives me",
-    motivationIntro: "I believe in a web that combines speed, simplicity and environmental respect. Today, too many sites are heavy, slow to load and consume a lot of energy when we can easily do otherwise! My approach is based on these principles:",
-    motivationPrinciples: [
-      {
-        title: "The right technology in the right place",
-        description: "Modern browsers can do many things without needing to install tons of additional modules. I use existing technologies and their evolutions intelligently to create smooth experiences."
-      },
-      {
-        title: "Real autonomy",
-        description: "I build a website for you, tailored to your needs. You keep your domain name, I provide you with documented code, the site is in your name. Not locked into a platform or an agency with questionable pricing. Minimal maintenance, transparent costs, sustainable architecture."
-      },
-      {
-        title: "Light first, powerful when needed",
-        description: "Website to showcase your business? Ultra-fast pages that load instantly. Simple online store? Same principle, with just the right features. Complex web application with real-time interactions? There I use robust technologies capable of handling thousands of users without slowing down."
-      }
-    ],
-    didYouKnowTitle: "Did you know?",
-    didYouKnowItems: [
-      {
-        text: "Contrary to popular belief, the law doesn't require displaying a cookie banner on all websites. These banners are only mandatory if your site uses trackers other than those strictly necessary for operation.",
-        source: "GDPR.eu - Cookies, the GDPR, and the ePrivacy Directive",
-        link: "https://gdpr.eu/cookies/"
-      },
-      {
-        text: "53% of visitors leave a site that takes more than 3 seconds to load. Having a fast site is essential to not lose visitors.",
-        source: "Think with Google - Mobile page speed benchmarks",
-        link: "https://support.google.com/adsense/answer/7450973/"
-      },
-      {
-        text: "It's entirely possible to analyze your site's visits without using tracking cookies or compromising your visitors' privacy.",
-        details: "Solutions like Plausible, Umami Cloud or Matomo (in cookie-free mode) give you accurate statistics while respecting privacy, without requiring explicit consent."
-      }
-    ],
-    quoteText: "How many times have you left a website because it was too slow or harassing you to accept cookies? I prefer a lighter web that respects visitor attention and works well on all devices without frustration."
-  },
-  de: {
-    title: "Josselin HANEL - Full-Stack Webentwickler",
-    description: "Full-Stack Webentwickler, der schnelle, effiziente und umweltfreundliche Websites erstellt. Mit Sitz in Rennes (Frankreich), verfügbar in Quimper, Paris, Berlin und für Remote-Arbeit.",
-    heroText: "Ich erstelle nachhaltige Websites mit schnellem Ladevorgang, die auf allen Geräten korrekt angezeigt werden und bei Google gut platziert sind. Alles mit modernen, wirtschaftlichen und ökologischen Technologien.",
-    values: [
-      { 
-        title: "Schnelligkeit", 
-        description: "Websites, die Ihre Besucher nicht warten lassen.",
-        emoji: "⚡"
-      },
-      { 
-        title: "Einfachheit", 
-        description: "Lösungen, die auf den Punkt kommen, leicht zu aktualisieren.",
-        emoji: "✨"
-      },
-      { 
-        title: "Energieeinsparung", 
-        description: "Leichtere Websites, die Ihre Hosting-Kosten senken.",
-        emoji: "🌱"
-      },
-      { 
-        title: "Autonomie", 
-        description: "Websites, die Sie leicht weiterentwickeln können.",
-        emoji: "🚀"
-      }
-    ],
-    projectsButton: "Meine Projekte",
-    contactButton: "Kontakt",
-    servicesTitle: "Dienstleistungen",
-    services: [
-      {
-        title: "Präsentations-Websites",
-        description: "Personalisierte, schnelle und gut platzierte professionelle Websites - ohne WordPress oder kostspielige Abonnements.",
-        emoji: "🌐"
-      },
-      {
-        title: "Webanwendungen",
-        description: "Maßgeschneiderte Online-Tools zur Automatisierung Ihrer Aufgaben und Verbesserung der Benutzererfahrung.",
-        emoji: "⚙️"
-      },
-      {
-        title: "Online-Shops",
-        description: "Moderne und schnelle E-Commerce-Lösungen ohne monatliche Gebühren traditioneller Plattformen.",
-        emoji: "🛒"
-      },
-      {
-        title: "Beratung",
-        description: "Beratung, um Ihre bestehenden Websites schneller, weniger energieintensiv und benutzerfreundlicher zu machen.",
-        emoji: "💡"
-      }
-    ],
-    projectsTitle: "Aktuelle Projekte",
-    projectButton: "Projekt entdecken",
-    viewAllProjectsButton: "Alle Projekte ansehen",
-    // Motivations
-    motivationTitle: "Was mich antreibt",
-    motivationIntro: "Ich glaube an ein Web, das Geschwindigkeit, Einfachheit und Umweltbewusstsein vereint. Heute sind zu viele Websites schwer, laden langsam und verbrauchen viel Energie, obwohl man es leicht anders machen kann! Mein Ansatz basiert auf diesen Prinzipien:",
-    motivationPrinciples: [
-      {
-        title: "Die richtige Technologie am richtigen Ort",
-        description: "Moderne Browser können viele Dinge tun, ohne tonnenweise zusätzliche Module installieren zu müssen. Ich nutze bestehende Technologien und ihre Weiterentwicklungen intelligent, um flüssige Erlebnisse zu schaffen."
-      },
-      {
-        title: "Echte Autonomie",
-        description: "Ich erstelle eine Website für Sie, maßgeschneidert auf Ihre Bedürfnisse. Sie behalten Ihren Domainnamen, ich liefere Ihnen dokumentierten Code, die Website gehört Ihnen. Nicht an eine Plattform oder eine Agentur mit fragwürdigen Preisen gebunden. Minimale Wartung, transparente Kosten, nachhaltige Architektur."
-      },
-      {
-        title: "Leicht zuerst, leistungsstark bei Bedarf",
-        description: "Website zur Präsentation Ihres Unternehmens? Ultraschnelle Seiten, die sofort laden. Einfacher Online-Shop? Gleiches Prinzip, mit genau den richtigen Funktionen. Komplexe Webanwendung mit Echtzeit-Interaktionen? Dort verwende ich robuste Technologien, die Tausende von Benutzern verarbeiten können, ohne langsamer zu werden."
-      }
-    ],
-    didYouKnowTitle: "Wussten Sie schon?",
-    didYouKnowItems: [
-      {
-        text: "Entgegen der landläufigen Meinung verlangt das Gesetz nicht, auf allen Websites ein Cookie-Banner anzuzeigen. Diese Banner sind nur obligatorisch, wenn Ihre Website Tracker verwendet, die nicht unbedingt für den Betrieb erforderlich sind.",
-        source: "GDPR.eu - Cookies, the GDPR, and the ePrivacy Directive",
-        link: "https://gdpr.eu/cookies/"
-      },
-      {
-        text: "53% der Besucher verlassen eine Website, die mehr als 3 Sekunden zum Laden benötigt. Eine schnelle Website ist unerlässlich, um Besucher nicht zu verlieren.",
-        source: "Think with Google - Mobile page speed benchmarks",
-        link: "https://support.google.com/adsense/answer/7450973/"
-      },
-      {
-        text: "Es ist durchaus möglich, die Besuche Ihrer Website zu analysieren, ohne Tracking-Cookies zu verwenden oder die Privatsphäre Ihrer Besucher zu gefährden.",
-        details: "Lösungen wie Plausible, Umami Cloud oder Matomo (im Cookie-freien Modus) geben Ihnen genaue Statistiken unter Wahrung der Privatsphäre, ohne ausdrückliche Zustimmung zu benötigen."
-      }
-    ],
-    quoteText: "Wie oft haben Sie eine Website verlassen, weil sie zu langsam war oder Sie belästigte, Cookies zu akzeptieren? Ich bevorzuge ein leichteres Web, das die Aufmerksamkeit der Besucher respektiert und auf allen Geräten ohne Frustration gut funktioniert."
-  },
-};
-
-// Utiliser la langue demandée ou français par défaut
-const t = content[lang] || content.fr;
-
+// Helper date
+function formatDate(date: Date): string {
+  return date.toLocaleDateString(
+    lang === 'fr' ? 'fr-FR' : lang === 'de' ? 'de-DE' : 'en-US',
+    { year: 'numeric', month: 'short', day: 'numeric' }
+  );
+}
 ---
 
-<Layout title={t.title} description={t.description} lang={lang}>
+<Layout title={text.title} description={text.description} lang={lang}>
   <div class="container md:mt-3 mt-0 mx-auto px-4 md:py-8 py-0">
-    <!-- Section hero repensée avec l'animation de typewriter -->
+
+    <!-- Hero -->
     <section class="py-8 md:py-12">
       <div class="flex flex-col md:flex-row gap-8">
         <div class="md:w-2/3">
           <h1 class="text-3xl md:text-4xl font-bold mb-4">
             <div class="flex flex-wrap items-baseline gap-2">
               <div class="typewriter-part1">
-                <span class="typewriter-text-base">
-                  {lang === "fr" 
-                    ? "Créateur de"
-                    : lang === "en" 
-                      ? "Full Stack" 
-                      : "Full Stack"
-                  }
-                </span>
+                <span class="typewriter-text-base">{text.heroTypePart1}</span>
               </div>
               <div class="typewriter-part2">
-                <span class="typewriter-text-highlight text-light">
-                  {lang === "fr" 
-                    ? " sites internet"
-                    : lang === "en" 
-                      ? "Web Developer" 
-                      : "Webentwickler"
-                  }
-                </span>
+                <span class="typewriter-text-highlight text-light">{text.heroTypePart2}</span>
               </div>
             </div>
           </h1>
-          <p class="text-lg mb-6">
-            {t.heroText}
-          </p>
+          <p class="text-lg mb-6">{text.heroText}</p>
           <div class="flex flex-wrap gap-4">
-            <a href={`/${lang}/contact/`} class="cta-button">
-              {t.contactButton}
-            </a>
-            <a href={`/${lang}/projects/`} class="btn-secondary">
-              {t.projectsButton}
-            </a>
+            <a href={`/${lang}/contact/`} class="cta-button">{text.contactButton}</a>
+            <a href={`/${lang}/projects/`} class="btn-secondary">{text.projectsButton}</a>
           </div>
         </div>
         <div class="md:w-1/3">
-          <div class="bg-secondary rounded-lg p-4 max-w-4/5 md:max-w-full mx-auto md:mx-0">
+          <div class="bg-secondary p-4 max-w-4/5 md:max-w-full mx-auto md:mx-0 border border-accent/20 shadow-[0_4px_24px_color-mix(in_srgb,var(--color-accent)_10%,transparent)] rounded-lg">
             <Picture
               src={monImage}
               widths={[400, 600]}
-              formats={["avif", "webp", "jpg"]}
-              alt={`Josselin HANEL - ${lang === "fr" ? "Créateur de sites internet" : lang === "en" ? "Full Stack Developer" : "Full-Stack-Entwickler"}`}
+              formats={['avif', 'webp', 'jpg']}
+              alt={`Josselin HANEL - ${text.heroTypePart1} ${text.heroTypePart2}`}
               class="w-full h-auto object-cover rounded"
               data-astro-transition-persist="profile-image"
               loading="eager"
@@ -361,195 +78,166 @@ const t = content[lang] || content.fr;
       </div>
     </section>
 
-    <!-- Section valeurs principales -->
-    <section class="py-4 bg-secondary bg-opacity-30 rounded-lg mb-12">
-      <div class="container mx-auto px-4">
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {t.values.map((value, index) => (
-            <div class={`p-4 border border-accent border-opacity-30 corner-style-bold scale-up`} data-index={index}>
-              <div class="flex justify-between items-center mb-2">
-                <h2 class="text-xl font-semibold text-accent">{value.title}</h2>
-                <span class="text-2xl">{value.emoji}</span>
+    <!-- Valeurs -->
+    <section class="py-4 mb-12">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {text.values.map((value, index) => (
+            <div class="skill-card-home p-6 scale-up" data-index={index}>
+              <div class="skill-card-home-bar" aria-hidden="true"></div>
+              <div class="flex justify-between items-start mb-3 mt-2">
+                <h2 class="text-base font-bold uppercase tracking-wide text-accent">{value.title}</h2>
+                <Icon name={value.icon} size={28} class="text-light shrink-0 -mt-2 -mr-2" />
               </div>
-              <p class="text-pretty">{value.description}</p>
+              <p class="text-pretty text-text-muted">{value.description}</p>
             </div>
           ))}
-        </div>
       </div>
     </section>
-    
 
-    <!-- Section ce qui m'anime -->
-<section class="py-2 sm:py-8 mb-12 fade-in opacity-0 translate-y-6 transition-all duration-500">
-  <h2 class="text-2xl font-bold mb-6 border-b border-accent pb-2">
-    {t.motivationTitle}
-  </h2>
-  
-  <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-    <!-- Colonne avec texte principal -->
-    <div class="bg-secondary bg-opacity-10 p-6 rounded-lg border-l-4 border-accent">
-      <p class="text-lg mb-4">{t.motivationIntro}</p>
-      
-      <ul class="text-lg space-y-6">
-        {t.motivationPrinciples.map((principle, index) => (
-          <li class="flex items-start">
-            <span class="text-accent font-bold mr-2">{index + 1}.</span>
-            <p><strong>{principle.title}</strong> : {principle.description}</p>
-          </li>
-        ))}
-      </ul>
-    </div>
-    
-    <!-- Colonne avec le "savais-tu" et la citation -->
-    <div class="flex flex-col gap-4">
-      <div class="bg-secondary bg-opacity-30 p-5 rounded-lg">
-        <h3 class="text-xl font-semibold mb-3 text-accent">
-          {t.didYouKnowTitle}
-        </h3>
-        <div class="space-y-3">
-          {t.didYouKnowItems.map((item) => (
-            <div class="mb-3 p-3 bg-primary bg-opacity-30 corner-style">
-              <p class="mb-2">{item.text}</p>
-              {item.details && <p class="text-sm text-text-muted">{item.details}</p>}
-              {item.source && (
-                <p class="text-sm text-text-muted mt-2">
-                  <a href={item.link} target="_blank" rel="noopener noreferrer" class="text-link">{item.source}</a>
-                </p>
-              )}
-            </div>
-          ))}
-        </div>
-      </div>
-      
-      <div class="bg-secondary bg-opacity-40 p-5 rounded-lg border-l-2 border-accent">
-        <blockquote class="italic">{t.quoteText}</blockquote>
-      </div>
-    </div>
-  </div>
-</section>
-
-    <!-- Section services -->
+    <!-- Services -->
     <section class="py-2 sm:py-8 mb-12 fade-in opacity-0 translate-y-6 transition-all duration-500">
-      <h2 class="text-2xl font-bold mb-6 border-b border-accent pb-2">
-        {t.servicesTitle}
-      </h2>
+      <h2 class="text-2xl font-bold mb-6 border-b border-accent pb-2">{text.servicesTitle}</h2>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {t.services.map((service) => (
-          <div class="bg-secondary bg-opacity-30 p-5 corner-style-bold">
-            <div class="flex justify-between items-center mb-3">
-              <h3 class="text-xl font-semibold text-accent">{service.title}</h3>
-              <span class="text-2xl">{service.emoji}</span>
+        {text.services.map(service => (
+          <div class="skill-card-home p-5">
+            <div class="skill-card-home-bar" aria-hidden="true"></div>
+            <div class="flex justify-between items-start mb-3 mt-2">
+              <h3 class="text-base font-bold uppercase tracking-wide text-accent">{service.title}</h3>
+              <Icon name={service.icon} size={28} class="text-light shrink-0" />
             </div>
-            <p class="text-pretty">
-              {service.description}
-            </p>
+            <p class="text-pretty">{service.description}</p>
           </div>
         ))}
       </div>
     </section>
-    
-    <!-- Section projets en vedette -->
-<section class="py-2 sm:py-8 fade-in opacity-0 translate-y-6 transition-all duration-500">
-  <h2 class="text-2xl font-bold mb-6 border-b border-accent pb-2">
-    {t.projectsTitle}
-  </h2>
-  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-    {recentProjects.map(async (project) => {
-      const heroImage = await loadHeroImage(project.data.slug);
-      return (
-        <div class="project-card w-full">
-          <div class="flex flex-col flex-1">
-            <!-- Couverture du projet -->
-            <a href={`/${lang}/${project.data.slug}/`} class="block bg-primary bg-opacity-30 aspect-video w-full relative">
-              <Picture
-                src={heroImage}
-                widths={[400, 740, 1080]}
-                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                formats={["avif", "webp", "jpg"]}
-                alt={project.data.title[lang]}
-                class="w-full h-full object-cover"
-                loading="lazy"
-              />
+
+    <!-- Blog récent -->
+    {recentPosts.length > 0 && (
+      <section class="py-2 sm:py-8 mb-12 fade-in opacity-0 translate-y-6 transition-all duration-500">
+        <h2 class="text-2xl font-bold mb-6 border-b border-accent pb-2">{text.blogTitle}</h2>
+        <div class="space-y-4">
+          {recentPosts.map(post => (
+            <a
+              href={`/${lang}/blog/${post.data.slug}/`}
+              class="article-link block py-4 border-b border-accent/10"
+            >
+              <div class="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1 mb-1">
+                <h3 class="text-lg font-semibold text-accent">{post.data.title[lang]}</h3>
+                <time class="text-xs text-text-muted shrink-0" datetime={post.data.date.toISOString()}>
+                  {formatDate(post.data.date)}
+                </time>
+              </div>
+              <p class="text-text-muted text-pretty">{post.data.description[lang]}</p>
             </a>
-          
-            <!-- Contenu du projet -->
-            <div class="p-4 flex flex-col h-full">
-              <div class="flex-1">
-                <h3 class="text-xl font-bold mb-2">{project.data.title[lang]}</h3>
-                <p class="mb-4" set:html={project.data.description[lang]}></p>
-                
-                <!-- Technologies -->
-                <div class="mb-4">
-                  <div class="flex flex-wrap gap-1.5">
-                    {project.data.tech.map((tech) => (
-                      <span class="px-2 py-0.5 border border-accent text-light rounded-full text-xs">
-                        {tech}
-                      </span>
-                    ))}
+          ))}
+        </div>
+        <div class="text-center mt-6">
+          <a href={`/${lang}/blog/`} class="btn-secondary">{text.viewAllBlogButton}</a>
+        </div>
+      </section>
+    )}
+
+    <!-- Projets récents -->
+    <section class="py-2 sm:py-8 fade-in opacity-0 translate-y-6 transition-all duration-500">
+      <h2 class="text-2xl font-bold mb-6 border-b border-accent pb-2">{text.projectsTitle}</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {recentProjects.map(async (project) => {
+          const heroImage = await loadHeroImage(project.data.slug);
+          return (
+            <div class="project-card w-full">
+              <div class="flex flex-col flex-1">
+                <a href={`/${lang}/${project.data.slug}/`} class="block bg-primary bg-opacity-30 aspect-video w-full relative">
+                  <Picture
+                    src={heroImage}
+                    widths={[400, 740, 1080]}
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    formats={['avif', 'webp', 'jpg']}
+                    alt={project.data.title[lang]}
+                    class="w-full h-full object-cover"
+                    loading="lazy"
+                  />
+                </a>
+                <div class="p-4 flex flex-col h-full">
+                  <div class="flex-1">
+                    <h3 class="text-xl font-bold mb-2">{project.data.title[lang]}</h3>
+                    <p class="mb-4" set:html={project.data.description[lang]} />
+                    <div class="mb-4">
+                      <div class="flex flex-wrap gap-1.5">
+                        {project.data.tech.map(tech => (
+                          <span class="px-2 py-0.5 border border-accent text-light rounded-full text-xs">{tech}</span>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                  <div class="mt-auto">
+                    <a href={`/${lang}/${project.data.slug}/`} class="btn-secondary flex-1 text-center block">
+                      {text.projectButton}
+                    </a>
                   </div>
                 </div>
               </div>
-              
-              <!-- Boutons -->
-              <div class="mt-auto">
-                <div class="flex gap-3">
-                  <a href={`/${lang}/${project.data.slug}/`} class="btn-secondary flex-1 text-center">
-                    {t.projectButton}
-                  </a>
-                </div>
-              </div>
             </div>
-          </div>
-        </div>
-      );
-    })}
-  </div>
-  <div class="text-center mt-8">
-    <a href={`/${lang}/projects/`} class="btn-secondary">
-      {t.viewAllProjectsButton}
-    </a>
-  </div>
-</section>
+          );
+        })}
+      </div>
+      <div class="text-center mt-8">
+        <a href={`/${lang}/projects/`} class="btn-secondary">{text.viewAllProjectsButton}</a>
+      </div>
+    </section>
 
-    <!-- Section appel à l'action -->
+    <!-- CTA -->
     <section>
-      <CtaDispo transition-persist="cta-dispo"/>
+      <CtaDispo transition-persist="cta-dispo" />
     </section>
   </div>
+
   <script>
-    document.addEventListener("astro:page-load", () => {
+    document.addEventListener('astro:page-load', () => {
       const observer = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            // Vérifiez si l'élément a la classe 'fade-in'
             if (entry.target.classList.contains('fade-in')) {
               entry.target.classList.remove('opacity-0', 'translate-y-6');
             }
-
-            // Vérifiez si l'élément contient des blocs 'scale-up'
             const scaleUpBlocks = entry.target.querySelectorAll('.scale-up');
             if (scaleUpBlocks.length > 0) {
               scaleUpBlocks.forEach((block, index) => {
-                setTimeout(() => {
-                  block.classList.add('visible');
-                }, index * 200); // Ajustez le délai ici (200ms entre chaque bloc)
+                setTimeout(() => block.classList.add('visible'), index * 200);
               });
             }
-
-            // Arrêtez d'observer après la première intersection
             observer.unobserve(entry.target);
           }
         });
-      }, 
-      {
-        rootMargin: '0px 0px -5% 0px', // Ajustez cette valeur pour contrôler quand l'animation commence
-        threshold: 0.1,
-      });
+      }, { rootMargin: '0px 0px -5% 0px', threshold: 0.1 });
 
-      // Observez toutes les sections avec les classes 'fade-in' ou contenant des blocs 'scale-up'
-      document.querySelectorAll('.fade-in, .py-4.bg-secondary.bg-opacity-30.rounded-lg.mb-12').forEach((section) => {
+      document.querySelectorAll('.fade-in, section.py-4.mb-12').forEach(section => {
         observer.observe(section);
       });
     });
   </script>
+
+  <style>
+    .skill-card-home {
+      position: relative;
+      background: color-mix(in srgb, var(--color-secondary) 25%, transparent);
+      border: 1px solid color-mix(in srgb, var(--color-accent) 20%, transparent);
+      border-radius: 1rem;
+      border-top-right-radius: 0;
+      border-bottom-left-radius: 0;
+      overflow: hidden;
+    }
+    .skill-card-home-bar {
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--color-accent), var(--color-light), transparent);
+      opacity: 0.7;
+    }
+    .article-link {
+      transition: color 0.2s;
+    }
+    .article-link:hover h3 {
+      color: var(--color-light);
+    }
+  </style>
 </Layout>

@@ -1,0 +1,136 @@
+---
+// src/components/BlogListContent.astro
+// Composant unifié pour la liste du blog (standard + éco)
+import EcoModeInfo from './eco_mode_info.astro';
+import { t } from '../i18n';
+import { blog } from '../i18n/blog';
+import { formatDate } from '../utils/blog';
+import type { Lang } from '../i18n';
+
+export interface Props {
+  posts: any[];
+  lang: Lang;
+  isEco?: boolean;
+}
+
+const { posts, lang, isEco = false } = Astro.props;
+const text = t(blog, lang);
+const ecoSuffix = isEco ? '/eco' : '';
+
+// Tags uniques (utilisés seulement en mode standard)
+const allTags = [...new Set(posts.flatMap(post => post.data.tags))].sort();
+---
+
+<div class="container mx-auto px-4 py-6">
+  {isEco && <EcoModeInfo lang={lang} />}
+
+  <h1 class={`${isEco ? 'text-2xl' : 'text-3xl'} font-bold mb-4 border-b border-accent pb-2`}>
+    {text.pageTitle}
+  </h1>
+  <p class={`${isEco ? 'mb-6' : 'text-lg mb-8'}`}>{text.pageIntro}</p>
+
+  {/* Filtres par tag — mode standard uniquement */}
+  {!isEco && (
+    <div class="flex flex-wrap gap-2 mb-8" id="tag-filters">
+      <button class="tag-btn active px-3 py-1 rounded-full text-sm border border-accent" data-tag="all">
+        {text.allTags}
+      </button>
+      {allTags.map(tag => (
+        <button class="tag-btn px-3 py-1 rounded-full text-sm border border-secondary" data-tag={tag}>
+          {tag}
+        </button>
+      ))}
+    </div>
+  )}
+
+  {/* Liste des articles */}
+  <div class={isEco ? 'space-y-4' : 'space-y-6'} id="blog-list">
+    {posts.map(post => (
+      <article
+        class={isEco
+          ? 'border-b border-secondary pb-4'
+          : 'blog-card article-link py-5 border-b border-accent/10'}
+        data-tags={post.data.tags.join(',')}
+      >
+        <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-1 sm:gap-2 mb-1 sm:mb-2">
+          {isEco ? (
+            <a href={`/${lang}/blog/${post.data.slug}${ecoSuffix}/`} class="text-link font-semibold">
+              {post.data.title[lang]}
+            </a>
+          ) : (
+            <h2 class="text-xl font-bold">
+              <a href={`/${lang}/blog/${post.data.slug}/`} class="hover:text-light text-accent transition-colors">
+                {post.data.title[lang]}
+              </a>
+            </h2>
+          )}
+          <span class="text-sm text-text-muted shrink-0">
+            {formatDate(post.data.date, lang)}
+            {isEco ? ` · ${post.data.readTime} ${text.readTime}` : ''}
+          </span>
+          {!isEco && (
+            <span class="text-sm text-text-muted shrink-0">
+              {post.data.readTime} {text.readTime}
+            </span>
+          )}
+        </div>
+
+        <p class={isEco ? 'text-sm mb-1' : 'mb-3'}>{post.data.description[lang]}</p>
+
+        {isEco ? (
+          <p class="text-xs text-text-muted">{post.data.tags.join(', ')}</p>
+        ) : (
+          <div class="flex flex-wrap items-center gap-2">
+            {post.data.tags.map((tag: string) => (
+              <span class="px-2 py-0.5 border border-accent text-light rounded-full text-xs">{tag}</span>
+            ))}
+            <a href={`/${lang}/blog/${post.data.slug}/`} class="ml-auto text-accent hover:text-light text-sm">
+              {text.readMore} →
+            </a>
+          </div>
+        )}
+      </article>
+    ))}
+  </div>
+
+  <p id="no-results" class={`text-text-muted text-center py-8${posts.length > 0 ? ' hidden' : ''}`}>
+    {text.noResults}
+  </p>
+</div>
+
+<style>
+  .article-link {
+    transition: color 0.2s;
+  }
+</style>
+{!isEco && (
+  <script>
+    document.addEventListener('astro:page-load', () => {
+      const buttons = document.querySelectorAll('.tag-btn');
+      const cards = document.querySelectorAll('.blog-card');
+      const noResults = document.getElementById('no-results');
+
+      buttons.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const tag = btn.getAttribute('data-tag');
+          buttons.forEach(b => {
+            b.classList.remove('active', 'border-accent', 'text-accent');
+            b.classList.add('border-secondary');
+          });
+          btn.classList.add('active', 'border-accent', 'text-accent');
+          btn.classList.remove('border-secondary');
+
+          let visibleCount = 0;
+          cards.forEach(card => {
+            const cardTags = card.getAttribute('data-tags')?.split(',') || [];
+            const show = tag === 'all' || (tag ? cardTags.includes(tag) : false);
+            (card as HTMLElement).style.display = show ? '' : 'none';
+            if (show) visibleCount++;
+          });
+
+          if (noResults) noResults.classList.toggle('hidden', visibleCount > 0);
+        });
+      });
+    });
+  </script>
+)}

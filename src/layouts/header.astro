@@ -1,112 +1,79 @@
 ---
+// src/layouts/header.astro — tous les liens passent en éco quand on est en éco
 import EcoModeToggle from '../components/eco_mode_toggle.astro';
 import LanguageSwitcher from '../components/language_switcher.astro';
+import { getLangFromPath, t } from '../i18n';
+import { nav } from '../i18n/common';
 
-// Récupérer le chemin actuel pour gérer l'état actif des liens
 const { pathname } = Astro.url;
+const currentLang = getLangFromPath(pathname);
+const isEcoMode = pathname.includes('/eco');
+const labels = t(nav, currentLang);
 
-// Détecter la langue actuelle depuis l'URL
-const langMatch = pathname.match(/^\/([a-z]{2})(\/|$)/);
-const currentLang = langMatch ? langMatch[1] : 'fr';
-
-// Détecter si on est en mode éco
-const isEcoMode = pathname.includes('/eco/');
-
-// Traduction des labels de navigation
-const navLabels = {
-  fr: {
-    projects: 'Projets',
-    about: 'Qui suis-je ?',
-    services: 'Services & Tarifs',
-    network: 'Réseau',
-    contact: 'Contact'
-  },
-  en: {
-    projects: 'Projects',
-    about: 'Skills',
-    services: 'Services & Pricing',
-    network: 'Network',
-    contact: 'Contact'
-  },
-  de: {
-    projects: 'Projekte',
-    about: 'Über mich',
-    services: 'Leistungen & Preise',
-    network: 'Netzwerk',
-    contact: 'Kontakt'
-  }
-};
-
-// Utiliser la langue courante ou le français par défaut
-const labels = navLabels[currentLang as keyof typeof navLabels] || navLabels.fr;
+const ecoSuffix = isEcoMode ? 'eco/' : '';
+const homeHref = isEcoMode ? `/${currentLang}/eco/` : `/${currentLang}/`;
 ---
 
 <div class="py-6 md:mb-8">
   <div class="flex flex-col md:flex-row justify-between items-center">
-    <!-- Logo / Nom -->
     <div class="mb-4 md:mb-0 mr-2 whitespace-nowrap" data-astro-transition-persist="header-logo">
-      <a 
-        href={isEcoMode ? `/${currentLang}/eco/` : `/${currentLang}/index/`} 
-        class="titleName text-2xl font-bold no-underline hover:text-accent"
-      >
+      <a href={homeHref} class="titleName text-2xl font-bold no-underline hover:text-accent">
         Josselin HANEL<span class="titlePoint text-accent">.</span>
       </a>
     </div>
-    
-    <div class="flex flex-col md:flex-row gap-4 items-center">
-      <!-- Navigation principale avec URL localisées -->
+
+    <input type="checkbox" id="menu-toggle" class="hidden peer" />
+    <label for="menu-toggle" class="md:hidden cursor-pointer p-2 rounded hover:bg-secondary" aria-label="Menu">
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+        <path stroke-linecap="round" d="M4 6h16M4 12h16M4 18h16" />
+      </svg>
+    </label>
+
+    <div class="hidden peer-checked:flex md:flex flex-col md:flex-row gap-4 items-center w-full md:w-auto mt-4 md:mt-0">
       <nav class="w-full md:w-auto">
-        <ul class="flex flex-wrap justify-center items-center gap-3 md:gap-4">
+        <ul class="flex flex-col md:flex-row items-center gap-3 md:gap-4">
           <li>
-            <a 
-              href={isEcoMode ? `/${currentLang}/projects/eco/` : `/${currentLang}/projects/`} 
-              class={`nav-link ${pathname.includes('/projects') ? 'nav-link-active' : ''}`}
-            >
+            <a href={`/${currentLang}/projects/${ecoSuffix}`}
+              class={`nav-link ${pathname.includes('/projects') ? 'nav-link-active' : ''}`}>
               {labels.projects}
             </a>
           </li>
           <li>
-            <a 
-              href={isEcoMode ? `/${currentLang}/about/eco/` : `/${currentLang}/about/`} 
-              class={`nav-link whitespace-nowrap ${pathname.includes('/about') ? 'nav-link-active' : ''}`}
-            >
+            <a href={`/${currentLang}/about/${ecoSuffix}`}
+              class={`nav-link whitespace-nowrap ${pathname.includes('/about') ? 'nav-link-active' : ''}`}>
               {labels.about}
             </a>
           </li>
           <li>
-            <a 
-              href={isEcoMode ? `/${currentLang}/services/eco/` : `/${currentLang}/services/`} 
-              class={`nav-link ${pathname.includes('/services') ? 'nav-link-active' : ''}`}
-            >
+            <a href={`/${currentLang}/services/${ecoSuffix}`}
+              class={`nav-link ${pathname.includes('/services') ? 'nav-link-active' : ''}`}>
               {labels.services}
             </a>
           </li>
           <li>
-            <a 
-              href={isEcoMode ? `/${currentLang}/network/eco/` : `/${currentLang}/network/`} 
-              class={`nav-link ${pathname.includes('/network') ? 'nav-link-active' : ''}`}
-            >
+            <a href={`/${currentLang}/blog/${ecoSuffix}`}
+              class={`nav-link ${pathname.includes('/blog') ? 'nav-link-active' : ''}`}>
+              {labels.blog}
+            </a>
+          </li>
+          <li>
+            <a href={`/${currentLang}/network/${ecoSuffix}`}
+              class={`nav-link ${pathname.includes('/network') ? 'nav-link-active' : ''}`}>
               {labels.network}
             </a>
           </li>
           <li>
-            <a 
-              href={isEcoMode ? `/${currentLang}/contact/eco/` : `/${currentLang}/contact/`} 
-              class={`nav-link ${pathname.includes('/contact') ? 'nav-link-active' : ''}`}
-            >
+            <a href={`/${currentLang}/contact/${ecoSuffix}`}
+              class={`nav-link ${pathname.includes('/contact') ? 'nav-link-active' : ''}`}>
               {labels.contact}
             </a>
           </li>
         </ul>
       </nav>
-      
-      <!-- Sélecteur de langue et toggle eco -->
+
       <div class="flex items-center gap-4">
-        <!-- Sélecteur de langue -->
-        <LanguageSwitcher transition-persist="language-switcher"/>
-        
-        <!-- Toggle button eco-mode -->
-        <EcoModeToggle transition-persist="eco-mode-toggle"/>
+        <LanguageSwitcher transition-persist="language-switcher" />
+        <EcoModeToggle transition-persist="eco-mode-toggle" />
       </div>
     </div>
   </div>
