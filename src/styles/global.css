@@ -6,21 +6,42 @@
    → Plus besoin de .bg-primary { ... } manuels !
    ═══════════════════════════════════════════════ */
 @theme {
-  --color-primary: #1a1a1a;
-  --color-secondary: #2a2a2a;
-  --color-accent: #4da34d;
-  --color-accent-light: rgba(58, 119, 58, 0.2);
-  --color-accent-light-hover: rgba(58, 119, 58, 0.3);
-  --color-link: #56de56;
-  --color-text: #e0e0e0;
-  --color-text-muted: #a0a0a0;
-  --color-light: #5ccc5c;
-  --color-form: var(--color-text-muted);
+  --color-primary: #ffffff;
+  --color-secondary: #f0f0f0;
+  --color-accent: #3a7a3a;
+  --color-accent-light: rgba(58, 119, 58, 0.15);
+  --color-accent-light-hover: rgba(58, 119, 58, 0.25);
+  --color-link: #2d6b2d;
+  --color-text: #1a2a1a;
+  --color-text-muted: #4a5e4a;
+  --color-light: #2d6b2d;
+  --color-form: #4a5e4a;
 }
 
 /* Variables CSS supplémentaires (non-Tailwind) */
 :root {
   --transition-standard: 250ms ease-in-out;
+  --color-card-bg: rgba(58, 122, 58, 0.08);
+  --color-border: rgba(58, 122, 58, 0.25);
+  --color-border-hover: rgba(58, 122, 58, 0.5);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-primary: #1a1a1a;
+    --color-secondary: #2a2a2a;
+    --color-accent: #4da34d;
+    --color-accent-light: rgba(58, 119, 58, 0.2);
+    --color-accent-light-hover: rgba(58, 119, 58, 0.3);
+    --color-link: #56de56;
+    --color-text: #e0e0e0;
+    --color-text-muted: #a0a0a0;
+    --color-light: #5ccc5c;
+    --color-form: #a0a0a0;
+    --color-card-bg: rgba(42, 42, 42, 0.4);
+    --color-border: rgba(77, 163, 77, 0.2);
+    --color-border-hover: rgba(77, 163, 77, 0.45);
+  }
 }
 
 /* ═══════════════════════════
@@ -135,14 +156,14 @@ body {
 .project-card {
   display: flex;
   flex-direction: column;
-  background-color: rgba(42, 42, 42, 0.4);
-  border: 1px solid color-mix(in srgb, var(--color-accent) 20%, transparent);
+  background-color: var(--color-card-bg);
+  border: 1px solid var(--color-border);
   border-radius: 0.75rem;
   overflow: hidden;
   transition: border-color var(--transition-standard);
 }
 .project-card:hover {
-  border-color: color-mix(in srgb, var(--color-accent) 45%, transparent);
+  border-color: var(--color-border-hover);
 }
 .project-content { flex: 1; }
 .project-buttons { margin-top: auto; }
