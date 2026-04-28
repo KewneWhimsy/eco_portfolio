@@ -71,10 +71,15 @@ const homeHref = isEcoMode ? `/${currentLang}/eco/` : `/${currentLang}/`;
         </ul>
       </nav>
 
-      <div class="flex items-center gap-4">
+      <div class="hidden md:flex items-center gap-4">
         <LanguageSwitcher transition-persist="language-switcher" />
         <EcoModeToggle transition-persist="eco-mode-toggle" />
       </div>
+    </div>
+
+    <div class="flex items-center gap-4 md:hidden mt-2">
+      <LanguageSwitcher />
+      <EcoModeToggle />
     </div>
   </div>
 </div>
