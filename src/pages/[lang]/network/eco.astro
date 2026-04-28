@@ -80,7 +80,7 @@ const collaborators = [
     <!-- Grille 2 colonnes comme l'original -->
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-16">
       {collaborators.map(person => (
-        <div class="bg-opacity-30 rounded-lg border border-secondary p-4">
+        <div class="bg-opacity-30 rounded-lg border border-accent/25 p-4">
           <!-- En-tête : photo ronde + nom + titre vert -->
           <div class="flex items-center gap-4 mb-4">
             <div class="w-12 h-12 rounded-full overflow-hidden shrink-0">
@@ -116,7 +116,7 @@ const collaborators = [
       ))}
     </div>
 
-    <section class="py-8 bg-secondary bg-opacity-30 rounded-lg text-center">
+    <section class="border border-accent/20 rounded-2xl rounded-tr-none rounded-bl-none py-8 text-center">
       <h2 class="text-2xl font-bold mb-4 px-2 sm:px-1">{text.contactCTA}</h2>
       <a href={`/${lang}/contact/eco/`} class="cta-button">{text.contactButton}</a>
     </section>

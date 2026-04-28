@@ -20,7 +20,7 @@ const text = t(about, lang);
   <div class="container mx-auto px-4 py-6">
     <EcoModeInfo lang={lang} />
 
-    <section class="mb-8 border-b border-secondary pb-6">
+    <section class="mb-8 border-b border-accent/25 pb-6">
       <h1 class="text-2xl font-bold mb-4 border-b border-accent pb-2">{text.aboutTitle}</h1>
       <p class="mb-4 max-w-4xl">{text.aboutText}</p>
       <h2 class="text-xl font-semibold mb-2">{text.visionTitle}</h2>
@@ -31,7 +31,7 @@ const text = t(about, lang);
     <section class="mb-4 max-w-3xl">
       <h2 class="text-xl font-semibold mb-3">{text.skillsTitle}</h2>
       {text.skillCategories.map(cat => (
-        <details class="mb-3 border border-secondary rounded p-2">
+        <details class="mb-3 border border-accent/25 rounded p-2">
           <summary class="flex items-center gap-3 text-lg font-semibold text-light cursor-pointer py-1">
             {cat.icon && <Icon name={cat.icon as any} size={20} class="text-light shrink-0" />}
             {cat.category}
@@ -52,7 +52,7 @@ const text = t(about, lang);
     </section>
 
     <!-- Expérience -->
-    <section class="my-10 border-t border-b border-secondary pb-6 pt-10">
+    <section class="my-10 border-t border-b border-accent/25 pb-6 pt-10">
       <h2 class="text-xl font-semibold mb-3">{text.expTitle}</h2>
       <div class="space-y-4">
         {text.experiences.map(exp => (
@@ -69,7 +69,7 @@ const text = t(about, lang);
     </section>
 
     <!-- Formation -->
-    <section class="mb-8 border-b border-secondary pb-6">
+    <section class="mb-8 border-b border-accent/25 pb-6">
       <h2 class="text-xl font-semibold mb-3">{text.eduTitle}</h2>
       <div class="space-y-4">
         {text.education.map(edu => (

@@ -32,7 +32,7 @@ const recentPosts = allPosts
     <EcoModeInfo lang={lang} />
 
     <!-- Hero simplifié -->
-    <section class="py-6 border-b border-secondary mb-6">
+    <section class="py-6 border-b border-accent/25 mb-6">
       <div class="flex flex-wrap gap-6 items-center">
         <div class="flex-1">
           <h1 class="text-2xl font-bold mb-3">
@@ -56,7 +56,7 @@ const recentPosts = allPosts
     </section>
 
     <!-- Valeurs en liste -->
-    <section class="py-6 border-b border-secondary mb-6">
+    <section class="py-6 border-b border-accent/25 mb-6">
       <ul class="list-disc pl-5">
         {text.values.map(v => (
           <li class="mb-2"><strong>{v.title}</strong> : {v.description}</li>
@@ -65,7 +65,7 @@ const recentPosts = allPosts
     </section>
 
     <!-- Services en liste -->
-    <section class="py-6 border-b border-secondary mb-6">
+    <section class="py-6 border-b border-accent/25 mb-6">
       <h2 class="text-xl font-bold mb-3">{text.servicesTitle}</h2>
       <ul class="list-disc pl-5">
         {text.services.map(s => (
@@ -76,11 +76,11 @@ const recentPosts = allPosts
 
     <!-- Blog récent -->
     {recentPosts.length > 0 && (
-      <section class="py-6 border-b border-secondary mb-6">
+      <section class="py-6 border-b border-accent/25 mb-6">
         <h2 class="text-xl font-bold mb-3">{text.blogTitle}</h2>
         <div class="space-y-3">
           {recentPosts.map(post => (
-            <div class="border-b border-secondary border-opacity-30 pb-3">
+            <div class="border-b border-accent/10 pb-3">
               <a href={`/${lang}/blog/${post.data.slug}/eco/`} class="text-link font-medium">
                 {post.data.title[lang]}
               </a>
@@ -101,7 +101,7 @@ const recentPosts = allPosts
         {recentProjects.map(async (project) => {
           const heroImage = await loadHeroImage(project.data.slug);
           return (
-            <div class="flex items-start gap-3 pb-4 border-b border-secondary border-opacity-30">
+            <div class="flex items-start gap-3 pb-4 border-b border-accent/10">
               <Picture
                 src={heroImage}
                 width={128}

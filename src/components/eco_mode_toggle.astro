@@ -28,11 +28,17 @@ if (isEcoMode) {
   }
 }
 
-const label = isEcoMode ? text.toggleLabelStandard : text.toggleLabel;
+const label = text.toggleLabel;
+const ariaLabel = isEcoMode ? text.toggleLabelActive : text.toggleLabel;
 ---
 
 <div class="relative flex items-center">
-  <a href={toggleUrl} class="btn-eco flex items-center gap-2 px-3 py-1 rounded-full border border-accent text-sm">
+  <a
+    href={toggleUrl}
+    class={`btn-eco flex items-center gap-2 px-3 py-1 rounded-full border border-accent text-sm${isEcoMode ? ' btn-eco--active' : ''}`}
+    aria-label={ariaLabel}
+    title={ariaLabel}
+  >
     <span>{label}</span>
     <Icon name="leaf" size={20} />
   </a>

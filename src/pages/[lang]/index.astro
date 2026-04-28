@@ -78,7 +78,7 @@ function formatDate(date: Date): string {
                 <h2 class="text-base font-bold uppercase tracking-wide text-accent">{value.title}</h2>
                 <Icon name={value.icon} size={28} class="text-light shrink-0 -mt-2 -mr-2" />
               </div>
-              <p class="text-pretty text-text-muted">{value.description}</p>
+              <p class="text-text-muted">{value.description}</p>
             </div>
           ))}
       </div>
@@ -95,7 +95,7 @@ function formatDate(date: Date): string {
               <h3 class="text-base font-bold uppercase tracking-wide text-accent">{service.title}</h3>
               <Icon name={service.icon} size={28} class="text-light shrink-0" />
             </div>
-            <p class="text-pretty">{service.description}</p>
+            <p>{service.description}</p>
           </div>
         ))}
       </div>
@@ -117,7 +117,7 @@ function formatDate(date: Date): string {
                   {formatDate(post.data.date)}
                 </time>
               </div>
-              <p class="text-text-muted text-pretty">{post.data.description[lang]}</p>
+              <p class="text-text-muted">{post.data.description[lang]}</p>
             </a>
           ))}
         </div>

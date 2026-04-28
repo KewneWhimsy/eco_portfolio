@@ -20,7 +20,7 @@ const { post, htmlContent, related, lang, isEco = false } = Astro.props;
 const text = t(blog, lang);
 const ecoSuffix = isEco ? '/eco' : '';
 
-const articleClasses = "[&>h2]:text-2xl [&>h2]:font-bold [&>h2]:text-accent [&>h2]:mb-3 [&>h2]:mt-8 [&>h2]:border-b [&>h2]:border-accent [&>h2]:pb-2 [&>h3]:text-xl [&>h3]:font-semibold [&>h3]:text-accent [&>h3]:mb-2 [&>h3]:mt-6 [&>p]:mb-4 [&>p]:leading-relaxed [&>strong]:font-semibold [&>strong]:text-light [&>ul]:list-disc [&>ul]:pl-6 [&>ul]:mb-4 [&>ul]:space-y-2 [&>ol]:list-decimal [&>ol]:pl-6 [&>ol]:mb-4 [&>ol]:space-y-2 [&>li]:leading-relaxed [&>hr]:border-secondary [&>hr]:my-8 [&>a]:text-link [&>blockquote]:border-l-4 [&>blockquote]:border-accent [&>blockquote]:pl-4 [&>blockquote]:italic [&>blockquote]:my-4";
+const articleClasses = "[&>h2]:text-2xl [&>h2]:font-bold [&>h2]:text-accent [&>h2]:mb-3 [&>h2]:mt-8 [&>h2]:border-b [&>h2]:border-accent [&>h2]:pb-2 [&>h3]:text-xl [&>h3]:font-semibold [&>h3]:text-accent [&>h3]:mb-2 [&>h3]:mt-6 [&>p]:mb-4 [&>p]:leading-relaxed [&>strong]:font-semibold [&>strong]:text-light [&>ul]:list-disc [&>ul]:pl-6 [&>ul]:mb-4 [&>ul]:space-y-2 [&>ol]:list-decimal [&>ol]:pl-6 [&>ol]:mb-4 [&>ol]:space-y-2 [&>li]:leading-relaxed [&>hr]:border-accent/20 [&>hr]:my-8 [&>a]:text-link [&>blockquote]:border-l-4 [&>blockquote]:border-accent [&>blockquote]:pl-4 [&>blockquote]:italic [&>blockquote]:my-4";
 ---
 
 <div class="container mx-auto px-4 py-6 max-w-3xl">
@@ -68,7 +68,7 @@ const articleClasses = "[&>h2]:text-2xl [&>h2]:font-bold [&>h2]:text-accent [&>h
 
   <!-- Articles similaires -->
   {related.length > 0 && (
-    <section class="mb-8 border-t border-secondary pt-6">
+    <section class="mb-8 border-t border-accent/20 pt-6">
       <h2 class={`${isEco ? 'text-lg' : 'text-xl'} font-bold mb-4`}>{text.relatedPosts}</h2>
 
       {isEco ? (
@@ -85,7 +85,7 @@ const articleClasses = "[&>h2]:text-2xl [&>h2]:font-bold [&>h2]:text-accent [&>h
           {related.map(r => (
             <a
               href={`/${lang}/blog/${r.data.slug}/`}
-              class="bg-secondary bg-opacity-20 p-4 rounded-lg border-l-4 border-accent hover:bg-opacity-30 transition-colors"
+              class="project-card p-4"
             >
               <h3 class="font-semibold mb-1">{r.data.title[lang]}</h3>
               <p class="text-sm text-text-muted">{r.data.description[lang]}</p>

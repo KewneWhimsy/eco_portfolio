@@ -130,7 +130,7 @@ const t = content[lang] || content.fr;
                 <p class="text-sm font-medium text-text-muted mb-2">{t.technologies}:</p>
                 <div class="flex flex-wrap gap-1.5">
                   {project.data.tech.map(tech => (
-                    <span class="px-2 py-0.5 border border-accent text-light rounded-full text-xs">
+                    <span class="px-2 py-0.5 bg-(--color-card-bg) border border-(--color-border) rounded-full text-xs">
                       {tech}
                     </span>
                   ))}

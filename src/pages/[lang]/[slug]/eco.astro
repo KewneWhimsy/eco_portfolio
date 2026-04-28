@@ -103,7 +103,7 @@ const nextProject = idx < sorted.length - 1 ? sorted[idx + 1] : null;
           widths={[400, 600]}
           formats={['avif', 'webp', 'jpg']}
           alt={project.data.title[lang]}
-          class="max-w-md mx-auto rounded border border-secondary"
+          class="max-w-md mx-auto rounded border border-accent/25"
           loading="lazy"
         />
       </div>
@@ -130,7 +130,7 @@ const nextProject = idx < sorted.length - 1 ? sorted[idx + 1] : null;
       <p class="text-text-muted">{project.data.tech.join(' · ')}</p>
     </section>
 
-    <nav class="border-t border-secondary pt-6 mt-8 flex justify-between">
+    <nav class="border-t border-accent/25 pt-6 mt-8 flex justify-between">
       {prevProject ? (
         <a href={`/${lang}/${prevProject.data.slug}/eco/`} class="text-accent hover:underline">
           ← {text.prevProject}: {prevProject.data.title[lang]}

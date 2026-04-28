@@ -36,7 +36,7 @@ const allTags = [...new Set(posts.flatMap(post => post.data.tags))].sort();
         {text.allTags}
       </button>
       {allTags.map(tag => (
-        <button class="tag-btn px-3 py-1 rounded-full text-sm border border-secondary" data-tag={tag}>
+        <button class="tag-btn px-3 py-1 rounded-full text-sm border border-accent/30" data-tag={tag}>
           {tag}
         </button>
       ))}
@@ -46,23 +46,18 @@ const allTags = [...new Set(posts.flatMap(post => post.data.tags))].sort();
   {/* Liste des articles */}
   <div class={isEco ? 'space-y-4' : 'space-y-6'} id="blog-list">
     {posts.map(post => (
-      <article
+      <a
+        href={`/${lang}/blog/${post.data.slug}${ecoSuffix}/`}
         class={isEco
-          ? 'border-b border-secondary pb-4'
-          : 'blog-card article-link py-5 border-b border-accent/10'}
+          ? 'block border-b border-accent/30 pb-4'
+          : 'blog-card article-link block py-5 border-b border-accent/10'}
         data-tags={post.data.tags.join(',')}
       >
         <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-1 sm:gap-2 mb-1 sm:mb-2">
           {isEco ? (
-            <a href={`/${lang}/blog/${post.data.slug}${ecoSuffix}/`} class="text-link font-semibold">
-              {post.data.title[lang]}
-            </a>
+            <span class="font-semibold text-accent">{post.data.title[lang]}</span>
           ) : (
-            <h2 class="text-xl font-bold">
-              <a href={`/${lang}/blog/${post.data.slug}/`} class="hover:text-light text-accent transition-colors">
-                {post.data.title[lang]}
-              </a>
-            </h2>
+            <h2 class="text-xl font-bold text-accent">{post.data.title[lang]}</h2>
           )}
           <span class="text-sm text-text-muted shrink-0">
             {formatDate(post.data.date, lang)}
@@ -84,12 +79,10 @@ const allTags = [...new Set(posts.flatMap(post => post.data.tags))].sort();
             {post.data.tags.map((tag: string) => (
               <span class="px-2 py-0.5 border border-accent text-light rounded-full text-xs">{tag}</span>
             ))}
-            <a href={`/${lang}/blog/${post.data.slug}/`} class="ml-auto text-accent hover:text-light text-sm">
-              {text.readMore} →
-            </a>
+            <span class="ml-auto text-accent text-sm">{text.readMore} →</span>
           </div>
         )}
-      </article>
+      </a>
     ))}
   </div>
 
@@ -99,8 +92,11 @@ const allTags = [...new Set(posts.flatMap(post => post.data.tags))].sort();
 </div>
 
 <style>
-  .article-link {
-    transition: color 0.2s;
+  .article-link h2 {
+    transition: color var(--transition-standard);
+  }
+  .article-link:hover h2 {
+    color: var(--color-light);
   }
 </style>
 {!isEco && (
@@ -115,10 +111,10 @@ const allTags = [...new Set(posts.flatMap(post => post.data.tags))].sort();
           const tag = btn.getAttribute('data-tag');
           buttons.forEach(b => {
             b.classList.remove('active', 'border-accent', 'text-accent');
-            b.classList.add('border-secondary');
+            b.classList.add('border-accent/30');
           });
           btn.classList.add('active', 'border-accent', 'text-accent');
-          btn.classList.remove('border-secondary');
+          btn.classList.remove('border-accent/30');
 
           let visibleCount = 0;
           cards.forEach(card => {

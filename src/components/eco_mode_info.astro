@@ -10,13 +10,7 @@ const { lang } = Astro.props;
 const text = t(ecoMode, lang);
 ---
 
-<details class="mb-6 border border-secondary rounded-lg">
-  <summary class="font-bold text-xl p-3 cursor-pointer"><span class="ml-0.5">{text.infoTitle}</span></summary>
-  <div class="px-3 pb-3 pt-2 border-t border-secondary">
-    <p class="pb-3">{text.infoText}</p>
-    <ul class="list-disc pl-5 pb-3">
-      {text.infoFeatures.map((f: string) => <li>{f}</li>)}
-    </ul>
-    <p class="text-sm text-balance max-w-xl">{text.infoExplanation}</p>
-  </div>
-</details>
+<div class="mb-6 border border-accent/25 rounded-lg px-3 py-2 flex items-baseline gap-2">
+  <span class="font-bold shrink-0">{text.infoTitle} —</span>
+  <span class="text-sm text-text-muted text-pretty">{text.infoDesc}</span>
+</div>

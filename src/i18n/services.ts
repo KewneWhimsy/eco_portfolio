@@ -5,7 +5,7 @@ const approachIcons = ['lightning', 'infinity', 'mobile', 'leaf'] as const;
 const processStepNumbers = ['1', '2', '3', '4'] as const;
 export const services = {
   fr: {
-    title: 'Josselin HANEL - Services et Tarifs', description: 'Découvrez mes services de développement web éco-responsable. Sites performants, durables et sur-mesure.',
+    title: 'Josselin HANEL - Offres', description: 'Découvrez mes services de développement web éco-responsable. Sites performants, durables et sur-mesure.',
     pageTitle: 'Services & Tarifs', intro: 'Des sites web performants et durables, avec peu ou pas de frais récurrents.',
     approachTitle: 'Mon approche éco-responsable',
     approaches: [
@@ -46,7 +46,7 @@ export const services = {
     contactDirect: { title: 'Vous préférez échanger directement ?', text: 'Appelez-moi ou envoyez-moi un email pour discuter de votre projet sans engagement.', note: 'Note : Le nom de domaine reste à votre charge (env. 10-15€/an)' },
   },
   en: {
-    title: 'Josselin HANEL - Services & Pricing', description: 'Discover my eco-responsible web development services.',
+    title: 'Josselin HANEL - Offers', description: 'Discover my eco-responsible web development services.',
     pageTitle: 'Services & Pricing', intro: 'High-performance, sustainable websites with little to no recurring fees.',
     approachTitle: 'My eco-responsible approach',
     approaches: [
@@ -87,7 +87,7 @@ export const services = {
     contactDirect: { title: 'Prefer to talk directly?', text: 'Call me or send me an email to discuss your project without commitment.', note: 'Note: Domain name at your expense (approx. €10-15/year)' },
   },
   de: {
-    title: 'Josselin HANEL - Leistungen & Preise', description: 'Entdecken Sie meine umweltverantwortlichen Webentwicklungsdienste.',
+    title: 'Josselin HANEL - Angebote', description: 'Entdecken Sie meine umweltverantwortlichen Webentwicklungsdienste.',
     pageTitle: 'Leistungen & Preise', intro: 'Leistungsstarke, nachhaltige Websites mit wenig oder keinen wiederkehrenden Gebühren.',
     approachTitle: 'Mein umweltverantwortlicher Ansatz',
     approaches: [

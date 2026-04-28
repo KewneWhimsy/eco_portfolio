@@ -45,7 +45,7 @@ const redirectUrl = `${Astro.url.origin}/${lang}/contact/thanks/`;
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
         <!-- Informations de contact simplifiées -->
         <section>
-          <div class="bg-secondary bg-opacity-20 p-5 rounded-lg mb-6">
+          <div class="border border-accent/25 rounded-lg p-5 mb-6">
             <div class="flex justify-between">
               <div>
                 <!-- Email -->
@@ -114,7 +114,7 @@ const redirectUrl = `${Astro.url.origin}/${lang}/contact/thanks/`;
                 type="text"
                 id="name"
                 name="name"
-                class="w-full p-2 border border-form bg-primary rounded-md"
+                class="w-full p-2 border border-accent/40 bg-primary rounded-md focus:outline-none focus:border-accent"
                 required
               />
             </div>
@@ -128,7 +128,7 @@ const redirectUrl = `${Astro.url.origin}/${lang}/contact/thanks/`;
                 type="email"
                 id="email"
                 name="email"
-                class="w-full p-2 border border-form bg-primary rounded-md"
+                class="w-full p-2 border border-accent/40 bg-primary rounded-md focus:outline-none focus:border-accent"
                 required
               />
             </div>
@@ -140,7 +140,7 @@ const redirectUrl = `${Astro.url.origin}/${lang}/contact/thanks/`;
                 type="tel" 
                 id="phone" 
                 name="phone" 
-                class="w-full p-2 border border-form bg-primary rounded-md"
+                class="w-full p-2 border border-accent/40 bg-primary rounded-md focus:outline-none focus:border-accent"
               />
             </div>
 
@@ -150,7 +150,7 @@ const redirectUrl = `${Astro.url.origin}/${lang}/contact/thanks/`;
               <select 
                 id="subject" 
                 name="subject" 
-                class="w-full p-2 border border-form bg-primary rounded-md"
+                class="w-full p-2 border border-accent/40 bg-primary rounded-md focus:outline-none focus:border-accent"
                 required
               >
                 <option value={text.subjectOptions.quote}>{text.subjectOptions.quote}</option>
@@ -168,7 +168,7 @@ const redirectUrl = `${Astro.url.origin}/${lang}/contact/thanks/`;
               <textarea
                 id="message"
                 name="message"
-                class="w-full p-2 border border-form bg-primary rounded-md h-48"
+                class="w-full p-2 border border-accent/40 bg-primary rounded-md h-48 focus:outline-none focus:border-accent"
                 placeholder={text.formMessagePlaceholder}
                 required></textarea>
             </div>

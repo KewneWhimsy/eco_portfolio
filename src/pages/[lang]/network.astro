@@ -88,7 +88,7 @@ const collaborators = [
             <p class="mb-4">{person.description}</p>
             <div class="mb-4">
               <div class="flex flex-wrap gap-1.5">
-                {person.skills.map(skill => <span class="px-2 py-0.5 bg-secondary bg-opacity-50 rounded-full text-sm">{skill}</span>)}
+                {person.skills.map(skill => <span class="px-2 py-0.5 bg-[var(--color-card-bg)] border border-[var(--color-border)] rounded-full text-sm">{skill}</span>)}
               </div>
             </div>
             <div class="flex flex-wrap gap-2 mt-auto">
@@ -101,7 +101,7 @@ const collaborators = [
       ))}
     </div>
 
-    <section class="border border-accent/20 rounded-[1rem] rounded-tr-none rounded-bl-none py-8 text-center">
+    <section class="border border-accent/20 rounded-2xl rounded-tr-none rounded-bl-none py-8 text-center">
       <h2 class="text-2xl font-bold mb-4 px-2 sm:px-1">{text.contactCTA}</h2>
       <a href={`/${lang}/contact/`} class="cta-button">{text.contactButton}</a>
     </section>

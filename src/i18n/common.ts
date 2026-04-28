@@ -5,7 +5,7 @@ export const nav = {
   fr: {
     projects: 'Projets',
     about: 'Qui suis-je ?',
-    services: 'Services & Tarifs',
+    services: 'Offres',
     network: 'Réseau',
     contact: 'Contact',
     blog: 'Blog',
@@ -13,7 +13,7 @@ export const nav = {
   en: {
     projects: 'Projects',
     about: 'Skills',
-    services: 'Services & Pricing',
+    services: 'Offers',
     network: 'Network',
     contact: 'Contact',
     blog: 'Blog',
@@ -21,7 +21,7 @@ export const nav = {
   de: {
     projects: 'Projekte',
     about: 'Über mich',
-    services: 'Leistungen & Preise',
+    services: 'Angebote',
     network: 'Netzwerk',
     contact: 'Kontakt',
     blog: 'Blog',
@@ -76,41 +76,20 @@ export const cta = {
 export const ecoMode = {
   fr: {
     toggleLabel: 'Mode Éco',
-    toggleLabelStandard: 'Mode Standard',
+    toggleLabelActive: 'Mode Éco activé',
     infoTitle: 'Mode Éco activé',
-    infoText: 'Cette version allégée de mon site :',
-    infoFeatures: [
-      'Pèse moins de 50 Ko par page (contre 2-5 Mo pour un site normal)',
-      "Consomme 90% moins d'énergie qu'un site classique",
-      'Fonctionne avec très peu de code (3 Ko contre 500+ Ko habituels)',
-      "S'affiche quasi instantanément, même avec une mauvaise connexion",
-    ],
-    infoExplanation: "Ce mode allégé facilite l'accès au site même avec un vieil ordinateur ou une connexion lente.",
+    infoDesc: "Une version alternative du site, optimisée pour les connexions lentes et la navigation mobile.",
   },
   en: {
     toggleLabel: 'Eco Mode',
-    toggleLabelStandard: 'Standard Mode',
-    infoTitle: 'Eco Mode activated',
-    infoText: 'This lightweight version of my website:',
-    infoFeatures: [
-      'Weighs less than 50 KB per page (vs 2-5 MB for a typical site)',
-      'Uses 90% less energy than a standard website',
-      'Works with minimal code (only 3 KB vs typical 500+ KB)',
-      'Loads almost instantly, even with poor internet',
-    ],
-    infoExplanation: 'This lightweight mode works well even with old computers or slow connections.',
+    toggleLabelActive: 'Eco Mode on',
+    infoTitle: 'Eco Mode on',
+    infoDesc: 'An alternative version of the site, optimised for slow connections and on-the-go browsing.',
   },
   de: {
     toggleLabel: 'Öko-Modus',
-    toggleLabelStandard: 'Standard-Modus',
-    infoTitle: 'Öko-Modus aktiviert',
-    infoText: 'Diese abgespeckte Version meiner Website:',
-    infoFeatures: [
-      'Wiegt weniger als 50 KB pro Seite (im Vergleich zu 2-5 MB)',
-      'Verbraucht 90% weniger Energie als eine Standard-Website',
-      'Funktioniert mit minimalem Code (nur 3 KB gegenüber üblichen 500+ KB)',
-      'Lädt fast sofort, selbst bei schlechtem Internet',
-    ],
-    infoExplanation: 'Dieser abgespeckte Modus funktioniert auch mit alten Computern oder langsamen Verbindungen.',
+    toggleLabelActive: 'Öko-Modus aktiv',
+    infoTitle: 'Öko-Modus aktiv',
+    infoDesc: 'Eine alternative Version der Website, optimiert für langsame Verbindungen und mobiles Surfen.',
   },
 } satisfies Record<Lang, any>;
