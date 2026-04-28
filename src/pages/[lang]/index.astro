@@ -136,14 +136,14 @@ function formatDate(date: Date): string {
           return (
             <div class="project-card w-full">
               <div class="flex flex-col flex-1">
-                <a href={`/${lang}/${project.data.slug}/`} class="block bg-primary bg-opacity-30 aspect-video w-full relative">
+                <a href={`/${lang}/${project.data.slug}/`} class="block bg-primary bg-opacity-30 aspect-video w-full relative overflow-hidden">
                   <Picture
                     src={heroImage}
                     widths={[400, 740, 1080]}
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                     formats={['avif', 'webp', 'jpg']}
                     alt={project.data.title[lang]}
-                    class="w-full h-full object-cover"
+                    class="absolute inset-0 w-full h-full object-cover"
                     loading="lazy"
                   />
                 </a>
