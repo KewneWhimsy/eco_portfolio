@@ -101,21 +101,23 @@ const recentPosts = allPosts
         {recentProjects.map(async (project) => {
           const heroImage = await loadHeroImage(project.data.slug);
           return (
-            <div class="flex items-start gap-3 pb-4 border-b border-accent/10">
-              <Picture
-                src={heroImage}
-                width={128}
-                formats={['avif', 'webp', 'png']}
-                alt=""
-                class="w-16 h-16 object-cover rounded shrink-0 opacity-90"
-                loading="lazy"
-              />
-              <div>
-                <h3 class="font-medium mb-1">{project.data.title[lang]}</h3>
-                <p class="mb-1 text-sm">{project.data.description[lang]}</p>
-                <p class="text-xs text-text-muted mb-1">{project.data.tech.join(', ')}</p>
-                <a href={`/${lang}/${project.data.slug}/eco/`} class="text-link text-sm">{text.projectButton}</a>
+            <div class="pb-4 border-b border-accent/10">
+              <div class="flex items-center gap-3 mb-2">
+                <a href={`/${lang}/${project.data.slug}/eco/`} class="block aspect-video w-32 shrink-0 rounded overflow-hidden">
+                  <Picture
+                    src={heroImage}
+                    widths={[128, 256]}
+                    sizes="128px"
+                    formats={['avif', 'webp']}
+                    alt={project.data.title[lang]}
+                    class="w-full h-full object-cover"
+                    loading="lazy"
+                  />
+                </a>
+                <a href={`/${lang}/${project.data.slug}/eco/`} class="text-link font-medium">{project.data.title[lang]}</a>
               </div>
+              <p class="mb-1 max-w-lg">{project.data.description[lang]}</p>
+              <p class="text-sm text-text-muted mb-1">{project.data.tech.join(', ')}</p>
             </div>
           );
         })}
@@ -128,3 +130,4 @@ const recentPosts = allPosts
     <CtaDispo withBackground={false} />
   </div>
 </LayoutEco>
+
