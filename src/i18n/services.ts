@@ -6,7 +6,7 @@ const processStepNumbers = ['1', '2', '3', '4'] as const;
 export const services = {
   fr: {
     title: 'Josselin HANEL - Offres', description: 'Découvrez mes services de développement web éco-responsable. Sites performants, durables et sur-mesure.',
-    pageTitle: 'Services & Tarifs', intro: 'Des sites web performants et durables, avec peu ou pas de frais récurrents.',
+    pageTitle: 'Services & Tarifs', intro: 'Des sites web performants et durables, aux frais d\'hébergement minimes.',
     approachTitle: 'Mon approche éco-responsable',
     approaches: [
       { icon: approachIcons[0], title: 'Performance optimisée', desc: 'Sites ultra-performants (score 95+ Lighthouse)' },
@@ -22,7 +22,7 @@ export const services = {
     ],
     processSteps: [
       { step: processStepNumbers[0], title: 'Échange initial', desc: 'On discute et cerne vos besoins' },
-      { step: processStepNumbers[1], title: 'Proposition sur-mesure', desc: 'Je vous envoie un devis personnalisé sous 48h' },
+      { step: processStepNumbers[1], title: 'Proposition sur-mesure', desc: 'Je vous envoie un devis gratuit personnalisé sous 48h' },
       { step: processStepNumbers[2], title: 'Conception', desc: 'Développement en restant en contact régulier' },
       { step: processStepNumbers[3], title: 'Livraison & formation', desc: 'Mise en ligne et formation pour être autonome' },
     ],
@@ -47,7 +47,7 @@ export const services = {
   },
   en: {
     title: 'Josselin HANEL - Offers', description: 'Discover my eco-responsible web development services.',
-    pageTitle: 'Services & Pricing', intro: 'High-performance, sustainable websites with little to no recurring fees.',
+    pageTitle: 'Services & Pricing', intro: 'High-performance, sustainable websites with minimal hosting costs.',
     approachTitle: 'My eco-responsible approach',
     approaches: [
       { icon: approachIcons[0], title: 'Optimized performance', desc: 'Ultra-fast sites that consume less energy' },
@@ -63,7 +63,7 @@ export const services = {
     ],
     processSteps: [
       { step: processStepNumbers[0], title: 'Initial discussion', desc: 'We discuss and identify your needs' },
-      { step: processStepNumbers[1], title: 'Custom proposal', desc: 'I send you a personalized quote within 48h' },
+      { step: processStepNumbers[1], title: 'Custom proposal', desc: 'I send you a personalized free quote within 48h' },
       { step: processStepNumbers[2], title: 'Development', desc: 'Development while staying in regular contact' },
       { step: processStepNumbers[3], title: 'Delivery & training', desc: 'Go live and training to be autonomous' },
     ],
@@ -88,7 +88,7 @@ export const services = {
   },
   de: {
     title: 'Josselin HANEL - Angebote', description: 'Entdecken Sie meine umweltverantwortlichen Webentwicklungsdienste.',
-    pageTitle: 'Leistungen & Preise', intro: 'Leistungsstarke, nachhaltige Websites mit wenig oder keinen wiederkehrenden Gebühren.',
+    pageTitle: 'Leistungen & Preise', intro: 'Leistungsstarke, nachhaltige Websites mit minimalen Hosting-Kosten.',
     approachTitle: 'Mein umweltverantwortlicher Ansatz',
     approaches: [
       { icon: approachIcons[0], title: 'Optimierte Leistung', desc: 'Ultraschnelle Sites, die weniger Energie verbrauchen' },
@@ -104,7 +104,7 @@ export const services = {
     ],
     processSteps: [
       { step: processStepNumbers[0], title: 'Erste Besprechung', desc: 'Wir besprechen und ermitteln Ihren Bedarf' },
-      { step: processStepNumbers[1], title: 'Maßgeschneiderter Vorschlag', desc: 'Ich sende Ihnen innerhalb von 48h ein personalisiertes Angebot' },
+      { step: processStepNumbers[1], title: 'Maßgeschneiderter Vorschlag', desc: 'Ich sende Ihnen innerhalb von 48h ein unverbindliches und kostenloses personalisiertes Angebot' },
       { step: processStepNumbers[2], title: 'Konzeption', desc: 'Entwicklung mit regelmäßigem Kontakt' },
       { step: processStepNumbers[3], title: 'Lieferung & Schulung', desc: 'Online-Stellung und Schulung für Autonomie' },
     ],

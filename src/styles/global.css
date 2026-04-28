@@ -113,6 +113,20 @@ p {
 }
 
 /* ═══════════════════════════
+   Champs de formulaire
+   ═══════════════════════════ */
+.form-field {
+  background-color: var(--color-primary);
+  border: 1px solid oklch(from var(--color-accent) l c h / 0.4);
+  border-radius: 0.375rem;
+  outline: none;
+  transition: border-color var(--transition-standard);
+}
+.form-field:focus {
+  border-color: var(--color-accent);
+}
+
+/* ═══════════════════════════
    Liens
    ═══════════════════════════ */
 .nav-link {

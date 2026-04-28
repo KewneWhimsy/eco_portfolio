@@ -114,7 +114,7 @@ const redirectUrl = `${Astro.url.origin}/${lang}/contact/thanks/`;
                 type="text"
                 id="name"
                 name="name"
-                class="w-full p-2 border border-accent/40 bg-primary rounded-md focus:outline-none focus:border-accent"
+                class="w-full p-2 form-field"
                 required
               />
             </div>
@@ -128,7 +128,7 @@ const redirectUrl = `${Astro.url.origin}/${lang}/contact/thanks/`;
                 type="email"
                 id="email"
                 name="email"
-                class="w-full p-2 border border-accent/40 bg-primary rounded-md focus:outline-none focus:border-accent"
+                class="w-full p-2 form-field"
                 required
               />
             </div>
@@ -140,7 +140,7 @@ const redirectUrl = `${Astro.url.origin}/${lang}/contact/thanks/`;
                 type="tel" 
                 id="phone" 
                 name="phone" 
-                class="w-full p-2 border border-accent/40 bg-primary rounded-md focus:outline-none focus:border-accent"
+                class="w-full p-2 form-field"
               />
             </div>
 
@@ -150,7 +150,7 @@ const redirectUrl = `${Astro.url.origin}/${lang}/contact/thanks/`;
               <select 
                 id="subject" 
                 name="subject" 
-                class="w-full p-2 border border-accent/40 bg-primary rounded-md focus:outline-none focus:border-accent"
+                class="w-full p-2 form-field"
                 required
               >
                 <option value={text.subjectOptions.quote}>{text.subjectOptions.quote}</option>
@@ -168,7 +168,7 @@ const redirectUrl = `${Astro.url.origin}/${lang}/contact/thanks/`;
               <textarea
                 id="message"
                 name="message"
-                class="w-full p-2 border border-accent/40 bg-primary rounded-md h-48 focus:outline-none focus:border-accent"
+                class="w-full p-2 h-48 form-field"
                 placeholder={text.formMessagePlaceholder}
                 required></textarea>
             </div>
