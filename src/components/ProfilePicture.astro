@@ -1,0 +1,23 @@
+---
+import { Picture } from 'astro:assets';
+import monImage from '../assets/j.jpg';
+
+interface Props {
+  alt: string;
+  class?: string;
+}
+
+const { alt, class: className = '' } = Astro.props;
+---
+
+<div class:list={['border border-accent/20 rounded-lg overflow-hidden md:max-w-full mx-auto md:mx-0', className]}>
+  <Picture
+    src={monImage}
+    widths={[400, 600]}
+    formats={['avif', 'webp', 'jpg']}
+    alt={alt}
+    class="w-full h-auto object-cover"
+    data-astro-transition-persist="profile-image"
+    loading="eager"
+  />
+</div>

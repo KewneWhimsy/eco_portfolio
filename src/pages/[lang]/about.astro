@@ -1,9 +1,8 @@
 ---
 // src/pages/[lang]/about.astro — v2 avec i18n
 import Layout from '../../layouts/layout.astro';
-import { Picture } from 'astro:assets';
-import monImage from '../../assets/j.jpg';
 import CtaDispo from '../../components/cta_dispo.astro';
+import ProfilePicture from '../../components/ProfilePicture.astro';
 import SkillsWithDescriptions from '../../components/skills_with_descriptions.astro';
 import { getLangPaths, t } from '../../i18n';
 import { about } from '../../i18n/about';
@@ -28,17 +27,7 @@ const text = t(about, lang);
           <p class="text-balance max-w-2xl lg:text-lg" set:html={text.visionText} />
         </div>
         <div class="md:w-1/3">
-          <div class="bg-secondary p-4 max-w-3/5 md:max-w-full mx-auto md:mx-0 border border-accent/20 shadow-[0_4px_24px_color-mix(in_srgb,var(--color-accent)_10%,transparent)] rounded-lg">
-            <Picture
-              src={monImage}
-              widths={[400, 600]}
-              formats={['avif', 'webp', 'jpg']}
-              alt={`Josselin HANEL - ${text.aboutTitle}`}
-              class="w-full h-auto object-cover rounded"
-              data-astro-transition-persist="profile-image"
-              loading="eager"
-            />
-          </div>
+          <ProfilePicture alt={`Josselin HANEL - ${text.aboutTitle}`} class="max-w-3/5" />
         </div>
       </div>
     </section>
