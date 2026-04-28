@@ -110,7 +110,7 @@ const { lang, skills } = Astro.props;
   .skill-item {
     display: flex;
     gap: 0.65rem;
-    align-items: baseline;
+    align-items: flex-start;
     padding: 0.5rem 0;
     border-bottom: 1px solid color-mix(in srgb, var(--color-secondary) 40%, transparent);
   }
@@ -125,7 +125,8 @@ const { lang, skills } = Astro.props;
     border-radius: 50%;
     background: var(--color-accent);
     flex-shrink: 0;
-    margin-top: 0.45rem;
+    /* Centre le dot sur le cap-height de la première ligne (font-size 1rem, line-height ~1.5) */
+    margin-top: calc((1rem * 1.5 - 4px) / 2);
   }
 
   .skill-item-content {
