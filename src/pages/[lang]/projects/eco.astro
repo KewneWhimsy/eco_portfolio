@@ -52,7 +52,7 @@ const projectsWithImages = await Promise.all(
                     <Picture
                       src={project.image}
                       widths={[600]}
-                      formats={['avif', 'webp', 'png']}
+                      formats={['avif', 'webp']}
                       alt={project.data.title[lang]}
                       class="w-full rounded-md hover:opacity-80 transition-opacity"
                       loading="lazy"
