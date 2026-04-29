@@ -10,7 +10,6 @@ description:
   de: "LinkedIn injiziert ein 2,7 MB großes Skript, das 6.000 installierte Browser-Erweiterungen erkennt und Ihre Hardware-Daten sammelt. Ohne Sie zu informieren."
 date: "2026-04-15"
 tags: ["securite", "vie-privee", "eco-conception"]
-readTime: 5
 published: true
 ---
 

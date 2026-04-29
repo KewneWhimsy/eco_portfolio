@@ -1,6 +1,9 @@
 // src/i18n/privacy.ts
 import type { Lang } from './index';
 
+const web3formsPrivacyLink = (label: string) =>
+  `<a href="https://web3forms.com/privacy" target="_blank" rel="noopener noreferrer" class="text-link">${label}</a>`;
+
 export const privacy = {
   fr: {
     title: 'Politique de Confidentialité - Josselin HANEL',
@@ -19,7 +22,7 @@ export const privacy = {
     noTracking: { title: 'Absence de suivi', content: 'Ce site ne contient aucun outil de suivi analytique ou publicitaire. Je ne partage pas vos données avec des sociétés tierces.' },
     processingData: {
       title: 'Traitement des données de contact',
-      content: 'Le formulaire de contact utilise le service Web3Forms (Webmaster Tools Inc., États-Unis) pour transmettre vos messages. Les données saisies dans le formulaire transitent vers des serveurs situés aux États-Unis. Ce transfert est encadré par les clauses contractuelles types (CCT) de la Commission européenne. Web3Forms s\'engage à ne pas utiliser vos données à des fins commerciales et à les supprimer après traitement. Pour plus de détails, consultez leur politique de confidentialité sur web3forms.com.',
+      content: `Le formulaire de contact utilise le service Web3Forms (Webmaster Tools Inc., États-Unis) pour transmettre vos messages. Les données saisies dans le formulaire transitent vers des serveurs situés aux États-Unis. Ce transfert est encadré par les clauses contractuelles types (CCT) de la Commission européenne. Web3Forms s'engage à ne pas utiliser vos données à des fins commerciales et à les supprimer après traitement. Pour plus de détails, consultez leur ${web3formsPrivacyLink('politique de confidentialité')}.`,
     },
     rights: { title: 'Vos droits', content: "Conformément au RGPD, vous disposez d'un droit d'accès, de rectification et de suppression de vos données. Pour exercer ces droits, contactez-moi à josshanel@gmail.com." },
     security: { title: 'Sécurité', content: "J'applique des mesures de sécurité adaptées pour protéger vos données, notamment l'utilisation du protocole HTTPS." },
@@ -43,7 +46,7 @@ export const privacy = {
     noTracking: { title: 'No tracking', content: 'This site does not contain any analytical or advertising tracking tools. I do not share your data with third-party companies.' },
     processingData: {
       title: 'Processing of contact data',
-      content: 'The contact form uses Web3Forms (Webmaster Tools Inc., United States) to transmit your messages. Data entered in the form is transferred to servers located in the United States. This transfer is governed by the European Commission\'s Standard Contractual Clauses (SCCs). Web3Forms undertakes not to use your data for commercial purposes and to delete it after processing. For more details, see their privacy policy at web3forms.com.',
+      content: `The contact form uses Web3Forms (Webmaster Tools Inc., United States) to transmit your messages. Data entered in the form is transferred to servers located in the United States. This transfer is governed by the European Commission's Standard Contractual Clauses (SCCs). Web3Forms undertakes not to use your data for commercial purposes and to delete it after processing. For more details, see their ${web3formsPrivacyLink('privacy policy')}.`,
     },
     rights: { title: 'Your rights', content: 'In accordance with the GDPR, you have the right to access, rectify and delete your data. To exercise these rights, contact me at josshanel@gmail.com.' },
     security: { title: 'Security', content: 'I apply appropriate security measures to protect your data, including the use of HTTPS protocol.' },
@@ -67,7 +70,7 @@ export const privacy = {
     noTracking: { title: 'Kein Tracking', content: 'Diese Website enthält keine Analyse- oder Werbe-Tracking-Tools.' },
     processingData: {
       title: 'Verarbeitung von Kontaktdaten',
-      content: 'Das Kontaktformular verwendet Web3Forms (Webmaster Tools Inc., Vereinigte Staaten) zur Übermittlung Ihrer Nachrichten. Die im Formular eingegebenen Daten werden auf Server in den USA übertragen. Diese Übertragung wird durch die Standardvertragsklauseln (SCC) der Europäischen Kommission geregelt. Web3Forms verpflichtet sich, Ihre Daten nicht für kommerzielle Zwecke zu verwenden und sie nach der Verarbeitung zu löschen. Weitere Details finden Sie in deren Datenschutzerklärung unter web3forms.com.',
+      content: `Das Kontaktformular verwendet Web3Forms (Webmaster Tools Inc., Vereinigte Staaten) zur Übermittlung Ihrer Nachrichten. Die im Formular eingegebenen Daten werden auf Server in den USA übertragen. Diese Übertragung wird durch die Standardvertragsklauseln (SCC) der Europäischen Kommission geregelt. Web3Forms verpflichtet sich, Ihre Daten nicht für kommerzielle Zwecke zu verwenden und sie nach der Verarbeitung zu löschen. Weitere Details finden Sie in deren ${web3formsPrivacyLink('Datenschutzerklärung')}.`,
     },
     rights: { title: 'Ihre Rechte', content: 'Gemäß der DSGVO haben Sie das Recht auf Zugang, Berichtigung und Löschung Ihrer Daten. Um diese Rechte auszuüben, kontaktieren Sie mich unter josshanel@gmail.com.' },
     security: { title: 'Sicherheit', content: 'Ich wende angemessene Sicherheitsmaßnahmen zum Schutz Ihrer Daten an.' },

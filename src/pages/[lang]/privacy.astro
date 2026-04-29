@@ -38,7 +38,7 @@ const text = t(privacy, lang);
 
     <section class="mb-8">
       <h2 class="text-xl font-semibold mb-2">{text.processingData.title}</h2>
-      <p>{text.processingData.content}</p>
+      <p set:html={text.processingData.content} />
     </section>
 
     <section class="mb-8">

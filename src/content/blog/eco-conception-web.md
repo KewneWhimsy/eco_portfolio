@@ -10,7 +10,6 @@ description:
   de: "Eine leistungsstarke Website ist eine öko-designte Website. Entdecken Sie, warum Geschwindigkeit, Einfachheit und Umweltbewusstsein dasselbe sind."
 date: "2025-06-15"
 tags: ["eco-conception", "performance", "web"]
-readTime: 6
 published: true
 ---
 

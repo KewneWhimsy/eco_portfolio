@@ -10,7 +10,6 @@ description:
   de: "Am 3. Dezember enthüllte Meta CVE-2025-55182: eine kritische 10/10-Schwachstelle in React Server Components. 77.000 verwundbare Server, 30 kompromittierte Organisationen."
 date: "2025-12-06"
 tags: ["securite", "react", "eco-conception", "performance"]
-readTime: 5
 published: true
 ---
 

@@ -10,7 +10,6 @@ description:
   de: "Pflicht-Cookies, zwangsläufig langsame Websites, unvermeidbares Tracking... Trennen wir Fakten von Fiktion."
 date: "2025-07-01"
 tags: ["mythes", "cookies", "performance", "vie-privee"]
-readTime: 4
 published: true
 ---
 

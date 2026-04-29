@@ -10,7 +10,6 @@ description:
   de: "Cloudflare hat gerade ein CMS als WordPress-Konkurrenz gestartet, gebaut auf Astro — genau die Technologie, die ich verwende. Es bestätigt Entscheidungen. Es löst nicht alles."
 date: "2026-04-29"
 tags: ["eco-conception", "securite", "performance"]
-readTime: 4
 published: true
 ---
 
