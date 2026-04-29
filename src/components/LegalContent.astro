@@ -1,0 +1,80 @@
+---
+// src/components/LegalContent.astro
+import type { Lang } from '../i18n';
+import { t } from '../i18n';
+import { legal } from '../i18n/legal';
+
+interface Props {
+  lang: Lang;
+  backHref: string;
+}
+
+const { lang, backHref } = Astro.props;
+const text = t(legal, lang);
+
+const OWNER = {
+  name: 'Josselin HANEL',
+  siret: '989 809 314 00010',
+  address: '13 allée de la duchesse Anne, 35270 Bonnemain, France',
+  phone: '+33 7 81 33 97 68',
+  email: 'josshanel@gmail.com',
+};
+
+const HOST = {
+  company: 'Cloudflare, Inc.',
+  address: '101 Townsend St., San Francisco, CA 94107, USA',
+  website: 'cloudflare.com',
+};
+
+const l = text.editor.labels;
+const hl = text.hosting.labels;
+---
+
+<div class="container mx-auto px-4 py-8 max-w-4xl">
+  <h1 class="text-3xl font-bold mb-4 border-b border-accent pb-2">{text.pageTitle}</h1>
+  <p class="text-text-muted mb-8">{text.lastUpdated}</p>
+
+  <section class="mb-8">
+    <h2 class="text-2xl font-semibold mb-4 text-accent">{text.editor.title}</h2>
+    <dl class="space-y-2">
+      <div class="flex gap-2"><dt class="font-medium min-w-32">{l.name} :</dt><dd class="text-text-muted">{OWNER.name}</dd></div>
+      <div class="flex gap-2"><dt class="font-medium min-w-32">{l.status} :</dt><dd class="text-text-muted">{text.editor.statusValue}</dd></div>
+      <div class="flex gap-2"><dt class="font-medium min-w-32">{l.siret} :</dt><dd class="text-text-muted">{OWNER.siret}</dd></div>
+      <div class="flex gap-2"><dt class="font-medium min-w-32">{l.address} :</dt><dd class="text-text-muted">{OWNER.address}</dd></div>
+      <div class="flex gap-2"><dt class="font-medium min-w-32">{l.phone} :</dt><dd class="text-text-muted">{OWNER.phone}</dd></div>
+      <div class="flex gap-2"><dt class="font-medium min-w-32">{l.email} :</dt><dd class="text-text-muted">{OWNER.email}</dd></div>
+    </dl>
+  </section>
+
+  <section class="mb-8">
+    <h2 class="text-2xl font-semibold mb-4 text-accent">{text.publication.title}</h2>
+    <p>{OWNER.name}</p>
+  </section>
+
+  <section class="mb-8">
+    <h2 class="text-2xl font-semibold mb-4 text-accent">{text.hosting.title}</h2>
+    <dl class="space-y-2">
+      <div class="flex gap-2"><dt class="font-medium min-w-32">{hl.company} :</dt><dd class="text-text-muted">{HOST.company}</dd></div>
+      <div class="flex gap-2"><dt class="font-medium min-w-32">{hl.address} :</dt><dd class="text-text-muted">{HOST.address}</dd></div>
+      <div class="flex gap-2"><dt class="font-medium min-w-32">{hl.website} :</dt><dd class="text-text-muted">{HOST.website}</dd></div>
+    </dl>
+  </section>
+
+  <section class="mb-8">
+    <h2 class="text-2xl font-semibold mb-4 text-accent">{text.intellectual.title}</h2>
+    <p>{text.intellectual.content}</p>
+  </section>
+
+  <section class="mb-8">
+    <h2 class="text-2xl font-semibold mb-4 text-accent">{text.liability.title}</h2>
+    <p>{text.liability.content}</p>
+  </section>
+
+  <section class="mb-8 border-t border-secondary pt-4">
+    <a href={`/${lang}/privacy/`} class="text-link">{text.privacyLink}</a>
+  </section>
+
+  <div class="text-center mt-10">
+    <a href={backHref} class="btn-secondary inline-block">{text.backLink}</a>
+  </div>
+</div>

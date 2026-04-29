@@ -20,14 +20,16 @@ status: "completed"
 
 ## Le projet en quelques mots
 
-Site web pour organiser des tournois de jeux vidéo. Les organisateurs peuvent créer des événements, les joueurs s'inscrivent et discutent entre eux en direct pendant les matchs.
+Site web pour organiser des tournois de jeux vidéo, réalisé dans le cadre de mon projet de fin de formation. Les organisateurs peuvent créer des événements, les joueurs s'inscrivent et discutent entre eux en direct pendant les matchs.
+
+> Le site n'est plus accessible en ligne : le serveur était payant, je l'ai arrêté à l'issue du projet. Le code source est disponible sur GitHub ci-dessus.
 
 ## Particularités du projet
 
 - **Chat en direct intégré** : Les messages apparaissent instantanément sans recharger la page
 - **Une seule application backend** : Au lieu de séparer en micro-services, tout est regroupé intelligemment 
 - **Peu de code JavaScript** : Utilise des techniques modernes pour éviter les gros frameworks lourds
-- **Deux bases de données** : Une pour les tournois, une autre pour les messages de chat
+- **Deux bases de données** : Une pour les tournois, une autre pour les messages de chat (contrainte imposée par la formation, une seule aurait suffi en pratique)
 
 L'idée était de prouver qu'on peut faire du temps réel simplement, sans architecture complexe.
 
@@ -35,14 +37,16 @@ L'idée était de prouver qu'on peut faire du temps réel simplement, sans archi
 
 ## Project in a few words
 
-Website for organizing video game tournaments. Organizers can create events, players register and chat with each other live during matches.
+Website for organizing video game tournaments, built as my end-of-training project. Organizers can create events, players register and chat with each other live during matches.
+
+> The site is no longer online: it was hosted on a paid server, which I shut down after completing the project. The source code is available on GitHub above.
 
 ## Project highlights
 
 - **Integrated live chat**: Messages appear instantly without page reload
 - **Single backend application**: Instead of separating into micro-services, everything is intelligently grouped
 - **Minimal JavaScript code**: Uses modern techniques to avoid heavy frameworks
-- **Two databases**: One for tournaments, another for chat messages
+- **Two databases**: One for tournaments, another for chat messages (required by the training program, one would have been enough in practice)
 
 The idea was to prove you can do real-time simply, without complex architecture.
 
@@ -50,13 +54,15 @@ The idea was to prove you can do real-time simply, without complex architecture.
 
 ## Projekt in wenigen Worten
 
-Website zur Organisation von Videospiel-Turnieren. Organisatoren können Events erstellen, Spieler registrieren sich und chatten live während der Matches.
+Website zur Organisation von Videospiel-Turnieren, als Abschlussprojekt meiner Ausbildung entwickelt. Organisatoren können Events erstellen, Spieler registrieren sich und chatten live während der Matches.
+
+> Die Website ist nicht mehr online: der Server war kostenpflichtig und wurde nach Abschluss des Projekts abgeschaltet. Der Quellcode ist auf GitHub oben verfügbar.
 
 ## Projektbesonderheiten
 
 - **Integrierter Live-Chat**: Nachrichten erscheinen sofort ohne Seitenneuladung
 - **Eine Backend-Anwendung**: Statt Aufteilung in Micro-Services, alles intelligent gruppiert
 - **Wenig JavaScript-Code**: Nutzt moderne Techniken um schwere Frameworks zu vermeiden
-- **Zwei Datenbanken**: Eine für Turniere, eine andere für Chat-Nachrichten
+- **Zwei Datenbanken**: Eine für Turniere, eine andere für Chat-Nachrichten (Vorgabe der Ausbildung, in der Praxis hätte eine gereicht)
 
 Die Idee war zu beweisen, dass Echtzeit einfach geht, ohne komplexe Architektur.

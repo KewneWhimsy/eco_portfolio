@@ -35,6 +35,7 @@ export const footer = {
     availability: 'Disponibilité',
     locations: 'Quimper · Rennes · Paris · Berlin · Télétravail',
     privacyPolicy: 'Politique de confidentialité',
+    legalNotice: 'Mentions légales',
   },
   en: {
     copyright: 'Josselin HANEL - Full Stack Web Developer',
@@ -42,6 +43,7 @@ export const footer = {
     availability: 'Availability',
     locations: 'Quimper · Rennes · Paris · Berlin · Remote',
     privacyPolicy: 'Privacy Policy',
+    legalNotice: 'Legal Notice',
   },
   de: {
     copyright: 'Josselin HANEL - Full-Stack Webentwickler',
@@ -49,6 +51,7 @@ export const footer = {
     availability: 'Verfügbarkeit',
     locations: 'Quimper · Rennes · Paris · Berlin · Remote',
     privacyPolicy: 'Datenschutzerklärung',
+    legalNotice: 'Impressum',
   },
 } satisfies Record<Lang, Record<string, string>>;
 

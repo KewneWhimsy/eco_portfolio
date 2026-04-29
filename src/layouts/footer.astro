@@ -12,8 +12,9 @@ const currentYear = new Date().getFullYear();
       <div class="mb-4 md:mb-0">
         <p class="text-text-muted text-sm">&copy; {currentYear} {text.copyright}</p>
         <p class="text-text-muted text-sm mt-1">{text.ecoDesignDesc}</p>
-        <div class="mt-3 text-xs">
+        <div class="mt-3 text-xs flex gap-4">
           <a href={`/${currentLang}/privacy/`} class="text-text-muted hover:text-accent transition-colors">{text.privacyPolicy}</a>
+          <a href={`/${currentLang}/legal/`} class="text-text-muted hover:text-accent transition-colors">{text.legalNotice}</a>
         </div>
       </div>
       <div class="text-right">

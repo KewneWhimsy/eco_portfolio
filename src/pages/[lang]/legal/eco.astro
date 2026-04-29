@@ -1,0 +1,18 @@
+---
+// src/pages/[lang]/legal/eco.astro
+import LayoutEco from '../../../layouts/layout-eco.astro';
+import LegalContent from '../../../components/LegalContent.astro';
+import { getLangPaths, t } from '../../../i18n';
+import { legal } from '../../../i18n/legal';
+
+export function getStaticPaths() {
+  return getLangPaths();
+}
+
+const lang = Astro.params.lang as 'fr' | 'en' | 'de';
+const text = t(legal, lang);
+---
+
+<LayoutEco title={text.title} description={text.description} lang={lang}>
+  <LegalContent lang={lang} backHref={`/${lang}/eco/`} />
+</LayoutEco>

@@ -19,18 +19,15 @@ status: "completed"
 
 ## Le projet en quelques mots
 
-Site web professionnel multilingue pour ABC GOURMET, société de conseil dirigée par Magali Caignec. Le site présente les services de conseil stratégique et d'accompagnement opérationnel pour entreprises, avec une extension vers les formations professionnelles et workshops (ABC WORKSHOP).
+Site web professionnel multilingue pour ABC GOURMET, société de conseil dirigée par Magali Caignec. Présentation des services de conseil stratégique et d'accompagnement opérationnel, avec une extension vers les formations professionnelles et workshops (ABC WORKSHOP).
 
 ## Particularités du projet
 
-- **Multilingue natif** : Support complet français, anglais et allemand avec URLs propres
-- **Performance optimisée** : Site statique Astro pour des temps de chargement rapides
-- **Gestion de contenu structurée** : Collections Astro pour blog, témoignages, équipe et partenaires
-- **SEO centralisé** : Configuration des métadonnées dans un fichier dédié pour chaque langue
-- **Respect de la vie privée** : Aucun cookie de tracking, utilisation de Cloudflare Web Analytics
-- **Design responsive** : Interface adaptée mobile-first avec header intelligent (fixe desktop, auto-hide mobile)
-- **Composants réutilisables** : Architecture modulaire avec composants Astro optimisés
-- **Dual branding** : Support du logo ABC WORKSHOP pour la section formations
+- **Trilingue** : Français, anglais et allemand avec URLs propres
+- **Rapide et léger** : Site statique Astro, sans JavaScript superflu
+- **Sans tracking** : Aucun cookie publicitaire, analytics respectueux de la vie privée
+- **Responsive** : Interface mobile-first avec header adaptatif
+- **Interface de gestion sur mesure** : Administration du contenu sans CMS externe ni dépendance tierce
 
 L'objectif était de créer une vitrine professionnelle reflétant l'expertise en conseil tout en ouvrant vers de nouveaux marchés via les formations et workshops.
 
@@ -38,18 +35,15 @@ L'objectif était de créer une vitrine professionnelle reflétant l'expertise e
 
 ## Project in a few words
 
-Professional multilingual website for ABC GOURMET, a consulting company led by Magali Caignec. The site presents strategic consulting and operational support services for businesses, with an extension towards professional training and workshops (ABC WORKSHOP).
+Professional multilingual website for ABC GOURMET, a consulting company led by Magali Caignec. Covers strategic consulting and operational support services, with an extension towards professional training and workshops (ABC WORKSHOP).
 
 ## Project highlights
 
-- **Native multilingual** : Complete French, English and German support with clean URLs
-- **Optimized performance** : Static Astro site for fast loading times
-- **Structured content management** : Astro collections for blog, testimonials, team and partners
-- **Centralized SEO** : Metadata configuration in dedicated file for each language
-- **Privacy-friendly** : No tracking cookies, using Cloudflare Web Analytics
-- **Responsive design** : Mobile-first adapted interface with smart header (fixed desktop, auto-hide mobile)
-- **Reusable components** : Modular architecture with optimized Astro components
-- **Dual branding** : ABC WORKSHOP logo support for training section
+- **Trilingual** : French, English and German with clean URLs
+- **Fast and lightweight** : Static Astro site, no unnecessary JavaScript
+- **Privacy-friendly** : No advertising cookies, privacy-respecting analytics
+- **Responsive** : Mobile-first interface with an adaptive header
+- **Custom admin interface** : Content management without external CMS or third-party dependency
 
 The goal was to create a professional showcase reflecting consulting expertise while opening to new markets through training and workshops.
 
@@ -57,17 +51,14 @@ The goal was to create a professional showcase reflecting consulting expertise w
 
 ## Projekt in wenigen Worten
 
-Professionelle mehrsprachige Website für ABC GOURMET, ein von Magali Caignec geleitetes Beratungsunternehmen. Die Website präsentiert strategische Beratungs- und operative Unterstützungsdienstleistungen für Unternehmen, mit einer Erweiterung hin zu beruflicher Weiterbildung und Workshops (ABC WORKSHOP).
+Professionelle mehrsprachige Website für ABC GOURMET, ein von Magali Caignec geleitetes Beratungsunternehmen. Umfasst strategische Beratungs- und operative Unterstützungsdienstleistungen, mit einer Erweiterung hin zu beruflicher Weiterbildung und Workshops (ABC WORKSHOP).
 
 ## Projektbesonderheiten
 
-- **Native Mehrsprachigkeit** : Vollständige Unterstützung für Französisch, Englisch und Deutsch mit sauberen URLs
-- **Optimierte Leistung** : Statische Astro-Website für schnelle Ladezeiten
-- **Strukturiertes Content-Management** : Astro-Sammlungen für Blog, Testimonials, Team und Partner
-- **Zentralisiertes SEO** : Metadaten-Konfiguration in einer dedizierten Datei für jede Sprache
-- **Datenschutzfreundlich** : Keine Tracking-Cookies, Verwendung von Cloudflare Web Analytics
-- **Responsive Design** : Mobile-first angepasste Benutzeroberfläche mit intelligentem Header (fest Desktop, auto-hide mobil)
-- **Wiederverwendbare Komponenten** : Modulare Architektur mit optimierten Astro-Komponenten
-- **Dual Branding** : ABC WORKSHOP Logo-Unterstützung für den Schulungsbereich
+- **Dreisprachig** : Französisch, Englisch und Deutsch mit sauberen URLs
+- **Schnell und schlank** : Statische Astro-Website, kein überflüssiges JavaScript
+- **Datenschutzfreundlich** : Keine Werbe-Cookies, datenschutzkonformes Analytics
+- **Responsive** : Mobile-first Benutzeroberfläche mit adaptivem Header
+- **Maßgeschnittenes Verwaltungsinterface** : Inhaltsverwaltung ohne externes CMS oder Drittanbieter-Abhängigkeit
 
 Das Ziel war es, eine professionelle Präsentation zu schaffen, die die Beratungsexpertise widerspiegelt und gleichzeitig neue Märkte durch Schulungen und Workshops erschließt.

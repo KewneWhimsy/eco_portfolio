@@ -3,7 +3,6 @@
 import LayoutEco from '../../../layouts/layout-eco.astro';
 import EcoModeInfo from '../../../components/eco_mode_info.astro';
 import { Picture } from 'astro:assets';
-import jadeImage from '../../../assets/network/jade.jpeg';
 import ninoImage from '../../../assets/network/nino.jpg';
 import francoisImage from '../../../assets/network/francois.jpg';
 import violetteImage from '../../../assets/network/violette.jpg';
@@ -28,17 +27,6 @@ const collaborators = [
       : 'Nino kombiniert präzisen Realismus mit Graffiti- und Cartoon-Ästhetik in seinen Tattoos.',
     skills: ['Tattoo Art', '2D Illustration', 'Graffiti', 'Urban Art'],
     portfolio: 'https://www.instagram.com/leskargo__/',
-  },
-  {
-    name: 'Jade Ounaphom', image: jadeImage,
-    title: lang === 'fr' ? 'Designer & Créatrice vidéo' : lang === 'en' ? 'UI/UX Designer & Audiovisual Creator' : 'UI/UX Designer & Audiovisuelle Gestalterin',
-    description: lang === 'fr'
-      ? 'Jade apporte un regard unique aux projets web grâce à ses talents en design et en création vidéo.'
-      : lang === 'en'
-      ? 'Jade brings a unique vision to digital projects thanks to her dual expertise in design and audiovisual creation.'
-      : 'Jade bringt mit ihrer Doppelkompetenz in Design und audiovisueller Gestaltung eine einzigartige Vision ein.',
-    skills: ['UI/UX Design', 'Figma', 'Adobe CC', 'Motion Design'],
-    portfolio: 'https://jadephom.myportfolio.com/',
   },
   {
     name: 'François Bourdin', image: francoisImage,

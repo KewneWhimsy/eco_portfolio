@@ -19,7 +19,6 @@ collaborators:
       fr: "Créatrice audiovisuelle"
       en: "Audiovisual creator"
       de: "Audiovisuelle Gestalterin"
-    url: "https://jadephom.myportfolio.com/"
 order: 1
 status: "completed"
 ---
