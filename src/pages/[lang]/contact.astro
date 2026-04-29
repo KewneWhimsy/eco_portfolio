@@ -111,10 +111,11 @@ const contactInfo = {
   </div>
 
   <script define:vars={{ translations: text }}>
-    document.addEventListener('DOMContentLoaded', setupContactForm);
     document.addEventListener('astro:page-load', setupContactForm);
     function setupContactForm() {
       const form = document.getElementById('contact-form');
+      if (form.dataset.initialized) return;
+      form.dataset.initialized = 'true';
       const formStatus = document.getElementById('form-status');
       const submitButton = document.getElementById('submit-button');
       const formSpinner = document.getElementById('form-spinner');
@@ -130,11 +131,11 @@ const contactInfo = {
           const response = await fetch('https://api.web3forms.com/submit', { method: 'POST', body: formData });
           const data = await response.json();
           if (data.success) {
-            formStatus.innerHTML = `<div class="p-3 bg-accent bg-opacity-20 text-accent rounded">${translations.formSuccess}</div>`;
+            formStatus.innerHTML = `<p class="bg-accent text-primary text-center font-medium px-4 py-2 rounded">✓ ${translations.formSuccess}</p>`;
             form.reset();
           } else { throw new Error(data.message || 'Something went wrong!'); }
         } catch (error) {
-          formStatus.innerHTML = `<div class="p-3 bg-red-500 bg-opacity-20 text-red-500 rounded">${translations.formError}</div>`;
+          formStatus.innerHTML = `<p class="bg-red-600 text-white text-center font-medium px-4 py-2 rounded">✕ ${translations.formError}</p>`;
         } finally {
           submitButton.disabled = false;
           formSpinner.style.display = 'none';

@@ -77,7 +77,7 @@ const text = t(about, lang);
               <span class="text-text-muted">{edu.year}</span>
             </div>
             <p class="text-accent mb-2">{edu.school}</p>
-            <p>{edu.description}</p>
+            <p set:html={edu.description} />
           </div>
         ))}
       </div>

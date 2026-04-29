@@ -302,7 +302,7 @@ const collaborators = project.data.collaborators || [];
       <div class="flex flex-wrap gap-2 mb-6">
         {
           project.data.tech.map((tech) => (
-            <span class="px-3 py-1 bg-accent bg-opacity-20 rounded-full transition-all hover:bg-opacity-40">
+            <span class="px-2 py-0.5 bg-(--color-card-bg) border border-(--color-border) rounded-full text-xs">
               {tech}
             </span>
           ))

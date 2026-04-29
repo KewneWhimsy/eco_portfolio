@@ -58,18 +58,21 @@ export const cta = {
     ctaTitle: 'Un projet en tête ?',
     ctaText: "N'hésitez pas à me contacter pour un devis gratuit sans engagement.",
     phone: '+33 7 81 33 97 68',
+    email: 'josshanel@gmail.com',
   },
   en: {
-    contactButton: 'Contact me',
+    contactButton: "Let's talk",
     ctaTitle: 'Have a project in mind?',
     ctaText: 'Feel free to contact me for a free quote with no obligation.',
     phone: '+33 7 81 33 97 68',
+    email: 'josshanel@gmail.com',
   },
   de: {
     contactButton: 'Kontakt',
     ctaTitle: 'Ein Projekt im Sinn?',
     ctaText: 'Kontaktieren Sie mich gerne für ein kostenloses, unverbindliches Angebot.',
     phone: '+33 7 81 33 97 68',
+    email: 'josshanel@gmail.com',
   },
 } satisfies Record<Lang, Record<string, string>>;
 

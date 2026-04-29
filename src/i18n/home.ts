@@ -6,11 +6,11 @@ const serviceIcons = ['globe', 'gear', 'cart', 'messages-square'] as const;
 
 export const home = {
   fr: {
-    title: 'Josselin HANEL - Créateur de sites internet',
-    description: "Créateur de sites internet qui marchent bien, rapides et moins gourmands en énergie. Basé à Rennes, disponible à Quimper, Paris, Berlin et à distance.",
-    heroTypePart1: 'Créateur de',
-    heroTypePart2: ' sites internet',
-    heroText: "Je crée des sites web durables au chargement rapide, qui s'affichent correctement sur tous les appareils, et sont bien placés sur Google. Le tout avec des technologies modernes, économiques et écologiques.",
+    title: 'Josselin HANEL - Full Stack Web Developer',
+    description: "Full Stack Web Developer créant des sites rapides, efficaces et éco-responsables. Basé à Rennes, disponible à Quimper, Paris, Berlin et à distance.",
+    heroTypePart1: 'Full Stack',
+    heroTypePart2: 'Web Developer',
+    heroText: "Je crée des sites web rapides et durables, qui s'affichent correctement sur tous les appareils, faciles à trouver et partager. Du sur-mesure, avec des technologies modernes et écologiques.",
     contactButton: 'Me contacter',
     projectsButton: 'Voir mes réalisations',
 
@@ -41,8 +41,8 @@ export const home = {
     description: 'Full stack web developer creating fast, efficient and eco-friendly websites. Based in Rennes (France), available in Quimper, Paris, Berlin and for remote work.',
     heroTypePart1: 'Full Stack',
     heroTypePart2: 'Web Developer',
-    heroText: 'I create sustainable websites with fast loading, that display correctly on all devices, and rank well on Google. All with modern, cost-effective and eco-friendly technologies.',
-    contactButton: 'Contact me',
+    heroText: 'I build fast and sustainable websites, that display correctly on all devices, easy to find and share. Custom-made, with modern and eco-friendly technologies.',
+    contactButton: "Let's talk",
     projectsButton: 'View my projects',
 
     values: [
@@ -72,7 +72,7 @@ export const home = {
     description: 'Full-Stack Webentwickler, der schnelle, effiziente und umweltfreundliche Websites erstellt. Mit Sitz in Rennes (Frankreich), verfügbar in Quimper, Paris, Berlin und für Remote-Arbeit.',
     heroTypePart1: 'Full Stack',
     heroTypePart2: 'Webentwickler',
-    heroText: 'Ich erstelle nachhaltige Websites mit schnellem Ladevorgang, die auf allen Geräten korrekt angezeigt werden und bei Google gut platziert sind. Alles mit modernen, wirtschaftlichen und ökologischen Technologien.',
+    heroText: 'Ich erstelle schnelle und nachhaltige Websites, die auf allen Geräten korrekt angezeigt werden, leicht zu finden und zu teilen. Maßgeschneidert, mit modernen und ökologischen Technologien.',
     contactButton: 'Kontakt',
     projectsButton: 'Meine Projekte',
 

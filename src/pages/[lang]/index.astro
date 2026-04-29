@@ -56,7 +56,7 @@ function formatDate(date: Date): string {
               </div>
             </div>
           </h1>
-          <p class="text-lg mb-6">{text.heroText}</p>
+          <p class="text-lg mb-6 max-w-3xl">{text.heroText}</p>
           <div class="flex flex-wrap gap-4">
             <a href={`/${lang}/contact/`} class="cta-button">{text.contactButton}</a>
             <a href={`/${lang}/projects/`} class="btn-secondary">{text.projectsButton}</a>
@@ -154,7 +154,7 @@ function formatDate(date: Date): string {
                     <div class="mb-4">
                       <div class="flex flex-wrap gap-1.5">
                         {project.data.tech.map(tech => (
-                          <span class="px-2 py-0.5 border border-accent text-light rounded-full text-xs">{tech}</span>
+                          <span class="px-2 py-0.5 bg-(--color-card-bg) border border-(--color-border) rounded-full text-xs">{tech}</span>
                         ))}
                       </div>
                     </div>

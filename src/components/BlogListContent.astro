@@ -77,7 +77,7 @@ const allTags = [...new Set(posts.flatMap(post => post.data.tags))].sort();
         ) : (
           <div class="flex flex-wrap items-center gap-2">
             {post.data.tags.map((tag: string) => (
-              <span class="px-2 py-0.5 border border-accent text-light rounded-full text-xs">{tag}</span>
+              <span class="px-2 py-0.5 border border-accent text-accent rounded-full text-xs">{tag}</span>
             ))}
             <span class="ml-auto text-accent text-sm">{text.readMore} →</span>
           </div>
@@ -106,25 +106,35 @@ const allTags = [...new Set(posts.flatMap(post => post.data.tags))].sort();
       const cards = document.querySelectorAll('.blog-card');
       const noResults = document.getElementById('no-results');
 
+      function activateTag(tag: string) {
+        buttons.forEach(b => {
+          b.classList.remove('active', 'border-accent', 'text-accent');
+          b.classList.add('border-accent/30');
+        });
+        const target = tag === 'all'
+          ? document.querySelector('.tag-btn[data-tag="all"]')
+          : document.querySelector(`.tag-btn[data-tag="${tag}"]`);
+        if (target) {
+          target.classList.add('active', 'border-accent', 'text-accent');
+          target.classList.remove('border-accent/30');
+        }
+        let visibleCount = 0;
+        cards.forEach(card => {
+          const cardTags = card.getAttribute('data-tags')?.split(',') || [];
+          const show = tag === 'all' || cardTags.includes(tag);
+          (card as HTMLElement).style.display = show ? '' : 'none';
+          if (show) visibleCount++;
+        });
+        if (noResults) noResults.classList.toggle('hidden', visibleCount > 0);
+      }
+
+      const paramTag = new URLSearchParams(window.location.search).get('tag');
+      if (paramTag) activateTag(paramTag);
+
       buttons.forEach(btn => {
         btn.addEventListener('click', () => {
-          const tag = btn.getAttribute('data-tag');
-          buttons.forEach(b => {
-            b.classList.remove('active', 'border-accent', 'text-accent');
-            b.classList.add('border-accent/30');
-          });
-          btn.classList.add('active', 'border-accent', 'text-accent');
-          btn.classList.remove('border-accent/30');
-
-          let visibleCount = 0;
-          cards.forEach(card => {
-            const cardTags = card.getAttribute('data-tags')?.split(',') || [];
-            const show = tag === 'all' || (tag ? cardTags.includes(tag) : false);
-            (card as HTMLElement).style.display = show ? '' : 'none';
-            if (show) visibleCount++;
-          });
-
-          if (noResults) noResults.classList.toggle('hidden', visibleCount > 0);
+          const tag = btn.getAttribute('data-tag') || 'all';
+          activateTag(tag);
         });
       });
     });

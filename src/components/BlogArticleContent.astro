@@ -20,7 +20,7 @@ const { post, htmlContent, related, lang, isEco = false } = Astro.props;
 const text = t(blog, lang);
 const ecoSuffix = isEco ? '/eco' : '';
 
-const articleClasses = "[&>h2]:text-2xl [&>h2]:font-bold [&>h2]:text-accent [&>h2]:mb-3 [&>h2]:mt-8 [&>h2]:border-b [&>h2]:border-accent [&>h2]:pb-2 [&>h3]:text-xl [&>h3]:font-semibold [&>h3]:text-accent [&>h3]:mb-2 [&>h3]:mt-6 [&>p]:mb-4 [&>p]:leading-relaxed [&>strong]:font-semibold [&>strong]:text-light [&>ul]:list-disc [&>ul]:pl-6 [&>ul]:mb-4 [&>ul]:space-y-2 [&>ol]:list-decimal [&>ol]:pl-6 [&>ol]:mb-4 [&>ol]:space-y-2 [&>li]:leading-relaxed [&>hr]:border-accent/20 [&>hr]:my-8 [&>a]:text-link [&>blockquote]:border-l-4 [&>blockquote]:border-accent [&>blockquote]:pl-4 [&>blockquote]:italic [&>blockquote]:my-4";
+const articleClasses = "[&>h2]:text-2xl [&>h2]:font-bold [&>h2]:text-accent [&>h2]:mb-3 [&>h2]:mt-8 [&>h2]:border-b [&>h2]:border-accent [&>h2]:pb-2 [&>h3]:text-xl [&>h3]:font-semibold [&>h3]:text-accent [&>h3]:mb-2 [&>h3]:mt-6 [&>p]:mb-4 [&>p]:leading-relaxed [&>strong]:font-semibold [&>strong]:text-light [&>ul]:list-disc [&>ul]:pl-6 [&>ul]:mb-4 [&>ul]:space-y-2 [&>ol]:list-decimal [&>ol]:pl-6 [&>ol]:mb-4 [&>ol]:space-y-2 [&>li]:leading-relaxed [&>hr]:border-accent/20 [&>hr]:my-8 [&>blockquote]:border-l-4 [&>blockquote]:border-accent [&>blockquote]:pl-4 [&>blockquote]:italic [&>blockquote]:my-4";
 ---
 
 <div class="container mx-auto px-4 py-6 max-w-3xl">
@@ -53,8 +53,8 @@ const articleClasses = "[&>h2]:text-2xl [&>h2]:font-bold [&>h2]:text-accent [&>h
       <div class="flex flex-wrap gap-2">
         {post.data.tags.map((tag: string) => (
           <a
-            href={`/${lang}/blog/`}
-            class="px-2 py-0.5 border border-accent text-light rounded-full text-xs hover:bg-accent hover:bg-opacity-20 transition-colors"
+            href={`/${lang}/blog/?tag=${encodeURIComponent(tag)}`}
+            class="px-2 py-0.5 border border-accent text-accent rounded-full text-xs hover:bg-accent hover:text-white transition-colors"
           >
             {tag}
           </a>
@@ -98,3 +98,14 @@ const articleClasses = "[&>h2]:text-2xl [&>h2]:font-bold [&>h2]:text-accent [&>h
 
   <CtaDispo withBackground={!isEco} />
 </div>
+
+<style>
+  article :global(a) {
+    color: var(--color-accent);
+    text-decoration: underline;
+    transition: color var(--transition-standard);
+  }
+  article :global(a:hover) {
+    color: var(--color-light);
+  }
+</style>
