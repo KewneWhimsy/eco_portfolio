@@ -5,9 +5,10 @@ import LanguageSwitcher from '../components/language_switcher.astro';
 import { getLangFromPath, t } from '../i18n';
 import { nav } from '../i18n/common';
 
+const { isEco } = Astro.props;
 const { pathname } = Astro.url;
 const currentLang = getLangFromPath(pathname);
-const isEcoMode = pathname.includes('/eco');
+const isEcoMode = isEco ?? pathname.includes('/eco');
 const labels = t(nav, currentLang);
 
 const ecoSuffix = isEcoMode ? 'eco/' : '';
