@@ -1,0 +1,76 @@
+---
+interface Props {
+  formId?: string;
+  fromName: string;
+  subjectHidden?: string;
+  submitLabel: string;
+  submittingLabel: string;
+  successMsg: string;
+  errorMsg: string;
+}
+
+const {
+  formId = 'web3-form',
+  fromName,
+  subjectHidden,
+  submitLabel,
+  submittingLabel,
+  successMsg,
+  errorMsg,
+} = Astro.props;
+---
+
+<form id={formId} class="space-y-4">
+  <input type="hidden" name="access_key" value="2dcc3f1b-036f-48a7-987a-cdada0d05ae5" />
+  <input type="hidden" name="from_name" value={fromName} />
+  {subjectHidden && <input type="hidden" name="subject" value={subjectHidden} />}
+  <slot />
+  <div class="hidden"><input type="text" name="botcheck" /></div>
+  <div class="flex justify-end items-center">
+    <button type="submit" id={`${formId}-submit`} class="cta-button">{submitLabel}</button>
+    <span id={`${formId}-spinner`} style="display: none;" class="inline-flex items-center ml-3">
+      <svg class="animate-spin -ml-1 mr-2 h-5 w-5 text-accent" fill="none" viewBox="0 0 24 24">
+        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4" />
+        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
+      </svg>
+      {submittingLabel}
+    </span>
+  </div>
+  <div id={`${formId}-status`} class="mt-4"></div>
+</form>
+
+<script define:vars={{ formId, successMsg, errorMsg }}>
+  document.addEventListener('astro:page-load', setupWeb3Form);
+  function setupWeb3Form() {
+    const form = document.getElementById(formId);
+    if (!form || form.dataset.initialized) return;
+    form.dataset.initialized = 'true';
+    const formStatus = document.getElementById(`${formId}-status`);
+    const submitButton = document.getElementById(`${formId}-submit`);
+    const formSpinner = document.getElementById(`${formId}-spinner`);
+    if (!formStatus || !submitButton || !formSpinner) return;
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      submitButton.disabled = true;
+      formSpinner.style.display = 'inline-flex';
+      formStatus.innerHTML = '';
+      try {
+        const formData = new FormData(form);
+        if (formData.get('botcheck')) throw new Error('Bot detected!');
+        const response = await fetch('https://api.web3forms.com/submit', { method: 'POST', body: formData });
+        const data = await response.json();
+        if (data.success) {
+          formStatus.innerHTML = `<p class="bg-accent text-primary text-center font-medium px-4 py-2 rounded">✓ ${successMsg}</p>`;
+          form.reset();
+        } else {
+          throw new Error(data.message || 'Something went wrong!');
+        }
+      } catch {
+        formStatus.innerHTML = `<p class="bg-red-600 text-white text-center font-medium px-4 py-2 rounded">✕ ${errorMsg}</p>`;
+      } finally {
+        submitButton.disabled = false;
+        formSpinner.style.display = 'none';
+      }
+    });
+  }
+</script>

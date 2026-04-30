@@ -30,6 +30,7 @@ export const services = {
     formTitle: 'Parlez-moi de votre projet', nameLabel: 'Votre nom', emailLabel: 'Votre email', companyLabel: 'Votre entreprise (optionnel)', projectTypeLabel: 'Type de projet',
     projectTypes: { showcase: 'Site vitrine', ecommerce: 'E-commerce', audit: 'Audit/Optimisation', custom: 'Projet sur-mesure', other: 'Autre' },
     messageLabel: 'Décrivez votre projet', messagePlaceholder: 'Parlez-moi de votre activité, vos objectifs, ce que vous aimeriez pour votre site...', submitButton: 'Demander un devis personnalisé',
+    formSubmitting: 'Envoi en cours...', formSuccess: 'Merci ! Votre demande a bien été envoyée. Je vous répondrai dans les plus brefs délais.', formError: "Oups ! Une erreur est survenue. Merci de réessayer ou de me contacter directement par email.",
     detailsTitle: 'Le détail de mes offres', detailsIntro: "Cliquez sur chaque offre pour voir ce qu'elle inclut exactement :",
     vitrineDetails: { title: 'Site Vitrine : du simple au complet', options: [
       { name: 'Site Éternel', price: 'À partir de 1800€', maintenance: '0€/an - Aucune maintenance nécessaire', desc: 'Site en pur HTML/CSS, le langage natif du web. Simple, rapide, immortel.', features: ['3-7 pages (Accueil, Services, À propos, Contact...)', 'Design responsive moderne', 'SEO optimisé', 'Code accessible à tout développeur', '2 modifications mineures/an offertes', 'Zéro frais récurrent'], modifications: 'Modifications supplémentaires : 30€ (texte/image) à 120€ (section/page)', ideal: 'Parfait pour : restaurants, artisans, professions libérales, associations, portfolio' },
@@ -71,6 +72,7 @@ export const services = {
     formTitle: 'Tell me about your project', nameLabel: 'Your name', emailLabel: 'Your email', companyLabel: 'Your company (optional)', projectTypeLabel: 'Project type',
     projectTypes: { showcase: 'Showcase website', ecommerce: 'E-commerce', audit: 'Audit/Optimization', custom: 'Custom project', other: 'Other' },
     messageLabel: 'Describe your project', messagePlaceholder: "Tell me about your business, your goals, what you'd like for your site...", submitButton: 'Request a personalized quote',
+    formSubmitting: 'Sending...', formSuccess: "Thank you! Your request has been sent successfully. I'll get back to you shortly.", formError: 'Oops! An error occurred. Please try again or contact me directly via email.',
     detailsTitle: 'Service details', detailsIntro: 'Click on each offer to see exactly what it includes:',
     vitrineDetails: { title: 'Showcase Website: from simple to complete', options: [
       { name: 'Eternal Site', price: 'From €1800', maintenance: '€0/year - No maintenance needed', desc: 'Pure HTML/CSS site, the native language of the web. Simple, fast, immortal.', features: ['3-7 pages (Home, Services, About, Contact...)', 'Modern responsive design', 'Optimized SEO', 'Code accessible to any developer', '2 minor modifications/year included', 'Zero recurring fees'], modifications: 'Additional modifications: €30 (text/image) to €120 (section/page)', ideal: 'Perfect for: restaurants, craftsmen, freelancers, associations, portfolio' },
@@ -112,6 +114,7 @@ export const services = {
     formTitle: 'Erzählen Sie mir von Ihrem Projekt', nameLabel: 'Ihr Name', emailLabel: 'Ihre E-Mail', companyLabel: 'Ihr Unternehmen (optional)', projectTypeLabel: 'Projekttyp',
     projectTypes: { showcase: 'Showcase-Website', ecommerce: 'E-Commerce', audit: 'Audit/Optimierung', custom: 'Maßgeschneidertes Projekt', other: 'Anderes' },
     messageLabel: 'Beschreiben Sie Ihr Projekt', messagePlaceholder: 'Erzählen Sie mir von Ihrem Unternehmen, Ihren Zielen...', submitButton: 'Personalisiertes Angebot anfordern',
+    formSubmitting: 'Wird gesendet...', formSuccess: 'Vielen Dank! Ihre Anfrage wurde erfolgreich gesendet. Ich melde mich so bald wie möglich.', formError: 'Hoppla! Ein Fehler ist aufgetreten. Bitte versuchen Sie es erneut.',
     detailsTitle: 'Servicebeschreibung', detailsIntro: 'Klicken Sie auf jedes Angebot, um genau zu sehen, was es beinhaltet:',
     vitrineDetails: { title: 'Showcase-Website: von einfach bis komplett', options: [
       { name: 'Ewige Site', price: 'Ab €1800', maintenance: '€0/Jahr - Keine Wartung erforderlich', desc: 'Reine HTML/CSS-Site. Einfach, schnell, unsterblich.', features: ['3-7 Seiten', 'Modernes responsives Design', 'Optimiertes SEO', 'Code für jeden Entwickler zugänglich', '2 kleinere Änderungen/Jahr inklusive', 'Null wiederkehrende Gebühren'], modifications: 'Zusätzliche Änderungen: €30 (Text/Bild) bis €120 (Abschnitt/Seite)', ideal: 'Perfekt für: Restaurants, Handwerker, Freiberufler, Vereine, Portfolio' },

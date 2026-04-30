@@ -1,0 +1,22 @@
+---
+interface Props {
+  fromName: string;
+  redirectUrl: string;
+  submitLabel: string;
+  afterFormText?: string;
+}
+
+const { fromName, redirectUrl, submitLabel, afterFormText } = Astro.props;
+---
+
+<form method="POST" action="https://api.web3forms.com/submit" class="space-y-4">
+  <input type="hidden" name="access_key" value="2dcc3f1b-036f-48a7-987a-cdada0d05ae5" />
+  <input type="hidden" name="from_name" value={fromName} />
+  <input type="hidden" name="redirect" value={redirectUrl} />
+  <slot />
+  <div class="hidden"><input type="text" name="botcheck" /></div>
+  <div class="flex justify-between items-center">
+    {afterFormText && <p class="text-xs text-text-muted">{afterFormText}</p>}
+    <button type="submit" class:list={['cta-button', { 'ml-auto': !afterFormText }]}>{submitLabel}</button>
+  </div>
+</form>

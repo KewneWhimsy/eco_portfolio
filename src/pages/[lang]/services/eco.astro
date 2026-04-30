@@ -3,6 +3,7 @@
 import LayoutEco from '../../../layouts/layout-eco.astro';
 import EcoModeInfo from '../../../components/eco_mode_info.astro';
 import Icon from '../../../components/Icon.astro';
+import FormWeb3Eco from '../../../components/FormWeb3Eco.astro';
 import { getLangPaths, t } from '../../../i18n';
 import { services } from '../../../i18n/services';
 
@@ -107,15 +108,12 @@ const text = t(services, lang);
     <!-- Formulaire devis -->
     <section class="mb-8 border-t border-accent/25 pt-6">
       <h2 class="text-xl font-semibold mb-4">{text.ctaTitle}</h2>
-      <form
-        method="POST"
-        action="https://api.web3forms.com/submit"
-        class="space-y-4"
+      <FormWeb3Eco
+        fromName="Portfolio Services - Eco Mode"
+        redirectUrl={`${Astro.url.origin}/${lang}/contact/thanks/`}
+        submitLabel={text.submitButton}
+        afterFormText={text.contactDirect.text}
       >
-        <input type="hidden" name="access_key" value="2dcc3f1b-036f-48a7-987a-cdada0d05ae5" />
-        <input type="hidden" name="from_name" value="Portfolio Services - Eco Mode" />
-        <input type="hidden" name="redirect" value={`${Astro.url.origin}/${lang}/contact/thanks/`} />
-
         <div>
           <label for="name" class="block mb-1 font-medium">{text.nameLabel} *</label>
           <input type="text" id="name" name="name" class="w-full p-2 form-field" required />
@@ -138,14 +136,7 @@ const text = t(services, lang);
           <label for="message" class="block mb-1 font-medium">{text.messageLabel} *</label>
           <textarea id="message" name="message" rows="4" class="w-full p-2 form-field" placeholder={text.messagePlaceholder} required></textarea>
         </div>
-        <div class="hidden">
-          <input type="text" name="botcheck" />
-        </div>
-        <div class="flex justify-between items-center">
-          <p class="text-xs text-text-muted">{text.contactDirect.text}</p>
-          <button type="submit" class="cta-button">{text.submitButton}</button>
-        </div>
-      </form>
+      </FormWeb3Eco>
       <p class="text-accent mt-4 text-sm flex gap-4">
         <span class="select-all">+33 7 81 33 97 68</span>
         <span class="select-all">josshanel@gmail.com</span>
