@@ -73,7 +73,6 @@ function formatDate(date: Date): string {
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {text.values.map((value, index) => (
             <div class="skill-card-home p-6 scale-up" data-index={index}>
-              <div class="skill-card-home-bar" aria-hidden="true"></div>
               <div class="flex justify-between items-start mb-3 mt-2">
                 <h2 class="text-base font-bold uppercase tracking-wide text-accent">{value.title}</h2>
                 <Icon name={value.icon} size={28} class="text-light shrink-0 -mt-2 -mr-2" />

@@ -34,21 +34,24 @@ const getLocalizedPath = (langCode: string): string => {
 ---
 
 <div class="relative inline-block text-left">
-  <div class="flex items-center gap-2">
-    {languages.map((lang, index) => (
-      <>
-        <a 
-          href={getLocalizedPath(lang.code)} 
-          class={`text-sm transition-colors nav-link ${lang.code === currentLang ? 'text-accent hover:text-accent-hover font-medium' : 'text-text-muted '}`}
-          onclick={`localStorage.setItem('preferredLanguage', '${lang.code}')`}
-        >
-          {lang.label}
-        </a>
-        
-        {index < languages.length - 1 && (
-          <span class="text-text-muted">|</span>
-        )}
-      </>
+  <div class="flex items-center">
+    {languages.map((lang) => (
+      <a
+        href={getLocalizedPath(lang.code)}
+        class={`text-sm transition-colors nav-link ${lang.code === currentLang ? 'text-accent hover:text-accent-hover font-medium' : 'text-text-muted '}`}
+        onclick={`localStorage.setItem('preferredLanguage', '${lang.code}')`}
+      >
+        {lang.label}
+      </a>
     ))}
   </div>
+
+<style>
+  a:not(:last-child)::after {
+    content: "|";
+    color: var(--color-text-muted);
+    font-weight: normal;
+    padding: 0 0.5rem;
+  }
+</style>
 </div>
