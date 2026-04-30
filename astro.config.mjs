@@ -7,6 +7,9 @@ import sitemap from '@astrojs/sitemap';
 export default defineConfig({
   trailingSlash: "always",
   site: 'https://jkw.ovh',
+  build: {
+    inlineStylesheets: 'always',
+  },
   vite: {
     plugins: [tailwindcss()]
   },
