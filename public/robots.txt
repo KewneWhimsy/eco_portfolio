@@ -7,5 +7,23 @@ Allow: /fr/
 Allow: /en/
 Allow: /de/
 
-# Sitemap (à ajouter quand vous en aurez un)
-# Sitemap: https://votredomaine.com/sitemap.xml
+Sitemap: https://jkw.ovh/sitemap-index.xml
+
+# Bloquer les robots IA d'entrainement
+User-agent: GPTBot
+Disallow: /
+
+User-agent: ChatGPT-User
+Disallow: /
+
+User-agent: CCBot
+Disallow: /
+
+# Optimiser les bots de recherche
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 0
+
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1

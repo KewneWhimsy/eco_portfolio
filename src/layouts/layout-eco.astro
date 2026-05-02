@@ -10,9 +10,10 @@ export interface Props {
   description: string;
   lang: string;
   isEco?: boolean;
+  image?: string;
 }
 
-const { title, description, lang: requestedLang = 'fr', isEco } = Astro.props;
+const { title, description, lang: requestedLang = 'fr', isEco, image } = Astro.props;
 
 const langAttributes = {
   fr: { htmlLang: 'fr', ogLocale: 'fr_FR' },
@@ -22,6 +23,27 @@ const langAttributes = {
 
 const lang = requestedLang in langAttributes ? requestedLang : 'fr';
 const { htmlLang, ogLocale } = langAttributes[lang as keyof typeof langAttributes];
+
+// Les pages /eco/ pointent vers leur équivalent standard pour éviter le contenu dupliqué
+const ecoPath = Astro.url.pathname.replace(/\/eco(\/|$)/, '$1');
+const canonicalURL = new URL(ecoPath || '/', Astro.site ?? new URL('https://jkw.ovh/')).href;
+const siteUrl = Astro.site ?? new URL('https://jkw.ovh/');
+const ogImage = new URL(image ?? '/og-image.jpg', siteUrl).href;
+
+const jobTitles = {
+  fr: 'Développeur Web Full Stack',
+  en: 'Full Stack Web Developer',
+  de: 'Full-Stack-Webentwickler',
+};
+
+const personSchema = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Josselin HANEL",
+  "jobTitle": jobTitles[lang as keyof typeof jobTitles],
+  "url": new URL(`/${lang}/`, siteUrl).href,
+  "sameAs": ["https://github.com/KewneWhimsy", "https://www.instagram.com/whimsyjoss/"]
+});
 ---
 
 <!doctype html>
@@ -31,13 +53,26 @@ const { htmlLang, ogLocale } = langAttributes[lang as keyof typeof langAttribute
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
     <meta name="author" content="Josselin HANEL" />
+    <link rel="canonical" href={canonicalURL} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
     <meta property="og:locale" content={ogLocale} />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:width" content="1440" />
+    <meta property="og:image:height" content="1440" />
+    <meta property="og:site_name" content="Josselin HANEL" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
     <link rel="icon" href="/jpointr.png" type="image/png" />
     <HreflangLinks />
     <title>{title}</title>
+    <script type="application/ld+json" set:html={personSchema} />
+    <slot name="head" />
     <!-- Pas de ClientRouter, pas de scripts d'animation -->
   </head>
   <body class="min-h-screen flex flex-col">
