@@ -34,13 +34,63 @@ const jobTitles = {
   de: 'Full-Stack-Webentwickler',
 };
 
-const personSchema = JSON.stringify({
+const serviceNames = {
+  fr: ['Création de sites web', 'Applications web sur mesure', 'Boutiques en ligne', 'Audit et optimisation web'],
+  en: ['Website creation', 'Custom web applications', 'Online stores', 'Web audit and optimization'],
+  de: ['Website-Erstellung', 'Maßgeschneiderte Webanwendungen', 'Online-Shops', 'Web-Audit und Optimierung'],
+};
+
+const personUrl = new URL(`/${lang}/`, siteUrl).href;
+
+const structuredData = JSON.stringify({
   "@context": "https://schema.org",
-  "@type": "Person",
-  "name": "Josselin HANEL",
-  "jobTitle": jobTitles[lang as keyof typeof jobTitles],
-  "url": new URL(`/${lang}/`, siteUrl).href,
-  "sameAs": ["https://github.com/KewneWhimsy", "https://www.instagram.com/whimsyjoss/"]
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": `${siteUrl}#person`,
+      "name": "Josselin HANEL",
+      "jobTitle": jobTitles[lang as keyof typeof jobTitles],
+      "url": personUrl,
+      "sameAs": [
+        "https://github.com/KewneWhimsy",
+        "https://www.instagram.com/whimsyjoss/"
+      ]
+    },
+    {
+      "@type": "LocalBusiness",
+      "@id": `${siteUrl}#business`,
+      "name": "Josselin HANEL - Développeur Web",
+      "url": personUrl,
+      "telephone": "+33781339768",
+      "email": "josshanel@gmail.com",
+      "founder": { "@id": `${siteUrl}#person` },
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Rennes",
+        "addressRegion": "Bretagne",
+        "addressCountry": "FR"
+      },
+      "areaServed": [
+        { "@type": "City", "name": "Rennes" },
+        { "@type": "City", "name": "Quimper" },
+        { "@type": "City", "name": "Paris" },
+        { "@type": "City", "name": "Berlin" },
+        { "@type": "Country", "name": "France" }
+      ],
+      "priceRange": "55€/h",
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": lang === 'fr' ? "Services web" : lang === 'en' ? "Web services" : "Web-Dienstleistungen",
+        "itemListElement": serviceNames[lang as keyof typeof serviceNames].map(name => ({
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": name
+          }
+        }))
+      }
+    }
+  ]
 });
 ---
 
@@ -69,7 +119,7 @@ const personSchema = JSON.stringify({
     <link rel="icon" href="/jpointr.png" type="image/png" />
     <HreflangLinks />
     <title>{title}</title>
-    <script type="application/ld+json" set:html={personSchema} />
+    <script type="application/ld+json" set:html={structuredData} />
     <slot name="head" />
     <ClientRouter />
 
