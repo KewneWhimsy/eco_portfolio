@@ -20,7 +20,6 @@ collaborators:
       en: "Audiovisual creator"
       de: "Audiovisuelle Gestalterin"
 order: 1
-status: "completed"
 ---
 
 ## Le projet en quelques mots

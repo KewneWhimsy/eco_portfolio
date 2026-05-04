@@ -103,16 +103,22 @@ const recentPosts = allPosts
           return (
             <div class="pb-4 border-b border-accent/10">
               <div class="flex items-center gap-3 mb-2">
-                <a href={`/${lang}/${project.data.slug}/eco/`} class="block aspect-video w-32 shrink-0 rounded overflow-hidden">
-                  <Picture
-                    src={heroImage}
-                    widths={[128, 256]}
-                    sizes="128px"
-                    formats={['avif', 'webp']}
-                    alt={project.data.title[lang]}
-                    class="w-full h-full object-cover"
-                    loading="lazy"
-                  />
+                <a href={`/${lang}/${project.data.slug}/eco/`} class="block aspect-video w-32 shrink-0 rounded overflow-hidden bg-secondary bg-opacity-30 flex items-center justify-center text-text-muted">
+                  {heroImage ? (
+                    <Picture
+                      src={heroImage}
+                      widths={[128, 256]}
+                      sizes="128px"
+                      formats={['avif', 'webp']}
+                      alt={project.data.title[lang]}
+                      class="w-full h-full object-cover"
+                      loading="lazy"
+                    />
+                  ) : (
+                    <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 20 20">
+                      <path fill-rule="evenodd" d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z" clip-rule="evenodd" />
+                    </svg>
+                  )}
                 </a>
                 <a href={`/${lang}/${project.data.slug}/eco/`} class="text-link font-medium">{project.data.title[lang]}</a>
               </div>

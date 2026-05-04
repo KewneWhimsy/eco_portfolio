@@ -23,7 +23,6 @@ const projectsCollection = defineCollection({
       url: z.string().url().optional(),
     })).optional(),
     order: z.number(),
-    status: z.enum(['completed', 'in-progress', 'on-hold']).default('completed'),
   }),
 });
 

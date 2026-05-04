@@ -15,7 +15,6 @@ links:
   githubFrontend: "https://github.com/KewneWhimsy/esportify-f"
   githubBackend: "https://github.com/KewneWhimsy/esportify-b"
 order: 2
-status: "completed"
 ---
 
 ## Le projet en quelques mots

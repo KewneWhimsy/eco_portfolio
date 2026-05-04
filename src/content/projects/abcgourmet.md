@@ -14,7 +14,6 @@ tech: ["Astro", "TailwindCSS", "TypeScript", "Cloudflare Workers"]
 links:
   website: "https://abcgourmet.fr/"
 order: 5
-status: "completed"
 ---
 
 ## Le projet en quelques mots

@@ -21,7 +21,6 @@ collaborators:
       de: "Illustratorin"
     url: "https://mariloupettens.myportfolio.com/"
 order: 4
-status: "completed"
 ---
 
 ## Le projet en quelques mots

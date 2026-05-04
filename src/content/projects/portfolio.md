@@ -11,10 +11,7 @@ description:
 year: 2025
 featured: true
 tech: ["Astro", "TailwindCSS", "TypeScript"]
-links:
-  github: "https://github.com/KewneWhimsy/eco_portfolio"
 order: 3
-status: "completed"
 ---
 
 ## Le projet en quelques mots
