@@ -143,7 +143,7 @@ function formatDate(date: Date): string {
                       sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                       formats={['avif', 'webp']}
                       alt={project.data.title[lang]}
-                      class="absolute inset-0 w-full h-full object-cover"
+                      class={`absolute inset-0 w-full h-full ${project.data.logoImage ? 'object-contain p-6' : 'object-cover'}`} {/* TODO: logoImage temporaire */}
                       loading="lazy"
                     />
                   ) : (

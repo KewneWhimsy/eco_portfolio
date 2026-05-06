@@ -198,14 +198,15 @@ const collaborators = project.data.collaborators || [];
     </header>
 
     <!-- Image principale du projet -->
+    <!-- TODO: logoImage temporaire — simplifier quand le projet aura de vraies captures -->
     {heroImage && (
-      <div class="mb-10 bg-secondary bg-opacity-30 p-4 rounded-lg">
+      <div class={`mb-10 bg-secondary bg-opacity-30 p-4 rounded-lg flex ${project.data.logoImage ? 'justify-center' : ''}`}>
         <Picture
           src={heroImage}
           widths={[800, 1200, 1600]}
           formats={["avif", "webp", "jpg"]}
           alt={project.data.title[lang]}
-          class="w-full rounded-lg"
+          class={project.data.logoImage ? 'max-h-48 w-auto rounded-lg' : 'w-full rounded-lg'}
           transition:name={`project-image-${project.data.slug}`}
         />
       </div>

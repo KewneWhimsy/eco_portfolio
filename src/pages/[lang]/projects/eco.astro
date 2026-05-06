@@ -54,7 +54,7 @@ const projectsWithImages = await Promise.all(
                       widths={[600]}
                       formats={['avif', 'webp']}
                       alt={project.data.title[lang]}
-                      class="w-full rounded-md hover:opacity-80 transition-opacity"
+                      class={`w-full rounded-md hover:opacity-80 transition-opacity ${project.data.logoImage ? 'object-contain max-h-40' : ''}`} {/* TODO: logoImage temporaire */}
                       loading="lazy"
                     />
                   ) : (

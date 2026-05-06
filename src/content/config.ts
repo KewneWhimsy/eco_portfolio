@@ -23,6 +23,7 @@ const projectsCollection = defineCollection({
       url: z.string().url().optional(),
     })).optional(),
     order: z.number(),
+    logoImage: z.boolean().default(false), // TODO: temporaire (projet 142 uniquement), à retirer quand le projet sera terminé et aura de vraies captures
   }),
 });
 

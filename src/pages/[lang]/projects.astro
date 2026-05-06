@@ -96,7 +96,7 @@ const t = content[lang] || content.fr;
                   sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                   formats={["avif", "webp", "jpg"]}
                   alt={project.data.title[lang]}
-                  class="w-full h-full object-cover"
+                  class={`w-full h-full ${project.data.logoImage ? 'object-contain p-6' : 'object-cover'}`} {/* TODO: logoImage temporaire */}
                   loading="lazy"
                   transition:name={`project-image-${project.data.slug}`}
                 />
