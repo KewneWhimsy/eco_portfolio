@@ -134,6 +134,31 @@ const structuredData = JSON.stringify({
       document.addEventListener('astro:page-load', updateNavigationLinks);
       document.addEventListener('DOMContentLoaded', updateNavigationLinks);
     </script>
+
+    <script>
+      document.addEventListener('astro:page-load', () => {
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              if (entry.target.classList.contains('fade-in')) {
+                entry.target.classList.remove('opacity-0', 'translate-y-6');
+              }
+              const scaleUpBlocks = entry.target.querySelectorAll('.scale-up');
+              if (scaleUpBlocks.length > 0) {
+                scaleUpBlocks.forEach((block, index) => {
+                  setTimeout(() => block.classList.add('visible'), index * 200);
+                });
+              }
+              observer.unobserve(entry.target);
+            }
+          });
+        }, { rootMargin: '0px 0px -5% 0px', threshold: 0.1 });
+
+        document.querySelectorAll('.fade-in, section.py-4.mb-12').forEach(section => {
+          observer.observe(section);
+        });
+      });
+    </script>
   </head>
   <body class="min-h-screen flex flex-col">
     <header class="mx-2 md:mx-4">

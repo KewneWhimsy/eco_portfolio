@@ -143,7 +143,7 @@ function formatDate(date: Date): string {
                       sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                       formats={['avif', 'webp']}
                       alt={project.data.title[lang]}
-                      class={`absolute inset-0 w-full h-full ${project.data.logoImage ? 'object-contain p-6' : 'object-cover'}`} {/* TODO: logoImage temporaire */}
+                      class={`absolute inset-0 w-full h-full ${project.data.logoImage ? 'object-contain p-6' : 'object-cover'}`}
                       loading="lazy"
                     />
                   ) : (
@@ -187,31 +187,6 @@ function formatDate(date: Date): string {
       <CtaDispo transition-persist="cta-dispo" />
     </section>
   </div>
-
-  <script>
-    document.addEventListener('astro:page-load', () => {
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            if (entry.target.classList.contains('fade-in')) {
-              entry.target.classList.remove('opacity-0', 'translate-y-6');
-            }
-            const scaleUpBlocks = entry.target.querySelectorAll('.scale-up');
-            if (scaleUpBlocks.length > 0) {
-              scaleUpBlocks.forEach((block, index) => {
-                setTimeout(() => block.classList.add('visible'), index * 200);
-              });
-            }
-            observer.unobserve(entry.target);
-          }
-        });
-      }, { rootMargin: '0px 0px -5% 0px', threshold: 0.1 });
-
-      document.querySelectorAll('.fade-in, section.py-4.mb-12').forEach(section => {
-        observer.observe(section);
-      });
-    });
-  </script>
 
   <style>
     .skill-card-home {
