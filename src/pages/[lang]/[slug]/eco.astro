@@ -96,13 +96,13 @@ const nextProject = idx < sorted.length - 1 ? sorted[idx + 1] : null;
     </header>
 
     {heroImage && (
-      <div class="mb-8 text-center">
+      <div class={`mb-8 ${project.data.logoImage ? 'flex justify-center bg-secondary/30 rounded-lg p-4' : ''}`}>
         <Picture
           src={heroImage}
           widths={[400, 600]}
           formats={['avif', 'webp']}
           alt={project.data.title[lang]}
-          class="max-w-md mx-auto rounded border border-accent/25"
+          class={project.data.logoImage ? 'max-h-48 w-auto rounded border border-accent/25' : 'max-w-md mx-auto rounded border border-accent/25'}
           loading="lazy"
         />
       </div>

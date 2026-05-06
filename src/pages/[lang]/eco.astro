@@ -103,7 +103,7 @@ const recentPosts = allPosts
           return (
             <div class="pb-4 border-b border-accent/10">
               <div class="flex items-center gap-3 mb-2">
-                <a href={`/${lang}/${project.data.slug}/eco/`} class="block aspect-video w-32 shrink-0 rounded overflow-hidden bg-secondary bg-opacity-30 flex items-center justify-center text-text-muted">
+                <a href={`/${lang}/${project.data.slug}/eco/`} class={`block w-32 shrink-0 rounded overflow-hidden bg-secondary bg-opacity-30 flex items-center justify-center text-text-muted ${project.data.logoImage ? 'p-2' : 'aspect-video'}`}>
                   {heroImage ? (
                     <Picture
                       src={heroImage}
@@ -111,7 +111,7 @@ const recentPosts = allPosts
                       sizes="128px"
                       formats={['avif', 'webp']}
                       alt={project.data.title[lang]}
-                      class="w-full h-full object-cover"
+                      class={project.data.logoImage ? 'max-h-20 w-auto' : 'w-full h-full object-cover'}
                       loading="lazy"
                     />
                   ) : (
