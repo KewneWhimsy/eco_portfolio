@@ -7,7 +7,7 @@ Allow: /fr/
 Allow: /en/
 Allow: /de/
 
-Sitemap: https://jkw.ovh/sitemap-index.xml
+Sitemap: https://jkw.ovh/sitemap.xml
 
 # Bloquer les robots IA d'entrainement
 User-agent: GPTBot
