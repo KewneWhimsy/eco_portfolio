@@ -8,7 +8,6 @@ description:
   fr: "Site web multilingue pour ABC GOURMET, spécialisée dans le conseil stratégique et l'accompagnement opérationnel d'entreprises. Formations professionnelles et workshops inclus."
   en: "Multilingual website for ABC GOURMET, specialized in strategic consulting and operational support for businesses. Professional training and workshops included."
   de: "Mehrsprachige Website für ABC GOURMET, spezialisiert auf strategische Beratung und operative Unterstützung für Unternehmen. Berufliche Weiterbildung und Workshops inklusive."
-year: 2025
 featured: true
 tech: ["Astro", "TailwindCSS", "TypeScript", "Cloudflare Workers"]
 links:

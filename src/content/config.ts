@@ -8,7 +8,6 @@ const projectsCollection = defineCollection({
     title: z.record(z.string()),
     description: z.record(z.string()),
     slug: z.string(),
-    year: z.number(),
     featured: z.boolean().default(false),
     tech: z.array(z.string()),
     links: z.object({

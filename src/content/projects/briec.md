@@ -8,7 +8,6 @@ description:
   fr: "Site vitrine pour l'association Briec2000 - Une plateforme moderne pour promouvoir les événements communautaires et culturels de Briec-de-l'Odet."
   en: "Showcase website for Briec2000 association - A modern platform to promote community and cultural events in Briec-de-l'Odet."
   de: "Showcase-Website für den Verein Briec2000 - Eine moderne Plattform zur Förderung von Gemeinschafts- und Kulturveranstaltungen in Briec-de-l'Odet."
-year: 2025
 featured: true
 tech: ["Astro", "Tailwind CSS", "TypeScript"]
 links:

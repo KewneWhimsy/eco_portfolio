@@ -8,7 +8,6 @@ description:
   fr: "Présentation de mon portfolio multilingue avec mode éco, conçu selon les principes de l'éco-conception web."
   en: "Presentation of my multilingual portfolio with eco mode, designed according to web eco-design principles."
   de: "Präsentation meines mehrsprachigen Portfolios mit Öko-Modus, entwickelt nach den Prinzipien des Web-Öko-Designs."
-year: 2025
 featured: true
 tech: ["Astro", "TailwindCSS", "TypeScript"]
 order: 3

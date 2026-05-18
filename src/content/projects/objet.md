@@ -8,7 +8,6 @@ description:
   fr: "Projet de création du site web de l'Objethèque de Cornouaille - Un projet collaboratif et communautaire pour promouvoir le partage d'objets."
   en: "Creation project for the Cornouaille Object Library website - A collaborative and community project to promote object sharing."
   de: "Projekt zur Erstellung der Website der Objektbibliothek Cornouaille - Ein kollaboratives Gemeinschaftsprojekt zur Förderung des Objektteilens."
-year: 2024
 featured: true
 tech: ["Astro", "CSS", "TypeScript", "Alpine.js", "GitHub Actions", "API HelloAsso"]
 links:

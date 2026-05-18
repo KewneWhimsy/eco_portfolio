@@ -8,7 +8,6 @@ description:
   fr: "Plateforme de gestion d'événements e-sport intégrant un système de chat en temps réel via WebSocket et HTMX."
   en: "E-sport event management platform with a real-time chat system via WebSocket and HTMX."
   de: "E-Sport-Eventmanagement-Plattform mit einem Echtzeit-Chat-System über WebSocket und HTMX."
-year: 2025
 featured: true
 tech: ["Astro", "Tailwind", "Alpine.js", "HTMX", "WebSocket", "Express", "PostgreSQL", "MongoDB"]
 links:
