@@ -15,10 +15,12 @@ export const GET: APIRoute = async () => {
   const entries: Entry[] = [];
 
   function altLinks(path: string) {
-    return langs.map((l) => ({
+    const links = langs.map((l) => ({
       hreflang: langCode[l],
       href: path ? `${site}/${l}/${path}/` : `${site}/${l}/`,
     }));
+    links.push({ hreflang: 'x-default', href: path ? `${site}/fr/${path}/` : `${site}/fr/` });
+    return links;
   }
 
   for (const lang of langs) {
@@ -31,13 +33,19 @@ export const GET: APIRoute = async () => {
     for (const post of blogPosts) {
       entries.push({
         loc: `${site}/${lang}/blog/${post.data.slug}/`,
-        alternates: langs.map((l) => ({ hreflang: langCode[l], href: `${site}/${l}/blog/${post.data.slug}/` })),
+        alternates: [
+          ...langs.map((l) => ({ hreflang: langCode[l], href: `${site}/${l}/blog/${post.data.slug}/` })),
+          { hreflang: 'x-default', href: `${site}/fr/blog/${post.data.slug}/` },
+        ],
       });
     }
     for (const project of projects) {
       entries.push({
         loc: `${site}/${lang}/${project.data.slug}/`,
-        alternates: langs.map((l) => ({ hreflang: langCode[l], href: `${site}/${l}/${project.data.slug}/` })),
+        alternates: [
+          ...langs.map((l) => ({ hreflang: langCode[l], href: `${site}/${l}/${project.data.slug}/` })),
+          { hreflang: 'x-default', href: `${site}/fr/${project.data.slug}/` },
+        ],
       });
     }
   }
