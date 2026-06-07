@@ -23,71 +23,123 @@ const {
   closeLabel = 'Fermer',
 } = Astro.props;
 
-const imageClass = `${contain ? 'max-h-64 w-auto' : 'w-full max-h-[32rem] object-contain'} rounded-lg select-none cursor-zoom-in group-[.is-fullscreen]:w-[92vw] group-[.is-fullscreen]:h-[90vh] group-[.is-fullscreen]:max-w-[92vw] group-[.is-fullscreen]:max-h-[90vh] group-[.is-fullscreen]:rounded-none group-[.is-fullscreen]:object-contain group-[.is-fullscreen]:cursor-zoom-out`;
+const imageClass = `${contain ? 'max-h-64 w-auto' : 'w-full max-h-[32rem] object-contain'} rounded-lg cursor-zoom-in group-[:popover-open]:w-[92vw] group-[:popover-open]:h-[90vh] group-[:popover-open]:max-w-none group-[:popover-open]:max-h-none group-[:popover-open]:object-contain group-[:popover-open]:cursor-zoom-out`;
 ---
 
 {images.length > 0 && (
-  <div
-    class="project-carousel group relative mb-10 [&.is-fullscreen]:fixed [&.is-fullscreen]:inset-0 [&.is-fullscreen]:z-[100] [&.is-fullscreen]:m-0 [&.is-fullscreen]:flex [&.is-fullscreen]:items-center [&.is-fullscreen]:bg-black/92"
-    data-carousel
-  >
-    <div
-      class="carousel-viewport overflow-hidden rounded-lg bg-secondary bg-opacity-30 group-[.is-fullscreen]:h-full group-[.is-fullscreen]:w-full group-[.is-fullscreen]:rounded-none group-[.is-fullscreen]:bg-transparent"
-      data-viewport
-    >
-      <div
-        class="carousel-track flex transition-transform duration-300 ease-in-out touch-pan-y group-[.is-fullscreen]:h-full"
-        data-track
-      >
-        {images.map((image, index) => (
-          <div class="carousel-slide w-full shrink-0 flex items-center justify-center p-4">
-            <Picture
-              src={image}
-              widths={[400, 800, 1200, 1600]}
-              sizes="(max-width: 1024px) 100vw, 1024px"
-              formats={["avif", "webp", "jpg"]}
-              alt={`${alt} ${index + 1}`}
-              class={imageClass}
-              loading={index === 0 ? 'eager' : 'lazy'}
-              transition:name={index === 0 ? transitionName : undefined}
-              data-zoomable
-            />
+  <div class="project-carousel-wrapper">
+    <div class="project-carousel mb-10" data-carousel>
+      <div class="carousel-stage relative" data-stage>
+        <div
+          class="carousel-viewport overflow-hidden rounded-lg bg-secondary bg-opacity-30"
+          data-viewport
+        >
+          <div
+            class="carousel-track flex transition-transform duration-300 ease-in-out touch-pan-y"
+            data-track
+          >
+            {images.map((image, index) => (
+              <div class="carousel-slide w-full shrink-0 flex items-center justify-center p-4">
+                <Picture
+                  src={image}
+                  widths={[800, 1600]}
+                  sizes="(max-width: 1024px) 100vw, 1024px"
+                  formats={["avif", "webp"]}
+                  alt={`${alt} ${index + 1}`}
+                  class={imageClass}
+                  loading={index === 0 ? 'eager' : 'lazy'}
+                  transition:name={index === 0 ? transitionName : undefined}
+                />
+              </div>
+            ))}
           </div>
-        ))}
+        </div>
+
+        {images.length > 1 && (
+          <>
+            <button
+              type="button"
+              class="absolute top-1/2 left-3 -translate-y-1/2 flex h-10 w-10 items-center justify-center rounded-full border border-(--color-border) bg-(--color-primary) text-(--color-accent) opacity-[0.85] transition duration-200 hover:opacity-100 hover:bg-(--color-accent-light) disabled:opacity-30 disabled:pointer-events-none"
+              data-prev
+              aria-label={prevLabel}
+            >
+              <Icon name="chevron-left" size={22} />
+            </button>
+            <button
+              type="button"
+              class="absolute top-1/2 right-3 -translate-y-1/2 flex h-10 w-10 items-center justify-center rounded-full border border-(--color-border) bg-(--color-primary) text-(--color-accent) opacity-[0.85] transition duration-200 hover:opacity-100 hover:bg-(--color-accent-light) disabled:opacity-30 disabled:pointer-events-none"
+              data-next
+              aria-label={nextLabel}
+            >
+              <Icon name="chevron-right" size={22} />
+            </button>
+          </>
+        )}
       </div>
     </div>
 
-    <button
-      type="button"
-      class="hidden absolute top-4 right-4 z-10 h-9 w-9 items-center justify-center rounded-full border border-white/30 bg-white/10 text-white transition duration-200 hover:bg-white/20 group-[.is-fullscreen]:flex"
-      data-close
-      aria-label={closeLabel}
-    >
-      <Icon name="close" size={20} />
-    </button>
-
-    {images.length > 1 && (
-      <>
-        <button
-          type="button"
-          class="absolute top-1/2 left-3 -translate-y-1/2 flex h-10 w-10 items-center justify-center rounded-full border border-(--color-border) bg-(--color-primary) text-(--color-accent) opacity-[0.85] transition duration-200 hover:opacity-100 hover:bg-(--color-accent-light) disabled:opacity-30 disabled:pointer-events-none group-[.is-fullscreen]:border-white/30 group-[.is-fullscreen]:bg-white/10 group-[.is-fullscreen]:text-white group-[.is-fullscreen]:hover:bg-white/20"
-          data-prev
-          aria-label={prevLabel}
-        >
-          <Icon name="chevron-left" size={22} />
-        </button>
-        <button
-          type="button"
-          class="absolute top-1/2 right-3 -translate-y-1/2 flex h-10 w-10 items-center justify-center rounded-full border border-(--color-border) bg-(--color-primary) text-(--color-accent) opacity-[0.85] transition duration-200 hover:opacity-100 hover:bg-(--color-accent-light) disabled:opacity-30 disabled:pointer-events-none group-[.is-fullscreen]:border-white/30 group-[.is-fullscreen]:bg-white/10 group-[.is-fullscreen]:text-white group-[.is-fullscreen]:hover:bg-white/20"
-          data-next
-          aria-label={nextLabel}
-        >
-          <Icon name="chevron-right" size={22} />
-        </button>
-      </>
-    )}
+    <!-- Lightbox plein écran : popover natif, fermeture gérée par le navigateur (Échap, clic extérieur) -->
+    <div popover tabindex="-1" data-lightbox class="lightbox group">
+      <button
+        type="button"
+        class="absolute top-4 right-4 z-10 flex h-9 w-9 items-center justify-center rounded-full border border-white/30 bg-white/10 text-white transition duration-200 hover:bg-white/20"
+        data-close
+        aria-label={closeLabel}
+      >
+        <Icon name="close" size={20} />
+      </button>
+    </div>
   </div>
 )}
+
+<style>
+  .lightbox {
+    position: fixed;
+    inset: 0;
+    margin: 0;
+    width: 100vw;
+    height: 100vh;
+    max-width: none;
+    max-height: none;
+    padding: 0;
+    border: 0;
+    background: rgb(0 0 0 / 0.92);
+    opacity: 0;
+    transition: display 0.2s allow-discrete, opacity 0.2s ease;
+    transition-behavior: allow-discrete;
+  }
+
+  .lightbox:popover-open {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 1;
+
+    @starting-style {
+      opacity: 0;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .lightbox {
+      transition: display 0.2s allow-discrete, opacity 0.2s ease;
+    }
+  }
+
+  /* Le stage est déplacé dans la lightbox à l'ouverture : il en occupe alors tout l'espace */
+  .lightbox:popover-open .carousel-stage,
+  .lightbox:popover-open .carousel-viewport,
+  .lightbox:popover-open .carousel-track,
+  .lightbox:popover-open .carousel-slide {
+    width: 100%;
+    height: 100%;
+  }
+
+  .lightbox:popover-open .carousel-viewport {
+    background: transparent;
+    border-radius: 0;
+  }
+</style>
 
 <script>
   function initCarousels() {
@@ -95,14 +147,18 @@ const imageClass = `${contain ? 'max-h-64 w-auto' : 'w-full max-h-[32rem] object
       if (carousel.dataset.carouselReady) return;
       carousel.dataset.carouselReady = 'true';
 
+      const wrapper = carousel.parentElement;
+      const lightbox = wrapper?.querySelector<HTMLElement>('[data-lightbox]');
+      const stage = carousel.querySelector<HTMLElement>('[data-stage]');
       const viewport = carousel.querySelector<HTMLElement>('[data-viewport]');
       const track = carousel.querySelector<HTMLElement>('[data-track]');
       const slides = Array.from(carousel.querySelectorAll<HTMLElement>('.carousel-slide'));
       const prevBtn = carousel.querySelector<HTMLButtonElement>('[data-prev]');
       const nextBtn = carousel.querySelector<HTMLButtonElement>('[data-next]');
-      const closeBtn = carousel.querySelector<HTMLElement>('[data-close]');
-      if (!viewport || !track || slides.length === 0) return;
+      const closeBtn = lightbox?.querySelector<HTMLElement>('[data-close]');
+      if (!lightbox || !stage || !viewport || !track || slides.length === 0) return;
 
+      const stageHome = carousel;
       let currentIndex = 0;
 
       const updateTrack = () => {
@@ -116,29 +172,35 @@ const imageClass = `${contain ? 'max-h-64 w-auto' : 'w-full max-h-[32rem] object
         updateTrack();
       };
 
-      const setFullscreen = (open: boolean) => {
-        carousel.classList.toggle('is-fullscreen', open);
-        document.documentElement.classList.toggle('overflow-hidden', open);
+      const openLightbox = () => {
+        lightbox.append(stage);
+        (lightbox as any).showPopover();
+        setTimeout(() => lightbox.focus(), 50);
       };
 
-      slides.forEach((slide) => {
-        slide.querySelector('img')?.addEventListener('click', () => {
-          if (!carousel.classList.contains('is-fullscreen')) setFullscreen(true);
-        });
-        slide.addEventListener('click', (event) => {
-          if (carousel.classList.contains('is-fullscreen') && event.target === slide) {
-            setFullscreen(false);
-          }
-        });
+      // Le popover natif gère Échap et le clic en dehors ; on se contente de
+      // remettre le carrousel à sa place quand il se ferme, peu importe la cause.
+      lightbox.addEventListener('toggle', (event: any) => {
+        if (event.newState === 'closed') stageHome.append(stage);
       });
 
-      closeBtn?.addEventListener('click', () => setFullscreen(false));
+      stage.addEventListener('click', (event) => {
+        const target = event.target as HTMLElement;
+        if (target.closest('button')) return;
 
-      document.addEventListener('keydown', (event) => {
-        if (!carousel.classList.contains('is-fullscreen')) return;
-        if (event.key === 'Escape') setFullscreen(false);
-        else if (event.key === 'ArrowLeft') goTo(currentIndex - 1);
-        else if (event.key === 'ArrowRight') goTo(currentIndex + 1);
+        const isOpen = lightbox.matches(':popover-open');
+        if (target.tagName === 'IMG') {
+          isOpen ? (lightbox as any).hidePopover() : openLightbox();
+        } else if (isOpen) {
+          (lightbox as any).hidePopover();
+        }
+      });
+
+      closeBtn?.addEventListener('click', () => (lightbox as any).hidePopover());
+
+      lightbox.addEventListener('keydown', (event: KeyboardEvent) => {
+        if (event.key === 'ArrowLeft') { event.preventDefault(); goTo(currentIndex - 1); }
+        else if (event.key === 'ArrowRight') { event.preventDefault(); goTo(currentIndex + 1); }
       });
 
       prevBtn?.addEventListener('click', () => goTo(currentIndex - 1));
