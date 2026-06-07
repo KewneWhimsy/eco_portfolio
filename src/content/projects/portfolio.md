@@ -8,7 +8,7 @@ description:
   fr: "Présentation de mon portfolio multilingue : simple, rapide, avec un mode éco pensé pour les connexions lentes."
   en: "A look at my multilingual portfolio: simple, fast, with an eco mode built for slow connections."
   de: "Vorstellung meines mehrsprachigen Portfolios: einfach, schnell, mit einem Öko-Modus für langsame Verbindungen."
-featured: true
+featured: false
 tech: ["Astro", "TailwindCSS", "TypeScript"]
 order: 3
 ---

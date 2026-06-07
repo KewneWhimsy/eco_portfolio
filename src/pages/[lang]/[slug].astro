@@ -10,7 +10,7 @@ import { marked } from 'marked';
 type Lang = 'fr' | 'en' | 'de';
 
 export async function getStaticPaths() {
-  const projects = await getCollection("projects");
+  const projects = await getCollection("projects", (p) => p.data.featured);
   const langs = ["fr", "en", "de"];
 
   return langs.flatMap((lang) =>
@@ -139,7 +139,7 @@ const navContent = {
 const t = navContent[lang as keyof typeof navContent] || navContent.fr;
 
 // Navigation entre projets - CORRIGÉE
-const allProjects = await getCollection("projects");
+const allProjects = await getCollection("projects", (p) => p.data.featured);
 // Trier par ordre chronologique (1 = plus ancien, 3 = plus récent)
 const sortedProjects = allProjects.sort((a, b) => a.data.order - b.data.order);
 const currentIndex = sortedProjects.findIndex(p => p.data.slug === project.data.slug);

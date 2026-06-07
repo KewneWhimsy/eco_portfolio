@@ -11,7 +11,7 @@ import { marked } from 'marked';
 type Lang = 'fr' | 'en' | 'de';
 
 export async function getStaticPaths() {
-  const projects = await getCollection('projects');
+  const projects = await getCollection('projects', (p) => p.data.featured);
   const langs = ['fr', 'en', 'de'];
   return langs.flatMap(lang =>
     projects.map(project => ({
@@ -53,7 +53,7 @@ const collaborators = project.data.collaborators || [];
 const heroImage = await loadHeroImageBySlug(project.data.slug);
 
 // Nav entre projets
-const allProjects = await getCollection('projects');
+const allProjects = await getCollection('projects', (p) => p.data.featured);
 const sorted = allProjects.sort((a, b) => a.data.order - b.data.order);
 const idx = sorted.findIndex(p => p.data.slug === project.data.slug);
 const prevProject = idx > 0 ? sorted[idx - 1] : null;

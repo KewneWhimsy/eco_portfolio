@@ -18,7 +18,7 @@ const lang = Astro.params.lang as 'fr' | 'en' | 'de';
 const text = t(home, lang);
 
 // Projets récents (2 derniers)
-const allProjects = await getCollection('projects');
+const allProjects = await getCollection('projects', (p) => p.data.featured);
 const recentProjects = allProjects
   .sort((a, b) => b.data.order - a.data.order)
   .slice(0, 2);

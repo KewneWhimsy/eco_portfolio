@@ -7,7 +7,7 @@ export const GET: APIRoute = async () => {
   const langCode: Record<string, string> = { fr: "fr-FR", en: "en-US", de: "de-DE" };
 
   const blogPosts = await getCollection("blog", (p) => p.data.published);
-  const projects = await getCollection("projects");
+  const projects = await getCollection("projects", (p) => p.data.featured);
 
   const staticPages = ["", "about", "blog", "contact", "eco", "legal", "network", "privacy", "projects", "services"];
 

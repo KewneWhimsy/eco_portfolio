@@ -32,7 +32,7 @@ Site vitrine pour l'Objecthèque de Cornouaille, une association qui prête des 
 - **Approche collaborative** : Travail en binôme avec une graphiste pour l'identité visuelle
 - **Mode sombre adaptatif** : S'adapte automatiquement aux préférences de l'appareil
 
-L'objectif était de créer une présence web moderne sans perturber leurs habitudes de travail.
+C'était mon premier projet concret en développement web, et je continue de le faire évoluer au fil du temps.
 
 ---lang:en---
 
@@ -47,7 +47,7 @@ Showcase website for Objecthèque de Cornouaille, an association that lends ever
 - **Collaborative approach** : Teamwork with a graphic designer for visual identity
 - **Adaptive dark mode** : Automatically adapts to device preferences
 
-The goal was to create a modern web presence without disrupting their work habits.
+This was my first hands-on web development project, and I keep working on improving it over time.
 
 ---lang:de---
 
@@ -62,4 +62,4 @@ Showcase-Website für Objecthèque de Cornouaille, ein Verein, der Alltagsgegens
 - **Kollaborativer Ansatz** : Teamarbeit mit einer Grafikdesignerin für die visuelle Identität
 - **Adaptiver Dunkelmodus** : Passt sich automatisch an Gerätepräferenzen an
 
-Das Ziel war eine moderne Web-Präsenz zu schaffen, ohne ihre Arbeitsgewohnheiten zu stören.
+Das war mein erstes konkretes Webentwicklungsprojekt, an dem ich auch weiterhin arbeite, um es zu verbessern.

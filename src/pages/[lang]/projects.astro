@@ -16,7 +16,7 @@ export function getStaticPaths() {
 const lang = Astro.params.lang as 'fr' | 'en' | 'de';
 
 // Récupération de tous les projets depuis les fichiers .md
-const allProjects = await getCollection("projects");
+const allProjects = await getCollection("projects", (p) => p.data.featured);
 
 // Tri par ordre (du plus récent au plus ancien pour l'affichage)
 const sortedProjects = allProjects.sort((a, b) => b.data.order - a.data.order);
