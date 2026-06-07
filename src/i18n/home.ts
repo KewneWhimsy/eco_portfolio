@@ -7,18 +7,18 @@ const serviceIcons = ['globe', 'gear', 'cart', 'messages-square'] as const;
 export const home = {
   fr: {
     title: 'Josselin HANEL - Full Stack Web Developer',
-    description: "Full Stack Web Developer créant des sites rapides, efficaces et éco-responsables. Basé à Rennes, disponible à Quimper, Paris, Berlin et à distance.",
+    description: "Développeur web freelance : sites modulables, rapides et sur-mesure, faciles à prendre en main. Basé à Rennes, disponible à Quimper, Paris, Berlin et à distance.",
     heroTypePart1: 'Full Stack',
     heroTypePart2: 'Web Developer',
-    heroText: "Je crée des sites web rapides et durables, qui s'affichent correctement sur tous les appareils, faciles à trouver et partager. Du sur-mesure, avec des technologies modernes et écologiques.",
+    heroText: "Je crée des sites sur-mesure, intuitifs et rapides, que vous gérez au quotidien sans difficulté. Un site allégé du superflu, c'est aussi un site plus économe : moins cher à héberger, moins gourmand en énergie.",
     contactButton: 'Me contacter',
     projectsButton: 'Voir mes réalisations',
 
     values: [
       { title: 'Rapidité', description: 'Des sites qui ne font pas attendre vos visiteurs.', icon: valueIcons[0] },
       { title: 'Simplicité', description: 'Des solutions qui vont droit au but, faciles à mettre à jour.', icon: valueIcons[1] },
-      { title: "Économie d'énergie", description: "Des sites plus légers qui font baisser vos factures d'hébergement.", icon: valueIcons[2] },
-      { title: 'Autonomie', description: 'Des sites que vous pouvez faire évoluer facilement.', icon: valueIcons[3] },
+      { title: 'Légèreté', description: "Un site allégé du superflu coûte moins cher à héberger et consomme moins d'énergie.", icon: valueIcons[2] },
+      { title: 'Autonomie', description: "Le site est à vous, sans engagement : pas besoin d'aller voir ailleurs, on peut toujours ajouter la brique qui manque.", icon: valueIcons[3] },
     ],
 
     servicesTitle: 'Services',
@@ -38,18 +38,18 @@ export const home = {
   },
   en: {
     title: 'Josselin HANEL - Full Stack Web Developer',
-    description: 'Full stack web developer creating fast, efficient and eco-friendly websites. Based in Rennes (France), available in Quimper, Paris, Berlin and for remote work.',
+    description: 'Freelance web developer: adaptable, fast, custom-made websites that are easy to manage day to day. Based in Rennes, available in Quimper, Paris, Berlin and remotely.',
     heroTypePart1: 'Full Stack',
     heroTypePart2: 'Web Developer',
-    heroText: 'I build fast and sustainable websites, that display correctly on all devices, easy to find and share. Custom-made, with modern and eco-friendly technologies.',
+    heroText: "I build custom-made websites: intuitive, fast, and easy for you to manage day to day. A site stripped of the superfluous is also a leaner site: cheaper to host, lighter on energy.",
     contactButton: "Let's talk",
     projectsButton: 'View my projects',
 
     values: [
       { title: 'Speed', description: "Websites that don't keep your visitors waiting.", icon: valueIcons[0] },
       { title: 'Simplicity', description: 'Solutions that get straight to the point, easy to update.', icon: valueIcons[1] },
-      { title: 'Energy saving', description: 'Lighter websites that lower your hosting bills.', icon: valueIcons[2] },
-      { title: 'Autonomy', description: 'Websites you can easily evolve.', icon: valueIcons[3] },
+      { title: 'Lightness', description: 'A site stripped of the superfluous costs less to host and uses less energy.', icon: valueIcons[2] },
+      { title: 'Autonomy', description: "The site is yours, with no strings attached: no need to look elsewhere — we can always add the missing piece later.", icon: valueIcons[3] },
     ],
 
     servicesTitle: 'Services',
@@ -69,18 +69,18 @@ export const home = {
   },
   de: {
     title: 'Josselin HANEL - Full-Stack Webentwickler',
-    description: 'Full-Stack Webentwickler, der schnelle, effiziente und umweltfreundliche Websites erstellt. Mit Sitz in Rennes (Frankreich), verfügbar in Quimper, Paris, Berlin und für Remote-Arbeit.',
+    description: 'Freiberuflicher Webentwickler: anpassungsfähige, schnelle und maßgeschneiderte Websites, die sich im Alltag leicht verwalten lassen. Mit Sitz in Rennes, verfügbar in Quimper, Paris, Berlin und remote.',
     heroTypePart1: 'Full Stack',
     heroTypePart2: 'Webentwickler',
-    heroText: 'Ich erstelle schnelle und nachhaltige Websites, die auf allen Geräten korrekt angezeigt werden, leicht zu finden und zu teilen. Maßgeschneidert, mit modernen und ökologischen Technologien.',
+    heroText: 'Ich entwickle maßgeschneiderte Websites: intuitiv, schnell und im Alltag einfach selbst zu verwalten. Eine Website ohne Überflüssiges ist auch sparsamer: günstiger im Hosting, genügsamer im Energieverbrauch.',
     contactButton: 'Kontakt',
     projectsButton: 'Meine Projekte',
 
     values: [
       { title: 'Schnelligkeit', description: 'Websites, die Ihre Besucher nicht warten lassen.', icon: valueIcons[0] },
       { title: 'Einfachheit', description: 'Lösungen, die auf den Punkt kommen, leicht zu aktualisieren.', icon: valueIcons[1] },
-      { title: 'Energieeinsparung', description: 'Leichtere Websites, die Ihre Hosting-Kosten senken.', icon: valueIcons[2] },
-      { title: 'Autonomie', description: 'Websites, die Sie leicht weiterentwickeln können.', icon: valueIcons[3] },
+      { title: 'Leichtigkeit', description: 'Eine Website ohne Ballast kostet weniger im Hosting und verbraucht weniger Energie.', icon: valueIcons[2] },
+      { title: 'Autonomie', description: 'Die Website gehört Ihnen, ohne Verpflichtungen: Sie müssen nirgendwo anders hin – wir können jederzeit den fehlenden Baustein ergänzen.', icon: valueIcons[3] },
     ],
 
     servicesTitle: 'Dienstleistungen',

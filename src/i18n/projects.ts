@@ -4,7 +4,7 @@ import type { Lang } from './index';
 export const projects = {
   fr: {
     title: 'Josselin HANEL - Projets',
-    description: 'Découvrez mes projets de développement web, des applications e-sport aux sites vitrine éco-responsables.',
+    description: 'Découvrez mes projets de développement web : des sites et applications sur-mesure, construits sur les standards du web, avec le minimum de dépendances.',
     projectsTitle: 'Mes projets',
     projectsIntro: 'Voici une sélection de mes réalisations récentes. Chaque projet reflète mon approche du développement web.',
     viewProject: 'Voir le projet',
@@ -17,7 +17,7 @@ export const projects = {
   },
   en: {
     title: 'Josselin HANEL - Projects',
-    description: 'Discover my web development projects, from e-sport applications to eco-friendly showcase websites.',
+    description: 'Discover my web development projects: custom-made sites and applications, built on web standards, with minimal dependencies.',
     projectsTitle: 'My projects',
     projectsIntro: 'Here is a selection of my recent work. Each project reflects my approach to web development.',
     viewProject: 'View project',
@@ -30,7 +30,7 @@ export const projects = {
   },
   de: {
     title: 'Josselin HANEL - Projekte',
-    description: 'Entdecken Sie meine Webentwicklungsprojekte, von E-Sport-Anwendungen bis zu umweltfreundlichen Showcase-Websites.',
+    description: 'Entdecken Sie meine Webentwicklungsprojekte: maßgeschneiderte Websites und Anwendungen, gebaut auf Web-Standards, mit minimalen Abhängigkeiten.',
     projectsTitle: 'Meine Projekte',
     projectsIntro: 'Hier ist eine Auswahl meiner neuesten Arbeiten. Jedes Projekt spiegelt meinen Ansatz der Webentwicklung wider.',
     viewProject: 'Projekt ansehen',

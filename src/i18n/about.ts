@@ -12,11 +12,11 @@ const skillItems = [
 export const about = {
   fr: {
     title: 'Josselin HANEL - Qui je suis',
-    description: "Découvrez mon parcours, mes compétences et ma façon de créer des sites internet qui respectent la planète.",
+    description: "Découvrez mon parcours, mes compétences, et ma façon de construire des sites simples et sur-mesure, faciles à garder en main.",
     aboutTitle: 'Qui suis-je ?',
-    aboutText: "Je crée des sites web écologiques avec une vraie démarche d'éco-conception, pas du greenwashing marketing. Basé à Rennes, je travaille aussi pour des clients à Quimper, Paris, Berlin ou à distance.",
+    aboutText: "Je construis des sites modernes, tout simplement. Sur-mesure, pensés pour coller à votre activité plutôt qu'à un modèle tout fait, avec uniquement la technologie qui sert à quelque chose. Vous gardez la main sur votre site, sans engagement. Et je reste disponible si votre activité évolue. Basé à Rennes, je travaille aussi pour des clients à Quimper, Paris, Berlin ou à distance.",
     visionTitle: 'Ma vision',
-    visionText: "Le web consomme de plus en plus d'énergie. Je ne vais pas sauver la planète tout seul, mais chaque site que je crée est le plus léger possible sans rogner sur l'expérience utilisateur.",
+    visionText: "Un site n'a pas besoin d'être compliqué pour être bon. La plupart embarquent bien plus de technologie que nécessaire pour ce qu'ils font vraiment. En enlevant le superflu, on gagne sur tous les tableaux : rapidité, facilité d'entretien, autonomie et on consomme beaucoup moins d'énergie.",
     skillsTitle: 'Compétences techniques', techToggle: 'Détails techniques', expTitle: 'Mon parcours', eduTitle: 'Formation', contactButton: 'Me contacter',
     experiences: [
       { period: "2025 - Aujourd'hui", position: 'Développeur Web Fullstack indépendant', company: 'À mon compte', description: "Je conçois des sites pour des clients variés, avec une contrainte que je m'impose : chaque site doit être rapide, léger, et que le client puisse l'utiliser en autonomie." },
@@ -37,11 +37,11 @@ export const about = {
   },
   en: {
     title: 'Josselin HANEL - About me',
-    description: 'Discover my background, skills and vision of eco-friendly web development.',
+    description: 'Discover my background, skills, and my approach to building simple, custom-made websites that are easy to stay on top of.',
     aboutTitle: 'About me',
-    aboutText: "I create eco-friendly websites with a real eco-design approach, not marketing greenwashing. Based in Rennes, I also work for clients in Quimper, Paris, Berlin or remotely.",
+    aboutText: "I build modern websites. Simple as that. Custom-made, designed to fit your business rather than some one-size-fits-all template, using only the technology that actually serves a purpose. You stay in control of your site, with no strings attached, and I'm still around if your business grows or changes down the road. Based in Rennes, I also work with clients in Quimper, Paris, Berlin, or remotely.",
     visionTitle: 'My vision',
-    visionText: "The web's energy footprint keeps growing. I can't fix that on my own, but every site I build is as lightweight as possible without compromising user experience.",
+    visionText: "A website doesn't need to be complicated to be good. Most carry far more technology than they actually need for what they really do. Strip away the excess, and you win on every front: speed, ease of maintenance, autonomy, and it ends up using a lot less energy too.",
     skillsTitle: 'Technical skills', techToggle: 'Technical details', expTitle: 'Professional experience', eduTitle: 'Education', contactButton: "Let's talk",
     experiences: [
       { period: '2025 - Present', position: 'Freelance web developer', company: 'Independent', description: 'I design websites for a range of clients, with one rule I set for myself: every site must be fast, lightweight, and easy for the client to use independently.' },
@@ -62,11 +62,11 @@ export const about = {
   },
   de: {
     title: 'Josselin HANEL - Über mich',
-    description: 'Entdecken Sie meinen Werdegang, meine Fähigkeiten und meine Vision von umweltfreundlicher Webentwicklung.',
+    description: 'Entdecken Sie meinen Werdegang, meine Fähigkeiten und meine Herangehensweise an einfache, maßgeschneiderte Websites, die sich leicht selbst verwalten lassen.',
     aboutTitle: 'Über mich',
-    aboutText: "Ich erstelle ökologische Websites mit einem echten Öko-Design-Ansatz, kein Marketing-Greenwashing. Mit Sitz in Rennes arbeite ich auch für Kunden in Quimper, Paris, Berlin oder remote.",
+    aboutText: "Ich baue moderne Websites. Ganz einfach. Maßgeschneidert, entwickelt, um zu Ihrem Geschäft zu passen statt zu einer x-beliebigen Vorlage, nur mit Technologie, die wirklich einen Zweck erfüllt. Sie behalten die Kontrolle über Ihre Website, ohne Verpflichtungen, und ich bleibe erreichbar, falls sich Ihr Geschäft weiterentwickelt. Mit Sitz in Rennes arbeite ich auch mit Kunden in Quimper, Paris, Berlin oder remote.",
     visionTitle: 'Meine Vision',
-    visionText: "Der Energieverbrauch des Webs wächst stetig. Ich werde das nicht alleine ändern, aber jede Website, die ich baue, ist so leichtgewichtig wie möglich, ohne die Nutzererfahrung zu beeinträchtigen.",
+    visionText: "Eine Website muss nicht kompliziert sein, um gut zu sein. Die meisten enthalten weit mehr Technologie, als sie für das, was sie wirklich tun, brauchen. Wer das Überflüssige weglässt, gewinnt auf ganzer Linie: Geschwindigkeit, einfache Pflege, Unabhängigkeit – und nebenbei verbraucht das Ganze auch deutlich weniger Energie.",
     skillsTitle: 'Technische Fähigkeiten', techToggle: 'Technische Details', expTitle: 'Berufserfahrung', eduTitle: 'Ausbildung', contactButton: 'Kontaktieren Sie mich',
     experiences: [
       { period: '2025 - Heute', position: 'Freelance Webentwickler', company: 'Unabhängig', description: 'Ich gestalte Websites für verschiedene Kunden, mit einer Regel, die ich mir selbst auferlege: Jede Site muss schnell, leicht und für den Kunden eigenständig nutzbar sein.' },

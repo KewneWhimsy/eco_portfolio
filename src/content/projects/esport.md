@@ -5,9 +5,9 @@ title:
   en: "E-sport Application with Chat"
   de: "E-Sport-Anwendung mit Chat"
 description:
-  fr: "Plateforme de gestion d'événements e-sport intégrant un système de chat en temps réel via WebSocket et HTMX."
-  en: "E-sport event management platform with a real-time chat system via WebSocket and HTMX."
-  de: "E-Sport-Eventmanagement-Plattform mit einem Echtzeit-Chat-System über WebSocket und HTMX."
+  fr: "Projet de fin de formation : plateforme de gestion d'événements e-sport intégrant un système de chat en temps réel via WebSocket et HTMX (MVP)."
+  en: "End-of-training project: e-sport event management platform with a real-time chat system via WebSocket and HTMX (MVP)."
+  de: "Abschlussprojekt der Ausbildung: E-Sport-Eventmanagement-Plattform mit einem Echtzeit-Chat-System über WebSocket und HTMX (MVP)."
 featured: true
 tech: ["Astro", "Tailwind", "Alpine.js", "HTMX", "WebSocket", "Express", "PostgreSQL", "MongoDB"]
 links:

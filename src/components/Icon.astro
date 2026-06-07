@@ -162,3 +162,22 @@ const { name, size = 20, class: className = '' } = Astro.props;
     <polyline points="20 6 9 17 4 12"/>
   </svg>
 )}
+
+{name === 'chevron-left' && (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class={className} aria-hidden="true">
+    <polyline points="15 18 9 12 15 6"/>
+  </svg>
+)}
+
+{name === 'close' && (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class={className} aria-hidden="true">
+    <path d="M18 6 6 18"/>
+    <path d="m6 6 12 12"/>
+  </svg>
+)}
+
+{name === 'chevron-right' && (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class={className} aria-hidden="true">
+    <polyline points="9 18 15 12 9 6"/>
+  </svg>
+)}
