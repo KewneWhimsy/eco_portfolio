@@ -1,0 +1,542 @@
+---
+// Page démo : mockup d'interface d'administration (UI uniquement, aucune logique réelle)
+// Inspirée de près de l'admin "Back142" (onglets, catalogue staging/publié, gestion de stock
+// avec produits de remplacement) — rejouée ici pour une torréfaction de café fictive,
+// et la majorité des interactions sont mimées en CSS pur (:has, <details>, radios) plutôt qu'en JS.
+import '../styles/global.css';
+
+type Row = {
+  slug: string;
+  name: string;
+  category: 'grains' | 'moulu' | 'capsules' | 'accessoires';
+  qty: number;
+  visible: boolean;
+  replacements: string[];
+};
+
+const categoryLabels: Record<Row['category'], string> = {
+  grains: 'Café en grain',
+  moulu: 'Café moulu',
+  capsules: 'Capsules',
+  accessoires: 'Accessoires',
+};
+
+const stockRows: Row[] = [
+  { slug: 'ethiopie-yirgacheffe', name: 'Éthiopie Yirgacheffe',     category: 'grains',      qty: 24, visible: true,  replacements: [] },
+  { slug: 'colombie-excelso',     name: 'Colombie Excelso',          category: 'grains',      qty: 3,  visible: true,  replacements: [] },
+  { slug: 'bresil-cerrado',       name: 'Brésil Cerrado',            category: 'grains',      qty: 0,  visible: true,  replacements: ['kenya-aa', 'colombie-excelso'] },
+  { slug: 'kenya-aa',             name: 'Kenya AA',                  category: 'grains',      qty: 12, visible: true,  replacements: [] },
+  { slug: 'blend-maison-4',       name: 'Blend Maison Nº4',          category: 'moulu',       qty: 41, visible: true,  replacements: [] },
+  { slug: 'decafeine-perou',      name: 'Décaféiné Pérou Bio',       category: 'moulu',       qty: 0,  visible: false, replacements: ['blend-maison-4'] },
+  { slug: 'capsules-espresso',    name: 'Capsules Espresso ×10',     category: 'capsules',    qty: 56, visible: true,  replacements: [] },
+  { slug: 'filtres-papier',       name: 'Filtres papier ×100',       category: 'accessoires', qty: 8,  visible: true,  replacements: [] },
+];
+
+const alternativesFor = (row: Row) =>
+  stockRows.filter((r) => r.category === row.category && r.slug !== row.slug);
+
+const lowStock = stockRows.filter((r) => r.qty <= 4);
+
+const stats = [
+  { label: 'Visiteurs (30j)', value: '1 842', delta: '+9 %', up: true },
+  { label: 'Commandes',       value: '63',    delta: '+11 %', up: true },
+  { label: 'Revenu',          value: '2 740 €', delta: '+6 %', up: true },
+  { label: 'Avis en attente', value: '4',     delta: '−1', up: false },
+];
+
+const activity = [
+  { time: 'il y a 18 min', who: 'Léa M.',    text: 'a passé la commande', detail: '#C291 · Éthiopie Yirgacheffe ×2 · 34 €' },
+  { time: 'il y a 1 h',    who: 'admin',     text: 'a republié la fiche', detail: '« Blend Maison Nº4 »' },
+  { time: 'il y a 2 h',    who: 'système',   text: 'a signalé une rupture', detail: '« Brésil Cerrado » — 2 remplacements actifs' },
+  { time: 'il y a 5 h',    who: 'Tom R.',    text: 'a laissé un avis', detail: '5 ★ — « Torréfaction nickel, livraison rapide »' },
+];
+
+const staging = [
+  { name: 'Kenya AA — lot de printemps', meta: 'Fiche produit', tag: 'nouveau' },
+  { name: 'Décaféiné Pérou Bio',         meta: 'Description + visuel', tag: 'modifié' },
+];
+const pendingDeletes = ['capsules-decaf-x10.md'];
+
+const published = [
+  { name: 'Éthiopie Yirgacheffe', meta: 'Café en grain · publié le 02/06' },
+  { name: 'Colombie Excelso',     meta: 'Café en grain · publié le 28/05' },
+  { name: 'Brésil Cerrado',       meta: 'Café en grain · publié le 21/05' },
+  { name: 'Blend Maison Nº4',     meta: 'Café moulu · publié le 14/05' },
+  { name: 'Capsules Espresso ×10', meta: 'Capsules · publié le 09/05' },
+];
+---
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Le Comptoir — démo d'interface d'administration</title>
+  <meta name="description" content="Mockup d'interface d'administration : aperçu visuel uniquement, sans backend ni données réelles. Interactions rejouées en CSS pur." />
+</head>
+<body class="min-h-screen bg-slate-100 text-slate-700 antialiased" style="font-family: 'Inter', system-ui, -apple-system, sans-serif;">
+
+  <!-- Bandeau "ceci est une démo" -->
+  <div class="flex flex-wrap items-center justify-center gap-x-3 gap-y-1 bg-slate-900 px-4 py-2 text-center text-xs text-slate-300">
+    <span><strong class="text-white">Démo visuelle</strong> — interface fictive pour une torréfaction imaginaire ; aucune donnée n'est réelle, aucune action n'est enregistrée. Les interactions (onglets, statuts, remplacements) sont rejouées en CSS pur, à la <code class=" bg-white/10 px-1 py-0.5 text-violet-200">:has()</code>.</span>
+    <a href="/fr/projects/" class="inline-flex shrink-0 items-center gap-1 font-medium text-amber-300 underline decoration-amber-400/40 underline-offset-2 transition-colors hover:text-amber-200">
+      ← Retour au portfolio
+    </a>
+  </div>
+
+  <div class="tabset">
+    <!-- Radios pilotant les onglets — tout l'état de navigation tient dans ces trois cases -->
+    <input type="radio" name="admin-tab" id="tab-overview" class="sr-only" checked />
+    <input type="radio" name="admin-tab" id="tab-catalog"  class="sr-only" />
+    <input type="radio" name="admin-tab" id="tab-stock"    class="sr-only" />
+
+    <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6">
+
+      <!-- En-tête façon Back142 : titre + pastilles d'onglets + actions -->
+      <header class="mb-6 flex flex-col gap-4 border-b border-slate-200 pb-4 sm:flex-row sm:items-center sm:justify-between">
+        <div class="flex items-center gap-3">
+          <details class="profile-selector relative">
+            <summary class="flex cursor-pointer list-none items-center gap-2.5 border border-slate-200 bg-white py-1.5 pl-1.5 pr-3 text-sm font-semibold text-slate-900 shadow-sm transition-colors hover:border-slate-300 select-none">
+              <span class="flex h-8 w-8 shrink-0 items-center justify-center bg-amber-100 text-amber-800 text-base" aria-hidden="true">☕</span>
+              <span>Le Comptoir <span class="font-normal text-slate-400">— Admin</span></span>
+              <svg class="ml-0.5 h-3.5 w-3.5 shrink-0 text-slate-400 transition-transform duration-150 profile-chevron" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 4.5 6 7.5 9 4.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </summary>
+            <div class="absolute left-0 top-full z-30 mt-1.5 w-60 overflow-hidden border border-slate-200 bg-white shadow-lg">
+              <div class="flex items-center gap-3 bg-amber-50 px-3 py-2.5 text-sm">
+                <span class="flex h-8 w-8 shrink-0 items-center justify-center bg-amber-200 text-amber-800 text-base" aria-hidden="true">☕</span>
+                <div class="min-w-0 flex-1">
+                  <p class="font-semibold leading-tight text-amber-900">Le Comptoir</p>
+                  <p class="text-xs text-amber-600">Torréfaction · e-commerce</p>
+                </div>
+                <svg class="shrink-0 h-4 w-4 text-amber-600" viewBox="0 0 16 16" fill="currentColor"><path d="M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.75.75 0 1 1 1.06-1.06L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0Z"/></svg>
+              </div>
+              <a href="/admin-demo-asso/" class="flex items-center gap-3 px-3 py-2.5 text-sm text-slate-700 transition-colors hover:bg-slate-50">
+                <span class="flex h-8 w-8 shrink-0 items-center justify-center bg-indigo-100 text-indigo-700 text-base" aria-hidden="true">🦉</span>
+                <div class="min-w-0">
+                  <p class="font-medium leading-tight">Ty Keltieg</p>
+                  <p class="text-xs text-slate-400">Association · événements</p>
+                </div>
+              </a>
+            </div>
+          </details>
+
+          <nav class="tab-nav ml-2 flex gap-1 bg-slate-100 p-1">
+            <label for="tab-overview" class="cursor-pointer px-3 py-1.5 text-xs font-medium text-slate-500 transition-colors">📡 Aperçu</label>
+            <label for="tab-catalog"  class="cursor-pointer px-3 py-1.5 text-xs font-medium text-slate-500 transition-colors">📦 Catalogue</label>
+            <label for="tab-stock"    class="cursor-pointer px-3 py-1.5 text-xs font-medium text-slate-500 transition-colors">📊 Stock &amp; remplacements</label>
+          </nav>
+        </div>
+
+        <div class="flex items-center gap-2 text-xs">
+          <span class="hidden bg-amber-50 px-2.5 py-1 font-medium text-amber-700 ring-1 ring-inset ring-amber-600/20 sm:inline-flex">Compte démo · lecture seule</span>
+          <span class="cursor-not-allowed border border-slate-200 px-3 py-1.5 font-medium text-slate-400">Déconnexion</span>
+        </div>
+      </header>
+
+      <main>
+
+        <!-- ═══ APERÇU ═══ -->
+        <section data-panel="overview" class="space-y-4">
+
+          <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
+            {stats.map((s) => (
+              <div class="border border-slate-200 bg-white p-4 shadow-sm">
+                <p class="text-xs font-medium uppercase tracking-wide text-slate-400">{s.label}</p>
+                <div class="mt-2 flex items-end justify-between">
+                  <span class="text-2xl font-semibold text-slate-900">{s.value}</span>
+                  <span class={`mb-0.5 inline-flex items-center gap-1 px-2 py-0.5 text-xs font-medium ${s.up ? 'bg-emerald-50 text-emerald-600' : 'bg-rose-50 text-rose-500'}`}>
+                    {s.up ? '↗' : '↘'} {s.delta}
+                  </span>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div class="grid grid-cols-1 gap-4 lg:grid-cols-[1fr_22rem]">
+
+            <!-- Fil d'activité -->
+            <div class="overflow-hidden border border-slate-200 bg-white shadow-sm">
+              <div class="flex items-center justify-between border-b border-slate-200 px-4 py-3">
+                <h2 class="text-sm font-semibold text-slate-900">📡 Fil d'activité</h2>
+                <span class="text-xs text-slate-400">{activity.length} événements récents</span>
+              </div>
+              <ul class="divide-y divide-slate-100">
+                {activity.map((entry) => (
+                  <li class="flex gap-3 px-4 py-3 transition-colors hover:bg-slate-50">
+                    <span class="mt-0.5 w-20 shrink-0 text-xs tabular-nums text-slate-400">{entry.time}</span>
+                    <div class="min-w-0 flex-1">
+                      <p class="text-sm text-slate-700">
+                        <span class="font-semibold text-slate-900">{entry.who}</span> {entry.text}
+                      </p>
+                      <p class="truncate text-xs text-slate-500">{entry.detail}</p>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <!-- Alertes stock -->
+            <div class="overflow-hidden border border-slate-200 bg-white shadow-sm">
+              <div class="flex items-center justify-between border-b border-slate-200 px-4 py-3">
+                <h2 class="text-sm font-semibold text-slate-900">Stocks à surveiller</h2>
+                <span class="bg-amber-50 px-1.5 py-0.5 text-xs font-bold tabular-nums text-amber-700">{lowStock.length}</span>
+              </div>
+              <ul class="divide-y divide-slate-100">
+                {lowStock.map((row) => (
+                  <li class="flex items-center justify-between px-4 py-2.5 text-xs transition-colors hover:bg-slate-50">
+                    <span class="truncate text-slate-600">{row.name}</span>
+                    <span class={`ml-2 shrink-0 font-bold tabular-nums ${row.qty === 0 ? 'text-rose-500' : 'text-amber-500'}`}>{row.qty === 0 ? 'rupture' : row.qty}</span>
+                  </li>
+                ))}
+              </ul>
+              <p class="border-t border-slate-100 px-4 py-2.5 text-xs text-slate-400">Voir l'onglet <span class="font-medium text-slate-500">Stock &amp; remplacements</span> pour configurer les produits de substitution affichés à la place d'une rupture.</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- ═══ CATALOGUE ═══ -->
+        <section data-panel="catalog" class="grid grid-cols-1 gap-4 lg:grid-cols-2">
+
+          <!-- En attente -->
+          <div class="border border-slate-200 bg-white shadow-sm">
+            <div class="flex items-center justify-between border-b border-slate-200 px-4 py-3">
+              <h2 class="text-sm font-semibold text-slate-900">📝 En attente de publication</h2>
+              <span class=" bg-amber-100 px-1.5 py-0.5 text-xs font-medium text-amber-800">{staging.length + pendingDeletes.length}</span>
+            </div>
+            <ul class="divide-y divide-slate-100">
+              {staging.map((entry) => (
+                <li class="flex items-center justify-between gap-2 px-4 py-2.5">
+                  <div class="min-w-0">
+                    <p class="truncate text-sm font-medium text-slate-800">{entry.name}</p>
+                    <p class="text-xs text-slate-500">{entry.meta}</p>
+                  </div>
+                  <span class={`shrink-0 px-1.5 py-0.5 text-[11px] font-medium ${entry.tag === 'nouveau' ? 'bg-emerald-50 text-emerald-600' : 'bg-sky-50 text-sky-600'}`}>{entry.tag}</span>
+                </li>
+              ))}
+            </ul>
+            <div class="border-t border-slate-100 px-4 py-3">
+              <p class="mb-2 flex items-center gap-2 text-xs font-semibold text-rose-500">🗑️ À supprimer <span class="bg-rose-50 px-1.5 py-0.5 text-[11px] font-medium text-rose-600">{pendingDeletes.length}</span></p>
+              {pendingDeletes.map((id) => (
+                <p class="truncate bg-rose-50/60 px-2 py-1 text-xs text-rose-600">{id.replace('.md', '')}</p>
+              ))}
+            </div>
+            <div class="border-t border-slate-100 px-4 py-3">
+              <span class="block w-full cursor-not-allowed bg-amber-700 py-2 text-center text-sm font-medium text-white opacity-90 shadow-sm">
+                Publier les modifications ({staging.length + pendingDeletes.length})
+              </span>
+            </div>
+          </div>
+
+          <!-- Publié -->
+          <div class="border border-slate-200 bg-white shadow-sm">
+            <div class="flex items-center justify-between border-b border-slate-200 px-4 py-3">
+              <h2 class="text-sm font-semibold text-slate-900">✅ Publié</h2>
+              <span class=" bg-emerald-100 px-1.5 py-0.5 text-xs font-medium text-emerald-700">{published.length}</span>
+            </div>
+            <ul class="divide-y divide-slate-100">
+              {published.map((entry) => (
+                <li class="flex items-center justify-between gap-2 px-4 py-2.5">
+                  <div class="min-w-0">
+                    <p class="truncate text-sm font-medium text-slate-800">{entry.name}</p>
+                    <p class="text-xs text-slate-500">{entry.meta}</p>
+                  </div>
+                  <div class="flex shrink-0 gap-1.5 text-xs">
+                    <a href="#product-editor" class=" border border-slate-200 px-2 py-1 text-slate-500 transition-colors hover:border-amber-400 hover:text-amber-700">✏️</a>
+                    <span class="cursor-not-allowed border border-rose-200 px-2 py-1 text-rose-300">🗑️</span>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </section>
+
+        <!-- ═══ STOCK & REMPLACEMENTS ═══ -->
+        <section data-panel="stock" class="space-y-3">
+
+          <p class="border border-amber-200 bg-amber-50 px-4 py-2.5 text-xs text-amber-800">
+            Quantité <code class=" bg-white/70 px-1 py-0.5">0</code> = rupture de stock (commande désactivée). Le bouton « Affiché / Masqué » masque la fiche indépendamment du stock.
+            Les <strong>remplacements</strong> permettent d'afficher d'autres références à la place d'un produit épuisé — survolez la colonne pour ouvrir le sélecteur.
+          </p>
+
+          <div class="overflow-hidden border border-slate-200 bg-white shadow-sm">
+            <div class="overflow-x-auto">
+              <table class="w-full min-w-176 text-sm">
+                <thead class="border-b border-slate-200 bg-slate-50">
+                  <tr>
+                    <th class="px-3 py-2.5 text-left text-xs font-medium uppercase tracking-wide text-slate-500">Produit</th>
+                    <th class="px-3 py-2.5 text-center text-xs font-medium uppercase tracking-wide text-slate-500">Qté</th>
+                    <th class="px-3 py-2.5 text-center text-xs font-medium uppercase tracking-wide text-slate-500">Visible</th>
+                    <th class="px-3 py-2.5 text-left text-xs font-medium uppercase tracking-wide text-slate-500">Remplacements</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-100">
+                  {stockRows.map((row) => {
+                    const alts = alternativesFor(row);
+                    return (
+                      <tr class="stock-row transition-colors">
+                        <td class="px-3 py-2.5">
+                          <p class="font-medium text-slate-800">{row.name}</p>
+                          <p class="text-xs text-slate-400">{categoryLabels[row.category]}</p>
+                        </td>
+                        <td class="px-3 py-2.5 text-center">
+                          <span class:list={['inline-flex w-12 justify-center border px-2 py-1 text-xs font-semibold tabular-nums', row.qty === 0 ? 'border-rose-200 bg-rose-50 text-rose-600' : row.qty <= 4 ? 'border-amber-200 bg-amber-50 text-amber-700' : 'border-slate-200 bg-slate-50 text-slate-600']}>
+                            {row.qty}
+                          </span>
+                        </td>
+                        <td class="px-3 py-2.5 text-center">
+                          <label class="visibility-pill inline-flex cursor-pointer items-center border px-2.5 py-1 text-xs font-medium transition-colors">
+                            <input type="checkbox" checked={row.visible} class="sr-only" />
+                            <span class="state-on">✅ Affiché</span>
+                            <span class="state-off">❌ Masqué</span>
+                          </label>
+                        </td>
+                        <td class="px-3 py-2.5">
+                          {alts.length === 0 ? (
+                            <span class="text-xs text-slate-300">— aucun produit similaire —</span>
+                          ) : (
+                            <details name="stock-replacements" class="replacement-dropdown group/d relative inline-block w-64">
+                              <summary class="flex cursor-pointer list-none items-center justify-between gap-2 border border-slate-200 px-2.5 py-1.5 text-xs text-slate-600 transition-colors hover:border-amber-400">
+                                <span class="summary-empty text-slate-400">Aucun remplacement actif</span>
+                                <span class="summary-active hidden font-medium text-amber-700">Remplacements actifs ✓</span>
+                                <svg class="chevron h-3 w-3 shrink-0 text-slate-400 transition-transform" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 4.5 6 7.5 9 4.5" stroke-linecap="round" stroke-linejoin="round" /></svg>
+                              </summary>
+                              <div class="dropdown-panel absolute left-0 right-0 z-20 mt-1 grid overflow-hidden border border-slate-200 bg-white shadow-lg">
+                                <div class="dropdown-panel-inner overflow-hidden">
+                                  <p class="border-b border-slate-100 bg-slate-50 px-2.5 py-1.5 text-[11px] text-slate-400">Affichés à la place de « {row.name} » en cas de rupture</p>
+                                  {alts.map((alt) => (
+                                    <label class="option-row flex cursor-pointer items-center justify-between gap-2 px-2.5 py-1.5 text-xs text-slate-600 transition-colors hover:bg-slate-50">
+                                      <span class="flex items-center gap-2">
+                                        <input type="checkbox" checked={row.replacements.includes(alt.slug)} class=" border-slate-300 text-amber-700 focus:ring-amber-600" />
+                                        {alt.name}
+                                      </span>
+                                      <span class="active-badge hidden bg-amber-100 px-1.5 py-0.5 text-[10px] font-semibold text-amber-700">actif</span>
+                                    </label>
+                                  ))}
+                                </div>
+                              </div>
+                            </details>
+                          )}
+                        </td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <p class="text-center text-xs text-slate-400">Cochez ou décochez une case pour voir l'état « actif » se mettre à jour — entièrement piloté par <code class=" bg-white px-1 py-0.5 ring-1 ring-slate-200">:has()</code>, sans une ligne de JavaScript.</p>
+        </section>
+
+      </main>
+    </div>
+  </div>
+
+  <!-- ═══ Aperçu : structure du formulaire d'édition produit (modale en pur CSS via :target) ═══ -->
+  <div id="product-editor" class="product-editor fixed inset-0 z-60 items-center justify-center p-4">
+    <a href="#" class="absolute inset-0 bg-slate-950/50 backdrop-blur-[1px]" aria-label="Fermer l'aperçu"></a>
+    <div class="relative z-10 max-h-[90vh] w-full max-w-2xl overflow-y-auto bg-white shadow-2xl">
+      <div class="sticky top-0 flex items-center justify-between gap-3 border-b border-slate-200 bg-white/95 px-5 py-3.5 backdrop-blur">
+        <div>
+          <p class="text-sm font-semibold text-slate-900">✏️ Modifier — Brésil Cerrado</p>
+          <p class="text-xs text-slate-400">Aperçu illustratif du formulaire d'édition — structure inspirée de l'interface réelle, simplifiée pour la démo.</p>
+        </div>
+        <a href="#" class="shrink-0 border border-slate-200 px-2 py-1 text-sm text-slate-400 transition-colors hover:border-rose-300 hover:text-rose-500" aria-label="Fermer l'aperçu">✕</a>
+      </div>
+
+      <fieldset disabled class="space-y-5 px-5 py-5 opacity-90">
+        <div class="grid gap-4 sm:grid-cols-2">
+          <label class="block">
+            <span class="mb-1 block text-xs font-medium text-slate-500">Nom *</span>
+            <input type="text" value="Brésil Cerrado" class="w-full border border-slate-200 bg-slate-50 px-3 py-1.5 text-sm text-slate-700" />
+          </label>
+          <label class="block">
+            <span class="mb-1 block text-xs font-medium text-slate-500">Catégorie *</span>
+            <select class="w-full border border-slate-200 bg-slate-50 px-3 py-1.5 text-sm text-slate-700">
+              <option selected>Café en grain</option>
+            </select>
+          </label>
+          <label class="block">
+            <span class="mb-1 block text-xs font-medium text-slate-500">Origine</span>
+            <div class="flex items-center gap-2 border border-slate-200 bg-slate-50 px-3 py-1.5 text-sm text-slate-700">
+              <span>🇧🇷</span> Brésil
+            </div>
+          </label>
+          <label class="block">
+            <span class="mb-1 block text-xs font-medium text-slate-500">Torréfaction</span>
+            <select class="w-full border border-slate-200 bg-slate-50 px-3 py-1.5 text-sm text-slate-700">
+              <option selected>Médium</option>
+            </select>
+          </label>
+        </div>
+
+        <label class="block">
+          <span class="mb-1 block text-xs font-medium text-slate-500">Accroche *</span>
+          <input type="text" value="Rond et chocolaté, parfait pour l'espresso du matin" class="w-full border border-slate-200 bg-slate-50 px-3 py-1.5 text-sm text-slate-700" />
+        </label>
+
+        <label class="block">
+          <span class="mb-1 block text-xs font-medium text-slate-500">Description *</span>
+          <textarea rows="3" class="w-full border border-slate-200 bg-slate-50 px-3 py-1.5 text-sm text-slate-700">Un café doux et rond, aux notes de chocolat noir et de noisette grillée, avec une pointe de caramel en fin de bouche. Idéal en espresso ou en filtre léger.</textarea>
+        </label>
+
+        <div class="grid gap-4 sm:grid-cols-2">
+          <div>
+            <span class="mb-1 block text-xs font-medium text-slate-500">Notes aromatiques</span>
+            <div class="flex flex-wrap gap-1.5">
+              {['Chocolat', 'Noisette', 'Caramel'].map((tag) => (
+                <span class="inline-flex items-center gap-1 border border-amber-200 bg-amber-50 px-2 py-1 text-xs text-amber-700">{tag} <span class="text-amber-400">✕</span></span>
+              ))}
+              <span class="inline-flex items-center border border-dashed border-slate-300 px-2 py-1 text-xs text-slate-400">+ ajouter</span>
+            </div>
+          </div>
+          <div>
+            <span class="mb-1 block text-xs font-medium text-slate-500">Qualités</span>
+            <div class="flex flex-wrap gap-1.5">
+              {['Bio', 'Commerce équitable'].map((tag) => (
+                <span class="inline-flex items-center gap-1 border border-emerald-200 bg-emerald-50 px-2 py-1 text-xs text-emerald-700">{tag} <span class="text-emerald-400">✕</span></span>
+              ))}
+              <span class="inline-flex items-center border border-dashed border-slate-300 px-2 py-1 text-xs text-slate-400">+ ajouter</span>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <span class="mb-1.5 block text-xs font-medium text-slate-500">Grille tarifaire</span>
+          <div class="overflow-hidden border border-slate-200">
+            <table class="w-full text-sm">
+              <thead class="bg-slate-50 text-xs uppercase tracking-wide text-slate-400">
+                <tr>
+                  <th class="px-3 py-1.5 text-left font-medium">Quantité</th>
+                  <th class="px-3 py-1.5 text-left font-medium">Prix</th>
+                  <th class="px-3 py-1.5 text-left font-medium">Prix unitaire</th>
+                  <th class="w-8"></th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-100">
+                {[['250 g', '9,90 €', '3,96 €/100 g'], ['500 g', '17,50 €', '3,50 €/100 g'], ['1 kg', '32,00 €', '3,20 €/100 g']].map(([qty, price, unit]) => (
+                  <tr>
+                    <td class="px-3 py-1.5 text-slate-600">{qty}</td>
+                    <td class="px-3 py-1.5 text-slate-600">{price}</td>
+                    <td class="px-3 py-1.5 text-slate-400">{unit}</td>
+                    <td class="px-3 py-1.5 text-center text-slate-300">✕</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <span class="mt-1.5 inline-flex items-center border border-dashed border-slate-300 px-2 py-1 text-xs text-slate-400">+ ajouter un palier</span>
+        </div>
+
+        <div class="flex items-center gap-4">
+          <div class="flex h-16 w-16 shrink-0 items-center justify-center overflow-hidden border border-slate-200 bg-slate-50 text-2xl">☕</div>
+          <div class="space-y-1">
+            <span class="inline-flex items-center border border-slate-200 bg-white px-2.5 py-1.5 text-xs text-slate-500">📂 Choisir une image</span>
+            <p class="text-[11px] text-slate-400">Photo perdue si rechargement — démo uniquement.</p>
+          </div>
+        </div>
+
+        <label class="flex items-center gap-2 text-sm text-slate-600">
+          <input type="checkbox" checked class=" border-slate-300 text-amber-700 focus:ring-amber-600" />
+          Mettre en avant sur la boutique
+        </label>
+      </fieldset>
+
+      <div class="flex items-center justify-end gap-2 border-t border-slate-200 px-5 py-3.5">
+        <a href="#" class="border border-slate-200 px-3 py-1.5 text-sm text-slate-600 transition-colors hover:border-slate-300">Annuler</a>
+        <span class="cursor-not-allowed bg-amber-700 px-3 py-1.5 text-sm font-medium text-white opacity-90 shadow-sm">Enregistrer</span>
+      </div>
+    </div>
+  </div>
+
+  <style>
+    /* ─── Sélecteur de profil ─── */
+    .profile-selector[open] .profile-chevron { transform: rotate(180deg); }
+    /* ───────────────────────────────────────────────
+       Onglets pilotés par radios + :has() — aucun JS
+       ─────────────────────────────────────────────── */
+
+    .tabset > div > main > [data-panel] { display: none; }
+    .tabset:has(#tab-overview:checked) > div > main > [data-panel='overview'],
+    .tabset:has(#tab-catalog:checked)  > div > main > [data-panel='catalog'],
+    .tabset:has(#tab-stock:checked)    > div > main > [data-panel='stock'] {
+      display: block;
+      animation: fade-in .18s ease-out;
+    }
+
+    .tabset:has(#tab-overview:checked) .tab-nav label[for='tab-overview'],
+    .tabset:has(#tab-catalog:checked)  .tab-nav label[for='tab-catalog'],
+    .tabset:has(#tab-stock:checked)    .tab-nav label[for='tab-stock'] {
+      background: white;
+      color: #92400e;
+      box-shadow: 0 1px 2px rgba(15, 23, 42, .08);
+    }
+
+    @keyframes fade-in {
+      from { opacity: 0; transform: translateY(2px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ───────────────────────────────────────────────
+       Pastille Affiché / Masqué — checkbox + :has()
+       ─────────────────────────────────────────────── */
+    .stock-row { transition: opacity .15s ease-out; }
+    .stock-row:has(.visibility-pill input:not(:checked)) { opacity: .5; }
+    .visibility-pill .state-off { display: none; }
+    .visibility-pill:has(input:checked) {
+      background: rgb(236 253 245);
+      color: rgb(5 150 105);
+      border-color: rgb(167 243 208);
+    }
+    .visibility-pill:has(input:not(:checked)) {
+      background: rgb(255 241 242);
+      color: rgb(225 29 72);
+      border-color: rgb(254 205 211);
+    }
+    .visibility-pill:has(input:not(:checked)) .state-on  { display: none; }
+    .visibility-pill:has(input:not(:checked)) .state-off { display: inline; }
+
+    /* ───────────────────────────────────────────────
+       Sélecteur de remplacements — <details> + :has()
+       ─────────────────────────────────────────────── */
+    .replacement-dropdown summary::-webkit-details-marker { display: none; }
+    .replacement-dropdown .dropdown-panel {
+      display: grid;
+      grid-template-rows: 0fr;
+      visibility: hidden;
+      transition: grid-template-rows .2s ease-out, visibility 0s linear .2s;
+    }
+    .replacement-dropdown .dropdown-panel-inner { min-height: 0; }
+    .replacement-dropdown[open] .dropdown-panel {
+      grid-template-rows: 1fr;
+      visibility: visible;
+      transition: grid-template-rows .2s ease-out, visibility 0s;
+    }
+    .replacement-dropdown[open] .chevron { transform: rotate(180deg); }
+
+    .replacement-dropdown:has(.option-row input:checked) .summary-empty  { display: none; }
+    .replacement-dropdown:has(.option-row input:checked) .summary-active { display: inline; }
+    .replacement-dropdown:has(.option-row input:checked) summary {
+      border-color: rgb(252 211 77);
+      background: rgb(255 251 235);
+    }
+
+    .option-row:has(input:checked) {
+      background: rgb(255 251 235);
+      color: rgb(146 64 14);
+      font-weight: 600;
+    }
+    .option-row:has(input:checked) .active-badge { display: inline-flex; }
+
+    /* ───────────────────────────────────────────────
+       Modale formulaire — :target
+       ─────────────────────────────────────────────── */
+    .product-editor { display: none; }
+    .product-editor:target {
+      display: flex;
+      animation: fade-in .15s ease-out;
+    }
+  </style>
+</body>
+</html>

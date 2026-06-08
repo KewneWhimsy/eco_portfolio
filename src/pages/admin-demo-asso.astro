@@ -1,0 +1,753 @@
+---
+// Page démo : mockup de l'interface d'administration "Hibou" (briec2000)
+// Rejouée pour une association culturelle fictive "Ty Keltieg".
+// Gestion d'événements (titre, date, statut brouillon/publié/passé, tarifs, galeries liées)
+// et galeries photos (toggle accueil).
+// Navigation par onglets en radios + :has(), toggles en CSS pur, modale formulaire en :target.
+import '../styles/global.css';
+
+type EventStatus = 'draft' | 'published' | 'past';
+
+type EventRow = {
+  slug: string;
+  title: string;
+  date: string;
+  time: string;
+  location: string;
+  status: EventStatus;
+  price?: string;
+  galleries: string[];
+};
+
+type GalleryRow = {
+  slug: string;
+  title: string;
+  photographer: string;
+  date: string;
+  photoCount: number;
+  showOnHomepage: boolean;
+};
+
+const events: EventRow[] = [
+  { slug: 'vide-grenier-printemps',    title: 'Vide-grenier du printemps',    date: '15/06/2026', time: '9h – 17h',  location: 'Salle des fêtes, rue de la Paix',    status: 'published',  price: 'Gratuit',         galleries: [] },
+  { slug: 'soiree-contes-bretons',     title: 'Soirée contes bretons',        date: '28/06/2026', time: '20h30',     location: 'Médiathèque municipale',              status: 'draft',      price: '4 € / 2 € réduit', galleries: ['soiree-contes-2024'] },
+  { slug: 'atelier-poterie-adultes',   title: 'Atelier poterie adultes',      date: '05/07/2026', time: '14h – 17h', location: 'Espace Ty Keltieg',                   status: 'published',  price: '8 € / séance',    galleries: [] },
+  { slug: 'repas-associatif-2025',     title: 'Repas associatif 2025',        date: '22/11/2025', time: '12h',       location: 'Salle des fêtes, rue de la Paix',    status: 'past',       price: '14 € adulte',     galleries: ['repas-2025'] },
+  { slug: 'fete-musique-2025',         title: 'Fête de la musique',           date: '21/06/2025', time: '18h – 22h', location: 'Place du Bourg',                      status: 'past',       price: 'Entrée libre',    galleries: [] },
+];
+
+const galleries: GalleryRow[] = [
+  { slug: 'vide-grenier-2025',      title: 'Vide-grenier 2025',            photographer: 'Marianne L.',  date: '18/05/2025', photoCount: 34, showOnHomepage: true  },
+  { slug: 'soiree-contes-2024',     title: 'Soirée contes bretons 2024',   photographer: 'Tangi R.',     date: '14/10/2024', photoCount: 21, showOnHomepage: false },
+  { slug: 'atelier-mosaique',       title: 'Atelier mosaïque printemps',   photographer: 'Marianne L.',  date: '08/04/2025', photoCount: 16, showOnHomepage: true  },
+  { slug: 'repas-2025',             title: 'Repas associatif 2025',        photographer: 'Loïc B.',      date: '22/11/2025', photoCount: 47, showOnHomepage: false },
+];
+
+const stats = [
+  { label: 'Événements à venir', value: '3',       sub: 'dont 1 brouillon'        },
+  { label: 'Galeries publiées',  value: '4',       sub: '2 sur la page d\'accueil' },
+  { label: 'Prochain événement', value: '7 j',     sub: 'Vide-grenier du printemps' },
+  { label: 'Photos hébergées',   value: '118',     sub: 'sur 4 galeries'           },
+];
+
+const activity = [
+  { time: 'il y a 12 min', who: 'admin',   text: 'a modifié l\'événement',  detail: '« Soirée contes bretons » — passage en brouillon' },
+  { time: 'il y a 1 h',    who: 'admin',   text: 'a créé la galerie',       detail: '« Repas associatif 2025 » — 47 photos importées' },
+  { time: 'il y a 3 h',    who: 'admin',   text: 'a publié l\'événement',   detail: '« Atelier poterie adultes » — tarif 8 €/séance' },
+  { time: 'hier',          who: 'système', text: 'a archivé automatiquement', detail: '« Fête de la musique » — date dépassée' },
+];
+
+const statusLabels: Record<EventStatus, string> = { draft: 'Brouillon', published: 'Publié', past: 'Passé' };
+---
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Ty Keltieg — démo interface d'administration Hibou</title>
+  <meta name="description" content="Mockup de l'interface d'administration Hibou : gestion d'événements et de galeries photos pour une association fictive. Interactions rejouées en CSS pur (:has, :target, details)." />
+</head>
+<body class="min-h-screen" style="background:#b8cad8;color:#1a1a1a;font-family:'Lucida Grande','Lucida Sans Unicode',Helvetica,Arial,sans-serif;font-size:13px;">
+
+  <!-- Bandeau démo -->
+  <div class="flex flex-wrap items-center justify-center gap-x-3 gap-y-1 bg-slate-900 px-4 py-2 text-center text-xs text-slate-300">
+    <span><strong class="text-white">Démo visuelle</strong> — interface fictive pour une association imaginaire ; aucune donnée n'est réelle. Inspirée de l'admin Hibou (briec2000) : onglets, gestion d'événements &amp; galeries, toggle accueil. Interactions en CSS pur à la <code class="rounded bg-white/10 px-1 py-0.5 text-violet-200">:has()</code> &amp; <code class="rounded bg-white/10 px-1 py-0.5 text-violet-200">:target</code>.</span>
+    <a href="/fr/projects/" class="inline-flex shrink-0 items-center gap-1 font-medium text-amber-300 underline decoration-amber-400/40 underline-offset-2 transition-colors hover:text-amber-200">
+      ← Retour au portfolio
+    </a>
+  </div>
+
+  <div class="tabset">
+    <!-- Radios pilotant les onglets -->
+    <input type="radio" name="admin-tab" id="tab-overview" class="sr-only" checked />
+    <input type="radio" name="admin-tab" id="tab-events"   class="sr-only" />
+    <input type="radio" name="admin-tab" id="tab-galleries" class="sr-only" />
+
+    <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6">
+
+      <!-- En-tête -->
+      <header class="mb-6 flex flex-col gap-4 border-b border-slate-200 p-4 sm:flex-row sm:items-center sm:justify-between">
+        <div class="flex flex-wrap items-center gap-3">
+          <!-- Logo / identité -->
+          <details class="profile-selector relative">
+            <summary class="flex cursor-pointer list-none items-center gap-2.5 rounded-lg border border-slate-200 bg-white py-1.5 pl-1.5 pr-3 text-sm font-semibold text-slate-900 shadow-sm transition-colors hover:border-slate-300 select-none">
+              <span class="flex h-8 w-8 shrink-0 items-center justify-center rounded-md bg-indigo-100 text-indigo-700 text-base" aria-hidden="true">🦉</span>
+              <span>Ty Keltieg <span class="font-normal text-slate-400">— Admin</span></span>
+              <svg class="ml-0.5 h-3.5 w-3.5 shrink-0 text-slate-400 transition-transform duration-150 profile-chevron" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 4.5 6 7.5 9 4.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </summary>
+            <div class="absolute left-0 top-full z-30 mt-1.5 w-60 overflow-hidden rounded-lg border border-slate-200 bg-white shadow-lg">
+              <a href="/admin-demo/" class="flex items-center gap-3 px-3 py-2.5 text-sm text-slate-700 transition-colors hover:bg-slate-50">
+                <span class="flex h-8 w-8 shrink-0 items-center justify-center rounded-md bg-amber-100 text-amber-800 text-base" aria-hidden="true">☕</span>
+                <div class="min-w-0">
+                  <p class="font-medium leading-tight">Le Comptoir</p>
+                  <p class="text-xs text-slate-400">Torréfaction · e-commerce</p>
+                </div>
+              </a>
+              <div class="flex items-center gap-3 bg-indigo-50 px-3 py-2.5 text-sm">
+                <span class="flex h-8 w-8 shrink-0 items-center justify-center rounded-md bg-indigo-200 text-indigo-700 text-base" aria-hidden="true">🦉</span>
+                <div class="min-w-0 flex-1">
+                  <p class="font-semibold leading-tight text-indigo-800">Ty Keltieg</p>
+                  <p class="text-xs text-indigo-500">Association · événements</p>
+                </div>
+                <svg class="shrink-0 h-4 w-4 text-indigo-500" viewBox="0 0 16 16" fill="currentColor"><path d="M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.75.75 0 1 1 1.06-1.06L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0Z"/></svg>
+              </div>
+            </div>
+          </details>
+
+          <nav class="tab-nav ml-2 flex gap-1 rounded-lg bg-slate-100 p-1">
+            <label for="tab-overview"  class="cursor-pointer rounded-md px-3 py-1.5 text-xs font-medium text-slate-500 transition-colors">📡 Tableau de bord</label>
+            <label for="tab-events"    class="cursor-pointer rounded-md px-3 py-1.5 text-xs font-medium text-slate-500 transition-colors">📅 Événements</label>
+            <label for="tab-galleries" class="cursor-pointer rounded-md px-3 py-1.5 text-xs font-medium text-slate-500 transition-colors">📷 Galeries</label>
+          </nav>
+        </div>
+
+        <div class="flex items-center gap-2 text-xs">
+          <span class="hidden rounded-full bg-indigo-50 px-2.5 py-1 font-medium text-indigo-700 ring-1 ring-inset ring-indigo-600/20 sm:inline-flex">Compte démo · lecture seule</span>
+          <span class="cursor-not-allowed rounded-md border border-slate-200 px-3 py-1.5 font-medium text-slate-400">Déconnexion</span>
+        </div>
+      </header>
+
+      <main>
+
+        <!-- ═══ TABLEAU DE BORD ═══ -->
+        <section data-panel="overview" class="space-y-4">
+
+          <div class="grid grid-cols-2 gap-4 lg:grid-cols-4">
+            {stats.map((s) => (
+              <div class="rounded-lg border border-slate-200 bg-white p-4 shadow-sm">
+                <p class="text-xs font-medium uppercase tracking-wide text-slate-400">{s.label}</p>
+                <p class="mt-2 text-2xl font-semibold text-slate-900">{s.value}</p>
+                <p class="mt-0.5 text-xs text-slate-400">{s.sub}</p>
+              </div>
+            ))}
+          </div>
+
+          <div class="grid grid-cols-1 gap-4 lg:grid-cols-[1fr_22rem]">
+
+            <!-- Fil d'activité -->
+            <div class="overflow-hidden rounded-lg border border-slate-200 bg-white shadow-sm">
+              <div class="flex items-center justify-between border-b border-slate-200 px-4 py-3">
+                <h2 class="text-sm font-semibold text-slate-900">📡 Fil d'activité</h2>
+                <span class="text-xs text-slate-400">{activity.length} événements récents</span>
+              </div>
+              <ul class="divide-y divide-slate-100">
+                {activity.map((entry) => (
+                  <li class="flex gap-3 px-4 py-3 transition-colors hover:bg-slate-50">
+                    <span class="mt-0.5 w-20 shrink-0 text-xs tabular-nums text-slate-400">{entry.time}</span>
+                    <div class="min-w-0 flex-1">
+                      <p class="text-sm text-slate-700">
+                        <span class="font-semibold text-slate-900">{entry.who}</span> {entry.text}
+                      </p>
+                      <p class="truncate text-xs text-slate-500">{entry.detail}</p>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <!-- Prochains événements -->
+            <div class="overflow-hidden rounded-lg border border-slate-200 bg-white shadow-sm">
+              <div class="flex items-center justify-between border-b border-slate-200 px-4 py-3">
+                <h2 class="text-sm font-semibold text-slate-900">Prochains événements</h2>
+                <span class="rounded-full bg-indigo-50 px-1.5 py-0.5 text-xs font-bold tabular-nums text-indigo-600">
+                  {events.filter(e => e.status !== 'past').length}
+                </span>
+              </div>
+              <ul class="divide-y divide-slate-100">
+                {events.filter(e => e.status !== 'past').map((e) => (
+                  <li class="flex items-start justify-between gap-2 px-4 py-2.5">
+                    <div class="min-w-0">
+                      <p class="truncate text-sm font-medium text-slate-800">{e.title}</p>
+                      <p class="text-xs text-slate-500">{e.date} · {e.time}</p>
+                    </div>
+                    <span class={`mt-0.5 shrink-0 rounded-full px-2 py-0.5 text-[11px] font-medium ${e.status === 'draft' ? 'bg-amber-100 text-amber-700' : 'bg-emerald-100 text-emerald-700'}`}>
+                      {statusLabels[e.status]}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+              <p class="border-t border-slate-100 px-4 py-2.5 text-xs text-slate-400">
+                Les brouillons ne sont pas visibles sur le site public.
+              </p>
+            </div>
+
+          </div>
+        </section>
+
+        <!-- ═══ ÉVÉNEMENTS ═══ -->
+        <section data-panel="events" class="space-y-3">
+
+          <div class="flex items-center justify-between">
+            <p class="text-sm text-slate-500">{events.length} événements au total · {events.filter(e => e.status === 'draft').length} brouillon</p>
+            <a href="#event-form" class="inline-flex items-center gap-1.5 rounded-md bg-indigo-600 px-3 py-1.5 text-xs font-medium text-white shadow-sm transition-colors hover:bg-indigo-700">
+              + Créer un événement
+            </a>
+          </div>
+
+          <div class="overflow-hidden rounded-lg border border-slate-200 bg-white shadow-sm">
+            <div class="overflow-x-auto">
+              <table class="w-full min-w-[560px] text-sm">
+                <thead class="border-b border-slate-200 bg-slate-50">
+                  <tr>
+                    <th class="px-4 py-2.5 text-left text-xs font-medium uppercase tracking-wide text-slate-500">Date</th>
+                    <th class="px-4 py-2.5 text-left text-xs font-medium uppercase tracking-wide text-slate-500">Titre</th>
+                    <th class="px-4 py-2.5 text-left text-xs font-medium uppercase tracking-wide text-slate-500">Lieu</th>
+                    <th class="px-4 py-2.5 text-center text-xs font-medium uppercase tracking-wide text-slate-500">Statut</th>
+                    <th class="px-4 py-2.5 text-right text-xs font-medium uppercase tracking-wide text-slate-500">Actions</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-100">
+                  {events.map((e) => (
+                    <tr class:list={['event-row transition-colors hover:bg-slate-50', e.status === 'past' && 'opacity-60']}>
+                      <td class="px-4 py-3 text-xs tabular-nums whitespace-nowrap text-slate-500">{e.date}</td>
+                      <td class="px-4 py-3">
+                        <p class="font-medium text-slate-800">{e.title}</p>
+                        {e.price && <p class="text-xs text-slate-400">{e.price}</p>}
+                      </td>
+                      <td class="px-4 py-3 text-xs text-slate-500 max-w-[180px] truncate">{e.location}</td>
+                      <td class="px-4 py-3 text-center">
+                        <!-- Toggle brouillon : checkbox + :has() — changer le statut visuellement -->
+                        {e.status === 'past' ? (
+                          <span class="inline-flex rounded-full bg-slate-100 px-2 py-0.5 text-[11px] font-medium text-slate-500">Passé</span>
+                        ) : (
+                          <label class="draft-pill inline-flex cursor-pointer items-center rounded-full border px-2.5 py-1 text-[11px] font-medium transition-colors">
+                            <input type="checkbox" checked={e.status === 'draft'} class="sr-only" />
+                            <span class="state-draft">Brouillon</span>
+                            <span class="state-pub">Publié</span>
+                          </label>
+                        )}
+                      </td>
+                      <td class="px-4 py-3 text-right">
+                        <div class="flex items-center justify-end gap-2 text-xs">
+                          <a href="#event-form" class="rounded border border-slate-200 px-2 py-1 text-slate-500 transition-colors hover:border-indigo-400 hover:text-indigo-600">✏️ Modifier</a>
+                          <span class="cursor-not-allowed rounded border border-rose-200 px-2 py-1 text-rose-300">🗑️</span>
+                        </div>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <p class="text-center text-xs text-slate-400">
+            Cochez/décochez le statut d'un événement pour le voir basculer entre <em>Brouillon</em> et <em>Publié</em> — piloté par <code class="rounded bg-white px-1 py-0.5 ring-1 ring-slate-200">:has()</code>, zéro JS.
+          </p>
+        </section>
+
+        <!-- ═══ GALERIES ═══ -->
+        <section data-panel="galleries" class="space-y-3">
+
+          <div class="flex items-center justify-between">
+            <p class="text-sm text-slate-500">{galleries.length} galeries · {galleries.filter(g => g.showOnHomepage).length} sur l'accueil</p>
+            <span class="cursor-not-allowed inline-flex items-center gap-1.5 rounded-md bg-indigo-600 px-3 py-1.5 text-xs font-medium text-white opacity-60 shadow-sm">+ Créer une galerie</span>
+          </div>
+
+          <div class="overflow-hidden rounded-lg border border-slate-200 bg-white shadow-sm">
+            <div class="overflow-x-auto">
+              <table class="w-full min-w-[560px] text-sm">
+                <thead class="border-b border-slate-200 bg-slate-50">
+                  <tr>
+                    <th class="px-4 py-2.5 text-left text-xs font-medium uppercase tracking-wide text-slate-500">Date</th>
+                    <th class="px-4 py-2.5 text-left text-xs font-medium uppercase tracking-wide text-slate-500">Titre</th>
+                    <th class="px-4 py-2.5 text-left text-xs font-medium uppercase tracking-wide text-slate-500">Photographe</th>
+                    <th class="px-4 py-2.5 text-center text-xs font-medium uppercase tracking-wide text-slate-500">Photos</th>
+                    <th class="px-4 py-2.5 text-center text-xs font-medium uppercase tracking-wide text-slate-500">Accueil</th>
+                    <th class="px-4 py-2.5 text-right text-xs font-medium uppercase tracking-wide text-slate-500">Actions</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-100">
+                  {galleries.map((g) => (
+                    <tr class="gallery-row transition-colors hover:bg-slate-50">
+                      <td class="px-4 py-3 text-xs tabular-nums whitespace-nowrap text-slate-500">{g.date}</td>
+                      <td class="px-4 py-3 font-medium text-slate-800">{g.title}</td>
+                      <td class="px-4 py-3 text-xs text-slate-500">{g.photographer}</td>
+                      <td class="px-4 py-3 text-center text-xs tabular-nums text-slate-500">{g.photoCount}</td>
+                      <td class="px-4 py-3 text-center">
+                        <!-- Toggle accueil : checkbox pill + :has() -->
+                        <label class="homepage-pill inline-flex cursor-pointer items-center gap-1.5 rounded-full border px-2.5 py-1 text-[11px] font-medium transition-colors">
+                          <input type="checkbox" checked={g.showOnHomepage} class="sr-only" />
+                          <span class="state-on">Accueil ✓</span>
+                          <span class="state-off">Non affiché</span>
+                        </label>
+                      </td>
+                      <td class="px-4 py-3 text-right">
+                        <div class="flex items-center justify-end gap-2 text-xs">
+                          <span class="rounded border border-slate-200 px-2 py-1 text-slate-500 hover:border-indigo-400 hover:text-indigo-600 cursor-pointer transition-colors">✏️</span>
+                          <span class="cursor-not-allowed rounded border border-rose-200 px-2 py-1 text-rose-300">🗑️</span>
+                        </div>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Grille d'aperçu photos (galerie simulée) -->
+          <div class="rounded-lg border border-slate-200 bg-white p-4 shadow-sm">
+            <h2 class="mb-3 text-sm font-semibold text-slate-900">Aperçu — Vide-grenier 2025 <span class="ml-1.5 text-xs font-normal text-slate-400">34 photos</span></h2>
+            <div class="grid grid-cols-4 gap-2 sm:grid-cols-6 md:grid-cols-8">
+              {Array.from({ length: 16 }, (_, i) => (
+                <div class="aspect-square overflow-hidden rounded-md bg-slate-100 relative group cursor-pointer">
+                  <div class="absolute inset-0 flex items-center justify-center text-slate-300 text-lg select-none" aria-hidden="true">📷</div>
+                  <div class="absolute inset-0 flex items-center justify-center rounded-md bg-slate-900/60 opacity-0 group-hover:opacity-100 transition-opacity">
+                    <span class="text-white text-xs font-medium">{i + 1}</span>
+                  </div>
+                </div>
+              ))}
+              <div class="aspect-square overflow-hidden rounded-md border-2 border-dashed border-slate-200 flex items-center justify-center text-slate-400 text-xs cursor-not-allowed">
+                +18
+              </div>
+            </div>
+            <p class="mt-2 text-xs text-slate-400">Aperçu illustratif — les miniatures représentent des emplacements photos.</p>
+          </div>
+
+          <p class="text-center text-xs text-slate-400">
+            Le toggle « Accueil » est géré par <code class="rounded bg-white px-1 py-0.5 ring-1 ring-slate-200">:has(input:checked)</code> — la case bascule entre les deux états sans JS.
+          </p>
+        </section>
+
+      </main>
+    </div>
+  </div>
+
+  <!-- ═══ Modale formulaire : nouvel événement (:target) ═══ -->
+  <div id="event-form" class="event-modal fixed inset-0 z-60 items-center justify-center p-4">
+    <a href="#" class="absolute inset-0 bg-slate-950/50 backdrop-blur-[1px]" aria-label="Fermer"></a>
+    <div class="relative z-10 max-h-[90vh] w-full max-w-2xl overflow-y-auto rounded-xl bg-white shadow-2xl">
+
+      <div class="sticky top-0 flex items-center justify-between gap-3 border-b border-slate-200 bg-white/95 px-5 py-3.5 backdrop-blur">
+        <div>
+          <p class="text-sm font-semibold text-slate-900">📅 Nouvel événement</p>
+          <p class="text-xs text-slate-400">Aperçu illustratif du formulaire Hibou — structure inspirée de l'interface réelle, simplifiée.</p>
+        </div>
+        <a href="#" class="shrink-0 rounded-md border border-slate-200 px-2 py-1 text-sm text-slate-400 transition-colors hover:border-rose-300 hover:text-rose-500" aria-label="Fermer">✕</a>
+      </div>
+
+      <fieldset disabled class="space-y-5 px-5 py-5 opacity-90">
+
+        <!-- Informations générales -->
+        <div class="rounded-lg border border-slate-200 p-4 space-y-4">
+          <h3 class="text-sm font-semibold text-slate-700">Informations générales</h3>
+          <label class="block">
+            <span class="mb-1 block text-xs font-medium text-slate-500">Titre *</span>
+            <input type="text" value="Soirée contes bretons" class="w-full rounded-md border border-slate-200 bg-slate-50 px-3 py-1.5 text-sm text-slate-700" />
+          </label>
+          <div class="grid gap-3 sm:grid-cols-2">
+            <label class="block">
+              <span class="mb-1 block text-xs font-medium text-slate-500">Date *</span>
+              <input type="date" value="2026-06-28" class="w-full rounded-md border border-slate-200 bg-slate-50 px-3 py-1.5 text-sm text-slate-700" />
+            </label>
+            <label class="block">
+              <span class="mb-1 block text-xs font-medium text-slate-500">Heure *</span>
+              <input type="text" value="20h30" class="w-full rounded-md border border-slate-200 bg-slate-50 px-3 py-1.5 text-sm text-slate-700" />
+            </label>
+          </div>
+          <label class="block">
+            <span class="mb-1 block text-xs font-medium text-slate-500">Lieu *</span>
+            <input type="text" value="Médiathèque municipale" class="w-full rounded-md border border-slate-200 bg-slate-50 px-3 py-1.5 text-sm text-slate-700" />
+          </label>
+          <label class="block">
+            <span class="mb-1 block text-xs font-medium text-slate-500">Description *</span>
+            <textarea rows="2" class="w-full rounded-md border border-slate-200 bg-slate-50 px-3 py-1.5 text-sm text-slate-700">Une soirée autour des contes traditionnels bretons, avec le conteur Yann Le Roc'h.</textarea>
+          </label>
+          <label class="flex items-center gap-2 text-sm text-slate-600">
+            <input type="checkbox" checked class="rounded border-slate-300" />
+            Brouillon (non visible sur le site)
+          </label>
+        </div>
+
+        <!-- Tarifs -->
+        <div class="rounded-lg border border-slate-200 p-4 space-y-3">
+          <div class="flex items-center justify-between">
+            <h3 class="text-sm font-semibold text-slate-700">Tarifs</h3>
+            <span class="text-xs font-medium text-indigo-500 cursor-not-allowed">+ Ajouter</span>
+          </div>
+          {[['Plein tarif', '4,00'], ['Tarif réduit', '2,00']].map(([nom, prix]) => (
+            <div class="flex gap-2 items-center">
+              <input type="text" value={nom}  class="flex-1 rounded-md border border-slate-200 bg-slate-50 px-3 py-1.5 text-sm text-slate-700" />
+              <input type="text" value={prix} class="w-20 rounded-md border border-slate-200 bg-slate-50 px-3 py-1.5 text-sm text-slate-700" />
+              <span class="text-xs text-slate-400">€</span>
+              <span class="px-2 text-rose-300 cursor-not-allowed">✕</span>
+            </div>
+          ))}
+          <p class="text-xs text-slate-400">Laissez vide si entrée gratuite.</p>
+        </div>
+
+        <!-- Notes de menu -->
+        <div class="rounded-lg border border-slate-200 p-4 space-y-2">
+          <h3 class="text-sm font-semibold text-slate-700">Notes de menu</h3>
+          <textarea rows="2" class="w-full rounded-md border border-slate-200 bg-slate-50 px-3 py-1.5 text-sm text-slate-700">Réservation conseillée au 02 98 XX XX XX</textarea>
+          <p class="text-xs text-slate-400">Optionnel. Une note par ligne.</p>
+        </div>
+
+        <!-- Galeries associées -->
+        <div class="rounded-lg border border-slate-200 p-4 space-y-2">
+          <h3 class="text-sm font-semibold text-slate-700">Galeries associées</h3>
+          {galleries.map((g) => (
+            <label class="flex items-center gap-3 text-sm text-slate-600">
+              <input type="checkbox" checked={g.slug === 'soiree-contes-2024'} class="rounded border-slate-300" />
+              <span>{g.title}</span>
+              <span class="text-xs font-mono text-slate-400">{g.slug}</span>
+            </label>
+          ))}
+        </div>
+
+        <!-- Contenu Markdown -->
+        <div class="rounded-lg border border-slate-200 p-4 space-y-2">
+          <h3 class="text-sm font-semibold text-slate-700">Contenu (Markdown)</h3>
+          <details class="rounded-md border border-slate-100 bg-slate-50">
+            <summary class="cursor-pointer px-3 py-2 text-xs text-indigo-500">Aide Markdown</summary>
+            <div class="px-3 pb-3 pt-1 text-xs text-slate-500 space-y-1">
+              <p><code class="font-mono">## Titre</code> — gros titre · <code class="font-mono">**gras**</code> · <code class="font-mono">*italique*</code></p>
+              <p><code class="font-mono">- point</code> — liste à puces · <code class="font-mono">[lien](url)</code> — lien cliquable</p>
+            </div>
+          </details>
+          <textarea rows="5" class="w-full rounded-md border border-slate-200 bg-slate-50 px-3 py-1.5 font-mono text-xs text-slate-700">## À propos de la soirée
+
+Yann Le Roc'h est conteur depuis 2003. Il puise dans le répertoire traditionnel breton pour redonner vie aux *korrigans*, aux lavandières de nuit et aux *ankou*...
+
+**Durée** : environ 1h30, sans entracte.</textarea>
+        </div>
+
+      </fieldset>
+
+      <div class="flex items-center justify-end gap-2 border-t border-slate-200 px-5 py-3.5">
+        <a href="#" class="rounded-md border border-slate-200 px-3 py-1.5 text-sm text-slate-600 transition-colors hover:border-slate-300">Annuler</a>
+        <span class="cursor-not-allowed rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-medium text-white opacity-90 shadow-sm">Créer l'événement</span>
+      </div>
+    </div>
+  </div>
+
+  <style>
+    /* ═══════════════════════════════════════════════════
+       macOS AQUA 2001 THEME
+       ═══════════════════════════════════════════════════ */
+    :root {
+      --aq-body:    #b8cad8;
+      --aq-win:     #f0f0f0;    /* window content bg   */
+      --aq-white:   #ffffff;
+      --aq-m1:      #e4e4e4;    /* metal toolbar top    */
+      --aq-m2:      #b4b4b4;    /* metal toolbar bottom */
+      --aq-border:  rgba(0,0,0,.22);
+      --aq-text:    #1a1a1a;
+      --aq-label:   #4a4a4a;
+      --aq-muted:   #888888;
+      /* Aqua gel blue */
+      --aq-b1:      #c4dff8;    /* gel highlight        */
+      --aq-b2:      #4898e8;    /* gel mid              */
+      --aq-b3:      #1464c8;    /* gel dark             */
+      --aq-sel:     #2255b8;    /* selection            */
+    }
+
+    /* ─── global ─── */
+    body { background: var(--aq-body) !important; -webkit-font-smoothing: antialiased; }
+
+    /* ─── bandeau démo ─── */
+    body > div:first-child { background: rgba(0,0,0,.55) !important; backdrop-filter: blur(8px); }
+
+    /* ─── HEADER / toolbar ─── */
+    header {
+      background: linear-gradient(to bottom, var(--aq-m1) 0%, var(--aq-m2) 100%) !important;
+      border-bottom: 1px solid #8a8a8a !important;
+    }
+    /* override Tailwind bg-slate on header children */
+    header [class*='bg-slate'], header [class*='bg-indigo'] {
+      background: transparent !important;
+    }
+    header [class*='text-slate'], header [class*='text-indigo'] { color: var(--aq-text) !important; }
+    header [class*='ring-inset'] { box-shadow: none !important; border: 1px solid rgba(0,0,0,.25) !important; }
+    header .border-b { border-bottom-color: rgba(0,0,0,.15) !important; }
+
+    /* ─── PROFILE SELECTOR  (popup button) ─── */
+    .profile-selector summary {
+      background: linear-gradient(to bottom, #f8f8f8 0%, #e0e0e0 100%) !important;
+      border: 1px solid #909090 !important;
+      border-radius: 6px !important;
+      box-shadow: 0 1px 3px rgba(0,0,0,.18), inset 0 1px 0 rgba(255,255,255,.9) !important;
+      color: var(--aq-text) !important;
+    }
+    .profile-selector[open] summary {
+      background: linear-gradient(to bottom, #d8d8d8 0%, #e8e8e8 100%) !important;
+    }
+    .profile-selector[open] .profile-chevron { transform: rotate(180deg); }
+    /* dropdown — Mac menu style */
+    .profile-selector > div {
+      background: var(--aq-white) !important;
+      border: 1px solid rgba(0,0,0,.35) !important;
+      border-radius: 5px !important;
+      box-shadow: 0 6px 20px rgba(0,0,0,.35) !important;
+    }
+    /* active row (current profile) */
+    .profile-selector > div > div:first-child {
+      background: linear-gradient(to bottom, var(--aq-b2) 0%, var(--aq-b3) 100%) !important;
+    }
+    .profile-selector > div > div:first-child * { color: #fff !important; }
+    .profile-selector a:hover {
+      background: linear-gradient(to bottom, var(--aq-b2) 0%, var(--aq-b3) 100%) !important;
+    }
+    .profile-selector a:hover * { color: #fff !important; }
+
+    /* ─── TABS (pill segmented control) ─── */
+    .tab-nav {
+      background: linear-gradient(to bottom, #ccd8e8 0%, #b0c0d4 100%) !important;
+      border: 1px solid #7890a8 !important;
+      border-radius: 12px !important;
+      padding: 3px !important;
+      gap: 2px !important;
+    }
+    .tab-nav label {
+      border-radius: 9px !important;
+      padding: 3px 12px !important;
+      font-size: 12px !important;
+      color: #2a3a50 !important;
+      background: transparent !important;
+      cursor: pointer !important;
+    }
+    .tabset > div > main > [data-panel] { display: none; }
+    .tabset:has(#tab-overview:checked)  > div > main > [data-panel='overview'],
+    .tabset:has(#tab-events:checked)    > div > main > [data-panel='events'],
+    .tabset:has(#tab-galleries:checked) > div > main > [data-panel='galleries'] {
+      display: block;
+      animation: aq-fade .15s ease-out;
+    }
+    .tabset:has(#tab-overview:checked)  .tab-nav label[for='tab-overview'],
+    .tabset:has(#tab-events:checked)    .tab-nav label[for='tab-events'],
+    .tabset:has(#tab-galleries:checked) .tab-nav label[for='tab-galleries'] {
+      background: linear-gradient(to bottom, var(--aq-b1) 0%, var(--aq-b2) 45%, var(--aq-b3) 55%, var(--aq-b2) 100%) !important;
+      color: #fff !important;
+      box-shadow: 0 1px 4px rgba(0,0,0,.35), inset 0 1px 0 rgba(255,255,255,.55) !important;
+    }
+    @keyframes aq-fade {
+      from { opacity: 0; transform: translateY(3px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ─── PANELS / CARDS ─── */
+    section .border,
+    section > div > .border,
+    .grid > .border,
+    .overflow-hidden.border,
+    .overflow-hidden.rounded-lg {
+      background: var(--aq-white) !important;
+      border: 1px solid rgba(0,0,0,.18) !important;
+      border-radius: 6px !important;
+      box-shadow: 0 2px 8px rgba(0,0,0,.12), inset 0 1px 0 rgba(255,255,255,.8) !important;
+    }
+    .border-b { border-bottom-color: rgba(0,0,0,.1) !important; }
+    [class*='divide-y'] > * + * { border-top-color: rgba(0,0,0,.07) !important; }
+
+    /* TABLE */
+    table { background: transparent !important; }
+    thead th {
+      background: linear-gradient(to bottom, #f4f4f4 0%, #e8e8e8 100%) !important;
+      border-bottom: 1px solid rgba(0,0,0,.15) !important;
+      color: var(--aq-label) !important;
+      font-size: 11px !important;
+    }
+    tbody tr:hover { background: rgba(60,120,200,.08) !important; }
+    /* stat numbers */
+    .text-2xl { color: var(--aq-text) !important; }
+
+    /* ─── BADGES: stats/counts ─── */
+    [class*='bg-indigo-'], [class*='bg-amber-'], [class*='bg-emerald-'],
+    [class*='bg-rose-'], [class*='bg-slate-'] {
+      background-color: transparent !important;
+    }
+    /* re-skin status pills */
+    .rounded-full.bg-indigo-50,
+    .rounded-full.bg-emerald-100,
+    .rounded-full.bg-amber-100,
+    .rounded-full.bg-gray-100,
+    .rounded-full.bg-slate-100 {
+      background: linear-gradient(to bottom, #e4ecf8 0%, #c8d8f0 100%) !important;
+      color: var(--aq-sel) !important;
+      border: 1px solid rgba(60,120,200,.3) !important;
+    }
+    /* stat card sub-text */
+    [class*='text-slate-4'], [class*='text-indigo-'], [class*='text-slate-5'] {
+      color: var(--aq-label) !important;
+    }
+
+    /* ─── DRAFT PILL ─── */
+    .draft-pill .state-pub { display: none; }
+    .draft-pill {
+      border-radius: 12px !important;
+      border: 1px solid rgba(0,0,0,.2) !important;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.7) !important;
+      padding: 2px 10px !important;
+    }
+    .draft-pill:has(input:checked) {
+      background: linear-gradient(to bottom, #f8e090 0%, #d89020 100%) !important;
+      border-color: #a07010 !important;
+      color: #3a2000 !important;
+    }
+    .draft-pill:has(input:checked) .state-pub  { display: none; }
+    .draft-pill:has(input:checked) .state-draft { display: inline; }
+    .draft-pill:has(input:not(:checked)) {
+      background: linear-gradient(to bottom, var(--aq-b1) 0%, var(--aq-b2) 45%, var(--aq-b3) 55%, var(--aq-b2) 100%) !important;
+      border-color: var(--aq-b3) !important;
+      color: #fff !important;
+      box-shadow: 0 1px 3px rgba(0,0,0,.3), inset 0 1px 0 rgba(255,255,255,.4) !important;
+    }
+    .draft-pill:has(input:not(:checked)) .state-draft { display: none; }
+    .draft-pill:has(input:not(:checked)) .state-pub   { display: inline; }
+
+    /* ─── HOMEPAGE PILL ─── */
+    .homepage-pill .state-off { display: none; }
+    .homepage-pill {
+      border-radius: 12px !important;
+      border: 1px solid rgba(0,0,0,.2) !important;
+      padding: 2px 10px !important;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.7) !important;
+    }
+    .homepage-pill:has(input:checked) {
+      background: linear-gradient(to bottom, var(--aq-b1) 0%, var(--aq-b2) 45%, var(--aq-b3) 55%, var(--aq-b2) 100%) !important;
+      border-color: var(--aq-b3) !important;
+      color: #fff !important;
+      box-shadow: 0 1px 3px rgba(0,0,0,.3), inset 0 1px 0 rgba(255,255,255,.4) !important;
+    }
+    .homepage-pill:has(input:not(:checked)) {
+      background: linear-gradient(to bottom, #e8e8e8 0%, #d0d0d0 100%) !important;
+      border-color: #a0a0a0 !important;
+      color: #606060 !important;
+    }
+    .homepage-pill:has(input:not(:checked)) .state-on  { display: none; }
+    .homepage-pill:has(input:not(:checked)) .state-off { display: inline; }
+    .gallery-row:has(.homepage-pill input:not(:checked)) { opacity: .5; }
+
+    /* ─── BUTTONS ─── */
+    /* primary Aqua gel button */
+    .bg-indigo-600, a.bg-indigo-600, span.bg-indigo-600 {
+      background: linear-gradient(to bottom, var(--aq-b1) 0%, var(--aq-b2) 40%, var(--aq-b3) 55%, var(--aq-b2) 100%) !important;
+      border: 1px solid var(--aq-b3) !important;
+      border-radius: 12px !important;
+      box-shadow: 0 1px 4px rgba(0,0,0,.35), inset 0 1px 0 rgba(255,255,255,.55) !important;
+      color: #fff !important;
+      text-shadow: 0 -1px 0 rgba(0,0,0,.3) !important;
+      opacity: 1 !important;
+    }
+    /* secondary button style (Annuler, etc.) */
+    a.border.border-slate-200, span.cursor-not-allowed.border.border-slate-200 {
+      background: linear-gradient(to bottom, #f8f8f8 0%, #e0e0e0 100%) !important;
+      border: 1px solid #909090 !important;
+      border-radius: 6px !important;
+      box-shadow: 0 1px 3px rgba(0,0,0,.15), inset 0 1px 0 rgba(255,255,255,.9) !important;
+      color: var(--aq-text) !important;
+    }
+    /* small action buttons in tables */
+    .rounded.border.border-slate-200,
+    span.rounded.border.border-rose-200 {
+      background: linear-gradient(to bottom, #f8f8f8 0%, #e0e0e0 100%) !important;
+      border: 1px solid #909090 !important;
+      border-radius: 4px !important;
+      box-shadow: 0 1px 2px rgba(0,0,0,.12), inset 0 1px 0 rgba(255,255,255,.9) !important;
+      color: var(--aq-text) !important;
+    }
+    /* disabled states */
+    .cursor-not-allowed { opacity: .6 !important; }
+
+    /* ─── INPUTS in modal ─── */
+    .event-modal input[type='text'],
+    .event-modal input[type='date'],
+    .event-modal textarea,
+    .event-modal select {
+      background: var(--aq-white) !important;
+      border: 1px solid rgba(0,0,0,.3) !important;
+      border-radius: 4px !important;
+      box-shadow: inset 0 1px 3px rgba(0,0,0,.12) !important;
+      color: var(--aq-text) !important;
+      font-family: 'Lucida Grande', Helvetica, sans-serif !important;
+      font-size: 13px !important;
+    }
+
+    /* ─── PHOTO GRID placeholders ─── */
+    .aspect-square.overflow-hidden.rounded-md.bg-slate-100 {
+      background: linear-gradient(to bottom, #e8e8e8 0%, #d8d8d8 100%) !important;
+      border: 1px solid rgba(0,0,0,.15) !important;
+      border-radius: 4px !important;
+    }
+    .aspect-square.border-2.border-dashed {
+      border: 2px dashed #a0a0a0 !important;
+      background: rgba(255,255,255,.5) !important;
+      border-radius: 4px !important;
+    }
+
+    /* ─── MODAL (sheet / dialog) ─── */
+    .event-modal { display: none; }
+    .event-modal:target { display: flex; animation: aq-fade .2s ease-out; }
+    .event-modal > a.absolute { background: rgba(0,0,0,.45) !important; backdrop-filter: blur(2px); }
+    /* window */
+    .event-modal > div > div.relative {
+      background: var(--aq-white) !important;
+      border: 1px solid rgba(0,0,0,.4) !important;
+      border-radius: 10px !important;
+      box-shadow: 0 20px 60px rgba(0,0,0,.5), 0 0 0 1px rgba(255,255,255,.1) inset !important;
+    }
+    /* pinstripe title bar */
+    .event-modal .sticky {
+      background: repeating-linear-gradient(
+        to bottom,
+        #ececec 0px, #ececec 1px,
+        #f6f6f6 1px, #f6f6f6 2px
+      ) !important;
+      border-bottom: 1px solid #b0b0b0 !important;
+      border-radius: 10px 10px 0 0 !important;
+    }
+    .event-modal .sticky p    { color: var(--aq-text) !important; }
+    .event-modal .sticky p:first-child { font-weight: bold !important; font-size: 13px !important; }
+    /* traffic-light close button */
+    .event-modal .sticky a[aria-label] {
+      width: 14px !important;
+      height: 14px !important;
+      border-radius: 50% !important;
+      background: radial-gradient(circle at 40% 35%, #ff9090, #e03030) !important;
+      border: 1px solid #b02020 !important;
+      box-shadow: inset 0 1px 1px rgba(255,255,255,.5) !important;
+      color: transparent !important;
+      font-size: 0 !important;
+      padding: 0 !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      flex-shrink: 0 !important;
+    }
+    /* modal form sections */
+    .event-modal fieldset .rounded-lg.border {
+      background: #f8f8f8 !important;
+      border: 1px solid rgba(0,0,0,.12) !important;
+      border-radius: 6px !important;
+      box-shadow: none !important;
+    }
+    /* modal footer */
+    .event-modal fieldset + div {
+      background: #f0f0f0 !important;
+      border-top: 1px solid rgba(0,0,0,.12) !important;
+      border-radius: 0 0 10px 10px !important;
+    }
+  </style>
+</body>
+</html>
