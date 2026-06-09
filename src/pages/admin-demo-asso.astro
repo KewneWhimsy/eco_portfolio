@@ -94,7 +94,7 @@ const btnSmall = "background:linear-gradient(to bottom,#f8f8f8,#e0e0e0);border:1
     <div class="mx-auto max-w-7xl px-2 py-6 sm:px-6">
 
       <!-- En-tête -->
-      <header class="mb-6 flex flex-col gap-4 p-4 sm:flex-row sm:items-center sm:justify-between" style="background:linear-gradient(to bottom,#e4e4e4,#b4b4b4);border-bottom:1px solid #9d9d9d;border-left:1px solid #b9b9b9;border-right:1px solid #b9b9b9;border-radius:4px;">
+      <header class="mb-6 flex flex-col gap-4 p-4 sm:flex-row sm:items-center sm:justify-between" style="background:linear-gradient(to bottom,#e4e4e4,#b4b4b4);border-bottom:1px solid #9d9d9d;border-inline:1px solid #b9b9b9;border-radius:4px;">
         <div class="flex flex-wrap items-center gap-3">
 
           <!-- Logo / identité -->
@@ -258,9 +258,6 @@ const btnSmall = "background:linear-gradient(to bottom,#f8f8f8,#e0e0e0);border:1
             </div>
           </div>
 
-          <p class="text-center text-xs text-[#888]">
-            Cochez/décochez le statut d'un événement pour le voir basculer entre <em>Brouillon</em> et <em>Publié</em> — piloté par <code class="rounded bg-white px-1 py-0.5 ring-1 ring-[rgba(0,0,0,.15)]">:has()</code>, zéro JS.
-          </p>
         </section>
 
         <!-- ═══ GALERIES ═══ -->
@@ -330,9 +327,6 @@ const btnSmall = "background:linear-gradient(to bottom,#f8f8f8,#e0e0e0);border:1
             <p class="mt-2 text-xs text-[#888]">Aperçu illustratif — les miniatures représentent des emplacements photos.</p>
           </div>
 
-          <p class="text-center text-xs text-[#888]">
-            Le toggle « Accueil » est géré par <code class="rounded bg-white px-1 py-0.5 ring-1 ring-[rgba(0,0,0,.15)]">:has(input:checked)</code> — la case bascule entre les deux états sans JS.
-          </p>
         </section>
 
       </main>
@@ -347,7 +341,6 @@ const btnSmall = "background:linear-gradient(to bottom,#f8f8f8,#e0e0e0);border:1
       <div class="sticky top-0 flex items-center justify-between gap-3 px-5 py-3.5" style="background:repeating-linear-gradient(to bottom,#ececec 0px,#ececec 1px,#f6f6f6 1px,#f6f6f6 2px);border-bottom:1px solid #b0b0b0;border-radius:0.75rem 0.75rem 0 0;">
         <div>
           <p class="text-sm font-bold text-[#1a1a1a]">📅 Nouvel événement</p>
-          <p class="text-xs text-[#888]">Aperçu illustratif du formulaire Hibou — structure inspirée de l'interface réelle, simplifiée.</p>
         </div>
         <a href="#" class="shrink-0 flex items-center justify-center" style="width:14px;height:14px;border-radius:50%;background:radial-gradient(circle at 40% 35%,#ff9090,#e03030);border:1px solid #b02020;box-shadow:inset 0 1px 1px rgba(255,255,255,.5);" aria-label="Fermer"></a>
       </div>
