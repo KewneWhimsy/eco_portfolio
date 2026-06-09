@@ -75,7 +75,7 @@ const published = [
   <title>Le Comptoir — démo d'interface d'administration</title>
   <meta name="description" content="Mockup d'interface d'administration : aperçu visuel uniquement, sans backend ni données réelles. Interactions rejouées en CSS pur." />
 </head>
-<body class="min-h-screen bg-slate-100 text-slate-700 antialiased" style="font-family: 'Inter', system-ui, -apple-system, sans-serif;">
+<body class="min-h-screen bg-slate-100 text-slate-700 antialiased overflow-x-hidden" style="font-family: 'Inter', system-ui, -apple-system, sans-serif;">
 
   <!-- Bandeau "ceci est une démo" -->
   <div class="flex flex-wrap items-center justify-center gap-x-3 gap-y-1 bg-slate-900 px-4 py-2 text-center text-xs text-slate-300">
@@ -95,7 +95,7 @@ const published = [
 
       <!-- En-tête façon Back142 : titre + pastilles d'onglets + actions -->
       <header class="mb-6 flex flex-col gap-4 border-b border-slate-200 pb-4 sm:flex-row sm:items-center sm:justify-between">
-        <div class="flex items-center gap-3">
+        <div class="flex flex-wrap items-center gap-3">
           <details class="profile-selector relative">
             <summary class="flex cursor-pointer list-none items-center gap-2.5 border border-slate-200 bg-white py-1.5 pl-1.5 pr-3 text-sm font-semibold text-slate-900 shadow-sm transition-colors hover:border-slate-300 select-none">
               <span class="flex h-8 w-8 shrink-0 items-center justify-center bg-amber-100 text-amber-800 text-base" aria-hidden="true">☕</span>
@@ -121,7 +121,7 @@ const published = [
             </div>
           </details>
 
-          <nav class="tab-nav ml-2 flex gap-1 bg-slate-100 p-1">
+          <nav class="tab-nav w-full overflow-x-auto sm:w-auto sm:ml-2 flex gap-1 bg-slate-100 p-1">
             <label for="tab-overview" class="cursor-pointer px-3 py-1.5 text-xs font-medium text-slate-500 transition-colors">📡 Aperçu</label>
             <label for="tab-catalog"  class="cursor-pointer px-3 py-1.5 text-xs font-medium text-slate-500 transition-colors">📦 Catalogue</label>
             <label for="tab-stock"    class="cursor-pointer px-3 py-1.5 text-xs font-medium text-slate-500 transition-colors">📊 Stock &amp; remplacements</label>
@@ -453,6 +453,9 @@ const published = [
   <style>
     /* ─── Sélecteur de profil ─── */
     .profile-selector[open] .profile-chevron { transform: rotate(180deg); }
+    /* ─── Tab nav : masquer la scrollbar sur mobile ─── */
+    .tab-nav { scrollbar-width: none; }
+    .tab-nav::-webkit-scrollbar { display: none; }
     /* ───────────────────────────────────────────────
        Onglets pilotés par radios + :has() — aucun JS
        ─────────────────────────────────────────────── */

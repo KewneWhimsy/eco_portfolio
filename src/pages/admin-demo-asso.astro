@@ -116,7 +116,7 @@ const statusLabels: Record<EventStatus, string> = { draft: 'Brouillon', publishe
             </div>
           </details>
 
-          <nav class="tab-nav ml-2 flex gap-1 rounded-lg bg-slate-100 p-1">
+          <nav class="tab-nav w-full overflow-x-auto sm:w-auto sm:ml-2 flex gap-1 rounded-lg bg-slate-100 p-1">
             <label for="tab-overview"  class="cursor-pointer rounded-md px-3 py-1.5 text-xs font-medium text-slate-500 transition-colors">📡 Tableau de bord</label>
             <label for="tab-events"    class="cursor-pointer rounded-md px-3 py-1.5 text-xs font-medium text-slate-500 transition-colors">📅 Événements</label>
             <label for="tab-galleries" class="cursor-pointer rounded-md px-3 py-1.5 text-xs font-medium text-slate-500 transition-colors">📷 Galeries</label>
@@ -206,8 +206,7 @@ const statusLabels: Record<EventStatus, string> = { draft: 'Brouillon', publishe
             </a>
           </div>
 
-          <div class="overflow-hidden rounded-lg border border-slate-200 bg-white shadow-sm">
-            <div class="overflow-x-auto">
+          <div class="overflow-x-auto rounded-lg border border-slate-200 bg-white shadow-sm">
               <table class="w-full min-w-[560px] text-sm">
                 <thead class="border-b border-slate-200 bg-slate-50">
                   <tr>
@@ -249,7 +248,6 @@ const statusLabels: Record<EventStatus, string> = { draft: 'Brouillon', publishe
                   ))}
                 </tbody>
               </table>
-            </div>
           </div>
 
           <p class="text-center text-xs text-slate-400">
@@ -265,8 +263,7 @@ const statusLabels: Record<EventStatus, string> = { draft: 'Brouillon', publishe
             <span class="cursor-not-allowed inline-flex items-center gap-1.5 rounded-md bg-indigo-600 px-3 py-1.5 text-xs font-medium text-white opacity-60 shadow-sm">+ Créer une galerie</span>
           </div>
 
-          <div class="overflow-hidden rounded-lg border border-slate-200 bg-white shadow-sm">
-            <div class="overflow-x-auto">
+          <div class="overflow-x-auto rounded-lg border border-slate-200 bg-white shadow-sm">
               <table class="w-full min-w-[560px] text-sm">
                 <thead class="border-b border-slate-200 bg-slate-50">
                   <tr>
@@ -303,7 +300,6 @@ const statusLabels: Record<EventStatus, string> = { draft: 'Brouillon', publishe
                   ))}
                 </tbody>
               </table>
-            </div>
           </div>
 
           <!-- Grille d'aperçu photos (galerie simulée) -->
@@ -464,7 +460,7 @@ Yann Le Roc'h est conteur depuis 2003. Il puise dans le répertoire traditionnel
     }
 
     /* ─── global ─── */
-    body { background: var(--aq-body) !important; -webkit-font-smoothing: antialiased; }
+    body { background: var(--aq-body) !important; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
 
     /* ─── bandeau démo ─── */
     body > div:first-child { background: rgba(0,0,0,.55) !important; backdrop-filter: blur(8px); }
@@ -510,6 +506,10 @@ Yann Le Roc'h est conteur depuis 2003. Il puise dans le répertoire traditionnel
       background: linear-gradient(to bottom, var(--aq-b2) 0%, var(--aq-b3) 100%) !important;
     }
     .profile-selector a:hover * { color: #fff !important; }
+
+    /* ─── Tab nav : masquer la scrollbar sur mobile ─── */
+    .tab-nav { scrollbar-width: none; }
+    .tab-nav::-webkit-scrollbar { display: none; }
 
     /* ─── TABS (pill segmented control) ─── */
     .tab-nav {
