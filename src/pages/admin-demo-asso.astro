@@ -58,6 +58,11 @@ const activity = [
 ];
 
 const statusLabels: Record<EventStatus, string> = { draft: 'Brouillon', published: 'Publié', past: 'Passé' };
+
+const cardStyle = "background:white;border:1px solid rgba(0,0,0,.18);border-radius:6px;box-shadow:0 2px 8px rgba(0,0,0,.12),inset 0 1px 0 rgba(255,255,255,.8);";
+const btnPrimary = "background:linear-gradient(to bottom,#c4dff8 0%,#4898e8 40%,#1464c8 55%,#4898e8 100%);border:1px solid #1464c8;border-radius:12px;box-shadow:0 1px 4px rgba(0,0,0,.35),inset 0 1px 0 rgba(255,255,255,.55);text-shadow:0 -1px 0 rgba(0,0,0,.3);";
+const btnSecondary = "background:linear-gradient(to bottom,#f8f8f8,#e0e0e0);border:1px solid #909090;border-radius:6px;box-shadow:0 1px 3px rgba(0,0,0,.15),inset 0 1px 0 rgba(255,255,255,.9);";
+const btnSmall = "background:linear-gradient(to bottom,#f8f8f8,#e0e0e0);border:1px solid #909090;border-radius:4px;box-shadow:0 1px 2px rgba(0,0,0,.12),inset 0 1px 0 rgba(255,255,255,.9);";
 ---
 
 <!DOCTYPE html>
@@ -68,12 +73,13 @@ const statusLabels: Record<EventStatus, string> = { draft: 'Brouillon', publishe
   <meta name="robots" content="noindex, nofollow" />
   <title>Ty Keltieg — démo interface d'administration Hibou</title>
   <meta name="description" content="Mockup de l'interface d'administration Hibou : gestion d'événements et de galeries photos pour une association fictive. Interactions rejouées en CSS pur (:has, :target, details)." />
+  <style>html { overflow-x: hidden; }</style>
 </head>
-<body class="min-h-screen" style="background:#b8cad8;color:#1a1a1a;font-family:'Lucida Grande','Lucida Sans Unicode',Helvetica,Arial,sans-serif;font-size:13px;">
+<body class="min-h-screen" style="background:#b8cad8;color:#1a1a1a;font-family:'Lucida Grande','Lucida Sans Unicode',Helvetica,Arial,sans-serif;font-size:13px;-webkit-font-smoothing:antialiased;">
 
   <!-- Bandeau démo -->
-  <div class="flex flex-wrap items-center justify-center gap-x-3 gap-y-1 bg-slate-900 px-4 py-2 text-center text-xs text-slate-300">
-    <span><strong class="text-white">Démo visuelle</strong> — interface fictive pour une association imaginaire ; aucune donnée n'est réelle. Inspirée de l'admin Hibou (briec2000) : onglets, gestion d'événements &amp; galeries, toggle accueil. Interactions en CSS pur à la <code class="rounded bg-white/10 px-1 py-0.5 text-violet-200">:has()</code> &amp; <code class="rounded bg-white/10 px-1 py-0.5 text-violet-200">:target</code>.</span>
+  <div class="flex flex-wrap items-center justify-center gap-x-3 gap-y-1 px-4 py-2 text-center text-xs text-slate-300" style="background:rgba(0,0,0,.55);backdrop-filter:blur(8px);">
+    <span><strong class="text-white">Démo visuelle</strong> — interface fictive pour une association imaginaire ; aucune donnée n'est réelle. Inspirée de l'admin Hibou (briec2000) : onglets, gestion d'événements &amp; galeries, toggle accueil. Interactions en CSS pur à la <code class="rounded px-1 py-0.5 text-violet-200" style="background:rgba(255,255,255,.1);">:has()</code> &amp; <code class="rounded px-1 py-0.5 text-violet-200" style="background:rgba(255,255,255,.1);">:target</code>.</span>
     <a href="/fr/projects/" class="inline-flex shrink-0 items-center gap-1 font-medium text-amber-300 underline decoration-amber-400/40 underline-offset-2 transition-colors hover:text-amber-200">
       ← Retour au portfolio
     </a>
@@ -85,47 +91,48 @@ const statusLabels: Record<EventStatus, string> = { draft: 'Brouillon', publishe
     <input type="radio" name="admin-tab" id="tab-events"   class="sr-only" />
     <input type="radio" name="admin-tab" id="tab-galleries" class="sr-only" />
 
-    <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6">
+    <div class="mx-auto max-w-7xl px-2 py-6 sm:px-6">
 
       <!-- En-tête -->
-      <header class="mb-6 flex flex-col gap-4 border-b border-slate-200 p-4 sm:flex-row sm:items-center sm:justify-between">
+      <header class="mb-6 flex flex-col gap-4 p-4 sm:flex-row sm:items-center sm:justify-between" style="background:linear-gradient(to bottom,#e4e4e4,#b4b4b4);border-bottom:1px solid #8a8a8a;">
         <div class="flex flex-wrap items-center gap-3">
+
           <!-- Logo / identité -->
           <details class="profile-selector relative">
-            <summary class="flex cursor-pointer list-none items-center gap-2.5 rounded-lg border border-slate-200 bg-white py-1.5 pl-1.5 pr-3 text-sm font-semibold text-slate-900 shadow-sm transition-colors hover:border-slate-300 select-none">
-              <span class="flex h-8 w-8 shrink-0 items-center justify-center rounded-md bg-indigo-100 text-indigo-700 text-base" aria-hidden="true">🦉</span>
-              <span>Ty Keltieg <span class="font-normal text-slate-400">— Admin</span></span>
-              <svg class="ml-0.5 h-3.5 w-3.5 shrink-0 text-slate-400 transition-transform duration-150 profile-chevron" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 4.5 6 7.5 9 4.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <summary class="flex cursor-pointer list-none items-center gap-2.5 rounded-lg py-1.5 pl-1.5 pr-3 text-sm font-semibold text-[#1a1a1a] select-none" style="background:linear-gradient(to bottom,#f8f8f8,#e0e0e0);border:1px solid #909090;border-radius:6px;box-shadow:0 1px 3px rgba(0,0,0,.18),inset 0 1px 0 rgba(255,255,255,.9);">
+              <span class="flex h-8 w-8 shrink-0 items-center justify-center rounded-md text-base" style="background:#ddeaf8;color:#1a4a8a;" aria-hidden="true">🦉</span>
+              <span>Ty Keltieg <span class="font-normal text-[#4a4a4a]">— Admin</span></span>
+              <svg class="ml-0.5 h-3.5 w-3.5 shrink-0 text-[#888] transition-transform duration-150 profile-chevron" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 4.5 6 7.5 9 4.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </summary>
-            <div class="absolute left-0 top-full z-30 mt-1.5 w-60 overflow-hidden rounded-lg border border-slate-200 bg-white shadow-lg">
-              <a href="/admin-demo/" class="flex items-center gap-3 px-3 py-2.5 text-sm text-slate-700 transition-colors hover:bg-slate-50">
-                <span class="flex h-8 w-8 shrink-0 items-center justify-center rounded-md bg-amber-100 text-amber-800 text-base" aria-hidden="true">☕</span>
+            <div class="absolute left-0 top-full z-30 mt-1.5 w-60 overflow-hidden bg-white" style="border-radius:5px;border:1px solid rgba(0,0,0,.35);box-shadow:0 6px 20px rgba(0,0,0,.35);">
+              <a href="/admin-demo/" class="flex items-center gap-3 px-3 py-2.5 text-sm text-[#1a1a1a] transition-colors hover:text-white" style="--hover-bg:linear-gradient(to bottom,#4898e8,#1464c8);" onmouseenter="this.style.background='linear-gradient(to bottom,#4898e8,#1464c8)'" onmouseleave="this.style.background=''">
+                <span class="flex h-8 w-8 shrink-0 items-center justify-center rounded-md text-base" style="background:#fef3e2;color:#92400e;" aria-hidden="true">☕</span>
                 <div class="min-w-0">
                   <p class="font-medium leading-tight">Le Comptoir</p>
-                  <p class="text-xs text-slate-400">Torréfaction · e-commerce</p>
+                  <p class="text-xs text-[#888]">Torréfaction · e-commerce</p>
                 </div>
               </a>
-              <div class="flex items-center gap-3 bg-indigo-50 px-3 py-2.5 text-sm">
-                <span class="flex h-8 w-8 shrink-0 items-center justify-center rounded-md bg-indigo-200 text-indigo-700 text-base" aria-hidden="true">🦉</span>
+              <div class="flex items-center gap-3 px-3 py-2.5 text-sm text-white" style="background:linear-gradient(to bottom,#4898e8,#1464c8);">
+                <span class="flex h-8 w-8 shrink-0 items-center justify-center rounded-md text-base" style="background:rgba(255,255,255,.2);" aria-hidden="true">🦉</span>
                 <div class="min-w-0 flex-1">
-                  <p class="font-semibold leading-tight text-indigo-800">Ty Keltieg</p>
-                  <p class="text-xs text-indigo-500">Association · événements</p>
+                  <p class="font-semibold leading-tight">Ty Keltieg</p>
+                  <p class="text-xs" style="color:rgba(255,255,255,.75);">Association · événements</p>
                 </div>
-                <svg class="shrink-0 h-4 w-4 text-indigo-500" viewBox="0 0 16 16" fill="currentColor"><path d="M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.75.75 0 1 1 1.06-1.06L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0Z"/></svg>
+                <svg class="shrink-0 h-4 w-4 text-white" viewBox="0 0 16 16" fill="currentColor"><path d="M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.75.75 0 1 1 1.06-1.06L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0Z"/></svg>
               </div>
             </div>
           </details>
 
-          <nav class="tab-nav w-full overflow-x-auto sm:w-auto sm:ml-2 flex gap-1 rounded-lg bg-slate-100 p-1">
-            <label for="tab-overview"  class="cursor-pointer rounded-md px-3 py-1.5 text-xs font-medium text-slate-500 transition-colors">📡 Tableau de bord</label>
-            <label for="tab-events"    class="cursor-pointer rounded-md px-3 py-1.5 text-xs font-medium text-slate-500 transition-colors">📅 Événements</label>
-            <label for="tab-galleries" class="cursor-pointer rounded-md px-3 py-1.5 text-xs font-medium text-slate-500 transition-colors">📷 Galeries</label>
+          <nav class="tab-nav w-full overflow-x-auto sm:w-auto sm:ml-2 flex gap-[2px] p-[3px]" style="background:linear-gradient(to bottom,#ccd8e8,#b0c0d4);border:1px solid #7890a8;border-radius:12px;">
+            <label for="tab-overview"  class="cursor-pointer px-3 py-[3px] text-xs font-medium text-[#2a3a50] transition-colors" style="border-radius:9px;">📡 Tableau de bord</label>
+            <label for="tab-events"    class="cursor-pointer px-3 py-[3px] text-xs font-medium text-[#2a3a50] transition-colors" style="border-radius:9px;">📅 Événements</label>
+            <label for="tab-galleries" class="cursor-pointer px-3 py-[3px] text-xs font-medium text-[#2a3a50] transition-colors" style="border-radius:9px;">📷 Galeries</label>
           </nav>
         </div>
 
         <div class="flex items-center gap-2 text-xs">
-          <span class="hidden rounded-full bg-indigo-50 px-2.5 py-1 font-medium text-indigo-700 ring-1 ring-inset ring-indigo-600/20 sm:inline-flex">Compte démo · lecture seule</span>
-          <span class="cursor-not-allowed rounded-md border border-slate-200 px-3 py-1.5 font-medium text-slate-400">Déconnexion</span>
+          <span class="hidden sm:inline-flex rounded-full px-2.5 py-1 font-medium" style="background:linear-gradient(to bottom,#e4ecf8,#c8d8f0);color:#2255b8;border:1px solid rgba(60,120,200,.3);">Compte démo · lecture seule</span>
+          <span class="cursor-not-allowed rounded-md px-3 py-1.5 font-medium text-[#1a1a1a] opacity-60" style={btnSecondary}>Déconnexion</span>
         </div>
       </header>
 
@@ -136,10 +143,10 @@ const statusLabels: Record<EventStatus, string> = { draft: 'Brouillon', publishe
 
           <div class="grid grid-cols-2 gap-4 lg:grid-cols-4">
             {stats.map((s) => (
-              <div class="rounded-lg border border-slate-200 bg-white p-4 shadow-sm">
-                <p class="text-xs font-medium uppercase tracking-wide text-slate-400">{s.label}</p>
-                <p class="mt-2 text-2xl font-semibold text-slate-900">{s.value}</p>
-                <p class="mt-0.5 text-xs text-slate-400">{s.sub}</p>
+              <div class="rounded-lg p-4" style={cardStyle}>
+                <p class="text-xs font-medium uppercase tracking-wide text-[#888]">{s.label}</p>
+                <p class="mt-2 text-2xl font-semibold text-[#1a1a1a]">{s.value}</p>
+                <p class="mt-0.5 text-xs text-[#4a4a4a]">{s.sub}</p>
               </div>
             ))}
           </div>
@@ -147,20 +154,20 @@ const statusLabels: Record<EventStatus, string> = { draft: 'Brouillon', publishe
           <div class="grid grid-cols-1 gap-4 lg:grid-cols-[1fr_22rem]">
 
             <!-- Fil d'activité -->
-            <div class="overflow-hidden rounded-lg border border-slate-200 bg-white shadow-sm">
-              <div class="flex items-center justify-between border-b border-slate-200 px-4 py-3">
-                <h2 class="text-sm font-semibold text-slate-900">📡 Fil d'activité</h2>
-                <span class="text-xs text-slate-400">{activity.length} événements récents</span>
+            <div class="overflow-hidden rounded-lg" style={cardStyle}>
+              <div class="flex items-center justify-between px-4 py-3" style="border-bottom:1px solid rgba(0,0,0,.1);">
+                <h2 class="text-sm font-semibold text-[#1a1a1a]">📡 Fil d'activité</h2>
+                <span class="text-xs text-[#888]">{activity.length} événements récents</span>
               </div>
-              <ul class="divide-y divide-slate-100">
+              <ul class="divide-y divide-[rgba(0,0,0,.07)]">
                 {activity.map((entry) => (
-                  <li class="flex gap-3 px-4 py-3 transition-colors hover:bg-slate-50">
-                    <span class="mt-0.5 w-20 shrink-0 text-xs tabular-nums text-slate-400">{entry.time}</span>
+                  <li class="flex gap-3 px-4 py-3 transition-colors hover:bg-[rgba(60,120,200,.05)]">
+                    <span class="mt-0.5 w-20 shrink-0 text-xs tabular-nums text-[#888]">{entry.time}</span>
                     <div class="min-w-0 flex-1">
-                      <p class="text-sm text-slate-700">
-                        <span class="font-semibold text-slate-900">{entry.who}</span> {entry.text}
+                      <p class="text-sm text-[#4a4a4a]">
+                        <span class="font-semibold text-[#1a1a1a]">{entry.who}</span> {entry.text}
                       </p>
-                      <p class="truncate text-xs text-slate-500">{entry.detail}</p>
+                      <p class="truncate text-xs text-[#888]">{entry.detail}</p>
                     </div>
                   </li>
                 ))}
@@ -168,27 +175,27 @@ const statusLabels: Record<EventStatus, string> = { draft: 'Brouillon', publishe
             </div>
 
             <!-- Prochains événements -->
-            <div class="overflow-hidden rounded-lg border border-slate-200 bg-white shadow-sm">
-              <div class="flex items-center justify-between border-b border-slate-200 px-4 py-3">
-                <h2 class="text-sm font-semibold text-slate-900">Prochains événements</h2>
-                <span class="rounded-full bg-indigo-50 px-1.5 py-0.5 text-xs font-bold tabular-nums text-indigo-600">
+            <div class="overflow-hidden rounded-lg" style={cardStyle}>
+              <div class="flex items-center justify-between px-4 py-3" style="border-bottom:1px solid rgba(0,0,0,.1);">
+                <h2 class="text-sm font-semibold text-[#1a1a1a]">Prochains événements</h2>
+                <span class="rounded-full px-1.5 py-0.5 text-xs font-bold tabular-nums" style="background:linear-gradient(to bottom,#e4ecf8,#c8d8f0);color:#2255b8;border:1px solid rgba(60,120,200,.3);">
                   {events.filter(e => e.status !== 'past').length}
                 </span>
               </div>
-              <ul class="divide-y divide-slate-100">
+              <ul class="divide-y divide-[rgba(0,0,0,.07)]">
                 {events.filter(e => e.status !== 'past').map((e) => (
-                  <li class="flex items-start justify-between gap-2 px-4 py-2.5">
+                  <li class="flex items-start justify-between gap-2 px-2 py-2.5">
                     <div class="min-w-0">
-                      <p class="truncate text-sm font-medium text-slate-800">{e.title}</p>
-                      <p class="text-xs text-slate-500">{e.date} · {e.time}</p>
+                      <p class="truncate text-sm font-medium text-[#1a1a1a]">{e.title}</p>
+                      <p class="text-xs text-[#888]">{e.date} · {e.time}</p>
                     </div>
-                    <span class={`mt-0.5 shrink-0 rounded-full px-2 py-0.5 text-[11px] font-medium ${e.status === 'draft' ? 'bg-amber-100 text-amber-700' : 'bg-emerald-100 text-emerald-700'}`}>
+                    <span class="mt-0.5 shrink-0 rounded-full px-2 py-0.5 text-[11px] font-medium" style={e.status === 'draft' ? 'background:linear-gradient(to bottom,#f8e090,#d89020);color:#3a2000;border:1px solid #a07010;' : 'background:linear-gradient(to bottom,#e4ecf8,#c8d8f0);color:#2255b8;border:1px solid rgba(60,120,200,.3);'}>
                       {statusLabels[e.status]}
                     </span>
                   </li>
                 ))}
               </ul>
-              <p class="border-t border-slate-100 px-4 py-2.5 text-xs text-slate-400">
+              <p class="px-4 py-2.5 text-xs text-[#888]" style="border-top:1px solid rgba(0,0,0,.07);">
                 Les brouillons ne sont pas visibles sur le site public.
               </p>
             </div>
@@ -199,130 +206,132 @@ const statusLabels: Record<EventStatus, string> = { draft: 'Brouillon', publishe
         <!-- ═══ ÉVÉNEMENTS ═══ -->
         <section data-panel="events" class="space-y-3">
 
-          <div class="flex items-center justify-between">
-            <p class="text-sm text-slate-500">{events.length} événements au total · {events.filter(e => e.status === 'draft').length} brouillon</p>
-            <a href="#event-form" class="inline-flex items-center gap-1.5 rounded-md bg-indigo-600 px-3 py-1.5 text-xs font-medium text-white shadow-sm transition-colors hover:bg-indigo-700">
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <p class="text-sm text-[#4a4a4a]">{events.length} événements au total · {events.filter(e => e.status === 'draft').length} brouillon</p>
+            <a href="#event-form" class="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-white" style={btnPrimary}>
               + Créer un événement
             </a>
           </div>
 
-          <div class="overflow-x-auto rounded-lg border border-slate-200 bg-white shadow-sm">
+          <div style={cardStyle + "overflow:hidden;overflow:clip;"}>
+            <div class="overflow-x-auto">
               <table class="w-full min-w-[560px] text-sm">
-                <thead class="border-b border-slate-200 bg-slate-50">
+                <thead style="background:linear-gradient(to bottom,#f4f4f4,#e8e8e8);border-bottom:1px solid rgba(0,0,0,.15);">
                   <tr>
-                    <th class="px-4 py-2.5 text-left text-xs font-medium uppercase tracking-wide text-slate-500">Date</th>
-                    <th class="px-4 py-2.5 text-left text-xs font-medium uppercase tracking-wide text-slate-500">Titre</th>
-                    <th class="px-4 py-2.5 text-left text-xs font-medium uppercase tracking-wide text-slate-500">Lieu</th>
-                    <th class="px-4 py-2.5 text-center text-xs font-medium uppercase tracking-wide text-slate-500">Statut</th>
-                    <th class="px-4 py-2.5 text-right text-xs font-medium uppercase tracking-wide text-slate-500">Actions</th>
+                    <th class="px-2 py-2.5 text-left text-xs font-medium uppercase tracking-wide text-[#4a4a4a]">Date</th>
+                    <th class="px-2 py-2.5 text-left text-xs font-medium uppercase tracking-wide text-[#4a4a4a]">Titre</th>
+                    <th class="px-2 py-2.5 text-left text-xs font-medium uppercase tracking-wide text-[#4a4a4a]">Lieu</th>
+                    <th class="px-2 py-2.5 text-center text-xs font-medium uppercase tracking-wide text-[#4a4a4a]">Statut</th>
+                    <th class="px-2 py-2.5 text-right text-xs font-medium uppercase tracking-wide text-[#4a4a4a]">Actions</th>
                   </tr>
                 </thead>
-                <tbody class="divide-y divide-slate-100">
+                <tbody>
                   {events.map((e) => (
-                    <tr class:list={['event-row transition-colors hover:bg-slate-50', e.status === 'past' && 'opacity-60']}>
-                      <td class="px-4 py-3 text-xs tabular-nums whitespace-nowrap text-slate-500">{e.date}</td>
-                      <td class="px-4 py-3">
-                        <p class="font-medium text-slate-800">{e.title}</p>
-                        {e.price && <p class="text-xs text-slate-400">{e.price}</p>}
+                    <tr class:list={['event-row border-t transition-colors hover:bg-[rgba(60,120,200,.05)]', e.status === 'past' && 'opacity-60']} style="border-top-color:rgba(0,0,0,.07);">
+                      <td class="px-2 py-3 text-xs tabular-nums whitespace-nowrap text-[#888]">{e.date}</td>
+                      <td class="px-2 py-3">
+                        <p class="font-medium text-[#1a1a1a]">{e.title}</p>
+                        {e.price && <p class="text-xs text-[#888]">{e.price}</p>}
                       </td>
-                      <td class="px-4 py-3 text-xs text-slate-500 max-w-[180px] truncate">{e.location}</td>
-                      <td class="px-4 py-3 text-center">
-                        <!-- Toggle brouillon : checkbox + :has() — changer le statut visuellement -->
+                      <td class="px-2 py-3 text-xs text-[#4a4a4a] max-w-[180px] truncate">{e.location}</td>
+                      <td class="px-2 py-3 text-center">
                         {e.status === 'past' ? (
-                          <span class="inline-flex rounded-full bg-slate-100 px-2 py-0.5 text-[11px] font-medium text-slate-500">Passé</span>
+                          <span class="inline-flex rounded-full px-2 py-0.5 text-[11px] font-medium" style="background:linear-gradient(to bottom,#e8e8e8,#d0d0d0);color:#606060;border:1px solid #a0a0a0;">Passé</span>
                         ) : (
-                          <label class="draft-pill inline-flex cursor-pointer items-center rounded-full border px-2.5 py-1 text-[11px] font-medium transition-colors">
+                          <label class="draft-pill inline-flex cursor-pointer items-center">
                             <input type="checkbox" checked={e.status === 'draft'} class="sr-only" />
                             <span class="state-draft">Brouillon</span>
                             <span class="state-pub">Publié</span>
                           </label>
                         )}
                       </td>
-                      <td class="px-4 py-3 text-right">
+                      <td class="px-2 py-3 text-right">
                         <div class="flex items-center justify-end gap-2 text-xs">
-                          <a href="#event-form" class="rounded border border-slate-200 px-2 py-1 text-slate-500 transition-colors hover:border-indigo-400 hover:text-indigo-600">✏️ Modifier</a>
-                          <span class="cursor-not-allowed rounded border border-rose-200 px-2 py-1 text-rose-300">🗑️</span>
+                          <a href="#event-form" class="rounded px-2 py-1 text-[#1a1a1a] transition-colors hover:text-[#1464c8]" style={btnSmall}>✏️ Modifier</a>
+                          <span class="cursor-not-allowed rounded px-2 py-1 opacity-50" style="background:linear-gradient(to bottom,#f8f8f8,#e0e0e0);border:1px solid #c08080;border-radius:4px;box-shadow:0 1px 2px rgba(0,0,0,.12),inset 0 1px 0 rgba(255,255,255,.9);">🗑️</span>
                         </div>
                       </td>
                     </tr>
                   ))}
                 </tbody>
               </table>
+            </div>
           </div>
 
-          <p class="text-center text-xs text-slate-400">
-            Cochez/décochez le statut d'un événement pour le voir basculer entre <em>Brouillon</em> et <em>Publié</em> — piloté par <code class="rounded bg-white px-1 py-0.5 ring-1 ring-slate-200">:has()</code>, zéro JS.
+          <p class="text-center text-xs text-[#888]">
+            Cochez/décochez le statut d'un événement pour le voir basculer entre <em>Brouillon</em> et <em>Publié</em> — piloté par <code class="rounded bg-white px-1 py-0.5 ring-1 ring-[rgba(0,0,0,.15)]">:has()</code>, zéro JS.
           </p>
         </section>
 
         <!-- ═══ GALERIES ═══ -->
         <section data-panel="galleries" class="space-y-3">
 
-          <div class="flex items-center justify-between">
-            <p class="text-sm text-slate-500">{galleries.length} galeries · {galleries.filter(g => g.showOnHomepage).length} sur l'accueil</p>
-            <span class="cursor-not-allowed inline-flex items-center gap-1.5 rounded-md bg-indigo-600 px-3 py-1.5 text-xs font-medium text-white opacity-60 shadow-sm">+ Créer une galerie</span>
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <p class="text-sm text-[#4a4a4a]">{galleries.length} galeries · {galleries.filter(g => g.showOnHomepage).length} sur l'accueil</p>
+            <span class="cursor-not-allowed inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-white opacity-60" style={btnPrimary}>+ Créer une galerie</span>
           </div>
 
-          <div class="overflow-x-auto rounded-lg border border-slate-200 bg-white shadow-sm">
-              <table class="w-full min-w-[560px] text-sm">
-                <thead class="border-b border-slate-200 bg-slate-50">
+          <div style={cardStyle + "overflow:hidden;overflow:clip;"}>
+            <div class="overflow-x-auto">
+              <table class="w-full text-sm">
+                <thead style="background:linear-gradient(to bottom,#f4f4f4,#e8e8e8);border-bottom:1px solid rgba(0,0,0,.15);">
                   <tr>
-                    <th class="px-4 py-2.5 text-left text-xs font-medium uppercase tracking-wide text-slate-500">Date</th>
-                    <th class="px-4 py-2.5 text-left text-xs font-medium uppercase tracking-wide text-slate-500">Titre</th>
-                    <th class="px-4 py-2.5 text-left text-xs font-medium uppercase tracking-wide text-slate-500">Photographe</th>
-                    <th class="px-4 py-2.5 text-center text-xs font-medium uppercase tracking-wide text-slate-500">Photos</th>
-                    <th class="px-4 py-2.5 text-center text-xs font-medium uppercase tracking-wide text-slate-500">Accueil</th>
-                    <th class="px-4 py-2.5 text-right text-xs font-medium uppercase tracking-wide text-slate-500">Actions</th>
+                    <th class="px-2 py-2.5 text-left text-xs font-medium uppercase tracking-wide text-[#4a4a4a]">Date</th>
+                    <th class="px-2 py-2.5 text-left text-xs font-medium uppercase tracking-wide text-[#4a4a4a]">Titre</th>
+                    <th class="px-2 py-2.5 text-left text-xs font-medium uppercase tracking-wide text-[#4a4a4a]">Photographe</th>
+                    <th class="px-2 py-2.5 text-center text-xs font-medium uppercase tracking-wide text-[#4a4a4a]">Photos</th>
+                    <th class="px-2 py-2.5 text-center text-xs font-medium uppercase tracking-wide text-[#4a4a4a]">Accueil</th>
+                    <th class="px-2 py-2.5 text-right text-xs font-medium uppercase tracking-wide text-[#4a4a4a]">Actions</th>
                   </tr>
                 </thead>
-                <tbody class="divide-y divide-slate-100">
+                <tbody>
                   {galleries.map((g) => (
-                    <tr class="gallery-row transition-colors hover:bg-slate-50">
-                      <td class="px-4 py-3 text-xs tabular-nums whitespace-nowrap text-slate-500">{g.date}</td>
-                      <td class="px-4 py-3 font-medium text-slate-800">{g.title}</td>
-                      <td class="px-4 py-3 text-xs text-slate-500">{g.photographer}</td>
-                      <td class="px-4 py-3 text-center text-xs tabular-nums text-slate-500">{g.photoCount}</td>
-                      <td class="px-4 py-3 text-center">
-                        <!-- Toggle accueil : checkbox pill + :has() -->
-                        <label class="homepage-pill inline-flex cursor-pointer items-center gap-1.5 rounded-full border px-2.5 py-1 text-[11px] font-medium transition-colors">
+                    <tr class="gallery-row border-t transition-colors hover:bg-[rgba(60,120,200,.05)]" style="border-top-color:rgba(0,0,0,.07);">
+                      <td class="px-2 py-3 text-xs tabular-nums whitespace-nowrap text-[#888]">{g.date}</td>
+                      <td class="px-2 py-3 font-medium text-[#1a1a1a]">{g.title}</td>
+                      <td class="px-2 py-3 text-xs text-[#4a4a4a]">{g.photographer}</td>
+                      <td class="px-2 py-3 text-center text-xs tabular-nums text-[#4a4a4a]">{g.photoCount}</td>
+                      <td class="px-2 py-3 text-center">
+                        <label class="homepage-pill inline-flex cursor-pointer items-center gap-1.5">
                           <input type="checkbox" checked={g.showOnHomepage} class="sr-only" />
                           <span class="state-on">Accueil ✓</span>
                           <span class="state-off">Non affiché</span>
                         </label>
                       </td>
-                      <td class="px-4 py-3 text-right">
+                      <td class="px-2 py-3 text-right">
                         <div class="flex items-center justify-end gap-2 text-xs">
-                          <span class="rounded border border-slate-200 px-2 py-1 text-slate-500 hover:border-indigo-400 hover:text-indigo-600 cursor-pointer transition-colors">✏️</span>
-                          <span class="cursor-not-allowed rounded border border-rose-200 px-2 py-1 text-rose-300">🗑️</span>
+                          <span class="cursor-pointer rounded px-2 py-1 text-[#1a1a1a] transition-colors hover:text-[#1464c8]" style={btnSmall}>✏️</span>
+                          <span class="cursor-not-allowed rounded px-2 py-1 opacity-50" style="background:linear-gradient(to bottom,#f8f8f8,#e0e0e0);border:1px solid #c08080;border-radius:4px;box-shadow:0 1px 2px rgba(0,0,0,.12),inset 0 1px 0 rgba(255,255,255,.9);">🗑️</span>
                         </div>
                       </td>
                     </tr>
                   ))}
                 </tbody>
               </table>
+            </div>
           </div>
 
           <!-- Grille d'aperçu photos (galerie simulée) -->
-          <div class="rounded-lg border border-slate-200 bg-white p-4 shadow-sm">
-            <h2 class="mb-3 text-sm font-semibold text-slate-900">Aperçu — Vide-grenier 2025 <span class="ml-1.5 text-xs font-normal text-slate-400">34 photos</span></h2>
+          <div class="rounded-lg p-4" style={cardStyle}>
+            <h2 class="mb-3 text-sm font-semibold text-[#1a1a1a]">Aperçu — Vide-grenier 2025 <span class="ml-1.5 text-xs font-normal text-[#888]">34 photos</span></h2>
             <div class="grid grid-cols-4 gap-2 sm:grid-cols-6 md:grid-cols-8">
               {Array.from({ length: 16 }, (_, i) => (
-                <div class="aspect-square overflow-hidden rounded-md bg-slate-100 relative group cursor-pointer">
-                  <div class="absolute inset-0 flex items-center justify-center text-slate-300 text-lg select-none" aria-hidden="true">📷</div>
-                  <div class="absolute inset-0 flex items-center justify-center rounded-md bg-slate-900/60 opacity-0 group-hover:opacity-100 transition-opacity">
+                <div class="aspect-square overflow-hidden rounded relative group cursor-pointer" style="background:linear-gradient(to bottom,#e8e8e8,#d8d8d8);border:1px solid rgba(0,0,0,.15);border-radius:4px;">
+                  <div class="absolute inset-0 flex items-center justify-center text-[#bbb] text-lg select-none" aria-hidden="true">📷</div>
+                  <div class="absolute inset-0 flex items-center justify-center rounded opacity-0 group-hover:opacity-100 transition-opacity" style="background:rgba(0,0,0,.6);">
                     <span class="text-white text-xs font-medium">{i + 1}</span>
                   </div>
                 </div>
               ))}
-              <div class="aspect-square overflow-hidden rounded-md border-2 border-dashed border-slate-200 flex items-center justify-center text-slate-400 text-xs cursor-not-allowed">
+              <div class="aspect-square overflow-hidden rounded flex items-center justify-center text-[#888] text-xs cursor-not-allowed" style="border:2px dashed #a0a0a0;background:rgba(255,255,255,.5);border-radius:4px;">
                 +18
               </div>
             </div>
-            <p class="mt-2 text-xs text-slate-400">Aperçu illustratif — les miniatures représentent des emplacements photos.</p>
+            <p class="mt-2 text-xs text-[#888]">Aperçu illustratif — les miniatures représentent des emplacements photos.</p>
           </div>
 
-          <p class="text-center text-xs text-slate-400">
-            Le toggle « Accueil » est géré par <code class="rounded bg-white px-1 py-0.5 ring-1 ring-slate-200">:has(input:checked)</code> — la case bascule entre les deux états sans JS.
+          <p class="text-center text-xs text-[#888]">
+            Le toggle « Accueil » est géré par <code class="rounded bg-white px-1 py-0.5 ring-1 ring-[rgba(0,0,0,.15)]">:has(input:checked)</code> — la case bascule entre les deux états sans JS.
           </p>
         </section>
 
@@ -332,97 +341,92 @@ const statusLabels: Record<EventStatus, string> = { draft: 'Brouillon', publishe
 
   <!-- ═══ Modale formulaire : nouvel événement (:target) ═══ -->
   <div id="event-form" class="event-modal fixed inset-0 z-60 items-center justify-center p-4">
-    <a href="#" class="absolute inset-0 bg-slate-950/50 backdrop-blur-[1px]" aria-label="Fermer"></a>
-    <div class="relative z-10 max-h-[90vh] w-full max-w-2xl overflow-y-auto rounded-xl bg-white shadow-2xl">
+    <a href="#" class="absolute inset-0" style="background:rgba(0,0,0,.45);backdrop-filter:blur(2px);" aria-label="Fermer"></a>
+    <div class="relative z-10 max-h-[90vh] w-full max-w-2xl overflow-y-auto rounded-xl bg-white" style="border:1px solid rgba(0,0,0,.4);box-shadow:0 20px 60px rgba(0,0,0,.5),inset 0 0 0 1px rgba(255,255,255,.1);">
 
-      <div class="sticky top-0 flex items-center justify-between gap-3 border-b border-slate-200 bg-white/95 px-5 py-3.5 backdrop-blur">
+      <div class="sticky top-0 flex items-center justify-between gap-3 px-5 py-3.5" style="background:repeating-linear-gradient(to bottom,#ececec 0px,#ececec 1px,#f6f6f6 1px,#f6f6f6 2px);border-bottom:1px solid #b0b0b0;border-radius:0.75rem 0.75rem 0 0;">
         <div>
-          <p class="text-sm font-semibold text-slate-900">📅 Nouvel événement</p>
-          <p class="text-xs text-slate-400">Aperçu illustratif du formulaire Hibou — structure inspirée de l'interface réelle, simplifiée.</p>
+          <p class="text-sm font-bold text-[#1a1a1a]">📅 Nouvel événement</p>
+          <p class="text-xs text-[#888]">Aperçu illustratif du formulaire Hibou — structure inspirée de l'interface réelle, simplifiée.</p>
         </div>
-        <a href="#" class="shrink-0 rounded-md border border-slate-200 px-2 py-1 text-sm text-slate-400 transition-colors hover:border-rose-300 hover:text-rose-500" aria-label="Fermer">✕</a>
+        <a href="#" class="shrink-0 flex items-center justify-center" style="width:14px;height:14px;border-radius:50%;background:radial-gradient(circle at 40% 35%,#ff9090,#e03030);border:1px solid #b02020;box-shadow:inset 0 1px 1px rgba(255,255,255,.5);" aria-label="Fermer"></a>
       </div>
 
       <fieldset disabled class="space-y-5 px-5 py-5 opacity-90">
 
-        <!-- Informations générales -->
-        <div class="rounded-lg border border-slate-200 p-4 space-y-4">
-          <h3 class="text-sm font-semibold text-slate-700">Informations générales</h3>
+        <div class="rounded-lg p-4 space-y-4" style="background:#f8f8f8;border:1px solid rgba(0,0,0,.12);border-radius:6px;">
+          <h3 class="text-sm font-semibold text-[#4a4a4a]">Informations générales</h3>
           <label class="block">
-            <span class="mb-1 block text-xs font-medium text-slate-500">Titre *</span>
-            <input type="text" value="Soirée contes bretons" class="w-full rounded-md border border-slate-200 bg-slate-50 px-3 py-1.5 text-sm text-slate-700" />
+            <span class="mb-1 block text-xs font-medium text-[#4a4a4a]">Titre *</span>
+            <input type="text" value="Soirée contes bretons" class="w-full rounded px-3 py-1.5 text-sm text-[#1a1a1a]" style="background:white;border:1px solid rgba(0,0,0,.3);border-radius:4px;box-shadow:inset 0 1px 3px rgba(0,0,0,.12);font-family:'Lucida Grande',Helvetica,sans-serif;font-size:13px;" />
           </label>
           <div class="grid gap-3 sm:grid-cols-2">
             <label class="block">
-              <span class="mb-1 block text-xs font-medium text-slate-500">Date *</span>
-              <input type="date" value="2026-06-28" class="w-full rounded-md border border-slate-200 bg-slate-50 px-3 py-1.5 text-sm text-slate-700" />
+              <span class="mb-1 block text-xs font-medium text-[#4a4a4a]">Date *</span>
+              <input type="date" value="2026-06-28" class="w-full rounded px-3 py-1.5 text-sm text-[#1a1a1a]" style="background:white;border:1px solid rgba(0,0,0,.3);border-radius:4px;box-shadow:inset 0 1px 3px rgba(0,0,0,.12);font-family:'Lucida Grande',Helvetica,sans-serif;font-size:13px;" />
             </label>
             <label class="block">
-              <span class="mb-1 block text-xs font-medium text-slate-500">Heure *</span>
-              <input type="text" value="20h30" class="w-full rounded-md border border-slate-200 bg-slate-50 px-3 py-1.5 text-sm text-slate-700" />
+              <span class="mb-1 block text-xs font-medium text-[#4a4a4a]">Heure *</span>
+              <input type="text" value="20h30" class="w-full rounded px-3 py-1.5 text-sm text-[#1a1a1a]" style="background:white;border:1px solid rgba(0,0,0,.3);border-radius:4px;box-shadow:inset 0 1px 3px rgba(0,0,0,.12);font-family:'Lucida Grande',Helvetica,sans-serif;font-size:13px;" />
             </label>
           </div>
           <label class="block">
-            <span class="mb-1 block text-xs font-medium text-slate-500">Lieu *</span>
-            <input type="text" value="Médiathèque municipale" class="w-full rounded-md border border-slate-200 bg-slate-50 px-3 py-1.5 text-sm text-slate-700" />
+            <span class="mb-1 block text-xs font-medium text-[#4a4a4a]">Lieu *</span>
+            <input type="text" value="Médiathèque municipale" class="w-full rounded px-3 py-1.5 text-sm text-[#1a1a1a]" style="background:white;border:1px solid rgba(0,0,0,.3);border-radius:4px;box-shadow:inset 0 1px 3px rgba(0,0,0,.12);font-family:'Lucida Grande',Helvetica,sans-serif;font-size:13px;" />
           </label>
           <label class="block">
-            <span class="mb-1 block text-xs font-medium text-slate-500">Description *</span>
-            <textarea rows="2" class="w-full rounded-md border border-slate-200 bg-slate-50 px-3 py-1.5 text-sm text-slate-700">Une soirée autour des contes traditionnels bretons, avec le conteur Yann Le Roc'h.</textarea>
+            <span class="mb-1 block text-xs font-medium text-[#4a4a4a]">Description *</span>
+            <textarea rows="2" class="w-full rounded px-3 py-1.5 text-sm text-[#1a1a1a]" style="background:white;border:1px solid rgba(0,0,0,.3);border-radius:4px;box-shadow:inset 0 1px 3px rgba(0,0,0,.12);font-family:'Lucida Grande',Helvetica,sans-serif;font-size:13px;">Une soirée autour des contes traditionnels bretons, avec le conteur Yann Le Roc'h.</textarea>
           </label>
-          <label class="flex items-center gap-2 text-sm text-slate-600">
-            <input type="checkbox" checked class="rounded border-slate-300" />
+          <label class="flex items-center gap-2 text-sm text-[#4a4a4a]">
+            <input type="checkbox" checked class="rounded" />
             Brouillon (non visible sur le site)
           </label>
         </div>
 
-        <!-- Tarifs -->
-        <div class="rounded-lg border border-slate-200 p-4 space-y-3">
+        <div class="rounded-lg p-4 space-y-3" style="background:#f8f8f8;border:1px solid rgba(0,0,0,.12);border-radius:6px;">
           <div class="flex items-center justify-between">
-            <h3 class="text-sm font-semibold text-slate-700">Tarifs</h3>
-            <span class="text-xs font-medium text-indigo-500 cursor-not-allowed">+ Ajouter</span>
+            <h3 class="text-sm font-semibold text-[#4a4a4a]">Tarifs</h3>
+            <span class="text-xs font-medium text-[#4898e8] cursor-not-allowed">+ Ajouter</span>
           </div>
           {[['Plein tarif', '4,00'], ['Tarif réduit', '2,00']].map(([nom, prix]) => (
             <div class="flex gap-2 items-center">
-              <input type="text" value={nom}  class="flex-1 rounded-md border border-slate-200 bg-slate-50 px-3 py-1.5 text-sm text-slate-700" />
-              <input type="text" value={prix} class="w-20 rounded-md border border-slate-200 bg-slate-50 px-3 py-1.5 text-sm text-slate-700" />
-              <span class="text-xs text-slate-400">€</span>
-              <span class="px-2 text-rose-300 cursor-not-allowed">✕</span>
+              <input type="text" value={nom}  class="flex-1 rounded px-3 py-1.5 text-sm text-[#1a1a1a]" style="background:white;border:1px solid rgba(0,0,0,.3);border-radius:4px;box-shadow:inset 0 1px 3px rgba(0,0,0,.12);font-family:'Lucida Grande',Helvetica,sans-serif;font-size:13px;" />
+              <input type="text" value={prix} class="w-20 rounded px-3 py-1.5 text-sm text-[#1a1a1a]" style="background:white;border:1px solid rgba(0,0,0,.3);border-radius:4px;box-shadow:inset 0 1px 3px rgba(0,0,0,.12);font-family:'Lucida Grande',Helvetica,sans-serif;font-size:13px;" />
+              <span class="text-xs text-[#888]">€</span>
+              <span class="px-2 text-[#c08080] cursor-not-allowed">✕</span>
             </div>
           ))}
-          <p class="text-xs text-slate-400">Laissez vide si entrée gratuite.</p>
+          <p class="text-xs text-[#888]">Laissez vide si entrée gratuite.</p>
         </div>
 
-        <!-- Notes de menu -->
-        <div class="rounded-lg border border-slate-200 p-4 space-y-2">
-          <h3 class="text-sm font-semibold text-slate-700">Notes de menu</h3>
-          <textarea rows="2" class="w-full rounded-md border border-slate-200 bg-slate-50 px-3 py-1.5 text-sm text-slate-700">Réservation conseillée au 02 98 XX XX XX</textarea>
-          <p class="text-xs text-slate-400">Optionnel. Une note par ligne.</p>
+        <div class="rounded-lg p-4 space-y-2" style="background:#f8f8f8;border:1px solid rgba(0,0,0,.12);border-radius:6px;">
+          <h3 class="text-sm font-semibold text-[#4a4a4a]">Notes de menu</h3>
+          <textarea rows="2" class="w-full rounded px-3 py-1.5 text-sm text-[#1a1a1a]" style="background:white;border:1px solid rgba(0,0,0,.3);border-radius:4px;box-shadow:inset 0 1px 3px rgba(0,0,0,.12);font-family:'Lucida Grande',Helvetica,sans-serif;font-size:13px;">Réservation conseillée au 02 98 XX XX XX</textarea>
+          <p class="text-xs text-[#888]">Optionnel. Une note par ligne.</p>
         </div>
 
-        <!-- Galeries associées -->
-        <div class="rounded-lg border border-slate-200 p-4 space-y-2">
-          <h3 class="text-sm font-semibold text-slate-700">Galeries associées</h3>
+        <div class="rounded-lg p-4 space-y-2" style="background:#f8f8f8;border:1px solid rgba(0,0,0,.12);border-radius:6px;">
+          <h3 class="text-sm font-semibold text-[#4a4a4a]">Galeries associées</h3>
           {galleries.map((g) => (
-            <label class="flex items-center gap-3 text-sm text-slate-600">
-              <input type="checkbox" checked={g.slug === 'soiree-contes-2024'} class="rounded border-slate-300" />
+            <label class="flex items-center gap-3 text-sm text-[#4a4a4a]">
+              <input type="checkbox" checked={g.slug === 'soiree-contes-2024'} class="rounded" />
               <span>{g.title}</span>
-              <span class="text-xs font-mono text-slate-400">{g.slug}</span>
+              <span class="text-xs font-mono text-[#888]">{g.slug}</span>
             </label>
           ))}
         </div>
 
-        <!-- Contenu Markdown -->
-        <div class="rounded-lg border border-slate-200 p-4 space-y-2">
-          <h3 class="text-sm font-semibold text-slate-700">Contenu (Markdown)</h3>
-          <details class="rounded-md border border-slate-100 bg-slate-50">
-            <summary class="cursor-pointer px-3 py-2 text-xs text-indigo-500">Aide Markdown</summary>
-            <div class="px-3 pb-3 pt-1 text-xs text-slate-500 space-y-1">
+        <div class="rounded-lg p-4 space-y-2" style="background:#f8f8f8;border:1px solid rgba(0,0,0,.12);border-radius:6px;">
+          <h3 class="text-sm font-semibold text-[#4a4a4a]">Contenu (Markdown)</h3>
+          <details class="rounded" style="border:1px solid rgba(0,0,0,.1);background:white;">
+            <summary class="cursor-pointer px-3 py-2 text-xs text-[#4898e8]">Aide Markdown</summary>
+            <div class="px-3 pb-3 pt-1 text-xs text-[#4a4a4a] space-y-1">
               <p><code class="font-mono">## Titre</code> — gros titre · <code class="font-mono">**gras**</code> · <code class="font-mono">*italique*</code></p>
               <p><code class="font-mono">- point</code> — liste à puces · <code class="font-mono">[lien](url)</code> — lien cliquable</p>
             </div>
           </details>
-          <textarea rows="5" class="w-full rounded-md border border-slate-200 bg-slate-50 px-3 py-1.5 font-mono text-xs text-slate-700">## À propos de la soirée
+          <textarea rows="5" class="w-full rounded px-3 py-1.5 font-mono text-xs text-[#1a1a1a]" style="background:white;border:1px solid rgba(0,0,0,.3);border-radius:4px;box-shadow:inset 0 1px 3px rgba(0,0,0,.12);font-size:12px;">## À propos de la soirée
 
 Yann Le Roc'h est conteur depuis 2003. Il puise dans le répertoire traditionnel breton pour redonner vie aux *korrigans*, aux lavandières de nuit et aux *ankou*...
 
@@ -431,102 +435,20 @@ Yann Le Roc'h est conteur depuis 2003. Il puise dans le répertoire traditionnel
 
       </fieldset>
 
-      <div class="flex items-center justify-end gap-2 border-t border-slate-200 px-5 py-3.5">
-        <a href="#" class="rounded-md border border-slate-200 px-3 py-1.5 text-sm text-slate-600 transition-colors hover:border-slate-300">Annuler</a>
-        <span class="cursor-not-allowed rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-medium text-white opacity-90 shadow-sm">Créer l'événement</span>
+      <div class="flex items-center justify-end gap-2 px-5 py-3.5" style="border-top:1px solid rgba(0,0,0,.12);background:#f0f0f0;border-radius:0 0 0.75rem 0.75rem;">
+        <a href="#" class="rounded-md px-3 py-1.5 text-sm text-[#1a1a1a] transition-colors" style={btnSecondary}>Annuler</a>
+        <span class="cursor-not-allowed rounded-md px-3 py-1.5 text-sm font-medium text-white opacity-90" style={btnPrimary}>Créer l'événement</span>
       </div>
     </div>
   </div>
 
   <style>
-    /* ═══════════════════════════════════════════════════
-       macOS AQUA 2001 THEME
-       ═══════════════════════════════════════════════════ */
-    :root {
-      --aq-body:    #b8cad8;
-      --aq-win:     #f0f0f0;    /* window content bg   */
-      --aq-white:   #ffffff;
-      --aq-m1:      #e4e4e4;    /* metal toolbar top    */
-      --aq-m2:      #b4b4b4;    /* metal toolbar bottom */
-      --aq-border:  rgba(0,0,0,.22);
-      --aq-text:    #1a1a1a;
-      --aq-label:   #4a4a4a;
-      --aq-muted:   #888888;
-      /* Aqua gel blue */
-      --aq-b1:      #c4dff8;    /* gel highlight        */
-      --aq-b2:      #4898e8;    /* gel mid              */
-      --aq-b3:      #1464c8;    /* gel dark             */
-      --aq-sel:     #2255b8;    /* selection            */
-    }
-
-    /* ─── global ─── */
-    body { background: var(--aq-body) !important; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
-
-    /* ─── bandeau démo ─── */
-    body > div:first-child { background: rgba(0,0,0,.55) !important; backdrop-filter: blur(8px); }
-
-    /* ─── HEADER / toolbar ─── */
-    header {
-      background: linear-gradient(to bottom, var(--aq-m1) 0%, var(--aq-m2) 100%) !important;
-      border-bottom: 1px solid #8a8a8a !important;
-    }
-    /* override Tailwind bg-slate on header children */
-    header [class*='bg-slate'], header [class*='bg-indigo'] {
-      background: transparent !important;
-    }
-    header [class*='text-slate'], header [class*='text-indigo'] { color: var(--aq-text) !important; }
-    header [class*='ring-inset'] { box-shadow: none !important; border: 1px solid rgba(0,0,0,.25) !important; }
-    header .border-b { border-bottom-color: rgba(0,0,0,.15) !important; }
-
-    /* ─── PROFILE SELECTOR  (popup button) ─── */
-    .profile-selector summary {
-      background: linear-gradient(to bottom, #f8f8f8 0%, #e0e0e0 100%) !important;
-      border: 1px solid #909090 !important;
-      border-radius: 6px !important;
-      box-shadow: 0 1px 3px rgba(0,0,0,.18), inset 0 1px 0 rgba(255,255,255,.9) !important;
-      color: var(--aq-text) !important;
-    }
-    .profile-selector[open] summary {
-      background: linear-gradient(to bottom, #d8d8d8 0%, #e8e8e8 100%) !important;
-    }
-    .profile-selector[open] .profile-chevron { transform: rotate(180deg); }
-    /* dropdown — Mac menu style */
-    .profile-selector > div {
-      background: var(--aq-white) !important;
-      border: 1px solid rgba(0,0,0,.35) !important;
-      border-radius: 5px !important;
-      box-shadow: 0 6px 20px rgba(0,0,0,.35) !important;
-    }
-    /* active row (current profile) */
-    .profile-selector > div > div:first-child {
-      background: linear-gradient(to bottom, var(--aq-b2) 0%, var(--aq-b3) 100%) !important;
-    }
-    .profile-selector > div > div:first-child * { color: #fff !important; }
-    .profile-selector a:hover {
-      background: linear-gradient(to bottom, var(--aq-b2) 0%, var(--aq-b3) 100%) !important;
-    }
-    .profile-selector a:hover * { color: #fff !important; }
-
-    /* ─── Tab nav : masquer la scrollbar sur mobile ─── */
+    /* ─── Scrollbar tab nav ─── */
     .tab-nav { scrollbar-width: none; }
     .tab-nav::-webkit-scrollbar { display: none; }
+    .tab-nav label { white-space: nowrap; }
 
-    /* ─── TABS (pill segmented control) ─── */
-    .tab-nav {
-      background: linear-gradient(to bottom, #ccd8e8 0%, #b0c0d4 100%) !important;
-      border: 1px solid #7890a8 !important;
-      border-radius: 12px !important;
-      padding: 3px !important;
-      gap: 2px !important;
-    }
-    .tab-nav label {
-      border-radius: 9px !important;
-      padding: 3px 12px !important;
-      font-size: 12px !important;
-      color: #2a3a50 !important;
-      background: transparent !important;
-      cursor: pointer !important;
-    }
+    /* ─── Tab switching ─── */
     .tabset > div > main > [data-panel] { display: none; }
     .tabset:has(#tab-overview:checked)  > div > main > [data-panel='overview'],
     .tabset:has(#tab-events:checked)    > div > main > [data-panel='events'],
@@ -534,220 +456,46 @@ Yann Le Roc'h est conteur depuis 2003. Il puise dans le répertoire traditionnel
       display: block;
       animation: aq-fade .15s ease-out;
     }
+
+    /* ─── Active tab label ─── */
     .tabset:has(#tab-overview:checked)  .tab-nav label[for='tab-overview'],
     .tabset:has(#tab-events:checked)    .tab-nav label[for='tab-events'],
     .tabset:has(#tab-galleries:checked) .tab-nav label[for='tab-galleries'] {
-      background: linear-gradient(to bottom, var(--aq-b1) 0%, var(--aq-b2) 45%, var(--aq-b3) 55%, var(--aq-b2) 100%) !important;
+      background: linear-gradient(to bottom, #c4dff8 0%, #4898e8 45%, #1464c8 55%, #4898e8 100%) !important;
       color: #fff !important;
       box-shadow: 0 1px 4px rgba(0,0,0,.35), inset 0 1px 0 rgba(255,255,255,.55) !important;
     }
+
     @keyframes aq-fade {
       from { opacity: 0; transform: translateY(3px); }
       to   { opacity: 1; transform: translateY(0); }
     }
 
-    /* ─── PANELS / CARDS ─── */
-    section .border,
-    section > div > .border,
-    .grid > .border,
-    .overflow-hidden.border,
-    .overflow-hidden.rounded-lg {
-      background: var(--aq-white) !important;
-      border: 1px solid rgba(0,0,0,.18) !important;
-      border-radius: 6px !important;
-      box-shadow: 0 2px 8px rgba(0,0,0,.12), inset 0 1px 0 rgba(255,255,255,.8) !important;
-    }
-    .border-b { border-bottom-color: rgba(0,0,0,.1) !important; }
-    [class*='divide-y'] > * + * { border-top-color: rgba(0,0,0,.07) !important; }
+    /* ─── Profile chevron ─── */
+    .profile-selector[open] .profile-chevron { transform: rotate(180deg); }
 
-    /* TABLE */
-    table { background: transparent !important; }
-    thead th {
-      background: linear-gradient(to bottom, #f4f4f4 0%, #e8e8e8 100%) !important;
-      border-bottom: 1px solid rgba(0,0,0,.15) !important;
-      color: var(--aq-label) !important;
-      font-size: 11px !important;
-    }
-    tbody tr:hover { background: rgba(60,120,200,.08) !important; }
-    /* stat numbers */
-    .text-2xl { color: var(--aq-text) !important; }
-
-    /* ─── BADGES: stats/counts ─── */
-    [class*='bg-indigo-'], [class*='bg-amber-'], [class*='bg-emerald-'],
-    [class*='bg-rose-'], [class*='bg-slate-'] {
-      background-color: transparent !important;
-    }
-    /* re-skin status pills */
-    .rounded-full.bg-indigo-50,
-    .rounded-full.bg-emerald-100,
-    .rounded-full.bg-amber-100,
-    .rounded-full.bg-gray-100,
-    .rounded-full.bg-slate-100 {
-      background: linear-gradient(to bottom, #e4ecf8 0%, #c8d8f0 100%) !important;
-      color: var(--aq-sel) !important;
-      border: 1px solid rgba(60,120,200,.3) !important;
-    }
-    /* stat card sub-text */
-    [class*='text-slate-4'], [class*='text-indigo-'], [class*='text-slate-5'] {
-      color: var(--aq-label) !important;
-    }
-
-    /* ─── DRAFT PILL ─── */
+    /* ─── Draft pill ─── */
+    .draft-pill { border-radius: 12px; border: 1px solid rgba(0,0,0,.2); box-shadow: inset 0 1px 0 rgba(255,255,255,.7); padding: 2px 10px; font-size: 11px; cursor: pointer; }
     .draft-pill .state-pub { display: none; }
-    .draft-pill {
-      border-radius: 12px !important;
-      border: 1px solid rgba(0,0,0,.2) !important;
-      box-shadow: inset 0 1px 0 rgba(255,255,255,.7) !important;
-      padding: 2px 10px !important;
-    }
-    .draft-pill:has(input:checked) {
-      background: linear-gradient(to bottom, #f8e090 0%, #d89020 100%) !important;
-      border-color: #a07010 !important;
-      color: #3a2000 !important;
-    }
-    .draft-pill:has(input:checked) .state-pub  { display: none; }
+    .draft-pill:has(input:checked) { background: linear-gradient(to bottom, #f8e090 0%, #d89020 100%); border-color: #a07010; color: #3a2000; }
+    .draft-pill:has(input:checked) .state-pub   { display: none; }
     .draft-pill:has(input:checked) .state-draft { display: inline; }
-    .draft-pill:has(input:not(:checked)) {
-      background: linear-gradient(to bottom, var(--aq-b1) 0%, var(--aq-b2) 45%, var(--aq-b3) 55%, var(--aq-b2) 100%) !important;
-      border-color: var(--aq-b3) !important;
-      color: #fff !important;
-      box-shadow: 0 1px 3px rgba(0,0,0,.3), inset 0 1px 0 rgba(255,255,255,.4) !important;
-    }
+    .draft-pill:has(input:not(:checked)) { background: linear-gradient(to bottom, #c4dff8 0%, #4898e8 45%, #1464c8 55%, #4898e8 100%); border-color: #1464c8; color: #fff; box-shadow: 0 1px 3px rgba(0,0,0,.3), inset 0 1px 0 rgba(255,255,255,.4); }
     .draft-pill:has(input:not(:checked)) .state-draft { display: none; }
     .draft-pill:has(input:not(:checked)) .state-pub   { display: inline; }
 
-    /* ─── HOMEPAGE PILL ─── */
+    /* ─── Homepage pill ─── */
+    .homepage-pill { border-radius: 12px; border: 1px solid rgba(0,0,0,.2); padding: 2px 10px; box-shadow: inset 0 1px 0 rgba(255,255,255,.7); font-size: 11px; cursor: pointer; }
     .homepage-pill .state-off { display: none; }
-    .homepage-pill {
-      border-radius: 12px !important;
-      border: 1px solid rgba(0,0,0,.2) !important;
-      padding: 2px 10px !important;
-      box-shadow: inset 0 1px 0 rgba(255,255,255,.7) !important;
-    }
-    .homepage-pill:has(input:checked) {
-      background: linear-gradient(to bottom, var(--aq-b1) 0%, var(--aq-b2) 45%, var(--aq-b3) 55%, var(--aq-b2) 100%) !important;
-      border-color: var(--aq-b3) !important;
-      color: #fff !important;
-      box-shadow: 0 1px 3px rgba(0,0,0,.3), inset 0 1px 0 rgba(255,255,255,.4) !important;
-    }
-    .homepage-pill:has(input:not(:checked)) {
-      background: linear-gradient(to bottom, #e8e8e8 0%, #d0d0d0 100%) !important;
-      border-color: #a0a0a0 !important;
-      color: #606060 !important;
-    }
+    .homepage-pill:has(input:checked) { background: linear-gradient(to bottom, #c4dff8 0%, #4898e8 45%, #1464c8 55%, #4898e8 100%); border-color: #1464c8; color: #fff; box-shadow: 0 1px 3px rgba(0,0,0,.3), inset 0 1px 0 rgba(255,255,255,.4); }
+    .homepage-pill:has(input:not(:checked)) { background: linear-gradient(to bottom, #e8e8e8 0%, #d0d0d0 100%); border-color: #a0a0a0; color: #606060; }
     .homepage-pill:has(input:not(:checked)) .state-on  { display: none; }
     .homepage-pill:has(input:not(:checked)) .state-off { display: inline; }
     .gallery-row:has(.homepage-pill input:not(:checked)) { opacity: .5; }
 
-    /* ─── BUTTONS ─── */
-    /* primary Aqua gel button */
-    .bg-indigo-600, a.bg-indigo-600, span.bg-indigo-600 {
-      background: linear-gradient(to bottom, var(--aq-b1) 0%, var(--aq-b2) 40%, var(--aq-b3) 55%, var(--aq-b2) 100%) !important;
-      border: 1px solid var(--aq-b3) !important;
-      border-radius: 12px !important;
-      box-shadow: 0 1px 4px rgba(0,0,0,.35), inset 0 1px 0 rgba(255,255,255,.55) !important;
-      color: #fff !important;
-      text-shadow: 0 -1px 0 rgba(0,0,0,.3) !important;
-      opacity: 1 !important;
-    }
-    /* secondary button style (Annuler, etc.) */
-    a.border.border-slate-200, span.cursor-not-allowed.border.border-slate-200 {
-      background: linear-gradient(to bottom, #f8f8f8 0%, #e0e0e0 100%) !important;
-      border: 1px solid #909090 !important;
-      border-radius: 6px !important;
-      box-shadow: 0 1px 3px rgba(0,0,0,.15), inset 0 1px 0 rgba(255,255,255,.9) !important;
-      color: var(--aq-text) !important;
-    }
-    /* small action buttons in tables */
-    .rounded.border.border-slate-200,
-    span.rounded.border.border-rose-200 {
-      background: linear-gradient(to bottom, #f8f8f8 0%, #e0e0e0 100%) !important;
-      border: 1px solid #909090 !important;
-      border-radius: 4px !important;
-      box-shadow: 0 1px 2px rgba(0,0,0,.12), inset 0 1px 0 rgba(255,255,255,.9) !important;
-      color: var(--aq-text) !important;
-    }
-    /* disabled states */
-    .cursor-not-allowed { opacity: .6 !important; }
-
-    /* ─── INPUTS in modal ─── */
-    .event-modal input[type='text'],
-    .event-modal input[type='date'],
-    .event-modal textarea,
-    .event-modal select {
-      background: var(--aq-white) !important;
-      border: 1px solid rgba(0,0,0,.3) !important;
-      border-radius: 4px !important;
-      box-shadow: inset 0 1px 3px rgba(0,0,0,.12) !important;
-      color: var(--aq-text) !important;
-      font-family: 'Lucida Grande', Helvetica, sans-serif !important;
-      font-size: 13px !important;
-    }
-
-    /* ─── PHOTO GRID placeholders ─── */
-    .aspect-square.overflow-hidden.rounded-md.bg-slate-100 {
-      background: linear-gradient(to bottom, #e8e8e8 0%, #d8d8d8 100%) !important;
-      border: 1px solid rgba(0,0,0,.15) !important;
-      border-radius: 4px !important;
-    }
-    .aspect-square.border-2.border-dashed {
-      border: 2px dashed #a0a0a0 !important;
-      background: rgba(255,255,255,.5) !important;
-      border-radius: 4px !important;
-    }
-
-    /* ─── MODAL (sheet / dialog) ─── */
+    /* ─── Modal ─── */
     .event-modal { display: none; }
     .event-modal:target { display: flex; animation: aq-fade .2s ease-out; }
-    .event-modal > a.absolute { background: rgba(0,0,0,.45) !important; backdrop-filter: blur(2px); }
-    /* window */
-    .event-modal > div > div.relative {
-      background: var(--aq-white) !important;
-      border: 1px solid rgba(0,0,0,.4) !important;
-      border-radius: 10px !important;
-      box-shadow: 0 20px 60px rgba(0,0,0,.5), 0 0 0 1px rgba(255,255,255,.1) inset !important;
-    }
-    /* pinstripe title bar */
-    .event-modal .sticky {
-      background: repeating-linear-gradient(
-        to bottom,
-        #ececec 0px, #ececec 1px,
-        #f6f6f6 1px, #f6f6f6 2px
-      ) !important;
-      border-bottom: 1px solid #b0b0b0 !important;
-      border-radius: 10px 10px 0 0 !important;
-    }
-    .event-modal .sticky p    { color: var(--aq-text) !important; }
-    .event-modal .sticky p:first-child { font-weight: bold !important; font-size: 13px !important; }
-    /* traffic-light close button */
-    .event-modal .sticky a[aria-label] {
-      width: 14px !important;
-      height: 14px !important;
-      border-radius: 50% !important;
-      background: radial-gradient(circle at 40% 35%, #ff9090, #e03030) !important;
-      border: 1px solid #b02020 !important;
-      box-shadow: inset 0 1px 1px rgba(255,255,255,.5) !important;
-      color: transparent !important;
-      font-size: 0 !important;
-      padding: 0 !important;
-      display: flex !important;
-      align-items: center !important;
-      justify-content: center !important;
-      flex-shrink: 0 !important;
-    }
-    /* modal form sections */
-    .event-modal fieldset .rounded-lg.border {
-      background: #f8f8f8 !important;
-      border: 1px solid rgba(0,0,0,.12) !important;
-      border-radius: 6px !important;
-      box-shadow: none !important;
-    }
-    /* modal footer */
-    .event-modal fieldset + div {
-      background: #f0f0f0 !important;
-      border-top: 1px solid rgba(0,0,0,.12) !important;
-      border-radius: 0 0 10px 10px !important;
-    }
   </style>
 </body>
 </html>
