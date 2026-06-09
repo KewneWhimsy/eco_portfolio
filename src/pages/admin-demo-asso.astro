@@ -123,10 +123,10 @@ const btnSmall = "background:linear-gradient(to bottom,#f8f8f8,#e0e0e0);border:1
             </div>
           </details>
 
-          <nav class="tab-nav w-full overflow-x-auto sm:w-auto sm:ml-2 flex gap-[2px] p-[3px]" style="background:linear-gradient(to bottom,#ccd8e8,#b0c0d4);border:1px solid #7890a8;border-radius:12px;">
-            <label for="tab-overview"  class="cursor-pointer px-3 py-[3px] text-xs font-medium text-[#2a3a50] transition-colors" style="border-radius:9px;">📡 Tableau de bord</label>
-            <label for="tab-events"    class="cursor-pointer px-3 py-[3px] text-xs font-medium text-[#2a3a50] transition-colors" style="border-radius:9px;">📅 Événements</label>
-            <label for="tab-galleries" class="cursor-pointer px-3 py-[3px] text-xs font-medium text-[#2a3a50] transition-colors" style="border-radius:9px;">📷 Galeries</label>
+          <nav class="tab-nav w-full overflow-x-auto sm:w-auto sm:ml-2 flex gap-0.5 p-0.75" style="background:linear-gradient(to bottom,#ccd8e8,#b0c0d4);border:1px solid #7890a8;border-radius:12px;">
+            <label for="tab-overview"  class="cursor-pointer px-3 py-0.75 text-xs font-medium text-[#2a3a50] transition-colors" style="border-radius:9px;">📡 Tableau de bord</label>
+            <label for="tab-events"    class="cursor-pointer px-3 py-0.75 text-xs font-medium text-[#2a3a50] transition-colors" style="border-radius:9px;">📅 Événements</label>
+            <label for="tab-galleries" class="cursor-pointer px-3 py-0.75 text-xs font-medium text-[#2a3a50] transition-colors" style="border-radius:9px;">📷 Galeries</label>
           </nav>
         </div>
 
@@ -215,7 +215,7 @@ const btnSmall = "background:linear-gradient(to bottom,#f8f8f8,#e0e0e0);border:1
 
           <div style={cardStyle + "overflow:hidden;overflow:clip;"}>
             <div class="overflow-x-auto">
-              <table class="w-full min-w-[560px] text-sm">
+              <table class="w-full text-sm">
                 <thead style="background:linear-gradient(to bottom,#f4f4f4,#e8e8e8);border-bottom:1px solid rgba(0,0,0,.15);">
                   <tr>
                     <th class="px-2 py-2.5 text-left text-xs font-medium uppercase tracking-wide text-[#4a4a4a]">Date</th>
@@ -233,7 +233,7 @@ const btnSmall = "background:linear-gradient(to bottom,#f8f8f8,#e0e0e0);border:1
                         <p class="font-medium text-[#1a1a1a]">{e.title}</p>
                         {e.price && <p class="text-xs text-[#888]">{e.price}</p>}
                       </td>
-                      <td class="px-2 py-3 text-xs text-[#4a4a4a] max-w-[180px] truncate">{e.location}</td>
+                      <td class="px-2 py-3 text-xs text-[#4a4a4a] max-w-45 truncate">{e.location}</td>
                       <td class="px-2 py-3 text-center">
                         {e.status === 'past' ? (
                           <span class="inline-flex rounded-full px-2 py-0.5 text-[11px] font-medium" style="background:linear-gradient(to bottom,#e8e8e8,#d0d0d0);color:#606060;border:1px solid #a0a0a0;">Passé</span>
