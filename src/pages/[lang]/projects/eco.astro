@@ -35,9 +35,7 @@ const projectsWithImages = await Promise.all(
       {text.projectsTitle}
     </h1>
     
-    <p class="mb-6">
-      {text.projectsIntro}
-    </p>
+    <p class="mb-6" set:html={text.projectsIntro} />
     
     <!-- Liste des projets simplifiée -->
     <section class="mb-8">
@@ -94,16 +92,6 @@ const projectsWithImages = await Promise.all(
           </li>
         ))}
       </ul>
-    </section>
-    
-    <!-- Section sur l'éco-conception -->
-    <section class="py-6">
-      <h2 class="text-xl text-accent font-semibold mb-3">
-        {text.ecoDesignTitle}
-      </h2>
-      <p class="max-w-5xl">
-        {text.ecoDesignText}
-      </p>
     </section>
     
     <!-- Section CTA contact -->

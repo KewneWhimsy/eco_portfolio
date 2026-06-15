@@ -60,7 +60,7 @@ function formatDate(date: Date): string {
             <p class="text-sm font-bold uppercase tracking-wide text-accent">{text.kiss.title}</p>
             <p class="italic text-text-muted">{text.kiss.quote}</p>
             <p>{text.kiss.p1}</p>
-            <p>{text.kiss.p2}</p>
+            <p set:html={text.kiss.p2} />
           </div>
           <div class="flex flex-wrap gap-4">
             <a href={`/${lang}/contact/`} class="cta-button">{text.contactButton}</a>
