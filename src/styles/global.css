@@ -150,6 +150,10 @@ p {
   color: var(--color-light);
 }
 
+a[target="_blank"]:not([href*="github.com"])::after {
+  content: " ↗";
+}
+
 .text-jade {
   color: var(--color-light);
   cursor: pointer;

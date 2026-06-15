@@ -22,9 +22,14 @@ const text = t(about, lang);
 
     <section class="mb-8 border-b border-accent/25 pb-6">
       <h1 class="text-2xl font-bold mb-4 border-b border-accent pb-2">{text.aboutTitle}</h1>
-      <p class="mb-4 max-w-4xl">{text.aboutText}</p>
-      <h2 class="text-xl font-semibold mb-2">{text.visionTitle}</h2>
-      <p class="mb-4 max-w-4xl" set:html={text.visionText} />
+      <div class="space-y-3 mb-4 max-w-4xl">
+        {text.aboutParagraphs.map(p => <p>{p}</p>)}
+      </div>
+      <div class="flex flex-wrap gap-3 mb-4">
+        {text.links.map(link => (
+          <a href={link.url} target="_blank" rel="noopener noreferrer" class="text-link text-sm">{link.label}</a>
+        ))}
+      </div>
     </section>
 
     <!-- Compétences en menus déroulants avec descriptions simples -->
@@ -79,7 +84,7 @@ const text = t(about, lang);
               <span class="text-text-muted text-sm">{edu.year}</span>
             </div>
             <p class="text-light text-sm mb-1">{edu.school}</p>
-            <p>{edu.description}</p>
+            <p set:html={edu.description} />
           </div>
         ))}
       </div>

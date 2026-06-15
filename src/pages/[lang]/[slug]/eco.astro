@@ -4,6 +4,7 @@ import { getCollection } from 'astro:content';
 import { Picture } from 'astro:assets';
 import LayoutEco from '../../../layouts/layout-eco.astro';
 import EcoModeInfo from '../../../components/eco_mode_info.astro';
+import Icon from '../../../components/Icon.astro';
 import { t } from '../../../i18n';
 import { projectDetail } from '../../../i18n/project-detail';
 import { marked } from 'marked';
@@ -114,7 +115,7 @@ const nextProject = idx < sorted.length - 1 ? sorted[idx + 1] : null;
           <a href={project.data.links.website} target="_blank" rel="noopener noreferrer" class="cta-button">{text.visitSite}</a>
         )}
         {project.data.links?.github && (
-          <a href={project.data.links.github} target="_blank" rel="noopener noreferrer" class="btn-secondary">{text.viewSourceCode}</a>
+          <a href={project.data.links.github} target="_blank" rel="noopener noreferrer" class="btn-secondary flex items-center gap-2"><Icon name="github" size={16} />{text.viewSourceCode}</a>
         )}
       </div>
     </section>

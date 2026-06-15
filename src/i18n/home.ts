@@ -10,7 +10,12 @@ export const home = {
     description: "Développeur web freelance : sites modulables, rapides et sur-mesure, faciles à prendre en main. Basé à Rennes, disponible à Quimper, Paris, Berlin et à distance.",
     heroTypePart1: 'Full Stack',
     heroTypePart2: 'Web Developer',
-    heroText: "Je crée des sites sur-mesure, intuitifs et rapides, que vous gérez au quotidien sans difficulté. Un site allégé du superflu, c'est aussi un site plus économe : moins cher à héberger, moins gourmand en énergie.",
+    kiss: {
+      title: 'KISS : Keep It Simple, Stupid !',
+      quote: '"Tout devrait être aussi simple que possible, mais pas simpliste." — Einstein',
+      p1: "Je m'applique à trouver la solution la plus légère et adaptée pour chaque projet, ce qui demande souvent plus de réflexion qu'on ne le pense. Je m'appuie sur les standards du web, sans plugins superflus, sans serveur ni base de données quand ce n'est pas nécessaire. L'objectif : une app ou un site faits pour durer, modulables, simples à prendre en main pour les admins comme pour les utilisateurs.",
+      p2: "Le résultat : référencement naturel optimal, performances inégalées grâce à la couche de modernité que j'ajoute par-dessus ces standards, et une résilience dans le temps qu'un CMS bardé de plugins (WordPress & co) ne peut pas offrir.",
+    },
     contactButton: 'Me contacter',
     projectsButton: 'Voir mes réalisations',
 
@@ -41,7 +46,12 @@ export const home = {
     description: 'Freelance web developer: adaptable, fast, custom-made websites that are easy to manage day to day. Based in Rennes, available in Quimper, Paris, Berlin and remotely.',
     heroTypePart1: 'Full Stack',
     heroTypePart2: 'Web Developer',
-    heroText: "I build custom-made websites: intuitive, fast, and easy for you to manage day to day. A site stripped of the superfluous is also a leaner site: cheaper to host, lighter on energy.",
+    kiss: {
+      title: 'KISS: Keep It Simple, Stupid!',
+      quote: '"Everything should be as simple as possible, but not simpler." — Einstein',
+      p1: "I focus on finding the lightest and most fitting solution for each project, which often takes more thought than you'd expect. I build on web standards, without unnecessary plugins, without a server or database when they're not needed. The goal: an app or website built to last, modular, easy to use for admins and end users alike.",
+      p2: "The result: optimal natural SEO, unmatched performance thanks to the modern layer I add on top of these standards, and long-term resilience that no plugin-heavy CMS (WordPress & co) can match.",
+    },
     contactButton: "Let's talk",
     projectsButton: 'View my projects',
 
@@ -72,7 +82,12 @@ export const home = {
     description: 'Freiberuflicher Webentwickler: anpassungsfähige, schnelle und maßgeschneiderte Websites, die sich im Alltag leicht verwalten lassen. Mit Sitz in Rennes, verfügbar in Quimper, Paris, Berlin und remote.',
     heroTypePart1: 'Full Stack',
     heroTypePart2: 'Webentwickler',
-    heroText: 'Ich entwickle maßgeschneiderte Websites: intuitiv, schnell und im Alltag einfach selbst zu verwalten. Eine Website ohne Überflüssiges ist auch sparsamer: günstiger im Hosting, genügsamer im Energieverbrauch.',
+    kiss: {
+      title: 'KISS: Keep It Simple, Stupid!',
+      quote: '"Alles sollte so einfach wie möglich sein, aber nicht einfacher." — Einstein',
+      p1: "Ich setze mich dafür ein, die leichteste und passendste Lösung für jedes Projekt zu finden, was oft mehr Überlegung erfordert, als man denken würde. Ich baue auf Web-Standards, ohne überflüssige Plugins, ohne Server oder Datenbank, wenn sie nicht nötig sind. Das Ziel: eine App oder Website, die dauerhaft ist, modular und einfach zu bedienen, für Admins wie für Endnutzer.",
+      p2: "Das Ergebnis: optimales natürliches SEO, unübertroffene Performance dank der modernen Schicht, die ich über diese Standards lege, und eine langfristige Resilienz, die kein plugin-überladenes CMS (WordPress & Co) bieten kann.",
+    },
     contactButton: 'Kontakt',
     projectsButton: 'Meine Projekte',
 

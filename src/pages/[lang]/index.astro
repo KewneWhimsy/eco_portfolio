@@ -56,7 +56,12 @@ function formatDate(date: Date): string {
               </div>
             </div>
           </h1>
-          <p class="text-lg mb-6 max-w-3xl">{text.heroText}</p>
+          <div class="mb-6 max-w-3xl space-y-3 text-[17px]">
+            <p class="text-sm font-bold uppercase tracking-wide text-accent">{text.kiss.title}</p>
+            <p class="italic text-text-muted">{text.kiss.quote}</p>
+            <p>{text.kiss.p1}</p>
+            <p>{text.kiss.p2}</p>
+          </div>
           <div class="flex flex-wrap gap-4">
             <a href={`/${lang}/contact/`} class="cta-button">{text.contactButton}</a>
             <a href={`/${lang}/projects/`} class="btn-secondary">{text.projectsButton}</a>

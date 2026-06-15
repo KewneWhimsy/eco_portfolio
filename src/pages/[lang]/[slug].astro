@@ -5,6 +5,7 @@ import { Picture } from "astro:assets";
 import Layout from "../../layouts/layout.astro";
 import CtaDispo from "../../components/cta_dispo.astro";
 import ProjectCarousel from "../../components/ProjectCarousel.astro";
+import Icon from "../../components/Icon.astro";
 import { marked } from 'marked';
 
 type Lang = 'fr' | 'en' | 'de';
@@ -257,9 +258,9 @@ const collaborators = project.data.collaborators || [];
               href={project.data.links.github}
               target="_blank"
               rel="noopener noreferrer"
-              class="btn-secondary"
+              class="btn-secondary flex items-center gap-2"
             >
-              {t.viewSourceCode}
+              <Icon name="github" size={16} />{t.viewSourceCode}
             </a>
           )
         }
@@ -270,9 +271,9 @@ const collaborators = project.data.collaborators || [];
               href={project.data.links.githubFrontend}
               target="_blank"
               rel="noopener noreferrer"
-              class="btn-secondary"
+              class="btn-secondary flex items-center gap-2"
             >
-              {t.viewFrontendCode}
+              <Icon name="github" size={16} />{t.viewFrontendCode}
             </a>
           )
         }
@@ -283,9 +284,9 @@ const collaborators = project.data.collaborators || [];
               href={project.data.links.githubBackend}
               target="_blank"
               rel="noopener noreferrer"
-              class="btn-secondary"
+              class="btn-secondary flex items-center gap-2"
             >
-              {t.viewBackendCode}
+              <Icon name="github" size={16} />{t.viewBackendCode}
             </a>
           )
         }
