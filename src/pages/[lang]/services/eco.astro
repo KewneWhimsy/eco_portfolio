@@ -27,7 +27,7 @@ const text = t(services, lang);
       <h2 class="text-xl font-semibold mb-3">{text.servicesTitle}</h2>
       {text.services.map(s => (
         <div class="mb-4 border-l-2 border-accent pl-3">
-          <h3 class="font-semibold">{s.title} — <span class="text-accent">{s.price}</span></h3>
+          <h3 class="font-semibold">{s.title}</h3>
           <p class="mb-1">{s.description}</p>
           <ul class="list-disc pl-5 text-sm">
             {s.features.map(f => <li>{f}</li>)}
@@ -56,7 +56,7 @@ const text = t(services, lang);
         <div class="pt-3 pl-2">
           {text.vitrineDetails.options.map(o => (
             <div class="pb-4 border-l-2 border-accent pl-3">
-              <h3 class="font-semibold">{o.name} — <span class="text-accent">{o.price}</span></h3>
+              <h3 class="font-semibold">{o.name}</h3>
               <p class="text-sm text-text-muted pb-1">{o.maintenance}</p>
               <p class="pb-1">{o.desc}</p>
               <ul class="list-disc pl-5 text-sm pb-1">
@@ -73,7 +73,7 @@ const text = t(services, lang);
         <div class="pt-3 pl-2">
           {text.ecommerceDetails.options.map(o => (
             <div class="pb-4 border-l-2 border-accent pl-3">
-              <h3 class="font-semibold">{o.name} — <span class="text-accent">{o.price}</span></h3>
+              <h3 class="font-semibold">{o.name}</h3>
               <p class="text-sm text-text-muted pb-1">{o.maintenance}</p>
               <p class="pb-1">{o.desc}</p>
               <ul class="list-disc pl-5 text-sm pb-1">
@@ -88,7 +88,6 @@ const text = t(services, lang);
       <details class="mb-3 border border-accent/25 rounded p-2">
         <summary class="font-semibold text-light cursor-pointer py-1 flex items-center gap-2"><Icon name="gear" size={16} class="shrink-0" />{text.customDetails.title}</summary>
         <div class="pt-3 pl-2 pb-2">
-          <p class="text-accent font-semibold pb-2">{text.customDetails.rate}</p>
           <p class="pb-2">{text.customDetails.desc}</p>
           <ul class="list-disc pl-5 text-sm">
             {text.customDetails.examples.map(e => <li>{e}</li>)}

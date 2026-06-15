@@ -47,7 +47,6 @@ const text = t(services, lang);
           <div class="skill-card-home p-6">
             <div class="skill-card-home-bar" aria-hidden="true"></div>
             <h3 class="text-xl font-bold mb-2 mt-2">{s.title}</h3>
-            <div class="text-accent font-bold text-lg mb-3">{s.price}</div>
             <p class="text-text-muted mb-4">{s.description}</p>
             <ul class="space-y-2 mb-4">
               {s.features.map((f, i) => <li class="flex items-center gap-2"><Icon name="checkmark" size={16} class={`text-light shrink-0 ${i === s.features.length - 1 ? 'font-semibold' : ''}`} /><span class={i === s.features.length - 1 ? 'text-light font-semibold' : ''}>{f}</span></li>)}
@@ -133,14 +132,12 @@ const text = t(services, lang);
               <div class="border-l-4 border-accent pl-4 py-2">
                 <div class="flex justify-between items-start mb-2">
                   <h4 class="font-bold text-lg">{o.name}</h4>
-                  <span class="text-accent font-bold whitespace-nowrap ml-4">{o.price}</span>
+                  <span class="text-accent text-sm whitespace-nowrap ml-4">{o.maintenance}</span>
                 </div>
-                <p class="text-accent mb-3">{o.maintenance}</p>
                 <p class="mb-3">{o.desc}</p>
                 <ul class="space-y-2 mb-3">
                   {o.features.map(f => <li class="flex items-center gap-2"><Icon name="checkmark" size={15} class="text-light shrink-0" /><span>{f}</span></li>)}
                 </ul>
-                {o.modifications && <p class="text-text-muted mb-2">{o.modifications}</p>}
                 {o.tech && <p class="text-text-muted mb-2 italic">{o.tech}</p>}
                 <p class="text-accent italic">{o.ideal}</p>
               </div>
@@ -167,9 +164,8 @@ const text = t(services, lang);
               <div class="border-l-4 border-accent pl-4 py-2">
                 <div class="flex justify-between items-start mb-2">
                   <h4 class="font-bold text-lg">{o.name}</h4>
-                  <span class="text-accent font-bold whitespace-nowrap ml-4">{o.price}</span>
+                  <span class="text-accent text-sm whitespace-nowrap ml-4">{o.maintenance}</span>
                 </div>
-                <p class="text-accent mb-3">{o.maintenance}</p>
                 <p class="mb-3">{o.desc}</p>
                 <ul class="space-y-2 mb-3">
                   {o.features.map(f => <li class="flex items-center gap-2"><Icon name="checkmark" size={15} class="text-light shrink-0" /><span>{f}</span></li>)}
@@ -196,7 +192,6 @@ const text = t(services, lang);
             <Icon name="gear" size={20} class="text-light shrink-0" />{text.customDetails.title}
           </summary>
           <div class="px-6 pb-6">
-            <p class="text-accent font-bold text-lg mb-3">{text.customDetails.rate}</p>
             <p class="mb-4">{text.customDetails.desc}</p>
             <h4 class="font-semibold mb-3">{text.customDetails.examplesLabel}</h4>
             <ul class="grid md:grid-cols-2 gap-2 mb-6">

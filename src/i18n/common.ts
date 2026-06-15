@@ -5,7 +5,7 @@ export const nav = {
   fr: {
     projects: 'Projets',
     about: 'Qui suis-je ?',
-    services: 'Offres',
+    services: 'Services',
     network: 'Réseau',
     contact: 'Contact',
     blog: 'Blog',
@@ -13,7 +13,7 @@ export const nav = {
   en: {
     projects: 'Projects',
     about: 'Skills',
-    services: 'Offers',
+    services: 'Services',
     network: 'Network',
     contact: 'Contact',
     blog: 'Blog',
@@ -21,7 +21,7 @@ export const nav = {
   de: {
     projects: 'Projekte',
     about: 'Über mich',
-    services: 'Angebote',
+    services: 'Leistungen',
     network: 'Netzwerk',
     contact: 'Kontakt',
     blog: 'Blog',
