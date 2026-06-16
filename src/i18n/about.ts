@@ -15,9 +15,8 @@ export const about = {
     description: "Découvrez mon parcours, mes compétences, et ma façon de construire des sites simples et sur-mesure, faciles à garder en main.",
     aboutTitle: 'Qui suis-je ?',
     aboutParagraphs: [
-      "Né début 90, j'ai vu internet débarquer dans nos vies. Cette génération de transition m'a rendu curieux de la technologie tout en restant attaché à ce qu'elle peut apporter concrètement aux gens.",
-      "Je suis empathique, j'aime les rapports apaisés et honnêtes. Quand je crois à un projet, je m'y donne à fond.",
-      "En dehors du code : jeux vidéo, cinéma d'animation, art graphique et musique. Sans être musicien, j'explore sans cesse des styles variés, en ce moment je suis pas mal sur l'univers esthétique et sonore de la grind fiction par exemple. J'aime mettre en valeur les artistes talentueux et je suis en route pour franchir le pas de l'autre côté : photo, pixel art et design. J'ai hâte d'avoir des projets plus ambitieux de ce côté-là.",
+      "Après la moitié de ma vie dans l'accueil de publics variés, j'ai écouté le 90s kid en moi qui a vu internet devenir miroir de notre civilisation et m'a donné envie d'en bousculer les codes.",
+      "Passions : l'art sous toutes ses formes (voir liens ci-dessous). L'univers graphique et sonore de la Grind Fiction aka Shibuya Punk me plait particulièrement.",
     ],
     links: [
       { label: 'Ma playlist fourre-tout', url: 'https://youtube.com/playlist?list=PL9gSzoFJ2JguoSDW7XCZ-14UIhI6GVo44&si=x1ILo9ZRT6nDg8Bz' },
@@ -46,13 +45,12 @@ export const about = {
     description: 'Discover my background, skills, and my approach to building simple, custom-made websites that are easy to stay on top of.',
     aboutTitle: 'About me',
     aboutParagraphs: [
-      "Born in the early 90s, I watched the internet arrive in our lives. Growing up in that transitional generation made me curious about technology while staying grounded in what it can actually do for people.",
-      "I'm empathetic, I value calm and honest relationships. When I believe in a project, I give it everything.",
-      "Outside of code: video games, animated films, graphic art and music. I'm not a musician but I constantly explore different styles — lately I've been deep into the aesthetic and sonic world of grind fiction. I love putting talented artists in the spotlight, and I'm on my way to crossing over to the other side myself: photography, pixel art and design. I can't wait to take on more ambitious projects in that space.",
+      "After half my life in public-facing roles, I listened to the 90s kid in me who watched the internet become a mirror of our civilisation and felt the urge to shake up its codes.",
+      "Passions: art in all its forms (see links below). The graphic and sonic world of Grind Fiction, aka Shibuya Punk, is a particular favourite.",
     ],
     links: [
       { label: 'My catch-all playlist', url: 'https://youtube.com/playlist?list=PL9gSzoFJ2JguoSDW7XCZ-14UIhI6GVo44&si=x1ILo9ZRT6nDg8Bz' },
-      { label: 'My Senscritique profile', url: 'https://www.senscritique.com/Whimsical' },
+      { label: 'My Senscritique profile (FR)', url: 'https://www.senscritique.com/Whimsical' },
     ],
     skillsTitle: 'Technical skills', techToggle: 'Technical details', expTitle: 'Professional experience', eduTitle: 'Education', contactButton: "Let's talk",
     experiences: [
@@ -77,13 +75,12 @@ export const about = {
     description: 'Entdecken Sie meinen Werdegang, meine Fähigkeiten und meine Herangehensweise an einfache, maßgeschneiderte Websites, die sich leicht selbst verwalten lassen.',
     aboutTitle: 'Über mich',
     aboutParagraphs: [
-      "Ich bin Anfang der 90er geboren und habe erlebt, wie das Internet in unser Leben einzog. Diese Übergangsgeneration hat mich neugierig auf Technologie gemacht, während ich gleichzeitig sehr daran interessiert bin, was sie konkret für Menschen leisten kann.",
-      "Ich bin einfühlsam und schätze ruhige, ehrliche Beziehungen. Wenn ich an ein Projekt glaube, gebe ich alles.",
-      "Abseits des Codes: Videospiele, Animationsfilme, Grafikkunst und Musik. Ich bin kein Musiker, erkunde aber ständig verschiedene Stile, gerade beschäftige ich mich viel mit der ästhetischen und klanglichen Welt der Grind Fiction. Ich liebe es, talentierte Künstler in den Vordergrund zu stellen, und ich bin dabei, selbst auf die andere Seite zu wechseln: Fotografie, Pixel Art und Design. Ich freue mich sehr auf ehrgeizigere Projekte in diesem Bereich.",
+      "Nach der Hälfte meines Lebens in der Betreuung verschiedener Menschen habe ich dem 90s-Kid in mir zugehört, das das Internet zu Spiegel unserer Zivilisation werden sah und Lust bekam, dessen Codes aufzumischen.",
+      "Leidenschaften: Kunst in all ihren Formen (siehe Links unten). Die grafische und klangliche Welt der Grind Fiction, auch bekannt als Shibuya Punk, fasziniert mich besonders.",
     ],
     links: [
       { label: 'Meine bunte Playlist', url: 'https://youtube.com/playlist?list=PL9gSzoFJ2JguoSDW7XCZ-14UIhI6GVo44&si=x1ILo9ZRT6nDg8Bz' },
-      { label: 'Mein Senscritique-Profil', url: 'https://www.senscritique.com/Whimsical' },
+      { label: 'Mein Senscritique-Profil (FR)', url: 'https://www.senscritique.com/Whimsical' },
     ],
     skillsTitle: 'Technische Fähigkeiten', techToggle: 'Technische Details', expTitle: 'Berufserfahrung', eduTitle: 'Ausbildung', contactButton: 'Kontaktieren Sie mich',
     experiences: [

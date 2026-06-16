@@ -58,9 +58,9 @@ function formatDate(date: Date): string {
           </h1>
           <div class="mb-6 max-w-3xl space-y-3 text-[17px]">
             <p class="text-sm font-bold uppercase tracking-wide text-accent">{text.kiss.title}</p>
-            <p class="italic text-text-muted">{text.kiss.quote}</p>
+            <p class="italic text-text-muted">"{text.kiss.quoteText}" <span class="whitespace-nowrap not-italic text-sm text-accent">— {text.kiss.quoteAuthor}</span></p>
             <p>{text.kiss.p1}</p>
-            <p set:html={text.kiss.p2} />
+            <p set:html={text.kiss.p2} class="hidden md:block" />
           </div>
           <div class="flex flex-wrap gap-4">
             <a href={`/${lang}/contact/`} class="cta-button">{text.contactButton}</a>
@@ -147,7 +147,7 @@ function formatDate(date: Date): string {
                       widths={[400, 740, 1080]}
                       sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                       formats={['avif', 'webp']}
-                      alt={project.data.title[lang]}
+                      alt={project.data.title[lang] as string}
                       class={`absolute inset-0 w-full h-full ${project.data.logoImage ? 'object-contain p-6' : 'object-cover'}`}
                       loading="lazy"
                     />
