@@ -12,7 +12,7 @@ export const home = {
     heroTypePart2: 'Web Developer',
     kiss: {
       title: 'KISS : Keep It Simple, Stupid !',
-      quoteText: 'La simplicité est la sophistication ultime.',
+      quoteText: 'La simplicité est la sophistication suprême.',
       quoteAuthor: 'Leonardo da Vinci',
       p1: "Je m'appuie sur les standards du web, sans plugins superflus ni infrastructure inutile, pour créer des sites faits pour durer, modulables, intuitifs pour les admins comme pour les visiteurs.",
       p2: "Résultat : référencement naturel optimal, performances inégalées, et une résilience dans le temps qu'un CMS lourd (WordPress & co) ne peut pas offrir. Tous mes sites atteignent un score <a href=\"https://pagespeed.web.dev/\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-link\" title=\"Outil de mesure de performance Google\">Lighthouse</a> de 90 à 100/100.",

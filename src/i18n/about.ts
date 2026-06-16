@@ -16,7 +16,7 @@ export const about = {
     aboutTitle: 'Qui suis-je ?',
     aboutParagraphs: [
       "Après la moitié de ma vie dans l'accueil de publics variés, j'ai écouté le 90s kid en moi qui a vu internet devenir miroir de notre civilisation et m'a donné envie d'en bousculer les codes.",
-      "Passions : l'art sous toutes ses formes (voir liens ci-dessous). L'univers graphique et sonore de la Grind Fiction aka Shibuya Punk me plait particulièrement.",
+      "Passions : l'art sous toutes ses formes (voir liens ci-dessous). L'univers graphique et sonore de la Grind Fiction aka Shibuya Punk me plaît particulièrement.",
     ],
     links: [
       { label: 'Ma playlist fourre-tout', url: 'https://youtube.com/playlist?list=PL9gSzoFJ2JguoSDW7XCZ-14UIhI6GVo44&si=x1ILo9ZRT6nDg8Bz' },
@@ -46,7 +46,7 @@ export const about = {
     aboutTitle: 'About me',
     aboutParagraphs: [
       "After half my life in public-facing roles, I listened to the 90s kid in me who watched the internet become a mirror of our civilisation and felt the urge to shake up its codes.",
-      "Passions: art in all its forms (see links below). The graphic and sonic world of Grind Fiction, aka Shibuya Punk, is a particular favourite.",
+      "Passions: art in all its forms (see links below). The graphic and sonic world of Grind Fiction, aka Shibuya Punk, is one I'm particularly drawn to.",
     ],
     links: [
       { label: 'My catch-all playlist', url: 'https://youtube.com/playlist?list=PL9gSzoFJ2JguoSDW7XCZ-14UIhI6GVo44&si=x1ILo9ZRT6nDg8Bz' },
