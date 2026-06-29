@@ -8,7 +8,7 @@ description:
   fr: "Projet de fin de formation : plateforme de gestion d'événements e-sport intégrant un système de chat en temps réel via WebSocket et HTMX (MVP)."
   en: "End-of-training project: e-sport event management platform with a real-time chat system via WebSocket and HTMX (MVP)."
   de: "Abschlussprojekt der Ausbildung: E-Sport-Eventmanagement-Plattform mit einem Echtzeit-Chat-System über WebSocket und HTMX (MVP)."
-featured: true
+featured: false
 tech: ["Astro", "Tailwind", "Alpine.js", "HTMX", "WebSocket", "Express", "PostgreSQL", "MongoDB"]
 links:
   githubFrontend: "https://github.com/KewneWhimsy/esportify-f"
