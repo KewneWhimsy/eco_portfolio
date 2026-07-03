@@ -130,10 +130,7 @@ const text = t(services, lang);
           <div class="px-6 pb-6 space-y-6">
             {text.vitrineDetails.options.map(o => (
               <div class="border-l-4 border-accent pl-4 py-2">
-                <div class="flex justify-between items-start mb-2">
-                  <h4 class="font-bold text-lg">{o.name}</h4>
-                  <span class="text-accent text-sm whitespace-nowrap ml-4">{o.maintenance}</span>
-                </div>
+                <h4 class="font-bold text-lg mb-2">{o.name}</h4>
                 <p class="mb-3">{o.desc}</p>
                 <ul class="space-y-2 mb-3">
                   {o.features.map(f => <li class="flex items-center gap-2"><Icon name="checkmark" size={15} class="text-light shrink-0" /><span>{f}</span></li>)}
@@ -162,10 +159,7 @@ const text = t(services, lang);
           <div class="px-6 pb-6 space-y-6">
             {text.ecommerceDetails.options.map(o => (
               <div class="border-l-4 border-accent pl-4 py-2">
-                <div class="flex justify-between items-start mb-2">
-                  <h4 class="font-bold text-lg">{o.name}</h4>
-                  <span class="text-accent text-sm whitespace-nowrap ml-4">{o.maintenance}</span>
-                </div>
+                <h4 class="font-bold text-lg mb-2">{o.name}</h4>
                 <p class="mb-3">{o.desc}</p>
                 <ul class="space-y-2 mb-3">
                   {o.features.map(f => <li class="flex items-center gap-2"><Icon name="checkmark" size={15} class="text-light shrink-0" /><span>{f}</span></li>)}
